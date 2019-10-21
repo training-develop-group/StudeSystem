@@ -6,6 +6,7 @@
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 body {
 	background-color: #f1f1f1;
 }
@@ -150,6 +151,16 @@ body, html {
     display: none;
 }
 
+=======
+body, html {
+    width: 100%;
+    height: 100%;
+}
+.hidden{
+    display: none;
+}
+
+>>>>>>> 87074d1e4143bf121e168ad54c39d0df0fec968d
 /* @media (max-width: 1600px) {
     body, html {
         width: 1600px;
@@ -160,5 +171,9 @@ body, html {
     body, html {
         width: 1600px;
     }
+<<<<<<< HEAD
 } */
 >>>>>>> remotes/origin/dev-mc
+=======
+} */
+>>>>>>> 87074d1e4143bf121e168ad54c39d0df0fec968d
