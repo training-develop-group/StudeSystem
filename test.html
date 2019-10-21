@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>test</title>
+	<style type="text/css">
+		.sortableitem span{display:inline-block;width:100px;}
+		.sortablelist{position:relative;}
+		.sortableitem{position:relative;width:400px; border:1px solid red; margin:30px;}
+	</style>
+</head>
+<body>
+	<ul class="id">
+	  <li class="sortableitem">
+	    <span class="num">1</span><span class="moveup">up</span><span class="movedown">down</span>
+	  </li>
+	  <li class="sortableitem">
+	    <span class="num">2</span><span class="moveup">up</span><span class="movedown">down</span>
+	  </li>
+	  <li class="sortableitem">
+	    <span class="num">3</span><span class="moveup">up</span><span class="movedown">down</span>
+	  </li>
+	  <li class="sortableitem">
+	    <span class="num">4</span><span class="moveup">up</span><span class="movedown">down</span>
+	  </li>
+	</ul>
+	
+	<!-- <script src="../js/jQuery%20v3.4.1.min.js" type="text/javascript" charset="utf-8"></script> -->
+	<script src="js/jQuery%20v3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/clickSort.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$('.id').clickSort({
+		    speed:500,
+		　　callback:function(){
+		// 　　　　alert('ok');
+		//结束后的通知与方法
+		
+		　　　　}
+		    });
+	</script>
+</body>
+</html>
