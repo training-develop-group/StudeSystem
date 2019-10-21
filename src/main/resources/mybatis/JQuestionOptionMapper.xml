@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper
+	namespace="com.example.study_system.dao.JQuestionOptionMapper">
+	<resultMap id="BaseResultMap"
+		type="com.example.study_system.model.JQuestionOption">
+		<id column="ref" property="ref" jdbcType="BIGINT" />
+		<result column="question_id" property="questionId"
+			jdbcType="BIGINT" />
+		<result column="is_right" property="isRight" jdbcType="INTEGER" />
+		<result column="option_type" property="optionType"
+			jdbcType="VARCHAR" />
+		<result column="c_time" property="cTime" jdbcType="TIMESTAMP" />
+		<result column="m_time" property="mTime" jdbcType="TIMESTAMP" />
+		<result column="c_user" property="cUser" jdbcType="VARCHAR" />
+		<result column="m_user" property="mUser" jdbcType="VARCHAR" />
+	</resultMap>
+	<resultMap id="ResultMapWithBLOBs"
+		type="com.example.study_system.model.JQuestionOption"
+		extends="BaseResultMap">
+		<result column="content" property="content"
+			jdbcType="LONGVARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		ref, question_id, is_right, option_type, c_time, m_time,
+		c_user, m_user
+	</sql>
+	<sql id="Blob_Column_List">
+		content
+	</sql>
+	<select id="selectAllQuestionOption"
+		resultMap="ResultMapWithBLOBs">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from j_question_option ORDER BY c_time ASC,option_type ASC
+	</select>
+	<select id="selectQuestionByQuestionId"
+		resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from j_question_option
+		where question_id =
+		#{questionId,jdbcType=BIGINT} ORDER BY c_time ASC,option_type ASC
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from
+		j_question_option
+		where ref = #{ref,jdbcType=BIGINT}
+	</delete>
+	<delete id="deleteQuestionOptionByQuestionId" parameterType="java.lang.Long">
+		delete from
+		j_question_option
+		where question_id = #{questionId,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert"
+		parameterType="com.example.study_system.model.JQuestionOption">
+		insert into j_question_option (ref, question_id,
+		is_right,
+		option_type, c_time, m_time,
+		c_user, m_user, content
+		)
+		values
+		(#{ref,jdbcType=BIGINT}, #{questionId,jdbcType=BIGINT},
+		#{isRight,jdbcType=INTEGER},
+		#{optionType,jdbcType=VARCHAR},
+		#{cTime,jdbcType=TIMESTAMP}, #{mTime,jdbcType=TIMESTAMP},
+		#{cUser,jdbcType=VARCHAR}, #{mUser,jdbcType=VARCHAR},
+		#{content,jdbcType=LONGVARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective"
+		parameterType="com.example.study_system.model.JQuestionOption">
+		insert into j_question_option
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="ref != null">
+				ref,
+			</if>
+			<if test="questionId != null">
+				question_id,
+			</if>
+			<if test="isRight != null">
+				is_right,
+			</if>
+			<if test="optionType != null">
+				option_type,
+			</if>
+			<if test="cTime != null">
+				c_time,
+			</if>
+			<if test="mTime != null">
+				m_time,
+			</if>
+			<if test="cUser != null">
+				c_user,
+			</if>
+			<if test="mUser != null">
+				m_user,
+			</if>
+			<if test="content != null">
+				content,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="ref != null">
+				#{ref,jdbcType=BIGINT},
+			</if>
+			<if test="questionId != null">
+				#{questionId,jdbcType=BIGINT},
+			</if>
+			<if test="isRight != null">
+				#{isRight,jdbcType=INTEGER},
+			</if>
+			<if test="optionType != null">
+				#{optionType,jdbcType=VARCHAR},
+			</if>
+			<if test="cTime != null">
+				#{cTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="mTime != null">
+				#{mTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="cUser != null">
+				#{cUser,jdbcType=VARCHAR},
+			</if>
+			<if test="mUser != null">
+				#{mUser,jdbcType=VARCHAR},
+			</if>
+			<if test="content != null">
+				#{content,jdbcType=LONGVARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective"
+		parameterType="com.example.study_system.model.JQuestionOption">
+		update j_question_option
+		<set>
+			<if test="questionId != null">
+				question_id = #{questionId,jdbcType=BIGINT},
+			</if>
+			<if test="isRight != null">
+				is_right = #{isRight,jdbcType=INTEGER},
+			</if>
+			<if test="optionType != null">
+				option_type = #{optionType,jdbcType=VARCHAR},
+			</if>
+			<if test="cTime != null">
+				c_time = #{cTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="mTime != null">
+				m_time = #{mTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="cUser != null">
+				c_user = #{cUser,jdbcType=VARCHAR},
+			</if>
+			<if test="mUser != null">
+				m_user = #{mUser,jdbcType=VARCHAR},
+			</if>
+			<if test="content != null">
+				content = #{content,jdbcType=LONGVARCHAR},
+			</if>
+		</set>
+		where ref = #{ref,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKeyWithBLOBs"
+		parameterType="com.example.study_system.model.JQuestionOption">
+		update j_question_option
+		set question_id =
+		#{questionId,jdbcType=BIGINT},
+		is_right = #{isRight,jdbcType=INTEGER},
+		option_type = #{optionType,jdbcType=VARCHAR},
+		c_time =
+		#{cTime,jdbcType=TIMESTAMP},
+		m_time = #{mTime,jdbcType=TIMESTAMP},
+		c_user = #{cUser,jdbcType=VARCHAR},
+		m_user = #{mUser,jdbcType=VARCHAR},
+		content = #{content,jdbcType=LONGVARCHAR}
+		where ref =
+		#{ref,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey"
+		parameterType="com.example.study_system.model.JQuestionOption">
+		update j_question_option
+		set question_id =
+		#{questionId,jdbcType=BIGINT},
+		is_right = #{isRight,jdbcType=INTEGER},
+		option_type = #{optionType,jdbcType=VARCHAR},
+		c_time =
+		#{cTime,jdbcType=TIMESTAMP},
+		m_time = #{mTime,jdbcType=TIMESTAMP},
+		c_user = #{cUser,jdbcType=VARCHAR},
+		m_user = #{mUser,jdbcType=VARCHAR}
+		where ref = #{ref,jdbcType=BIGINT}
+	</update>
+</mapper>
