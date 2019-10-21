@@ -2,26 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="60f95631-7e6e-4dbe-9c67-125e4944f0a6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ExaminationPaperPage/ExaminationPaperPage.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ExaminationPaperPage/css/ExaminationPaperPage.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ExaminationPaperPage/js/ExaminationPaperPage.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HomePage/HomePage.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HomePage/css/HomePage.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HomePage/js/HomePage.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ResourcePage/ResourcePage.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ResourcePage/css/ResourcePage.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ResourcePage/js/ResourcePage.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/StatisticsPage/StatisticsPage.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/StatisticsPage/css/StatisticsPage.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/StatisticsPage/js/StatisticsPage.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TaskPage/TaskPage.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TaskPage/css/TaskPage.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TaskPage/js/TaskPage.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TestQuestions/TestQuestions.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TestQuestions/css/TestQuestions.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TestQuestions/js/TestQuestions.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/common.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -229,10 +209,18 @@
       <workItem from="1570696507571" duration="24000" />
       <workItem from="1570696652929" duration="79000" />
     </task>
+    <task id="LOCAL-00001" summary="结构准备">
+      <created>1571379791218</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1571379791218</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="37491000" />
+    <option name="totallyTimeSpent" value="38119000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -273,7 +261,8 @@
     <option name="version" value="1" />
   </component>
   <component name="VcsManagerConfiguration">
-    <option name="LAST_COMMIT_MESSAGE" value="" />
+    <MESSAGE value="结构准备" />
+    <option name="LAST_COMMIT_MESSAGE" value="结构准备" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand>
