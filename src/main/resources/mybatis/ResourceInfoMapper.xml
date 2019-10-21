@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.study_system.dao.ResourceInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.example.study_system.model.ResourceInfo" >
+    <id column="res_id" property="resId" jdbcType="BIGINT" />
+    <result column="res_name" property="resName" jdbcType="VARCHAR" />
+    <result column="res_type" property="resType" jdbcType="INTEGER" />
+    <result column="path" property="path" jdbcType="VARCHAR" />
+    <result column="res_ext" property="resExt" jdbcType="VARCHAR" />
+    <result column="res_size" property="resSize" jdbcType="BIGINT" />
+    <result column="STATUS" property="status" jdbcType="INTEGER" />
+    <result column="c_time" property="cTime" jdbcType="TIMESTAMP" />
+    <result column="m_time" property="mTime" jdbcType="TIMESTAMP" />
+    <result column="c_user" property="cUser" jdbcType="VARCHAR" />
+    <result column="m_user" property="mUser" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    res_id, res_name, res_type, path, res_ext, res_size, STATUS, c_time, m_time, c_user, 
+    m_user
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from resource_info
+    where res_id = #{resId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from resource_info
+    where res_id = #{resId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.example.study_system.model.ResourceInfo" >
+    insert into resource_info (res_id, res_name, res_type, 
+      path, res_ext, res_size, 
+      STATUS, c_time, m_time, 
+      c_user, m_user)
+    values (#{resId,jdbcType=BIGINT}, #{resName,jdbcType=VARCHAR}, #{resType,jdbcType=INTEGER}, 
+      #{path,jdbcType=VARCHAR}, #{resExt,jdbcType=VARCHAR}, #{resSize,jdbcType=BIGINT}, 
+      #{status,jdbcType=INTEGER}, #{cTime,jdbcType=TIMESTAMP}, #{mTime,jdbcType=TIMESTAMP}, 
+      #{cUser,jdbcType=VARCHAR}, #{mUser,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.study_system.model.ResourceInfo" >
+    insert into resource_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="resId != null" >
+        res_id,
+      </if>
+      <if test="resName != null" >
+        res_name,
+      </if>
+      <if test="resType != null" >
+        res_type,
+      </if>
+      <if test="path != null" >
+        path,
+      </if>
+      <if test="resExt != null" >
+        res_ext,
+      </if>
+      <if test="resSize != null" >
+        res_size,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="cTime != null" >
+        c_time,
+      </if>
+      <if test="mTime != null" >
+        m_time,
+      </if>
+      <if test="cUser != null" >
+        c_user,
+      </if>
+      <if test="mUser != null" >
+        m_user,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="resId != null" >
+        #{resId,jdbcType=BIGINT},
+      </if>
+      <if test="resName != null" >
+        #{resName,jdbcType=VARCHAR},
+      </if>
+      <if test="resType != null" >
+        #{resType,jdbcType=INTEGER},
+      </if>
+      <if test="path != null" >
+        #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="resExt != null" >
+        #{resExt,jdbcType=VARCHAR},
+      </if>
+      <if test="resSize != null" >
+        #{resSize,jdbcType=BIGINT},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="cTime != null" >
+        #{cTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mTime != null" >
+        #{mTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cUser != null" >
+        #{cUser,jdbcType=VARCHAR},
+      </if>
+      <if test="mUser != null" >
+        #{mUser,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.study_system.model.ResourceInfo" >
+    update resource_info
+    <set >
+      <if test="resName != null" >
+        res_name = #{resName,jdbcType=VARCHAR},
+      </if>
+      <if test="resType != null" >
+        res_type = #{resType,jdbcType=INTEGER},
+      </if>
+      <if test="path != null" >
+        path = #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="resExt != null" >
+        res_ext = #{resExt,jdbcType=VARCHAR},
+      </if>
+      <if test="resSize != null" >
+        res_size = #{resSize,jdbcType=BIGINT},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="cTime != null" >
+        c_time = #{cTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mTime != null" >
+        m_time = #{mTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cUser != null" >
+        c_user = #{cUser,jdbcType=VARCHAR},
+      </if>
+      <if test="mUser != null" >
+        m_user = #{mUser,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where res_id = #{resId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.study_system.model.ResourceInfo" >
+    update resource_info
+    set res_name = #{resName,jdbcType=VARCHAR},
+      res_type = #{resType,jdbcType=INTEGER},
+      path = #{path,jdbcType=VARCHAR},
+      res_ext = #{resExt,jdbcType=VARCHAR},
+      res_size = #{resSize,jdbcType=BIGINT},
+      STATUS = #{status,jdbcType=INTEGER},
+      c_time = #{cTime,jdbcType=TIMESTAMP},
+      m_time = #{mTime,jdbcType=TIMESTAMP},
+      c_user = #{cUser,jdbcType=VARCHAR},
+      m_user = #{mUser,jdbcType=VARCHAR}
+    where res_id = #{resId,jdbcType=BIGINT}
+  </update>
+</mapper>

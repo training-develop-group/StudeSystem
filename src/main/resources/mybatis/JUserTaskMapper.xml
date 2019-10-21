@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.study_system.dao.JUserTaskMapper" >
+  <resultMap id="BaseResultMap" type="com.example.study_system.model.JUserTask" >
+    <id column="ref" property="ref" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="task_id" property="taskId" jdbcType="BIGINT" />
+    <result column="STATUS" property="status" jdbcType="INTEGER" />
+    <result column="c_time" property="cTime" jdbcType="TIMESTAMP" />
+    <result column="c_user" property="cUser" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ref, user_id, task_id, STATUS, c_time, c_user
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from j_user_task
+    where ref = #{ref,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from j_user_task
+    where ref = #{ref,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.example.study_system.model.JUserTask" >
+    insert into j_user_task (ref, user_id, task_id, 
+      STATUS, c_time, c_user
+      )
+    values (#{ref,jdbcType=BIGINT}, #{userId,jdbcType=VARCHAR}, #{taskId,jdbcType=BIGINT}, 
+      #{status,jdbcType=INTEGER}, #{cTime,jdbcType=TIMESTAMP}, #{cUser,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.study_system.model.JUserTask" >
+    insert into j_user_task
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="ref != null" >
+        ref,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="taskId != null" >
+        task_id,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="cTime != null" >
+        c_time,
+      </if>
+      <if test="cUser != null" >
+        c_user,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="ref != null" >
+        #{ref,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="taskId != null" >
+        #{taskId,jdbcType=BIGINT},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="cTime != null" >
+        #{cTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cUser != null" >
+        #{cUser,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.study_system.model.JUserTask" >
+    update j_user_task
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="taskId != null" >
+        task_id = #{taskId,jdbcType=BIGINT},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="cTime != null" >
+        c_time = #{cTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cUser != null" >
+        c_user = #{cUser,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ref = #{ref,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.study_system.model.JUserTask" >
+    update j_user_task
+    set user_id = #{userId,jdbcType=VARCHAR},
+      task_id = #{taskId,jdbcType=BIGINT},
+      STATUS = #{status,jdbcType=INTEGER},
+      c_time = #{cTime,jdbcType=TIMESTAMP},
+      c_user = #{cUser,jdbcType=VARCHAR}
+    where ref = #{ref,jdbcType=BIGINT}
+  </update>
+</mapper>

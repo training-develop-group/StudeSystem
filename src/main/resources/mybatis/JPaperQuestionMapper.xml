@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.study_system.dao.JPaperQuestionMapper" >
+  <resultMap id="BaseResultMap" type="com.example.study_system.model.JPaperQuestion" >
+    <id column="ref" property="ref" jdbcType="BIGINT" />
+    <result column="paper_id" property="paperId" jdbcType="BIGINT" />
+    <result column="question_id" property="questionId" jdbcType="BIGINT" />
+    <result column="score" property="score" jdbcType="REAL" />
+    <result column="order_index" property="orderIndex" jdbcType="INTEGER" />
+    <result column="c_time" property="cTime" jdbcType="TIMESTAMP" />
+    <result column="c_user" property="cUser" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ref, paper_id, question_id, score, order_index, c_time, c_user
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from j_paper_question
+    where ref = #{ref,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from j_paper_question
+    where ref = #{ref,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.example.study_system.model.JPaperQuestion" >
+    insert into j_paper_question (ref, paper_id, question_id, 
+      score, order_index, c_time, 
+      c_user)
+    values (#{ref,jdbcType=BIGINT}, #{paperId,jdbcType=BIGINT}, #{questionId,jdbcType=BIGINT}, 
+      #{score,jdbcType=REAL}, #{orderIndex,jdbcType=INTEGER}, #{cTime,jdbcType=TIMESTAMP}, 
+      #{cUser,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.study_system.model.JPaperQuestion" >
+    insert into j_paper_question
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="ref != null" >
+        ref,
+      </if>
+      <if test="paperId != null" >
+        paper_id,
+      </if>
+      <if test="questionId != null" >
+        question_id,
+      </if>
+      <if test="score != null" >
+        score,
+      </if>
+      <if test="orderIndex != null" >
+        order_index,
+      </if>
+      <if test="cTime != null" >
+        c_time,
+      </if>
+      <if test="cUser != null" >
+        c_user,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="ref != null" >
+        #{ref,jdbcType=BIGINT},
+      </if>
+      <if test="paperId != null" >
+        #{paperId,jdbcType=BIGINT},
+      </if>
+      <if test="questionId != null" >
+        #{questionId,jdbcType=BIGINT},
+      </if>
+      <if test="score != null" >
+        #{score,jdbcType=REAL},
+      </if>
+      <if test="orderIndex != null" >
+        #{orderIndex,jdbcType=INTEGER},
+      </if>
+      <if test="cTime != null" >
+        #{cTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cUser != null" >
+        #{cUser,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.study_system.model.JPaperQuestion" >
+    update j_paper_question
+    <set >
+      <if test="paperId != null" >
+        paper_id = #{paperId,jdbcType=BIGINT},
+      </if>
+      <if test="questionId != null" >
+        question_id = #{questionId,jdbcType=BIGINT},
+      </if>
+      <if test="score != null" >
+        score = #{score,jdbcType=REAL},
+      </if>
+      <if test="orderIndex != null" >
+        order_index = #{orderIndex,jdbcType=INTEGER},
+      </if>
+      <if test="cTime != null" >
+        c_time = #{cTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cUser != null" >
+        c_user = #{cUser,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ref = #{ref,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.study_system.model.JPaperQuestion" >
+    update j_paper_question
+    set paper_id = #{paperId,jdbcType=BIGINT},
+      question_id = #{questionId,jdbcType=BIGINT},
+      score = #{score,jdbcType=REAL},
+      order_index = #{orderIndex,jdbcType=INTEGER},
+      c_time = #{cTime,jdbcType=TIMESTAMP},
+      c_user = #{cUser,jdbcType=VARCHAR}
+    where ref = #{ref,jdbcType=BIGINT}
+  </update>
+</mapper>

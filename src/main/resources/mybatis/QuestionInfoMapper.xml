@@ -1,28 +1,198 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper
-	namespace="com.example.study_system.dao.QuestionInfoMapper">
-	<resultMap id="BaseResultMap"
-		type="com.example.study_system.model.QuestionInfo">
-		<id column="question_id" property="questionId" jdbcType="BIGINT" />
-		<result column="question_type" property="questionType"
-			jdbcType="INTEGER" />
-		<result column="score" property="score" jdbcType="REAL" />
-		<result column="difficulty" property="difficulty"
-			jdbcType="INTEGER" />
-		<result column="STATUS" property="status" jdbcType="INTEGER" />
-		<result column="c_time" property="cTime" jdbcType="TIMESTAMP" />
-		<result column="m_time" property="mTime" jdbcType="TIMESTAMP" />
-		<result column="c_user" property="cUser" jdbcType="VARCHAR" />
-		<result column="m_user" property="mUser" jdbcType="VARCHAR" />
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.study_system.dao.QuestionInfoMapper">
+  <resultMap id="BaseResultMap" type="com.example.study_system.model.QuestionInfo">
+    <id column="question_id" jdbcType="BIGINT" property="questionId" />
+    <result column="question_type" jdbcType="INTEGER" property="questionType" />
+    <result column="score" jdbcType="REAL" property="score" />
+    <result column="difficulty" jdbcType="INTEGER" property="difficulty" />
+    <result column="STATUS" jdbcType="INTEGER" property="status" />
+    <result column="c_time" jdbcType="TIMESTAMP" property="cTime" />
+    <result column="m_time" jdbcType="TIMESTAMP" property="mTime" />
+    <result column="c_user" jdbcType="VARCHAR" property="cUser" />
+    <result column="m_user" jdbcType="VARCHAR" property="mUser" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.example.study_system.model.QuestionInfoWithBLOBs">
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+    <result column="analysis" jdbcType="LONGVARCHAR" property="analysis" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    question_id, question_type, score, difficulty, STATUS, c_time, m_time, c_user, m_user
+  </sql>
+  <sql id="Blob_Column_List">
+    content, analysis
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from question_info
+    where question_id = #{questionId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from question_info
+    where question_id = #{questionId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.example.study_system.model.QuestionInfoWithBLOBs">
+    insert into question_info (question_id, question_type, score, 
+      difficulty, STATUS, c_time, 
+      m_time, c_user, m_user, 
+      content, analysis)
+    values (#{questionId,jdbcType=BIGINT}, #{questionType,jdbcType=INTEGER}, #{score,jdbcType=REAL}, 
+      #{difficulty,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{cTime,jdbcType=TIMESTAMP}, 
+      #{mTime,jdbcType=TIMESTAMP}, #{cUser,jdbcType=VARCHAR}, #{mUser,jdbcType=VARCHAR}, 
+      #{content,jdbcType=LONGVARCHAR}, #{analysis,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.study_system.model.QuestionInfoWithBLOBs">
+    insert into question_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="questionId != null">
+        question_id,
+      </if>
+      <if test="questionType != null">
+        question_type,
+      </if>
+      <if test="score != null">
+        score,
+      </if>
+      <if test="difficulty != null">
+        difficulty,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+      <if test="cTime != null">
+        c_time,
+      </if>
+      <if test="mTime != null">
+        m_time,
+      </if>
+      <if test="cUser != null">
+        c_user,
+      </if>
+      <if test="mUser != null">
+        m_user,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="analysis != null">
+        analysis,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="questionId != null">
+        #{questionId,jdbcType=BIGINT},
+      </if>
+      <if test="questionType != null">
+        #{questionType,jdbcType=INTEGER},
+      </if>
+      <if test="score != null">
+        #{score,jdbcType=REAL},
+      </if>
+      <if test="difficulty != null">
+        #{difficulty,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="cTime != null">
+        #{cTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mTime != null">
+        #{mTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cUser != null">
+        #{cUser,jdbcType=VARCHAR},
+      </if>
+      <if test="mUser != null">
+        #{mUser,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="analysis != null">
+        #{analysis,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.study_system.model.QuestionInfoWithBLOBs">
+    update question_info
+    <set>
+      <if test="questionType != null">
+        question_type = #{questionType,jdbcType=INTEGER},
+      </if>
+      <if test="score != null">
+        score = #{score,jdbcType=REAL},
+      </if>
+      <if test="difficulty != null">
+        difficulty = #{difficulty,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="cTime != null">
+        c_time = #{cTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mTime != null">
+        m_time = #{mTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cUser != null">
+        c_user = #{cUser,jdbcType=VARCHAR},
+      </if>
+      <if test="mUser != null">
+        m_user = #{mUser,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="analysis != null">
+        analysis = #{analysis,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where question_id = #{questionId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.example.study_system.model.QuestionInfoWithBLOBs">
+    update question_info
+    set question_type = #{questionType,jdbcType=INTEGER},
+      score = #{score,jdbcType=REAL},
+      difficulty = #{difficulty,jdbcType=INTEGER},
+      STATUS = #{status,jdbcType=INTEGER},
+      c_time = #{cTime,jdbcType=TIMESTAMP},
+      m_time = #{mTime,jdbcType=TIMESTAMP},
+      c_user = #{cUser,jdbcType=VARCHAR},
+      m_user = #{mUser,jdbcType=VARCHAR},
+      content = #{content,jdbcType=LONGVARCHAR},
+      analysis = #{analysis,jdbcType=LONGVARCHAR}
+    where question_id = #{questionId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.study_system.model.QuestionInfo">
+    update question_info
+    set question_type = #{questionType,jdbcType=INTEGER},
+      score = #{score,jdbcType=REAL},
+      difficulty = #{difficulty,jdbcType=INTEGER},
+      STATUS = #{status,jdbcType=INTEGER},
+      c_time = #{cTime,jdbcType=TIMESTAMP},
+      m_time = #{mTime,jdbcType=TIMESTAMP},
+      c_user = #{cUser,jdbcType=VARCHAR},
+      m_user = #{mUser,jdbcType=VARCHAR}
+    where question_id = #{questionId,jdbcType=BIGINT}
+  </update>
+	<resultMap id="BaseResultMap" type="com.example.study_system.model.QuestionInfo">
+		<id column="question_id" jdbcType="BIGINT" property="questionId" />
+		<result column="question_type" jdbcType="INTEGER" property="questionType" />
+		<result column="score" jdbcType="REAL" property="score" />
+		<result column="difficulty" jdbcType="INTEGER" property="difficulty" />
+		<result column="STATUS" jdbcType="INTEGER" property="status" />
+		<result column="c_time" jdbcType="TIMESTAMP" property="cTime" />
+		<result column="m_time" jdbcType="TIMESTAMP" property="mTime" />
+		<result column="c_user" jdbcType="VARCHAR" property="cUser" />
+		<result column="m_user" jdbcType="VARCHAR" property="mUser" />
 	</resultMap>
-	<resultMap id="ResultMapWithBLOBs"
-		type="com.example.study_system.model.QuestionInfoWithBLOBs"
-		extends="BaseResultMap">
-		<result column="content" property="content"
-			jdbcType="LONGVARCHAR" />
-		<result column="analysis" property="analysis"
-			jdbcType="LONGVARCHAR" />
+	<resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.example.study_system.model.QuestionInfoWithBLOBs">
+		<result column="content" jdbcType="LONGVARCHAR" property="content" />
+		<result column="analysis" jdbcType="LONGVARCHAR" property="analysis" />
 	</resultMap>
 	<sql id="Base_Column_List">
 		question_id, question_type, score, difficulty, STATUS,
@@ -32,8 +202,7 @@
 	<sql id="Blob_Column_List">
 		content, analysis
 	</sql>
-	<select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs"
-		parameterType="java.lang.Long">
+	<select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
 		select
 		<include refid="Base_Column_List" />
 		,
@@ -42,12 +211,10 @@
 		where question_id = #{questionId,jdbcType=BIGINT} ORDER BY question_id ASC
 	</select>
 
-	<select id="selectQuestionCount" resultType="java.lang.Integer"
-		parameterType="java.lang.Integer">
+	<select id="selectQuestionCount" parameterType="java.lang.Integer" resultType="java.lang.Integer">
 		select count(question_id) from question_info ORDER BY question_id ASC
 	</select>
-	<select id="selectAnalysisById" resultType="java.lang.String"
-		parameterType="java.lang.String">
+	<select id="selectAnalysisById" parameterType="java.lang.String" resultType="java.lang.String">
 		select analysis from question_info where question_id =
 		#{questionId,jdbcType=BIGINT} ORDER BY question_id ASC;
 	</select>
@@ -63,8 +230,7 @@
 		question_info
 		where question_id = #{questionId,jdbcType=BIGINT}
 	</delete>
-	<insert id="insert"
-		parameterType="com.example.study_system.model.QuestionInfoWithBLOBs">
+	<insert id="insert" parameterType="com.example.study_system.model.QuestionInfoWithBLOBs">
 		insert into question_info (question_id, question_type,
 		score,
 		difficulty, STATUS, c_time,
@@ -81,10 +247,7 @@
 		#{mUser,jdbcType=VARCHAR},
 		#{content,jdbcType=LONGVARCHAR}, #{analysis,jdbcType=LONGVARCHAR})
 	</insert>
-	<insert id="insertSelective"
-		parameterType="com.example.study_system.model.QuestionInfoWithBLOBs"
-		keyColumn="question_id" keyProperty="questionId"
-		useGeneratedKeys="true">
+	<insert id="insertSelective" keyColumn="question_id" keyProperty="questionId" parameterType="com.example.study_system.model.QuestionInfoWithBLOBs" useGeneratedKeys="true">
 		insert into question_info
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="questionId != null">
@@ -157,8 +320,7 @@
 			</if>
 		</trim>
 	</insert>
-	<update id="updateByPrimaryKeySelective"
-		parameterType="com.example.study_system.model.QuestionInfoWithBLOBs">
+	<update id="updateByPrimaryKeySelective" parameterType="com.example.study_system.model.QuestionInfoWithBLOBs">
 		update question_info
 		<set>
 			<if test="questionType != null">
@@ -194,8 +356,7 @@
 		</set>
 		where question_id = #{questionId,jdbcType=BIGINT}
 	</update>
-	<update id="updateByPrimaryKeyWithBLOBs"
-		parameterType="com.example.study_system.model.QuestionInfoWithBLOBs">
+	<update id="updateByPrimaryKeyWithBLOBs" parameterType="com.example.study_system.model.QuestionInfoWithBLOBs">
 		update question_info
 		set question_type =
 		#{questionType,jdbcType=INTEGER},
@@ -215,8 +376,7 @@
 		where question_id =
 		#{questionId,jdbcType=BIGINT}
 	</update>
-	<update id="updateByPrimaryKey"
-		parameterType="com.example.study_system.model.QuestionInfo">
+	<update id="updateByPrimaryKey" parameterType="com.example.study_system.model.QuestionInfo">
 		update question_info
 		set question_type =
 		#{questionType,jdbcType=INTEGER},

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.study_system.dao.JUserVideoLogMapper" >
+  <resultMap id="BaseResultMap" type="com.example.study_system.model.JUserVideoLog" >
+    <id column="ref" property="ref" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="task_id" property="taskId" jdbcType="BIGINT" />
+    <result column="res_id" property="resId" jdbcType="BIGINT" />
+    <result column="seconds" property="seconds" jdbcType="BIGINT" />
+    <result column="c_time" property="cTime" jdbcType="TIMESTAMP" />
+    <result column="m_time" property="mTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ref, user_id, task_id, res_id, seconds, c_time, m_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from j_user_video_log
+    where ref = #{ref,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from j_user_video_log
+    where ref = #{ref,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.example.study_system.model.JUserVideoLog" >
+    insert into j_user_video_log (ref, user_id, task_id, 
+      res_id, seconds, c_time, 
+      m_time)
+    values (#{ref,jdbcType=BIGINT}, #{userId,jdbcType=VARCHAR}, #{taskId,jdbcType=BIGINT}, 
+      #{resId,jdbcType=BIGINT}, #{seconds,jdbcType=BIGINT}, #{cTime,jdbcType=TIMESTAMP}, 
+      #{mTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.study_system.model.JUserVideoLog" >
+    insert into j_user_video_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="ref != null" >
+        ref,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="taskId != null" >
+        task_id,
+      </if>
+      <if test="resId != null" >
+        res_id,
+      </if>
+      <if test="seconds != null" >
+        seconds,
+      </if>
+      <if test="cTime != null" >
+        c_time,
+      </if>
+      <if test="mTime != null" >
+        m_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="ref != null" >
+        #{ref,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="taskId != null" >
+        #{taskId,jdbcType=BIGINT},
+      </if>
+      <if test="resId != null" >
+        #{resId,jdbcType=BIGINT},
+      </if>
+      <if test="seconds != null" >
+        #{seconds,jdbcType=BIGINT},
+      </if>
+      <if test="cTime != null" >
+        #{cTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mTime != null" >
+        #{mTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.study_system.model.JUserVideoLog" >
+    update j_user_video_log
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="taskId != null" >
+        task_id = #{taskId,jdbcType=BIGINT},
+      </if>
+      <if test="resId != null" >
+        res_id = #{resId,jdbcType=BIGINT},
+      </if>
+      <if test="seconds != null" >
+        seconds = #{seconds,jdbcType=BIGINT},
+      </if>
+      <if test="cTime != null" >
+        c_time = #{cTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mTime != null" >
+        m_time = #{mTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ref = #{ref,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.study_system.model.JUserVideoLog" >
+    update j_user_video_log
+    set user_id = #{userId,jdbcType=VARCHAR},
+      task_id = #{taskId,jdbcType=BIGINT},
+      res_id = #{resId,jdbcType=BIGINT},
+      seconds = #{seconds,jdbcType=BIGINT},
+      c_time = #{cTime,jdbcType=TIMESTAMP},
+      m_time = #{mTime,jdbcType=TIMESTAMP}
+    where ref = #{ref,jdbcType=BIGINT}
+  </update>
+</mapper>
