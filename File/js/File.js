@@ -8,10 +8,10 @@ $(function() {
 			$('.searchIcon').show();
 	});
 	 layui.use(['layer', 'form'], function () {
-	        var layer = layui.layer, form = layui.form;
-	
-	        All.getMenu({
-	            num:2
-	        });
-	    });
+		var layer = layui.layer, form = layui.form;
+
+		All.getMenu({
+			num:2
+		});
+	});
 });

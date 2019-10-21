@@ -8,7 +8,12 @@ body {
 	width: 860px;
 	margin-top: -398px;
 }
-
+.Experience{
+	font-size: 20px;
+	width: 800px;
+	height: 50px;
+	background-color: white;
+}
 .header .logo {
 	font-size: 20px;
 	color: #000000;
@@ -495,6 +500,7 @@ body {
 	padding: 10px;
 	border: 0px solid currentColor;
 	border-radius: 100%;
+	outline: 0;
 	box-shadow: 0 1px 1px rgba(0,0,0,.15);
 	transition: all .3s ease
 }
@@ -505,10 +511,6 @@ body {
 	width: 70px;
 	height: 64px;
 	fill: currentColor;
-}
-
-.plyr__play-large:focus {
-	outline: rgba(255,255,255,.5) dotted 1px
 }
 
 .plyr .plyr__play-large {
