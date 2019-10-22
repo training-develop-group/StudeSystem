@@ -86,7 +86,7 @@ body {
 	font-size: 20px;
 	width: calc(98.7% - 420px);
 	margin: 15px 210px 30px;
-	height: 765px;
+	height: 780px;
 	background-color: white;
 }
 
@@ -106,7 +106,6 @@ body {
 }
 .File{
 	margin-left:120px;
-	/* padding-top: -422px; */
 	margin-right: 19px;
 	width:100px;
 	height:606px;
@@ -114,4 +113,72 @@ body {
 .frequency{
 	margin-left:450px;
 	margin-top:270px;
+}
+
+
+/*评论区的css样式*/
+.box-contents{	
+	font-size: 20px;
+	width: calc(98.7% - 420px);
+	margin: 15px 210px 30px;
+	height: 400px;
+	background-color: white;
+}
+.comment{
+	width:100%;
+	text-align: left:;
+	padding: 15px 10px 5px 10px;
+}
+
+.comment .comment-title{
+	font-size:14px;
+	font-weight: 900;
+	border-bottom:1px solid #f6f6f6;
+	color:#5a5a5a;
+}
+.comment .comment-content{
+	margin:0;
+	padding:0;
+}
+.comment .comment-content li{
+	clear:both;
+	border-bottom:1px solid #f6f6f6;
+	font-size:14px;
+	color:#5a5a5a;
+	display:block;
+	text-align:left;
+	padding-top:10px;
+}
+.comment .comment-content li p{
+	text-align: right;
+	color:#409EFF;
+	font-size:12px;
+	padding-right:30px;
+}
+
+.message-board-content{
+	width: 98%;
+	height: 120px;
+	margin-top: 10px;
+	margin-left: 10px;
+}
+.btn-comment{
+	margin-top:5px;
+	margin-right: 20px;
+	display: flex;
+	justify-content: flex-end;
+}
+.btn-comment button{
+	width:122px;
+	height:30px;
+	background-color:#409EFF;
+	border:0;
+	color:white;
+
+}
+.btn-comment button:hover{
+	background-color:#257BD5;
+}
+.layui-textarea{
+	resize: none;
 }
