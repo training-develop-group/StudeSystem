@@ -5,7 +5,22 @@ $(function() {
 			form = layui.form;
 			
 		All.getMenu({
+<<<<<<< Updated upstream
 			num: 1
+=======
+			num: 4
+		});
+		$('.testQuestions').click(function() {
+			console.log(1);
+			// 跳转到试题
+			window.location.href = "../testQuestions/testQuestions.html";
+		});
+		
+		$('.resource').click(function() {
+			console.log(2);
+			// 跳转到资源
+			window.location.href = "../Resource/ResourcePage.html";
+>>>>>>> Stashed changes
 		});
 	});
 	layui.use('form', function() {
@@ -18,7 +33,11 @@ $(function() {
 	});
 	$(".search").blur(function() {
 		if ($('.search').val() == '')
+<<<<<<< Updated upstream
 			$('.searchIcon').show();
+=======
+		$('.searchIcon').show();
+>>>>>>> Stashed changes
 	});
 	// 新建试卷
 	$('#newTestPaper').click(function() {
@@ -47,7 +66,12 @@ $(function() {
 			});
 			console.log(multipleSelection);
 		}
+<<<<<<< Updated upstream
 		layer.closeAll();
+=======
+		// layer.closeAll();		// 关闭页面
+		parent.location.reload();		// 刷新页面
+>>>>>>> Stashed changes
 		// 清空选择
 		layui.use('form', function () {
 			var form = layui.form;
@@ -66,7 +90,11 @@ $(function() {
 	$('.addOptions').click(function() {
 		var letter = '';
 		if ($('.choiceItem').html() == '' || $('.choiceItem').html() == null || $('.choiceItem').html() == undefined){
+<<<<<<< Updated upstream
 			alert("没有选项,自动为您添加选项");
+=======
+			// alert("没有选项,自动为您添加选项");
+>>>>>>> Stashed changes
 			letter = 'A';
 		}
 		if (letter == ''){
@@ -80,6 +108,23 @@ $(function() {
 			letter = 'A';
 		}
 		console.log(letter);
+<<<<<<< Updated upstream
+=======
+		if (letter == '['){
+			layer.msg('拒绝让你添加选项，有脾气吗？', {
+			  time: 0 //不自动关闭
+			  ,btn: ['有', '没有']
+			  ,yes: function(index){
+			    layer.close(index);
+			    layer.msg('怎么？砍你好啊', {
+			      icon: 6
+			      ,btn: ['投降','不投降']
+			    });
+			  }
+			});
+			return false;
+		}
+>>>>>>> Stashed changes
 		// true是单选,false是多选
 		if (judged == true){
 			$(".choiceItem").append('<p class="outerFrame"><input type="radio" name="choiceItem" value="' + letter + '" title="' + letter + '"><textarea name="" required lay-verify="required" class="layui-textarea option"></textarea></p>');
@@ -92,9 +137,22 @@ $(function() {
 			form.render(name);
 		});
 	});
+<<<<<<< Updated upstream
 	$('.deleteOptions').click(function() {
 		$(".outerFrame").eq(-1).remove();
 	});
+=======
+	// 删除选项
+	$('.deleteOptions').click(function() {
+		$(".outerFrame").eq(-1).remove();
+	});
+	// 点击移出，删除本身
+	$('.moveOut').click(function() {
+		// 删除this的父级的父级
+		$(this).parent().parent().remove();
+	});
+	
+>>>>>>> Stashed changes
 	// 弹窗里的单选题/多选题	分别调用什么事件(监听)
 	layui.use('form', function () {
 		var form = layui.form;
@@ -142,6 +200,10 @@ $(function() {
 		$('.movedown').hide();
 		$('.fraction').hide();
 	});
+<<<<<<< Updated upstream
+=======
+	
+>>>>>>> Stashed changes
 	// 点击确认完成
 	$('.confirmCompletion').click(function() {
 		$('.joinIn').hide();
@@ -205,7 +267,11 @@ var info = {
 			Html.push('<div class="functionBox">');
 			Html.push('');
 			Html.push('<button class="toView"><i class="layui-icon layui-icon-search"></i>查看解析</button>');
+<<<<<<< Updated upstream
 			Html.push('<button class="fraction"><img src="../imgs/f.png"  alt="" />设定分值</button>');
+=======
+			Html.push('<button class="fraction"><img src="../../imgs/f.png"  alt="" />设定分值</button>');
+>>>>>>> Stashed changes
 			Html.push('<button class="edit"><i class="layui-icon layui-icon-edit"></i>编辑</button>');
 			Html.push('<button class="moveOut"><i class="layui-icon layui-icon-delete"></i>移出</button>');
 			Html.push('<button class="moveup"><i class="layui-icon layui-icon-up"></i>上移</button>');

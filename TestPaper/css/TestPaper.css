@@ -82,7 +82,11 @@ a{
 	out-line: none
 	/* color: ; */
 }
+<<<<<<< Updated upstream
 #edit , #selectedTopic , #toView , #delete{
+=======
+.edit , .selectedTopic , .toView , .delete{
+>>>>>>> Stashed changes
 	border: 0;
 }
 #paging{

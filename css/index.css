@@ -1,5 +1,15 @@
+<<<<<<< Updated upstream
 .centent {
 	width: 100%;
+=======
+*{
+    font-size: 14px;
+    font-family: '微软雅黑',serif;
+    color: #1b1b1b;
+	margin: 0;
+	padding: 0;
+	border: 0;
+>>>>>>> Stashed changes
 }
 
 .centent .header {

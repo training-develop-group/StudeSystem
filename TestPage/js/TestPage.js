@@ -8,6 +8,7 @@ $(function() {
 			$('.searchIcon').show();
 	});
 	TableDrawing();
+<<<<<<< Updated upstream
 	$('.titleNumber').off('click').on('click', function() {
 		$(this).addClass("Discoloration").siblings().removeClass("Discoloration");	// 选中变色
 	});
@@ -17,6 +18,17 @@ $(function() {
 		key = $(this).val();
 		console.log(key);
 	});
+=======
+	// $('.titleNumber').off('click').on('click', function() {
+	// 	$(this).addClass("Discoloration").siblings().removeClass("Discoloration");	// 选中变色
+	// });
+	// $('.option').off('click').on('click', function() {
+	// 	$('.option').removeClass("Discoloration");
+	// 	$(this).addClass("Discoloration");	// 选中变色
+	// 	key = $(this).val();
+	// 	console.log(key);
+	// });
+>>>>>>> Stashed changes
 	$('#videoLearning').click(function() {
 		alert("暂无此功能");
 		return false;		// 为了不变换选择条
@@ -71,6 +83,7 @@ var TableDrawing = function(){
 	// 	key = $(this).val();
 	// 	console.log(key);
 	// });
+<<<<<<< Updated upstream
 	
 	// 可用(理想型)
 	// $('.titleNumber').off('click').on('click', function() {
@@ -82,6 +95,47 @@ var TableDrawing = function(){
 	// 		key = $(this).val();
 	// 		console.log(key);
 	// 	});
+=======
+	var Answer = [];
+	// 可用(理想型)
+	$('.titleNumber').off('click').on('click', function() {
+		
+		$(this).addClass("Discoloration").siblings().removeClass("Discoloration");	// 选中变色
+		$('.option').removeClass("Discoloration");
+		$('.option').off('click').on('click', function() {
+			if (Answer.length){
+				$('.submit').addClass("Discoloration");	// 选中变色
+				layui.use("layer", function() {
+					var layer = layui.layer;
+					layer.open({
+						type: 1 //Page层类型
+						,closeBtn: 0
+						,area: ['500px', '200px']
+						,title: ['提示', 'background-color: #279ef0;text-align: center;font-size: 16px;line-height: 50px;color:white;letter-spacing: 5px;padding: 0px;']
+						// ,shade: 0.6 //遮罩透明度
+						// ,content: '<span style="margin-left: 188px; position: absolute; top: 35px;">确定要提交答案吗？</span>'
+						,content: '<span style="margin-left: 146px; position: absolute; top: 35px;">最后一题了，确定要提交答案吗？</span>'
+						,btn: ['在检查下' , '交卷'] //可以无限个按钮
+						,btn1: function(index, layero){
+							//按钮【在检查下】的回调
+							layer.close(index);
+							Answer = [];
+						}
+						,btn2: function(index, layero){
+							//按钮【交卷】的回调
+							layer.close(index);
+							Answer = [];
+						}
+					});
+				});
+			}
+			$('.option').removeClass("Discoloration");
+			$(this).addClass("Discoloration");	// 选中变色
+			Answer.push($(this).val());
+		});
+		console.log(Answer)
+	});
+>>>>>>> Stashed changes
 	
 	$('.submit').click(function() {
 		layui.use("layer", function() {
@@ -106,4 +160,8 @@ var TableDrawing = function(){
 			});
 		});
 	});
+<<<<<<< Updated upstream
 }
+=======
+};
+>>>>>>> Stashed changes

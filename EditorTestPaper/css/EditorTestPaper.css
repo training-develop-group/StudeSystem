@@ -76,7 +76,11 @@ img{
 }
 .footer{
 	margin-left: 35%;
+<<<<<<< Updated upstream
 	border:1px solid red;
+=======
+	/* border:1px solid red; */
+>>>>>>> Stashed changes
 	width:740px;
 	height:55px;
 }
@@ -171,4 +175,13 @@ img{
 }
 .layui-form-radio>i:hover, .layui-form-radioed>i{
 	color:#279ef0;
+<<<<<<< Updated upstream
+=======
+}
+.layui-layer-content{
+	color: white;
+}
+.layui-layer-padding{
+	color: black;
+>>>>>>> Stashed changes
 }

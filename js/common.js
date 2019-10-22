@@ -25,45 +25,83 @@ var All = {
 			switch (options.num) {
 				case 1:
 					navHtml.push('<li class="active">首页</li>')
+<<<<<<< Updated upstream
 					navHtml.push('<li>资源</li>')
 					navHtml.push('<li>任务</li>')
 					navHtml.push('<li>试卷</li>')
 					navHtml.push('<li>试题</li>')
+=======
+					navHtml.push('<li class="resource">资源</li>')
+					navHtml.push('<li class="taskPage">任务</li>')
+					navHtml.push('<li class="EditorTestPaper">试卷</li>')
+					navHtml.push('<li class="testQuestions">试题</li>')
+>>>>>>> Stashed changes
 					navHtml.push('<li>统计</li>')
 					navHtml.push('<li>用户管理</li>')
 					break;
 				case 2:
+<<<<<<< Updated upstream
 					navHtml.push('<li>首页</li>')
 					navHtml.push('<li class="active">资源</li>')
 					navHtml.push('<li>任务</li>')
 					navHtml.push('<li>试卷</li>')
 					navHtml.push('<li>试题</li>')
+=======
+					navHtml.push('<li class="homePage">首页</li>')
+					navHtml.push('<li class="active">资源</li>')
+					navHtml.push('<li class="taskPage">任务</li>')
+					navHtml.push('<li class="EditorTestPaper">试卷</li>')
+					navHtml.push('<li class="testQuestions">试题</li>')
+>>>>>>> Stashed changes
 					navHtml.push('<li>统计</li>')
 					navHtml.push('<li>用户管理</li>')
 					break;
 				case 3:
+<<<<<<< Updated upstream
 					navHtml.push('<li>首页</li>')
 					navHtml.push('<li>资源</li>')
 					navHtml.push('<li class="active">任务</li>')
 					navHtml.push('<li>试卷</li>')
 					navHtml.push('<li>试题</li>')
+=======
+					navHtml.push('<li class="homePage">首页</li>')
+					navHtml.push('<li class="resource">资源</li>')
+					navHtml.push('<li class="active">任务</li>')
+					navHtml.push('<li class="EditorTestPaper">试卷</li>')
+					navHtml.push('<li class="testQuestions">试题</li>')
+>>>>>>> Stashed changes
 					navHtml.push('<li>统计</li>')
 					navHtml.push('<li>用户管理</li>')
 					break;
 				case 4:
+<<<<<<< Updated upstream
 					navHtml.push('<li>首页</li>')
 					navHtml.push('<li>资源</li>')
 					navHtml.push('<li>任务</li>')
 					navHtml.push('<li class="active">试卷</li>')
 					navHtml.push('<li>试题</li>')
+=======
+					navHtml.push('<li class="homePage">首页</li>')
+					navHtml.push('<li class="resource">资源</li>')
+					navHtml.push('<li class="taskPage">任务</li>')
+					navHtml.push('<li class="active">试卷</li>')
+					navHtml.push('<li class="testQuestions">试题</li>')
+>>>>>>> Stashed changes
 					navHtml.push('<li>统计</li>')
 					navHtml.push('<li>用户管理</li>')
 					break;
 				case 5:
+<<<<<<< Updated upstream
 					navHtml.push('<li>首页</li>')
 					navHtml.push('<li>资源</li>')
 					navHtml.push('<li>任务</li>')
 					navHtml.push('<li>试卷</li>')
+=======
+					navHtml.push('<li class="homePage">首页</li>')
+					navHtml.push('<li class="resource">资源</li>')
+					navHtml.push('<li class="taskPage">任务</li>')
+					navHtml.push('<li class="EditorTestPaper">试卷</li>')
+>>>>>>> Stashed changes
 					navHtml.push('<li class="active">试题</li>')
 					navHtml.push('<li>统计</li>')
 					navHtml.push('<li>用户管理</li>')
@@ -102,6 +140,29 @@ var All = {
 			navHtml.push('</div>')
 			
 			$('#header').html(navHtml.join(''));
+<<<<<<< Updated upstream
+=======
+			$('.EditorTestPaper').click(function() {
+				console.log(1);
+				// 跳转到试题
+				window.location.href = "../EditorTestPaper/EditorTestPaper.html";
+			});
+			
+			$('.resource').click(function(){
+				window.location.href = "../Resource/ResourcePage.html";
+			})
+			$('.testQuestions').click(function() {
+				console.log(1);
+				// 跳转到试题
+				window.location.href = "../testQuestions/testQuestions.html";
+			});
+			$('.taskPage').click(function(){
+				window.location.href = "../taskPage/learningSystemTaskPage.html";
+			})
+			$('.homePage').click(function(){
+				window.location.href = "../homePage/homePage.html";
+			})
+>>>>>>> Stashed changes
 		}
 	}
 }

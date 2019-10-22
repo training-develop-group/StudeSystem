@@ -20,6 +20,37 @@ $(function() {
 	$('#newTestPaper').click(function() {
 		newTestPaper();
 	});
+<<<<<<< Updated upstream
+=======
+	// 点击查看
+	$('.toView').click(function() {
+		window.location.href = "../ViewTestPaper/ViewTestPaper.html";
+	});
+	// 点击选题
+	$('.selectedTopic').click(function() {
+		window.location.href = "../EditorTestPaper/EditorTestPaper.html";
+	});
+	$('.inputValue').hide();		// 隐藏试卷列的输入框
+	// 点击编辑进行重命名
+	$('.edit').click(function() {
+		// 隐藏文字
+		$(this).parent().parent().find(".rename").hide();
+		// .focus()		可以自动聚焦
+		// 显示输入框
+		$(this).parent().parent().find(".inputValue").show();
+		// 鼠标离开后
+		$('.inputValue').mouseout(function(){
+			// 获取输入框的值
+			var acquiredValue = $(this).parent().parent().find(".inputValue").val();
+			// 隐藏输入框
+			$(this).parent().parent().find(".inputValue").hide();
+			// 给隐藏的文字赋值
+			$(this).parent().parent().find(".rename").text(acquiredValue);
+			// 显示文字
+			$(this).parent().parent().find(".rename").show();
+		})
+	});
+>>>>>>> Stashed changes
 	Page();
 });
 //表格数据请求
@@ -47,15 +78,26 @@ var TableDrawing = function(){
 	var Html = [];		// 选项
 	// data.list.forEach(function(item, index) {
 		Html.push('<tr>');
+<<<<<<< Updated upstream
 		Html.push('<td>微课程</td>');
+=======
+		Html.push('<td><span class="rename">微课程</span><input type="text" class="inputValue"></td>');
+>>>>>>> Stashed changes
 		Html.push('<td class="middle">已发</td>');
 		Html.push('<td class="middle">10</td>');
 		Html.push('<td class="middle">20</td>');
 		Html.push('<td>');
+<<<<<<< Updated upstream
 		Html.push('<button type="button" class="layui-btn layui-btn-primary" id="edit">编辑</button>');
 		Html.push('<button type="button" class="layui-btn layui-btn-primary" id="selectedTopic">选题</button>');
 		Html.push('<button type="button" class="layui-btn layui-btn-primary" id="toView">查看</button>');
 		Html.push('<button type="button" class="layui-btn layui-btn-primary" id="delete">删除</button>');
+=======
+		Html.push('<button type="button" class="layui-btn layui-btn-primary edit">编辑</button>');
+		Html.push('<button type="button" class="layui-btn layui-btn-primary selectedTopic">选题</button>');
+		Html.push('<button type="button" class="layui-btn layui-btn-primary toView">查看</button>');
+		Html.push('<button type="button" class="layui-btn layui-btn-primary delete">删除</button>');
+>>>>>>> Stashed changes
 		Html.push('</td>');
 		Html.push('</tr>');
 	// });
