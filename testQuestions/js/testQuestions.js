@@ -1,6 +1,16 @@
 $(document).ready(function() {
 	/*分页*/
 	/*上传课件*/
+	$.ajax({
+		url:'http://localhost:8888/manage_system/question/1',
+		data:{
+		},
+		dataType:'json',
+		type:'GET',
+		success(res){
+				console.log(res);
+		}
+	});
 	layui.use(['layer', 'form'], function() {
 		var layer = layui.layer,
 			form = layui.form;
@@ -166,16 +176,16 @@ var info = {
 				if (judged) {
 					person.optionType = $(this).find('.layui-unselect div').text();
 					if ($(this).find('.layui-form-radio').is('.layui-form-radioed')) {
-						person.isRight = '1';
+						person.isRight = 1;
 					} else {
-						person.isRight = '0';
+						person.isRight = 0;
 					}
 				} else {
 					person.optionType = $(this).find('.layui-unselect span').text();
 					if ($(this).find('.layui-form-checkbox').is('.layui-form-checked')) {
-						person.isRight = '1';
+						person.isRight = 1;
 					} else {
-						person.isRight = '0';
+						person.isRight = 0;
 					}
 				}
 				option.push(person);
