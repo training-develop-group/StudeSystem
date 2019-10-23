@@ -20,16 +20,17 @@
 		    }
 		    .bg-indistinct{
 		        position: fixed;
-		        width: calc(100% - 60%);
-		        height: 345px;
-		        margin-top: 315px;
-				margin-left: 30%;
+		        width: calc(100% - 75%);
+		        height: 285px;
+		        margin-top: 375px;
+				margin-left: 37.5%;
 		        background: rgba(225, 225, 225, 0.3);
+				border-radius: 10px;
 		    }
 		    .login-box {
 		        position: fixed;
 		        width: 350px;
-		        height: 400px;
+		        height: 405px;
 		        bottom: 0;
 		        left: 0;
 		        right: 0;
@@ -58,7 +59,7 @@
 		
 		    .inputGroup {
 		        position: absolute;
-		        top: 160px;
+		        top: 200px;
 		        left: 0;
 		        right: 0;
 		        margin: 0 auto;
@@ -77,6 +78,7 @@
 				height: 38px;
 		        margin: 0 auto 10px auto;
 				background-color: #FFFFFF;
+				border-radius: 5px;
 		    }
 		    .inputBox input{
 		       /* width:500px;
@@ -97,8 +99,8 @@
 		        color: #f6f6f6c2;
 		    }
 		    .btn-box button {
-		        width: 330px;
-				margin-left: -65px;
+		        width: 350px;
+				margin-left: -76px;
 		    }
 			.layui-icon-username{
 				width: 30px;
@@ -145,16 +147,16 @@
 					<div class="inputGroup">
 						<div class="inputBox">
 							<i class="layui-icon layui-icon-username"></i>
-							<input type="text" id="user" name="userName" autocomplete="off" placeholder="请输入用户名" value="">
+							<input type="text" id="user" name="userName" autocomplete="off" placeholder="请输入用户名" value="001">
 						</div>
 						<div class="inputBox">
 							<i class="layui-icon layui-icon-password"></i>
-							<input type="password" id="pwd" name="passWord" autocomplete="off" placeholder="请输入密码" value="">
+							<input type="password" id="pwd" name="passWord" autocomplete="off" placeholder="请输入密码" value="123456...">
 						</div>
 					</div>
 	
 					<div class="btn-box">
-						<button class="layui-btn layui-btn-normal">Log In</button>
+						<button class="layui-btn layui-btn-normal login">Log In</button>
 					</div>
 				</div>
 			</div>
@@ -163,5 +165,12 @@
 			<script src="js/layui/layui.all.js"></script>
 			<script src="js/common.js" type="text/javascript" charset="utf-8"></script>
 			<!-- <script src="" type="text/javascript" charset="utf-8"></script> -->
+			<script type="text/javascript">
+				$(function() {
+					$('.login').click(function() {
+						window.location.href = "HomePage/HomePage.html";
+					});
+				});
+			</script>
 </body>
 </html>
