@@ -133,35 +133,65 @@
 		</style>
 </head>
 <body>
-    <!--这里可以直接写成登陆页面-->
-	<div class="bg-indistinct">
-				<div class="welcome">
-					<label style="color: #FFFFFF;font-size: 61px; text-align: center;position: absolute;left: 50%;top: -40%;transform: translate(-50%, -50%);">Welcome</label>
-				</div>
-	
-				<div class="login-box">
-					
-	
-					<div class="inputGroup">
-						<div class="inputBox">
-							<i class="layui-icon layui-icon-username"></i>
-							<input type="text" id="user" name="userName" autocomplete="off" placeholder="请输入用户名" value="">
-						</div>
-						<div class="inputBox">
-							<i class="layui-icon layui-icon-password"></i>
-							<input type="password" id="pwd" name="passWord" autocomplete="off" placeholder="请输入密码" value="">
-						</div>
-					</div>
-	
-					<div class="btn-box">
-						<button class="layui-btn layui-btn-normal">Log In</button>
-					</div>
-				</div>
-			</div>
-			
-			<script src="js/jQuery%20v3.4.1.min.js"></script>
-			<script src="js/layui/layui.all.js"></script>
-			<script src="js/common.js" type="text/javascript" charset="utf-8"></script>
-			<!-- <script src="" type="text/javascript" charset="utf-8"></script> -->
+<!--这里可以直接写成登陆页面-->
+<div class="bg-indistinct">
+    <div class="welcome">
+        <label style="color: #FFFFFF;font-size: 61px; text-align: center;position: absolute;left: 50%;top: -40%;transform: translate(-50%, -50%);">Welcome</label>
+    </div>
+
+    <div class="login-box">
+
+
+        <div class="inputGroup">
+            <div class="inputBox">
+                <i class="layui-icon layui-icon-username"></i>
+                <input type="text" id="user" name="userName" autocomplete="off" placeholder="请输入用户名" value="">
+            </div>
+            <div class="inputBox">
+                <i class="layui-icon layui-icon-password"></i>
+                <input type="password" id="pwd" name="passWord" autocomplete="off" placeholder="请输入密码" value="">
+            </div>
+        </div>
+
+        <div class="btn-box">
+            <button class="layui-btn layui-btn-normal logIn">Log In</button>
+        </div>
+    </div>
+</div>
+
+<script src="js/jQuery%20v3.4.1.min.js"></script>
+<script src="js/layui/layui.all.js"></script>
+<script src="js/address.js"></script>
+<script src="js/common.js" charset="utf-8"></script>
+<script type="text/javascript">
+    $(function () {
+        $('.logIn').off('click').on('click', function () {
+            var data = {
+                userName: $('#user').val(),
+                password: $('#pwd').val()
+            };
+            if(data.userName == '' || data.password == '' ){
+                layer.msg('用户名或者密码不能为空');
+                return;
+            }
+            // $.ajax({
+            //     url: loginUrl + 'manage_system/login',
+            //     data:data,
+            //     dataType:'json',
+            //     type: "get",
+            //     success: function (res) {
+                    // if(res.code == 1){
+                        window.location.href = 'HomePage/HomePage.html'
+                    // }else {
+                    //     layer.msg(res.msg);
+                    // }
+            //     },
+            //     error: function (e) {
+            //
+            //     }
+            // })
+        })
+    });
+</script>
 </body>
 </html>
