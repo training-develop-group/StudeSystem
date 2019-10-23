@@ -120,6 +120,7 @@ var Page = function() {
 			theme: '#1E9FFF',
 			curr: '4',
 			groups: '5',
+			layout: ['prev', 'page', 'next' , 'limits' , 'skip'],
 			// 				jump: function(item, first) {
 			// 					if (!first) {
 			// 

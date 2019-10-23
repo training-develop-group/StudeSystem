@@ -26,12 +26,12 @@
 
 }
 #title{
-	width: calc(100% - 43px);
+	width: 100%;
 	height: 60px;
 	background-color: #279ef0;
-	margin-left: 43px;
-	margin-top: 25px;
-	border-radius: 5px 5px 0 0;
+	/* margin-left: 10px; */
+	/* margin-top: 25px; */
+	border-radius: 7px 7px 0 0;
 }
 #centered{
 	line-height: 60px;
@@ -42,24 +42,26 @@
 	color: white;
 }
 #newTestPaper{
+	border: none;
 	font-size: 16px;
 	float: right;
 	margin-right: 20px;
 	margin-top: 10px;
-	border-radius: 3px;
+	border-radius: 5px;
 	color: #279ef2;
 }
 #examinationPaperList{
 	/* border: 1px solid black; */
-	width: calc(100% - 43px);
-	height: 650px;
-	margin-left: 43px;
+	width: 100%;
+	min-height: 650px;
+	/* margin-left: 10px; */
 	margin-top: 20px;
 	background-color: white;
 }
 table{
-	width: 100%;
-	border: 0 ;
+	width: calc(100% - 40px);
+	margin-left: 20px;
+	border: 0;
 	cellspacing: 1;
 }
 th {
@@ -70,8 +72,11 @@ th , td{
 	/* border-bottom: 1px solid #eeeeee; */
 	height: 50px;
 	text-indent: 25px;
-	border-bottom: 1px solid #eeeeee: ;;
+	border-bottom: 1px solid #eeeeee;
 	/* border: 1px solid black; */
+}
+td{
+	font-size: 14px;
 }
 .middle{
 	text-indent: 0 !important;
@@ -85,8 +90,11 @@ a{
 .edit , .selectedTopic , .toView , .delete{
 	border: 0;
 }
+.edit{
+	margin-left: -16px;
+}
 #paging{
-	margin-left: 570px;
+	margin-left: 35%;
 	margin-top: -30px;
 }
 
@@ -132,4 +140,8 @@ a{
 	line-height: 39px;
 	text-align: center;
 	margin-top: -10px;
+}
+.layui-laypage a{
+	margin-left: 5px;
+	margin-right: 5px;
 }

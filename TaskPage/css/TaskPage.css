@@ -3,29 +3,27 @@ body{
 }
 #taskContent>button{
 	background: ;
-	
-	
 }
 .box{
 	width: 100%;
 	height: 90%;
 	margin-top: 20px;
 	/* padding: 10px 150px 10px 150px; */
-	
 }
 .headline{
-	height: 35px;
-	width: 75%;
-	 background-color: #289ef0;
+	height: 50px;
+	width: 77%;
+	background-color: #289ef0;
 	padding-top: 10px;
 	border-radius: 7px 7px 0 0;
 	margin: auto; 
-	margin-bottom: 10px;
+	margin-bottom: 20px;
 }
 .content{
 	 background-color:#FFFFFF;
-	 width: 75%;
-	 height: 85%;
+	 width: 77%;
+	 /* height: 85%; */
+	 min-height: 650px;
 	 margin: auto;
 	 border-radius: 2px;
 }
@@ -41,7 +39,6 @@ body{
 	background-color: #FFFFFF;
 }
 th  {
-	
 	border: none;
 	border-bottom: 0.5px solid #E9E7E7;
 }
@@ -51,8 +48,23 @@ td {
 }
  tr{
 	border: none;
-	border-bottom:  0.5px solid #E9E7E7; 
+	border-bottom:  1px solid #E9E7E7; 
  }      
  i{
  	font-style:normal;
  }
+ .layui-layer-btn{
+ 	padding: 0 293px 12px !important;
+ }
+ .releasTeask{
+ 	font-size: 16px;
+ 	float: right;
+ 	margin-right: 20px;
+ 	border-radius: 5px;
+ 	color: #279ef2;
+	border: none;
+ }
+.layui-laypage a{
+	margin-left: 5px;
+	margin-right: 5px;
+}

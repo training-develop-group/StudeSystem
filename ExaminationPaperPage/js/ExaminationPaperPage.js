@@ -115,7 +115,8 @@ var Page = function(){
 			// curr: data.pageNum,
 			// groups: '5',
 			// layout: ['count', 'prev', 'page', 'next', 'limit', 'refresh', 'skip'],
-			layout: ['prev', 'page', 'next' , 'count' , 'skip'],
+			// layout: ['prev', 'page', 'next' , 'count' , 'skip'],
+			layout: ['prev', 'page', 'next' , 'limits' , 'skip'],
 			jump: function(item , first) {
 				if (!first){
 					console.log(first);
@@ -123,6 +124,16 @@ var Page = function(){
 			}
 		});
 	});
+		layui.use('laypage', function() {
+			var laypage = layui.laypage;
+	
+			laypage.render({
+				elem: 'test1',
+				count: 30,
+				theme: '#279ef0',
+				layout:['prev','page','next','limits','skip']
+			});
+		});
 }
 // 新建试卷
 var newTestPaper = function() {

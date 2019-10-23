@@ -191,3 +191,7 @@ img {
 .layui-form-radio>i:hover, .layui-form-radioed>i{
 	color:#279ef0;
 }
+.layui-laypage a{
+	margin-left: 5px;
+	margin-right: 5px;
+}

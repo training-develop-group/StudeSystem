@@ -280,7 +280,8 @@ layui.use(['laypage', 'layer'], function() {
 		elem: 'page',
 		count: 100,
 		theme: '#1E9FFF',
-		layout: ['count', 'prev', 'page', 'next', 'limit', 'refresh', 'skip'],
+		// layout: ['count', 'prev', 'page', 'next', 'limit', 'refresh', 'skip'],
+		layout: ['prev', 'page', 'next' , 'limits' , 'skip'],
 		jump: function(obj) {
 			console.log(obj)
 		}
