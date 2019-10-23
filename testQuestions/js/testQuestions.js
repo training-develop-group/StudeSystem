@@ -195,6 +195,7 @@ var info = {
 				'difficulty': difficulty,
 				'status': status,
 			};
+			
 			var data ={
 				'question': JSON.stringify(question),
 				'questionOption': JSON.stringify(option)
