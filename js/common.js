@@ -90,7 +90,7 @@ var All = {
 			navHtml.push('</ul>')
 			navHtml.push('</div>')
 			navHtml.push('<div class="right">')
-			navHtml.push('<img src="" class="userimg">')
+			navHtml.push('<img src="../imgs/HeadPortrait.jpg" class="userimg">')
 			navHtml.push('<span class="username">用户名</span>')
 			navHtml.push('</div>')
 			navHtml.push('<div class="left">')

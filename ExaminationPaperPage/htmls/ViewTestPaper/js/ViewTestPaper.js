@@ -20,6 +20,26 @@ $(function() {
 		if ($('.search').val() == '')
 			$('.searchIcon').show();
 	});
+	// $('.EditorTestPaper').click(function() {
+	// 	console.log(1);
+	// 	// 跳转到试题
+	// 	window.location.href = "../../ExaminationPaperPage/ExaminationPaperPage.html";
+	// });
+	
+	$('.resource').click(function(){
+		window.location.href = "../../../../ResourcePage/ResourcePage.html";
+	})
+	$('.testQuestions').click(function() {
+		console.log(1);
+		// 跳转到试题
+		window.location.href = "../../../../TestQuestions/TestQuestions.html";
+	});
+	$('.taskPage').click(function(){
+		window.location.href = "../../../../TaskPage/TaskPage.html";
+	})
+	$('.homePage').click(function(){
+		window.location.href = "../../../../HomePage/HomePage.html";
+	})
 	// 新建试卷
 	$('#newTestPaper').click(function() {
 		// newTestPaper();
@@ -100,7 +120,6 @@ var info = {
 			Html.push('<p class="distance">D. 追星族</p>');
 			Html.push('</div>');
 			Html.push('<div class="functionBox">');
-			Html.push('');
 			Html.push('<button class="toView"><i class="layui-icon layui-icon-search"></i>查看解析</button>');
 			// Html.push('<button class="fraction"><img src="../imgs/f.png"  alt="" />设定分值</button>');
 			// Html.push('<button class="edit"><i class="layui-icon layui-icon-edit"></i>编辑</button>');

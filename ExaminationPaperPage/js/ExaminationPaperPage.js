@@ -31,6 +31,10 @@ $(function() {
 	$('#newTestPaper').click(function() {
 		newTestPaper();
 	});
+	// 点击删除
+	$('.delete').click(function() {
+		deletePaper();
+	});
 	// 点击查看
 	$('.toView').click(function() {
 		window.location.href = "htmls/ViewTestPaper/ViewTestPaper.html";
@@ -39,25 +43,29 @@ $(function() {
 	$('.selectedTopic').click(function() {
 		window.location.href = "htmls/EditorTestPaper/EditorTestPaper.html";
 	});
-	$('.inputValue').hide();		// 隐藏试卷列的输入框
 	// 点击编辑进行重命名
 	$('.edit').click(function() {
-		// 隐藏文字
-		$(this).parent().parent().find(".rename").hide();
-		// .focus()		可以自动聚焦
-		// 显示输入框
-		$(this).parent().parent().find(".inputValue").show();
-		// 鼠标离开后
-		$('.inputValue').mouseout(function(){
-			// 获取输入框的值
-			var acquiredValue = $(this).parent().parent().find(".inputValue").val();
-			// 隐藏输入框
-			$(this).parent().parent().find(".inputValue").hide();
-			// 给隐藏的文字赋值
-			$(this).parent().parent().find(".rename").text(acquiredValue);
-			// 显示文字
-			$(this).parent().parent().find(".rename").show();
-		})
+		layui.use("layer", function() {
+			var layer = layui.layer;
+			layer.open({
+				type: 1 //Page层类型
+				,closeBtn: 0
+				,area: ['789px', '210px']
+				,title: ['重命名', 'background-color: #279ef0;text-align: center;font-size: 16px;line-height: 50px;color:white;letter-spacing: 5px;padding: 0px;']
+				// ,shade: 0.6 //遮罩透明度
+				,content: '<div class="inputLocation">'+
+						'<span>重命名</span>'
+						+ '<input type="text" autocomplete="off" class="layui-input acquiredValue">'
+						+ '<br />'
+					+ '</div>'
+				,btn: ['确认' , '取消'] //可以无限个按钮
+				,btn1: function(index, layero){
+					//按钮【确认】的回调
+					// layer.close(index);
+					rename();
+				}
+			});
+		});
 	});
 	Page();
 });
@@ -86,7 +94,7 @@ var TableDrawing = function(){
 	var Html = [];		// 选项
 	// data.list.forEach(function(item, index) {
 		Html.push('<tr>');
-		Html.push('<td><span class="rename">微课程</span><input type="text" class="inputValue" style="border: 1px solid #b5b5b5;"></td>');
+		Html.push('<td><span class="rename">微课程</span></td>');
 		Html.push('<td class="middle">已发</td>');
 		Html.push('<td class="middle">10</td>');
 		Html.push('<td class="middle">20</td>');
@@ -151,11 +159,107 @@ var newTestPaper = function() {
 					+ '<br />'
 					// + '<button type="button" class="layui-btn layui-btn-primary" id="confirm">确认</button>'
 				+ '</div>'
-			,btn: ['确认'] //可以无限个按钮
+			,btn: ['确认' , '取消'] //可以无限个按钮
 			,btn1: function(index, layero){
 				//按钮【确认】的回调
-				layer.close(index);
+				increase();		// 调用添加方法
 			}
 		});
 	});
 }
+// 添加方法(新建试卷)
+var increase = function(){
+	var paperName = $('#nameOfExaminationPaper').val();
+	if (paperName == ''){
+		alert("试卷名不可为空");
+		return false;
+	}
+	var data = {
+		'paperName': paperName,
+		'cTime': today,
+		'cUser': 'mc'
+	};
+	$.ajax({
+		url : 'http://localhost:8888/manage_system/paper/paper',
+		data : JSON.stringify(data),
+		dataType : 'json',
+		type : 'POST',
+		contentType :'application/json;charset=utf-8',
+		success(res) {
+			alert("操作成功");
+			parent.location.reload();	//刷新父级页面
+		},
+		error (e) {
+			alert("操作失败，请稍后再试");
+		}
+	});
+	console.log(JSON.stringify(data));
+}
+// 修改方法(重命名)
+var rename = function(){
+	var paperName = $('.acquiredValue').val();
+	if (paperName == ''){
+		alert("重命名不可为空");
+		return false;
+	}
+	var data = {
+		// 'paperId': paperId,
+		'paperId': 4,
+		'paperName': paperName,
+	};
+	$.ajax({
+		url : 'http://localhost:8888/manage_system/paper/paper-name',
+		data : JSON.stringify(data),
+		dataType : 'json',
+		type : 'POST',
+		contentType :'application/json;charset=utf-8',
+		success(res) {
+			alert("操作成功");
+			parent.location.reload();	//刷新父级页面
+		},
+		error (e) {
+			alert("操作失败，请稍后再试");
+		}
+	});
+	console.log(JSON.stringify(data));
+}
+// 修改方法(重命名)
+var deletePaper = function(){
+	var paperId = 4;
+	$.ajax({
+		url: 'http://localhost:8888/manage_system/paper/' + paperId,
+		// dataType: 'json',
+		type: 'DELETE',
+		// contentType: 'application/json;charset=utf-8',
+		success(res) {
+			alert("操作成功");
+			parent.location.reload();	//刷新父级页面
+		},
+		error (e) {
+			alert("操作失败，请稍后再试");
+		}
+	});
+}
+// 格式化日期
+var dateFormat =function(time) {
+	var date=new Date(time);
+	var year=date.getFullYear();
+	/* 在日期格式中，月份是从0开始的，因此要加0
+	* 使用三元表达式在小于10的前面加0，以达到格式统一  如 09:11:05
+	* */
+	var month= date.getMonth()+1<10 ? "0"+(date.getMonth()+1) : date.getMonth()+1;
+	var day=date.getDate()<10 ? "0"+date.getDate() : date.getDate();
+	var hours=date.getHours()<10 ? "0"+date.getHours() : date.getHours();
+	var minutes=date.getMinutes()<10 ? "0"+date.getMinutes() : date.getMinutes();
+	var seconds=date.getSeconds()<10 ? "0"+date.getSeconds() : date.getSeconds();
+	// 拼接	
+	return year+"-"+month+"-"+day;
+}
+// 时间设置
+var today = '';
+$(document).ready(function () {
+	var time = new Date();
+	var day = ("0" + time.getDate()).slice(-2);
+	var month = ("0" + (time.getMonth() + 1)).slice(-2);
+	today = time.getFullYear() + "-" + (month) + "-" + (day);
+});
