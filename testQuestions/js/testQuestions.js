@@ -5,6 +5,19 @@ $(document).ready(function() {
 		var layer = layui.layer,
 			form = layui.form;
 
+		All.getMenu({
+			num: 5
+		});
+		$('.EditorTestPaper').click(function() {
+			console.log(1);
+			// 跳转到试题
+			window.location.href = "../EditorTestPaper/EditorTestPaper.html";
+		});
+	});
+	layui.use(['layer', 'form'], function() {
+		var layer = layui.layer,
+			form = layui.form;
+		$('.singleChoiceQuestion').addClass('');
 		// layer.msg('Hello World'); 
 
 		info.popup();
@@ -63,29 +76,29 @@ var info = {
 				var name = '';
 				var Html = [];
 				Html.push(
-					'<input type="radio" name="choiceItem" value="A" title="A"><textarea name="" required lay-verify="required" class="layui-textarea optionA option"></textarea>'
+					'<p class="outerFrame"><input type="radio" name="choiceItem" value="A" title="A"><textarea name="" required lay-verify="required" class="layui-textarea optionA option"></textarea></p>'
 				);
 				Html.push(
-					'<br /><input type="radio" name="choiceItem" value="B" title="B"><textarea name="" required lay-verify="required" class="layui-textarea optionB option"></textarea>'
+					'<p class="outerFrame"><input type="radio" name="choiceItem" value="B" title="B"><textarea name="" required lay-verify="required" class="layui-textarea optionB option"></textarea></p>'
 				);
 				Html.push(
-					'<br /><input type="radio" name="choiceItem" value="C" title="C"><textarea name="" required lay-verify="required" class="layui-textarea optionC option"></textarea>'
+					'<p class="outerFrame"><input type="radio" name="choiceItem" value="C" title="C"><textarea name="" required lay-verify="required" class="layui-textarea optionC option"></textarea></p>'
 				);
 				Html.push(
-					'<br /><input type="radio" name="choiceItem" value="D" title="D"><textarea name="" required lay-verify="required" class="layui-textarea optionD option"></textarea>'
+					'<p class="outerFrame"><input type="radio" name="choiceItem" value="D" title="D"><textarea name="" required lay-verify="required" class="layui-textarea optionD option"></textarea></p>'
 				);
 				var Htmls = [];
 				Htmls.push(
-					'<input type="checkbox" lay-skin="primary" name="choiceItem" value="A" title="A"><textarea name="" required lay-verify="required" class="layui-textarea optionA option"></textarea>'
+					'<p class="outerFrame"><input type="checkbox" lay-skin="primary" name="choiceItem" value="A" title="A"><textarea name="" required lay-verify="required" class="layui-textarea optionA option"></textarea></p>'
 				);
 				Htmls.push(
-					'<br /><input type="checkbox" lay-skin="primary" name="choiceItem" value="B" title="B"><textarea name="" required lay-verify="required" class="layui-textarea optionB option"></textarea>'
+					'<p class="outerFrame"><input type="checkbox" lay-skin="primary" name="choiceItem" value="B" title="B"><textarea name="" required lay-verify="required" class="layui-textarea optionB option"></textarea></p>'
 				);
 				Htmls.push(
-					'<br /><input type="checkbox" lay-skin="primary" name="choiceItem" value="C" title="C"><textarea name="" required lay-verify="required" class="layui-textarea optionC option"></textarea>'
+					'<p class="outerFrame"><input type="checkbox" lay-skin="primary" name="choiceItem" value="C" title="C"><textarea name="" required lay-verify="required" class="layui-textarea optionC option"></textarea></p>'
 				);
 				Htmls.push(
-					'<br /><input type="checkbox" lay-skin="primary" name="choiceItem" value="D" title="D"><textarea name="" required lay-verify="required" class="layui-textarea optionD option"></textarea>'
+					'<p class="outerFrame"><input type="checkbox" lay-skin="primary" name="choiceItem" value="D" title="D"><textarea name="" required lay-verify="required" class="layui-textarea optionD option"></textarea></p>'
 				);
 				if (data.value == '单选题') {
 					$('.choiceItem').html(Html.join(''));
@@ -103,8 +116,100 @@ var info = {
 				});
 			});
 		});
+		var judged = true;
+		$('.addOptions').click(function() {
+			var letter = '';
+			if ($('.choiceItem').html() == '' || $('.choiceItem').html() == null || $('.choiceItem').html() == undefined) {
+				alert("没有选项,自动为您添加选项");
+				letter = 'A';
+			}
+			if (letter == '') {
+				// 取选项最后一个字母
+				var tailLetter = ($('.choiceItem input').last()).val();
+				// 转换为数字
+				var transformation = (tailLetter.charCodeAt(0)) + 1;
+				// 在转换为小写字母，然后在转换为大写字母
+				letter = (String.fromCharCode(transformation)).toUpperCase();
+			} else {
+				letter = 'A';
+			}
+			// true是单选,false是多选
+			if (judged == true) {
+				$(".choiceItem").append('<p class="outerFrame"><input type="radio" name="choiceItem" value="' + letter +
+					'" title="' + letter +
+					'"><textarea name="" required lay-verify="required" class="layui-textarea option"></textarea></p>');
+			} else if (judged == false) {
+				$(".choiceItem").append(
+					'<p class="outerFrame"><input type="checkbox" lay-skin="primary" name="choiceItem" value="' + letter +
+					'" title="' + letter +
+					'"><textarea name="" required lay-verify="required" class="layui-textarea option"></textarea></p>');
+			}
+			// 重新渲染
+			layui.use('form', function() {
+				var form = layui.form;
+				form.render(name);
+			});
+		});
+		$('.deleteOptions').click(function() {
+			$(".outerFrame").eq(-1).remove();
+		});
+		$('#confirmAdd').off('click').on('click', function() {
+			var content = $('#content').val();
+			var questionType = 0;
+			var option = [];
+			var score = 10;
+			var difficulty = 2;
+			var status = 1;
+			$('.outerFrame').each(function() {
+				var person = {};
+				person.content = $(this).find('.option').val();
+				if (judged) {
+					person.optionType = $(this).find('.layui-unselect div').text();
+					if ($(this).find('.layui-form-radio').is('.layui-form-radioed')) {
+						person.isRight = '1';
+					} else {
+						person.isRight = '0';
+					}
+				} else {
+					person.optionType = $(this).find('.layui-unselect span').text();
+					if ($(this).find('.layui-form-checkbox').is('.layui-form-checked')) {
+						person.isRight = '1';
+					} else {
+						person.isRight = '0';
+					}
+				}
+				option.push(person);
 
+			});
+			var analysis = $('#analysis').val();
+			if (judged) {
+				questionType = 1;
+			} else {
+				questionType = 2;
+			}
+			var question = {
+				'questionType': questionType,
+				'content': content,
+				'score': score,
+				'analysis': analysis,
+				'difficulty': difficulty,
+				'status': status,
+			};
+			var data ={
+				'question': JSON.stringify(question),
+				'questionOption': JSON.stringify(option)
+			};
+			console.log(question);
+			console.log(option);
+			$.ajax({
+				url: 'http://localhost:8888/manage_system/question/question',
+				data: data,
+				dataType: 'json',
+				type: 'POST',
+				success(res) {
 
-
+				}
+			});
+		});
 	}
 }

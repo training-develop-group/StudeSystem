@@ -29,58 +29,32 @@
 		</style>
 	</head>
 	<body>
-		<div class="Header">
-			<div class="H-left">
-				<span>Logo</span>
-			</div>
-			<div class="H-content">
-				<ul>
-					<a href="../homePage/homePage.html">
-						<li>首页</li>
-					</a>
-					<a href="../resources/resources.html">
-						<li>资源</li>
-					</a>
-					<a href="../task/task.html">
-						<li>任务</li>
-					</a>
-					<a href="../test/test.html">
-						<li>试卷</li>
-					</a>
-					<li style="color: #279ef0;background-color: #fff;">试题</li>
-					<a href="../statistics/statistics.html">
-						<li>统计</li>
-					</a>
-				</ul>
-				<div class="HC-seek">
-					<input type="input" name="found" value="" />
-				</div>
-			</div>
-			<div class="H-right">
-				<a href="">
-					<div class="HR-picture"></div>
-				</a>
-				<a href=""><span class="HR-text">用户1</span></a>
-			</div>
+		<div id="header">
+
+
 		</div>
-	
-		
+
+
 		<!--新增试题页-->
 		<div id="newlyBuild" style="display: none;">
 			<div class="layui-form selectionType">
 				<span>类型</span>
-				<input type="radio" name="selectionType" value="单选题" title="单选题" class="singleChoiceQuestion" lay-filter="beshared">
+				<input type="radio" name="selectionType" value="单选题" title="单选题" class="singleChoiceQuestion" lay-filter="beshared" checked>
 				<input type="radio" name="selectionType" value="多选题" title="多选题" class="multipleChoiceQuestions" lay-filter="beshared">
 			</div>
 			<div class="subject">
 				<span>题干</span>
-				<textarea name="" required lay-verify="required" class="layui-textarea titleInputBox"></textarea>
+				<textarea id="content" required lay-verify="required" class="layui-textarea titleInputBox"></textarea>
 			</div>
 			<div class="layui-form choiceItem">
-				<input type="radio" lay-skin="primary" name="choiceItem" value="A" title="A"><textarea name="" required lay-verify="required" class="layui-textarea optionA option"></textarea> <br />
-				<input type="radio" lay-skin="primary" name="choiceItem" value="B" title="B"><textarea name="" required lay-verify="required" class="layui-textarea optionB option"></textarea> <br />
-				<input type="radio" lay-skin="primary" name="choiceItem" value="C" title="C"><textarea name="" required lay-verify="required" class="layui-textarea optionC option"></textarea> <br />
-				<input type="radio" lay-skin="primary" name="choiceItem" value="D" title="D"><textarea name="" required lay-verify="required" class="layui-textarea optionD option"></textarea>
+				<p class="outerFrame"><input type="radio" lay-skin="primary" name="choiceItem" value="A" title="A"><textarea name=""
+					 required lay-verify="required" class="layui-textarea optionA option"></textarea></p>
+				<p class="outerFrame"><input type="radio" lay-skin="primary" name="choiceItem" value="B" title="B"><textarea name=""
+					 required lay-verify="required" class="layui-textarea optionB option"></textarea></p>
+				<p class="outerFrame"><input type="radio" lay-skin="primary" name="choiceItem" value="C" title="C"><textarea name=""
+					 required lay-verify="required" class="layui-textarea optionC option"></textarea></p>
+				<p class="outerFrame"><input type="radio" lay-skin="primary" name="choiceItem" value="D" title="D"><textarea name=""
+					 required lay-verify="required" class="layui-textarea optionD option"></textarea></p>
 			</div>
 			<div class="manageOptions">
 				<button class="addOptions"><i class="layui-icon layui-icon-add-circle"></i> 选项</button>
@@ -88,12 +62,12 @@
 			</div>
 			<div class="analysis">
 				<span>解析</span>
-				<textarea name="" required lay-verify="required" class="layui-textarea parseInputBox"></textarea>
+				<textarea name="" required lay-verify="required" id="analysis" class="layui-textarea parseInputBox"></textarea>
 			</div>
 			<button type="button" class="layui-btn" id="confirmAdd">确认</button>
 		</div>
 		<!-- 编辑试题页 -->
-		
+
 		<!--解析-->
 		<div class="Popup PopupAnalysis hidden">
 			<div class="P-top">
@@ -118,9 +92,9 @@
 			<div class="C-Content">
 				<p class="TestQuestionsBrowse">
 					<span class="sort">
-						<em class="emColor">综合排序</em>
-						<em>使用量</em>
-						<em>收藏量</em>
+						<em class="emColor">单选题</em>
+						<em>多选题</em>
+
 					</span>
 					<span class="Statistics">
 						<em>共</em>
@@ -146,7 +120,7 @@
 
 			</div>
 		</div>
-		
+
 		<div class="Footer">
 			<!--分页-->
 			<div id="test1"></div>
@@ -161,10 +135,12 @@
 					}
 				});
 			</script> -->
+
 		<script src="../js/jquery-3.4.1.js"></script>
 		<script src="../js/layui/layui.all.js"></script>
 		<script src="../js/All.js"></script>
 		<script src="js/testQuestions.js"></script>
 		<script src="js/clickSort.js"></script>
+		<script src="../js/common.js"></script>
 	</body>
 </html>
