@@ -222,6 +222,7 @@ var info = {
 		})
 	},
 	viewByVideoFileName: function() {
+		var myAudio = document.getElementById('suspend');
 		$(document).on('click', '.videoFileName', function() {
 			layer.open({
 				type: 1,
@@ -230,7 +231,7 @@ var info = {
 				shade: 0.6,
 				content: $('#hiddenVideo'),
 				end : function() {
-					var myAudio = document.getElementById('hiddenVideo');
+					myAudio.pause();
 				}
 			})
 		});
