@@ -12,7 +12,7 @@ $(function() {
 	//点击发布任务调出弹窗
 	$('.releasTeask').click(function() {
 		showDisplay()
-	})
+	});
 	//分页
 	var info = {
 		//页面主方法
@@ -23,9 +23,6 @@ $(function() {
 				var form = layui.form;
 				form.render('select');
 			});
-
-
-
 		},
 	}
 	layui.use('laydate', function() {
@@ -53,6 +50,7 @@ $(function() {
 			}
 		})
 	})
+
 	//弹出新建试卷
 	var openAddRolePage = function(userId) {
 		layer.open({
