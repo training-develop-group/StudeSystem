@@ -155,15 +155,21 @@ img {
 .choiceItem .layui-form-radio{
 	margin-top: 17px;
 	margin-left: 0px !important;
+	margin: 14px 8px 0 0;
 }
 /* 单选框 */
 .layui-form-radio{
 	margin-left: 20px;
 }
+.layui-form-radio>i{
+	margin-right: 18px;
+}
 /* 多选框 */
 .layui-form-checkbox[lay-skin=primary]{
 	margin-top: 20px;
-	margin-left: 18px;
+	/* margin-left: 18px; */
+	margin-right: 3px;
+	padding-left: 40px;
 }
 .titleInputBox , .parseInputBox{
 	vertical-align: top;

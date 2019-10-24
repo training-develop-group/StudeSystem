@@ -95,7 +95,6 @@ $(function() {
 		} else {
 			letter = 'A';
 		}
-		console.log(letter);
 		if (letter == '['){
 			layer.msg('拒绝让你添加选项，有脾气吗？', {
 			  time: 0 //不自动关闭
@@ -119,7 +118,7 @@ $(function() {
 		// 重新渲染
 		layui.use('form', function () {
 			var form = layui.form;
-			form.render(name);
+			form.render();
 		});
 	});
 	// 删除选项
@@ -136,7 +135,6 @@ $(function() {
 	layui.use('form', function () {
 		var form = layui.form;
 		form.on('radio(beshared)', function (data) {
-			var name = '';
 			var Html = [];
 			Html.push('<p class="outerFrame"><input type="radio" name="choiceItem" value="A" title="A"><textarea name="" required lay-verify="required" class="layui-textarea option"></textarea></p>');
 			Html.push('<p class="outerFrame"><input type="radio" name="choiceItem" value="B" title="B"><textarea name="" required lay-verify="required" class="layui-textarea option"></textarea></p>');
@@ -149,17 +147,15 @@ $(function() {
 			Htmls.push('<p class="outerFrame"><input type="checkbox" lay-skin="primary" name="choiceItem" value="D" title="D"><textarea name="" required lay-verify="required" class="layui-textarea option"></textarea></p>');
 			if (data.value == '单选题'){
 				$('.choiceItem').html(Html.join(''));
-				name = 'radio';
 				judged = true;
 			} else {
 				$('.choiceItem').html(Htmls.join(''));
-				name = 'checkbox';
 				judged = false;
 			}
 			// 重新渲染
 			layui.use('form', function () {
 				var form = layui.form;
-				form.render(name);
+				form.render();
 			});
 		});
 	});
@@ -281,6 +277,17 @@ var info = {
 		});
 	},
 	newTestPaper : function(){
+		var Html = [];
+		Html.push('<p class="outerFrame"><input type="radio" name="choiceItem" value="A" title="A"><textarea name="" required lay-verify="required" class="layui-textarea option"></textarea></p>');
+		Html.push('<p class="outerFrame"><input type="radio" name="choiceItem" value="B" title="B"><textarea name="" required lay-verify="required" class="layui-textarea option"></textarea></p>');
+		Html.push('<p class="outerFrame"><input type="radio" name="choiceItem" value="C" title="C"><textarea name="" required lay-verify="required" class="layui-textarea option"></textarea></p>');
+		Html.push('<p class="outerFrame"><input type="radio" name="choiceItem" value="D" title="D"><textarea name="" required lay-verify="required" class="layui-textarea option"></textarea></p>');
+		$('.choiceItem').html(Html.join(''));
+		// 重新渲染
+		layui.use('form', function () {
+			var form = layui.form;
+			form.render();
+		});
 		layui.use("layer", function() {
 			var layer = layui.layer;
 			layer.open({

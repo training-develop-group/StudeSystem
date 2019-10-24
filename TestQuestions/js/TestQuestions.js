@@ -19,11 +19,10 @@ $(document).ready(function() {
 			// 跳转到资源
 			window.location.href = "../ResourcePage/ResourcePage.html";
 		});
-		$('.delete').click(function() {
+		$('.deleteQuestions').click(function() {
 			// 删除this的父级的父级
 			$(this).parent().parent().remove();
 		});
-		
 	});
 	layui.use(['layer', 'form'], function() {
 		var layer = layui.layer,
@@ -81,6 +80,7 @@ var info = {
 			$('em').removeClass('emColor');
 			$(this).addClass('emColor');
 		});
+		
 		layui.use('form', function() {
 			var form = layui.form;
 			form.on('radio(beshared)', function(data) {
