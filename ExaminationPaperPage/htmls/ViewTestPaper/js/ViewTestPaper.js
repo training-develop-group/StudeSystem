@@ -134,8 +134,6 @@ var info = {
 		// });
 		
 		$('.mobileFramework').html(Html.join(''));
-		
-		info.Page(); //分页
 	},
 	// 查看解析(弹窗)
 	toViewAnalysis : function(){

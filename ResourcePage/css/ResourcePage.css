@@ -83,11 +83,6 @@ thead > tr > td {
     font-size: 16px;
 }
 
-.page {
-    /* margin: 0 230px ; */
-    margin-left: 35%;
-}
-
 /* 点击上传课件弹出层按钮 */
 .changeFile {
     width: 120px;
@@ -140,4 +135,7 @@ thead > tr > td {
     width: 550px;
     margin-top: 45px;
     margin-left: 100px;
+}
+tr td a{
+	padding-right: 50px;
 }

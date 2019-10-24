@@ -155,6 +155,9 @@ body {
 .layui-laypage input:focus {
     border-color: #289ef0 !important;
 }
+.layui-laypage a:hover{
+	color: #289ef0;
+}
 
 
 @media screen and (min-width: 1365px) and (max-width: 1499px) {

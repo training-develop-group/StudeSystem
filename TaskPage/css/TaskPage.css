@@ -12,7 +12,7 @@ body{
 }
 .headline{
 	height: 50px;
-	width: 77%;
+	width: 100%;
 	background-color: #289ef0;
 	padding-top: 10px;
 	border-radius: 7px 7px 0 0;
@@ -21,7 +21,7 @@ body{
 }
 .content{
 	 background-color:#FFFFFF;
-	 width: 77%;
+	 width: 100%;
 	 /* height: 85%; */
 	 min-height: 650px;
 	 margin: auto;
