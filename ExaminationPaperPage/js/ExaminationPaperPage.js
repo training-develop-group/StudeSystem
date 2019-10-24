@@ -72,7 +72,27 @@ $(function() {
 		});
 	});
 	Page();
+	// select();
 });
+// 修改方法(重命名)
+var select = function(){
+	$.ajax({
+		url: 'http://localhost:8888/manage_system/paper/paperId',
+		data: {
+			'paperId': 2,
+			'questionType': 1
+		},
+		dataType: 'json',
+		type: 'GET',
+		// contentType: 'application/json;charset=utf-8',
+		success(res) {
+			console.log(res.data);
+		},
+		error (e) {
+			alert("操作失败，请稍后再试");
+		}
+	});
+}
 //表格数据请求
 TableDataRequest = function() {
 	$.ajax({
