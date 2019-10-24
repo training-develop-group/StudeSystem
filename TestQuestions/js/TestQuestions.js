@@ -19,6 +19,10 @@ $(document).ready(function() {
 			// 跳转到资源
 			window.location.href = "../ResourcePage/ResourcePage.html";
 		});
+		$('.delete').click(function() {
+			// 删除this的父级的父级
+			$(this).parent().parent().remove();
+		});
 		
 	});
 	layui.use(['layer', 'form'], function() {

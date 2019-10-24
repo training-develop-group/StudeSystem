@@ -163,7 +163,7 @@ img {
 /* 多选框 */
 .layui-form-checkbox[lay-skin=primary]{
 	margin-top: 20px;
-	margin-left: 8px;
+	margin-left: 18px;
 }
 .titleInputBox , .parseInputBox{
 	vertical-align: top;
@@ -194,4 +194,7 @@ img {
 .layui-laypage a{
 	margin-left: 5px;
 	margin-right: 5px;
+}
+.layui-form-radio > i{
+	margin-right: 18px;
 }

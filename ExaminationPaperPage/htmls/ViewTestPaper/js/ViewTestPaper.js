@@ -4,9 +4,7 @@ $(function() {
 		var layer = layui.layer,
 			form = layui.form;
 			
-		All.getMenu({
-			num: 1
-		});
+		
 	});
 	layui.use('form', function() {
 		var form = layui.form;
@@ -25,20 +23,25 @@ $(function() {
 	// 	// 跳转到试题
 	// 	window.location.href = "../../ExaminationPaperPage/ExaminationPaperPage.html";
 	// });
-	
-	$('.resource').click(function(){
-		window.location.href = "../../../../ResourcePage/ResourcePage.html";
+	// 资源
+	$('#resource').click(function(){
+		window.location.href = "../../../ResourcePage/ResourcePage.html";
 	})
-	$('.testQuestions').click(function() {
-		console.log(1);
-		// 跳转到试题
-		window.location.href = "../../../../TestQuestions/TestQuestions.html";
+	// 试卷(特殊)
+	$('#actives').click(function(){
+		window.location.href = "../../ExaminationPaperPage.html";
+	})
+	// 试题
+	$('#testQuestions').click(function() {
+		window.location.href = "../../../TestQuestions/TestQuestions.html";
 	});
-	$('.taskPage').click(function(){
-		window.location.href = "../../../../TaskPage/TaskPage.html";
+	// 任务
+	$('#taskPage').click(function(){
+		window.location.href = "../../../TaskPage/TaskPage.html";
 	})
-	$('.homePage').click(function(){
-		window.location.href = "../../../../HomePage/HomePage.html";
+	// 首页
+	$('#homePage').click(function(){
+		window.location.href = "../../../HomePage/HomePage.html";
 	})
 	// 新建试卷
 	$('#newTestPaper').click(function() {

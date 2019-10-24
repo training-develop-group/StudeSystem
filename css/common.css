@@ -55,7 +55,7 @@ body {
 }
 
 .headerBox .logobox {
-    padding: 0 80px;
+    padding: 0 85px;
     float: left;
 }
 
@@ -70,7 +70,7 @@ body {
 }
 
 .navbox ul li {
-<<<<<<< HEAD
+
 	list-style-type: none;
 	float: left;
 	padding: 0 30px;
@@ -78,15 +78,7 @@ body {
 	line-height: 58px;
 	font-size: 16px;
 	font-weight: bold;
-=======
-    list-style-type: none;
-    float: left;
-    padding: 0 30px;
-    color: white;
-    line-height: 60px;
-    font-size: 16px;
-    font-weight: bold;
->>>>>>> 0c0bd0fdf60f2029a72675d493437740f5a554da
+
 }
 
 .navbox ul li:hover {
@@ -111,16 +103,12 @@ body {
 }
 
 .left .searchbox img {
-<<<<<<< HEAD
+
 	width: 24px;
 	height: 24px;
 	margin-top: -5px;
 	background-image: url(../imgs/search.jpg);
-=======
-    width: 24px;
-    height: 24px;
-    background-image: url(../imgs/search.jpg);
->>>>>>> 0c0bd0fdf60f2029a72675d493437740f5a554da
+
 }
 
 .left .searchbox input {
@@ -190,13 +178,10 @@ body {
         padding: 0 15px;
     }
 }
-<<<<<<< HEAD
 .layui-laypage .layui-laypage-skip{
 	background-color:#f1f1f1;
 }
 .layui-laypage input:focus{
 	border-color: #289ef0 !important;
 }
-=======
 
->>>>>>> 0c0bd0fdf60f2029a72675d493437740f5a554da

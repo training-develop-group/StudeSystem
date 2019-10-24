@@ -149,7 +149,7 @@ body {
 .C-Top {
 	color: #fff;
 	background-color: #279ef0;
-	margin: 20px 0 20px 11%;
+	margin: 20px 0 20px 11.5%;
 	width: 77%;
 	height: 60px;
 	/* border-top-left-radius: 9px;
@@ -179,7 +179,7 @@ body {
 }
 
 .C-Content {
-	margin-left: 11%;
+	margin-left: 11.5%;
 	background-color: #fff;
 	width: 77%;
 	min-height: 650px;

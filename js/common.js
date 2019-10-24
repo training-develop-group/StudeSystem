@@ -51,11 +51,11 @@ var All = {
 					navHtml.push('<li>用户管理</li>')
 					break;
 				case 4:
-					navHtml.push('<li class="homePage">首页</li>')
-					navHtml.push('<li class="resource">资源</li>')
-					navHtml.push('<li class="taskPage">任务</li>')
+					navHtml.push('<li class="homePage" id="homePage">首页</li>')
+					navHtml.push('<li class="resource" id="resource">资源</li>')
+					navHtml.push('<li class="taskPage" id="taskPage">任务</li>')
 					navHtml.push('<li class="active">试卷</li>')
-					navHtml.push('<li class="testQuestions">试题</li>')
+					navHtml.push('<li class="testQuestions" id="testQuestions">试题</li>')
 					navHtml.push('<li>统计</li>')
 					navHtml.push('<li>用户管理</li>')
 					break;

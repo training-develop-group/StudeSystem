@@ -33,7 +33,10 @@ $(function() {
 	});
 	// 点击删除
 	$('.delete').click(function() {
-		deletePaper();
+		// 删除this的父级的父级
+		$(this).parent().parent().remove();
+		// 删除方法
+		// deletePaper();
 	});
 	// 点击查看
 	$('.toView').click(function() {
@@ -62,6 +65,7 @@ $(function() {
 				,btn1: function(index, layero){
 					//按钮【确认】的回调
 					// layer.close(index);
+					// 修改方法
 					rename();
 				}
 			});
@@ -186,14 +190,14 @@ var increase = function(){
 		type : 'POST',
 		contentType :'application/json;charset=utf-8',
 		success(res) {
+			console.log(res)
 			alert("操作成功");
-			parent.location.reload();	//刷新父级页面
+			// parent.location.reload();	//刷新父级页面
 		},
 		error (e) {
 			alert("操作失败，请稍后再试");
 		}
 	});
-	console.log(JSON.stringify(data));
 }
 // 修改方法(重命名)
 var rename = function(){

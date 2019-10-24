@@ -19,6 +19,10 @@ $(function() {
 			// 跳转到试题
 			window.location.href = "../TestQuestions/TestQuestions.html";
 		});
+		$('.delete').click(function() {
+			// 删除this的父级的父级
+			$(this).parent().parent().remove();
+		});
 
 		// info.add();	//已经好用
 		
@@ -225,7 +229,9 @@ var info = {
 				title: ['查看', 'background-color: #289ef0;text-align: center;font-size: 20px;color:white;'],
 				shade: 0.6,
 				content: $('#hiddenVideo'),
-
+				end : function() {
+					var myAudio = document.getElementById('hiddenVideo');
+				}
 			})
 		});
 	},
@@ -234,7 +240,7 @@ var info = {
 		$(document).on('click', '.audioFileName', function() {
 			layer.open({
 				type: 1,
-				area: ['750px', '400px'],
+				area: ['750px', '200px'],
 				title: ['查看', 'background-color: #289ef0;text-align: center;font-size: 20px;color:white;'],
 				shade: 0.6,
 				content: $('#hiddenAudio'),
