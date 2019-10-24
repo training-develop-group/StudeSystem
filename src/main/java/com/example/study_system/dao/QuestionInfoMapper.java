@@ -1,8 +1,10 @@
 package com.example.study_system.dao;
 
+import org.apache.ibatis.annotations.Mapper;
+
 import com.example.study_system.model.QuestionInfo;
 import com.example.study_system.model.QuestionInfoWithBLOBs;
-
+@Mapper
 public interface QuestionInfoMapper {
     int deleteByPrimaryKey(Long questionId);
 

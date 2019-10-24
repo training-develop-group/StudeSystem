@@ -1,7 +1,9 @@
 package com.example.study_system.dao;
 
-import com.example.study_system.model.JUserQuesAnswerRecord;
+import org.apache.ibatis.annotations.Mapper;
 
+import com.example.study_system.model.JUserQuesAnswerRecord;
+@Mapper
 public interface JUserQuesAnswerRecordMapper {
     int deleteByPrimaryKey(Long ref);
 

@@ -22,9 +22,20 @@
     task_id, res_id, paper_id, task_type, task_name, STATUS, start_time, end_time, c_time, 
     m_time, c_user, m_user
   </sql>
-  <sql id="Blob_Column_List" >
+  <sql id="Blob_Column_List"  >
     task_remark
   </sql>
+  <update id="updateByIdTaskName" parameterType="com.example.study_system.model.TaskInfo">
+  update task_info set task_name = #{taskName,jdbcType=VARCHAR}
+    where task_id = #{taskId,jdbcType=BIGINT}
+  </update>
+  <select id="selectTaskAll" resultMap="ResultMapWithBLOBs">
+  select 
+   <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from task_info
+  </select>
   <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
     select 
     <include refid="Base_Column_List" />
@@ -32,6 +43,10 @@
     <include refid="Blob_Column_List" />
     from task_info
     where task_id = #{taskId,jdbcType=BIGINT}
+  </select>
+  <select id="selectTaskCount" resultType="Integer">
+   select  count(0) from task_info
+   
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from task_info
@@ -101,7 +116,7 @@
       </if>
       <if test="paperId != null" >
         #{paperId,jdbcType=BIGINT},
-      </if>
+      </if>	
       <if test="taskType != null" >
         #{taskType,jdbcType=INTEGER},
       </if>

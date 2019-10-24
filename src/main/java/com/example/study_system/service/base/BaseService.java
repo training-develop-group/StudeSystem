@@ -1,5 +1,6 @@
 package com.example.study_system.service.base;
 
+import com.example.study_system.dao.TaskInfoMapper;
 import com.example.study_system.dao.UserInfoMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,4 +15,6 @@ public class BaseService {
 
     @Autowired
     protected UserInfoMapper userInfoMapper;
+    @Autowired
+    protected TaskInfoMapper taskInfoMapper;
 }

@@ -1,7 +1,9 @@
 package com.example.study_system.dao;
 
-import com.example.study_system.model.StRoleInfo;
+import org.apache.ibatis.annotations.Mapper;
 
+import com.example.study_system.model.StRoleInfo;
+@Mapper
 public interface StRoleInfoMapper {
     int deleteByPrimaryKey(Integer roleId);
 

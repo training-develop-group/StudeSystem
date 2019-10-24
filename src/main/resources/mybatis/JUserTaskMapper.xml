@@ -12,6 +12,11 @@
   <sql id="Base_Column_List" >
     ref, user_id, task_id, STATUS, c_time, c_user
   </sql>
+  <select id="selectByIdTaskUser" resultMap="BaseResultMap">
+  	select   <include refid="Base_Column_List" /> 
+  	from j_user_task 
+  	where task_id = #{taskId,jdbcType =BIGINT}
+  </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
     <include refid="Base_Column_List" />

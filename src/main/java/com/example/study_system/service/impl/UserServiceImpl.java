@@ -3,6 +3,9 @@ package com.example.study_system.service.impl;
 import com.example.study_system.model.UserInfo;
 import com.example.study_system.service.base.BaseService;
 import com.example.study_system.service.iface.IUserService;
+
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 /**
@@ -16,5 +19,8 @@ public class UserServiceImpl extends BaseService implements IUserService {
     public UserInfo selectById(Integer userId) {
         return userInfoMapper.selectByPrimaryKey(userId);
     }
-
+    @Override
+    public List<UserInfo> selectUserAll() {
+    	return userInfoMapper.selectUserAll();
+    }
 }

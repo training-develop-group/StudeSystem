@@ -1,5 +1,6 @@
 package com.example.study_system.service.iface.facade;
 
+import com.example.study_system.service.iface.ITaskService;
 import com.example.study_system.service.iface.IUserService;
 
 /**
@@ -7,6 +8,8 @@ import com.example.study_system.service.iface.IUserService;
  */
 public interface IServiceFacade {
 	IUserService getUserService();
+
+	ITaskService getTaskService();
 
 
 }

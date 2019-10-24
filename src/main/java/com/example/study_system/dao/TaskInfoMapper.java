@@ -1,7 +1,11 @@
 package com.example.study_system.dao;
 
-import com.example.study_system.model.TaskInfo;
+import java.util.List;
 
+import org.apache.ibatis.annotations.Mapper;
+
+import com.example.study_system.model.TaskInfo;
+@Mapper
 public interface TaskInfoMapper {
     int deleteByPrimaryKey(Long taskId);
 
@@ -16,4 +20,10 @@ public interface TaskInfoMapper {
     int updateByPrimaryKeyWithBLOBs(TaskInfo record);
 
     int updateByPrimaryKey(TaskInfo record);
+    
+    List<TaskInfo> selectTaskAll();
+   
+    int updateByIdTaskName(TaskInfo record);
+    
+    int selectTaskCount();
 }

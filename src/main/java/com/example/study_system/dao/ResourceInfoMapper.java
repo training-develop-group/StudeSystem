@@ -1,7 +1,9 @@
 package com.example.study_system.dao;
 
-import com.example.study_system.model.ResourceInfo;
+import org.apache.ibatis.annotations.Mapper;
 
+import com.example.study_system.model.ResourceInfo;
+@Mapper
 public interface ResourceInfoMapper {
     int deleteByPrimaryKey(Long resId);
 

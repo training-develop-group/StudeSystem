@@ -1,7 +1,9 @@
 package com.example.study_system.dao;
 
-import com.example.study_system.model.PaperInfo;
+import org.apache.ibatis.annotations.Mapper;
 
+import com.example.study_system.model.PaperInfo;
+@Mapper
 public interface PaperInfoMapper {
     int deleteByPrimaryKey(Long paperId);
 

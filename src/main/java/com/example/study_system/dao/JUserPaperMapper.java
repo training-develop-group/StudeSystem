@@ -1,7 +1,9 @@
 package com.example.study_system.dao;
 
-import com.example.study_system.model.JUserPaper;
+import org.apache.ibatis.annotations.Mapper;
 
+import com.example.study_system.model.JUserPaper;
+@Mapper
 public interface JUserPaperMapper {
     int deleteByPrimaryKey(Long ref);
 
