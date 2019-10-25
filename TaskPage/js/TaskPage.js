@@ -13,7 +13,7 @@ $(function() {
 	$('.releasTeask').click(function() {
 		info.showDisplay()
 	});
-	
+
 	layui.use('laydate', function() {
 		var laydate = layui.laydate;
 		//执行一个laydate实例
@@ -39,8 +39,22 @@ $(function() {
 			}
 		})
 	})
+	//点击选择试卷弹出试卷弹窗
+	$('.selectPapers').click(function() {
+		layer.open({
+			type: 1,
+			title: ['新建试卷', 'color:#fff;background-color:#40AFFE;;border-radius:  7px 7px 0 0'],
+			shadeClose: true,
+			shade: 0.8,
+			skin: 'myskin',
+			area: ['700px', '80%'],
+			content: $('#selectPapers'),
+			success: function() {
 
-	
+			},
+		});
+	});
+
 });
 //分页
 var info = {
@@ -53,11 +67,11 @@ var info = {
 			form.render('select');
 		});
 	},
-	showDisplay : function() {
+	showDisplay: function() {
 		info.openAddRolePage();
 	},
 	//弹出新建试卷
-	openAddRolePage : function(userId) {
+	openAddRolePage: function(userId) {
 		layer.open({
 			type: 1,
 			title: ['新建试卷', 'color:#fff;background-color:#40AFFE;;border-radius: 7px'],
@@ -73,9 +87,10 @@ var info = {
 			},
 		});
 	},
+
 	//弹出选择资源
-	selectResources : function() {
-	
+	selectResources: function() {
+
 		layer.open({
 			type: 1,
 			title: ['选择资源', 'color:#fff;background-color:#40AFFE;;border-radius: 7px '],
@@ -85,12 +100,12 @@ var info = {
 			area: ['700px', '80%'],
 			content: $('#selectResource'),
 			success: function() {
-	
+
 			}
 		})
 	},
 	//弹出编辑任务
-	popupsUpdateTaskName : function() {
+	popupsUpdateTaskName: function() {
 		layer.open({
 			type: 1,
 			title: ['编辑任务', 'color:#fff;background-color:#40AFFE;;border-radius: 7px'],
@@ -100,16 +115,16 @@ var info = {
 			area: ['700px', '200px'],
 			content: $('#updateTaskName'),
 			success: function() {
-					
+
 			}
 		})
 	},
 	// 分页插件
-	Page : function() {
+	Page: function() {
 		layui.use('laypage', function() {
 			var laypage = layui.laypage;
 			//执行一个laypage实例
-	
+
 			laypage.render({
 				elem: 'Page' //注意，这里的 test1 是 ID，不用加 # 号
 					,
@@ -119,19 +134,19 @@ var info = {
 				theme: '#1E9FFF',
 				curr: '4',
 				groups: '5',
-				layout: ['prev', 'page', 'next' , 'limits' , 'skip'],
+				layout: ['prev', 'page', 'next', 'limits', 'skip'],
 				// 				jump: function(item, first) {
 				// 					if (!first) {
 				// 
 				// 					}
 				// 				}
 			});
-	
+
 		})
 	},
 	//查询from
 	//查询总条数(不显示)
-	selectTaskCount : function(){
+	selectTaskCount: function() {
 		$.ajax({
 			url: 'http://localhost:8888/manage_system/task/count',
 			data: {},
@@ -139,12 +154,12 @@ var info = {
 			type: 'GET',
 			success(res) {
 				console.log(res)
-				}
-			})
-		},
-		
+			}
+		})
+	},
+
 	//查询全部
-	selectTaskAll : function() {
+	selectTaskAll: function() {
 		$.ajax({
 			url: 'http://localhost:8888/manage_system/task/tasks',
 			data: {},
@@ -159,11 +174,14 @@ var info = {
 					Html.push('<td>' + item.taskType + '</td>');
 					Html.push('<td>' + dateFormata(item.startTime) + ' - ' + dateFormata(item.endTime) + '</td>');
 					Html.push(
-						'<td><button style="width: 50px;height: 25px;margin-right:20px; margin-left: 20px; background-color: #FFFFFF;border: none;float: left;" class="updateTaskName"value="' +item.taskId + '">编辑</button>'+
-						'<button class="lookOver" style="width: 50px;height: 25px;margin-right:20px;border: none;background-color: #FFFFFF; margin-left: 20px; float: left;"value="' +item.taskId + '">查看</button>'+
-						'<button class="deleteTask" style="width: 50px;height: 25px;margin-right:20px;border: none;background-color: #FFFFFF; margin-left: 20px; float: left;" value="' +item.taskId + '"><span>删除</span></button></td>'
-						);
-				Html.push('</tr>');
+						'<td><button style="width: 50px;height: 25px;margin-right:20px; margin-left: 20px; background-color: #FFFFFF;border: none;float: left;" class="updateTaskName"value="' +
+						item.taskId + '">编辑</button>' +
+						'<button class="lookOver" style="width: 50px;height: 25px;margin-right:20px;border: none;background-color: #FFFFFF; margin-left: 20px; float: left;"value="' +
+						item.taskId + '">查看</button>' +
+						'<button class="deleteTask" style="width: 50px;height: 25px;margin-right:20px;border: none;background-color: #FFFFFF; margin-left: 20px; float: left;" value="' +
+						item.taskId + '"><span>删除</span></button></td>'
+					);
+					Html.push('</tr>');
 				})
 				$('#taskContent').html(Html.join(''));
 				//点击弹出编辑
@@ -175,10 +193,10 @@ var info = {
 				$('.deleteTask').click(function() {
 					info.delectTask($(this).val())
 				})
-			$('.confirmAdd').click(function(){
-				
-				info.updateTaskName($(this).val())
-			})
+				$('.confirmAdd').click(function() {
+
+					info.updateTaskName($(this).val())
+				})
 				//弹出查看
 				$('.lookOver').click(function() {
 					layer.open({
@@ -190,7 +208,7 @@ var info = {
 						area: ['600px', '50%'],
 						content: $('#examineTask'),
 						success: function() {
-	
+
 						}
 					})
 				})
@@ -198,12 +216,12 @@ var info = {
 		})
 	},
 	//修改任务名根据主键
-	updateTaskName : function(taskId){
-			var taskName = $('.taskName').val();
-			var data = {
-				'taskName':taskName
-				}
-			$.ajax({
+	updateTaskName: function(taskId) {
+		var taskName = $('.taskName').val();
+		var data = {
+			'taskName': taskName
+		}
+		$.ajax({
 			url: 'http://localhost:8888/manage_system/task/task' + taskId,
 			data: JSON.stringify(data),
 			dataType: 'json',
@@ -218,7 +236,7 @@ var info = {
 		})
 	},
 	//刪除任務 根据主键删除
-	delectTask : function(taskId) {
+	delectTask: function(taskId) {
 		$.ajax({
 			url: 'http://localhost:8888/manage_system/task/' + taskId,
 			data: {},
