@@ -97,7 +97,6 @@ body {
     border-radius: 4px;
     padding: 5px;
     background-color: white;
-    width: 300px;
     height: 30px;
     margin-top: 9px;
 }
@@ -106,18 +105,19 @@ body {
 
     width: 24px;
     height: 24px;
-    margin-top: -5px;
+    margin-top: 3px;
     background-image: url(../imgs/search.jpg);
 
 }
 
 .left .searchbox input {
     height: 100%;
-    width: calc(100% - 50px);
+    width: 200px;
     padding: 0 8px;
     border: 0;
     font-size: 16px;
     color: #808080;
+    float: right;
 }
 
 .headerBox .right {
@@ -155,14 +155,24 @@ body {
 .layui-laypage input:focus {
     border-color: #289ef0 !important;
 }
-.layui-laypage a:hover{
-	color: #289ef0;
+
+.layui-laypage a:hover {
+    color: #289ef0;
 }
 
+@media screen and (min-width: 1500px) and (max-width: 1660px) {
+    .wrapper.wrapper-content {
+        padding: 20px 120px 50px;
+    }
+
+    .navbox ul li {
+        padding: 0 15px;
+    }
+}
 
 @media screen and (min-width: 1365px) and (max-width: 1499px) {
     .wrapper.wrapper-content {
-        padding: 20px 120px 50px;
+        padding: 20px 80px 50px;
     }
 
     .navbox ul li {
