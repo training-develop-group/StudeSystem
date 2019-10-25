@@ -12,9 +12,9 @@ var paging = function() {
 
 		laypage.render({
 			elem: 'test1',
-			count: 30,
+			count: 10,
 			theme: '#279ef0',
-			layout:['prev','page','next','limits','skip']
+			layout: ['prev', 'page', 'next', 'limits', 'skip']
 		});
 	});
 

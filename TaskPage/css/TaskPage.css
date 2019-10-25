@@ -1,0 +1,70 @@
+body{
+	background-color: #F8F8F8;
+}
+#taskContent>button{
+	background: ;
+}
+.box{
+	width: 100%;
+	height: 90%;
+	margin-top: 20px;
+	/* padding: 10px 150px 10px 150px; */
+}
+.headline{
+	height: 50px;
+	width: 100%;
+	background-color: #289ef0;
+	padding-top: 10px;
+	border-radius: 7px 7px 0 0;
+	margin: auto; 
+	margin-bottom: 20px;
+}
+.content{
+	 background-color:#FFFFFF;
+	 width: 100%;
+	 /* height: 85%; */
+	 min-height: 650px;
+	 margin: auto;
+	 border-radius: 2px;
+}
+.layui-table td, .layui-table th{
+	border-style: none;
+	
+}
+.layui-table th{
+	font-size: 16px;
+	
+}
+.layui-table thead tr{
+	background-color: #FFFFFF;
+}
+th  {
+	border: none;
+	border-bottom: 0.5px solid #E9E7E7;
+}
+td {
+	border: none;
+	border-bottom:0.5px solid #E9E7E7;
+}
+ tr{
+	border: none;
+	border-bottom:  1px solid #E9E7E7; 
+ }      
+ i{
+ 	font-style:normal;
+ }
+ .layui-layer-btn{
+ 	padding: 0 293px 12px !important;
+ }
+ .releasTeask{
+ 	font-size: 16px;
+ 	float: right;
+ 	margin-right: 20px;
+ 	border-radius: 5px;
+ 	color: #279ef2;
+	border: none;
+ }
+.layui-laypage a{
+	margin-left: 5px;
+	margin-right: 5px;
+}

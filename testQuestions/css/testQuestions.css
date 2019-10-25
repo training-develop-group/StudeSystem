@@ -1,7 +1,3 @@
-
-
-
-/*  */
 .C-Content {
 	overflow: hidden;
 	padding: 15px 0;
@@ -18,6 +14,8 @@
 	padding-top: 10px;
 	border: 1px solid rgb(213, 213, 213);
 }
+
+
 
 .Q-question {
 	color: rgb(161, 161, 161);
@@ -75,7 +73,7 @@ img {
 	margin: 0 2%;
 }
 
-.TestQuestionsBrowse .sort em {
+.TestQuestionsBrowse .sort span {
 	margin: 0 10px;
 }
 
@@ -83,7 +81,7 @@ img {
 	float: right;
 }
 
-.sort em:hover {
+.sort span:hover {
 	color: #279ef0;
 	cursor: pointer
 }
@@ -102,48 +100,57 @@ img {
 	cursor: pointer;
 }
 
-#test1 {
+/* #test1 {
 	position: absolute;
 	bottom: 0;
 	left: 50%;
 	transform: translate(-50%, -50%);
-}
+} */
 
 
 
-.delete{
+.delete {
 	color: red;
 }
-#newlyBuild{
+
+#newlyBuild {
 	width: 650px;
 	height: 680px;
 	/* margin-left: 50px; */
 	/* margin-top: 500px; */
 	/* border: 1px solid black; */
 }
-#editQuestion{
+
+#editQuestion {
 	width: 650px;
 	height: 680px;
 	/* margin-left: 50px; */
 	/* margin-top: 500px; */
 	/* border: 1px solid black; */
 }
-.selectionType{
+
+.selectionType {
 	margin-top: 30px;
 	margin-left: 100px;
 }
-.subject , .choiceItem , .analysis{
+
+.subject,
+.choiceItem,
+.analysis {
 	margin-top: 20px;
 	margin-left: 100px;
 }
-.choiceItem{
+
+.choiceItem {
 	margin-top: 0px;
 }
-.manageOptions{
+
+.manageOptions {
 	margin-top: 20px;
 	margin-left: 150px;
 }
-.option{
+
+.option {
 	width: 400px;
 	min-height: 20px;
 	/* margin-left: 30px; */
@@ -152,46 +159,75 @@ img {
 	vertical-align: top;
 	resize: none;
 }
-.titleInputBox , .parseInputBox{
+
+.titleInputBox,
+.parseInputBox {
 	margin-left: 30px;
 }
+
 /* 选项的单选框的位置 */
-.choiceItem .layui-form-radio{
+.choiceItem .layui-form-radio {
 	margin-top: 17px;
 	margin-left: 0px !important;
+	margin: 14px 8px 0 0;
 }
+
 /* 单选框 */
-.layui-form-radio{
+.layui-form-radio {
 	margin-left: 20px;
 }
-/* 多选框 */
-.layui-form-checkbox[lay-skin=primary]{
-	margin-top: 20px;
-	margin-left: 8px;
+
+.layui-form-radio>i {
+	margin-right: 18px;
 }
-.titleInputBox , .parseInputBox{
+
+/* 多选框 */
+.layui-form-checkbox[lay-skin=primary] {
+	margin-top: 20px;
+	/* margin-left: 18px; */
+	margin-right: 3px;
+	padding-left: 40px;
+}
+
+.titleInputBox,
+.parseInputBox {
 	vertical-align: top;
 	width: 400px;
 	height: 100px;
 	resize: none;
 	display: inline;
 }
-.addOptions , .deleteOptions{
+
+.addOptions,
+.deleteOptions {
 	margin-left: 18px;
 	border: 0;
 	background-color: white;
 }
-.choiceItem input{
+
+.choiceItem input {
 	margin-top: 20px;
 }
-#confirmAdd{
+
+#confirmAdd {
 	width: 150px;
-	height:30px;
+	height: 30px;
 	line-height: 30px;
 	background-color: #279ef0;
 	margin-top: 20px;
 	margin-left: calc(100% - 60%);
 }
-.layui-form-radio>i:hover, .layui-form-radioed>i{
-	color:#279ef0;
+
+.layui-form-radio>i:hover,
+.layui-form-radioed>i {
+	color: #279ef0;
+}
+
+.layui-laypage a {
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+.layui-form-radio>i {
+	margin-right: 18px;
 }

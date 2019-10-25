@@ -3,10 +3,6 @@ $(function() {
 	layui.use(['layer', 'form'], function() {
 		var layer = layui.layer,
 			form = layui.form;
-			
-		All.getMenu({
-			num: 1
-		});
 	});
 	layui.use('form', function() {
 		var form = layui.form;
@@ -24,7 +20,26 @@ $(function() {
 	$('#newTestPaper').click(function() {
 		info.newTestPaper();
 	});
-	
+	// 资源
+	$('#resource').click(function(){
+		window.location.href = "../../../ResourcePage/ResourcePage.html";
+	})
+	// 试卷(特殊)
+	$('#actives').click(function(){
+		window.location.href = "../../ExaminationPaperPage.html";
+	})
+	// 试题
+	$('#testQuestions').click(function() {
+		window.location.href = "../../../TestQuestions/TestQuestions.html";
+	});
+	// 任务
+	$('#taskPage').click(function(){
+		window.location.href = "../../../TaskPage/TaskPage.html";
+	})
+	// 首页
+	$('#homePage').click(function(){
+		window.location.href = "../../../HomePage/HomePage.html";
+	})
 	$('.mobileFramework').clickSort({
 	    speed:500,
 	　　callback:function(){
@@ -80,7 +95,6 @@ $(function() {
 		} else {
 			letter = 'A';
 		}
-		console.log(letter);
 		if (letter == '['){
 			layer.msg('拒绝让你添加选项，有脾气吗？', {
 			  time: 0 //不自动关闭
@@ -104,7 +118,7 @@ $(function() {
 		// 重新渲染
 		layui.use('form', function () {
 			var form = layui.form;
-			form.render(name);
+			form.render();
 		});
 	});
 	// 删除选项
@@ -121,7 +135,6 @@ $(function() {
 	layui.use('form', function () {
 		var form = layui.form;
 		form.on('radio(beshared)', function (data) {
-			var name = '';
 			var Html = [];
 			Html.push('<p class="outerFrame"><input type="radio" name="choiceItem" value="A" title="A"><textarea name="" required lay-verify="required" class="layui-textarea option"></textarea></p>');
 			Html.push('<p class="outerFrame"><input type="radio" name="choiceItem" value="B" title="B"><textarea name="" required lay-verify="required" class="layui-textarea option"></textarea></p>');
@@ -134,17 +147,15 @@ $(function() {
 			Htmls.push('<p class="outerFrame"><input type="checkbox" lay-skin="primary" name="choiceItem" value="D" title="D"><textarea name="" required lay-verify="required" class="layui-textarea option"></textarea></p>');
 			if (data.value == '单选题'){
 				$('.choiceItem').html(Html.join(''));
-				name = 'radio';
 				judged = true;
 			} else {
 				$('.choiceItem').html(Htmls.join(''));
-				name = 'checkbox';
 				judged = false;
 			}
 			// 重新渲染
 			layui.use('form', function () {
 				var form = layui.form;
-				form.render(name);
+				form.render();
 			});
 		});
 	});
@@ -164,6 +175,7 @@ $(function() {
 		$('.movedown').hide();
 		$('.fraction').hide();
 	});
+	
 	// 点击确认完成
 	$('.confirmCompletion').click(function() {
 		$('.joinIn').hide();
@@ -227,7 +239,7 @@ var info = {
 			Html.push('<div class="functionBox">');
 			Html.push('');
 			Html.push('<button class="toView"><i class="layui-icon layui-icon-search"></i>查看解析</button>');
-			Html.push('<button class="fraction"><img src="../imgs/f.png"  alt="" />设定分值</button>');
+			Html.push('<button class="fraction"><img src="../../imgs/f.png"  alt="" />设定分值</button>');
 			Html.push('<button class="edit"><i class="layui-icon layui-icon-edit"></i>编辑</button>');
 			Html.push('<button class="moveOut"><i class="layui-icon layui-icon-delete"></i>移出</button>');
 			Html.push('<button class="moveup"><i class="layui-icon layui-icon-up"></i>上移</button>');
@@ -265,6 +277,17 @@ var info = {
 		});
 	},
 	newTestPaper : function(){
+		var Html = [];
+		Html.push('<p class="outerFrame"><input type="radio" name="choiceItem" value="A" title="A"><textarea name="" required lay-verify="required" class="layui-textarea option"></textarea></p>');
+		Html.push('<p class="outerFrame"><input type="radio" name="choiceItem" value="B" title="B"><textarea name="" required lay-verify="required" class="layui-textarea option"></textarea></p>');
+		Html.push('<p class="outerFrame"><input type="radio" name="choiceItem" value="C" title="C"><textarea name="" required lay-verify="required" class="layui-textarea option"></textarea></p>');
+		Html.push('<p class="outerFrame"><input type="radio" name="choiceItem" value="D" title="D"><textarea name="" required lay-verify="required" class="layui-textarea option"></textarea></p>');
+		$('.choiceItem').html(Html.join(''));
+		// 重新渲染
+		layui.use('form', function () {
+			var form = layui.form;
+			form.render();
+		});
 		layui.use("layer", function() {
 			var layer = layui.layer;
 			layer.open({
