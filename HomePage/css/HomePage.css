@@ -1,32 +1,30 @@
 
-.content .resources{
-	margin-top: 25px;
-	margin-left: 223px;
-	width: 635px;
-	height:357px;
-	
+.content .resources {
+    width: calc(46% - 20px);
+    height: 357px;
+    float: left;
+    margin-right: 20px;
 }
-.content .statistics{
-	margin-left: 223px;
-	width: 1476px;
-	height: 400px;
-	background-color: #FFFFFF;
-}
-.content .task{
-	margin-top: -372px;
-	margin-left: 878px;
-	width: 401px;
-	height:357px;
-	
-}
-.content .paper{
-	margin-top: -372px;
-	margin-left: 1300px;
-	width: 401px;
-	height:357px;
+
+.content .task {
+    width: 27%;
+    height: 357px;
+    float: left;
 
 }
 
+.content .paper {
+    width: calc(27% - 20px);
+    height: 357px;
+    float: left;
+    margin-left: 20px;
+}
+
+.content .statistics {
+    width: 100%;
+    height: 400px;
+    background-color: #FFFFFF;
+}
 
 
 
