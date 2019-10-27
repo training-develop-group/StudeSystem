@@ -103,8 +103,30 @@ var info = {
 
 	},
 	//查看解析
-	viewQuestion: function(questionId) {
+	viewAnswer: function(questionId) {
+		$.ajax({
+			url: 'http://localhost:8888/manage_system/question/answer',
+			data: {
+				'questionId': questionId
+			},
+			dataType: 'json',
+			type: 'GET',
+			success(res) {
+				var answer = '';
+				res.data.forEach(function(item, index) {
+					$('.PopupAnalysis .ViewParsing .analysis').text(item.analysis);
+					if (answer == '') {
+						answer = item.optionType;
+					} else {
+						answer = answer + ',' + item.optionType;
+					}
+					$('.PopupAnalysis .ViewParsing .answer').text('故选:'+answer+'.');
+					$('.PopupAnalysis .ViewParsing span').text(answer);
+				});
+			}
 
+
+		});
 	},
 	//添加
 	addQuestion: function() {
@@ -259,7 +281,7 @@ var info = {
 		var questionRes = {};
 		var count = 0;
 		$.ajax({
-			url: 'http://192.168.188.102:8888/manage_system/question/' + questionId,
+			url: 'http://localhost:8888/manage_system/question/' + questionId,
 			data: '',
 			dataType: 'json',
 			type: 'GET',
@@ -506,7 +528,9 @@ var info = {
 			content: $('.PopupAnalysis'),
 			btn: '确认',
 			btnAlign: 'c',
-			success: function() {}
+			success: function() {
+				info.viewAnswer(questionId);
+			}
 		});
 
 	},
