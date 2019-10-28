@@ -23,12 +23,19 @@
 	width: 100%;
 	margin: 30px;
 }
-.optionErrorMsg{
+
+.Content .TestQuestionsBrowse .sort span:hover {
+	color: #279ef0;
+	cursor: pointer;
+}
+
+.optionErrorMsg {
 	padding-top: 10px;
 	font-size: 10px;
 	margin-left: 200px;
 	color: #FF0000;
 }
+
 .questions {
 	width: 96%;
 	height: 98%;
