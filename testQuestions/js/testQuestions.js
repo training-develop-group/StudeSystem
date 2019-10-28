@@ -80,7 +80,8 @@ var info = {
 					info.viewPopup($(this).parents('.operation').find('input').val());
 				});
 				$('.questions .operation .deleteQuestions').off('click').on('click', function() {
-					info.deleteQuestions($(this).parents('.operation').find('input').val(), $(this).parents('.operation').find('p').text());
+					info.deleteQuestions($(this).parents('.operation').find('input').val(), $(this).parents('.operation').find(
+						'p').text());
 				});
 
 				info.page(res.data, curr);
@@ -198,6 +199,7 @@ var info = {
 				} else {
 					$('#newlyBuild .outerFrame input').prop('type', 'checkbox');
 					$('#newlyBuild .outerFrame .layui-unselect').remove();
+					$('#newlyBuild .outerFrame input').prop('lay-skin', 'primary');
 					name = 'checkbox';
 					judged = false;
 				}
@@ -249,7 +251,8 @@ var info = {
 			// true是单选,false是多选
 
 			if (judged == true) {
-				$("#newlyBuild .choiceItem").append('<p class="outerFrame"><input type="radio" name="choiceItem" value="' +
+				$("#newlyBuild .choiceItem").append(
+					'<p class="outerFrame"><input type="radio" lay-skin="primary" name="choiceItem" value="' +
 					letter +
 					'" title="' + letter +
 					'"><textarea name="" required lay-verify="required" class="layui-textarea option"></textarea></p>');
@@ -292,12 +295,31 @@ var info = {
 			var score = 10;
 			var difficulty = 2;
 			var status = 1;
+			var analysis = $('#newlyBuild #analysis').val();
+			if (content == '') {
+				alert('题目为空！');
+				return false;
+			}
+			if (analysis == '') {
+				alert('解析为空！');
+				return false;
+			}
+
+			var checkRadioSelect = false;
+			var checkInputContent = false;
+			var checkCheckbox = '';
 			$('#newlyBuild .outerFrame').each(function() {
 				var person = {};
-				person.content = $(this).find('.option').val();
+				if ($(this).find('.option').val() == '') {
+					checkInputContent = true;
+				} else {
+					person.content = $(this).find('.option').val();
+				}
 				if (judged) {
 					person.optionType = $(this).find('.layui-unselect div').text();
 					if ($(this).find('.layui-form-radio').is('.layui-form-radioed')) {
+						console.log('有对的');
+						checkRadioSelect = true;
 						person.isRight = 1;
 					} else {
 						person.isRight = 0;
@@ -306,14 +328,38 @@ var info = {
 					person.optionType = $(this).find('.layui-unselect span').text();
 					if ($(this).find('.layui-form-checkbox').is('.layui-form-checked')) {
 						person.isRight = 1;
+						if (checkCheckbox == '') {
+							checkCheckbox = '1';
+						} else {
+							checkCheckbox = checkCheckbox + ',' + '1';
+						}
+
 					} else {
 						person.isRight = 0;
 					}
 				}
 				option.push(person);
-
 			});
-			var analysis = $('#newlyBuild #analysis').val();
+			if (checkInputContent) {
+				alert('有选项内容为空！');
+				return false;
+			}
+
+			if (judged) {
+				if (!checkRadioSelect) {
+					alert('请选择一个正确答案！');
+					return false;
+				}
+			} else {
+				var sear = new RegExp(',');
+				if (!sear.test(checkCheckbox)) {
+					alert('请选择至少两个答案！');
+					return false;
+				}
+			}
+
+
+
 			if (judged) {
 				questionType = 1;
 			} else {
@@ -420,23 +466,45 @@ var info = {
 						questionRes.data.forEach(function(questionItem, questionIndex) {
 							questionItem.optionInfo.forEach(function(item, index) {
 								if (data.value == '单选题') {
-									$("#editBuild .choiceItem").append(
-										'<p class="outerFrame"><input class="ref" type="hidden" value = "' + item.ref +
-										'"/><input type="radio" name="choiceItem" value="' +
-										item.optionType +
-										'" title="' + item.optionType +
-										'"><textarea name="" required lay-verify="required" class="layui-textarea option">' + item.content +
-										'</textarea></p>');
+									if (item.isRight == 1) {
+										$("#editBuild .choiceItem").append(
+											'<p class="outerFrame"><input class="ref" type="hidden" value = "' + item.ref +
+											'"/><input type="radio" name="choiceItem" value="' +
+											item.optionType +
+											'" title="' + item.optionType +
+											'"checked><textarea name="" required lay-verify="required" class="layui-textarea option">' +
+											item.content +
+											'</textarea></p>');
+									} else {
+										$("#editBuild .choiceItem").append(
+											'<p class="outerFrame"><input class="ref" type="hidden" value = "' + item.ref +
+											'"/><input type="radio" name="choiceItem" value="' +
+											item.optionType +
+											'" title="' + item.optionType +
+											'"><textarea name="" required lay-verify="required" class="layui-textarea option">' + item.content +
+											'</textarea></p>');
+									}
 									type = 1;
 									form.render();
 								} else {
-									$("#editBuild .choiceItem").append(
-										'<p class="outerFrame"><input class="ref" type="hidden" value = "' + item.ref +
-										'"/><input type="checkbox" lay-skin="primary" name="choiceItem" value="' +
-										item.optionType +
-										'" title="' + item.optionType +
-										'"><textarea name="" required lay-verify="required" class="layui-textarea option">' + item.content +
-										'</textarea></p>');
+									if (item.isRight == 1) {
+										$("#editBuild .choiceItem").append(
+											'<p class="outerFrame"><input class="ref" type="hidden" value = "' + item.ref +
+											'"/><input type="checkbox" lay-skin="primary" name="choiceItem" value="' +
+											item.optionType +
+											'" title="' + item.optionType +
+											'"checked><textarea name="" required lay-verify="required" class="layui-textarea option">' + item.content +
+											'</textarea></p>');
+									}else{
+										$("#editBuild .choiceItem").append(
+											'<p class="outerFrame"><input class="ref" type="hidden" value = "' + item.ref +
+											'"/><input type="checkbox" lay-skin="primary" name="choiceItem" value="' +
+											item.optionType +
+											'" title="' + item.optionType +
+											'"><textarea name="" required lay-verify="required" class="layui-textarea option">' + item.content +
+											'</textarea></p>');
+									}
+									
 									type = 2;
 									form.render();
 								}
@@ -523,30 +591,68 @@ var info = {
 					var score = 10;
 					var difficulty = 2;
 					var status = 1;
+					var analysis = $('#editBuild #analysis').val();
+					if (content == '') {
+						alert('题目为空！');
+						return false;
+					}
+					if (analysis == '') {
+						alert('解析为空！');
+						return false;
+					}
+					var checkRadioSelect = false;
+					var checkCheckbox = '';
+					var checkInputContent = false;
 					$('#editBuild .outerFrame').each(function() {
 						var person = {};
 						person.ref = $(this).find('.ref').val();
-						person.content = $(this).find('.option').val();
+						if ($(this).find('.option').val() == '') {
+							checkInputContent = true;
+							return false;
+						} else {
+							person.content = $(this).find('.option').val();
+						}
 						if (type == 1) {
 							person.optionType = $(this).find('.layui-unselect div').text();
 							if ($(this).find('.layui-form-radio').is('.layui-form-radioed')) {
 								person.isRight = 1;
+								checkRadioSelect = true;
 							} else {
 								person.isRight = 0;
 							}
 						} else {
 							person.optionType = $(this).find('.layui-unselect span').text();
 							if ($(this).find('.layui-form-checkbox').is('.layui-form-checked')) {
+								if (checkCheckbox == '') {
+									checkCheckbox = '1';
+								} else {
+									checkCheckbox = checkCheckbox + ',' + '1';
+								}
 								person.isRight = 1;
 							} else {
 								person.isRight = 0;
 							}
 						}
-
 						option.push(person);
 					});
+					if (checkInputContent) {
+						alert('有选项内容为空！');
+						return false;
+					}
+					if (type == 1) {
+						if (!checkRadioSelect) {
+							alert('请选择一个正确答案！');
+							return false;
+						}
+					} else {
+						var sear = new RegExp(',');
+						if (!sear.test(checkCheckbox)) {
+							alert('请选择至少两个答案！');
+							return false;
+						}
+					}
 
-					var analysis = $('#editBuild #analysis').val();
+
 					var question = {
 						'questionId': questionId,
 						'questionType': type,
