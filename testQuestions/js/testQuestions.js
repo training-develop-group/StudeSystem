@@ -1,4 +1,9 @@
 $(document).ready(function() {
+	$(document).keyup(function(event) {
+		if (event.keyCode == 13) {
+			info.selectQuestion(1);
+		}
+	});
 	/*分页*/
 	/*上传课件*/
 	// $.ajax({
@@ -29,7 +34,6 @@ $(document).ready(function() {
 var type = 1;
 var info = {
 	selectQuestion: function(curr) {
-		console.log(curr);
 		$.ajax({
 			url: 'http://localhost:8888/manage_system/question/questions',
 			data: {
@@ -60,6 +64,7 @@ var info = {
 					Html.push('</span>');
 					Html.push('<div class="operation">');
 					Html.push('<input type="hidden"  value="' + item.questionId + '">')
+					Html.push('<p style="display:none;">' + item.status + '</p>')
 					Html.push('<span class="view"><i class="layui-icon">&#xe615;</i>查看解析</span>');
 					Html.push('<span class="edit"><i style="color: #009688;" class="layui-icon">&#xe642;</i>编辑试题</span>');
 					Html.push(
@@ -74,15 +79,17 @@ var info = {
 				$('.questions .operation .view').off('click').on('click', function() {
 					info.viewPopup($(this).parents('.operation').find('input').val());
 				});
+				$('.questions .operation .deleteQuestions').off('click').on('click', function() {
+					info.deleteQuestions($(this).parents('.operation').find('input').val(), $(this).parents('.operation').find('p').text());
+				});
 
-				info.page(res.data);
+				info.page(res.data, curr);
 			}
 		});
 	},
 
 	//分页
-	page: function(data) {
-		console.log(data);
+	page: function(data, curr) {
 		layui.use('laypage', function() {
 			var laypage = layui.laypage;
 			//执行一个laypage实例
@@ -91,6 +98,7 @@ var info = {
 				theme: '#279ef0',
 				layout: ['prev', 'page', 'next', 'limits', 'skip'],
 				count: data.total,
+				curr: curr,
 				jump: function(obj, first) {
 					console.log(obj.curr);
 					if (!first) {
@@ -102,6 +110,25 @@ var info = {
 		});
 
 	},
+	deleteQuestions: function(questionId, status) {
+		if (status == 1) {
+			$.ajax({
+				url: 'http://localhost:8888/manage_system/question/' + questionId,
+				data: '',
+				dataType: 'json',
+				type: 'DELETE',
+				success(res) {
+
+				},
+				error(e) {
+
+				}
+			})
+		} else {
+
+		}
+	},
+
 	//查看解析
 	viewAnswer: function(questionId) {
 		$.ajax({
@@ -120,7 +147,7 @@ var info = {
 					} else {
 						answer = answer + ',' + item.optionType;
 					}
-					$('.PopupAnalysis .ViewParsing .answer').text('故选:'+answer+'.');
+					$('.PopupAnalysis .ViewParsing .answer').text('故选:' + answer + '.');
 					$('.PopupAnalysis .ViewParsing span').text(answer);
 				});
 			}
@@ -130,45 +157,55 @@ var info = {
 	},
 	//添加
 	addQuestion: function() {
+		$('#newlyBuild .optionErrorMsg').hide();
 		layui.use('form', function() {
 			var form = layui.form;
 			form.on('radio(beshared)', function(data) {
 				var name = '';
-				var Html = [];
-				Html.push(
-					'<p class="outerFrame"><input type="radio" name="choiceItem" value="A" title="A"><textarea name="" required lay-verify="required" class="layui-textarea optionA option"></textarea></p>'
-				);
-				Html.push(
-					'<p class="outerFrame"><input type="radio" name="choiceItem" value="B" title="B"><textarea name="" required lay-verify="required" class="layui-textarea optionB option"></textarea></p>'
-				);
-				Html.push(
-					'<p class="outerFrame"><input type="radio" name="choiceItem" value="C" title="C"><textarea name="" required lay-verify="required" class="layui-textarea optionC option"></textarea></p>'
-				);
-				Html.push(
-					'<p class="outerFrame"><input type="radio" name="choiceItem" value="D" title="D"><textarea name="" required lay-verify="required" class="layui-textarea optionD option"></textarea></p>'
-				);
-				var Htmls = [];
-				Htmls.push(
-					'<p class="outerFrame"><input type="checkbox" lay-skin="primary" name="choiceItem" value="A" title="A"><textarea name="" required lay-verify="required" class="layui-textarea optionA option"></textarea></p>'
-				);
-				Htmls.push(
-					'<p class="outerFrame"><input type="checkbox" lay-skin="primary" name="choiceItem" value="B" title="B"><textarea name="" required lay-verify="required" class="layui-textarea optionB option"></textarea></p>'
-				);
-				Htmls.push(
-					'<p class="outerFrame"><input type="checkbox" lay-skin="primary" name="choiceItem" value="C" title="C"><textarea name="" required lay-verify="required" class="layui-textarea optionC option"></textarea></p>'
-				);
-				Htmls.push(
-					'<p class="outerFrame"><input type="checkbox" lay-skin="primary" name="choiceItem" value="D" title="D"><textarea name="" required lay-verify="required" class="layui-textarea optionD option"></textarea></p>'
-				);
+				// var Html = [];
+
+				// Html.push(
+				// 	'<p class="outerFrame"><input type="radio" name="choiceItem" value="A" title="A"><textarea name="" required lay-verify="required" class="layui-textarea optionA option"></textarea></p>'
+				// );
+				// Html.push(
+				// 	'<p class="outerFrame"><input type="radio" name="choiceItem" value="B" title="B"><textarea name="" required lay-verify="required" class="layui-textarea optionB option"></textarea></p>'
+				// );
+				// Html.push(
+				// 	'<p class="outerFrame"><input type="radio" name="choiceItem" value="C" title="C"><textarea name="" required lay-verify="required" class="layui-textarea optionC option"></textarea></p>'
+				// );
+				// Html.push(
+				// 	'<p class="outerFrame"><input type="radio" name="choiceItem" value="D" title="D"><textarea name="" required lay-verify="required" class="layui-textarea optionD option"></textarea></p>'
+				// );
+				// var Htmls = [];
+				// Htmls.push(
+				// 	'<p class="outerFrame"><input type="checkbox" lay-skin="primary" name="choiceItem" value="A" title="A"><textarea name="" required lay-verify="required" class="layui-textarea optionA option"></textarea></p>'
+				// );
+				// Htmls.push(
+				// 	'<p class="outerFrame"><input type="checkbox" lay-skin="primary" name="choiceItem" value="B" title="B"><textarea name="" required lay-verify="required" class="layui-textarea optionB option"></textarea></p>'
+				// );
+				// Htmls.push(
+				// 	'<p class="outerFrame"><input type="checkbox" lay-skin="primary" name="choiceItem" value="C" title="C"><textarea name="" required lay-verify="required" class="layui-textarea optionC option"></textarea></p>'
+				// );
+				// Htmls.push(
+				// 	'<p class="outerFrame"><input type="checkbox" lay-skin="primary" name="choiceItem" value="D" title="D"><textarea name="" required lay-verify="required" class="layui-textarea optionD option"></textarea></p>'
+				// );
+
 				if (data.value == '单选题') {
-					$('#newlyBuild .choiceItem').html(Html.join(''));
+					$('#newlyBuild .outerFrame input').prop('type', 'radio');
+					$('#newlyBuild .outerFrame .layui-unselect').remove();
 					name = 'radio';
 					judged = true;
 				} else {
-					$('#newlyBuild .choiceItem').html(Htmls.join(''));
+					$('#newlyBuild .outerFrame input').prop('type', 'checkbox');
+					$('#newlyBuild .outerFrame .layui-unselect').remove();
 					name = 'checkbox';
 					judged = false;
 				}
+
+				$("#newlyBuild #confirmAdd").attr('disabled', false);
+				$("#newlyBuild #confirmAdd").css('background-color', '#279ef0');
+				$("#newlyBuild #confirmAdd").css('cursor', 'pointer');
+				$('#newlyBuild .optionErrorMsg').hide();
 				// 重新渲染
 				layui.use('form', function() {
 					var form = layui.form;
@@ -178,10 +215,25 @@ var info = {
 		});
 		var judged = true;
 		$('#newlyBuild .addOptions').click(function() {
+			if (judged) {
+				if ($('#newlyBuild .choiceItem p').length > 0) {
+					$("#newlyBuild #confirmAdd").attr('disabled', false);
+					$("#newlyBuild #confirmAdd").css('background-color', '#279ef0');
+					$("#newlyBuild #confirmAdd").css('cursor', 'pointer');
+					$('#newlyBuild .optionErrorMsg').hide();
+				}
+			} else {
+				if ($('#newlyBuild .choiceItem p').length > 1) {
+					console.log($('#newlyBuild .choiceItem p').length);
+					$("#newlyBuild #confirmAdd").attr('disabled', false);
+					$("#newlyBuild #confirmAdd").css('background-color', '#279ef0');
+					$("#newlyBuild #confirmAdd").css('cursor', 'pointer');
+					$('#newlyBuild .optionErrorMsg').hide();
+				}
+			}
 			var letter = '';
 			if ($('#newlyBuild .choiceItem').html() == '' || $('#newlyBuild .choiceItem').html() == null || $(
 					'#newlyBuild .choiceItem').html() == undefined) {
-				alert("没有选项,自动为您添加选项");
 				letter = 'A';
 			}
 			if (letter == '') {
@@ -195,6 +247,7 @@ var info = {
 				letter = 'A';
 			}
 			// true是单选,false是多选
+
 			if (judged == true) {
 				$("#newlyBuild .choiceItem").append('<p class="outerFrame"><input type="radio" name="choiceItem" value="' +
 					letter +
@@ -213,7 +266,24 @@ var info = {
 			});
 		});
 		$('#newlyBuild .deleteOptions').click(function() {
-			$("#newlyBuild .outerFrame").eq(-1).remove();
+			if ($('#newlyBuild .choiceItem p').length != 1) {
+				$("#newlyBuild .outerFrame").eq(-1).remove();
+			}
+			if (judged) {
+				if ($('#newlyBuild .choiceItem p').length <= 1) {
+					$("#newlyBuild #confirmAdd").attr('disabled', true);
+					$("#newlyBuild #confirmAdd").css('background-color', '#AAAAAA');
+					$("#newlyBuild #confirmAdd").css('cursor', 'not-allowed');
+					$('#newlyBuild .optionErrorMsg').show();
+				}
+			} else {
+				if ($('#newlyBuild .choiceItem p').length <= 2) {
+					$("#newlyBuild #confirmAdd").attr('disabled', true);
+					$("#newlyBuild #confirmAdd").css('background-color', '#AAAAAA');
+					$("#newlyBuild #confirmAdd").css('cursor', 'not-allowed');
+					$('#newlyBuild .optionErrorMsg').show();
+				}
+			}
 		});
 		$('#newlyBuild #confirmAdd').off('click').on('click', function() {
 			var content = $('#newlyBuild #content').val();
@@ -268,7 +338,7 @@ var info = {
 				dataType: 'json',
 				type: 'POST',
 				success(res) {
-
+					window.location.reload();
 
 				}
 			});
@@ -276,6 +346,7 @@ var info = {
 	},
 	//修改
 	editQuestion: function(questionId) {
+		$('#editBuild .optionErrorMsg').hide();
 		var Html = [];
 		var letter = '';
 		var questionRes = {};
@@ -342,6 +413,10 @@ var info = {
 					var form = layui.form;
 					form.on('radio(beshared)', function(data) {
 						$("#editBuild .choiceItem").html('');
+						$("#editBuild #confirmAdd").attr('disabled', false);
+						$("#editBuild #confirmAdd").css('background-color', '#279ef0');
+						$("#editBuild #confirmAdd").css('cursor', 'pointer');
+						$('#editBuild .optionErrorMsg').hide();
 						questionRes.data.forEach(function(questionItem, questionIndex) {
 							questionItem.optionInfo.forEach(function(item, index) {
 								if (data.value == '单选题') {
@@ -371,6 +446,21 @@ var info = {
 					form.render();
 				});
 				$('#editBuild .addOptions').click(function() {
+					if (type == 1) {
+						if ($('#editBuild .choiceItem p').length > 0) {
+							$("#editBuild #confirmAdd").attr('disabled', false);
+							$("#editBuild #confirmAdd").css('background-color', '#279ef0');
+							$("#editBuild #confirmAdd").css('cursor', 'pointer');
+							$('#editBuild .optionErrorMsg').hide();
+						}
+					} else {
+						if ($('#editBuild .choiceItem p').length > 1) {
+							$("#editBuild #confirmAdd").attr('disabled', false);
+							$("#editBuild #confirmAdd").css('background-color', '#279ef0');
+							$("#editBuild #confirmAdd").css('cursor', 'pointer');
+							$('#editBuild .optionErrorMsg').hide();
+						}
+					}
 					var letter = '';
 					if ($('#editBuild .choiceItem').html() == '' || $('#editBuild .choiceItem').html() == null || $(
 							'#editBuild .choiceItem').html() == undefined) {
@@ -407,7 +497,25 @@ var info = {
 
 				});
 				$('#editBuild .deleteOptions').click(function() {
-					$("#editBuild .outerFrame").eq(-1).remove();
+					if (type == 1) {
+						if ($('#editBuild .choiceItem p').length <= 2) {
+							$("#editBuild #confirmAdd").attr('disabled', true);
+							$("#editBuild #confirmAdd").css('background-color', '#AAAAAA');
+							$("#editBuild #confirmAdd").css('cursor', 'not-allowed');
+							$('#editBuild .optionErrorMsg').show();
+						}
+					} else {
+						if ($('#editBuild .choiceItem p').length <= 3) {
+							$("#editBuild #confirmAdd").attr('disabled', true);
+							$("#editBuild #confirmAdd").css('background-color', '#AAAAAA');
+							$("#editBuild #confirmAdd").css('cursor', 'not-allowed');
+							$('#editBuild .optionErrorMsg').show();
+						}
+					}
+					if ($('#editBuild .choiceItem p').length != 1) {
+						$("#editBuild .outerFrame").eq(-1).remove();
+					}
+
 				});
 				$('#editBuild #confirmAdd').off('click').on('click', function() {
 					var content = $('#editBuild #content').val();

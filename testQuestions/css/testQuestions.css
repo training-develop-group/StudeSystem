@@ -23,7 +23,12 @@
 	width: 100%;
 	margin: 30px;
 }
-
+.optionErrorMsg{
+	padding-top: 10px;
+	font-size: 10px;
+	margin-left: 200px;
+	color: #FF0000;
+}
 .questions {
 	width: 96%;
 	height: 98%;
