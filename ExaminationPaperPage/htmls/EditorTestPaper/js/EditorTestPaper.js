@@ -16,9 +16,13 @@ $(function() {
 		if ($('.search').val() == '')
 		$('.searchIcon').show();
 	});
-	// 新建试卷
-	$('#newTestPaper').click(function() {
+	// 编辑
+	$('.edit').click(function() {
 		info.newTestPaper();
+	});
+	// 解析
+	$('.toView').click(function() {
+		info.toViewAnalysis();
 	});
 	// 资源
 	$('#resource').click(function(){
@@ -163,8 +167,8 @@ $(function() {
 	$('.joinIn').hide();
 	$('.confirmCompletion').hide();
 	$('.totalNumberOfQuestions').hide();
-	// 点击编辑
-	$('.edit').click(function() {
+	// 点击选择试题
+	$('#newTestPaper').click(function() {
 		$('.joinIn').show();
 		$('.confirmCompletion').show();
 		$('.totalNumberOfQuestions').show();
@@ -237,7 +241,6 @@ var info = {
 			Html.push('<p class="distance">D. 追星族</p>');
 			Html.push('</div>');
 			Html.push('<div class="functionBox">');
-			Html.push('');
 			Html.push('<button class="toView"><i class="layui-icon layui-icon-search"></i>查看解析</button>');
 			Html.push('<button class="fraction"><img src="../../imgs/f.png"  alt="" />设定分值</button>');
 			Html.push('<button class="edit"><i class="layui-icon layui-icon-edit"></i>编辑</button>');
@@ -297,6 +300,29 @@ var info = {
 				,title: ['新建试题', 'background-color: #279ef0;text-align: center;font-size: 16px;line-height: 50px;color:white;letter-spacing: 5px;padding: 0px;']
 				// ,shade: 0.6 //遮罩透明度
 				,content: $('#newlyBuild')
+				// ,btn: ['确认'] //可以无限个按钮
+				// ,btn1: function(index, layero){
+				// 	//按钮【确认】的回调
+				// 	layer.close(index);
+				// }
+			});
+		});
+	},
+	// 查看解析(弹窗)
+	toViewAnalysis : function(){
+		layui.use("layer", function() {
+			var layer = layui.layer;
+			layer.open({
+				type: 1 //Page层类型
+				,closeBtn: 1
+				,area: ['790px', '300px']
+				,title: ['查看解析', 'background-color: #279ef0;text-align: center;font-size: 16px;line-height: 50px;color:white;letter-spacing: 5px;padding: 0px;']
+				// ,shade: 0.6 //遮罩透明度
+				,content: '<div class="answerContent">'
+				+ '<p>正确答案：<span class="answerOptions">A</span></p>'
+				+ '<p>答案解析：</p>'
+				+ '<p class="analysis">《如此包装》是由由二群执导，石林、沈永年创作，赵丽蓉、巩汉林、孟薇等表演的小品，于1995年1月30日在《1995年中央电视台春节联欢晚会》上演出。</p>'
+				+ '</div>'
 				// ,btn: ['确认'] //可以无限个按钮
 				// ,btn1: function(index, layero){
 				// 	//按钮【确认】的回调

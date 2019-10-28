@@ -1,7 +1,8 @@
 $(function() {
 	info.Page()
 	info.selectTaskCount()
-	info.selectTaskAll()
+	
+	info.selectTaskType()
 	layui.use(['layer', 'form'], function() {
 		var layer = layui.layer,
 			form = layui.form;
@@ -18,7 +19,8 @@ $(function() {
 		var laydate = layui.laydate;
 		//执行一个laydate实例
 		laydate.render({
-			elem: '#test1' //指定元素
+			elem: '#test1'//指定元素
+			 ,theme: '#40AFFE'
 		});
 	});
 
@@ -43,7 +45,7 @@ $(function() {
 	$('.selectPapers').click(function() {
 		layer.open({
 			type: 1,
-			title: ['新建试卷', 'color:#fff;background-color:#40AFFE;;border-radius:  7px 7px 0 0'],
+			title: ['新建试卷', 'color:#fff;background-color:#40AFFE;'],
 			shadeClose: true,
 			shade: 0.8,
 			skin: 'myskin',
@@ -54,7 +56,9 @@ $(function() {
 			},
 		});
 	});
-
+	$('.selectResource').click(function(){
+		info.selectResourceList(1);
+	});
 });
 //分页
 var info = {
@@ -130,6 +134,7 @@ var info = {
 					,
 				count: '1111' //数据总数，从服务端得到
 					,
+					
 				limit: '10',
 				theme: '#1E9FFF',
 				curr: '4',
@@ -148,7 +153,7 @@ var info = {
 	//查询总条数(不显示)
 	selectTaskCount: function() {
 		$.ajax({
-			url: 'http://localhost:8888/manage_system/task/count',
+			url: LBUrl + 'manage_system/task/count',
 			data: {},
 			dataType: 'json',
 			type: 'GET',
@@ -157,11 +162,11 @@ var info = {
 			}
 		})
 	},
-
+	
 	//查询全部
-	selectTaskAll: function() {
+	selectTaskAll:function(resa) {
 		$.ajax({
-			url: 'http://localhost:8888/manage_system/task/tasks',
+			url: LBUrl + 'manage_system/task/tasks',
 			data: {},
 			dataType: 'json',
 			type: 'GET',
@@ -171,7 +176,12 @@ var info = {
 				res.data.forEach(function(item, index) {
 					Html.push('<tr>');
 					Html.push('<td style="float: left;">' + item.taskName + '</td>');
-					Html.push('<td>' + item.taskType + '</td>');
+					resa.forEach(function(itemTypeName,index){
+							var aa =itemTypeName.split(",");
+							if(item.taskType == aa[0]){
+								Html.push('<td>' +aa[1] + '</td>');
+							}
+						})
 					Html.push('<td>' + dateFormata(item.startTime) + ' - ' + dateFormata(item.endTime) + '</td>');
 					Html.push(
 						'<td><button style="width: 50px;height: 25px;margin-right:20px; margin-left: 20px; background-color: #FFFFFF;border: none;float: left;" class="updateTaskName"value="' +
@@ -191,7 +201,16 @@ var info = {
 				})
 				//点击删除 删除点击的任务
 				$('.deleteTask').click(function() {
-					info.delectTask($(this).val())
+					layer.msg('是否删除', {
+						time: false, //20s后自动关闭
+						btn: ['确认', '取消'],
+						yes: function(){ 
+							// 删除方法
+							info.delectTask($(this).val())
+							// 关闭提示框
+							layer.closeAll();
+						}
+					});
 				})
 				$('.confirmAdd').click(function() {
 
@@ -215,6 +234,25 @@ var info = {
 			}
 		})
 	},
+	//查询任务类型
+	selectTaskType:function() { 
+		$.ajax({
+			url: LBUrl + 'manage_system/task/type',
+			data: {},
+			dataType: 'json',
+			type: 'GET',
+			success(res) {	
+				console.log(res)
+				var Html = [];
+				res.forEach(function(item,index){
+					var aa =item.split(",")
+					Html.push('<option value="'+aa[0]+'">'+aa[1]+'</option>')
+				})
+				$('#taskType').html(Html.join(''));
+				info.selectTaskAll(res)
+				}
+			})
+		},
 	//修改任务名根据主键
 	updateTaskName: function(taskId) {
 		var taskName = $('.taskName').val();
@@ -222,14 +260,15 @@ var info = {
 			'taskName': taskName
 		}
 		$.ajax({
-			url: 'http://localhost:8888/manage_system/task/task' + taskId,
+			url: LBUrl + 'manage_system/task/task' + taskId,
 			data: JSON.stringify(data),
 			dataType: 'json',
 			type: 'POST',
 			contentType: 'application/json;charset=utf-8',
 			success(res) {
 				if (res) {
-					alert('删除成功')
+					// alert('成功');
+					console.log('成功');
 					window.location.reload();
 				}
 			}
@@ -238,15 +277,42 @@ var info = {
 	//刪除任務 根据主键删除
 	delectTask: function(taskId) {
 		$.ajax({
-			url: 'http://localhost:8888/manage_system/task/' + taskId,
+			url: LBUrl + 'manage_system/task/' + taskId,
 			data: {},
 			dataType: 'json',
 			type: 'DELETE',
 			success(res) {
 				if (res) {
-					alert('删除成功')
+					// alert('删除成功');
+					console.log('删除成功');
 					window.location.reload();
 				}
+			}
+		})
+	},
+	selectResourceList: function(resType) {
+	    $.ajax({
+	      url: 'http://192.168.188.114:8488/manage_system/resource/resources',
+	      data: { 
+			'resType' : resType
+		},
+		dataType: 'json',
+		type: 'GET',
+		contentType: 'application/json;charset=utf-8',
+		success(res) {
+			console.log(res)
+			var Html = [];
+			res.data.forEach(function(item,index){
+				Html.push('<div style="float: left;">')
+				Html.push('<input type="radio" name="res" style="position:absolute ;margin-top: 20px; margin-left: 20px; "value="'+item.resId+'">')
+				Html.push('<div style="width: 150px; height: 100px; border: 1px solid #01AAED;margin: 20px; margin-bottom: 0px;" >')
+				Html.push('<img src="'+item.path+'" alt="" style="width: 150px; height: 99px;">')
+				Html.push('</div>')
+				Html.push('<p style="margin-left: 20px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis; width:80px">'+item.resName+'1</p>')
+				Html.push('</div>')
+			})
+			$('#resource').html(Html.join(''));
+	        
 			}
 		})
 	}

@@ -108,7 +108,7 @@ body {
     height: 24px;
     margin-top: -5px;
     background-image: url(../imgs/search.jpg);
-
+	border: 0;
 }
 
 .left .searchbox input {

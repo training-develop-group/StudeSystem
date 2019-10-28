@@ -30,7 +30,6 @@ html {
 .title-header-btn {
     border-radius: 5px;
     background-color: white;
-    /* width: 120px; */
     height: 38px;
     font-size: 16px;
     border: none;
@@ -40,7 +39,9 @@ html {
     margin-top: 11px;
     color: #279ef2;
 }
-
+.testList {
+	
+}
 .content {
     background-color: #FFFFFF;
     width: 100%;
@@ -54,6 +55,7 @@ table {
     margin-left: 25px;
     position: relative;
     top: 5px;
+	table-layout: fixed;
 }
 
 .hiddenTableList {
@@ -61,16 +63,23 @@ table {
     top: 45px;
     /* margin: 0 25px; */
 }
-
-.Thickening {
-
-}
-
 td {
     font-size: 14px;
     border-bottom: 1px solid #E2E2E2;
     line-height: 45px;
     padding: 0 25px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.centerText {
+	text-align:center!important;
+	/* vertical-align:middle!important; */
+}
+
+/* 选择器选中列表中的第五个td */
+.mainTabel > td:nth-child(5) {
+	padding-left: 100px;
 }
 
 td > a {
@@ -85,15 +94,16 @@ thead > tr > td {
 
 /* 点击上传课件弹出层按钮 */
 .changeFile {
-    width: 120px;
-    height: 25px;
-    line-height: 25px;
-    background: #fff;
-    font-size: 16px;
-    position: absolute;
-    top: 15px;
-    left: 20px;
-    border-radius: 3px;
+	width: 120px;
+	height: 25px;
+	line-height: 25px;
+	background: #fff;
+	font-size: 16px;
+	position: absolute;
+	top: 15px;
+	left: 20px;
+	border-radius: 5px;
+	color: #000000;
 }
 
 /* 浮窗边框 */
@@ -115,10 +125,11 @@ thead > tr > td {
     padding: 50px;
 }
 
-.layui-layer-btn a {
-    height: 30px !important;
-    line-height: 30px !important;
-    padding: 0 70px !important;
+.layui-layer-page .layui-layer-btn a {
+    height: 30px;
+    line-height: 30px;
+    padding: 0 70px;
+	margin: 5px 35px 0;
 }
 
 #hiddenVideo {
@@ -138,4 +149,25 @@ thead > tr > td {
 }
 tr td a{
 	padding-right: 50px;
+}
+/*编辑资源名弹出层样式*/
+#editResNameBox{
+	padding: 0 100px 0 180px;
+}
+.layui-input{
+	width: 500px;
+	margin-top: 40px;
+}
+.editText{
+	position: absolute;
+	top: 50px;
+	left: 100px;
+}
+.layui-layer-btn a{
+	margin-right: 50px;
+}
+
+.changeFile:hover {
+    border-color: #289ef0;
+    color: #777777;
 }

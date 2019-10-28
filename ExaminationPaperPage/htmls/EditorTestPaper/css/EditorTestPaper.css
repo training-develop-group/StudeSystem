@@ -185,3 +185,14 @@ img{
 .layui-layer-padding{
 	color: black;
 }
+.answerContent{
+	margin-left: 250px;
+	margin-top: 40px;
+}
+.answerContent p{
+	margin-top: 10px;
+}
+.answerContent .analysis{
+	width: 300px;
+	margin-left: 0px;
+}

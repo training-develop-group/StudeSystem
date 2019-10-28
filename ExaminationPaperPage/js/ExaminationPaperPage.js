@@ -19,7 +19,6 @@ $(function() {
 			window.location.href = "../ResourcePage/ResourcePage.html";
 		});
 	});
-
 	$(".search").focus(function() {
 		$('.searchIcon').hide();
 	});
@@ -31,82 +30,23 @@ $(function() {
 	$('#newTestPaper').click(function() {
 		info.newTestPaper();
 	});
-	// 点击删除
-	$('.delete').click(function() {
-		// 删除this的父级的父级
-		$(this).parent().parent().remove();
-		// 删除方法
-		// deletePaper();
-	});
-	// 点击查看
-	$('.toView').click(function() {
-		window.location.href = "htmls/ViewTestPaper/ViewTestPaper.html";
-	});
-	// 点击选题
-	$('.selectedTopic').click(function() {
-		window.location.href = "htmls/EditorTestPaper/EditorTestPaper.html";
-	});
-	// 点击编辑进行重命名
-	$('.edit').click(function() {
-		layui.use("layer", function() {
-			var layer = layui.layer;
-			layer.open({
-				type: 1 //Page层类型
-				,closeBtn: 0
-				,area: ['789px', '210px']
-				,title: ['重命名', 'background-color: #279ef0;text-align: center;font-size: 16px;line-height: 50px;color:white;letter-spacing: 5px;padding: 0px;']
-				// ,shade: 0.6 //遮罩透明度
-				,content: '<div class="inputLocation">'+
-						'<span>重命名</span>'
-						+ '<input type="text" autocomplete="off" class="layui-input acquiredValue">'
-						+ '<br />'
-					+ '</div>'
-				,btn: ['确认' , '取消'] //可以无限个按钮
-				,btn1: function(index, layero){
-					//按钮【确认】的回调
-					// layer.close(index);
-					// 修改方法
-					info.rename();
-				}
-			});
-		});
-	});
 	info.Page();
-	// select();
+	info.TableDataRequest();
 });
 
 var info = {
-	// 修改方法(重命名)
-	select : function(){
-		$.ajax({
-			url: 'http://localhost:8888/manage_system/paper/paperId',
-			data: {
-				'paperId': 2,
-				'questionType': 1
-			},
-			dataType: 'json',
-			type: 'GET',
-			// contentType: 'application/json;charset=utf-8',
-			success(res) {
-				console.log(res.data);
-			},
-			error (e) {
-				alert("操作失败，请稍后再试");
-			}
-		});
-	},
 	//表格数据请求
 	TableDataRequest : function() {
 		$.ajax({
-			url: '',
-			data: {
+			url: MCUrl + 'manage_system/paper/papers',
+			// data: {
 				
-			},
+			// },
 			dataType: 'json',
 			Type: 'GET',
 			success: function(res) {
 				if (res || res.data !== null) {
-					info.TableDrawing();
+					info.TableDrawing(res.data);
 				}
 			},
 			error: function(e) {
@@ -115,15 +55,25 @@ var info = {
 		});
 	},
 	//表格会绘制
-	TableDrawing : function(){
-		var index = 15;
+	TableDrawing : function(data){
 		var Html = [];		// 选项
-		// data.list.forEach(function(item, index) {
+		// var data = {
+		// 	total: data.total,
+		// 	list: data.list,
+		// 	pageNum: data.pageNum
+		// };
+		data.forEach(function(item, index) {
+			if (item.status == 0){
+				item.status = '失效';
+			} else {
+				item.status = '正常';
+			}
 			Html.push('<tr>');
-			Html.push('<td><span class="rename">微课程</span></td>');
-			Html.push('<td class="middle">已发</td>');
-			Html.push('<td class="middle">10</td>');
-			Html.push('<td class="middle">20</td>');
+			Html.push('<td hidden="hidden"><span class="paperId">' + item.paperId + '</span></td>');
+			Html.push('<td><span class="rename">' + item.paperName + '</span></td>');
+			Html.push('<td class="middle">' + item.status + '</td>');
+			Html.push('<td class="middle">' + item.single + '</td>');
+			Html.push('<td class="middle">' + item.many + '</td>');
 			Html.push('<td>');
 			Html.push('<button type="button" class="layui-btn layui-btn-primary edit">编辑</button>');
 			Html.push('<button type="button" class="layui-btn layui-btn-primary selectedTopic">选题</button>');
@@ -131,8 +81,68 @@ var info = {
 			Html.push('<button type="button" class="layui-btn layui-btn-primary delete">删除</button>');
 			Html.push('</td>');
 			Html.push('</tr>');
-		// });
+		});
 		$('#examinationPaperInformation').html(Html.join(''));
+		// 点击删除
+		$('.delete').click(function() {
+			// var thiss = this;
+			var paperId = $(this).parent().parent().find('.paperId').text();
+			layer.msg('是否删除', {
+				time: false, //20s后自动关闭
+				btn: ['确认', '取消'],
+				yes: function(){ 
+					// 删除this的父级的父级
+					// $(thiss).parent().parent().remove();
+					// 删除方法
+					info.deletePaper(paperId);
+					// 关闭提示框
+					layer.closeAll();
+				}
+			});
+		});
+		// 点击查看
+		$('.toView').click(function() {
+			// window.location.href = "htmls/ViewTestPaper/ViewTestPaper.html";
+			window.open("htmls/ViewTestPaper/ViewTestPaper.html" , "_blank");
+		});
+		// 点击选题
+		$('.selectedTopic').click(function() {
+			// window.location.href = "htmls/EditorTestPaper/EditorTestPaper.html";
+			window.open("htmls/EditorTestPaper/EditorTestPaper.html" , "_blank");
+			// window.open("../TestQuestions/TestQuestions.html" , "_blank");
+		});
+		// 点击编辑进行重命名
+		$('.edit').click(function() {
+			var rename = $(this).parent().parent().find('.rename').text();
+			var paperId = $(this).parent().parent().find('.paperId').text();
+			layui.use("layer", function() {
+				var layer = layui.layer;
+				layer.open({
+					type: 1 //Page层类型
+					,closeBtn: 0
+					,area: ['789px', '210px']
+					,title: ['重命名', 'background-color: #279ef0;text-align: center;font-size: 16px;line-height: 50px;color:white;letter-spacing: 5px;padding: 0px;']
+					// ,shade: 0.6 //遮罩透明度
+					,content: '<div class="inputLocation">'+
+							'<span>重命名</span>'
+							+ '<input type="text" autocomplete="off" class="layui-input acquiredValue">'
+							+ '<br />'
+							+ '<button type="button" class="layui-btn layui-btn-primary renameConfirm">确认</button>'
+							+ '<button type="button" class="layui-btn layui-btn-primary renameCancel">取消</button>'
+						+ '</div>'
+				});
+				$('.acquiredValue').val(rename);
+				// 点击确认
+				$('.renameConfirm').click(function() {
+					// 修改方法
+					info.rename(paperId);
+				});
+				// 点击取消
+				$('.renameCancel').click(function() {
+					layer.closeAll();
+				});
+			});
+		});
 	},
 	// 分页
 	Page : function(){
@@ -183,13 +193,18 @@ var info = {
 						'<span>试卷名称</span>'
 						+ '<input type="text" autocomplete="off" id="nameOfExaminationPaper" class="layui-input">'
 						+ '<br />'
-						// + '<button type="button" class="layui-btn layui-btn-primary" id="confirm">确认</button>'
+						+ '<button type="button" class="layui-btn layui-btn-primary newTestPaperConfirm">确认</button>'
+						+ '<button type="button" class="layui-btn layui-btn-primary newTestPaperCancel">取消</button>'
 					+ '</div>'
-				,btn: ['确认' , '取消'] //可以无限个按钮
-				,btn1: function(index, layero){
-					//按钮【确认】的回调
-					info.increase();		// 调用添加方法
-				}
+			});
+			// 点击确认
+			$('.newTestPaperConfirm').click(function() {
+				// 调用添加方法
+				info.increase();
+			});
+			// 点击取消
+			$('.newTestPaperCancel').click(function() {
+				layer.closeAll();
 			});
 		});
 	},
@@ -206,15 +221,15 @@ var info = {
 			'cUser': 'mc'
 		};
 		$.ajax({
-			url : 'http://localhost:8888/manage_system/paper/paper',
+			url : MCUrl + 'manage_system/paper/paper',
 			data : JSON.stringify(data),
 			dataType : 'json',
 			type : 'POST',
 			contentType :'application/json;charset=utf-8',
 			success(res) {
-				console.log(res)
-				alert("操作成功");
-				// parent.location.reload();	//刷新父级页面
+				console.log("操作成功");
+				// alert("操作成功");
+				parent.location.reload();	//刷新父级页面
 			},
 			error (e) {
 				alert("操作失败，请稍后再试");
@@ -222,7 +237,7 @@ var info = {
 		});
 	},
 	// 修改方法(重命名)
-	rename : function(){
+	rename : function(paperId){
 		var paperName = $('.acquiredValue').val();
 		if (paperName == ''){
 			alert("重命名不可为空");
@@ -230,11 +245,11 @@ var info = {
 		}
 		var data = {
 			// 'paperId': paperId,
-			'paperId': 4,
+			'paperId': paperId,
 			'paperName': paperName,
 		};
 		$.ajax({
-			url : 'http://localhost:8888/manage_system/paper/paper-name',
+			url : MCUrl + 'manage_system/paper/paper-name',
 			data : JSON.stringify(data),
 			dataType : 'json',
 			type : 'POST',
@@ -248,16 +263,16 @@ var info = {
 			}
 		});
 	},
-	// 修改方法(重命名)
-	deletePaper : function(){
-		var paperId = 4;
+	// 删除方法(删除)
+	deletePaper : function(paperId){
 		$.ajax({
-			url: 'http://localhost:8888/manage_system/paper/' + paperId,
+			url: MCUrl + 'manage_system/paper/' + paperId,
 			// dataType: 'json',
 			type: 'DELETE',
 			// contentType: 'application/json;charset=utf-8',
 			success(res) {
 				alert("操作成功");
+				// $(thiss).parent().parent().remove();
 				parent.location.reload();	//刷新父级页面
 			},
 			error (e) {

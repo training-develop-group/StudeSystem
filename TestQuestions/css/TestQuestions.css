@@ -204,3 +204,18 @@ img {
 .layui-form-radio > i{
 	margin-right: 18px;
 }
+.sort span{
+	font-size: 16px;
+}
+.sort span:last-child{
+	margin-left: 15px;
+	
+}
+.Statistics span{
+	font-size: 16px;
+}
+.ViewParsing P{
+	margin-left: 170px;
+	margin-top: 10px;
+	font-size: 16px;
+}

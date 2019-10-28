@@ -30,7 +30,7 @@ var All = {
 					navHtml.push('<li class="EditorTestPaper">试卷</li>')
 					navHtml.push('<li class="testQuestions">试题</li>')
 					navHtml.push('<li>统计</li>')
-					navHtml.push('<li>用户管理</li>')
+					// navHtml.push('<li>用户管理</li>')
 					break;
 				case 2:
 					navHtml.push('<li class="homePage">首页</li>')
@@ -39,7 +39,7 @@ var All = {
 					navHtml.push('<li class="EditorTestPaper">试卷</li>')
 					navHtml.push('<li class="testQuestions">试题</li>')
 					navHtml.push('<li>统计</li>')
-					navHtml.push('<li>用户管理</li>')
+					// navHtml.push('<li>用户管理</li>')
 					break;
 				case 3:
 					navHtml.push('<li class="homePage">首页</li>')
@@ -48,7 +48,7 @@ var All = {
 					navHtml.push('<li class="EditorTestPaper">试卷</li>')
 					navHtml.push('<li class="testQuestions">试题</li>')
 					navHtml.push('<li>统计</li>')
-					navHtml.push('<li>用户管理</li>')
+					// navHtml.push('<li>用户管理</li>')
 					break;
 				case 4:
 					navHtml.push('<li class="homePage" id="homePage">首页</li>')
@@ -57,7 +57,7 @@ var All = {
 					navHtml.push('<li class="active">试卷</li>')
 					navHtml.push('<li class="testQuestions" id="testQuestions">试题</li>')
 					navHtml.push('<li>统计</li>')
-					navHtml.push('<li>用户管理</li>')
+					// navHtml.push('<li>用户管理</li>')
 					break;
 				case 5:
 					navHtml.push('<li class="homePage">首页</li>')
@@ -66,7 +66,7 @@ var All = {
 					navHtml.push('<li class="EditorTestPaper">试卷</li>')
 					navHtml.push('<li class="active">试题</li>')
 					navHtml.push('<li>统计</li>')
-					navHtml.push('<li>用户管理</li>')
+					// navHtml.push('<li>用户管理</li>')
 					break;
 				case 6:
 					navHtml.push('<li>首页</li>')
@@ -75,7 +75,7 @@ var All = {
 					navHtml.push('<li>试卷</li>')
 					navHtml.push('<li>试题</li>')
 					navHtml.push('<li class="active">统计</li>')
-					navHtml.push('<li>用户管理</li>')
+					// navHtml.push('<li>用户管理</li>')
 					break;
 				case 7:
 					navHtml.push('<li>首页</li>')
@@ -84,7 +84,7 @@ var All = {
 					navHtml.push('<li>试卷</li>')
 					navHtml.push('<li>试题</li>')
 					navHtml.push('<li>统计</li>')
-					navHtml.push('<li class="active">用户管理</li>')
+					// navHtml.push('<li class="active">用户管理</li>')
 					break;
 			}
 			navHtml.push('</ul>')
@@ -122,6 +122,18 @@ var All = {
 			$('.homePage').click(function(){
 				window.location.href = "../HomePage/HomePage.html";
 			})
+			//鼠标悬停提示特效
+			$(".userimg").hover(function() {
+				openMsg();
+			}, function() {
+				layer.closeAll();
+			});
+			function openMsg() {
+				layer.tips('<button type="button" class="layui-btn layui-btn-primary logout">log out</button>' , '.userimg', {
+					tips: [3, '#279ef0'],
+					time: false
+				});
+			}
 		}
 	}
 }

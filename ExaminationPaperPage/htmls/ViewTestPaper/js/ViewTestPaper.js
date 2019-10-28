@@ -70,7 +70,7 @@ $(function() {
 	// 	var vals = arr.join(",");
 	// 	console.log(vals,222);
 	// });
-	// 单选取值
+	// 解析
 	$('.toView').click(function() {
 		info.toViewAnalysis();
 	});
