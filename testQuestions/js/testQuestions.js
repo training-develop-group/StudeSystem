@@ -178,33 +178,33 @@ var info = {
 					name = 'checkbox';
 					judged = false;
 				}
-				if(judged){
+				if (judged) {
 					if ($('#newlyBuild .choiceItem p').length <= 1) {
 						$("#newlyBuild #confirmAdd").attr('disabled', true);
 						$("#newlyBuild #confirmAdd").css('background-color', '#AAAAAA');
 						$("#newlyBuild #confirmAdd").css('cursor', 'not-allowed');
 						$('#newlyBuild .optionErrorMsg').show();
-					}else{
+					} else {
 						$("#newlyBuild #confirmAdd").attr('disabled', false);
 						$("#newlyBuild #confirmAdd").css('background-color', '#279ef0');
 						$("#newlyBuild #confirmAdd").css('cursor', 'pointer');
 						$('#newlyBuild .optionErrorMsg').hide();
 					}
-				}else{
+				} else {
 					if ($('#newlyBuild .choiceItem p').length <= 2) {
 						$("#newlyBuild #confirmAdd").attr('disabled', true);
 						$("#newlyBuild #confirmAdd").css('background-color', '#AAAAAA');
 						$("#newlyBuild #confirmAdd").css('cursor', 'not-allowed');
 						$('#newlyBuild .optionErrorMsg').show();
-					}else{
+					} else {
 						$("#newlyBuild #confirmAdd").attr('disabled', false);
 						$("#newlyBuild #confirmAdd").css('background-color', '#279ef0');
 						$("#newlyBuild #confirmAdd").css('cursor', 'pointer');
 						$('#newlyBuild .optionErrorMsg').hide();
 					}
 				}
-				
-				
+
+
 				// 重新渲染
 				layui.use('form', function() {
 					var form = layui.form;
@@ -294,11 +294,11 @@ var info = {
 			var status = 1;
 			var analysis = $('#newlyBuild #analysis').val();
 			if (content == '') {
-				alert('题目为空！');
+				layer.msg('题目为空！');
 				return false;
 			}
 			if (analysis == '') {
-				alert('解析为空！');
+				layer.msg('解析为空！');
 				return false;
 			}
 
@@ -338,19 +338,19 @@ var info = {
 				option.push(person);
 			});
 			if (checkInputContent) {
-				alert('有选项内容为空！');
+				layer.msg('有选项内容为空！');
 				return false;
 			}
 
 			if (judged) {
 				if (!checkRadioSelect) {
-					alert('请选择一个正确答案！');
+					layer.msg('请选择一个正确答案！');
 					return false;
 				}
 			} else {
 				var sear = new RegExp(',');
 				if (!sear.test(checkCheckbox)) {
-					alert('请选择至少两个答案！');
+					layer.msg('请选择至少两个答案！');
 					return false;
 				}
 			}
@@ -523,11 +523,6 @@ var info = {
 						}
 					}
 					var letter = '';
-					if ($('#editBuild .choiceItem').html() == '' || $('#editBuild .choiceItem').html() == null || $(
-							'#editBuild .choiceItem').html() == undefined) {
-						alert("没有选项,自动为您添加选项");
-						letter = 'A';
-					}
 					if (letter == '') {
 						// 取选项最后一个字母
 						var tailLetter = ($('#editBuild .choiceItem input').last()).val();
@@ -584,11 +579,11 @@ var info = {
 					var status = 1;
 					var analysis = $('#editBuild #analysis').val();
 					if (content == '') {
-						alert('题目为空！');
+						layer.msg('题目为空！');
 						return false;
 					}
 					if (analysis == '') {
-						alert('解析为空！');
+						layer.msg('解析为空！');
 						return false;
 					}
 					var checkRadioSelect = false;
@@ -627,18 +622,18 @@ var info = {
 						option.push(person);
 					});
 					if (checkInputContent) {
-						alert('有选项内容为空！');
+						layer.msg('有选项内容为空！');
 						return false;
 					}
 					if (type == 1) {
 						if (!checkRadioSelect) {
-							alert('请选择一个正确答案！');
+							layer.msg('请选择一个正确答案！');
 							return false;
 						}
 					} else {
 						var sear = new RegExp(',');
 						if (!sear.test(checkCheckbox)) {
-							alert('请选择至少两个答案！');
+							layer.msg('请选择至少两个答案！');
 							return false;
 						}
 					}
