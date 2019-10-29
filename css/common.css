@@ -107,7 +107,7 @@ body {
     height: 24px;
     margin-top: 3px;
     background-image: url(../imgs/search.jpg);
-	border: 0;
+    border: 0;
 }
 
 .left .searchbox input {
@@ -131,6 +131,7 @@ body {
     margin: 10px;
     border: 2px solid #b5b5b5;
     border-radius: 50px;
+    cursor: pointer;
 }
 
 .headerBox .right .username {
@@ -158,6 +159,13 @@ body {
 
 .layui-laypage a:hover {
     color: #289ef0;
+}
+
+.logout {
+    width: 24px;
+    margin-left: 20px;
+    margin-top: -3px;
+    cursor: pointer;
 }
 
 @media screen and (min-width: 1500px) and (max-width: 1660px) {

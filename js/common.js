@@ -81,25 +81,26 @@ var All = {
 					navHtml.push('<li>首页</li>')
 					navHtml.push('<li>资源</li>')
 					navHtml.push('<li>任务</li>')
-					navHtml.push('<li>试卷</li>')
-					navHtml.push('<li>试题</li>')
-					navHtml.push('<li>统计</li>')
+					navHtml.push('<li>试卷</li>');
+					navHtml.push('<li>试题</li>');
+					navHtml.push('<li>统计</li>');
 					// navHtml.push('<li class="active">用户管理</li>')
 					break;
 			}
-			navHtml.push('</ul>')
-			navHtml.push('</div>')
-			navHtml.push('<div class="right">')
-			navHtml.push('<img src="../imgs/HeadPortrait.jpg" class="userimg">')
-			navHtml.push('<span class="username">用户名</span>')
-			navHtml.push('</div>')
-			navHtml.push('<div class="left">')
-			navHtml.push('<div class="searchbox">')
-			navHtml.push('<img src="./../imgs/search.jpg" class="iconSearch">')
-			navHtml.push('<input type="text" class="search" name="" value="" />')
-			navHtml.push('</div>')
-			navHtml.push('</div>')
-			navHtml.push('</div>')
+			navHtml.push('</ul>');
+			navHtml.push('</div>');
+			navHtml.push('<div class="right">');
+			navHtml.push('<img src="../imgs/HeadPortrait.jpg" class="userimg">');
+			navHtml.push('<span class="username">用户名</span>');
+			navHtml.push('<img src="./../imgs/et.png" class="logout">');
+			navHtml.push('</div>');
+			navHtml.push('<div class="left">');
+			navHtml.push('<div class="searchbox">');
+			navHtml.push('<img src="./../imgs/search.jpg" class="iconSearch">');
+			navHtml.push('<input type="text" class="search" name="" value="" />');
+			navHtml.push('</div>');
+			navHtml.push('</div>');
+			navHtml.push('</div>');
 			
 			$('#header').html(navHtml.join(''));
 			$('.EditorTestPaper').click(function() {
@@ -111,6 +112,7 @@ var All = {
 			$('.resource').click(function(){
 				window.location.href = "../ResourcePage/ResourcePage.html";
 			})
+
 			$('.testQuestions').click(function() {
 				console.log(1);
 				// 跳转到试题
@@ -119,21 +121,23 @@ var All = {
 			$('.taskPage').click(function(){
 				window.location.href = "../TaskPage/TaskPage.html";
 			})
+
 			$('.homePage').click(function(){
 				window.location.href = "../HomePage/HomePage.html";
 			})
-			//鼠标悬停提示特效
-			$(".userimg").hover(function() {
-				openMsg();
-			}, function() {
-				layer.closeAll();
-			});
-			function openMsg() {
-				layer.tips('<button type="button" class="layui-btn layui-btn-primary logout">log out</button>' , '.userimg', {
-					tips: [3, '#279ef0'],
-					time: false
-				});
-			}
+
+
+			// //点击头像显示推出登陆
+			// $('body').off('click').on('click',function () {
+			// 	$('.logout').slideUp('slow');
+			// });
+			//
+			// $('.userimg').off('click').on('click',function (event) {
+			// 	event.stopPropagation();
+			// 	$('.logout').slideToggle('slow');
+			//
+			// })
+
 		}
 	}
 }
