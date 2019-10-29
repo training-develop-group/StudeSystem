@@ -1,9 +1,11 @@
+var leng_max_tweet = 200; // 160个字符
 $(document).ready(function() {
 	$(document).keyup(function(event) {
 		if (event.keyCode == 13) {
 			info.selectQuestion(1);
 		}
 	});
+
 	/*分页*/
 	/*上传课件*/
 	// $.ajax({
@@ -34,6 +36,28 @@ $(document).ready(function() {
 var type = 1;
 var questionIdLast = 0;
 var info = {
+	addInputTotal: function() {
+		info.inputTotal('#newlyBuild #analysis', '#newlyBuild .num');
+		$('#newlyBuild #analysis').keyup(function() {
+			info.inputTotal(this, '#newlyBuild .num');
+		})
+	},
+	editInputTotal: function() {
+		info.inputTotal('#editBuild #analysis', '#editBuild .num');
+		$('#editBuild #analysis').keyup(function() {
+			info.inputTotal(this, '#editBuild .num');
+		})
+	},
+	inputTotal: function(ipt, msg) {
+		leng_now = $(ipt).val().length; // 获取当前字数
+		leng_msg = leng_max_tweet - leng_now; // 计算出剩余字数
+		if (leng_msg < 0) {
+			str = $(ipt).val(); // 获取内容
+			$(ipt).val(str.substr(0, leng_now + leng_msg)); // 删除超出的字符
+		} else {
+			$(msg).html(leng_msg);
+		}
+	},
 	selectQuestion: function(curr) {
 		$.ajax({
 			url: 'http://192.168.188.102:8888/manage_system/question/questions',
@@ -85,7 +109,7 @@ var info = {
 						'p').text());
 
 				});
-
+				$('.Content .TestQuestionsBrowse .Statistics .num').text(res.data.total);
 				info.page(res.data, curr);
 			}
 		});
@@ -213,6 +237,7 @@ var info = {
 			});
 		});
 		var judged = true;
+		info.addInputTotal();
 		$('#newlyBuild .addOptions').off('click').on('click', function() {
 			if (judged) {
 				if ($('#newlyBuild .choiceItem p').length > 0) {
@@ -506,6 +531,7 @@ var info = {
 					});
 					form.render();
 				});
+				info.editInputTotal();
 				$('#editBuild .addOptions').off('click').on('click', function() {
 					if (type == 1) {
 						if ($('#editBuild .choiceItem p').length > 0) {

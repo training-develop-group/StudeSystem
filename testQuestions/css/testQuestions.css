@@ -29,6 +29,18 @@
 	cursor: pointer;
 }
 
+.editInputTotal span{
+	color: #B2B2B2;
+}
+.editInputTotal {
+	margin-left: 385px;
+}
+.addInputTotal span{
+	color: #B2B2B2;
+}
+.addInputTotal {
+	margin-left: 385px;
+}
 .optionErrorMsg {
 	padding-top: 10px;
 	font-size: 10px;
