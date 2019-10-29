@@ -1,13 +1,22 @@
+var leng_max_tweet = 200; // 160个字符
 $(document).ready(function() {
 	$(document).keyup(function(event) {
 		if (event.keyCode == 13) {
 			info.selectQuestion(1);
 		}
 	});
+<<<<<<< HEAD
 	/*分页*/
 	/*上传课件*/
 	// $.ajax({
 	// 	url:WTQUrl + 'manage_system/question/question',
+=======
+
+	/*分页*/
+	/*上传课件*/
+	// $.ajax({
+	// 	url:'http://192.168.188.131:8888/manage_system/question/question',
+>>>>>>> 995f1ffc8124753ca4100d493fe37bb00b782923
 	// 	data:{
 	// 		
 	// 	},
@@ -27,16 +36,47 @@ $(document).ready(function() {
 		info.selectQuestion();
 		info.addPopup();
 		info.operation();
+<<<<<<< HEAD
 		// info.link();
+=======
+>>>>>>> 995f1ffc8124753ca4100d493fe37bb00b782923
 	});
 
 })
 var type = 1;
 var questionIdLast = 0;
 var info = {
+<<<<<<< HEAD
 	selectQuestion: function(curr) {
 		$.ajax({
 			url: WTQUrl + 'manage_system/question/questions',
+=======
+	addInputTotal: function() {
+		info.inputTotal('#newlyBuild #analysis', '#newlyBuild .num');
+		$('#newlyBuild #analysis').keyup(function() {
+			info.inputTotal(this, '#newlyBuild .num');
+		})
+	},
+	editInputTotal: function() {
+		info.inputTotal('#editBuild #analysis', '#editBuild .num');
+		$('#editBuild #analysis').keyup(function() {
+			info.inputTotal(this, '#editBuild .num');
+		})
+	},
+	inputTotal: function(ipt, msg) {
+		leng_now = $(ipt).val().length; // 获取当前字数
+		leng_msg = leng_max_tweet - leng_now; // 计算出剩余字数
+		if (leng_msg < 0) {
+			str = $(ipt).val(); // 获取内容
+			$(ipt).val(str.substr(0, leng_now + leng_msg)); // 删除超出的字符
+		} else {
+			$(msg).html(leng_msg);
+		}
+	},
+	selectQuestion: function(curr) {
+		$.ajax({
+			url: 'http://192.168.188.102:8888/manage_system/question/questions',
+>>>>>>> 995f1ffc8124753ca4100d493fe37bb00b782923
 			data: {
 				'pageNum': (curr || 1),
 				'pageSize': 10,
@@ -83,6 +123,10 @@ var info = {
 				$('.questions .operation .deleteQuestions').off('click').on('click', function() {
 					info.deleteQuestions($(this).parents('.operation').find('input').val(), $(this).parents('.operation').find(
 						'p').text());
+<<<<<<< HEAD
+=======
+
+>>>>>>> 995f1ffc8124753ca4100d493fe37bb00b782923
 				});
 				$('.Content .TestQuestionsBrowse .Statistics .num').text(res.data.total);
 				info.page(res.data, curr);
@@ -115,7 +159,11 @@ var info = {
 	deleteQuestions: function(questionId, status) {
 		if (status == 1) {
 			$.ajax({
+<<<<<<< HEAD
 				url: WTQUrl + 'manage_system/question/' + questionId,
+=======
+				url: 'http://192.168.188.102:8888/manage_system/question/' + questionId,
+>>>>>>> 995f1ffc8124753ca4100d493fe37bb00b782923
 				data: '',
 				dataType: 'json',
 				type: 'DELETE',
@@ -135,7 +183,11 @@ var info = {
 	//查看解析
 	viewAnswer: function(questionId) {
 		$.ajax({
+<<<<<<< HEAD
 			url: WTQUrl + 'manage_system/question/answer',
+=======
+			url: 'http://192.168.188.102:8888/manage_system/question/answer',
+>>>>>>> 995f1ffc8124753ca4100d493fe37bb00b782923
 			data: {
 				'questionId': questionId
 			},
@@ -212,6 +264,10 @@ var info = {
 			});
 		});
 		var judged = true;
+<<<<<<< HEAD
+=======
+		info.addInputTotal();
+>>>>>>> 995f1ffc8124753ca4100d493fe37bb00b782923
 		$('#newlyBuild .addOptions').off('click').on('click', function() {
 			if (judged) {
 				if ($('#newlyBuild .choiceItem p').length > 0) {
@@ -375,7 +431,11 @@ var info = {
 				'questionOption': JSON.stringify(option)
 			};
 			$.ajax({
+<<<<<<< HEAD
 				url: WTQUrl + 'manage_system/question/question',
+=======
+				url: 'http://192.168.188.102:8888/manage_system/question/question',
+>>>>>>> 995f1ffc8124753ca4100d493fe37bb00b782923
 				data: data,
 				dataType: 'json',
 				type: 'POST',
@@ -394,7 +454,11 @@ var info = {
 		var letter = '';
 		var questionRes = {};
 		$.ajax({
+<<<<<<< HEAD
 			url: WTQUrl + 'manage_system/question/' + questionId,
+=======
+			url: 'http://192.168.188.102:8888/manage_system/question/' + questionId,
+>>>>>>> 995f1ffc8124753ca4100d493fe37bb00b782923
 			data: '',
 			dataType: 'json',
 			type: 'GET',
@@ -505,6 +569,10 @@ var info = {
 					});
 					form.render();
 				});
+<<<<<<< HEAD
+=======
+				info.editInputTotal();
+>>>>>>> 995f1ffc8124753ca4100d493fe37bb00b782923
 				$('#editBuild .addOptions').off('click').on('click', function() {
 					if (type == 1) {
 						if ($('#editBuild .choiceItem p').length > 0) {
@@ -656,7 +724,11 @@ var info = {
 					};
 
 					$.ajax({
+<<<<<<< HEAD
 						url: WTQUrl + 'manage_system/question/' + questionId,
+=======
+						url: 'http://192.168.188.102:8888/manage_system/question/' + questionId,
+>>>>>>> 995f1ffc8124753ca4100d493fe37bb00b782923
 						data: data,
 						dataType: 'json',
 						type: 'POST',
@@ -689,11 +761,16 @@ var info = {
 				info.selectQuestion(1);
 			}
 		});
+<<<<<<< HEAD
+=======
+		
+>>>>>>> 995f1ffc8124753ca4100d493fe37bb00b782923
 
 
 		//---------------------修改
 
 	},
+<<<<<<< HEAD
 	//跳转
 	// link: function() {
 	// 	$('.EditorTestPaper').off('click').on('click', function() {
@@ -701,6 +778,8 @@ var info = {
 	// 		window.location.href = "../EditorTestPaper/EditorTestPaper.html";
 	// 	});
 	// },
+=======
+>>>>>>> 995f1ffc8124753ca4100d493fe37bb00b782923
 	//弹窗
 	addPopup: function() {
 		$('.NewTestQuestion').off('click').on('click', function() {
@@ -727,8 +806,12 @@ var info = {
 		layer.open({
 			type: 1,
 			title: false,
+<<<<<<< HEAD
 			// area: ['600px', '300px'],
 			area: ['790px', '300px'],
+=======
+			area: ['600px', '300px'],
+>>>>>>> 995f1ffc8124753ca4100d493fe37bb00b782923
 			closeBtn: 0,
 			resize: false,
 			move: false,

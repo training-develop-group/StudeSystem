@@ -28,7 +28,31 @@
 	color: #279ef0;
 	cursor: pointer;
 }
+<<<<<<< HEAD
 
+=======
+#newlyBuild .addOptions:hover,.deleteOptions:hover{
+	cursor: pointer;
+	color: #279ef0;
+}
+#editBuild .addOptions:hover,.deleteOptions:hover{
+	cursor: pointer;
+	color: #279ef0;
+}
+
+.editInputTotal span{
+	color: #B2B2B2;
+}
+.editInputTotal {
+	margin-left: 385px;
+}
+.addInputTotal span{
+	color: #B2B2B2;
+}
+.addInputTotal {
+	margin-left: 385px;
+}
+>>>>>>> 995f1ffc8124753ca4100d493fe37bb00b782923
 .optionErrorMsg {
 	padding-top: 10px;
 	font-size: 10px;
@@ -276,6 +300,7 @@ img {
 }
 
 .ViewParsing P {
+<<<<<<< HEAD
 	/* margin-left: 170px; */
 	margin-left: 250px;
 	margin-top: 10px;
@@ -294,3 +319,9 @@ p{
 .left .searchbox input {
 	margin-top: 0px;
 }
+=======
+	margin-left: 170px;
+	margin-top: 10px;
+	font-size: 16px;
+}
+>>>>>>> 995f1ffc8124753ca4100d493fe37bb00b782923
