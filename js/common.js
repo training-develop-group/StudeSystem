@@ -88,6 +88,7 @@ var All = {
 					break;
 			}
 <<<<<<< HEAD
+<<<<<<< HEAD
 			// navHtml.push('</ul>')
 			// navHtml.push('</div>')
 			// navHtml.push('<div class="right">')
@@ -118,6 +119,8 @@ var All = {
 			navHtml.push('</div>')
 
 =======
+=======
+>>>>>>> 995f1ffc8124753ca4100d493fe37bb00b782923
 			navHtml.push('</ul>');
 			navHtml.push('</div>');
 			navHtml.push('<div class="right">');
@@ -153,6 +156,7 @@ var All = {
 			$('.taskPage').click(function() {
 				window.location.href = "../TaskPage/TaskPage.html";
 			})
+<<<<<<< HEAD
 <<<<<<< HEAD
 			$('.homePage').click(function() {
 				window.location.href = "../HomePage/HomePage.html";
@@ -204,6 +208,12 @@ var All = {
 			$('.homePage').click(function(){
 				window.location.href = "../HomePage/HomePage.html";
 			})
+=======
+
+			$('.homePage').click(function(){
+				window.location.href = "../HomePage/HomePage.html";
+			})
+>>>>>>> 995f1ffc8124753ca4100d493fe37bb00b782923
 
 
 			// //点击头像显示推出登陆
@@ -216,6 +226,9 @@ var All = {
 			// 	$('.logout').slideToggle('slow');
 			//
 			// })
+<<<<<<< HEAD
+>>>>>>> 995f1ffc8124753ca4100d493fe37bb00b782923
+=======
 >>>>>>> 995f1ffc8124753ca4100d493fe37bb00b782923
 
 		}

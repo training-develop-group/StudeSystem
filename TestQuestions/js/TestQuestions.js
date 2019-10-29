@@ -6,10 +6,18 @@ $(document).ready(function() {
 		}
 	});
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/*分页*/
 	/*上传课件*/
 	// $.ajax({
 	// 	url:WTQUrl + 'manage_system/question/question',
+=======
+
+	/*分页*/
+	/*上传课件*/
+	// $.ajax({
+	// 	url:'http://192.168.188.131:8888/manage_system/question/question',
+>>>>>>> 995f1ffc8124753ca4100d493fe37bb00b782923
 =======
 
 	/*分页*/
@@ -37,7 +45,10 @@ $(document).ready(function() {
 		info.addPopup();
 		info.operation();
 <<<<<<< HEAD
+<<<<<<< HEAD
 		// info.link();
+=======
+>>>>>>> 995f1ffc8124753ca4100d493fe37bb00b782923
 =======
 >>>>>>> 995f1ffc8124753ca4100d493fe37bb00b782923
 	});
@@ -47,10 +58,13 @@ var type = 1;
 var questionIdLast = 0;
 var info = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	selectQuestion: function(curr) {
 		$.ajax({
 			url: WTQUrl + 'manage_system/question/questions',
 =======
+=======
+>>>>>>> 995f1ffc8124753ca4100d493fe37bb00b782923
 	addInputTotal: function() {
 		info.inputTotal('#newlyBuild #analysis', '#newlyBuild .num');
 		$('#newlyBuild #analysis').keyup(function() {
@@ -76,6 +90,9 @@ var info = {
 	selectQuestion: function(curr) {
 		$.ajax({
 			url: 'http://192.168.188.102:8888/manage_system/question/questions',
+<<<<<<< HEAD
+>>>>>>> 995f1ffc8124753ca4100d493fe37bb00b782923
+=======
 >>>>>>> 995f1ffc8124753ca4100d493fe37bb00b782923
 			data: {
 				'pageNum': (curr || 1),
@@ -124,6 +141,10 @@ var info = {
 					info.deleteQuestions($(this).parents('.operation').find('input').val(), $(this).parents('.operation').find(
 						'p').text());
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+>>>>>>> 995f1ffc8124753ca4100d493fe37bb00b782923
 =======
 
 >>>>>>> 995f1ffc8124753ca4100d493fe37bb00b782923
@@ -160,7 +181,11 @@ var info = {
 		if (status == 1) {
 			$.ajax({
 <<<<<<< HEAD
+<<<<<<< HEAD
 				url: WTQUrl + 'manage_system/question/' + questionId,
+=======
+				url: 'http://192.168.188.102:8888/manage_system/question/' + questionId,
+>>>>>>> 995f1ffc8124753ca4100d493fe37bb00b782923
 =======
 				url: 'http://192.168.188.102:8888/manage_system/question/' + questionId,
 >>>>>>> 995f1ffc8124753ca4100d493fe37bb00b782923
@@ -184,7 +209,11 @@ var info = {
 	viewAnswer: function(questionId) {
 		$.ajax({
 <<<<<<< HEAD
+<<<<<<< HEAD
 			url: WTQUrl + 'manage_system/question/answer',
+=======
+			url: 'http://192.168.188.102:8888/manage_system/question/answer',
+>>>>>>> 995f1ffc8124753ca4100d493fe37bb00b782923
 =======
 			url: 'http://192.168.188.102:8888/manage_system/question/answer',
 >>>>>>> 995f1ffc8124753ca4100d493fe37bb00b782923
@@ -265,6 +294,10 @@ var info = {
 		});
 		var judged = true;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+		info.addInputTotal();
+>>>>>>> 995f1ffc8124753ca4100d493fe37bb00b782923
 =======
 		info.addInputTotal();
 >>>>>>> 995f1ffc8124753ca4100d493fe37bb00b782923
@@ -339,6 +372,7 @@ var info = {
 					$('#newlyBuild .optionErrorMsg').show();
 				}
 			}
+<<<<<<< HEAD
 		});
 		$('#newlyBuild #confirmAdd').off('click').on('click', function() {
 			var content = $('#newlyBuild #content').val();
@@ -765,8 +799,96 @@ var info = {
 =======
 		
 >>>>>>> 995f1ffc8124753ca4100d493fe37bb00b782923
+=======
+		});
+		$('#newlyBuild #confirmAdd').off('click').on('click', function() {
+			var content = $('#newlyBuild #content').val();
+			var questionType = 0;
+			var option = [];
+			var score = 10;
+			var difficulty = 2;
+			var status = 1;
+			var analysis = $('#newlyBuild #analysis').val();
+			if (content == '') {
+				layer.msg('题目为空！');
+				return false;
+			}
+			if (analysis == '') {
+				layer.msg('解析为空！');
+				return false;
+			}
+
+			var checkRadioSelect = false;
+			var checkInputContent = false;
+			var checkCheckbox = '';
+			$('#newlyBuild .outerFrame').each(function() {
+				var person = {};
+				if ($(this).find('.option').val() == '') {
+					checkInputContent = true;
+				} else {
+					person.content = $(this).find('.option').val();
+				}
+				if (judged) {
+					person.optionType = $(this).find('.layui-unselect div').text();
+					if ($(this).find('.layui-form-radio').is('.layui-form-radioed')) {
+						console.log('有对的');
+						checkRadioSelect = true;
+						person.isRight = 1;
+					} else {
+						person.isRight = 0;
+					}
+				} else {
+					person.optionType = $(this).find('.layui-unselect span').text();
+					if ($(this).find('.layui-form-checkbox').is('.layui-form-checked')) {
+						person.isRight = 1;
+						if (checkCheckbox == '') {
+							checkCheckbox = '1';
+						} else {
+							checkCheckbox = checkCheckbox + ',' + '1';
+						}
+
+					} else {
+						person.isRight = 0;
+					}
+				}
+				option.push(person);
+			});
+			if (checkInputContent) {
+				layer.msg('有选项内容为空！');
+				return false;
+			}
+>>>>>>> 995f1ffc8124753ca4100d493fe37bb00b782923
+
+			if (judged) {
+				if (!checkRadioSelect) {
+					layer.msg('请选择一个正确答案！');
+					return false;
+				}
+			} else {
+				var sear = new RegExp(',');
+				if (!sear.test(checkCheckbox)) {
+					layer.msg('请选择至少两个答案！');
+					return false;
+				}
+			}
 
 
+
+			if (judged) {
+				questionType = 1;
+			} else {
+				questionType = 2;
+			}
+			var question = {
+				'questionType': questionType,
+				'content': content,
+				'score': score,
+				'analysis': analysis,
+				'difficulty': difficulty,
+				'status': status,
+			};
+
+<<<<<<< HEAD
 		//---------------------修改
 
 	},
@@ -797,9 +919,387 @@ var info = {
 				}
 			});
 
+=======
+			var data = {
+				'question': JSON.stringify(question),
+				'questionOption': JSON.stringify(option)
+			};
+			$.ajax({
+				url: 'http://192.168.188.102:8888/manage_system/question/question',
+				data: data,
+				dataType: 'json',
+				type: 'POST',
+				success(res) {
+					alert('添加成功(弹窗待样式)');
+					location.reload();
+				}
+			});
+>>>>>>> 995f1ffc8124753ca4100d493fe37bb00b782923
+		});
+	},
+	//修改
+	editQuestion: function(questionId) {
+		$('#editBuild .choiceItem').html('');
+		$('#editBuild .optionErrorMsg').hide();
+		var Html = [];
+		var letter = '';
+		var questionRes = {};
+		$.ajax({
+			url: 'http://192.168.188.102:8888/manage_system/question/' + questionId,
+			data: '',
+			dataType: 'json',
+			type: 'GET',
+			success(res) {
+				questionRes = res;
+				res.data.forEach(function(questionItem, questionIndex) {
+					$('#editBuild .parseInputBox').val(questionItem.analysis);
+					$('#editBuild .titleInputBox').val(questionItem.content);
+					questionItem.optionInfo.forEach(function(item, index) {
+						if (questionItem.questionType == 1) { //1单选 2多选
+							type = 1;
+							$('#editBuild .singleChoiceQuestion').prop('checked', true);
+							if (item.isRight == 1) {
+								$("#editBuild .choiceItem").append('<p class="outerFrame"><input class="ref" type="hidden" value = "' +
+									item.ref + '"/><input type="radio" name="choiceItem" value="' +
+									item.optionType +
+									'" title="' + item.optionType +
+									'" checked><textarea name="" required lay-verify="required" class="layui-textarea option">' + item.content +
+									'</textarea></p>');
+							} else {
+								$("#editBuild .choiceItem").append('<p class="outerFrame"><input class="ref" type="hidden" value = "' +
+									item.ref + '"/><input type="radio" name="choiceItem" value="' +
+									item.optionType +
+									'" title="' + item.optionType +
+									'"><textarea name="" required lay-verify="required" class="layui-textarea option">' + item.content +
+									'</textarea></p>');
+							}
+
+
+						} else {
+							type = 2;
+							if (item.isRight == 1) {
+								$("#editBuild .choiceItem").append(
+									'<p class="outerFrame"><input class="ref" type="hidden" value = "' + item.ref +
+									'"/><input type="checkbox" lay-skin="primary" name="choiceItem" value="' + item.optionType +
+									'" title="' + item.optionType +
+									'" checked><textarea name="" required lay-verify="required" class="layui-textarea option">' + item.content +
+									'</textarea></p>');
+							} else {
+								$("#editBuild .choiceItem").append(
+									'<p class="outerFrame"><input class="ref" type="hidden" value = "' + item.ref +
+									'"/><input type="checkbox" lay-skin="primary" name="choiceItem" value="' + item.optionType +
+									'" title="' + item.optionType +
+									'"><textarea name="" required lay-verify="required" class="layui-textarea option">' + item.content +
+									'</textarea></p>');
+							}
+
+							$('#editBuild .multipleChoiceQuestions').prop('checked', true);
+						}
+					});
+				});
+				layui.use('form', function() {
+					var form = layui.form;
+					form.on('radio(beshared)', function(data) {
+						$("#editBuild .choiceItem").html('');
+						$("#editBuild #confirmAdd").attr('disabled', false);
+						$("#editBuild #confirmAdd").css('background-color', '#279ef0');
+						$("#editBuild #confirmAdd").css('cursor', 'pointer');
+						$('#editBuild .optionErrorMsg').hide();
+						questionRes.data.forEach(function(questionItem, questionIndex) {
+							questionItem.optionInfo.forEach(function(item, index) {
+								if (data.value == '单选题') {
+									if (item.isRight == 1) {
+										$("#editBuild .choiceItem").append(
+											'<p class="outerFrame"><input class="ref" type="hidden" value = "' + item.ref +
+											'"/><input type="radio" name="choiceItem" value="' +
+											item.optionType +
+											'" title="' + item.optionType +
+											'"checked><textarea name="" required lay-verify="required" class="layui-textarea option">' +
+											item.content +
+											'</textarea></p>');
+									} else {
+										$("#editBuild .choiceItem").append(
+											'<p class="outerFrame"><input class="ref" type="hidden" value = "' + item.ref +
+											'"/><input type="radio" name="choiceItem" value="' +
+											item.optionType +
+											'" title="' + item.optionType +
+											'"><textarea name="" required lay-verify="required" class="layui-textarea option">' + item.content +
+											'</textarea></p>');
+									}
+									type = 1;
+									form.render();
+								} else {
+									if (item.isRight == 1) {
+										$("#editBuild .choiceItem").append(
+											'<p class="outerFrame"><input class="ref" type="hidden" value = "' + item.ref +
+											'"/><input type="checkbox" lay-skin="primary" name="choiceItem" value="' +
+											item.optionType +
+											'" title="' + item.optionType +
+											'"checked><textarea name="" required lay-verify="required" class="layui-textarea option">' +
+											item.content +
+											'</textarea></p>');
+									} else {
+										$("#editBuild .choiceItem").append(
+											'<p class="outerFrame"><input class="ref" type="hidden" value = "' + item.ref +
+											'"/><input type="checkbox" lay-skin="primary" name="choiceItem" value="' +
+											item.optionType +
+											'" title="' + item.optionType +
+											'"><textarea name="" required lay-verify="required" class="layui-textarea option">' + item.content +
+											'</textarea></p>');
+									}
+
+									type = 2;
+									form.render();
+								}
+							});
+						});
+					});
+					form.render();
+				});
+				info.editInputTotal();
+				$('#editBuild .addOptions').off('click').on('click', function() {
+					if (type == 1) {
+						if ($('#editBuild .choiceItem p').length > 0) {
+							$("#editBuild #confirmAdd").attr('disabled', false);
+							$("#editBuild #confirmAdd").css('background-color', '#279ef0');
+							$("#editBuild #confirmAdd").css('cursor', 'pointer');
+							$('#editBuild .optionErrorMsg').hide();
+						}
+					} else {
+						if ($('#editBuild .choiceItem p').length > 1) {
+							$("#editBuild #confirmAdd").attr('disabled', false);
+							$("#editBuild #confirmAdd").css('background-color', '#279ef0');
+							$("#editBuild #confirmAdd").css('cursor', 'pointer');
+							$('#editBuild .optionErrorMsg').hide();
+						}
+					}
+					var letter = '';
+					if (letter == '') {
+						// 取选项最后一个字母
+						var tailLetter = ($('#editBuild .choiceItem input').last()).val();
+						// 转换为数字
+						var transformation = (tailLetter.charCodeAt(0)) + 1;
+						// 在转换为小写字母，然后在转换为大写字母
+						letter = (String.fromCharCode(transformation)).toUpperCase();
+					} else {
+						letter = 'A';
+					}
+					if (type == 1) {
+						$("#editBuild .choiceItem").append('<p class="outerFrame"><input type="radio" name="choiceItem" value="' +
+							letter +
+							'" title="' + letter +
+							'"><textarea name="" required lay-verify="required" class="layui-textarea option"></textarea></p>');
+					} else if (type = 2) {
+						$("#editBuild .choiceItem").append(
+							'<p class="outerFrame"><input type="checkbox" lay-skin="primary" name="choiceItem" value="' + letter +
+							'" title="' + letter +
+							'"><textarea name="" required lay-verify="required" class="layui-textarea option"></textarea></p>');
+					}
+					// 重新渲染
+					layui.use('form', function() {
+						var form = layui.form;
+						form.render(name);
+					});
+
+				});
+				$('#editBuild .deleteOptions').off('click').on('click', function() {
+					if (type == 1) {
+						if ($('#editBuild .choiceItem p').length <= 2) {
+							$("#editBuild #confirmAdd").attr('disabled', true);
+							$("#editBuild #confirmAdd").css('background-color', '#AAAAAA');
+							$("#editBuild #confirmAdd").css('cursor', 'not-allowed');
+							$('#editBuild .optionErrorMsg').show();
+						}
+					} else {
+						if ($('#editBuild .choiceItem p').length <= 3) {
+							$("#editBuild #confirmAdd").attr('disabled', true);
+							$("#editBuild #confirmAdd").css('background-color', '#AAAAAA');
+							$("#editBuild #confirmAdd").css('cursor', 'not-allowed');
+							$('#editBuild .optionErrorMsg').show();
+						}
+					}
+					if ($('#editBuild .choiceItem p').length != 1) {
+						$("#editBuild .outerFrame").eq(-1).remove();
+					}
+				});
+				$('#editBuild #confirmAdd').off('click').on('click', function() {
+					var content = $('#editBuild #content').val();
+					var option = [];
+					var score = 10;
+					var difficulty = 2;
+					var status = 1;
+					var analysis = $('#editBuild #analysis').val();
+					if (content == '') {
+						layer.msg('题目为空！');
+						return false;
+					}
+					if (analysis == '') {
+						layer.msg('解析为空！');
+						return false;
+					}
+					var checkRadioSelect = false;
+					var checkCheckbox = '';
+					var checkInputContent = false;
+					$('#editBuild .outerFrame').each(function() {
+						var person = {};
+						person.ref = $(this).find('.ref').val();
+						if ($(this).find('.option').val() == '') {
+							checkInputContent = true;
+							return false;
+						} else {
+							person.content = $(this).find('.option').val();
+						}
+						if (type == 1) {
+							person.optionType = $(this).find('.layui-unselect div').text();
+							if ($(this).find('.layui-form-radio').is('.layui-form-radioed')) {
+								person.isRight = 1;
+								checkRadioSelect = true;
+							} else {
+								person.isRight = 0;
+							}
+						} else {
+							person.optionType = $(this).find('.layui-unselect span').text();
+							if ($(this).find('.layui-form-checkbox').is('.layui-form-checked')) {
+								if (checkCheckbox == '') {
+									checkCheckbox = '1';
+								} else {
+									checkCheckbox = checkCheckbox + ',' + '1';
+								}
+								person.isRight = 1;
+							} else {
+								person.isRight = 0;
+							}
+						}
+						option.push(person);
+					});
+					if (checkInputContent) {
+						layer.msg('有选项内容为空！');
+						return false;
+					}
+					if (type == 1) {
+						if (!checkRadioSelect) {
+							layer.msg('请选择一个正确答案！');
+							return false;
+						}
+					} else {
+						var sear = new RegExp(',');
+						if (!sear.test(checkCheckbox)) {
+							layer.msg('请选择至少两个答案！');
+							return false;
+						}
+					}
+
+
+					var question = {
+						'questionId': questionId,
+						'questionType': type,
+						'content': content,
+						'score': score,
+						'analysis': analysis,
+						'difficulty': difficulty,
+						'status': status,
+					};
+
+
+
+					var data = {
+						'question': JSON.stringify(question),
+						'questionOption': JSON.stringify(option),
+					};
+
+					$.ajax({
+						url: 'http://192.168.188.102:8888/manage_system/question/' + questionId,
+						data: data,
+						dataType: 'json',
+						type: 'POST',
+						success(res) {
+							alert('修改成功(弹窗待样式)');
+							location.reload();
+						},
+						error(e) {
+
+						}
+
+					});
+				});
+
+			}
+		});
+
+	},
+	//---------------------
+	//操作
+	operation: function() {
+		$('.sort span').off('click').on('click', function() {
+			$('span').removeClass('emColor');
+			$(this).addClass('emColor');
+			if ($(this).text() == '单选题') {
+				type = 1;
+				info.selectQuestion(1);
+			} else {
+				type = 2;
+				info.selectQuestion(1);
+			}
+		});
+		
+
+
+		//---------------------修改
+
+	},
+	//弹窗
+	addPopup: function() {
+		$('.NewTestQuestion').off('click').on('click', function() {
+			layer.open({
+				type: 1,
+				title: ['新建试题',
+					'background-color: #279ef0;text-align: center;font-size: 16px;line-height: 50px;color:white;letter-spacing: 5px;padding: 0px;'
+				],
+				area: ['660px', '755px'],
+				resize: false,
+				move: false,
+				content: $('#newlyBuild'),
+				success: function(res) {
+					info.addQuestion();
+				}
+			});
+
 		});
 
 
+
+	},
+	viewPopup: function(questionId) {
+		layer.open({
+			type: 1,
+			title: false,
+			area: ['600px', '300px'],
+			closeBtn: 0,
+			resize: false,
+			move: false,
+			content: $('.PopupAnalysis'),
+			btn: '确认',
+			btnAlign: 'c',
+			success: function() {
+				info.viewAnswer(questionId);
+			}
+		});
+
+	},
+	editPopup: function(questionId) {
+		layer.open({
+			type: 1,
+			title: ['编辑试题',
+				'background-color: #279ef0;text-align: center;font-size: 16px;line-height: 50px;color:white;letter-spacing: 5px;padding: 0px;'
+			],
+			area: ['660px', '755px'],
+			resize: false,
+			move: false,
+			content: $('#editBuild'),
+			success: function(res) {
+				info.editQuestion(questionId);
+			}
+		});
 
 	},
 	viewPopup: function(questionId) {

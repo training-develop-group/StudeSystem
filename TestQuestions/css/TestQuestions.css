@@ -29,8 +29,11 @@
 	cursor: pointer;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
+=======
+>>>>>>> 995f1ffc8124753ca4100d493fe37bb00b782923
 #newlyBuild .addOptions:hover,.deleteOptions:hover{
 	cursor: pointer;
 	color: #279ef0;
@@ -52,6 +55,9 @@
 .addInputTotal {
 	margin-left: 385px;
 }
+<<<<<<< HEAD
+>>>>>>> 995f1ffc8124753ca4100d493fe37bb00b782923
+=======
 >>>>>>> 995f1ffc8124753ca4100d493fe37bb00b782923
 .optionErrorMsg {
 	padding-top: 10px;
@@ -293,6 +299,7 @@ img {
 .sort span:last-child {
 	margin-left: 15px;
 
+<<<<<<< HEAD
 }
 
 .Statistics span {
@@ -304,6 +311,11 @@ img {
 	/* margin-left: 170px; */
 	margin-left: 250px;
 	margin-top: 10px;
+=======
+}
+
+.Statistics span {
+>>>>>>> 995f1ffc8124753ca4100d493fe37bb00b782923
 	font-size: 16px;
 	color: #000000;
 }
@@ -311,6 +323,7 @@ p{
 	margin: 0;
 }
 
+<<<<<<< HEAD
 
 .left .searchbox{
 	height: 30px;
@@ -320,8 +333,14 @@ p{
 	margin-top: 0px;
 }
 =======
+=======
+.ViewParsing P {
+>>>>>>> 995f1ffc8124753ca4100d493fe37bb00b782923
 	margin-left: 170px;
 	margin-top: 10px;
 	font-size: 16px;
 }
+<<<<<<< HEAD
+>>>>>>> 995f1ffc8124753ca4100d493fe37bb00b782923
+=======
 >>>>>>> 995f1ffc8124753ca4100d493fe37bb00b782923
