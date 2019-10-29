@@ -1,66 +1,44 @@
 $(function() {
 	info.Page()
 	info.selectTaskCount()
-	
+
 	info.selectTaskType()
-	layui.use(['layer', 'form'], function() {
+	layui.use(['layer', 'form', 'laydate'], function() {
 		var layer = layui.layer,
 			form = layui.form;
+		laydate = layui.laydate;
+		//执行一个laydate实例
+		laydate.render({
+			elem: '#test1', //指定元素,
+			theme: '#40AFFE',
+			type: 'datetime'
+		});
+		laydate.render({
+			elem: '#test2', //指定元素,
+			theme: '#40AFFE',
+			type: 'datetime'
+		});
 		All.getMenu({
 			num: 3
 		});
 	});
+	$('.selectResource').click(function() {
+		info.selectResourceList(1);
+	})
 	//点击发布任务调出弹窗
 	$('.releasTeask').click(function() {
 		info.showDisplay()
 	});
-
-	layui.use('laydate', function() {
-		var laydate = layui.laydate;
-		//执行一个laydate实例
-		laydate.render({
-			elem: '#test1'//指定元素
-			 ,theme: '#40AFFE'
-		});
-	});
-
-
-
-	//弹出选择人员
-	$('.selectPersonnel').click(function() {
-		layer.open({
-			type: 1,
-			title: ['选择人员', 'color:#fff;background-color:#40AFFE;;border-radius: 7px '],
-			shadeClose: true,
-			shade: 0.8,
-			skin: 'myskin',
-			area: ['600px', '50%'],
-			content: $('#selectPersonnel'),
-			success: function() {
-
-			}
-		})
+	$('.selectResource').click(function() {
+		info.selectResources()
 	})
-	//点击选择试卷弹出试卷弹窗
-	$('.selectPapers').click(function() {
-		layer.open({
-			type: 1,
-			title: ['新建试卷', 'color:#fff;background-color:#40AFFE;'],
-			shadeClose: true,
-			shade: 0.8,
-			skin: 'myskin',
-			area: ['700px', '80%'],
-			content: $('#selectPapers'),
-			success: function() {
 
-			},
-		});
-	});
-	$('.selectResource').click(function(){
-		info.selectResourceList(1);
-	});
 });
 //分页
+$('.addOk').click(function() {
+	console.log('aSdasdasdasd')
+	info.addTask();
+})
 var info = {
 	//页面主方法
 
@@ -85,9 +63,37 @@ var info = {
 			area: ['700px', '80%'],
 			content: $('#addTaskPage'),
 			success: function() {
-				$('.selectResource').click(function() {
-					info.selectResources()
+
+				//弹出选择人员
+				$('.selectPersonnel').click(function() {
+					layer.open({
+						type: 1,
+						title: ['选择人员', 'color:#fff;background-color:#40AFFE;;border-radius: 7px '],
+						shadeClose: true,
+						shade: 0.8,
+						skin: 'myskin',
+						area: ['600px', '50%'],
+						content: $('#selectPersonnel'),
+						success: function() {
+
+						}
+					})
 				})
+				//点击选择试卷弹出试卷弹窗
+				$('.selectPapers').click(function() {
+					layer.open({
+						type: 1,
+						title: ['选择试卷', 'color:#fff;background-color:#40AFFE;'],
+						shadeClose: true,
+						shade: 0.8,
+						skin: 'myskin',
+						area: ['700px', '80%'],
+						content: $('#selectPapers'),
+						success: function() {
+
+						},
+					});
+				});
 			},
 		});
 	},
@@ -117,6 +123,7 @@ var info = {
 			shade: 0.8,
 			skin: 'myskin',
 			area: ['700px', '200px'],
+
 			content: $('#updateTaskName'),
 			success: function() {
 
@@ -134,7 +141,7 @@ var info = {
 					,
 				count: '1111' //数据总数，从服务端得到
 					,
-					
+
 				limit: '10',
 				theme: '#1E9FFF',
 				curr: '4',
@@ -150,6 +157,20 @@ var info = {
 		})
 	},
 	//查询from
+	//点击查看查找所有关联的用户
+	selectTaskUsers: function(taskId) {
+		$.ajax({
+			url: LBUrl + 'manage_system/task/user-ok',
+			data: {
+				'taskId': taskId
+			},
+			dataType: 'json',
+			type: 'GET',
+			success(res) {
+				console.log(res)
+			}
+		})
+	},
 	//查询总条数(不显示)
 	selectTaskCount: function() {
 		$.ajax({
@@ -162,9 +183,9 @@ var info = {
 			}
 		})
 	},
-	
+
 	//查询全部
-	selectTaskAll:function(resa) {
+	selectTaskAll: function(resa) {
 		$.ajax({
 			url: LBUrl + 'manage_system/task/tasks',
 			data: {},
@@ -176,12 +197,12 @@ var info = {
 				res.data.forEach(function(item, index) {
 					Html.push('<tr>');
 					Html.push('<td style="float: left;">' + item.taskName + '</td>');
-					resa.forEach(function(itemTypeName,index){
-							var aa =itemTypeName.split(",");
-							if(item.taskType == aa[0]){
-								Html.push('<td>' +aa[1] + '</td>');
-							}
-						})
+					resa.forEach(function(itemTypeName, index) {
+						var aa = itemTypeName.split(",");
+						if (item.taskType == aa[0]) {
+							Html.push('<td>' + aa[1] + '</td>');
+						}
+					})
 					Html.push('<td>' + dateFormata(item.startTime) + ' - ' + dateFormata(item.endTime) + '</td>');
 					Html.push(
 						'<td><button style="width: 50px;height: 25px;margin-right:20px; margin-left: 20px; background-color: #FFFFFF;border: none;float: left;" class="updateTaskName"value="' +
@@ -201,20 +222,14 @@ var info = {
 				})
 				//点击删除 删除点击的任务
 				$('.deleteTask').click(function() {
-					layer.msg('是否删除', {
-						time: false, //20s后自动关闭
-						btn: ['确认', '取消'],
-						yes: function(){ 
-							// 删除方法
-							info.delectTask($(this).val())
-							// 关闭提示框
-							layer.closeAll();
-						}
-					});
+					info.delectTask($(this).val())
 				})
 				$('.confirmAdd').click(function() {
 
 					info.updateTaskName($(this).val())
+				})
+				$('.lookOver').click(function() {
+					info.selectTaskUsers($(this).val())
 				})
 				//弹出查看
 				$('.lookOver').click(function() {
@@ -234,41 +249,100 @@ var info = {
 			}
 		})
 	},
+	addTask: function() {
+		// var resId=$("input[name=res]:checked").val();
+		var resId = 1;
+
+		var data = {
+			'resId': resId,
+			'paperId': 1,
+			'taskType': $('#taskType').val(),
+			'taskName': $('.taskName').val(),
+			'taskRemark': $('.taskRemark').val(),
+			'status': 1,
+			'startTime': dateFormata($('#test1').val()),
+			'endTime': dateFormata($('#test2').val()),
+
+		}
+		console.log(data)
+		$.ajax({
+			url: LBUrl + 'manage_system/task/tasks',
+			data: JSON.stringify(data),
+			dataType: 'json',
+			type: 'POST',
+			contentType: 'application/json;charset=utf-8',
+			success(res) {
+				console(res)
+			}
+		})
+	},
+	//查询资源
+	selectResourceList: function(resType) {
+		$.ajax({
+			url: TDXUrl + 'manage_system/resource/resources',
+			data: {
+
+				'resType': resType
+			},
+			dataType: 'json',
+			type: 'GET',
+			contentType: 'application/json;charset=utf-8',
+			success(res) {
+				console.log(res)
+				var Html = [];
+				res.data.forEach(function(item, index) {
+					Html.push('<div style="float: left;">')
+					Html.push(
+						'<input type="radio" name="res" style="position:absolute ;margin-top: 20px; margin-left: 20px; "value="' +
+						item.resId + '">')
+					Html.push(
+						'<div style="width: 150px; height: 100px; border: 1px solid #01AAED;margin: 20px; margin-bottom: 0px;" >')
+					Html.push('<img src="' + item.path + '" alt="" style="width: 150px; height: 99px;">')
+					Html.push('</div>')
+					Html.push(
+						'<p style="margin-left: 20px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis; width:80px">' +
+						item.resName + '1</p>')
+					Html.push('</div>')
+				})
+				$('#resource').html(Html.join(''));
+
+			}
+		})
+	},
 	//查询任务类型
-	selectTaskType:function() { 
+	selectTaskType: function() {
 		$.ajax({
 			url: LBUrl + 'manage_system/task/type',
 			data: {},
 			dataType: 'json',
 			type: 'GET',
-			success(res) {	
+			success(res) {
 				console.log(res)
 				var Html = [];
-				res.forEach(function(item,index){
-					var aa =item.split(",")
-					Html.push('<option value="'+aa[0]+'">'+aa[1]+'</option>')
+				res.forEach(function(item, index) {
+					var aa = item.split(",")
+					Html.push('<option value="' + aa[0] + '">' + aa[1] + '</option>')
 				})
 				$('#taskType').html(Html.join(''));
 				info.selectTaskAll(res)
-				}
-			})
-		},
+			}
+		})
+	},
 	//修改任务名根据主键
 	updateTaskName: function(taskId) {
-		var taskName = $('.taskName').val();
+		var taskName = $('.taskNameupdate').val();
 		var data = {
 			'taskName': taskName
 		}
 		$.ajax({
-			url: LBUrl + 'manage_system/task/task' + taskId,
+			url: LBUrl + 'manage_system/task/task/' + taskId,
 			data: JSON.stringify(data),
 			dataType: 'json',
 			type: 'POST',
 			contentType: 'application/json;charset=utf-8',
 			success(res) {
 				if (res) {
-					// alert('成功');
-					console.log('成功');
+					alert('成功')
 					window.location.reload();
 				}
 			}
@@ -283,36 +357,9 @@ var info = {
 			type: 'DELETE',
 			success(res) {
 				if (res) {
-					// alert('删除成功');
-					console.log('删除成功');
+					alert('删除成功')
 					window.location.reload();
 				}
-			}
-		})
-	},
-	selectResourceList: function(resType) {
-	    $.ajax({
-	      url: 'http://192.168.188.114:8488/manage_system/resource/resources',
-	      data: { 
-			'resType' : resType
-		},
-		dataType: 'json',
-		type: 'GET',
-		contentType: 'application/json;charset=utf-8',
-		success(res) {
-			console.log(res)
-			var Html = [];
-			res.data.forEach(function(item,index){
-				Html.push('<div style="float: left;">')
-				Html.push('<input type="radio" name="res" style="position:absolute ;margin-top: 20px; margin-left: 20px; "value="'+item.resId+'">')
-				Html.push('<div style="width: 150px; height: 100px; border: 1px solid #01AAED;margin: 20px; margin-bottom: 0px;" >')
-				Html.push('<img src="'+item.path+'" alt="" style="width: 150px; height: 99px;">')
-				Html.push('</div>')
-				Html.push('<p style="margin-left: 20px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis; width:80px">'+item.resName+'1</p>')
-				Html.push('</div>')
-			})
-			$('#resource').html(Html.join(''));
-	        
 			}
 		})
 	}

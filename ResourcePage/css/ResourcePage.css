@@ -171,3 +171,6 @@ tr td a{
     border-color: #289ef0;
     color: #777777;
 }
+a {
+	color: #333 !important;
+}

@@ -203,6 +203,11 @@ a{
 	margin-left: 70px;
 	color: white;
 }
+
+.newTestPaperConfirm:hover {
+	color: #fff;
+}
+
 .newTestPaperCancel{
 	width: 160px;
 	height: 30px;

@@ -9,8 +9,11 @@
 		<link rel="stylesheet" href="../js/layui/css/layui.css">
 		<link rel="stylesheet" href="../css/index.css">
 		<link rel="stylesheet" href="../css/common.css">
-		<link rel="stylesheet" href="css/TaskPage.css">
+	
+		<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css"/>
+			<link rel="stylesheet" href="css/TaskPage.css">
 		<title>任务页</title>
+
 	</head>
 	<body>
 
@@ -41,10 +44,10 @@
 							</colgroup>
 							<thead>
 								<tr style="margin-top: -10px;">
-									<th style="text-align: center; float: left;">任务名</th>
-									<th style="text-align: center;">任务类型</th>
-									<th style="text-align: center;">任务时间</th>
-									<th style="text-align: center; float: left; margin-left: 20px;">操作</th>
+									<th style="text-align: center; float: left; font-weight:bold">任务名</th>
+									<th style="text-align: center;font-weight:bold">任务类型</th>
+									<th style="text-align: center;font-weight:bold">任务时间</th>
+									<th style="text-align: center; float: left; margin-left: 30px;font-weight:bold">操作</th>
 								</tr>
 							</thead>
 							<tbody id="taskContent">
@@ -60,9 +63,9 @@
 		<div class="layui-form" style="display: none;" id="addTaskPage">
 			<div class="layui-form-item" style=" margin-top: 15px;">
 				<div style="margin-left: 50px;">
-					<label class="layui-form-label" style="font-size: 16px;">任务名称</label>
+					<label class="layui-form-label " style="font-size: 16px;">任务名称</label>
 					<div class="layui-input-block">
-						<input type="text" name="title" required lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input"
+						<input type="text" name="title" required lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input taskName"
 						 style="width: 400px; border-radius: 7px;">
 					</div>
 				</div>
@@ -75,11 +78,11 @@
 					</select>
 
 				</div>
-				<label href="" style="" class="selectResource">
-					> 选择资源</label><br><br>
+				<label href=""  class="selectResource">
+					> 选择资源</label><br>
 				<label href="" class="selectPapers"> >
-					选择试卷</label><br><br>
-				<label href="" style="font-size: 16px; margin-left:30px; margin-top: 50px;">任务对象</label> >
+					选择试卷</label><br>	
+				<label href="" style="font-size: 16px; margin-left:20px; ">任务对象</label> >
 				<label href="" style="" class="selectPersonnel">选择人员</label>
 				<div class="taskUsers" style="">
 					<p>姓名1</p>
@@ -87,7 +90,7 @@
 					<p>姓名1</p>
 					<p>姓名1</p>
 				</div>
-				<div class="layui-form-item" style=" margin-top: 15px;">
+				<div class="layui-form-item" style=" margin-top: :20px;">
 					<div>
 						<label class="layui-form-label" style="font-size: 16px;">任务时间</label>
 						<div class="layui-input-block">
@@ -102,12 +105,12 @@
 					<div class="layui-form-item layui-form-text">
 						<label class="layui-form-label" style="font-size: 16px;">任務描述</label>
 						<div class="layui-input-block">
-							<textarea name="desc" placeholder="请输入内容" class="layui-textarea" style="width:400px ;height: 150px;resize: none;"></textarea>
+							<textarea name="desc" placeholder="请输入内容" class="layui-textarea taskRemark" style="width:400px ;height: 150px;resize: none;"></textarea>
 						</div>
 					</div>
 				</div>
 				<div class="layui-form-item" style=" margin-top: 15px; margin-left: 250px; ">
-					<button type="button" class="button" style="width: 100px; height: 25px;background-color: #93D1FF; ">确认</button>
+					<button type="button" class="addOk button" style="width: 100px; height: 25px;background-color: #93D1FF; ">确认</button>				
 				</div>
 			</div>
 
@@ -121,25 +124,27 @@
 						<li class="layui-nav-item"><a href="javascript:void(0);" style="color: blue;">音频资源</a></li>
 					</ul>
 				</div>
-				<div style="float: left;">
-					<input type="checkbox" style="position:absolute ;margin-top: 20px; margin-left: 20px;">
-					<div style="width: 150px; height: 100px; border: 1px solid #01AAED;margin: 20px; margin-bottom: 0px;"><img src="imgs/snipaste20191023_155529.png"
-						 alt="" style="width: 149px; height: 99px;"></div>
-					<p style="margin-left: 20px;">资源1</p>
+				<div style="float: left;width: 600px;" id="resource">
+					
 				</div>
 
 			</div>
-			<button type="button" style="width: 100px; height: 25px; margin-left: 250px; margin-top: 20px; background-color: rgb(64, 175, 254);">确认</button>
+			<div class="site-demo-button">
+				<button type="button" class="layui-btn layui-btn-primary layui-btn-sm layui-btn-normal okbtn resourceSelection " >确认</button>
+			</div>
+
 
 		</div>
-		<div class="layui-form-item " style=" margin: 15px; display: none;" id="updateTaskName">
-			<div style="margin-left: 50px;">
+		<div class="layui-form-item "  id="updateTaskName">
+			<div style="margin-left: 50px; margin-top: 20px;">
 				<label class="layui-form-label" style="font-size: 16px;">任务名称</label>
 				<div class="layui-input-block">
-					<input type="text" name="title" required lay-verify="required" autocomplete="off" class="layui-input taskName"
-					 style="width: 400px; border-radius: 7px;">
+					<input type="text" name="title" required lay-verify="required" autocomplete="off" class="layui-input taskNameupdate">
 				</div>
-				<button class="confirmAdd" style="margin-left: 235px; margin-top: 20px;width: 100px; height: 25px; background-color: #93D1FF;">确认</button>
+				<div class="site-demo-button">
+					<button type="button" class="layui-btn layui-btn-primary layui-btn-sm layui-btn-normal okbtn confirmAdd" >确认</button>
+				</div>
+				<!-- <button type="button" class="layui-btn layui-btn-primary confirmAdd" style="background-color: rgb(39, 158, 240);margin-left: 237px; margin-top: 20px;">确认</button> -->
 			</div>
 		</div>
 		<div id="examineTask" hidden="">
@@ -192,7 +197,9 @@
 							<td style="text-align: center;">试卷名称</td>
 							<td style="text-align: center;">单选题</td>
 							<td style="text-align: center;">多选题</td>
-							<td style="text-align: center; float: left; margin-left: 20px; "><button type="button" style="width: 100px; height: 25px;">选择</button></td>
+							<td style="text-align: center; float: left; margin-left: 20px; "><div class="site-demo-button">
+					<button type="button" class="layui-btn layui-btn-primary layui-btn-sm layui-btn-normal okbtn" style="width: 70px;">确认</button>
+				</div></td>	
 						</tr>
 					</tbody>
 				</table>
@@ -200,7 +207,7 @@
 
 		</div>
 		<div id="selectPersonnel" style="padding: 20px;" hidden="">
-			<div class="iconSearch"><img src="./../imgs/search.jpg"><input type="text" style="width: 150px; height: 30px;"></div>
+			<div class="iconSearch" style="padding: 3px 10px; "><img src="./../imgs/search.jpg"><input type="text" style="width: 150px; height: 30px;"></div>
 			<div id="" class="layui-table layui-form" style="margin: 30px 0 20px 0; background-color: #FFFFFF;">
 				人员名单 <input type="checkbox" class="checkAll " lay-skin="primary" lay-filter="Staff">全选
 			</div>
@@ -208,10 +215,11 @@
 
 
 			</div>
-				<button type="button" style="border: none; background-color: rgb(39, 158, 240); width:100px ; height: 25px; margin-left: 230px;">确认</button>
+			<button type="button" style="border: none; background-color: rgb(39, 158, 240); width:100px ; height: 25px; margin-left: 230px;">确认</button>
 		</div>
 
 		<script src="../js/jQuery v3.4.1.min.js"></script>
+		<script src="../js/bootstrap.min.js" type="text/javascript"></script>		
 		<script src="../js/layui/layui.all.js"></script>
 		<script src="../js/layui/layui.js"></script>
 		<script src="../js/address.js"></script>

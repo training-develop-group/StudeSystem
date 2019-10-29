@@ -87,6 +87,21 @@ var All = {
 					// navHtml.push('<li class="active">用户管理</li>')
 					break;
 			}
+			// navHtml.push('</ul>')
+			// navHtml.push('</div>')
+			// navHtml.push('<div class="right">')
+			// navHtml.push(
+			// 	'<button type="button" style="border: none;background-color: initial;margin-top:-10px" class="btn btn-default " data-container="body" data-toggle="popover" data-placement="bottom"data-content="LogOut"><img src="../imgs/HeadPortrait.jpg" class="userimg">'
+			// )
+			// navHtml.push('<span class="username">用户名</span>')
+			// navHtml.push('</button></div>')
+			// navHtml.push('<div class="left">')
+			// navHtml.push('<div class="searchbox">')
+			// navHtml.push('<img src="./../imgs/search.jpg" class="iconSearch">')
+			// navHtml.push('<input type="text" class="search" name="" value="" />')
+			// navHtml.push('</div>')
+			// navHtml.push('</div>')
+			// navHtml.push('</div>')
 			navHtml.push('</ul>')
 			navHtml.push('</div>')
 			navHtml.push('<div class="right">')
@@ -100,15 +115,15 @@ var All = {
 			navHtml.push('</div>')
 			navHtml.push('</div>')
 			navHtml.push('</div>')
-			
+
 			$('#header').html(navHtml.join(''));
 			$('.EditorTestPaper').click(function() {
 				console.log(1);
 				// 跳转到试题
 				window.location.href = "../ExaminationPaperPage/ExaminationPaperPage.html";
 			});
-			
-			$('.resource').click(function(){
+
+			$('.resource').click(function() {
 				window.location.href = "../ResourcePage/ResourcePage.html";
 			})
 			$('.testQuestions').click(function() {
@@ -116,24 +131,55 @@ var All = {
 				// 跳转到试题
 				window.location.href = "../TestQuestions/TestQuestions.html";
 			});
-			$('.taskPage').click(function(){
+			$('.taskPage').click(function() {
 				window.location.href = "../TaskPage/TaskPage.html";
 			})
-			$('.homePage').click(function(){
+			$('.homePage').click(function() {
 				window.location.href = "../HomePage/HomePage.html";
 			})
+			// $('[data-toggle="popover"]').popover()
+			// $('body').delegate('.popover-content','click',function(){
+			// 	window.location.href = "../index.html"
+			// });
 			//鼠标悬停提示特效
-			$(".userimg").hover(function() {
-				openMsg();
-			}, function() {
-				layer.closeAll();
-			});
-			function openMsg() {
-				layer.tips('<button type="button" class="layui-btn layui-btn-primary logout">log out</button>' , '.userimg', {
-					tips: [3, '#279ef0'],
-					time: false
-				});
-			}
+
+			// var str = true;
+			// $('.logout').hover(function() {
+			// }, function() {
+
+			// 	layer.closeAll();
+			// });
+			// $(".userimg").hover(function() {
+			// 		openMsg();
+			// }, function() {
+			// });
+			// var check = false;
+			// $('.userimg').hover(function() {
+			// 	if (!check) {
+			// 		openMsg();
+			// 	}
+
+			// }, function() {
+			// 	$('.layui-layer-content').mouseleave(function(){
+			// 		layer.closeAll();
+			// 		check = false;
+			// 	});
+
+			// });
+
+
+
+
+			// function openMsg() {
+			// 	layer.tips(
+			// 		'<div class="aaa"><button type="button" class="layui-btn layui-btn-primary logout">log out</button></div>',
+			// 		'.userimg', {
+			// 			tips: [3, '#279ef0'],
+			// 			time: false
+			// 		});
+			// 	check = true;
+			// }
+
 		}
 	}
 }

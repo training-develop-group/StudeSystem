@@ -81,7 +81,7 @@ var info = {
 	
 	selectResourceList: function() {
 		$.ajax({
-			url: 'http://localhost:8488/manage_system/resource/resources',
+			url: TDXUrl + 'manage_system/resource/resources',
 			data: {},
 			dataType: 'json',
 			type: 'GET',
@@ -149,7 +149,7 @@ var info = {
 	
 	deleteResource: function(resId) {
 		$.ajax({
-			url: 'http://localhost:8488/manage_system/resource/' + resId,
+			url: TDXUrl + 'manage_system/resource/' + resId,
 			data: {},
 			dataType: 'json',
 			type: 'DELETE',
@@ -186,7 +186,7 @@ var info = {
 			'resName':resName
 		}
 		$.ajax({
-			url: 'http://localhost:8488/manage_system/resource/res-name',
+			url: TDXUrl + 'manage_system/resource/res-name',
 			data: data,
 			dataType: 'json',
 			type: 'POST',
@@ -200,7 +200,7 @@ var info = {
 	//获取资源详情
 	getResource: function(resId) {
 		$.ajax({
-			url: 'http://localhost:8488/manage_system/resource/' + resId,
+			url: TDXUrl + 'manage_system/resource/' + resId,
 			data: {},
 			dataType: 'json',
 			type: 'GET',
@@ -214,7 +214,7 @@ var info = {
 	
 	path: function() {
 		$.ajax({
-			url: 'http://localhost:8488/manage_system/resource/view',
+			url: TDXUrl + 'manage_system/resource/view',
 			data: {},
 			dataType: 'json',
 			type: 'POST',
@@ -266,7 +266,7 @@ var info = {
 							var demoListView = $('#demoList'),//上传文件显示的数据表格
 								uploadListIns = upload.render({
 									elem: '#testList',//选择文件按钮
-									url: 'http://localhost:8488/manage_system/resource/resource',
+									url: TDXUrl + 'manage_system/resource/resource',
 									accept: 'file',//上传文件类型
 									multiple: true,
 									method: 'GET',

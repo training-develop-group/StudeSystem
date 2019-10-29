@@ -1,13 +1,47 @@
 body {
-	background-color: #F8F8F8;
+	background-color: #FFFFFF;
 }
-.layui-form-select dl dd.layui-this{
-	background-color:rgb(64, 175, 254)
-	
+
+.layui-form-select dl dd.layui-this {
+	background-color: rgb(64, 175, 254)
+}
+
+.layui-layer-content {
+	height: 150px;
+}
+.layui-form-label {
+ 
+    width: 100px;
+  
+}
+ol, ul {
+    margin-top: 0px;
+    margin-bottom: 0px;
 }
 .layui-this {
 	background-color: #1E9FFF;
 	border-bottom: 0px;
+}
+.taskNameupdate{
+	width: 400px; border-radius: 7px;
+}
+#updateTaskName{
+	margin-top: 20px;width: 150; display: none;
+}
+.resourceSelection {
+	width: 100px;
+	height: 30px;
+	margin-left: 250px;
+	margin-top: 0px;
+	background-color: rgb(64, 175, 254);
+	
+}
+
+.confirmAdd {
+	padding: 0 50px;
+	margin-top: 30px;
+	margin-left: 135px;
+	color: #FFFFFF;
 }
 
 .layui-nav .layui-this:after,
@@ -15,32 +49,38 @@ body {
 .layui-nav-tree .layui-nav-itemed:after {
 	background-color: #1E9FFF;
 }
-.checkAll{
+
+.checkAll {
 	width: 15px;
 	height: 15px;
 
 }
+
 .iconSearch {
 	width: 200px;
 	border: 1px solid #C9C9C9;
 	border-radius: 6px;
 }
-.layui-table{
-background-color: rgb(248, 248, 248);	
+
+.layui-table {
+	background-color: rgb(248, 248, 248);
 }
+
 .taskUsers {
 	width: 300px;
 	height: 150px;
 	border: 1px solid #D3D4D3;
-	margin-left: 30px;
+	margin-left: 20px;
 	margin-top: 20px;
 	overflow: auto;
 	padding: 10px;
 }
-
+.layui-laydate-footer span:hover {
+    color: rgb(64, 175, 254) !important;
+}
 .selectPersonnel {
 	font-size: 16px;
-	margin-top: 50px;
+	
 	color: #5FB878;
 }
 
@@ -50,37 +90,38 @@ background-color: rgb(248, 248, 248);
 
 .selectPapers {
 	font-size: 16px;
-	margin-left: 30px;
-	margin-top: 50px;
+	margin-left:20px;
+	margin-bottom: 20px;	
 	color: #5FB878;
 }
 
 .selectResource {
 	font-size: 16px;
-	margin-left: 30px;
-	margin-bottom: 50px;
+	margin-left: 20px;
+	margin-bottom: 20px;
 	color: #5FB878;
 }
 
 #taskContent {
-background-color: #FFFFFF;
+	background-color: #FFFFFF;
 }
 
 .box {
 	width: 100%;
 	height: 90%;
-	margin-top: 20px;
+	margin-top: 0px;
 	/* padding: 10px 150px 10px 150px; */
 }
 
 .headline {
-	height: 50px;
+	height: 60px;
+	/* height: 50px; */
 	width: 100%;
 	background-color: #289ef0;
 	padding-top: 10px;
 	border-radius: 7px 7px 0 0;
-	margin: auto;
-	margin-bottom: 20px;
+
+	margin-bottom:10px;
 }
 
 .content {
@@ -88,7 +129,7 @@ background-color: #FFFFFF;
 	width: 100%;
 	/* height: 85%; */
 	min-height: 650px;
-	margin: auto;
+	margin-top: 20px;
 	border-radius: 2px;
 }
 
@@ -138,34 +179,35 @@ i {
 	color: #279ef2;
 	border: none;
 }
-.headline>span{
-	font-size: 16px; margin-left: 30px; float: left; line-height: 40px; color: white;
+
+.headline>span {
+	font-size: 16px;
+	margin-left: 20px;
+	margin-top: 10px;
+	float: left;
+	line-height: 20px;
+	color: white;
 }
+
 .layui-laypage a {
 	margin-left: 5px;
 	margin-right: 5px;
 }
-#examineTask>.layui-form{
-	padding: 20px; padding-top: 10px;
+
+#examineTask>.layui-form {
+	padding: 20px;
+	padding-top: 10px;
 }
-#examineTask > .layui-table{
-	text-align: center; border: 1px solid rgb(221, 221, 221);
+
+#examineTask>.layui-table {
+	text-align: center;
+	border: 1px solid rgb(221, 221, 221);
 }
-.layui-layer-title{
+
+.layui-layer-title {
 	border-radius: 5px 5px 0 0 !important;
 }
-.myskin{
+
+.myskin {
 	border-radius: 5px !important;
-}
-.layui-laydate-footer span:hover{
-	color: #289ef0 !important;
-}
-.layui-layer-btn0{
-	float: left;
-	margin-left: -187px !important;
-}
-.layui-layer-btn1{
-	float: right;
-	margin-right: 39px !important;
-	width: 28px;
 }

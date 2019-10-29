@@ -255,7 +255,7 @@ var info = {
 			type : 'POST',
 			contentType :'application/json;charset=utf-8',
 			success(res) {
-				alert("操作成功");
+				console.log("操作成功");
 				parent.location.reload();	//刷新父级页面
 			},
 			error (e) {
@@ -273,7 +273,7 @@ var info = {
 			success(res) {
 				alert("操作成功");
 				// $(thiss).parent().parent().remove();
-				parent.location.reload();	//刷新父级页面
+				// parent.location.reload();	//刷新父级页面
 			},
 			error (e) {
 				alert("操作失败，请稍后再试");
@@ -281,10 +281,6 @@ var info = {
 		});
 	}
 }
-
-
-
-
 // 格式化日期
 var dateFormat =function(time) {
 	var date=new Date(time);
