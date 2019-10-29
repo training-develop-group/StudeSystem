@@ -7,10 +7,21 @@ $(document).ready(function() {
 	});
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/*分页*/
 	/*上传课件*/
 	// $.ajax({
 	// 	url:WTQUrl + 'manage_system/question/question',
+=======
+=======
+>>>>>>> 995f1ffc8124753ca4100d493fe37bb00b782923
+
+	/*分页*/
+	/*上传课件*/
+	// $.ajax({
+	// 	url:'http://192.168.188.131:8888/manage_system/question/question',
+<<<<<<< HEAD
+>>>>>>> 995f1ffc8124753ca4100d493fe37bb00b782923
 =======
 
 	/*分页*/
@@ -19,11 +30,6 @@ $(document).ready(function() {
 	// 	url:'http://192.168.188.131:8888/manage_system/question/question',
 >>>>>>> 995f1ffc8124753ca4100d493fe37bb00b782923
 =======
-
-	/*分页*/
-	/*上传课件*/
-	// $.ajax({
-	// 	url:'http://192.168.188.131:8888/manage_system/question/question',
 >>>>>>> 995f1ffc8124753ca4100d493fe37bb00b782923
 	// 	data:{
 	// 		
@@ -46,7 +52,10 @@ $(document).ready(function() {
 		info.operation();
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 		// info.link();
+=======
+>>>>>>> 995f1ffc8124753ca4100d493fe37bb00b782923
 =======
 >>>>>>> 995f1ffc8124753ca4100d493fe37bb00b782923
 =======
@@ -59,10 +68,13 @@ var questionIdLast = 0;
 var info = {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 	selectQuestion: function(curr) {
 		$.ajax({
 			url: WTQUrl + 'manage_system/question/questions',
 =======
+=======
+>>>>>>> 995f1ffc8124753ca4100d493fe37bb00b782923
 =======
 >>>>>>> 995f1ffc8124753ca4100d493fe37bb00b782923
 	addInputTotal: function() {
@@ -91,6 +103,9 @@ var info = {
 		$.ajax({
 			url: 'http://192.168.188.102:8888/manage_system/question/questions',
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> 995f1ffc8124753ca4100d493fe37bb00b782923
+=======
 >>>>>>> 995f1ffc8124753ca4100d493fe37bb00b782923
 =======
 >>>>>>> 995f1ffc8124753ca4100d493fe37bb00b782923
@@ -142,6 +157,10 @@ var info = {
 						'p').text());
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+>>>>>>> 995f1ffc8124753ca4100d493fe37bb00b782923
 =======
 
 >>>>>>> 995f1ffc8124753ca4100d493fe37bb00b782923
@@ -182,7 +201,11 @@ var info = {
 			$.ajax({
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 				url: WTQUrl + 'manage_system/question/' + questionId,
+=======
+				url: 'http://192.168.188.102:8888/manage_system/question/' + questionId,
+>>>>>>> 995f1ffc8124753ca4100d493fe37bb00b782923
 =======
 				url: 'http://192.168.188.102:8888/manage_system/question/' + questionId,
 >>>>>>> 995f1ffc8124753ca4100d493fe37bb00b782923
@@ -210,7 +233,11 @@ var info = {
 		$.ajax({
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 			url: WTQUrl + 'manage_system/question/answer',
+=======
+			url: 'http://192.168.188.102:8888/manage_system/question/answer',
+>>>>>>> 995f1ffc8124753ca4100d493fe37bb00b782923
 =======
 			url: 'http://192.168.188.102:8888/manage_system/question/answer',
 >>>>>>> 995f1ffc8124753ca4100d493fe37bb00b782923
@@ -295,6 +322,10 @@ var info = {
 		var judged = true;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+		info.addInputTotal();
+>>>>>>> 995f1ffc8124753ca4100d493fe37bb00b782923
 =======
 		info.addInputTotal();
 >>>>>>> 995f1ffc8124753ca4100d493fe37bb00b782923
@@ -373,6 +404,9 @@ var info = {
 				}
 			}
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 995f1ffc8124753ca4100d493fe37bb00b782923
 		});
 		$('#newlyBuild #confirmAdd').off('click').on('click', function() {
 			var content = $('#newlyBuild #content').val();
@@ -430,6 +464,22 @@ var info = {
 				layer.msg('有选项内容为空！');
 				return false;
 			}
+<<<<<<< HEAD
+
+			if (judged) {
+				if (!checkRadioSelect) {
+					layer.msg('请选择一个正确答案！');
+					return false;
+				}
+			} else {
+				var sear = new RegExp(',');
+				if (!sear.test(checkCheckbox)) {
+					layer.msg('请选择至少两个答案！');
+					return false;
+				}
+			}
+=======
+>>>>>>> 995f1ffc8124753ca4100d493fe37bb00b782923
 
 			if (judged) {
 				if (!checkRadioSelect) {
@@ -460,13 +510,35 @@ var info = {
 				'status': status,
 			};
 
+<<<<<<< HEAD
+
+			if (judged) {
+				questionType = 1;
+			} else {
+				questionType = 2;
+			}
+			var question = {
+				'questionType': questionType,
+				'content': content,
+				'score': score,
+				'analysis': analysis,
+				'difficulty': difficulty,
+				'status': status,
+			};
+
+=======
+>>>>>>> 995f1ffc8124753ca4100d493fe37bb00b782923
 			var data = {
 				'question': JSON.stringify(question),
 				'questionOption': JSON.stringify(option)
 			};
 			$.ajax({
 <<<<<<< HEAD
+<<<<<<< HEAD
 				url: WTQUrl + 'manage_system/question/question',
+=======
+				url: 'http://192.168.188.102:8888/manage_system/question/question',
+>>>>>>> 995f1ffc8124753ca4100d493fe37bb00b782923
 =======
 				url: 'http://192.168.188.102:8888/manage_system/question/question',
 >>>>>>> 995f1ffc8124753ca4100d493fe37bb00b782923
@@ -489,7 +561,11 @@ var info = {
 		var questionRes = {};
 		$.ajax({
 <<<<<<< HEAD
+<<<<<<< HEAD
 			url: WTQUrl + 'manage_system/question/' + questionId,
+=======
+			url: 'http://192.168.188.102:8888/manage_system/question/' + questionId,
+>>>>>>> 995f1ffc8124753ca4100d493fe37bb00b782923
 =======
 			url: 'http://192.168.188.102:8888/manage_system/question/' + questionId,
 >>>>>>> 995f1ffc8124753ca4100d493fe37bb00b782923
@@ -604,6 +680,10 @@ var info = {
 					form.render();
 				});
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+				info.editInputTotal();
+>>>>>>> 995f1ffc8124753ca4100d493fe37bb00b782923
 =======
 				info.editInputTotal();
 >>>>>>> 995f1ffc8124753ca4100d493fe37bb00b782923
@@ -749,8 +829,110 @@ var info = {
 						'difficulty': difficulty,
 						'status': status,
 					};
+<<<<<<< HEAD
+=======
 
 
+
+					var data = {
+						'question': JSON.stringify(question),
+						'questionOption': JSON.stringify(option),
+					};
+>>>>>>> 995f1ffc8124753ca4100d493fe37bb00b782923
+
+					$.ajax({
+						url: 'http://192.168.188.102:8888/manage_system/question/' + questionId,
+						data: data,
+						dataType: 'json',
+						type: 'POST',
+						success(res) {
+							alert('修改成功(弹窗待样式)');
+							location.reload();
+						},
+						error(e) {
+
+						}
+
+					});
+				});
+
+			}
+		});
+
+	},
+	//---------------------
+	//操作
+	operation: function() {
+		$('.sort span').off('click').on('click', function() {
+			$('span').removeClass('emColor');
+			$(this).addClass('emColor');
+			if ($(this).text() == '单选题') {
+				type = 1;
+				info.selectQuestion(1);
+			} else {
+				type = 2;
+				info.selectQuestion(1);
+			}
+		});
+		
+
+
+		//---------------------修改
+
+	},
+	//弹窗
+	addPopup: function() {
+		$('.NewTestQuestion').off('click').on('click', function() {
+			layer.open({
+				type: 1,
+				title: ['新建试题',
+					'background-color: #279ef0;text-align: center;font-size: 16px;line-height: 50px;color:white;letter-spacing: 5px;padding: 0px;'
+				],
+				area: ['660px', '755px'],
+				resize: false,
+				move: false,
+				content: $('#newlyBuild'),
+				success: function(res) {
+					info.addQuestion();
+				}
+			});
+
+		});
+
+
+
+	},
+	viewPopup: function(questionId) {
+		layer.open({
+			type: 1,
+			title: false,
+			area: ['600px', '300px'],
+			closeBtn: 0,
+			resize: false,
+			move: false,
+			content: $('.PopupAnalysis'),
+			btn: '确认',
+			btnAlign: 'c',
+			success: function() {
+				info.viewAnswer(questionId);
+			}
+		});
+
+	},
+	editPopup: function(questionId) {
+		layer.open({
+			type: 1,
+			title: ['编辑试题',
+				'background-color: #279ef0;text-align: center;font-size: 16px;line-height: 50px;color:white;letter-spacing: 5px;padding: 0px;'
+			],
+			area: ['660px', '755px'],
+			resize: false,
+			move: false,
+			content: $('#editBuild'),
+			success: function(res) {
+				info.editQuestion(questionId);
+			}
+		});
 
 					var data = {
 						'question': JSON.stringify(question),

@@ -89,6 +89,7 @@ var All = {
 			}
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 			// navHtml.push('</ul>')
 			// navHtml.push('</div>')
 			// navHtml.push('<div class="right">')
@@ -119,6 +120,8 @@ var All = {
 			navHtml.push('</div>')
 
 =======
+=======
+>>>>>>> 995f1ffc8124753ca4100d493fe37bb00b782923
 =======
 >>>>>>> 995f1ffc8124753ca4100d493fe37bb00b782923
 			navHtml.push('</ul>');
@@ -156,6 +159,7 @@ var All = {
 			$('.taskPage').click(function() {
 				window.location.href = "../TaskPage/TaskPage.html";
 			})
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 			$('.homePage').click(function() {
@@ -214,6 +218,12 @@ var All = {
 				window.location.href = "../HomePage/HomePage.html";
 			})
 >>>>>>> 995f1ffc8124753ca4100d493fe37bb00b782923
+=======
+
+			$('.homePage').click(function(){
+				window.location.href = "../HomePage/HomePage.html";
+			})
+>>>>>>> 995f1ffc8124753ca4100d493fe37bb00b782923
 
 
 			// //点击头像显示推出登陆
@@ -227,6 +237,9 @@ var All = {
 			//
 			// })
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> 995f1ffc8124753ca4100d493fe37bb00b782923
+=======
 >>>>>>> 995f1ffc8124753ca4100d493fe37bb00b782923
 =======
 >>>>>>> 995f1ffc8124753ca4100d493fe37bb00b782923
