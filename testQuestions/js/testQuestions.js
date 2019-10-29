@@ -716,6 +716,7 @@ var info = {
 				info.selectQuestion(1);
 			}
 		});
+		
 
 
 		//---------------------修改

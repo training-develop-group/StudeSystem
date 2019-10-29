@@ -28,6 +28,14 @@
 	color: #279ef0;
 	cursor: pointer;
 }
+#newlyBuild .addOptions:hover,.deleteOptions:hover{
+	cursor: pointer;
+	color: #279ef0;
+}
+#editBuild .addOptions:hover,.deleteOptions:hover{
+	cursor: pointer;
+	color: #279ef0;
+}
 
 .editInputTotal span{
 	color: #B2B2B2;
