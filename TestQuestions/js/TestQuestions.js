@@ -29,7 +29,6 @@ $(document).ready(function() {
 		info.selectQuestion();
 		info.addPopup();
 		info.operation();
-		info.link();
 	});
 
 })
@@ -721,13 +720,6 @@ var info = {
 
 		//---------------------修改
 
-	},
-	//跳转
-	link: function() {
-		$('.EditorTestPaper').off('click').on('click', function() {
-			// 跳转到试题
-			window.location.href = "../EditorTestPaper/EditorTestPaper.html";
-		});
 	},
 	//弹窗
 	addPopup: function() {
