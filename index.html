@@ -19,126 +19,77 @@
 				background-repeat:no-repeat;
 				background-size:100%;
 		    }
-		    .bg-indistinct{
-		        position: fixed;
-		        width: calc(100% - 72%);
-		        height: 266px;
-				border-radius: 10px;
-		        margin-top: 400px;
-				margin-left: 36%;
-		        background: rgba(244, 244, 244, 0.5);
-				-moz-box-shadow:2px 2px 5px #DADEE1;
-				-webkit-box-shadow:2px 2px 5px #DADEE1;
-				box-shadow:2px 2px 5px #DADEE1;
-		    }
-		    .login-box {
-		        position: fixed;
-		        width: 430px;
-		        height: 400px;
-		        bottom: 0;
-		        left: 0;
-		        right: 0;
-		        top: 242px;
-		        margin: 0 auto;
-		    }
-		
-		    .user-img-box {
-		        position: absolute;
-		        top: 30px;
-		        left: 0;
-		        right: 0;
-		        margin: 0 auto;
-		        width: 80px;
-		        height: 80px;
-		        border: 2px solid #f6f6f6;
-		        border-radius: 50%;
-		    }
-		
-		    .user-img-box img {
-		        z-index: -1;
-		        width: 100%;
-		        height: 100%;
-		        border-radius: 50%;
-		    }
-		
-		    .inputGroup {
-		        position: absolute;
-		        top: 206px;
-		        left: 0;
-		        right: 0;
-		        margin: 0 auto;
-		    }
-		
-		    .btn-box {
-		        position: absolute;
-		        bottom: 20px;
-		        left: 0;
-		        right: 0;
-		        margin: 0 auto;
-		        width: 200px;
-		    }
-		    .inputBox{
-		        width: 100%;
-				height: 38px;
-				border-radius: 5px;
-		        margin: 0 auto 25px auto;
-				background-color: #FFFFFF;
-		    }
-		    /* .inputBox input{
-		       width:500px;
-				margin-left: -40%;
-				top:-80%;
-		        height: 38px;
-		        border-radius: 7px;
-		        background-color: #FFFFFF;
-		        color: #a0a0a0;
-		        text-align: center;
-		        border: 0;
-		    } */
-		    .inputBox input:focus{
-		        border: 1px solid #fff;
-		    }
-		    .inputBox span{
-		        padding: 3px 10px;
-		        color: #f6f6f6c2;
-		    }
-		    .btn-box button {
-		        width: 428px;
-				height: 45px;
-				margin-left: -115px;
-				border-radius: 5px;
-		    }
-			.layui-icon-username{
-				width: 30px;
-				height: 30px;
-				margin-left: 10px;
-				position: absolute;
-				top:11px;
+			.welcome{
+				width: 400px;
+				text-align: center;
+				/* min-width: 200px; */
+				/* min-height: 400px; */
+				margin-left: calc(100% - 60%);
+				border-top: 1px solid;
 			}
-			.layui-icon-password{
-				width: 30px;
-				height: 30px;
-				margin-left: 10px;
-				position: absolute;
-				top: 73px;
+		    .welcomeText{
+				margin-top: 80px;
+				font-family: Adobe 黑体 Std !important;
+				font-size: 70px;
+				color: #eeeeee;
+			}
+			.learningNetworkText{
+				margin-top: 98px;
+				font-family: Adobe 黑体 Std !important;
+				font-size: 34px;
+				color: #eeeeee;
+			}
+			.inputGroup{
+				width: 600px;
+				min-width: 300px;
+				min-height: 350px;
+				margin-top: 35px;
+				border-radius: 10px;
+				background: rgba(244, 244, 244, 0.5);
+				margin-left: calc(100% - 65.7%);
+				/* border: 1px solid black; */
+				border-top: 1px dotted rgba(244, 244, 244, 0.0);
+			}
+			.inputBox{
+				width: 470px;
+				height: 50px;
+				/* border: 1px solid black; */
+				margin-left: calc(100% - 91%);
+				margin-top: 70px;
+				border-radius: 5px;
+				background-color: white;
+			}
+			.inputBoxS{
+				width: 470px;
+				height: 50px;
+				/* border: 1px solid black; */
+				margin-left: calc(100% - 91%);
+				margin-top: 25px;
+				border-radius: 5px;
+				background-color: white;
+			}
+			i{
+				line-height: 50px;
+				margin-left: 30px;
+				font-size: 25px !important;
 			}
 			#user{
+				width: 350px;
+				height: 40px;
+				font-size: 16px;
 				position: absolute;
-				margin-left: 40px;
-				/* top:10px; */
-				width: 387px;
-				height: 34px;
-				border: 0;
-				color: #999999;
+				margin-top: 5px;
+				margin-left: 30px;
+				border: 0px;
 			}
 			#pwd{
+				width: 350px;
+				height: 40px;
+				font-size: 16px;
 				position: absolute;
-				margin-left: 40px;
-				/* top:57px; */
-				width: 387px;
-				height: 34px;
-				border: 0;
-				color: #999999;
+				margin-top: 5px;
+				margin-left: 30px;
+				border: 0px;
 			}
 		</style>
 </head>
@@ -146,26 +97,23 @@
 <!--这里可以直接写成登陆页面-->
 <div class="bg-indistinct">
     <div class="welcome">
-        <label style="color: #FFFFFF;font-size: 80px; text-align: center;position: absolute; font-weight: 900; left: 50%;top: -40%;transform: translate(-50%, -150%);">Welcome</label>
-		<label style="color: #FFFFFF;font-size: 30px; text-align: center;position: absolute; font-weight: 900; left: 50%;top: -20%;transform: translate(-50%, -50%);">学 习 网 登 陆</label>
+		<p class="welcomeText">Welcome</p>
+		<p class="learningNetworkText">学 习 网 登 陆</p>
     </div>
 
     <div class="login-box">
-
-
         <div class="inputGroup">
             <div class="inputBox">
                 <i class="layui-icon layui-icon-username"></i>
                 <input type="text" id="user" name="userName" autocomplete="off" placeholder="请输入用户名" value="">
             </div>
-            <div class="inputBox">
+            <div class="inputBoxS">
                 <i class="layui-icon layui-icon-password"></i>
                 <input type="password" id="pwd" name="passWord" autocomplete="off" placeholder="请输入密码" value="">
             </div>
-        </div>
-
-        <div class="btn-box">
-            <button class="layui-btn layui-btn-normal logIn">登录</button>
+			<div class="btn-box">
+			    <button class="layui-btn layui-btn-normal logIn">登录</button>
+			</div>
         </div>
     </div>
 </div>

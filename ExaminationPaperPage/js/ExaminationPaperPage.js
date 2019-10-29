@@ -271,9 +271,10 @@ var info = {
 			type: 'DELETE',
 			// contentType: 'application/json;charset=utf-8',
 			success(res) {
-				alert("操作成功");
+				// alert("操作成功");
+				console.log("操作成功");
 				// $(thiss).parent().parent().remove();
-				// parent.location.reload();	//刷新父级页面
+				parent.location.reload();	//刷新父级页面
 			},
 			error (e) {
 				alert("操作失败，请稍后再试");

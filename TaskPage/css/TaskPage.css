@@ -1,4 +1,4 @@
-body {
+	body {
 	background-color: #FFFFFF;
 }
 
@@ -10,7 +10,8 @@ body {
 	height: 150px;
 }
 .layui-form-label {
- 
+ line-height: 35px;
+ padding: 0;
     width: 100px;
   
 }
@@ -70,8 +71,8 @@ ol, ul {
 	width: 300px;
 	height: 150px;
 	border: 1px solid #D3D4D3;
-	margin-left: 20px;
-	margin-top: 20px;
+	margin-left: 40px;
+	margin-top: 0;
 	overflow: auto;
 	padding: 10px;
 }
@@ -90,15 +91,15 @@ ol, ul {
 
 .selectPapers {
 	font-size: 16px;
-	margin-left:20px;
-	margin-bottom: 20px;	
+	margin-left:40px;
+	
 	color: #5FB878;
 }
 
 .selectResource {
 	font-size: 16px;
-	margin-left: 20px;
-	margin-bottom: 20px;
+	margin-left: 40px;
+	
 	color: #5FB878;
 }
 
@@ -114,8 +115,8 @@ ol, ul {
 }
 
 .headline {
-	height: 60px;
-	/* height: 50px; */
+	/* height: 60px; */
+	height: 50px;
 	width: 100%;
 	background-color: #289ef0;
 	padding-top: 10px;
