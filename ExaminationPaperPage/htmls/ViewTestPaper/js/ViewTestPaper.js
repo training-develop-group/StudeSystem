@@ -46,7 +46,7 @@ $(function() {
 	// 新建试卷
 	$('#newTestPaper').click(function() {
 		// newTestPaper();
-		alert("暂无此功能");
+		layer.msg("暂无此功能");
 	});
 	
 	$('.mobileFramework').clickSort({

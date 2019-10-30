@@ -146,7 +146,7 @@ body {
 .C-Top {
 	color: #fff;
 	background-color: #279ef0;
-	margin: 20px 0 20px 0;
+	margin: 0px 0 20px 0;
 	width: 100%;
 	height: 60px;
 	/* border-top-left-radius: 9px;
@@ -157,9 +157,10 @@ body {
 }
 
 .C-Top span {
-	font-size: 16px;
+	font-size: 20px;
 	color: #fff;
 	margin-left: 30px;
+	font-weight: 600;
 }
 
 .C-Top button {
@@ -179,7 +180,7 @@ body {
 	/* margin-left: 11.5%; */
 	background-color: #fff;
 	width: 100%;
-	min-height: 650px;
+	min-height: 600px;
 }
 
 .Footer {

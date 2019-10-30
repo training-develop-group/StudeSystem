@@ -212,7 +212,7 @@ var info = {
 	increase : function(){
 		var paperName = $('#nameOfExaminationPaper').val();
 		if (paperName == ''){
-			alert("试卷名不可为空");
+			layer.msg("试卷名不可为空");
 			return false;
 		}
 		var data = {
@@ -232,7 +232,7 @@ var info = {
 				parent.location.reload();	//刷新父级页面
 			},
 			error (e) {
-				alert("操作失败，请稍后再试");
+				layer.msg("操作失败，请稍后再试");
 			}
 		});
 	},
@@ -240,7 +240,7 @@ var info = {
 	rename : function(paperId){
 		var paperName = $('.acquiredValue').val();
 		if (paperName == ''){
-			alert("重命名不可为空");
+			layer.msg("重命名不可为空");
 			return false;
 		}
 		var data = {
@@ -259,7 +259,7 @@ var info = {
 				parent.location.reload();	//刷新父级页面
 			},
 			error (e) {
-				alert("操作失败，请稍后再试");
+				layer.msg("操作失败，请稍后再试");
 			}
 		});
 	},
@@ -277,7 +277,7 @@ var info = {
 				parent.location.reload();	//刷新父级页面
 			},
 			error (e) {
-				alert("操作失败，请稍后再试");
+				layer.msg("操作失败，请稍后再试");
 			}
 		});
 	}

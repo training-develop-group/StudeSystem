@@ -174,3 +174,6 @@ tr td a{
 a {
 	color: #333 !important;
 }
+tbody>tr:hover {
+  background-color:#eeeeee;
+}

@@ -29,7 +29,7 @@ var All = {
 					navHtml.push('<li class="taskPage">任务</li>')
 					navHtml.push('<li class="EditorTestPaper">试卷</li>')
 					navHtml.push('<li class="testQuestions">试题</li>')
-					navHtml.push('<li>统计</li>')
+					navHtml.push('<li class="Statistics">统计</li>')
 					// navHtml.push('<li>用户管理</li>')
 					break;
 				case 2:
@@ -38,7 +38,7 @@ var All = {
 					navHtml.push('<li class="taskPage">任务</li>')
 					navHtml.push('<li class="EditorTestPaper">试卷</li>')
 					navHtml.push('<li class="testQuestions">试题</li>')
-					navHtml.push('<li>统计</li>')
+					navHtml.push('<li class="Statistics">统计</li>')
 					// navHtml.push('<li>用户管理</li>')
 					break;
 				case 3:
@@ -47,7 +47,7 @@ var All = {
 					navHtml.push('<li class="active">任务</li>')
 					navHtml.push('<li class="EditorTestPaper">试卷</li>')
 					navHtml.push('<li class="testQuestions">试题</li>')
-					navHtml.push('<li>统计</li>')
+					navHtml.push('<li class="Statistics">统计</li>')
 					// navHtml.push('<li>用户管理</li>')
 					break;
 				case 4:
@@ -56,7 +56,7 @@ var All = {
 					navHtml.push('<li class="taskPage" id="taskPage">任务</li>')
 					navHtml.push('<li class="active">试卷</li>')
 					navHtml.push('<li class="testQuestions" id="testQuestions">试题</li>')
-					navHtml.push('<li>统计</li>')
+					navHtml.push('<li class="Statistics">统计</li>')
 					// navHtml.push('<li>用户管理</li>')
 					break;
 				case 5:
@@ -65,15 +65,15 @@ var All = {
 					navHtml.push('<li class="taskPage">任务</li>')
 					navHtml.push('<li class="EditorTestPaper">试卷</li>')
 					navHtml.push('<li class="active">试题</li>')
-					navHtml.push('<li>统计</li>')
+					navHtml.push('<li class="Statistics">统计</li>')
 					// navHtml.push('<li>用户管理</li>')
 					break;
 				case 6:
-					navHtml.push('<li>首页</li>')
-					navHtml.push('<li>资源</li>')
-					navHtml.push('<li>任务</li>')
-					navHtml.push('<li>试卷</li>')
-					navHtml.push('<li>试题</li>')
+					navHtml.push('<li class="homePage">首页</li>')
+					navHtml.push('<li class="resource">资源</li>')
+					navHtml.push('<li class="taskPage">任务</li>')
+					navHtml.push('<li class="EditorTestPaper">试卷</li>')
+					navHtml.push('<li class="testQuestions">试题</li>')
 					navHtml.push('<li class="active">统计</li>')
 					// navHtml.push('<li>用户管理</li>')
 					break;
@@ -104,8 +104,6 @@ var All = {
 			
 			$('#header').html(navHtml.join(''));
 			$('.EditorTestPaper').click(function() {
-				console.log(1);
-				// 跳转到试题
 				window.location.href = "../ExaminationPaperPage/ExaminationPaperPage.html";
 			});
 			
@@ -114,8 +112,6 @@ var All = {
 			})
 
 			$('.testQuestions').click(function() {
-				console.log(1);
-				// 跳转到试题
 				window.location.href = "../TestQuestions/TestQuestions.html";
 			});
 			$('.taskPage').click(function(){
@@ -124,6 +120,10 @@ var All = {
 
 			$('.homePage').click(function(){
 				window.location.href = "../HomePage/HomePage.html";
+			})
+			
+			$('.Statistics').click(function(){
+				window.location.href = "../StatisticsPage/StatisticsPage.html";
 			})
 
 
