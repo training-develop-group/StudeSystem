@@ -1,8 +1,42 @@
 .content .resources {
-	width: calc(46% - 20px);
+	width: calc(40% - 20px);
 	height: 357px;
 	float: left;
 	margin-right: 20px;
+}
+
+table {
+	table-layout: fixed;
+}
+
+
+
+.content {
+	text-align: center;
+}
+
+
+
+table tbody tr td,
+table tbody tr th {
+
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	text-align: center;
+}
+
+.layui-table th {
+	border-left: none;
+	border-right: none;
+	border-top: none;
+	background-color: #FFFFFF;
+}
+
+.layui-table td {
+	border-left: none;
+	border-right: none;
+
 }
 
 .left .searchbox {
@@ -16,43 +50,68 @@
 }
 
 .content .task {
-	width: 27%;
+	width: 30%;
 	height: 357px;
 	float: left;
 
 }
 
 .taskMore {
-	font-size: 14px;
+
+
+
+
+	
+	
+
+	font-size: 16px;
 	margin-top: -1px;
 	color: #9e9e9e;
+	margin-left: 80%;
 	cursor: pointer;
-	float: right;
+}
+
+.layui-card-header {
+	font-weight: 600;
+}
+
+.layui-table th {
+	font-weight: 600;
 }
 
 .testPaperMore {
-	font-size: 14px;
+
+
+
+
+
+	font-size: 16px;
 	margin-top: -1px;
 	color: #9e9e9e;
+	margin-left: 70%;
 	cursor: pointer;
-	float: right;
-
 
 }
 
 .content .paper {
-	width: calc(27% - 20px);
+	width: calc(30% - 20px);
 	height: 357px;
 	float: left;
 	margin-left: 20px;
+
 }
 
 .resorceMore {
-	font-size: 14px;
-	margin-top: -1px;
+	font-size: 16px;
+
 	color: #9e9e9e;
 	cursor: pointer;
-	float: right;
+
+
+	margin-top: -1px;
+
+	margin-left: 80%;
+
 
 }
 
@@ -85,7 +144,7 @@ table tbody tr th {
 .layui-table td {
 	border-left: none;
 	border-right: none;
-
+    padding: 10px 20px;
 }
 
 #taskAccuracyDistribution {

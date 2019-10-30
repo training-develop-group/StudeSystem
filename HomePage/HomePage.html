@@ -9,32 +9,7 @@
     <link rel="stylesheet" href="../css/css/all.css">
     <link rel="stylesheet" href="../css/common.css">
     <link rel="stylesheet" href="css/HomePage.css">
-    <style type="text/css">
-        table {
-            table-layout: fixed;
-        }
 
-        table tbody tr td, table tbody tr th {
-
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            text-align: center;
-        }
-
-        .layui-table th {
-            border-left: none;
-            border-right: none;
-            border-top: none;
-            background-color: #FFFFFF;
-        }
-
-        .layui-table td {
-            border-left: none;
-            border-right: none;
-
-        }
-    </style>
     <title>首页</title>
 </head>
 <body class="body">
@@ -47,19 +22,26 @@
         <div class="clearfix">
             <div class="layui-card resources">
                 <div class="layui-card-header">资源
-                    <span style="font-size:14px;margin-top: -1px;color:#9e9e9e;margin-left: 497px;cursor: pointer;"
-                          class="resorceMore">更多></span>
+                    <span class="resorceMore">更多></span>
                 </div>
                 <div class="layui-card-body">
                     <div>
 
                         <table class="layui-table content" style="text-align: center;">
+						<colgroup>
+													<col width="40%">
+											        <col width="30%">
+											        <col width="30%">
 
+
+
+
+														 </colgroup>
                             <thead>
                             <tr>
-                                <th style="text-align: left ;min-width:100px;">资源名称</th>
-                                <th style="text-align: center;width:170px">类型</th>
-                                <th style="text-align: left;width:150px">大小</th>
+                                <th style="text-align: left ;">资源名称</th>
+                                <th style="text-align: center;">类型</th>
+                                <th style="text-align: center;">大小</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -68,12 +50,12 @@
                                     微课堂微课堂微课堂微课堂微课堂微课堂微课堂微课堂微课堂微课堂微课堂微课堂微课堂
                                 </td>
                                 <td title="微课堂">微课堂</td>
-                                <td title="小明" style="text-align: left ">小明</td>
+                                <td title="小明" style="text-align: center ">小明</td>
                             </tr>
                             <tr>
                                 <td style="text-align: left ">微课堂</td>
                                 <td>微课堂</td>
-                                <td style="text-align: left ">小明</td>
+                                <td style="text-align: center ">小明</td>
                             </tr>
                             <tr>
                                 <td style="text-align: left ">微课堂</td>
@@ -86,9 +68,7 @@
                 </div>
             </div>
             <div class="layui-card task">
-                <div class="layui-card-header">任务
-                    <span style="font-size:14px;margin-top: -1px;color:#9e9e9e;margin-left: 280px;cursor: pointer;"
-                        class="taskMore">更多></span></div>
+                <div class="layui-card-header">任务<span  class="taskMore">更多></span></div>
                 <div class="layui-card-body">
                     <table class="layui-table" style="text-align: center;">
 
@@ -101,7 +81,7 @@
                         </thead>
                         <tbody>
                         <tr>
-                            <td style="text-align: left ">微课堂</td>
+                            <td style="text-align: left ;padding-left: -30px;">微课堂</td>
                             <td>微课堂</td>
 
                         </tr>
@@ -121,9 +101,7 @@
                 </div>
             </div>
             <div class="layui-card paper">
-                <div class="layui-card-header">试卷<span
-                        style="font-size:14px;margin-top: -1px;color:#9e9e9e;margin-left: 275px;cursor: pointer;"
-                        class="testPaperMore">更多></span></div>
+                <div class="layui-card-header">试卷<span  class="testPaperMore">更多></span></div>
                 <div class="layui-card-body">
                     <div>
 
@@ -133,7 +111,7 @@
                             <tr>
                                 <th style="text-align: left ;width:80px;">名称</th>
                                 <th style="text-align: center;width:80px ">单选</th>
-                                <th style="text-align: left;widows: 70px">多选</th>
+                                <th style="text-align: left;width: 70px">多选</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -300,7 +278,7 @@
                             show: false  //平常不显示
                         },
                         labelLine: {     //标签的视觉引导线样式
-                            show: false  //平常不显示
+                            show: true  //平常不显示
                         }
                     },
                     emphasis: {   //normal 是图形在默认状态下的样式；emphasis 是图形在高亮状态下的样式，比如在鼠标悬浮或者图例联动高亮时。
@@ -366,7 +344,7 @@
                             show: false  //平常不显示
                         },
                         labelLine: {     //标签的视觉引导线样式
-                            show: false  //平常不显示
+                            show: true  //平常不显示
                         }
                     },
                     emphasis: {   //normal 是图形在默认状态下的样式；emphasis 是图形在高亮状态下的样式，比如在鼠标悬浮或者图例联动高亮时。

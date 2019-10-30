@@ -1,0 +1,94 @@
+body {
+	background-image: url('../imgs/2.png');
+	background-repeat: no-repeat;
+	background-size: 100%;
+}
+
+.welcome {
+	width: calc(100% - 78%);
+	text-align: center;
+	margin-left: calc(100% - 60%);
+	border-top: 1px solid;
+}
+
+.welcomeText {
+	margin-top: 80px;
+	font-family: Adobe 黑体 Std !important;
+	font-size: 70px;
+	color: #eeeeee;
+}
+
+.learningNetworkText {
+	margin-top: 98px;
+	font-family: Adobe 黑体 Std !important;
+	font-size: 34px;
+	color: #eeeeee;
+}
+
+.inputGroup {
+	width: calc(100% - 68.5%);
+	min-width: 300px;
+	min-height: 350px;
+	margin-top: 35px;
+	border-radius: 10px;
+	background: rgba(244, 244, 244, 0.5);
+	margin-left: calc(100% - 65.7%);
+	border-top: 1px dotted rgba(244, 244, 244, 0.0);
+	-moz-box-shadow: 2px 2px 5px #DADEE1;
+	-webkit-box-shadow: 2px 2px 5px #DADEE1;
+	box-shadow: 2px 2px 5px #DADEE1;
+}
+
+.inputBox {
+	width: 470px;
+	height: 50px;
+	margin-left: calc(100% - 89%);
+	margin-top: 70px;
+	border-radius: 5px;
+	background-color: white;
+}
+
+.inputBoxS {
+	width: 470px;
+	height: 50px;
+	margin-left: calc(100% - 89%);
+	margin-left: 11%;
+	margin-top: 25px;
+	border-radius: 5px;
+	background-color: white;
+}
+
+i {
+	line-height: 50px;
+	margin-left: 30px;
+	font-size: 25px !important;
+}
+
+#user {
+	width: 350px;
+	height: 40px;
+	font-size: 16px;
+	position: absolute;
+	margin-top: 5px;
+	margin-left: 1.5%;
+	border: 0px;
+}
+
+#pwd {
+	width: 350px;
+	height: 40px;
+	font-size: 16px;
+	position: absolute;
+	margin-top: 5px;
+	margin-left: 1.5%;
+	border: 0px;
+}
+
+.logIn {
+	width: 470px;
+	height: 55px;
+	margin-top: 60px;
+	margin-left: 11.5%;
+	font-size: 16px;
+	border-radius: 5px;
+}

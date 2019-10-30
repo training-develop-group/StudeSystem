@@ -2,14 +2,14 @@
  * @name: common
  * @author：
  */
-$(function () {
-    layui.use(['layer', 'form'], function () {
-        var layer = layui.layer,
-            form = layui.form;
+$(function() {
+	layui.use(['layer', 'form'], function() {
+		var layer = layui.layer,
+			form = layui.form;
 
-    });
 
-    All.getMenu();
+        All.getMenu();
+	});
 });
 
 var All = {

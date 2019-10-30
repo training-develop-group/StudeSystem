@@ -37,9 +37,10 @@
 	line-height: 60px;
 }
 #centered span{
-	font-size: 16px;
+	font-size: 20px;
 	margin-left: 30px;
 	color: white;
+	font-weight: 600;
 }
 #newTestPaper{
 	border: none;
@@ -58,43 +59,52 @@
 	margin-top: 20px;
 	background-color: white;
 }
-table{
-	width: calc(100% - 40px);
-	margin-left: 20px;
+.layui-table{
+	width: calc(100% - 50px);
+	margin-left: 25px;
 	border: 0;
 	cellspacing: 1;
 }
 th {
-	font-size: 16px;
-	text-align: left;
+	font-size: 16px !important;
 }
 th , td{
-	/* border-bottom: 1px solid #eeeeee; */
-	height: 50px;
+	height: 46px;
 	text-indent: 25px;
+}
+.layui-table th{
+	font-weight: 600;
+	padding: 2px;
+	background-color: white;
+}
+.layui-table td{
+	padding: 0px;
+}
+.layui-table td, .layui-table th{
+	border-width: 0;
 	border-bottom: 1px solid #eeeeee;
-	/* border: 1px solid black; */
 }
 td{
 	font-size: 14px;
 }
 .middle{
 	text-indent: 0 !important;
-	text-align: center;
+	text-align: center !important;
 }
 a{
 	text-decoration:none
 	out-line: none
-	/* color: ; */
 }
 .edit , .selectedTopic , .toView , .delete{
+	width: 63px;
+	height: 20px;
+	line-height: 20px;
 	border: 0;
 }
 .edit{
 	margin-left: -16px;
 }
 #paging{
-	/* margin-left: 35%; */
 	margin-top: -30px;
 }
 
@@ -102,9 +112,6 @@ a{
 .layui-layer{
 	top: 140px !important;
 }
-/* .layui-layer-content{
-	height: 120px !important;
-} */
 .inputLocation{
 	margin-top: 25px;
 	margin-left: 100px;

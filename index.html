@@ -1,97 +1,18 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="js/jQuery v3.4.1.min.js"></script>
-    <script src="js/layui/layui.all.js"></script>
-    <link rel="stylesheet" href="js/layui/css/layui.css">
-    <link rel="stylesheet" href="css/css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/common.css">
-
-    <title>登录页</title>
-	<style>
-			body{
-		        /* background-image: url('imgs/LogBackground.png'); */
-				background-image: url('imgs/2.png');
-				background-repeat:no-repeat;
-				background-size:100%;
-		    }
-			.welcome{
-				width: 400px;
-				text-align: center;
-				/* min-width: 200px; */
-				/* min-height: 400px; */
-				margin-left: calc(100% - 60%);
-				border-top: 1px solid;
-			}
-		    .welcomeText{
-				margin-top: 80px;
-				font-family: Adobe 黑体 Std !important;
-				font-size: 70px;
-				color: #eeeeee;
-			}
-			.learningNetworkText{
-				margin-top: 98px;
-				font-family: Adobe 黑体 Std !important;
-				font-size: 34px;
-				color: #eeeeee;
-			}
-			.inputGroup{
-				width: 600px;
-				min-width: 300px;
-				min-height: 350px;
-				margin-top: 35px;
-				border-radius: 10px;
-				background: rgba(244, 244, 244, 0.5);
-				margin-left: calc(100% - 65.7%);
-				/* border: 1px solid black; */
-				border-top: 1px dotted rgba(244, 244, 244, 0.0);
-			}
-			.inputBox{
-				width: 470px;
-				height: 50px;
-				/* border: 1px solid black; */
-				margin-left: calc(100% - 91%);
-				margin-top: 70px;
-				border-radius: 5px;
-				background-color: white;
-			}
-			.inputBoxS{
-				width: 470px;
-				height: 50px;
-				/* border: 1px solid black; */
-				margin-left: calc(100% - 91%);
-				margin-top: 25px;
-				border-radius: 5px;
-				background-color: white;
-			}
-			i{
-				line-height: 50px;
-				margin-left: 30px;
-				font-size: 25px !important;
-			}
-			#user{
-				width: 350px;
-				height: 40px;
-				font-size: 16px;
-				position: absolute;
-				margin-top: 5px;
-				margin-left: 30px;
-				border: 0px;
-			}
-			#pwd{
-				width: 350px;
-				height: 40px;
-				font-size: 16px;
-				position: absolute;
-				margin-top: 5px;
-				margin-left: 30px;
-				border: 0px;
-			}
-		</style>
+	<meta charset="UTF-8">
+	<meta name="viewport"
+		content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<script src="js/jQuery v3.4.1.min.js"></script>
+	<script src="js/layui/layui.all.js"></script>
+	<link rel="stylesheet" href="js/layui/css/layui.css">
+	<link rel="stylesheet" href="css/css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/common.css">
+	<link rel="stylesheet" href="css/LogIn.css">
+	
+	<title>登录页</title>
 </head>
 <body>
 <!--这里可以直接写成登陆页面-->
@@ -112,7 +33,7 @@
                 <input type="password" id="pwd" name="passWord" autocomplete="off" placeholder="请输入密码" value="">
             </div>
 			<div class="btn-box">
-			    <button class="layui-btn layui-btn-normal logIn">登录</button>
+			    <button class="layui-btn layui-btn-normal logIn">登 录</button>
 			</div>
         </div>
     </div>
@@ -122,35 +43,6 @@
 <script src="js/layui/layui.all.js"></script>
 <script src="js/address.js"></script>
 <script src="js/common.js" charset="utf-8"></script>
-<script type="text/javascript">
-    $(function () {
-        $('.logIn').off('click').on('click', function () {
-            var data = {
-                userName: $('#user').val(),
-                password: $('#pwd').val()
-            };
-            if(data.userName == '' || data.password == '' ){
-                layer.msg('用户名或者密码不能为空');
-                return;
-            }
-            // $.ajax({
-            //     url: loginUrl + 'manage_system/login',
-            //     data:data,
-            //     dataType:'json',
-            //     type: "get",
-            //     success: function (res) {
-                    // if(res.code == 1){
-                        window.location.href = 'HomePage/HomePage.html'
-                    // }else {
-                    //     layer.msg(res.msg);
-                    // }
-            //     },
-            //     error: function (e) {
-            //
-            //     }
-            // })
-        })
-    });
-</script>
+<script src="js/LogIn.js" charset="utf-8"></script>
 </body>
 </html>

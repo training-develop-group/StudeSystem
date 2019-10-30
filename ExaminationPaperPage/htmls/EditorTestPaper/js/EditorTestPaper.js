@@ -334,12 +334,11 @@ var info = {
 			contentType: 'application/json;charset=utf-8',
 			success(res) {
 				console.log("操作成功");
-				console.log(res);
 				// alert("操作成功");
-				// parent.location.reload(); //刷新父级页面
+				parent.location.reload(); //刷新父级页面
 			},
 			error(e) {
-				alert("操作失败，请稍后再试");
+				layer.msg("操作失败，请稍后再试");
 			}
 		});
 	},

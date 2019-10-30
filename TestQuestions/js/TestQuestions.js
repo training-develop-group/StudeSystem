@@ -144,7 +144,7 @@ var info = {
 				dataType: 'json',
 				type: 'DELETE',
 				success(res) {
-					alert('删除成功(弹窗待样式)');
+					layer.msg('删除成功(弹窗待样式)');
 					location.reload();
 				},
 				error(e) {
@@ -405,7 +405,7 @@ var info = {
 				dataType: 'json',
 				type: 'POST',
 				success(res) {
-					alert('添加成功(弹窗待样式)');
+					layer.msg('添加成功(弹窗待样式)');
 					location.reload();
 
 				}
@@ -688,7 +688,7 @@ var info = {
 						dataType: 'json',
 						type: 'POST',
 						success(res) {
-							alert('修改成功(弹窗待样式)');
+							layer.msg('修改成功(弹窗待样式)');
 							location.reload();
 						},
 						error(e) {
