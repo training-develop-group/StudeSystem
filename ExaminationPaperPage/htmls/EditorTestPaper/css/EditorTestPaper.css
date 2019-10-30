@@ -28,6 +28,14 @@
 	border-radius: 3px;
 	color: #279ef2;
 }
+#saveChanges{
+	font-size: 16px;
+	float: right;
+	margin-right: 20px;
+	margin-top: 10px;
+	border-radius: 3px;
+	color: #279ef2;
+}
 .editorialContent{
 	float: left;
 	width: 100%;
@@ -173,7 +181,7 @@ img{
 	height:30px;
 	line-height: 30px;
 	background-color: #279ef0;
-	margin-top: 20px;
+	margin-top: 15px;
 	margin-left: calc(100% - 60%);
 }
 .layui-form-radio>i:hover, .layui-form-radioed>i{
@@ -184,4 +192,28 @@ img{
 }
 .layui-layer-padding{
 	color: black;
+}
+.answerContent{
+	margin-left: 250px;
+	margin-top: 40px;
+}
+.answerContent p{
+	margin-top: 10px;
+}
+.answerContent .analysis{
+	width: 300px;
+	margin-left: 0px;
+}
+/* 给js调用的 */
+.prohibit{
+	background-color: #AAAAAA !important;
+	color: white;	
+	/* 设置鼠标移动到button的样式 */
+	cursor: not-allowed;
+}
+.hiddenText{
+	color: red;
+	font-size: 12px;
+	margin-top: 10px;
+	margin-left: 110px;
 }

@@ -160,6 +160,7 @@ body {
 	font-size: 16px;
 	color: #fff;
 	margin-left: 30px;
+	font-weight: 600;
 }
 
 .C-Top button {
@@ -179,7 +180,7 @@ body {
 	/* margin-left: 11.5%; */
 	background-color: #fff;
 	width: 100%;
-	min-height: 650px;
+	min-height: 600px;
 }
 
 .Footer {

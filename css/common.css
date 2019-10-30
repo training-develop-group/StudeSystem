@@ -87,6 +87,11 @@ body {
     cursor: pointer;
 }
 
+.btn:hover,
+.btn:focus {
+    outline: none;
+}
+
 .headerBox .left {
     float: right;
     margin-right: 50px;
@@ -97,27 +102,38 @@ body {
     border-radius: 4px;
     padding: 5px;
     background-color: white;
-    width: 300px;
-    height: 30px;
+    /* height: 40px; */
     margin-top: 9px;
+    widows: 250px;
 }
 
 .left .searchbox img {
 
     width: 24px;
     height: 24px;
-    margin-top: -5px;
+    margin-top: 3px;
     background-image: url(../imgs/search.jpg);
+    border: 0;
+}
 
+.btn:hover,
+.btn:focus {
+    outline: none !important;
+}
+
+.popover-content {
+    cursor: pointer;
 }
 
 .left .searchbox input {
     height: 100%;
-    width: calc(100% - 50px);
+    width: 200px;
     padding: 0 8px;
     border: 0;
     font-size: 16px;
+    margin-top: 5px;
     color: #808080;
+    float: right;
 }
 
 .headerBox .right {
@@ -131,6 +147,7 @@ body {
     margin: 10px;
     border: 2px solid #b5b5b5;
     border-radius: 50px;
+    cursor: pointer;
 }
 
 .headerBox .right .username {
@@ -155,14 +172,58 @@ body {
 .layui-laypage input:focus {
     border-color: #289ef0 !important;
 }
-.layui-laypage a:hover{
-	color: #289ef0;
+
+.layui-laypage a:hover {
+    color: #289ef0;
 }
 
+.logout {
+    width: 24px;
+    margin-left: 20px;
+    margin-top: -3px;
+    cursor: pointer;
+}
+
+.layui-btn-primary:hover {
+    border-color: #1E9FFF;
+}
+
+.logOut p {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 16px;
+}
+
+.logOut .btn-box button {
+    padding: 0 30px;
+}
+
+.logOut .btn-box {
+    width: 202px;
+    margin: 30px auto 0;
+}
+
+.logOut .layui-btn + .layui-btn {
+    margin-left: 30px
+}
+
+.logOut .layui-layer-title {
+    padding: 0 20px 0 20px;
+}
+
+@media screen and (min-width: 1500px) and (max-width: 1660px) {
+    .wrapper.wrapper-content {
+        padding: 20px 120px 50px;
+    }
+
+    .navbox ul li {
+        padding: 0 15px;
+    }
+}
 
 @media screen and (min-width: 1365px) and (max-width: 1499px) {
     .wrapper.wrapper-content {
-        padding: 20px 120px 50px;
+        padding: 20px 80px 50px;
     }
 
     .navbox ul li {

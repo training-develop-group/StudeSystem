@@ -10,13 +10,15 @@
     <link rel="stylesheet" href="../js/layui/css/layui.css">
     <link rel="stylesheet" href="../css/common.css">
     <link rel="stylesheet" href="css/ResourcePage.css">
+<!-- <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css"/> -->
 
+	
     <title>资源页</title>
 </head>
 <body>
 	
 	<div id="header"></div>
-	<div class="wrapper wrapper-content ">
+	<div class="wrapper wrapper-content clearfix">
 			<div class="title">
 				<div class="title-header">
 					<span class="title-header-text">资源列表</span>
@@ -24,9 +26,9 @@
 				</div>
 			</div>
 			<div class="content">
-				<table border="0">
+				<table border="0" class="mainTabel">
 					<colgroup>
-						<col width="3%">
+						<col width="2.5%">
 						<col width="2%">
 						<col width="2%">
 						<col width="2%">
@@ -34,36 +36,36 @@
 					</colgroup>
 					
 					<thead>
-						<tr>
+						<tr class="table-header">
 							<td>文件名称</td>
-							<td>资源状态</td>
-							<td>文件类型</td>
-							<td>文件大小</td>
-							<td>操作</td>
+							<td class="centerText">资源状态</td>
+							<td class="centerText">文件类型</td>
+							<td class="centerText">文件大小</td>
+							<td class="rightText">操作</td>
 		
 						</tr>
 					</thead>
 					<tr>
 						<td><a href="#" class="textFileName">文档</a></td>
-						<td>已发布</td>
-						<td>文档</td>
-						<td>10MB</td>
-						<td><a href="#">编辑</a><a href="#">发布</a><a href="#" class="delete">删除</a></td>
+						<td class="centerText">已发布</td>
+						<td class="centerText">文档</td>
+						<td class="centerText">10MB</td>
+						<td><a href="#" class="editResName">编辑</a><a href="#" class="release">发布</a><a href="#" class="delete">删除</a></td>
 					</tr>
 					<tr>
 						<td><a href="#" class="audioFileName">音频</a></td>
-						<td>未发布</td>
-						<td>音频</td>
-						<td>10MB</td>
-						<td><a href="#">编辑</a><a href="#">发布</a><a href="#" class="delete">删除</a></td>
+						<td class="centerText">未发布</td>
+						<td class="centerText">音频</td>
+						<td class="centerText">10MB</td>
+						<td><a href="#" class="editResName">编辑</a><a href="#" class="release">发布</a><a href="#" class="delete">删除</a></td>
 					
 					</tr>
 					<tr>
 						<td><a href="#" class="videoFileName">视频</a></td>
-						<td>未发布</td>
-						<td>视频</td>
-						<td>10MB</td>
-						<td><a href="#">编辑</a><a href="#">发布</a><a href="#" class="delete">删除</a></td>
+						<td class="centerText">未发布</td>
+						<td class="centerText">视频</td>
+						<td class="centerText">10MB</td>
+						<td><a href="#" class="editResName">编辑</a><a href="#" class="release">发布</a><a href="#" class="delete">删除</a></td>
 					</tr>
 					<tbody id="contentList">
 						
@@ -96,29 +98,32 @@
 				<tbody id="demoList"></tbody>
 			</table>
 		</div>
-		<!-- <button type="button" class="layui-btn" id="testListAction">开始上传</button> -->
 	</div>
 	<!-- 视频调用隐藏绑定弹出层 -->
-	<div id="hiddenVideo" style="display: none;">
+	<!-- <div id="hiddenVideo" style="display: none;">
 		<video poster="vs.png" controls id="suspend">
 			<source src="http://www.jplayer.org/video/m4v/Incredibles_Teaser.m4v" type="video/mp4">
 		</video>
-	</div>
+	</div> -->
+	
 	<!-- 音频调用绑定弹出层 -->
-	<div id="hiddenAudio" style="display: none;">
+	<!-- <div id="hiddenAudio" style="display: none;">
 		<audio src="audio/song.ogv" controls="controls" class="Audio"></audio>
-	</div>
+	</div> -->
 	
 	<div id="Doc" style="display: none;">
 		<!-- <embed src="text/world.doc" type="application/vnd.sealed.doc" width="100%" height="100%"> -->
 	</div>
 	<!-- <iframe src="text/world.docx" width="500" height="500"></iframe> -->
 	<!-- <iframe src="html:\\CLOUDEASY-PC\share\新建文件夹\world.docx"  width="500" height="500"></iframe> -->
-	<div id="testList" hidden="hidden">
-		
+	
+	<!-- 编辑资源名弹出层box -->
+	<div id="editResNameBox" style="display: none;">
+		<span class="editText">文件名称</span><input class="rename layui-input"/>
 	</div>
 
 <script src="../js/jQuery v3.4.1.min.js"></script>
+<!-- <script src="../js/bootstrap.min.js" type="text/javascript"></script> -->
 <script src="../js/layui/layui.all.js"></script>
 <script src="../js/layui/layui.js"></script>
 <script src="../js/common.js"></script>

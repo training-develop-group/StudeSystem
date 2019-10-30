@@ -46,7 +46,7 @@ $(function() {
 	// 新建试卷
 	$('#newTestPaper').click(function() {
 		// newTestPaper();
-		alert("暂无此功能");
+		layer.msg("暂无此功能");
 	});
 	
 	$('.mobileFramework').clickSort({
@@ -70,7 +70,7 @@ $(function() {
 	// 	var vals = arr.join(",");
 	// 	console.log(vals,222);
 	// });
-	// 单选取值
+	// 解析
 	$('.toView').click(function() {
 		info.toViewAnalysis();
 	});

@@ -1,7 +1,22 @@
 $(function() {
-	layui.use(['layer', 'form'], function() {
+	layui.use(['layer', 'form', 'laypage'], function() {
 		var layer = layui.layer,
 			form = layui.form;
+			
+		var laypage = layui.laypage,
+			layer = layui.layer;
+			
+		//执行一个laypage实例
+		laypage.render({
+			elem: 'page',
+			count: 100,
+			theme: '#1E9FFF',
+			// layout: ['count', 'prev', 'page', 'next', 'limit', 'refresh', 'skip'],
+			layout: ['prev', 'page', 'next' , 'limits' , 'skip'],
+			jump: function(obj) {
+				console.log(obj)
+			}
+		});
 			
 			
 		All.getMenu({
@@ -19,65 +34,54 @@ $(function() {
 			// 跳转到试题
 			window.location.href = "../TestQuestions/TestQuestions.html";
 		});
-		$('.delete').click(function() {
-			// 删除this的父级的父级
-			$(this).parent().parent().remove();
-		});
-
-		// info.add();	//已经好用
 		
-// 		info.select();	////已经好用
-// 		
-		// info.delete();	////已经好用
-
-		info.uploadpopup();
+		
+		$('.delete').click(function() {
+			var deletethis = this;
+			layer.msg('是否删除资源', {
+				time: 20000, //20s后自动关闭
+				btn: ['确认', '取消'],
+				yes: function() {
+					// 删除this的父级的父级
+					$(deletethis).parent().parent().remove();
+					layer.close(layer.index);
+					layer.msg('删除成功');
+				}
+			});
+		});
+		
+		
+		
+		// info.path();
+		
+		//调用音频弹出层方法
+		// info.viewByAudioFileName();
+		
+		
+		
+		
+		info.selectResourceList();	//查看
+		
+		info.uploadPopup();	//上传文件
+		
 		
 		//调用视频弹出层方法
-		info.viewByVideoFileName();
+		// info.viewByVideoFileName();
 
-		//调用音频弹出层方法
-		info.viewByAudioFileName();
+		
 
-		//调用文档弹出层
+		// 调用文档弹出层
 		// info.viewByTextFileName();
+		
+		
 	});
-
-
 
 });
 var info = {
 	
-	add: function() {
-		var data = {
-			'resId':'45454545',
-			'resName': 'hh',
-			'resType': 2,
-			'path': '1223',
-			'resExt': '121',
-			'resSize': 3,
-			'status': 4,
-			'cTime': '2019-08-01',
-			'mTime': '2019-08-02',
-			'cUser': '123',
-			'mUser': '456'
-		}
+	selectResourceList: function() {
 		$.ajax({
-			url: 'http://localhost:8484/manage_system/resource/resource',
-			data: JSON.stringify(data),
-			dataType: 'json',
-			type: 'POST',
-			contentType: 'application/json;charset=utf-8',
-			success(res) {
-				console.log(res);
-				console.log(JSON.stringify(data));
-			}
-		});
-	},
-	
-	
-	select: function() {
-		$.ajax({
-			url: 'http://localhost:8484/manage_system/resource/resources',
+			url: TDXUrl + 'manage_system/resource/resources',
 			data: {},
 			dataType: 'json',
 			type: 'GET',
@@ -88,47 +92,164 @@ var info = {
 					res.data.forEach(function(item){
 						console.log(item.resId);
 						html.push('<tr>');
-						html.push('<td>' + item.resName + '</td>');
-						html.push('<td>' + '未发布' + '</td>');
-						html.push('<td>' + item.resType + '</td>');
-						html.push('<td>' + item.resSize + 'kb</td>');
-						html.push('<td><a href="#">编辑</a><a href="#">发布</a><a href="#">删除</a></td>');
+						html.push('<td><a href="#" class="getResource" resId="'+ item.resId +'">' + item.resName + '</a></td>');
+						html.push('<td class="centerText">' + '未发布' + '</td>');
+						html.push('<td class="centerText">' + item.resType + '</td>');
+						html.push('<td class="centerText">' + item.resSize + 'kb</td>');
+						html.push('<td><a href="#" class="editResName" resId="'+ item.resId +'" resName="'+ item.resName +'">编辑</a><a href="#" class="release">发布</a><a href="#" class="deleteList" resId="'+ item.resId +'">删除</a></td>');
 						html.push('</tr>');
 					})
 				}
 				$('#contentList').html(html.join(''));
+				
+				//删除资源
+				$('.deleteList').off('click').on('click',function() {
+					var resId = $(this).attr("resId");
+					layer.msg('是否删除资源', {
+						time: 20000, //20s后自动关闭
+						btn: ['确认', '取消'],
+						yes: function() {
+							console.log(resId);
+							console.log('----------------------------------------------');
+							info.deleteResource(resId);
+							layer.close(layer.index);
+							parent.location.reload();
+							layer.msg('删除成功');
+						}
+					});
+				});
+				
+				//编辑资源名
+				$('.editResName').off('click').on('click',function() {
+					var resId = $(this).attr("resId");
+					var resName = $(this).attr("resName");
+					$('.rename').val(resName);
+					info.updatePopup(resId);
+					
+				});
+				
+				//获取资源详情
+				$('.getResource').off('click').on('click', function() {
+					var resId = $(this).attr("resId");
+					info.getResource(resId);
+				});
+				
+				//发布弹窗
+				$('.release').off('click').on('click', function(){
+					layer.msg('是否发布资源', {
+						time: 20000, //20s后自动关闭
+						btn: ['确认', '取消'],
+						
+					});
+				})
 			}
 		});
 	},
 	
 	
-	delete: function() {
-		var resId = 45454545;
+	deleteResource: function(resId) {
 		$.ajax({
-			url: 'http://localhost:8484/manage_system/resource/' + resId,
+			url: TDXUrl + 'manage_system/resource/' + resId,
 			data: {},
 			dataType: 'json',
 			type: 'DELETE',
 			contentType: 'application/json;charset=utf-8',
+			// success(res) {
+			// 	alert('删除成功');
+			// }
+		});
+	},
+	
+	
+	//编辑资源名弹出层
+	updatePopup: function(resId) {
+		layer.open({
+			type: 1 ,
+			area: ['790px','220px'] ,
+			title: ['编辑资源名', 'background-color: #289ef0;text-align: center;font-size: 20px;color:white;'] ,
+			shade: 0.6 ,
+			btn: ['确认','取消'] ,
+			btnAlign: 'c' ,
+			content: $('#editResNameBox'),
+			yes: function() {
+				var resName = $('.rename').val();
+				info.update(resId, resName);
+				layer.close(layer.index);
+			}
+		});
+	},
+	
+	//根据id来修改资源名
+	update: function(resId, resName) {
+		var data = {
+			'resId':resId,
+			'resName':resName
+		}
+		$.ajax({
+			url: TDXUrl + 'manage_system/resource/res-name',
+			data: data,
+			dataType: 'json',
+			type: 'POST',
 			success(res) {
-				alert('删除成功');
+				console.log(res);
+				layer.msg('修改成功');
+			}
+		});
+	},
+	
+	//获取资源详情
+	getResource: function(resId) {
+		$.ajax({
+			url: TDXUrl + 'manage_system/resource/' + resId,
+			data: {},
+			dataType: 'json',
+			type: 'GET',
+			contentType: 'application/json;charset=utf-8',
+			success(res) {
+				console.log(res);
 			}
 		});
 	},
 	
 	
-	uploadpopup: function() {
+	path: function() {
+		$.ajax({
+			url: TDXUrl + 'manage_system/resource/view',
+			data: {},
+			dataType: 'json',
+			type: 'POST',
+			contentType: 'application/json;charset=utf-8',
+			success(res){
+				console.log(res);
+			}
+		});
+	},
+	
+	
+	
+	//获取资源详情弹出层
+	getResourcePopup: function() {
+		layer.open({
+			type: 1 ,
+			area: ['790px', '320px'],
+			title: ['资源详情', 'background-color: #289ef0;text-align: center;font-size: 20px;color:white;'],
+			shade: 0.6,
+			content: $('#hiddenAudio'),
+			
+		});
+		// $('#hiddenAudio').innerHTML = 
+	},
+	
+	uploadPopup: function() {
 		// $('#uploadFile').click(function() {
 		$(document).on('click', '#uploadFile', function() {
 			layui.use("layer", function() {
 				var layer = layui.layer;
 				layer.open({
-					type: 1 //Page层类型
-						,
+					type: 1 ,	//Page层类型
 					area: ['790px', '320px'],
 					title: ['上传资源', 'background-color: #289ef0;text-align: center;font-size: 20px;color:white;'],
-					shade: 0.6 //遮罩透明度
-						,
+					shade: 0.6 , 	//遮罩透明度
 					// closeBtn: 0,
 					btn: ["确认"],
 					btnAlign: 'c',
@@ -145,7 +266,7 @@ var info = {
 							var demoListView = $('#demoList'),//上传文件显示的数据表格
 								uploadListIns = upload.render({
 									elem: '#testList',//选择文件按钮
-									url: 'http://localhost:8484/manage_system/resource/resource',
+									url: TDXUrl + 'manage_system/resource/resource',
 									accept: 'file',//上传文件类型
 									multiple: true,
 									method: 'GET',
@@ -160,16 +281,6 @@ var info = {
 											var fileName = fileNameArr[fileNameArr.length - 1]; //获取后缀名字符串
 											console.log(fileNameArr);
 											console.log(fileNameArr[fileNameArr.length - 1]);
-											if (fileName == 'doc' || fileName == 'docx') {
-												fileType = '文档';
-											}
-											if (fileName == 'wmv' || fileName == 'mp4') {
-												fileType = '视频';
-											}
-											if (fileName == 'wmv' || fileName == 'mp3' || fileName == 'mpg' || fileName == 'mov' ||
-												fileName == 'avi' || fileName == 'wma') {
-												fileType = '音频';
-											}
 											var tr = $(['<tr id="upload-' + index + '">', '<td style="width:20px;">' + file.name +
 												'</td>', '<td>' + fileType + '</td>',
 												'<td>' + (file.size / 1014).toFixed(1) + 'kb</td>', '<td>' + '--' + '</td>',
@@ -279,21 +390,7 @@ var info = {
 // 		});
 // 	}
 }
-layui.use(['laypage', 'layer'], function() {
-	var laypage = layui.laypage,
-		layer = layui.layer;
-	//执行一个laypage实例
-	laypage.render({
-		elem: 'page',
-		count: 100,
-		theme: '#1E9FFF',
-		// layout: ['count', 'prev', 'page', 'next', 'limit', 'refresh', 'skip'],
-		layout: ['prev', 'page', 'next' , 'limits' , 'skip'],
-		jump: function(obj) {
-			console.log(obj)
-		}
-	});
-});
+
 
 
 
