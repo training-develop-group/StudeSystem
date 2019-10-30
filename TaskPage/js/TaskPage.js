@@ -118,7 +118,7 @@ var info = {
 	popupsUpdateTaskName: function() {
 		layer.open({
 			type: 1,
-			title: ['编辑任务', 'color:#fff;background-color:#40AFFE;;border-radius: 7px'],
+			title: ['编辑任务', 'color:#fff;background-color:#40AFFE;text-align: center;border-radius: 7px'],
 			shadeClose: true,
 			shade: 0.8,
 			skin: 'myskin',
