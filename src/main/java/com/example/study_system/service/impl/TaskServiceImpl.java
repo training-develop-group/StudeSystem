@@ -12,6 +12,7 @@ import com.example.study_system.common.ResultDTO;
 import com.example.study_system.dao.TaskInfoMapper;
 import com.example.study_system.emun.ResultEmun;
 import com.example.study_system.emun.TaskEnum;
+import com.example.study_system.model.JUserTaskInfo;
 import com.example.study_system.model.TaskInfo;
 import com.example.study_system.model.UserInfo;
 import com.example.study_system.service.base.BaseService;
@@ -32,9 +33,9 @@ public class TaskServiceImpl extends BaseService implements ITaskService{
 	//获取任务类型
 	public List<String> taskTypeEnum(){
 		List<String> taskType = new ArrayList<String>();	
-		taskType.add(TaskEnum.PATH1.getPath());
-		taskType.add(TaskEnum.PATH2.getPath());
-		taskType.add(TaskEnum.PATH3.getPath());
+		taskType.add(TaskEnum.COMPREHENSIVE_TASK.getPath());
+		taskType.add(TaskEnum.LEARNING_TASK.getPath());
+		taskType.add(TaskEnum.TEST_TASK.getPath());
 	
 		return taskType;
 	}
@@ -42,8 +43,17 @@ public class TaskServiceImpl extends BaseService implements ITaskService{
 		return userInfoMapper.selectUserAll();
 	}
 	
-	
+	//查询查看任务对像
+	public List<JUserTaskInfo> selectTaskUsers(Long taskId){
+		return jUserTaskInfoMapper.selectByTaskIdusers(taskId);
+	}
 	//查询end
+	
+	
+	//添加任务
+	public int insertTask(TaskInfo taskInfo) {
+		return taskInfoMapper.insert(taskInfo);
+	}
 	
 	
 	

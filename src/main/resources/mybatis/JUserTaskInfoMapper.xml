@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.study_system.dao.JUserTaskInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.example.study_system.model.JUserTaskInfo" >
+  
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="userName" property="user_name" jdbcType="VARCHAR" />
+    <result column="scoure" property="scoure" jdbcType="INTEGER" />
+    
+  </resultMap>
+ 
+  <sql id="Base_Column_List" >
+   user_name , status , scoure
+  </sql>
+
+  <select id="selectByTaskIdusers" resultMap="BaseResultMap" parameterType="java.lang.Long">
+  select 
+  a.user_name ,  d.STATUS  , c.score 
+  from manage_system.task_info b, manage_system.j_user_paper c ,manage_system.user_info a ,manage_system.j_user_task d 
+  where 
+  b.task_id = c.task_id 
+  and a.user_id = c.user_id 
+  and a.user_id=d.user_id
+  and d.task_id=b.task_id
+  <if test="taskId!=null">
+  and b.task_id=${taskId};
+  </if>
+  </select>
+ 
+</mapper>

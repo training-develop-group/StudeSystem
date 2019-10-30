@@ -3,9 +3,9 @@ package com.example.study_system.emun;
 import com.example.study_system.Path;
 
 public enum TaskEnum {
-    PATH1(1,"综合任务"), 
-    PATH2(2,"学习任务"), 
-    PATH3(3,"测试任务"), ;
+	COMPREHENSIVE_TASK(1,"综合任务"), 
+	LEARNING_TASK(2,"学习任务"), 
+	TEST_TASK(3,"测试任务"), ;
    
     private String path;
     private int id;

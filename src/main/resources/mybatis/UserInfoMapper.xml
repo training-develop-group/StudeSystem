@@ -17,7 +17,7 @@
   </sql>
   <select id="selectUserAll" resultMap="BaseResultMap">
   	select   user_id, user_name, password,status
-  	from user_info
+  	from user_info where st_role_id = 1
   </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 

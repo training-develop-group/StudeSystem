@@ -25,6 +25,10 @@
   <sql id="Blob_Column_List"  >
     task_remark
   </sql>
+  
+  
+  
+
   <update id="updateByIdTaskName" parameterType="com.example.study_system.model.TaskInfo">
   update task_info set task_name = #{taskName,jdbcType=VARCHAR}
     where task_id = #{taskId,jdbcType=BIGINT}
@@ -58,10 +62,9 @@
       start_time, end_time, c_time, 
       m_time, c_user, m_user, 
       task_remark)
-    values (#{taskId,jdbcType=BIGINT}, #{resId,jdbcType=BIGINT}, #{paperId,jdbcType=BIGINT}, 
+    values (null, #{resId,jdbcType=BIGINT}, #{paperId,jdbcType=BIGINT}, 
       #{taskType,jdbcType=INTEGER}, #{taskName,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
-      #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, #{cTime,jdbcType=TIMESTAMP}, 
-      #{mTime,jdbcType=TIMESTAMP}, #{cUser,jdbcType=VARCHAR}, #{mUser,jdbcType=VARCHAR}, 
+      #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, now(), now(), 'a','a',
       #{taskRemark,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.example.study_system.model.TaskInfo" >
