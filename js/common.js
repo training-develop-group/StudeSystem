@@ -125,7 +125,36 @@ var All = {
 			$('.Statistics').click(function(){
 				window.location.href = "../StatisticsPage/StatisticsPage.html";
 			})
-
+			
+			$('.logout').click(function(){
+				console.log("退出");
+				// layui.use("layer", function() {
+				// 	var layer = layui.layer;
+				// 	layer.open({
+				// 		type: 1 //Page层类型
+				// 		,closeBtn: 0
+				// 		,area: ['789px', '210px']
+				// 		,title: ['新建试卷', 'background-color: #279ef0;text-align: center;font-size: 16px;line-height: 50px;color:white;letter-spacing: 5px;padding: 0px;']
+				// 		// ,shade: 0.6 //遮罩透明度
+				// 		,content: '<div class="inputLocation">'+
+				// 				'<span>试卷名称</span>'
+				// 				+ '<input type="text" autocomplete="off" id="nameOfExaminationPaper" class="layui-input">'
+				// 				+ '<br />'
+				// 				+ '<button type="button" class="layui-btn layui-btn-primary newTestPaperConfirm">确认</button>'
+				// 				+ '<button type="button" class="layui-btn layui-btn-primary newTestPaperCancel">取消</button>'
+				// 			+ '</div>'
+				// 	});
+				// 	// 点击确认
+				// 	$('.newTestPaperConfirm').click(function() {
+				// 		// 调用添加方法
+				// 		info.increase();
+				// 	});
+				// 	// 点击取消
+				// 	$('.newTestPaperCancel').click(function() {
+				// 		layer.closeAll();
+				// 	});
+				// });
+			})
 
 			// //点击头像显示推出登陆
 			// $('body').off('click').on('click',function () {
