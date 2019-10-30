@@ -407,6 +407,7 @@ var info = {
 				success(res) {
 					alert('添加成功(弹窗待样式)');
 					location.reload();
+
 				}
 			});
 		});

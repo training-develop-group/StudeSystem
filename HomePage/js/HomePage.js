@@ -1,6 +1,6 @@
 /**
- * @name: 
- * @authorï¼
+ * @name:
+ * @author:
  */
 
 
