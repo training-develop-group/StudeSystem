@@ -10,19 +10,6 @@ $(function() {
 		var form = layui.form;
 		info.init();
 	});
-	
-	$(".search").focus(function() {
-		$('.searchIcon').hide();
-	});
-	$(".search").blur(function() {
-		if ($('.search').val() == '')
-			$('.searchIcon').show();
-	});
-	// $('.EditorTestPaper').click(function() {
-	// 	console.log(1);
-	// 	// 跳转到试题
-	// 	window.location.href = "../../ExaminationPaperPage/ExaminationPaperPage.html";
-	// });
 	// 资源
 	$('#resource').click(function(){
 		window.location.href = "../../../ResourcePage/ResourcePage.html";
@@ -70,10 +57,6 @@ $(function() {
 	// 	var vals = arr.join(",");
 	// 	console.log(vals,222);
 	// });
-	// 解析
-	$('.toView').click(function() {
-		info.toViewAnalysis();
-	});
 });
 
 var info = {
@@ -83,15 +66,13 @@ var info = {
 			var form = layui.form;
 			form.render('select');
 		});
-		// info.TableDrawing();
+		info.TableDataRequest();
 	},
 	//表格数据请求
 	TableDataRequest: function() {
+		var paperId = 2;
 		$.ajax({
-			url: '',
-			data: {
-			},
-			dataType: 'json',
+			url: MCUrl + 'manage_system/paper/' + paperId,
 			Type: 'GET',
 			success: function(res) {
 				if (res || res.data !== null) {
@@ -104,36 +85,33 @@ var info = {
 		});
 	},
 	//表格会绘制
-	TableDrawing: function() {
+	TableDrawing: function(data) {
 		var Html = [];
-		var data = {
-			// total: data.total,
-			// list: data.list,
-			// pageNum: data.pageNum
-		};
-		
-		// data.list.forEach(function(item, index) {
+		data.questions.forEach(function(item, index) {
 			Html.push('<li class="sortableitem">');
 			Html.push('<div class="topicFramework">');
-			Html.push('<p class="num">1.单选题（2018）</p>');
-			Html.push('<p class="distance">春季里开花，十四五六。这一词，出现在那个小品里（）</p>');
-			Html.push('<p class="distance">A. 如此包装</p>');
-			Html.push('<p class="distance">B. 打工奇遇</p>');
-			Html.push('<p class="distance">C. 功夫令</p>');
-			Html.push('<p class="distance">D. 追星族</p>');
+			Html.push('<input type="text" class="qusetionId" value="' + item.paperId + '" hidden="hidden"/>');
+			if (item.questionType = 1){
+				item.questionType = '单选题';
+			} else {
+				item.questionType = '多选题';
+			}
+			Html.push('<p class="num">'+ (index + 1) +'. ' + item.questionType + '</p>');
+			Html.push('<p class="distance">' + item.content + '</p>');
+			item.optionInfo.forEach(function(items, index) {
+				Html.push('<p class="distance">' + items.optionType + ' ' + items.content + '</p>');
+			});
 			Html.push('</div>');
 			Html.push('<div class="functionBox">');
 			Html.push('<button class="toView"><i class="layui-icon layui-icon-search"></i>查看解析</button>');
-			// Html.push('<button class="fraction"><img src="../imgs/f.png"  alt="" />设定分值</button>');
-			// Html.push('<button class="edit"><i class="layui-icon layui-icon-edit"></i>编辑</button>');
-			// Html.push('<button class="moveOut"><i class="layui-icon layui-icon-delete"></i>移出</button>');
-			// Html.push('<button class="moveup"><i class="layui-icon layui-icon-up"></i>上移</button>');
-			// Html.push('<button class="movedown"><i class="layui-icon layui-icon-down"></i>下移</button>');
 			Html.push('</div>');
 			Html.push('</li>');
-		// });
-		
+		});
 		$('.mobileFramework').html(Html.join(''));
+		// 解析
+		$('.toView').click(function() {
+			info.toViewAnalysis();
+		});
 	},
 	// 查看解析(弹窗)
 	toViewAnalysis : function(){
