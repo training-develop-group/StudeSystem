@@ -94,4 +94,6 @@ body {
 .errorMsg p {
     color: #ff5452;
     font-size: 12px;
+    height: 13px;
+    width: 100%;
 }
