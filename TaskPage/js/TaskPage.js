@@ -1,11 +1,38 @@
 $(function() {
-	info.Page()
 	info.selectTaskCount()
+	info.selectAllUser('')
+	info.selectTaskType(1)
 
-	info.selectTaskType()
+	info.TableDataRequest();
 	layui.use(['layer', 'form', 'laydate'], function() {
 		var layer = layui.layer,
 			form = layui.form;
+		// 
+
+
+		form.on('checkbox(Staff)', function(data) {
+
+
+			var a = data.elem.checked;
+			if (a == true) {
+				$(".checkAll").prop("checked", true);
+				form.render('checkbox');
+			} else {
+				$(".checkAll").prop("checked", false);
+				form.render('checkbox');
+			}
+
+		});
+		// form.on('checkbox', function(data) {
+		// 	if (data.elem.checked) {
+		// 		$('input[type=checkbox]').prop('checked', false);
+		// 		$(data.elem).prop('checked', true);
+		// 	}
+		// 	form.render();
+		// });
+		$('.selectResource').click(function() {
+
+		})
 		laydate = layui.laydate;
 		//执行一个laydate实例
 		laydate.render({
@@ -21,23 +48,72 @@ $(function() {
 		All.getMenu({
 			num: 3
 		});
+		$('.search').keypress(function(e) {
+			if (e.which == 13) {
+				var search = $('.search').val()
+
+				info.selectTaskType(1, search);
+
+
+			}
+		})
+		form.on('select(fangxiang)', function(data) {
+			var value = data.value;
+			if (value == '1') {
+				$('.selectPapers').show();
+				$('.selectResource').show();
+			} else if (value == '2') {
+				$('.selectResource').show();
+				$('.selectPapers').hide();
+
+			} else if (value == '3') {
+				$('.selectPapers').show();
+				$('.selectResource').hide();
+
+
+			}
+
+		})
+		form.render('select');
+		form.render('checkbox');
 	});
-	$('.selectResource').click(function() {
-		info.selectResourceList(1);
+	$('.resourceSelection').click(function() {
+		layer.close(layer.index);
 	})
+	$('.usersSelectOk').click(function() {
+		var Html = [];
+		$.each($("[name='Staff']:checked"), function(i, val) {
+			Html.push('<p >' + $(this).siblings('i').text() + '<input type="text"  hidden="" id="" value="' + $(this).val() +
+				'" /></p>')
+		})
+		$('.taskUsers').html(Html.join(''));
+		layer.close(layer.index);
+	})
+
 	//点击发布任务调出弹窗
 	$('.releasTeask').click(function() {
 		info.showDisplay()
 	});
 	$('.selectResource').click(function() {
+		info.selectResourceList(1);
 		info.selectResources()
 	})
 
 });
+$(".userNameRetrieval").keypress(function(e) {
+	if (e.which == 13) {
+		var userNameRetrieval = $('.userNameRetrieval').val()
+		info.selectAllUser(userNameRetrieval);
+
+
+	}
+});
+
 //分页
 $('.addOk').click(function() {
-	console.log('aSdasdasdasd')
+	// console.log('aSdasdasdasd')
 	info.addTask();
+
 })
 var info = {
 	//页面主方法
@@ -51,6 +127,43 @@ var info = {
 	},
 	showDisplay: function() {
 		info.openAddRolePage();
+	},
+	TableDataRequest: function() {
+		$.ajax({
+			url: LBUrl + 'manage_system/paper/papers',
+			// data: {
+
+			// },
+			dataType: 'json',
+			Type: 'GET',
+			success: function(res) {
+				console.log(res)
+				if (res || res.data !== null) {
+					var Html = []
+					res.data.forEach(function(item, index) {
+						Html.push('<tr style="margin-top: -10px;">')
+						Html.push('<td style="text-align: center;">' + item.paperName + '</td>')
+						Html.push('<td style="text-align: center;">10</td>')
+						Html.push('<td style="text-align: center;">20</td>')
+						Html.push(
+							'<td style="text-align: center; float: left; margin-left: 20px; "><div  class="site-demo-button"><button value="' +
+							item.paperId +
+							'" type="button" class="layui-btn layui-btn-primary layui-btn-sm layui-btn-normal selectPaper" style="width: 70px;">选择</button></div></td>	'
+						)
+						Html.push('</tr>')
+
+					})
+					$('#papgeContent').html(Html.join(''));
+					$('.selectPaper').click(function() {
+					$('.selectPapers').val($(this).val());
+					layer.close(layer.index);
+					})
+				}
+			},
+			error: function(e) {
+
+			}
+		});
 	},
 	//弹出新建试卷
 	openAddRolePage: function(userId) {
@@ -103,7 +216,7 @@ var info = {
 
 		layer.open({
 			type: 1,
-			title: ['选择资源', 'color:#fff;background-color:#40AFFE;;border-radius: 7px '],
+			title: ['选择资源', 'color:#fff;background-color:#40AFFE;border-radius: 7px '],
 			shadeClose: true,
 			shade: 0.8,
 			skin: 'myskin',
@@ -118,12 +231,11 @@ var info = {
 	popupsUpdateTaskName: function() {
 		layer.open({
 			type: 1,
-			title: ['编辑任务', 'color:#fff;background-color:#40AFFE;text-align: center;border-radius: 7px'],
+			title: ['编辑任务', 'color:#fff;background-color:#40AFFE;;border-radius: 7px'],
 			shadeClose: true,
 			shade: 0.8,
 			skin: 'myskin',
 			area: ['700px', '200px'],
-
 			content: $('#updateTaskName'),
 			success: function() {
 
@@ -131,27 +243,25 @@ var info = {
 		})
 	},
 	// 分页插件
-	Page: function() {
+	Page: function(total, pageNum) {
 		layui.use('laypage', function() {
 			var laypage = layui.laypage;
 			//执行一个laypage实例
 
 			laypage.render({
-				elem: 'Page' //注意，这里的 test1 是 ID，不用加 # 号
-					,
-				count: '1111' //数据总数，从服务端得到
-					,
-
+				elem: 'Page', //注意，这里的 test1 是 ID，不用加 # 号
+				count: total, //数据总数，从服务端得
 				limit: '10',
 				theme: '#1E9FFF',
-				curr: '4',
+				curr: pageNum,
 				groups: '5',
 				layout: ['prev', 'page', 'next', 'limits', 'skip'],
-				// 				jump: function(item, first) {
-				// 					if (!first) {
-				// 
-				// 					}
-				// 				}
+				jump: function(item, first) {
+					if (!first) {
+						console.log()
+						info.selectTaskType(item.curr, $('.search').val());
+					}
+				}
 			});
 
 		})
@@ -167,7 +277,20 @@ var info = {
 			dataType: 'json',
 			type: 'GET',
 			success(res) {
-				console.log(res)
+				var Html = [];
+				res.forEach(function(item, index) {
+					Html.push('<tr style="margin-top: -10px;">');
+					Html.push('<td style="text-align: center;">' + item.userName + '</td>')
+					var status = ''
+					if (item.status == '0' && item.score == '0') {
+						status = '未完成'
+					} else {
+						status = '已完成'
+					}
+					Html.push('<td style="text-align: center;">' + status + '</td>')
+					Html.push('<td style="text-align: center;float: left; margin-left: 20px;">' + item.score + '</td></tr>')
+				})
+				$('#taskUserDegreeCompletion').html(Html.join(''));
 			}
 		})
 	},
@@ -179,24 +302,55 @@ var info = {
 			dataType: 'json',
 			type: 'GET',
 			success(res) {
-				console.log(res)
+
+			}
+		})
+	},
+	//查询所有用户
+	selectAllUser: function(userName) {
+
+		$.ajax({
+			url: LBUrl + 'manage_system/task/users',
+			data: {
+				'userName': userName
+			},
+			dataType: 'json',
+			type: 'GET',
+			success(res) {
+				var Html = []
+				res.forEach(function(item, index) {
+					Html.push('<span class="layui-form-label" style="font-size: 16px;"><input type="checkbox" value="' + item.userId +
+						'"class="checkAll " name="Staff" lay-skin="primary" lay-filter="" ><i>' + item.userName +
+						'</i></span>')
+
+				})
+				$('#selectTaskUsers').html(Html.join(''));
+
 			}
 		})
 	},
 
 	//查询全部
-	selectTaskAll: function(resa) {
+	selectTaskAll: function(resa, pageNum, search) {
+		if (search == undefined) {
+			search = null
+		}
+		console.log(search)
 		$.ajax({
 			url: LBUrl + 'manage_system/task/tasks',
-			data: {},
+			data: {
+				"pageNum": pageNum,
+				"pageSize": 10,
+				'taskName': search
+			},
 			dataType: 'json',
 			type: 'GET',
 			success(res) {
 				console.log(res)
 				var Html = [];
-				res.data.forEach(function(item, index) {
+				res.data.list.forEach(function(item, index) {
 					Html.push('<tr>');
-					Html.push('<td style="float: left;">' + item.taskName + '</td>');
+					Html.push('<td style="float: left;" class="oneselfTaskName">' + item.taskName + '</td>');
 					resa.forEach(function(itemTypeName, index) {
 						var aa = itemTypeName.split(",");
 						if (item.taskType == aa[0]) {
@@ -214,9 +368,14 @@ var info = {
 					);
 					Html.push('</tr>');
 				})
+
+
+				info.Page(res.data.total, res.data.pageNum);
 				$('#taskContent').html(Html.join(''));
 				//点击弹出编辑
 				$('.updateTaskName').click(function() {
+					var taskName = $(this).parents('tr').children('.oneselfTaskName').text();
+					$('.taskNameupdate').val(taskName)
 					info.popupsUpdateTaskName();
 					$('.confirmAdd').val($(this).val())
 				})
@@ -225,14 +384,11 @@ var info = {
 					info.delectTask($(this).val())
 				})
 				$('.confirmAdd').click(function() {
-
 					info.updateTaskName($(this).val())
+					selectTaskType($('.layui-laypage-skip .layui-input').val(), $('.search').val())
 				})
 				$('.lookOver').click(function() {
 					info.selectTaskUsers($(this).val())
-				})
-				//弹出查看
-				$('.lookOver').click(function() {
 					layer.open({
 						type: 1,
 						title: ['查看任务', 'color:#fff;background-color:#40AFFE;;border-radius: 7px '],
@@ -246,13 +402,63 @@ var info = {
 						}
 					})
 				})
+				//弹出查看
+
 			}
 		})
 	},
+	//添加任务
 	addTask: function() {
+		var resId = $('input:radio:checked').val();
+		var mistake = '';
 		// var resId=$("input[name=res]:checked").val();
-		var resId = 1;
+		var index = true;
+		var userId = ''
+		$.each($("[name='Staff']:checked"), function(i, val) {
+			userId += ',' + val.value
+		})
+		if ($('#test1').val() == '') {
+			mistake = '请选择开始时间!';
+			index = false;
+		}
+		if ($('#test2').val() == '') {
 
+			mistake = '请选择结束时间'
+			index = false;
+		}
+		if ($('#test1').val() > $('#test2').val()) {
+			mistake = '结束时间不能小于开始时间'
+			index = false;
+		}
+		if (userId == '') {
+			mistake = '请选择做任务人员'
+			index = false;
+		}
+		if ($('#taskType').val() == '1') {
+			if (resId == undefined) {
+				mistake = '请选择资源！';
+				index = false;
+			}
+			if ($('.selectPapers').val()==''){
+				mistake = '请选择试卷！';
+				index = false;
+			}
+
+		} else if ($('#taskType').val() == '2') {
+			if (resId == undefined) {
+				mistake = '请选择资源！';
+				index = false;
+			}
+		} else if ($('#taskType').val() == '3') {
+				if ($('.selectPapers').val()==''){
+				mistake = '请选择试卷！';
+				index = false;
+			}
+		}
+		if ($('.taskName').val() == '') {
+			mistake = '任务名不能为空哦！';
+			index = false;
+		}
 		var data = {
 			'resId': resId,
 			'paperId': 1,
@@ -260,28 +466,40 @@ var info = {
 			'taskName': $('.taskName').val(),
 			'taskRemark': $('.taskRemark').val(),
 			'status': 1,
+
 			'startTime': dateFormata($('#test1').val()),
 			'endTime': dateFormata($('#test2').val()),
+			'userId': userId
 
 		}
-		console.log(data)
-		$.ajax({
-			url: LBUrl + 'manage_system/task/tasks',
-			data: JSON.stringify(data),
-			dataType: 'json',
-			type: 'POST',
-			contentType: 'application/json;charset=utf-8',
-			success(res) {
-				console(res)
-			}
-		})
+		console.log(data.startTime)
+		if (index != false) {
+
+			console.log(data)
+			$.ajax({
+				url: LBUrl + 'manage_system/task/tasks',
+				data: JSON.stringify(data),
+				dataType: 'json',
+				type: 'POST',
+				contentType: 'application/json;charset=utf-8',
+				success(res) {
+					// console.log(res)
+				}
+			})
+			layer.msg('添加成功');
+			// layer.close(layer.index);
+			location.replace(document.referrer);
+		} else {
+			layer.msg(mistake);
+		}
 	},
 	//查询资源
 	selectResourceList: function(resType) {
 		$.ajax({
 			url: TDXUrl + 'manage_system/resource/resources',
 			data: {
-
+				'pageNum': '',
+				'pageSize': '',
 				'resType': resType
 			},
 			dataType: 'json',
@@ -291,17 +509,18 @@ var info = {
 				console.log(res)
 				var Html = [];
 				res.data.forEach(function(item, index) {
-					Html.push('<div style="float: left;">')
+					Html.push('<div style="float: left; " class="layui-input-block " >')
 					Html.push(
-						'<input type="radio" name="res" style="position:absolute ;margin-top: 20px; margin-left: 20px; "value="' +
+						'  <input type="radio" name="res" class=" "  name="Staff" lay-skin="primary" lay-filter="Staff"  style="position:absolute ;margin-top: 20px; margin-left: -100px; " value="' +
 						item.resId + '">')
 					Html.push(
-						'<div style="width: 150px; height: 100px; border: 1px solid #01AAED;margin: 20px; margin-bottom: 0px;" >')
+						'<div style="width: 180px; height: 120px; border: 1px solid #01AAED;margin-top:20px; margin-bottom: 0px; margin-left: -100px;" >'
+					)
 					Html.push('<img src="' + item.path + '" alt="" style="width: 150px; height: 99px;">')
 					Html.push('</div>')
 					Html.push(
-						'<p style="margin-left: 20px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis; width:80px">' +
-						item.resName + '1</p>')
+						'<p style="margin-left:-100px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis; width:80px">' +
+						item.resName + '</p>')
 					Html.push('</div>')
 				})
 				$('#resource').html(Html.join(''));
@@ -310,7 +529,7 @@ var info = {
 		})
 	},
 	//查询任务类型
-	selectTaskType: function() {
+	selectTaskType: function(pageNum, search) {
 		$.ajax({
 			url: LBUrl + 'manage_system/task/type',
 			data: {},
@@ -324,29 +543,38 @@ var info = {
 					Html.push('<option value="' + aa[0] + '">' + aa[1] + '</option>')
 				})
 				$('#taskType').html(Html.join(''));
-				info.selectTaskAll(res)
+				info.selectTaskAll(res, pageNum, search)
+
 			}
 		})
 	},
 	//修改任务名根据主键
 	updateTaskName: function(taskId) {
+
 		var taskName = $('.taskNameupdate').val();
 		var data = {
-			'taskName': taskName
+			'taskName': taskName,
 		}
-		$.ajax({
-			url: LBUrl + 'manage_system/task/task/' + taskId,
-			data: JSON.stringify(data),
-			dataType: 'json',
-			type: 'POST',
-			contentType: 'application/json;charset=utf-8',
-			success(res) {
-				if (res) {
-					alert('成功')
-					window.location.reload();
+		if (taskName != '') {
+
+
+			$.ajax({
+				url: LBUrl + 'manage_system/task/task/' + taskId,
+				data: data,
+				dataType: 'json',
+				type: 'POST',
+				// contentType: 'application/json;charset=utf-8',
+				success(res) {
+					if (res) {
+
+						layer.close(layer.index);
+						layer.msg('添加成功');
+					}
 				}
-			}
-		})
+			})
+		} else {
+			layer.msg('不可为空');
+		}
 	},
 	//刪除任務 根据主键删除
 	delectTask: function(taskId) {
@@ -357,8 +585,9 @@ var info = {
 			type: 'DELETE',
 			success(res) {
 				if (res) {
-					alert('删除成功')
-					window.location.reload();
+
+					// window.location.reload();
+					info.selectTaskType(1);
 				}
 			}
 		})
@@ -384,5 +613,5 @@ var dateFormata = function(time) {
 	var minutes = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
 	var seconds = date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds();
 	// 拼接
-	return year + "-" + month + "-" + day + " " + (hours - 8) + ":" + minutes + ":" + seconds;
+	return year + "-" + month + "-" + day + " " + (hours) + ":" + minutes + ":" + seconds;
 }

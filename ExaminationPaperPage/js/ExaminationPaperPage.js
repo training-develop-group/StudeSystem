@@ -75,8 +75,8 @@ var info = {
 			Html.push('<td class="middle">' + item.single + '</td>');
 			Html.push('<td class="middle">' + item.many + '</td>');
 			Html.push('<td>');
-			Html.push('<button type="button" class="layui-btn layui-btn-primary edit">编辑</button>');
-			Html.push('<button type="button" class="layui-btn layui-btn-primary selectedTopic">选题</button>');
+			Html.push('<button type="button" class="layui-btn layui-btn-primary edit">重命名</button>');
+			Html.push('<button type="button" class="layui-btn layui-btn-primary selectedTopic">编辑</button>');
 			Html.push('<button type="button" class="layui-btn layui-btn-primary toView">查看</button>');
 			Html.push('<button type="button" class="layui-btn layui-btn-primary delete">删除</button>');
 			Html.push('</td>');
@@ -102,14 +102,13 @@ var info = {
 		});
 		// 点击查看
 		$('.toView').click(function() {
-			// window.location.href = "htmls/ViewTestPaper/ViewTestPaper.html";
-			window.open("htmls/ViewTestPaper/ViewTestPaper.html" , "_blank");
+			var paperId = $(this).parent().parent().find('.paperId').text();
+			window.open("htmls/ViewTestPaper/ViewTestPaper.html?value=" + paperId + "" , "_blank");
 		});
 		// 点击选题
 		$('.selectedTopic').click(function() {
-			// window.location.href = "htmls/EditorTestPaper/EditorTestPaper.html";
-			window.open("htmls/EditorTestPaper/EditorTestPaper.html" , "_blank");
-			// window.open("../TestQuestions/TestQuestions.html" , "_blank");
+			var paperId = $(this).parent().parent().find('.paperId').text();
+			window.open("htmls/EditorTestPaper/EditorTestPaper.html?value=" + paperId + "" , "_blank");
 		});
 		// 点击编辑进行重命名
 		$('.edit').click(function() {

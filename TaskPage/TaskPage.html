@@ -43,7 +43,7 @@
 
 							</colgroup>
 							<thead>
-								<tr style="margin-top: -10px;">
+								<tr style="margin-top: -10px; ">
 									<th style="text-align: center; float: left; font-weight:bold">任务名</th>
 									<th style="text-align: center;font-weight:bold">任务类型</th>
 									<th style="text-align: center;font-weight:bold">任务时间</th>
@@ -65,7 +65,7 @@
 				<div style="margin-left: 50px;">
 					<label class="layui-form-label " style="font-size: 16px;">任务名称</label>
 					<div class="layui-input-block">
-						<input type="text" name="title" required lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input taskName"
+						<input type="text" name="title" required lay-verify="required" placeholder="请输入任务名" autocomplete="off" class="layui-input taskName"
 						 style="width: 400px; border-radius: 7px;">
 					</div>
 				</div>
@@ -73,22 +73,19 @@
 			<div class="layui-form-item" style="width: 300px; margin-left: 50px;">
 				<label class="layui-form-label" style="font-size: 16px;">任务类型</label>
 				<div class="layui-input-block" style="margin-bottom: 20px;">
-					<select name="city" lay-verify="required" id="taskType">
+					<select name="city" lay-verify="required" id="taskType" lay-filter="fangxiang">
 
 					</select>
 
 				</div>
-				<label href=""  class="selectResource">
-					> 选择资源</label><br><br>	
-				<label href="" class="selectPapers"> >
-					选择试卷</label><br>	<br>	
+				<p class="selectResourcea"><label href=""  class="selectResource">
+					> 选择资源</label></p>
+				<p class="selectPapersa"><label href="" class="selectPapers" > >
+					选择试卷</label></p>
 				<label href="" style="font-size: 16px; margin-left: 40px; ">任务对象</label> >
 				<label href="" style="" class="selectPersonnel">选择人员</label><br><br>
 				<div class="taskUsers" style="">
-					<p>姓名1</p>
-					<p>姓名1</p>
-					<p>姓名1</p>
-					<p>姓名1</p>
+					
 				</div>
 				<div class="layui-form-item" style=" margin-top: 20px;">
 					<div>
@@ -105,24 +102,27 @@
 					<div class="layui-form-item layui-form-text">
 						<label class="layui-form-label" style="font-size: 16px;">任務描述</label>
 						<div class="layui-input-block">
-							<textarea name="desc" placeholder="请输入内容" class="layui-textarea taskRemark" style="width:400px ;height: 150px;resize: none;"></textarea>
+							<textarea name="desc" placeholder="请输入描述" class="layui-textarea taskRemark" style="width:400px ;height: 150px;resize: none;"></textarea>
 						</div>
 					</div>
 				</div>
 				<div class="layui-form-item" style=" margin-top: 15px; margin-left: 250px; ">
-					<button type="button" class="addOk button" style="width: 100px; height: 25px;background-color: #93D1FF; ">确认</button>				
+					<!-- <button type="button" class="" style="background-color: #93D1FF; ">确认</button>	 -->
+				<button type="button" style="margin-left: 0; width: 100px; height: 30px;" class="layui-btn layui-btn-primary layui-btn-sm layui-btn-normal okbtn addOk button" >确认</button>
 				</div>
 			</div>
 
 		</div>
-		<div class="" id="selectResource" style="display: none; padding: 50px; padding-top: 0; padding-bottom: 0;">
+		<div id="selectResource">
 			<div style="float: none; width: 500px; height: 600px;">
-				<div style=" width: 700px;border-bottom: 1px solid #00FFFF;margin-left: -50px;margin-top: 10px;">
+				<div style=" width: 700px;margin-left: -50px;margin-top: 10px;">
+					
 					<ul class="layui-nav" style="width: 400px; background-color: #FFFFFF; ">
-						<li class="layui-nav-item layui-this"><a href="javascript:void(0);" style="color: blue;">视频资源</a></li>
-						<li class="layui-nav-item"><a href="javascript:void(0);" style="color: blue;">文档资源</a></li>
-						<li class="layui-nav-item"><a href="javascript:void(0);" style="color: blue;">音频资源</a></li>
+						<li class="layui-nav-item layui-this"><a href="javascript:void(0);" >视频资源</a></li>
+						<li class="layui-nav-item"><a href="javascript:void(0);" >文档资源</a></li>
+						<li class="layui-nav-item"><a href="javascript:void(0);">音频资源</a></li>
 					</ul>
+					<p style=" width: 600px;border-bottom: 2px solid #1e9fff; margin-left: 20px;"></p>
 				</div>
 				<div style="float: left;width: 600px;" id="resource">
 					
@@ -139,7 +139,7 @@
 			<div>
 				<div class="taskNameupdateBox">
 					<label class="layui-form-label ">任务名称</label>
-					<input type="text" name="title" required lay-verify="required" autocomplete="off" class="layui-input taskNameupdate">
+					<input type="text" name="title" required lay-verify="required" autocomplete="off" value="" class="layui-input taskNameupdate">
 				</div>
 				<div class="site-demo-button confirmAdd">
 					<button type="button" class="layui-btn layui-btn-normal layui-btn-sm layui-btn-normal okbtn" >确认</button>
@@ -166,7 +166,7 @@
 							<th style="text-align: center; float: left; margin-left: 20px;">任务得分</th>
 						</tr>
 					</thead>
-					<tbody id="">
+					<tbody id="taskUserDegreeCompletion">
 
 					</tbody>
 				</table>
@@ -191,23 +191,15 @@
 							<th style="text-align: center; float: left; margin-left: 20px;">操作</th>
 						</tr>
 					</thead>
-					<tbody id="taskContent">
-						<tr style="margin-top: -10px;">
-
-							<td style="text-align: center;">试卷名称</td>
-							<td style="text-align: center;">单选题</td>
-							<td style="text-align: center;">多选题</td>
-							<td style="text-align: center; float: left; margin-left: 20px; "><div class="site-demo-button">
-					<button type="button" class="layui-btn layui-btn-primary layui-btn-sm layui-btn-normal okbtn" style="width: 70px;">确认</button>
-				</div></td>	
-						</tr>
+					<tbody id="papgeContent">
+						
 					</tbody>
 				</table>
 			</div>
 
 		</div>
 		<div id="selectPersonnel" style="padding: 20px;" hidden="">
-			<div class="iconSearch" style="padding: 3px 10px; "><img src="./../imgs/search.jpg"><input type="text" style="width: 150px; height: 30px;"></div>
+			<div class="iconSearch" style="padding: 3px 10px; "><img src="./../imgs/search.jpg"><input type="text" class="userNameRetrieval" style="width: 150px; height: 30px;"></div>
 			<div id="" class="layui-table layui-form" style="margin: 30px 0 20px 0; background-color: #FFFFFF;">
 				人员名单 <input type="checkbox" class="checkAll " lay-skin="primary" lay-filter="Staff">全选
 			</div>
@@ -215,7 +207,7 @@
 
 
 			</div>
-			<button type="button" style="border: none; background-color: rgb(39, 158, 240); width:100px ; height: 25px; margin-left: 230px;" class="usersSelectOk">确认</button>
+			<button type="button" style="margin-left: 230px;" class="layui-btn layui-btn-primary layui-btn-sm layui-btn-normal okbtn resourceSelection usersSelectOk" >确认</button>
 		</div>
 
 		<script src="../js/jQuery v3.4.1.min.js"></script>

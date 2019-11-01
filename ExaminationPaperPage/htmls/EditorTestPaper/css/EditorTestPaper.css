@@ -204,6 +204,9 @@ img{
 	width: 300px;
 	margin-left: 0px;
 }
+.analysis{
+	text-indent: 25px;
+}
 /* 给js调用的 */
 .prohibit{
 	background-color: #AAAAAA !important;

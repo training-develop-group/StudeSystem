@@ -66,13 +66,18 @@ var info = {
 			var form = layui.form;
 			form.render('select');
 		});
-		info.TableDataRequest();
+		// 获取URL里的参数
+		var urlinfo = window.location.href;
+		value = urlinfo.split("?")[1].split("value=")[1];
+		var PaperId = decodeURI(value);
+		
+		info.TableDataRequest(PaperId);
 	},
 	//表格数据请求
-	TableDataRequest: function() {
-		var paperId = 2;
+	TableDataRequest: function(PaperId) {
+		// var paperId = 2;
 		$.ajax({
-			url: MCUrl + 'manage_system/paper/' + paperId,
+			url: MCUrl + 'manage_system/paper/' + PaperId,
 			Type: 'GET',
 			success: function(res) {
 				if (res || res.data !== null) {
@@ -87,11 +92,12 @@ var info = {
 	//表格会绘制
 	TableDrawing: function(data) {
 		var Html = [];
+		console.log(data);
 		data.questions.forEach(function(item, index) {
 			Html.push('<li class="sortableitem">');
 			Html.push('<div class="topicFramework">');
-			Html.push('<input type="text" class="qusetionId" value="' + item.paperId + '" hidden="hidden"/>');
-			if (item.questionType = 1){
+			Html.push('<input type="text" class="questionId" value="' + item.questionId + '" hidden="hidden"/>');
+			if (item.questionType == 1){
 				item.questionType = '单选题';
 			} else {
 				item.questionType = '多选题';
@@ -110,31 +116,48 @@ var info = {
 		$('.mobileFramework').html(Html.join(''));
 		// 解析
 		$('.toView').click(function() {
-			info.toViewAnalysis();
+			var QusetionId = $(this).parent().parent().find('.questionId').val();
+			info.toViewAnalysis(QusetionId);
 		});
 	},
 	// 查看解析(弹窗)
-	toViewAnalysis : function(){
-		layui.use("layer", function() {
-			var layer = layui.layer;
-			layer.open({
-				type: 1 //Page层类型
-				,closeBtn: 0
-				,area: ['790px', '300px']
-				,title: ['查看解析', 'background-color: #279ef0;text-align: center;font-size: 16px;line-height: 50px;color:white;letter-spacing: 5px;padding: 0px;']
-				// ,shade: 0.6 //遮罩透明度
-				,content: '<div class="answerContent">'
-				+ '<p>正确答案：<span class="answerOptions">A</span></p>'
-				+ '<p>答案解析：</p>'
-				+ '<p class="analysis">《如此包装》是由由二群执导，石林、沈永年创作，赵丽蓉、巩汉林、孟薇等表演的小品，于1995年1月30日在《1995年中央电视台春节联欢晚会》上演出。</p>'
-				+ '</div>'
-				,btn: ['确认'] //可以无限个按钮
-				,btn1: function(index, layero){
-					//按钮【确认】的回调
-					layer.close(index);
-				}
-			});
+	toViewAnalysis: function(questionId) {
+		// 解析内容
+		var Analysis = '未定义';
+		// 正确答案
+		var OptionType = '未知';
+		$.ajax({
+			url: MCUrl + 'manage_system/question/answer',
+			data: {
+				'questionId': questionId
+			},
+			dataType: 'json',
+			type: 'GET',
+			success(res) {
+				res.data.forEach(function(item, index) {
+					Analysis = item.analysis;
+					OptionType = item.optionType;
+				});
+				layui.use("layer", function() {
+					var layer = layui.layer;
+					layer.open({
+						type: 1 //Page层类型
+							,
+						closeBtn: 1,
+						area: ['790px', '300px'],
+						title: ['查看解析',
+								'background-color: #279ef0;text-align: center;font-size: 16px;line-height: 43px;color:white;letter-spacing: 5px;padding: 0px;'
+							]
+							// ,shade: 0.6 //遮罩透明度
+							,
+						content: '<div class="answerContent">' +
+							'<p>正确答案：<span class="answerOptions">' + OptionType + '</span></p>' +
+							'<p>答案解析：</p>' +
+							'<p class="analysis">' + Analysis + '</p>' +
+							'</div>'
+					});
+				});
+			}
 		});
 	}
-	
 }

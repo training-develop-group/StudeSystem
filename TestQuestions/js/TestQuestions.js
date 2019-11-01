@@ -178,8 +178,6 @@ var info = {
 					$('.PopupAnalysis .ViewParsing span').text(answer);
 				});
 			}
-
-
 		});
 	},
 	//添加

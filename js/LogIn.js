@@ -6,7 +6,7 @@ $(function() {
     	};
     	if (data.userName == '' || data.password == '') {
     		layer.msg('用户名或者密码不能为空');
-    		return;
+    		return false;
     	}
     	// $.ajax({
     	//     url: loginUrl + 'manage_system/login',

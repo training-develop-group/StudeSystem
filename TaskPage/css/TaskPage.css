@@ -4,6 +4,7 @@
 
 .layui-layer-content {
 	height: 150px;
+	
 }
 
 .layui-form-label {
@@ -11,16 +12,33 @@
 	padding: 0;
 	width: 100px;
 }
+.layui-nav .layui-nav-item a {
+	color: #000000;
+	
+}
+.layui-nav .layui-this a {
+	color: #FFFFFF;
+	
+}
 
+.layui-nav .layui-nav-item {
+	color: #66AFE9;
+	line-height: 30px;
+    height: 30px;
+	
+}
 ol,
 ul {
 	margin-top: 0px;
 	margin-bottom: 0px;
 }
-
+.layui-this > a{
+	color: #FFFFFF;
+}
 .layui-this {
 	background-color: #1E9FFF;
 	border-bottom: 0px;
+	
 }
 
 .taskNameupdate {
@@ -108,25 +126,36 @@ ul {
 .taskUsers>p {
 	line-height: 20px;
 }
-
+.selectPapersa {
+	margin-top: 20px;
+	margin-bottom: 20px;
+	}
+	
 .selectPapers {
 	font-size: 16px;
 	margin-left: 40px;
 
 	color: #5FB878;
 }
-
+.selectResourcea{
+	margin-top: 20px;
+}
+#selectResource{
+	display: none; padding: 50px; padding-top: 0; padding-bottom: 0; overflow: hidden;
+}
 .selectResource {
 	font-size: 16px;
 	margin-left: 40px;
-
+	
 	color: #5FB878;
 }
 
 #taskContent {
 	background-color: #FFFFFF;
 }
-
+#taskUserDegreeCompletion{
+	    background-color: #FFFFFF;
+}
 .box {
 	width: 100%;
 	height: 90%;
