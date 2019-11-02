@@ -1,179 +1,195 @@
 * {
-    color: #1b1b1b;
+	color: #1b1b1b;
 }
 
 body,
 html {
-    height: 100%;
-    width: 100%;
+	height: 100%;
+	width: 100%;
 }
 
 .title-header {
-    background-color: #289ef0;
-    width: 100%;
-    height: 60px;
-    /* margin-left: 10px; */
-    /* margin: 20px -738px; */
-    /* position: relative;
+	background-color: #289ef0;
+	width: 100%;
+	height: 60px;
+	/* margin-left: 10px; */
+	/* margin: 20px -738px; */
+	/* position: relative;
     left: 50%; */
-    border-radius: 7px 7px 0 0;
+	border-radius: 7px 7px 0 0;
 }
 
 .title-header-text {
-    font-size: 16px;
-    color: white;
-    line-height: 60px;
-    /* padding: 0 32px; */
-    margin-left: 32px;
+	font-size: 16px;
+	color: white;
+	line-height: 60px;
+	/* padding: 0 32px; */
+	margin-left: 32px;
 }
 
 .title-header-btn {
-    border-radius: 5px;
-    background-color: white;
-    height: 38px;
-    font-size: 16px;
-    border: none;
-    float: right;
-    margin-right: 20px;
-    line-height: 38px;
-    margin-top: 11px;
-    color: #279ef2;
+	border-radius: 5px;
+	background-color: white;
+	height: 38px;
+	font-size: 16px;
+	border: none;
+	float: right;
+	margin-right: 20px;
+	line-height: 38px;
+	margin-top: 11px;
+	color: #279ef2;
 }
-.testList {
-	
-}
+
 .content {
-    background-color: #FFFFFF;
-    width: 100%;
-    /* margin-left: 10px; */
-    min-height: 650px;
-    margin-top: 20px;
+	background-color: #FFFFFF;
+	width: 100%;
+	/* margin-left: 10px; */
+	min-height: 650px;
+	margin-top: 20px;
 }
 
 table {
-    width: calc(100% - 50px);
-    margin-left: 25px;
-    position: relative;
-    top: 5px;
+	width: calc(100% - 50px);
+	margin-left: 25px;
+	position: relative;
+	top: 5px;
 	table-layout: fixed;
 }
 
 .hiddenTableList {
-    position: absolute;
-    top: 45px;
-    /* margin: 0 25px; */
+	position: absolute;
+	top: 45px;
+	/* margin: 0 25px; */
 }
+
 td {
-    font-size: 14px;
-    border-bottom: 1px solid #E2E2E2;
-    line-height: 45px;
-    padding: 0 25px;
+	font-size: 14px;
+	border-bottom: 1px solid #E2E2E2;
+	line-height: 45px;
+	padding: 0 25px;
+	
+}
+td:nth-child(1) {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
 }
+
+
 .centerText {
-	text-align:center!important;
+	text-align: center !important;
 	/* vertical-align:middle!important; */
 }
 
 /* 选择器选中列表中的第五个td */
-.mainTabel > td:nth-child(5) {
+.mainTabel>td:nth-child(5) {
 	padding-left: 100px;
 }
 
-td > a {
-    padding: 0 75px 0 0;
-    font-size: 14px;
+td>button {
+	width: 50px;
+    height: 25px;
+    margin-right: 20px;
+    /* margin-left: 20px; */
+    background-color: #FFFFFF;
+    border: none;
+    float: left;
 }
 
-thead > tr > td {
-    font-weight: 600;
-    font-size: 16px;
+thead>tr>td {
+	font-weight: 600;
+	font-size: 16px;
+}
+
+#rightText {
+	padding: 0 33px!important;
 }
 
 /* 点击上传课件弹出层按钮 */
 .changeFile {
-	width: 120px;
-	height: 25px;
-	line-height: 25px;
 	background: #fff;
-	font-size: 16px;
-	position: absolute;
-	top: 15px;
-	left: 20px;
-	border-radius: 5px;
-	color: #000000;
+	font-size: 14px;
+	padding: 5px 18px;
+	line-height: initial;
+	height: auto;
+	margin: 10px 0 0 25px;
+	color: #9e9e9e;
 }
 
 /* 浮窗边框 */
 .layui-layer-iframe {
-    border-radius: 6px !important;
+	border-radius: 6px !important;
 }
 
 /* 浮窗标题 */
 .layui-layer-title {
-    border-radius: 6px 6px 0 0 !important;
-    padding: 0 !important;
+	border-radius: 6px 6px 0 0 !important;
+	padding: 0 !important;
 }
 
 .layui-layer {
-    border-radius: 6px !important;
+	border-radius: 6px !important;
 }
 
 .wrapperChangeFile {
-    padding: 50px;
+	padding: 50px;
 }
 
 .layui-layer-page .layui-layer-btn a {
-    height: 30px;
-    line-height: 30px;
-    padding: 0 70px;
+	height: 30px;
+	line-height: 30px;
+	padding: 0 70px;
 	margin: 5px 35px 0;
 }
 
 #hiddenVideo {
-    padding: 40px 50px;
+	padding: 40px 50px;
 }
 
 .layui-laypage a {
-    margin-left: 5px;
-    margin-right: 5px;
+	margin-left: 5px;
+	margin-right: 5px;
 }
 
 /* 音频大小和位置 */
-.Audio {
-    width: 550px;
-    margin-top: 45px;
-    margin-left: 100px;
+#myAudio {
+	width: 550px;
+	margin-top: 45px;
+	margin-left: 100px;
 }
-tr td a{
+
+tr td a {
 	padding-right: 50px;
 }
+
 /*编辑资源名弹出层样式*/
-#editResNameBox{
+#editResNameBox {
 	padding: 0 100px 0 180px;
 }
-.layui-input{
+
+.layui-input {
 	width: 500px;
 	margin-top: 40px;
 }
-.editText{
+
+.editText {
 	position: absolute;
 	top: 50px;
 	left: 100px;
 }
-.layui-layer-btn a{
+
+.layui-layer-btn a {
 	margin-right: 50px;
 }
 
 .changeFile:hover {
-    border-color: #289ef0;
-    color: #777777;
+	border-color: #289ef0;
+	color: #252525;
 }
-a {
-	color: #333 !important;
-}
+/* tr hover样式 */
 tbody>tr:hover {
-  background-color:#eeeeee;
+	background-color: #eeeeee;
+}
+.layui-layer-msg {
+	color: #000000!important;
 }

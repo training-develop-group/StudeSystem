@@ -220,3 +220,25 @@ img{
 	margin-top: 10px;
 	margin-left: 110px;
 }
+#nameOfExaminationPaper{
+	width: 400px;
+	/* margin-left: 100px; */
+	display: inline;
+}
+.inputLocation span{
+	width: 56px;
+}
+.input-box{
+	width: 510px;
+	margin: 35px auto 0;
+}
+.input-box label{
+	text-align: left;
+}
+.newTestPaperConfirm{
+	width: 160px;
+ 	line-height: 30px;
+	text-align: center;
+	display: block;
+	margin: 0 auto;
+}

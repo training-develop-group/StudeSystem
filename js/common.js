@@ -205,5 +205,41 @@ var All = {
                 }
             })
         })
-    }
+    },
+	
+	layuiOpen: function(options) {
+	    if (options && options != null) {
+	      layer.open({
+	        type: 1,
+	        // skin:'yes',
+	        area: ['400px', '200px'],
+	        title: ['', 'background-color: #289ef0;'],
+	        // btn: ['确认', '取消'],
+	        content: '<p class="openText">'+options.msg+'</p>' +
+	          '<div class="btn">'+
+	          '<button data-id="'+ options.id +'" class="yes" >确认</button>'+
+	          '<button class="no">取消</button>'+
+	          '</div>',
+	        success: function() {
+	          
+	          $('.yes').off('click').on('click', function() {
+	            switch (options.num){
+					case 1:
+						info.deleteResource(options.param);
+						break;
+					case 2:
+						info.deletePaper(options.paperId);
+						break;
+	            }
+	            layer.close(layer.index);
+	          });
+	
+	          $('.no').off('click').on('click', function() {
+	            layer.close(layer.index);
+	          });
+	        },
+	      });
+	    }
+	  },
+
 };

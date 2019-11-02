@@ -95,14 +95,14 @@ a{
 	text-decoration:none
 	out-line: none
 }
-.edit , .selectedTopic , .toView , .delete{
-	width: 63px;
+.edit , .selectedTopic , .toView , .delete , .publish{
+	/* width: 63px; */
 	height: 20px;
 	line-height: 20px;
 	border: 0;
 }
-.edit{
-	margin-left: -16px;
+.operation{
+	text-indent: 40px;
 }
 #paging{
 	margin-top: -30px;
@@ -138,33 +138,6 @@ a{
 	background-color: #279ef0;
 	color: white;
 }
-/* .layui-layer-btn{ */
-	/* padding: 0 293px 12px !important; */
-/* 	padding: 0 170px 12px !important;
-	margin-top: 20px;
-}
-.layui-layer-btn a{
-	margin: -15px 30px 0 !important;
-	padding: 0px !important;
-}
-.layui-layer-btn0{
-	width: 160px !important; */
-	/* height: 20px !important; */
-/* 	line-height: 39px;
-	text-align: center;
-	margin-top: -10px;
-}
-.layui-layer-btn1{
-	width: 160px !important; */
-	/* height: 20px !important; */
-/* 	line-height: 39px;
-	text-align: center;
-	margin-top: -10px;
-}
-.layui-laypage a{
-	margin-left: 5px;
-	margin-right: 5px;
-} */
 .layui-laypage a{
 	margin-left: 5px;
 	margin-right: 5px;

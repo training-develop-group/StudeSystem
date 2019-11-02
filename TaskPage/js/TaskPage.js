@@ -23,6 +23,28 @@ $(function() {
 			}
 
 		});
+		 form.on('checkbox(c_one)', function (data) {
+            var item = $(".checkAll");
+            for (var i = 0; i < item.length; i++) {
+                if (item[i].checked == false) {
+                    $("#checkAll").prop("checked", false);
+                    form.render('checkbox');
+                    break;
+                }
+            }
+            //如果都勾选了  勾上全选
+            var  all=item.length;
+            for (var i = 0; i < item.length; i++) {
+                if (item[i].checked == true) {
+                    all--;
+                }
+            }
+            if(all==0){
+            $("#checkAll").prop("checked", true);
+            form.render('checkbox');}
+			
+			})
+
 		// form.on('checkbox', function(data) {
 		// 	if (data.elem.checked) {
 		// 		$('input[type=checkbox]').prop('checked', false);
@@ -30,9 +52,9 @@ $(function() {
 		// 	}
 		// 	form.render();
 		// });
-		$('.selectResource').click(function() {
-
-		})
+// 		$('.selectResource').click(function() {
+// 
+// 		})
 		laydate = layui.laydate;
 		//执行一个laydate实例
 		laydate.render({
@@ -78,6 +100,10 @@ $(function() {
 		form.render('checkbox');
 	});
 	$('.resourceSelection').click(function() {
+		var resId = $('input:radio:checked').siblings('.resName').text();
+			var Html = [];
+			Html.push(' : '+ resId)
+			$('.resAdd').html(Html.join(''))
 		layer.close(layer.index);
 	})
 	$('.usersSelectOk').click(function() {
@@ -130,21 +156,23 @@ var info = {
 	},
 	TableDataRequest: function() {
 		$.ajax({
-			url: LBUrl + 'manage_system/paper/papers',
-			// data: {
-
-			// },
+			 url: MCUrl + 'manage_system/paper/papers',
+			data: {
+			"pageNum": 1,
+			"pageSize": 10000000,
+			'paperName' : ''
+			},
 			dataType: 'json',
 			Type: 'GET',
 			success: function(res) {
 				console.log(res)
 				if (res || res.data !== null) {
 					var Html = []
-					res.data.forEach(function(item, index) {
+					res.data.list.forEach(function(item, index) {
 						Html.push('<tr style="margin-top: -10px;">')
-						Html.push('<td style="text-align: center;">' + item.paperName + '</td>')
-						Html.push('<td style="text-align: center;">10</td>')
-						Html.push('<td style="text-align: center;">20</td>')
+						Html.push('<td style="text-align: center;" class="paperName">' + item.paperName + '</td>')
+						Html.push('<td style="text-align: center;">'+item.single+'</td>')
+						Html.push('<td style="text-align: center;">' + item.many + '</td>')
 						Html.push(
 							'<td style="text-align: center; float: left; margin-left: 20px; "><div  class="site-demo-button"><button value="' +
 							item.paperId +
@@ -156,6 +184,9 @@ var info = {
 					$('#papgeContent').html(Html.join(''));
 					$('.selectPaper').click(function() {
 					$('.selectPapers').val($(this).val());
+					var  Html = []
+					Html.push(' : '+ $(this).parents('tr').children('.paperName').text())
+					$('.paperAdd').html(Html.join(''))
 					layer.close(layer.index);
 					})
 				}
@@ -181,7 +212,7 @@ var info = {
 				$('.selectPersonnel').click(function() {
 					layer.open({
 						type: 1,
-						title: ['选择人员', 'color:#fff;background-color:#40AFFE;;border-radius: 7px '],
+						title: ['选择人员', 'color:#fff;background-color:#40AFFE;;border-radius: 7px ;overflow-x: hidden;'],
 						shadeClose: true,
 						shade: 0.8,
 						skin: 'myskin',
@@ -320,7 +351,7 @@ var info = {
 				var Html = []
 				res.forEach(function(item, index) {
 					Html.push('<span class="layui-form-label" style="font-size: 16px;"><input type="checkbox" value="' + item.userId +
-						'"class="checkAll " name="Staff" lay-skin="primary" lay-filter="" ><i>' + item.userName +
+						'"class="checkAll " name="Staff" lay-skin="primary" lay-filter="c_one" ><i>' + item.userName +
 						'</i></span>')
 
 				})
@@ -354,7 +385,7 @@ var info = {
 					resa.forEach(function(itemTypeName, index) {
 						var aa = itemTypeName.split(",");
 						if (item.taskType == aa[0]) {
-							Html.push('<td>' + aa[1] + '</td>');
+							Html.push('<td >' + aa[1] + '<input type="text" class="taskTypeRecord" value="'+aa[0]+'"hidden> </td>');
 						}
 					})
 					Html.push('<td>' + dateFormata(item.startTime) + ' - ' + dateFormata(item.endTime) + '</td>');
@@ -386,6 +417,16 @@ var info = {
 				$('.confirmAdd').click(function() {
 					info.updateTaskName($(this).val())
 					selectTaskType($('.layui-laypage-skip .layui-input').val(), $('.search').val())
+				})
+				$('.oneselfTaskName').click(function(){
+					var taskId = $(this).parents('tr').children('td').children('.updateTaskName').val();
+					var taskType = $(this).parents('tr').children('td').children('.taskTypeRecord').val();
+					console.log(taskType)
+					
+				
+						window.open("htmls/Video/video.html?value=" + taskId+","+ taskType, "_blank");
+					
+					
 				})
 				$('.lookOver').click(function() {
 					info.selectTaskUsers($(this).val())
@@ -498,9 +539,9 @@ var info = {
 		$.ajax({
 			url: TDXUrl + 'manage_system/resource/resources',
 			data: {
-				'pageNum': '',
-				'pageSize': '',
-				'resType': resType
+				'pageNum': 1,
+				'pageSize': 100000,
+				// 'resType': resType
 			},
 			dataType: 'json',
 			type: 'GET',
@@ -508,7 +549,7 @@ var info = {
 			success(res) {
 				console.log(res)
 				var Html = [];
-				res.data.forEach(function(item, index) {
+				res.data.list.forEach(function(item, index) {
 					Html.push('<div style="float: left; " class="layui-input-block " >')
 					Html.push(
 						'  <input type="radio" name="res" class=" "  name="Staff" lay-skin="primary" lay-filter="Staff"  style="position:absolute ;margin-top: 20px; margin-left: -100px; " value="' +
@@ -519,7 +560,7 @@ var info = {
 					Html.push('<img src="' + item.path + '" alt="" style="width: 150px; height: 99px;">')
 					Html.push('</div>')
 					Html.push(
-						'<p style="margin-left:-100px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis; width:80px">' +
+						'<p style="margin-left:-100px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis; width:80px" class="resName">' +
 						item.resName + '</p>')
 					Html.push('</div>')
 				})

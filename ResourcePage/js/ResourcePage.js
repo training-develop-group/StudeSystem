@@ -2,201 +2,172 @@ $(function() {
 	layui.use(['layer', 'form', 'laypage'], function() {
 		var layer = layui.layer,
 			form = layui.form;
-			
 		var laypage = layui.laypage,
 			layer = layui.layer;
-			
-		//执行一个laypage实例
-		laypage.render({
-			elem: 'page',
-			count: 100,
-			theme: '#1E9FFF',
-			// layout: ['count', 'prev', 'page', 'next', 'limit', 'refresh', 'skip'],
-			layout: ['prev', 'page', 'next' , 'limits' , 'skip'],
-			jump: function(obj) {
-				console.log(obj)
-			}
-		});
-			
-			
+
+
+
+
+		//调用common.js的公共方法
 		All.getMenu({
 			num: 2
 		});
-		
-		$('.EditorTestPaper').click(function() {
-			console.log(1);
-			// 跳转到试题
-			window.location.href = "../ExaminationPaperPage/ExaminationPaperPage.html";
-		});
-		
-		$('.testQuestions').click(function() {
-			console.log(1);
-			// 跳转到试题
-			window.location.href = "../TestQuestions/TestQuestions.html";
-		});
-		
-		
-		$('.delete').click(function() {
-			var deletethis = this;
-			layer.msg('是否删除资源', {
-				time: 20000, //20s后自动关闭
-				btn: ['确认', '取消'],
-				yes: function() {
-					// 删除this的父级的父级
-					$(deletethis).parent().parent().remove();
-					layer.close(layer.index);
-					layer.msg('删除成功');
-				}
-			});
-		});
-		
-		
-		
-		// info.path();
-		
+
+
+		// info.docx();
+
 		//调用音频弹出层方法
 		// info.viewByAudioFileName();
-		
-		
-		
-		
-		info.selectResourceList();	//查看
-		
-		info.uploadPopup();	//上传文件
-		
-		
-		//调用视频弹出层方法
-		// info.viewByVideoFileName();
 
-		
+		info.getVideoPlaybackTime();
+
+		info.selectResourceList(1,''); //查看
+
+		info.uploadPopup(); //上传文件
 
 		// 调用文档弹出层
 		// info.viewByTextFileName();
 		
+		/**
+		 * 检索关键词resName
+		 * 用回车检索
+		 */
+		$('.search').keypress(function(e) {
+			if (e.which == 13) {
+				var searchKey = $('.search').val()
+				info.selectResourceList(1,searchKey)
+			}
+		})
 		
+
 	});
 
 });
+var JumpPageNum = 1; //全局变量分页页数初始值
 var info = {
-	
-	selectResourceList: function() {
+	//获取资源列表
+	selectResourceList: function(pageNum, resName) {
+		// if (resName == undefined) {	//判断resName是否定义
+		// 	resName = null;	//没定义赋值为null方便后台
+		// }
 		$.ajax({
 			url: TDXUrl + 'manage_system/resource/resources',
-			data: {},
+			data: {
+				'pageNum': pageNum,
+				'pageSize': 12,
+				'resName': resName
+			},
 			dataType: 'json',
 			type: 'GET',
-			contentType: 'application/json;charset=utf-8',
+			// contentType: 'application/json;charset=utf-8',
 			success(res) {
 				var html = [];
-				if(res){
-					res.data.forEach(function(item){
-						console.log(item.resId);
+				if (res.code == 1) {
+					res.data.list.forEach(function(item) {
+						// console.log(item.resId);
+						// console.log(res);
+						// console.log(res.data);
 						html.push('<tr>');
-						html.push('<td><a href="#" class="getResource" resId="'+ item.resId +'">' + item.resName + '</a></td>');
+						html.push('<td><a href="#" class="getResource" resId="' + item.resId + '">' + item.resName + '</a></td>');
 						html.push('<td class="centerText">' + '未发布' + '</td>');
+						if (item.resType == 1) { //判断资源类型
+							item.resType = '视频'
+						} else if (item.resType == 2) {
+							item.resType = '音频'
+						} else if (item.resType == 3) {
+							item.resType = '文档'
+						} else {
+							item.resType = '未知'
+						}
 						html.push('<td class="centerText">' + item.resType + '</td>');
 						html.push('<td class="centerText">' + item.resSize + 'kb</td>');
-						html.push('<td><a href="#" class="editResName" resId="'+ item.resId +'" resName="'+ item.resName +'">编辑</a><a href="#" class="release">发布</a><a href="#" class="deleteList" resId="'+ item.resId +'">删除</a></td>');
+						html.push('<td><button class="editResName" resId="' + item.resId + '" resName="' + item.resName +
+							'">编辑</button><button class="release">发布</button><button class="deleteList" resId="' + item.resId +
+							'">删除</button></td>');
 						html.push('</tr>');
 					})
-				}
-				$('#contentList').html(html.join(''));
-				
-				//删除资源
-				$('.deleteList').off('click').on('click',function() {
-					var resId = $(this).attr("resId");
-					layer.msg('是否删除资源', {
-						time: 20000, //20s后自动关闭
-						btn: ['确认', '取消'],
-						yes: function() {
-							console.log(resId);
-							console.log('----------------------------------------------');
-							info.deleteResource(resId);
-							layer.close(layer.index);
-							parent.location.reload();
-							layer.msg('删除成功');
-						}
-					});
-				});
-				
-				//编辑资源名
-				$('.editResName').off('click').on('click',function() {
-					var resId = $(this).attr("resId");
-					var resName = $(this).attr("resName");
-					$('.rename').val(resName);
-					info.updatePopup(resId);
+					$('#contentList').html(html.join(''));
+
+					// console.log(res)
+					var total = res.data.total; //分页总数量
+					JumpPageNum = res.data.pageNum; //下一页复制为了时删除或者修改完事后停留在原本的页数
+
+					info.Pagination(total, pageNum); //调用分页方法（总条数，页数）
 					
-				});
-				
-				//获取资源详情
-				$('.getResource').off('click').on('click', function() {
-					var resId = $(this).attr("resId");
-					info.getResource(resId);
-				});
-				
-				//发布弹窗
-				$('.release').off('click').on('click', function(){
-					layer.msg('是否发布资源', {
-						time: 20000, //20s后自动关闭
-						btn: ['确认', '取消'],
-						
+					
+
+					//获取资源详情
+					$('.getResource').off('click').on('click', function() {
+						var resId = $(this).attr("resId");
+						info.getResource(resId);
+
 					});
-				})
+
+
+					//编辑资源名
+					$('.editResName').off('click').on('click', function() {
+						var resId = $(this).attr("resId"); //点击后获取获取到按钮属性
+						var resName = $(this).attr("resName");
+						$('.rename').val(resName); //编辑资源名返回值
+						info.updatePopup(resId); //调用修改弹出层传参（resId）
+
+					});
+
+
+					//发布弹窗
+					$('.release').off('click').on('click', function() {
+
+
+					})
+
+
+					//删除资源
+					$('.deleteList').off('click').on('click', function() {
+						var resId = $(this).attr("resId");
+						//调用common.js公共
+						All.layuiOpen({
+							num: 1,
+							resId: resId,
+							// JumpPageNum: JumpPageNum,
+							msg: '是否删除资源？'
+						});
+					});
+					
+				} else {
+					layer.msg('获取资源列表操作失败');
+				}
+			},
+			error(e) {
+				layer.msg('获取资源列表错误')
 			}
 		});
 	},
-	
-	
-	deleteResource: function(resId) {
-		$.ajax({
-			url: TDXUrl + 'manage_system/resource/' + resId,
-			data: {},
-			dataType: 'json',
-			type: 'DELETE',
-			contentType: 'application/json;charset=utf-8',
-			// success(res) {
-			// 	alert('删除成功');
-			// }
-		});
+
+
+	//分页
+	Pagination: function(total, pageNum) {
+		//执行一个laypage实例
+		layui.use('laypage', function() {
+			var laypage = layui.laypage
+			laypage.render({
+				elem: 'page',
+				count: total,
+				limit: '12',
+				theme: '#1E9FFF',
+				curr: pageNum,
+				group: '5',
+				layout: ['prev', 'page', 'next', 'limits', 'skip'],
+				jump: function(item, first) {
+					if (!first) {
+						info.selectResourceList(item.curr); //下一页
+					}
+				}
+			});
+		})
 	},
-	
-	
-	//编辑资源名弹出层
-	updatePopup: function(resId) {
-		layer.open({
-			type: 1 ,
-			area: ['790px','220px'] ,
-			title: ['编辑资源名', 'background-color: #289ef0;text-align: center;font-size: 20px;color:white;'] ,
-			shade: 0.6 ,
-			btn: ['确认','取消'] ,
-			btnAlign: 'c' ,
-			content: $('#editResNameBox'),
-			yes: function() {
-				var resName = $('.rename').val();
-				info.update(resId, resName);
-				layer.close(layer.index);
-			}
-		});
-	},
-	
-	//根据id来修改资源名
-	update: function(resId, resName) {
-		var data = {
-			'resId':resId,
-			'resName':resName
-		}
-		$.ajax({
-			url: TDXUrl + 'manage_system/resource/res-name',
-			data: data,
-			dataType: 'json',
-			type: 'POST',
-			success(res) {
-				console.log(res);
-				layer.msg('修改成功');
-			}
-		});
-	},
-	
+
+
+
 	//获取资源详情
 	getResource: function(resId) {
 		$.ajax({
@@ -206,56 +177,265 @@ var info = {
 			type: 'GET',
 			contentType: 'application/json;charset=utf-8',
 			success(res) {
-				console.log(res);
+				// info.docx(res.data.path);
+				// console.log();
+				if (res.code == 1) {
+					console.log(res.data.path);
+					if (res.data.resType == 1) {
+						info.viewByVideoFileName(res.data.path);
+					}
+					if (res.data.resType == 2) {
+						info.viewByVideoFileName(res.data.path);
+					}
+					console.log(res);
+					console.log(res.data.path);
+					layer.msg('获取资源详情成功');
+				} else {
+					layer.msg('获取资源详情失败');
+				}
+			},
+			error(e) {
+				layer.msg('获取资源详情错误');
 			}
 		});
 	},
-	
-	
-	path: function() {
+
+
+	//视频弹出层
+	viewByVideoFileName: function(path) {
+		var setTimeInterval = '';
+		layer.open({
+			type: 1,
+			area: ['750px', '400px'],
+			title: ['查看', 'background-color: #289ef0;text-align: center;font-size: 20px;color:white;'],
+			shade: 0.6,
+			content: $('#hiddenVideo'),
+			success: function() {
+				setTimeInterval = setInterval(info.currentTime, 30000);
+				// var videoContent = document.getElementById("hiddenVideo");
+				// console.log(videoContent);
+				var html = [];
+				html.push('<video src="http://192.168.188.114:88/' + path +
+					'" controls="controls" preload="auto" width="600px" height="250px" id="myVideo"></video>');
+				$('#hiddenVideo').html(html.join(''));
+
+			},
+			end: function() {
+				clearInterval(setTimeInterval);
+			}
+		})
+	},
+
+
+	//每30秒获取
+	currentTime: function() {
+		var myVideo = document.getElementById("myVideo");
+		var currentTime = myVideo.currentTime;
+		console.log(myVideo.currentTime);
+		info.recordVideoPlaybackTime(currentTime);
+	},
+
+
+	//30秒记录一次视频播放时长
+	recordVideoPlaybackTime: function(seconds) {
 		$.ajax({
 			url: TDXUrl + 'manage_system/resource/view',
-			data: {},
+			data: {
+				'resId': 1,
+				'seconds': Math.round(seconds)
+			},
 			dataType: 'json',
 			type: 'POST',
-			contentType: 'application/json;charset=utf-8',
-			success(res){
-				console.log(res);
+			// contentType: 'application/json;charset=utf-8',
+			success(res) {
+				if(res.code == 1) {
+					console.log(res);
+					layer.msg('获取视频播放时长成功');
+				} else {
+					layer.msg('获取视频播放时长失败');
+				}
+			},
+			error(e) {
+				layer.msg('获取视频播放时长错误');
 			}
 		});
 	},
 	
 	
-	
-	//获取资源详情弹出层
-	getResourcePopup: function() {
-		layer.open({
-			type: 1 ,
-			area: ['790px', '320px'],
-			title: ['资源详情', 'background-color: #289ef0;text-align: center;font-size: 20px;color:white;'],
-			shade: 0.6,
-			content: $('#hiddenAudio'),
-			
+	//获取视频播放时长
+	getVideoPlaybackTime: function() {
+		$.ajax({
+			url: TDXUrl + 'manage_system/resource/view',
+			data: {
+				'resId': 1
+			},
+			dataType: 'json',
+			type: 'GET',
+			// contentType: 'application/json;charset=utf-8',
+			success(res) {
+				if(res.code == 1) {
+					console.log(res);
+					console.log(res.data);
+					layer.msg('获取视频播放时长成功');
+				} else {
+					layer.msg('获取视频播放时长失败');
+				}
+			},
+			error(e) {
+				layer.msg("获取视频播放时长错误");
+			}
 		});
-		// $('#hiddenAudio').innerHTML = 
 	},
 	
+	
+	//音频弹出层
+	viewByAudioFileName: function() {
+		layer.open({
+			type: 1,
+			area: ['750px', '200px'],
+			title: ['查看', 'background-color: #289ef0;text-align: center;font-size: 20px;color:white;'],
+			shade: 0.6,
+			content: $('#hiddenAudio'),
+	
+		})
+	},
+	
+	
+	//文档弹出层
+	docx : function(path) {
+		layer.open({
+			type: 1,
+			area: ['750px', '400'],
+			title:[],
+			shade: 0.6,
+			content: $('#Doc'),
+			success: function() {
+				var html = [];
+				console.log("http://192.168.188.114:88/" + path);
+				html.push('<iframe src="https://view.officeapps.live.com/op/view.aspx?src=http://192.168.188.114:88/'+path+'"></iframe>');
+				$('#Doc').html(html.join(''));
+				
+			}
+		});
+	},
+
+
+	//编辑资源名弹出层
+	updatePopup: function(resId) {
+		console.log(JumpPageNum);
+		// return false;
+		layer.open({
+			type: 1,
+			area: ['790px', '220px'],
+			title: ['编辑资源名', 'background-color: #289ef0;text-align: center;font-size: 20px;color:white;'],
+			shade: 0.6,
+			btn: ['确认', '取消'],
+			btnAlign: 'c',
+			content: $('#editResNameBox'),
+			yes: function() {
+				var resName = $('.rename').val();
+				info.update(resId, resName);
+				layer.close(layer.index);
+			}
+		});
+	},
+
+
+	//根据Id来修改资源名
+	update: function(resId, resName) {
+		var data = {
+			'resId': resId,
+			'resName': resName
+		}
+		$.ajax({
+			url: TDXUrl + 'manage_system/resource/res-name',
+			data: data,
+			dataType: 'json',
+			type: 'POST',
+			success(res) {
+				if (res.code == 1) {
+					console.log(res);
+					layer.msg('编辑资源名成功');
+					info.selectResourceList(JumpPageNum);
+				} else {
+					layer.msg('编辑资源名失败')
+				}
+			},
+			error(e) {
+				layer.msg('修改资源名错误');
+			}
+		});
+	},
+
+
+	//根据Id删除资源
+	deleteResource: function(resId) {
+		// $('.Allclass').attr('data-id')
+		$.ajax({
+			url: TDXUrl + 'manage_system/resource/' + resId,
+			data: {},
+			dataType: 'json',
+			type: 'DELETE',
+			contentType: 'application/json;charset=utf-8',
+			success(res) {
+				// if(res.code == 1) {
+				// 	
+				// } else {
+				// 	layer.msg('删除资源失败');
+				// }
+				console.log(res);
+				layer.msg('删除资源成功');
+				info.selectResourceList(JumpPageNum);
+			},
+			error(e) {
+				layer.msg('删除资源错误');
+			}
+		});
+	},
+
+
+	//获取资源详情弹出层
+	// getResourcePopup: function() {
+	// 	layer.open({
+	// 		type: 1 ,
+	// 		area: ['790px', '320px'],
+	// 		title: ['资源详情', 'background-color: #289ef0;text-align: center;font-size: 20px;color:white;'],
+	// 		shade: 0.6,
+	// 		content: $('#hiddenAudio'),
+	// 		
+	// 	});
+	// 	
+	// },
+
+
+	//上传文件
 	uploadPopup: function() {
 		// $('#uploadFile').click(function() {
 		$(document).on('click', '#uploadFile', function() {
 			layui.use("layer", function() {
 				var layer = layui.layer;
 				layer.open({
-					type: 1 ,	//Page层类型
+					type: 1, //Page层类型
 					area: ['790px', '320px'],
 					title: ['上传资源', 'background-color: #289ef0;text-align: center;font-size: 20px;color:white;'],
-					shade: 0.6 , 	//遮罩透明度
+					shade: 0.6, //遮罩透明度
 					// closeBtn: 0,
 					btn: ["确认"],
 					btnAlign: 'c',
 					content: $('#popup'),
-					yes:function(){
-						parent.location.reload();
+					yes: function() {
+						layer.close(layer.index);
+						var file = $("#testList") 
+						file.after(file.clone().val("")); 
+						file.remove(); 
+						// var html = [];
+						// $('demoList').html(html.join(''));
+						info.selectResourceList(JumpPageNum);
+					},
+					end: function() {
+						// var html = [];
+						// $('demoList').html(html.join(''));
+						
 					},
 					success: function() {
 						console.log('-----成功1----');
@@ -263,13 +443,15 @@ var info = {
 							var $ = layui.jquery,
 								upload = layui.upload;
 							// 多文件列表示例
-							var demoListView = $('#demoList'),//上传文件显示的数据表格
+							var demoListView = $('#demoList'), //上传文件显示的数据表格
 								uploadListIns = upload.render({
-									elem: '#testList',//选择文件按钮
+									elem: '#testList', //选择文件按钮
 									url: TDXUrl + 'manage_system/resource/resource',
-									accept: 'file',//上传文件类型
-									multiple: true,
-									method: 'GET',
+									accept: 'file', //上传文件类型
+									multiple: true,	//允许上传多个文件
+									exts: 'mp4|avi|mov|rmvb|rm|flv|wma|mp3|ogv|cd|wav|aiff|ogg|aac|midi|docx|doc|xls|xlsx|pdf|txt',
+									size: 1024*20,
+									// method: 'GET',
 									// auto: false,	不用按钮点击执行
 									// bindAction: '#testListAction',
 									choose: function(obj) {
@@ -290,7 +472,7 @@ var info = {
 												'</td>',
 												'</tr>'
 											].join(''));
-											
+
 											//单个重传
 											tr.find('.demo-reload').on('click', function() {
 												obj.upload(index, file);
@@ -309,14 +491,14 @@ var info = {
 									done: function(res, index, upload) {
 										console.log('-----成功----');
 										console.log(res);
-										// if (res.code == 0) { //上传成功
-											var tr = demoListView.find('tr#upload-' + index),
-												tds = tr.children();
-											tds.eq(3).html('<span style="color: #5FB878;">上传成功</span>');
-											tds.eq(4).html(''); //清空操作
-											return delete this.files[index]; //删除文件队列已经上传成功的文件
-										// }
-										this.error(index, upload);
+										if (res.code == 1) { //上传成功
+										var tr = demoListView.find('tr#upload-' + index),
+											tds = tr.children();
+										tds.eq(3).html('<span style="color: #5FB878;">上传成功</span>');
+										tds.eq(4).html(''); //清空操作
+										return delete this.files[index]; //删除文件队列已经上传成功的文件
+										}
+										// this.error(index, upload);
 									},
 									error: function(index, upload) {
 										console.log('-----失败----');
@@ -324,164 +506,25 @@ var info = {
 											tds = tr.children();
 										tds.eq(3).html('<span style="color: #FF5722;">上传失败</span>');
 										tds.eq(4).find('.demo-reload').removeClass('layui-hide'); //显示重传
+										
 									}
 								});
 						});
+					},
+					error(e) {
+						layer.msg('上传资源错误');
+						layer.close(layer.index);
+						var html = [];
+						$('demoList').html(html.join(''));
+						info.selectResourceList(JumpPageNum);
 					}
 				});
 			});
 		})
 	},
-	viewByVideoFileName: function() {
-		var myAudio = document.getElementById('suspend');
-		$(document).on('click', '.videoFileName', function() {
-			layer.open({
-				type: 1,
-				area: ['750px', '400px'],
-				title: ['查看', 'background-color: #289ef0;text-align: center;font-size: 20px;color:white;'],
-				shade: 0.6,
-				content: $('#hiddenVideo'),
-				end : function() {
-					myAudio.pause();
-				}
-			})
-		});
-	},
 
-	viewByAudioFileName: function() {
-		$(document).on('click', '.audioFileName', function() {
-			layer.open({
-				type: 1,
-				area: ['750px', '200px'],
-				title: ['查看', 'background-color: #289ef0;text-align: center;font-size: 20px;color:white;'],
-				shade: 0.6,
-				content: $('#hiddenAudio'),
 
-			})
-		});
-	},
 
-// 	viewByTextFileName: function() {
-// 		$(document).on('click', '.textFileName', function() {
-// 			layer.open({
-// 				type: 1,
-// 				area: ['750px', '400px'],
-// 				title: ['查看', 'background-color: #289ef0;text-align: center;font-size: 20px;color:white;'],
-// 				shade: 0.6,
-// 				content: $('#Doc'),
-// 				success: function() {
-// 					var filepath = "\world.doc"
-// 					//文档控制
-// 					if (filepath && filepath.length > 0) {
-// 						var html = [];
-// 						html.push('<iframe src="\\CLOUDEASY-PC\share\新建文件夹\world.docx"  width="500" height="500"></iframe>');
-// 						// html.push('<div class="FullScreen" id="Full">');
-// 						// html.push('<div >');
-// 						// html.push('<img src="../images/FullScreen.png"/>');
-// 						// html.push('<span>全屏</span>');
-// 						// html.push('</div>');
-// 						// html.push('</div>');
-// 						
-// 						// $('#Doc').append(html.join(''));
-// 					}
-// 				}
-// 
-// 			})
-// 		});
-// 	}
+
+	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// var layuiWindowuploadFile = function(){
-// 	layui.use("layer",function(){
-// 		var layer = layui.layer;
-// 		layer.open({
-// 			type: 1 //Page层类型
-// 			,area: ['790px', '920px']
-// 			,title: ['上传资源','background-color: #289ef0;text-align: center;font-size: 20px;color:white;']
-// 			,shade: 0.6 //遮罩透明度
-// 			,closeBtn:0
-// 			,btn: ["确认"]
-// 			,btnAlign: 'c'
-// 			,content: 
-// 			'<div class="layui-upload">'+
-// 				'<button type="button" class="layui-btn layui-btn-normal" id="testList">选择多文件</button>'+
-// 				'<div class="layui-upload-list">'+
-// 					'<table class="layui-table">'+
-// 						'<thead>'+
-// 						'<tr>'+
-// 						'<th>文件名</th>'+
-// 						'<th>大小</th>'+
-// 						'<th>状态</th>'+
-// 						'<th>操作</th>'+
-// 						'</tr>'+
-// 						'</thead>'+
-// 						'<tbody id="demoList"></tbody>'+
-// 					'</table>'+
-// 				'</div>'+
-// 				'<button type="button" class="layui-btn" id="testListAction">开始上传</button>'+
-// 			'</div>'
-// 			// '<button class="changeFile layui-btn layui-btn-primary">选择文件</button>'+
-// 			// '<table class="uploadFile-table">'+
-// 			// '<colgroup>'+
-// 			// 	'<col width="4.5%">'+
-// 			// 	'<col width="2%">'+
-// 			// 	'<col width="2%">'+
-// 			// 	'<col width="2%">'+
-// 			// 	'<col width="2%">'+
-// 			// '</colgroup>'+
-// 			// '<tr>'+
-// 			// 	'<td>文件名</td>'+
-// 			// 	'<td align="center">类型</td>'+
-// 			// 	'<td align="center">大小</td>'+
-// 			// 	'<td align="center">状态</td>'+
-// 			// 	'<td align="center">操作</td>'+
-// 			// '</tr>'+
-// 			// '<tr>'+
-// 			// 	'<td>资源1</td>'+
-// 			// 	'<td align="center">文档</td>'+
-// 			// 	'<td align="center">10MB</td>'+
-// 			// 	'<td align="center">上传成功</td>'+
-// 			// 	'<td align="center">删除</td>'+
-// 			// '</tr>'+
-// 			// '<tr>'+
-// 			// 	'<td>资源2</td>'+
-// 			// 	'<td align="center">音频</td>'+
-// 			// 	'<td align="center">10MB</td>'+
-// 			// 	'<td align="center">上传成功</td>'+
-// 			// 	'<td align="center">删除</td>'+
-// 			// '</tr>'+
-// 			// '</table>'
-// 		});
-// 		layui.use('upload', function(){
-// 		var upload = layui.upload;
-// 
-// });
-// 	});
-// }

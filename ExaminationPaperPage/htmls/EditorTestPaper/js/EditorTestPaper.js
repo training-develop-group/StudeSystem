@@ -28,6 +28,11 @@ $(function() {
 	$('#homePage').off('click').on('click', function() {
 		window.location.href = "../../../HomePage/HomePage.html";
 	});
+	// 统计
+	$('#StatisticsPage').off('click').on('click', function() {
+		window.location.href = "../../../StatisticsPage/StatisticsPage.html";
+	});
+	
 	$('.mobileFramework').clickSort({
 		speed: 500,
 		callback: function() {
@@ -71,10 +76,16 @@ $(function() {
 		$('.movedown').show();
 		$('.fraction').show();
 		$('.removeQuestions').hide();
-		info.viewQuestion();
-		for (var i = 0; i < storageQusetionId.length; i++){
-			info.viewQuestion(storageQusetionId[i]);
-		};
+		$('#saveChanges').show();
+		// info.viewQuestion();
+		// for (var i = 0; i < storageQusetionId.length; i++){
+		// 	info.viewQuestion(storageQusetionId[i]);
+		// };
+		
+		// if (storageResults.length == 0){
+		// 	$('.mobileFramework').empty();
+		// }
+		console.log(questionScore);
 		$('#newTestPaper').attr('disabled', false);
 		$('#newTestPaper').css('background-color', '#FFFFFF');
 		$('#newTestPaper').css('cursor', 'pointer');
@@ -93,7 +104,8 @@ var allQuestions = [];
 // 用来判断什么时候往页面里塞入数据
 var viewChack = 0;
 var judge = true;
-
+// 储存试题成绩
+var questionScore = [];
 // 添加
 var JPaperQuestion = [];
 // 删除
@@ -151,7 +163,7 @@ var info = {
 			} else {
 				item.questionType = '多选题';
 			}
-			Html.push('<p class="num">' + (index + 1) + '. ' + item.questionType + '</p>');
+			Html.push('<p class="num">' + (index + 1) + '. ' + item.questionType + '<span></span></p>');
 			Html.push('<p class="distance">' + item.content + '</p>');
 			item.optionInfo.forEach(function(items, index) {
 				Html.push('<p class="distance">' + items.optionType + ' ' + items.content + '</p>');
@@ -179,6 +191,11 @@ var info = {
 			$(this).parent().find('.removeQuestions').show();
 			// 隐藏加入试卷
 			$(this).parent().find('.joinIn').hide();
+		});
+		// 设置分值
+		$('.fraction').off('click').on('click', function() {
+			var QusetionId = $(this).parent().parent().find('.qusetionId').val();
+			info.fraction(QusetionId , this);
 		});
 		// 移出试卷
 		$('.removeQuestions').off('click').on('click', function() {
@@ -290,7 +307,7 @@ var info = {
 			} else {
 				item.questionType = '多选题';
 			}
-			Html.push('<p class="num">' + (index + 1) + '. ' + item.questionType + '</p>');
+			Html.push('<p class="num">' + (index + 1) + '. ' + item.questionType + '<span></span></p>');
 			Html.push('<p class="distance">' + item.content + '</p>');
 			item.optionInfo.forEach(function(items, index) {
 				Html.push('<p class="distance">' + items.optionType + ' ' + items.content + '</p>');
@@ -365,6 +382,11 @@ var info = {
 			// 显示保存更改按钮
 			$('#saveChanges').show();
 		});
+		// 设置分值
+		$('.fraction').off('click').on('click', function() {
+			var QusetionId = $(this).parent().parent().find('.qusetionId').val();
+			info.fraction(QusetionId , this);
+		});
 		// 点击保存更改
 		$('#saveChanges').off('click').on('click', function() {
 			// 隐藏保存更改按钮
@@ -398,6 +420,7 @@ var info = {
 		if (questionId == undefined){
 			return false;
 		}
+		
 		$.ajax({
 			url: MCUrl + 'manage_system/question/' + questionId,
 			// url: MCUrl + 'manage_system/question/questions',
@@ -424,7 +447,7 @@ var info = {
 			} else {
 				item.questionType = '多选题';
 			}
-			viewHtml.push('<p class="num">' + (index + 1) + '. ' + item.questionType + '</p>');
+			viewHtml.push('<p class="num">' + (index + 1) + '. ' + item.questionType + '<span></span></p>');
 			viewHtml.push('<p class="distance">' + item.content + '</p>');
 			item.optionInfo.forEach(function(items, index) {
 				viewHtml.push('<p class="distance">' + items.optionType + ' ' + items.content + '</p>');
@@ -499,6 +522,11 @@ var info = {
 				// 显示保存更改按钮
 				$('#saveChanges').show();
 			});
+			// 设置分值
+			$('.fraction').off('click').on('click', function() {
+				var QusetionId = $(this).parent().parent().find('.qusetionId').val();
+				info.fraction(QusetionId , this);
+			});
 			// 解析
 			$('.toView').off('click').on('click', function() {
 				var QusetionId = $(this).parent().parent().find('.qusetionId').val();
@@ -534,41 +562,8 @@ var info = {
 			});
 		}
 	},
-	// // 加入试卷
-	// joinIn: function(questionId) {
-	// 	var data = {
-	// 		'paperId': PaperId,
-	// 		'questionId': questionId,
-	// 		'score': 66,
-	// 		'orderIndex': 1,
-	// 		'cTime': today,
-	// 		'cUser': 'mc'
-	// 	};
-	// },
-	// // 删除关系
-	// deletes: function(questionId) {
-	// 	console.log(2);
-	// 	var data = {
-	// 		'paperId': PaperId,
-	// 		'questionId': questionId
-	// 	};
-	// 	$.ajax({
-	// 		url: MCUrl + 'manage_system/paper/question',
-	// 		data : data,
-	// 		dataType: 'json',
-	// 		type: 'DELETE',
-	// 		success(res) {
-	// 			console.log("操作成功");
-	// 		},
-	// 		error (e) {
-	// 			layer.msg("操作失败，请稍后再试");
-	// 		}
-	// 	});
-	// },
 	// 修改试卷
 	addOrRemoveRelationships: function(){
-		console.log(JPaperQuestion);
-		console.log(PaperQuestionPesult);
 		var data = {
 			'JPaperQuestion': JSON.stringify(JPaperQuestion),
 			'PaperQuestionPesult': JSON.stringify(PaperQuestionPesult)
@@ -579,7 +574,6 @@ var info = {
 			dataType: 'json',
 			type: 'POST',
 			success(res) {
-				console.log(res);
 				JPaperQuestion = [];
 				PaperQuestionPesult = [];
 			}
@@ -648,7 +642,51 @@ var info = {
 			});
 		});
 	},
-	
+	// 设置分值方法
+	fraction : function(QusetionId , newThis){
+		layui.use("layer", function() {
+			var layer = layui.layer;
+			layer.open({
+				type: 1 //Page层类型
+				,closeBtn: 0
+				,area: ['789px', '210px']
+				,title: ['设置分值', 'background-color: #279ef0;text-align: center;font-size: 16px;line-height: 43px;color:white;letter-spacing: 5px;padding: 0px;']
+				// ,shade: 0.6 //遮罩透明度
+				,content: '<div class="inputLocation">'+
+						'<div class="input-box">'
+						+ ' <label class="layui-form-label">设置分值</label>'
+						+ '<input type="text" autocomplete="off" id="nameOfExaminationPaper" class="layui-input">'
+						+ '<div>'
+						+ '<br />'
+						+ '<br />'
+						+ '<button type="button" class="layui-btn layui-btn-normal layui-btn-sm newTestPaperConfirm">确认</button>'
+						// + '<button type="button" class="layui-btn layui-btn-primary newTestPaperCancel">取消</button>'
+					+ '</div>'
+			});
+			// 点击确认
+			$('.newTestPaperConfirm').click(function() {
+				var score = $('#nameOfExaminationPaper').val();
+				// 验证是否是数字
+				var reg=/^\d+((\.\d+|\/[1-9]+))?$/;
+				if (!reg.test(score) && score != ''){
+					layer.msg('只能输入数字');
+					return false;
+				}
+				if (score != ''){
+					var data = {
+						'questionId': QusetionId,
+						'score': score
+					}
+					// 给对应的题赋分数
+					$(newThis).parent().parent().find('.num').find('span').text("  " + score + "分");
+					// 添加到数组
+					questionScore.push(data);
+				}
+				// 关闭弹窗
+				layer.closeAll();
+			});
+		});
+	}
 }
 // 时间设置
 var today = '';

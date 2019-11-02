@@ -70,18 +70,18 @@
 					</div>
 				</div>
 			</div>
-			<div class="layui-form-item" style="width: 300px; margin-left: 50px;">
+			<div class="layui-form-item" style="width: 800px; margin-left: 50px;">
 				<label class="layui-form-label" style="font-size: 16px;">任务类型</label>
-				<div class="layui-input-block" style="margin-bottom: 20px;">
+				<div class="layui-input-block" style="margin-bottom: 20px; width: 300px;">
 					<select name="city" lay-verify="required" id="taskType" lay-filter="fangxiang">
 
 					</select>
 
 				</div>
 				<p class="selectResourcea"><label href=""  class="selectResource">
-					> 选择资源</label></p>
+					> 选择资源</label><span class="resAdd"></span></p>
 				<p class="selectPapersa"><label href="" class="selectPapers" > >
-					选择试卷</label></p>
+					选择试卷</label><span class="paperAdd"></span></p>
 				<label href="" style="font-size: 16px; margin-left: 40px; ">任务对象</label> >
 				<label href="" style="" class="selectPersonnel">选择人员</label><br><br>
 				<div class="taskUsers" style="">
@@ -200,8 +200,8 @@
 		</div>
 		<div id="selectPersonnel" style="padding: 20px;" hidden="">
 			<div class="iconSearch" style="padding: 3px 10px; "><img src="./../imgs/search.jpg"><input type="text" class="userNameRetrieval" style="width: 150px; height: 30px;"></div>
-			<div id="" class="layui-table layui-form" style="margin: 30px 0 20px 0; background-color: #FFFFFF;">
-				人员名单 <input type="checkbox" class="checkAll " lay-skin="primary" lay-filter="Staff">全选
+			<div id="" class="layui-table layui-form" style="margin: 30px 0 20px 0; background-color: #FFFFFF; ">
+				人员名单 <input type="checkbox" class="" lay-skin="primary" lay-filter="Staff" id="checkAll">全选
 			</div>
 			<div style="border: 1px solid #C9C5C5; width: 550px; height:200px; margin-bottom: 20px;" id="selectTaskUsers" class="layui-table layui-form">
 

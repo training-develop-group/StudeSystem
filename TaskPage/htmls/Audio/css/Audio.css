@@ -1,0 +1,185 @@
+.header .logo {
+	font-size: 20px;
+	color: #000000;
+	padding-left: 75px;
+	padding-top: 15px;
+	font-family: "微软雅黑";
+}
+
+.header .serachBox .search {
+	position: absolute;
+	width: 380px;
+	height: 39px;
+	border-radius: 7px;
+	margin-left: 85px;
+	margin-top: -10px;
+	z-index: 0;
+}
+
+.header .serachBox {
+	margin-left: 150px;
+	margin-top: -20px;
+}
+
+.header .serachBox .searchIcon {
+	background: url(../../imgs/search.jpg) no-repeat;
+	width: 25px;
+	height: 25px;
+	background-color: #FFFFFF;
+	position: absolute;
+	margin-left: 90px;
+	margin-top: -2px;
+	z-index: 1;
+}
+
+.header .user .circular {
+	width: 39.09px;
+	height: 39px;
+	background-color: #B5B5B5;
+	border-radius: 50px;
+	margin-left: -60px;
+	margin-top: -10px;
+}
+
+.header .user .userText {
+	position: absolute;
+	margin-top: 7px;
+	font-size: 10px;
+	margin-left: 50px;
+	color: #FFFFFF;
+	width: 50px;
+	font-size: 17.99px;
+	font-family: "微软雅黑";
+}
+
+.header .user {
+	position: absolute;
+	float: right;
+	margin-left: 90%;
+}
+
+.tabHead {
+	border-radius: 5px;
+	background-color: #FFFFFF;
+}
+
+.tabHead .tab {
+	margin-top: 5%;
+}
+
+body {
+	background-color: #f1f1f1;
+}
+
+.header {
+	width: calc(100% - 20px);
+	padding: 10px;
+	height: 60PX;
+	background-color: #289ef0;
+}
+
+.layui-tab-brief>.layui-tab-title .layui-this {
+	color: #007DDB;
+}
+/*---------------- content----------- */
+.content {
+	font-size: 20px;
+	width: calc(98.7% - 420px);
+	margin: 15px 210px 30px;
+	height: 780px;
+	background-color: white;
+}
+
+.Testing {
+	font-size: 18px;
+	font-weight: bold;
+	margin-left: 19px;
+	padding-top: 15px;
+}
+
+.colour {
+	background-color: #f1f1f1;
+	margin-left: 20px;
+	padding-top: 5px;
+	margin-top: 19px;
+	margin-right: 19px;
+}
+.File{
+	margin-left:120px;
+	margin-right: 19px;
+	width:100px;
+	height:606px;
+}
+.frequency{
+	margin-left:450px;
+	margin-top:270px;
+}
+
+
+/*评论区的css样式*/
+.box-contents{	
+	font-size: 20px;
+	width: calc(98.7% - 420px);
+	margin: 15px 210px 30px;
+	height: 400px;
+	background-color: white;
+}
+.comment{
+	width:100%;
+	text-align: left:;
+	padding: 15px 10px 5px 10px;
+}
+
+.comment .comment-title{
+	font-size:14px;
+	font-weight: 900;
+	border-bottom:1px solid #f6f6f6;
+	color:#5a5a5a;
+}
+.comment .comment-content{
+	margin:0;
+	padding:0;
+}
+.comment .comment-content li{
+	clear:both;
+	border-bottom:1px solid #f6f6f6;
+	font-size:14px;
+	color:#5a5a5a;
+	display:block;
+	text-align:left;
+	padding-top:10px;
+	padding-left: 5px;
+}
+.comment .comment-content li p{
+	text-align: right;
+	color:#409EFF;
+	font-size:12px;
+	padding-right:40px;
+}
+
+.message-board-content{
+	width: 98%;
+	height: 120px;
+	margin-top: 10px;
+	margin-left: 10px;
+}
+.btn-comment{
+	margin-top:5px;
+	margin-right: 20px;
+	display: flex;
+	justify-content: flex-end;
+}
+.btn-comment button{
+	width:122px;
+	height:30px;
+	background-color:#409EFF;
+	border:0;
+	color:white;
+
+}
+.btn-comment button:hover{
+	background-color:#257BD5;
+}
+.layui-textarea{
+	resize: none;
+}

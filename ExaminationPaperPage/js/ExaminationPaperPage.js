@@ -7,6 +7,11 @@ $(function() {
 		All.getMenu({
 			num: 4
 		});
+		$('.search').keypress(function(e) {
+			if (e.which == 13) {
+				info.TableDataRequest(1)
+			}
+		})
 		$('.testQuestions').click(function() {
 			console.log(1);
 			// 跳转到试题
@@ -19,29 +24,28 @@ $(function() {
 			window.location.href = "../ResourcePage/ResourcePage.html";
 		});
 	});
-	$(".search").focus(function() {
-		$('.searchIcon').hide();
-	});
-	$(".search").blur(function() {
-		if ($('.search').val() == '')
-			$('.searchIcon').show();
-	});
 	// 新建试卷
 	$('#newTestPaper').click(function() {
 		info.newTestPaper();
 	});
-	info.Page();
-	info.TableDataRequest();
+	info.TableDataRequest(1);
 });
 
 var info = {
 	//表格数据请求
-	TableDataRequest : function() {
+	TableDataRequest : function(pageNum) {
+		var paperName = $('.search').val();
+		if (paperName == undefined){
+			paperName = '';
+		}
+		var data = {
+			"pageNum": pageNum,
+			"pageSize": 10,
+			'paperName' : paperName
+		}
 		$.ajax({
 			url: MCUrl + 'manage_system/paper/papers',
-			// data: {
-				
-			// },
+			data: data,
 			dataType: 'json',
 			Type: 'GET',
 			success: function(res) {
@@ -55,14 +59,14 @@ var info = {
 		});
 	},
 	//表格会绘制
-	TableDrawing : function(data){
+	TableDrawing : function(param){
 		var Html = [];		// 选项
-		// var data = {
-		// 	total: data.total,
-		// 	list: data.list,
-		// 	pageNum: data.pageNum
-		// };
-		data.forEach(function(item, index) {
+		var data = {
+			total: param.total,
+			list: param.list,
+			pageNum: param.pageNum
+		};
+		data.list.forEach(function(item, index) {
 			if (item.status == 0){
 				item.status = '失效';
 			} else {
@@ -77,6 +81,7 @@ var info = {
 			Html.push('<td>');
 			Html.push('<button type="button" class="layui-btn layui-btn-primary edit">重命名</button>');
 			Html.push('<button type="button" class="layui-btn layui-btn-primary selectedTopic">编辑</button>');
+			Html.push('<button type="button" class="layui-btn layui-btn-primary publish">发布</button>');
 			Html.push('<button type="button" class="layui-btn layui-btn-primary toView">查看</button>');
 			Html.push('<button type="button" class="layui-btn layui-btn-primary delete">删除</button>');
 			Html.push('</td>');
@@ -85,20 +90,16 @@ var info = {
 		$('#examinationPaperInformation').html(Html.join(''));
 		// 点击删除
 		$('.delete').click(function() {
-			// var thiss = this;
 			var paperId = $(this).parent().parent().find('.paperId').text();
-			layer.msg('是否删除', {
-				time: false, //20s后自动关闭
-				btn: ['确认', '取消'],
-				yes: function(){ 
-					// 删除this的父级的父级
-					// $(thiss).parent().parent().remove();
-					// 删除方法
-					info.deletePaper(paperId);
-					// 关闭提示框
-					layer.closeAll();
-				}
-			});
+			All.layuiOpen({
+				num: 2,
+				paperId: paperId,
+				msg: '是否删除该试卷'
+			})
+		});
+		// 点击发布
+		$('.publish').click(function() {
+			console.log("发布");
 		});
 		// 点击查看
 		$('.toView').click(function() {
@@ -142,27 +143,29 @@ var info = {
 				});
 			});
 		});
+		if (data.total > 10){
+			info.Page(data.total , data.pageNum);
+		}
 	},
 	// 分页
-	Page : function(){
+	Page : function(total , pageNum){
 		layui.use(['laypage', 'layer'], function() {
 			var laypage = layui.laypage,
 				layer = layui.layer;
 			//完整功能
 			laypage.render({
-				elem: 'paging',
-				// count: data.total,
-				count: 100,
-				limit: 10,
-				theme: '#279ef0',
-				// curr: data.pageNum,
-				// groups: '5',
+				elem: 'paging'
+				, count: total
+				, limit: 10
+				, theme: '#279ef0'
+				, curr: pageNum
+				, groups: '5'
 				// layout: ['count', 'prev', 'page', 'next', 'limit', 'refresh', 'skip'],
 				// layout: ['prev', 'page', 'next' , 'count' , 'skip'],
-				layout: ['prev', 'page', 'next' , 'limits' , 'skip'],
-				jump: function(item , first) {
+				, layout: ['prev', 'page', 'next' , 'limits' , 'skip']
+				, jump: function(item , first) {
 					if (!first){
-						console.log(first);
+						info.TableDataRequest(item.curr);
 					}
 				}
 			});
