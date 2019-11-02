@@ -1,0 +1,155 @@
+.wrapper.wrapper-content > div {
+    background: white;
+    min-height: 600px;
+    padding: 25px 20px;
+}
+
+.con_nav_box .nav_title {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.con_nav_box .nav_list li {
+    float: left;
+    padding: 30px 0 15px;
+    width: 100px;
+    text-align: center;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.con_nav_box .nav_list li:hover {
+    border-bottom: 2px solid #2ba0e3;
+    color: #2ba0e3;
+}
+
+.con_nav_box .nav_list li.active {
+    border-bottom: 2px solid #2ba0e3;
+    color: #2ba0e3;
+}
+
+.content {
+    background-color: rgb(227, 236, 245);
+    min-height: 300px;
+    padding: 10px;
+    box-shadow: 0 1px 4px 0 rgba(180, 180, 180, 0.1) inset;
+}
+
+.answer_card {
+    background: white;
+    border-radius: 3px;
+    padding: 25px 30px;
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.1);
+}
+
+.card_left {
+    float: left;
+}
+
+.card_left p {
+    font-weight: 600;
+}
+
+.card_left .card {
+    margin: 15px 0 15px 10px;
+}
+
+.card_left .card li {
+    width: 30px;
+    height: 30px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    background-color: rgb(210, 210, 210);
+    float: left;
+    margin-right: 10px;
+    text-align: center;
+    line-height: 30px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.card_left .card li.active {
+    background-color: rgb(74, 171, 239);
+    box-shadow: 0 1px 4px 0 #2ba0e3;
+}
+
+.card_right {
+    float: right;
+}
+
+.card_right > div {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #2ba0e3;
+    color: #fff;
+    text-align: center;
+    line-height: 60px;
+    font-size: 16px;
+    box-shadow: 0 1px 4px 0 #2ba0e3;
+}
+
+.questionCard {
+    margin-top: 10px;
+    background: white;
+    border-radius: 3px;
+    padding: 25px 30px;
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.1);
+}
+
+.questionCard .questionCard_title {
+    font-weight: 600;
+}
+
+.checkbox_box li,
+.radio_box li {
+    margin: 10px 0;
+}
+
+.radio_box li span:first-child {
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    border-radius: 50%;
+    display: inline-block;
+    border: 2px solid #dadada;
+    color: #a4a4a4;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.checkbox_box li span:first-child {
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    border-radius: 4px;
+    display: inline-block;
+    border: 2px solid #dadada;
+    color: #a4a4a4;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.questionCard .question_Dry {
+    padding: 10px 5px;
+}
+
+.checkbox_box li span:last-child,
+.radio_box li span:last-child {
+    margin-left: 25px;
+    font-size: 16px;
+}
+
+.checkbox_box li span:first-child.active,
+.radio_box li span:first-child.active {
+    border: 2px solid #2ba0e3;
+    color: #2ba0e3;
+}
+.btn-box button{
+    float: right;
+    margin-left: 20px;
+    box-shadow: 0 1px 4px 0 #2ba0e3;
+}
