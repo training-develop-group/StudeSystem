@@ -560,21 +560,27 @@ var info = {
 				console.log(res)
 				var Html = [];
 				res.data.list.forEach(function(item, index) {
-					Html.push('<div style="float: left; " class="layui-input-block " >')
+					Html.push('<div class="layui-input-inline radio_box" >')
 					Html.push(
-						'  <input type="radio" name="res" class=" "  name="Staff" lay-skin="primary" lay-filter="Staff"  style="position:absolute ;margin-top: 20px; margin-left: -100px; " value="' +
-						item.resId + '">')
-					Html.push(
-						'<div style="width: 180px; height: 120px; border: 1px solid #01AAED;margin-top:20px; margin-bottom: 0px; margin-left: -100px;" >'
-					)
-					Html.push('<img src="' + item.path + '" alt="" style="width: 150px; height: 99px;">')
+						'  <input type="radio" name="res" class=" "  name="Staff" lay-skin="primary" lay-filter="Staff"  value="' + item.resId + '">')
+					Html.push('<div class="img-box">')
+					Html.push('		<img src="' + item.path + '" >')
 					Html.push('</div>')
-					Html.push(
-						'<p style="margin-left:-100px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis; width:80px" class="resName">' +
-						item.resName + '</p>')
+					Html.push('<p class="resName">' +item.resName + '</p>')
 					Html.push('</div>')
 				})
 				$('#resource').html(Html.join(''));
+
+				// 重新渲染
+				layui.use('form', function() {
+					var form = layui.form;
+					form.render('radio');
+
+					form.on('radio(Staff)', function(data){
+						console.log(data.elem); //得到radio原始DOM对象
+						console.log(data.value); //被点击的radio的value值
+					});
+				});
 
 			}
 		})
