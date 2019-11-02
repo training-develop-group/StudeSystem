@@ -131,7 +131,6 @@ $(".userNameRetrieval").keypress(function(e) {
 		var userNameRetrieval = $('.userNameRetrieval').val()
 		info.selectAllUser(userNameRetrieval);
 
-
 	}
 });
 
@@ -412,7 +411,18 @@ var info = {
 				})
 				//点击删除 删除点击的任务
 				$('.deleteTask').click(function() {
-					info.delectTask($(this).val())
+					//调用common.js公共
+					All.layuiOpen({
+						num: 3,
+						taskId: $(this).val(),
+						// JumpPageNum: JumpPageNum,
+						msg: '是否删除资源？'
+					});
+
+					// info.delectTask(taskId);
+
+
+
 				})
 				$('.confirmAdd').click(function() {
 					info.updateTaskName($(this).val())
