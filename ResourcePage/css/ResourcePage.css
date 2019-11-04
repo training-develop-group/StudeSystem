@@ -1,0 +1,467 @@
+* {
+	color: #1b1b1b;
+}
+
+body,
+html {
+	height: 100%;
+	width: 100%;
+}
+
+.title-header {
+	background-color: #289ef0;
+	width: 100%;
+	height: 60px;
+	/* margin-left: 10px; */
+	/* margin: 20px -738px; */
+	/* position: relative;
+    left: 50%; */
+	border-radius: 7px 7px 0 0;
+}
+
+.title-header-text {
+	font-size: 16px;
+	color: white;
+	line-height: 60px;
+	/* padding: 0 32px; */
+	margin-left: 32px;
+}
+
+.title-header-btn {
+	border-radius: 5px;
+	background-color: white;
+	height: 38px;
+	font-size: 16px;
+	border: none;
+	float: right;
+	margin-right: 20px;
+	line-height: 38px;
+	margin-top: 11px;
+	color: #279ef2;
+}
+
+.content {
+	background-color: #FFFFFF;
+	width: 100%;
+	/* margin-left: 10px; */
+	min-height: 650px;
+	margin-top: 20px;
+}
+
+table {
+	width: calc(100% - 50px);
+	margin-left: 25px;
+	position: relative;
+	top: 5px;
+	table-layout: fixed;
+}
+
+.hiddenTableList {
+	position: absolute;
+	top: 45px;
+	/* margin: 0 25px; */
+}
+
+td {
+	font-size: 14px;
+	border-bottom: 1px solid #E2E2E2;
+	line-height: 45px;
+	padding: 0 25px;
+	
+}
+td:nth-child(1) {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+
+.centerText {
+	text-align: center !important;
+	/* vertical-align:middle!important; */
+}
+
+/* 选择器选中列表中的第五个td */
+.mainTabel>td:nth-child(5) {
+	padding-left: 100px;
+}
+
+td>button {
+	width: 50px;
+    height: 25px;
+    margin-right: 20px;
+    /* margin-left: 20px; */
+    background-color: #FFFFFF;
+    border: none;
+    float: left;
+}
+
+thead>tr>td {
+	font-weight: 600;
+	font-size: 16px;
+}
+
+#rightText {
+	padding: 0 33px!important;
+}
+
+/* 点击上传课件弹出层按钮 */
+.changeFile {
+	background: #fff;
+	font-size: 14px;
+	padding: 5px 18px;
+	line-height: initial;
+	height: auto;
+	margin: 10px 0 0 25px;
+	color: #9e9e9e;
+}
+
+/* 浮窗边框 */
+.layui-layer-iframe {
+	border-radius: 6px !important;
+}
+
+/* 浮窗标题 */
+.layui-layer-title {
+	border-radius: 6px 6px 0 0 !important;
+	padding: 0 !important;
+}
+
+.layui-layer {
+	border-radius: 6px !important;
+}
+
+.wrapperChangeFile {
+	padding: 50px;
+}
+
+.layui-layer-page .layui-layer-btn a {
+	height: 30px;
+	line-height: 30px;
+	padding: 0 70px;
+	margin: 5px 35px 0;
+}
+
+#hiddenVideo {
+	padding: 40px 50px;
+}
+
+.layui-laypage a {
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+/* 音频大小和位置 */
+#myAudio {
+	width: 550px;
+	margin-top: 45px;
+	margin-left: 100px;
+}
+
+tr td a {
+	padding-right: 50px;
+}
+
+/*编辑资源名弹出层样式*/
+#editResNameBox {
+	padding: 0 100px 0 180px;
+}
+
+.layui-input {
+	width: 500px;
+	margin-top: 40px;
+}
+
+.editText {
+	position: absolute;
+	top: 50px;
+	left: 100px;
+}
+
+.layui-layer-btn a {
+	margin-right: 50px;
+}
+
+.changeFile:hover {
+	border-color: #289ef0;
+	color: #252525;
+}
+/* tr hover样式 */
+tbody>tr:hover {
+	background-color: #eeeeee;
+}
+.layui-layer-msg {
+	color: #000000!important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* .layui-form-select dl dd.layui-this {
+	background-color: rgb(64, 175, 254)
+}
+
+.layui-layer-content {
+	height: 150px;
+	
+}
+
+.layui-form-label {
+	line-height: 35px;
+	padding: 0;
+	width: 100px;
+}
+.layui-nav .layui-nav-item a {
+	color: #000000;
+	
+}
+.layui-nav .layui-this a {
+	color: #FFFFFF;
+	
+}
+
+.layui-nav .layui-nav-item {
+	color: #66AFE9;
+	line-height: 30px;
+    height: 30px;
+	
+}
+ol,
+ul {
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+.layui-this > a{
+	color: #FFFFFF;
+}
+.layui-this {
+	background-color: #1E9FFF;
+	border-bottom: 0px;
+	
+}
+
+.taskNameupdate {
+	width: 400px;
+	border-radius: 7px;
+}
+
+.taskNameupdateBox label {
+	font-size: 16px;
+	padding-right: 15px;
+}
+.taskNameupdateBox input {
+	width: calc(100% - 180px);
+}
+#updateTaskName {
+	margin-top: 20px;
+	width: 150;
+	display: none;
+}
+
+.taskNameupdateBox {
+	padding: 0 50px;
+}
+
+.resourceSelection {
+	width: 100px;
+	height: 30px;
+	margin-left: 250px;
+	margin-top: 0px;
+	background-color: rgb(64, 175, 254);
+
+}
+
+.confirmAdd {
+	width: 160px;
+	margin: 30px auto 0;
+}
+.confirmAdd button{
+	width: 160px;
+	text-align: center;
+}
+
+.layui-nav .layui-this:after,
+.layui-nav-bar,
+.layui-nav-tree .layui-nav-itemed:after {
+	background-color: #1E9FFF;
+}
+
+.checkAll {
+	width: 15px;
+	height: 15px;
+
+}
+
+.iconSearch {
+	width: 200px;
+	border: 1px solid #C9C9C9;
+	border-radius: 6px;
+}
+
+.layui-table {
+	background-color: rgb(248, 248, 248);
+}
+
+.taskUsers {
+	width: 300px;
+	height: 150px;
+	border: 1px solid #D3D4D3;
+	margin-left: 40px;
+	margin-top: 0;
+	overflow: auto;
+	padding: 10px;
+}
+
+.layui-laydate-footer span:hover {
+	color: rgb(64, 175, 254) !important;
+}
+
+.selectPersonnel {
+	font-size: 16px;
+	color: #5FB878;
+}
+
+.taskUsers>p {
+	line-height: 20px;
+}
+.selectPapersa {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+	
+.selectPapers {
+	font-size: 16px;
+	margin-left: 40px;
+	color: #5FB878;
+}
+.selectResourcea{
+	margin-top: 20px;
+}
+#selectResource{
+	display: none; padding: 50px; padding-top: 0; padding-bottom: 0; overflow: hidden;
+}
+.selectResource {
+	font-size: 16px;
+	margin-left: 40px;
+	color: #5FB878;
+}
+
+#taskContent {
+	background-color: #FFFFFF;
+}
+#taskUserDegreeCompletion{
+	background-color: #FFFFFF;
+}
+.box {
+	width: 100%;
+	height: 90%;
+	margin-top: 0px;
+}
+
+.headline {
+	height: 50px;
+	width: 100%;
+	background-color: #289ef0;
+	padding-top: 10px;
+	border-radius: 7px 7px 0 0;
+	margin-bottom: 10px;
+}
+
+.content {
+	background-color: #FFFFFF;
+	width: 100%;
+	min-height: 650px;
+	margin-top: 20px;
+	border-radius: 2px;
+}
+
+.layui-table td,
+.layui-table th {
+	border-style: none;
+
+}
+
+.layui-table th {
+	font-size: 16px;
+
+}
+
+.layui-table thead tr {
+	background-color: #FFFFFF;
+}
+
+th {
+	border: none;
+	border-bottom: 0.5px solid #E9E7E7;
+}
+
+td {
+	border: none;
+	border-bottom: 0.5px solid #E9E7E7;
+}
+
+tr {
+	border: none;
+	border-bottom: 1px solid #E9E7E7;
+}
+
+i {
+	font-style: normal;
+}
+
+.layui-layer-btn {
+	padding: 0 293px 12px !important;
+}
+
+.releasTeask {
+	font-size: 16px;
+	float: right;
+	margin-right: 20px;
+	border-radius: 5px;
+	color: #279ef2;
+	border: none;
+}
+
+.headline>span {
+	font-size: 20px;
+	margin-left: 30px;
+	margin-top: 10px;
+	float: left;
+	line-height: 20px;
+	color: white;
+	font-weight: 600;
+}
+
+.layui-laypage a {
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+#examineTask>.layui-form {
+	padding: 20px;
+	padding-top: 10px;
+}
+
+#examineTask>.layui-table {
+	text-align: center;
+	border: 1px solid rgb(221, 221, 221);
+}
+
+.layui-layer-title {
+	border-radius: 5px 5px 0 0 !important;
+}
+
+.myskin {
+	border-radius: 5px !important;
+}
+ */

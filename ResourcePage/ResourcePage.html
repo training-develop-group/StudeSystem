@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<!-- <link rel="stylesheet" href="../css/css/font-awesome.css"> -->
+		<link rel="stylesheet" href="../css/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../js/layui/css/layui.css">
+		<link rel="stylesheet" href="../css/common.css">
+		<link rel="stylesheet" href="css/ResourcePage.css">
+
+		<title>资源页</title>
+	</head>
+	<body>
+
+		<div id="header"></div>
+		<div class="wrapper wrapper-content clearfix">
+			<div class="title">
+				<div class="title-header">
+					<span class="title-header-text">资源列表</span>
+					<span><input type="button" class="title-header-btn layui-btn layui-btn-primary" id="uploadFile" value="上传课件"></span>
+				</div>
+			</div>
+			<div class="content">
+				<table border="0" class="mainTabel">
+					<colgroup>
+						<col width="2%">
+						<col width="2%">
+						<col width="2%">
+						<col width="2%">
+						<col width="2.5%">
+					</colgroup>
+
+					<thead>
+						<tr class="table-header">
+							<td>文件名称</td>
+							<td class="centerText">资源状态</td>
+							<td class="centerText">文件类型</td>
+							<td class="centerText">文件大小</td>
+							<td id="rightText">操作</td>
+
+						</tr>
+					</thead>
+
+					<tbody id="contentList"></tbody>
+				</table>
+			</div>
+			<div id="page" class="page" style="text-align: center"></div>
+		</div>
+
+		<div class="layui-upload" id="popup" style="display: none;">
+			<button type="button" class="layui-btn layui-btn-primary changeFile" id="testList">选择文件</button>
+			<div class="layui-upload-list">
+				<table class="hiddenTableList">
+					<colgroup>
+						<col width="2%">
+						<col width="2%">
+						<col width="2%">
+						<col width="2%">
+						<col width="2%">
+					</colgroup>
+					<thead>
+						<tr>
+							<td>文件名</td>
+							<td>类型</td>
+							<td>大小</td>
+							<td>状态</td>
+							<td>操作</td>
+						</tr>
+					</thead>
+					<tbody id="demoList"></tbody>
+				</table>
+			</div>
+			<!-- <button type="button" id="upList">确定</button> -->
+		</div>
+		<!-- 视频调用隐藏绑定弹出层 -->
+		<div id="hiddenVideo" style="display: none;">
+			<!-- <video controls="controls">
+			<source src="http://www.jplayer.org/video/m4v/Incredibles_Teaser.m4v" type="video/mp4">
+		</video> -->
+			<!-- <video src="http://192.168.188.114:88/0f4e864639ea49f2b5e93b2a377deb55.mp4" controls="controls" preload="auto" id="myVideo">
+			Your browser does not support the video tag.
+		</video> -->
+		</div>
+
+		<!-- 音频调用绑定弹出层 -->
+		<div id="hiddenAudio" style="display: none;">
+			<!-- <audio src="http://192.168.188.114:88/b9676e1768bd4219ae7504586ce6d307.ogv" controls="controls" id="myAudio"></audio> -->
+		</div>
+
+		<div id="Doc" >
+			<!-- <iframe src="http://192.168.188.114:88/c70c26d9a61e4075995b1c1832a24a77.docx"></iframe> -->
+		</div>
+		<!-- <iframe src="text/world.docx" width="500" height="500"></iframe> -->
+		<!-- <iframe src="html:\\CLOUDEASY-PC\share\新建文件夹\world.docx"  width="500" height="500"></iframe> -->
+
+		<!-- 编辑资源名弹出层box -->
+		<div id="editResNameBox" style="display: none;">
+			<span class="editText">文件名称</span><input class="rename layui-input" />
+		</div>
+
+		
+		
+		
+		
+		<div class="layui-form" style="display: none;" id="addTaskPage">
+			<div class="layui-form-item" style=" margin-top: 15px;">
+				<div style="margin-left: 50px;">
+					<label class="layui-form-label " style="font-size: 16px;">任务名称</label>
+					<div class="layui-input-block">
+						<input type="text" name="title" required lay-verify="required" placeholder="请输入任务名" autocomplete="off" class="layui-input taskName"
+						 style="width: 400px; border-radius: 7px;">
+					</div>
+				</div>
+			</div>
+			<div class="layui-form-item" style="width: 300px; margin-left: 50px;">
+				<label class="layui-form-label" style="font-size: 16px;">任务类型</label>
+				<div class="layui-input-block" style="margin-bottom: 20px;">
+					<select name="city" lay-verify="required" id="taskType" lay-filter="fangxiang">
+		
+					</select>
+		
+				</div>
+				<p class="selectResourcea"><label href=""  class="selectResource">
+					 选择资源</label></p>
+				<p class="selectPapersa"><label href="" class="selectPapers" value="1"> 
+					选择试卷</label></p>
+				<label href="" style="font-size: 16px; margin-left: 40px; ">任务对象</label> 
+				<label class="selectPersonnel">选择人员</label><br><br>
+				<div class="taskUsers">
+					
+				</div>
+				<div class="layui-form-item" style=" margin-top: 20px;">
+					<div>
+						<label class="layui-form-label" style="font-size: 16px;">任务时间</label>
+						<div class="layui-input-block">
+							<input type="text" name="title" required lay-verify="required" placeholder="2019-10-14 12:52:28" autocomplete="off"
+							 class="layui-input" style="width:200px; border-radius: 7px; position: absolute;" id="test1"> <i style="position: absolute;margin-left: 207px;margin-top: 10px;">-</i>
+							<input type="text" name="title" required lay-verify="required" placeholder="2019-10-14 12:52:28" autocomplete="off"
+							 class="layui-input" style="width:200px; border-radius: 7px; position: absolute; margin-left: 220px; " id="test2">
+						</div>
+					</div>
+				</div>
+				<div class="layui-form-item" style=" margin-top: 15px; ">
+					<div class="layui-form-item layui-form-text">
+						<label class="layui-form-label" style="font-size: 16px;">任務描述</label>
+						<div class="layui-input-block">
+							<textarea name="desc" placeholder="请输入描述" class="layui-textarea taskRemark" style="width:400px ;height: 150px;resize: none;"></textarea>
+						</div>
+					</div>
+				</div>
+				<div class="layui-form-item" style=" margin-top: 15px; margin-left: 250px; ">
+					<!-- <button type="button" class="" style="background-color: #93D1FF; ">确认</button>	 -->
+				<button type="button" style="margin-left: 0; width: 100px; height: 30px;" class="layui-btn layui-btn-primary layui-btn-sm layui-btn-normal okbtn addOk button" >确认</button>
+				</div>
+			</div>
+		</div>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+
+
+		<script src="../js/jQuery v3.4.1.min.js"></script>
+		<script src="../js/layui/layui.all.js"></script>
+		<script src="../js/layui/layui.js"></script>
+		<script src="../js/common.js"></script>
+		<script src="../js/address.js"></script>
+		<script src="js/ResourcePage.js"></script>
+	</body>
+</html>
