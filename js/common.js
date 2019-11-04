@@ -206,7 +206,7 @@ var All = {
             })
         })
     },
-	
+	// 删除方法
 	layuiOpen: function(options) {
 	    if (options && options != null) {
 	      layer.open({

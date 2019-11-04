@@ -1,9 +1,39 @@
 $(function() {
-	layui.use(['layer', 'form', 'laypage'], function() {
+	layui.use(['layer', 'form', 'laypage', 'laydate'], function() {
 		var layer = layui.layer,
 			form = layui.form;
 		var laypage = layui.laypage,
 			layer = layui.layer;
+
+
+		laydate = layui.laydate;
+		//执行一个laydate实例
+		laydate.render({
+			elem: '#test1', //指定元素,
+			theme: '#40AFFE',
+			type: 'datetime'
+		});
+		laydate.render({
+			elem: '#test2', //指定元素,
+			theme: '#40AFFE',
+			type: 'datetime'
+		});
+		form.on('select(fangxiang)', function(data) {
+			var value = data.value;
+			if (value == '1') {
+				$('.selectPapers').show();
+				$('.selectResource').show();
+			} else if (value == '2') {
+				$('.selectResource').show();
+				$('.selectPapers').hide();
+			} else if (value == '3') {
+				$('.selectPapers').show();
+				$('.selectResource').hide();
+			}
+		})
+		form.render('select');
+		form.render('checkbox');
+
 
 
 
@@ -13,7 +43,7 @@ $(function() {
 			num: 2
 		});
 
-
+		// info.openAddRolePage();
 		// info.docx();
 
 		//调用音频弹出层方法
@@ -46,7 +76,7 @@ $(function() {
 var JumpPageNum = 1; //全局变量分页页数初始值
 var info = {
 	//获取资源列表
-	selectResourceList: function(pageNum, resName) {
+	selectResourceList: function(pageNum, resName, resType) {
 		// if (resName == undefined) {	//判断resName是否定义
 		// 	resName = null;	//没定义赋值为null方便后台
 		// }
@@ -55,7 +85,8 @@ var info = {
 			data: {
 				'pageNum': pageNum,
 				'pageSize': 12,
-				'resName': resName
+				'resName': resName,
+				'resType': resType
 			},
 			dataType: 'json',
 			type: 'GET',
@@ -66,7 +97,7 @@ var info = {
 					res.data.list.forEach(function(item) {
 						// console.log(item.resId);
 						// console.log(res);
-						// console.log(res.data);
+						console.log(res.data);
 						html.push('<tr>');
 						html.push('<td><a href="#" class="getResource" resId="' + item.resId + '">' + item.resName + '</a></td>');
 						html.push('<td class="centerText">' + '未发布' + '</td>');
@@ -80,7 +111,7 @@ var info = {
 							item.resType = '未知'
 						}
 						html.push('<td class="centerText">' + item.resType + '</td>');
-						html.push('<td class="centerText">' + item.resSize + 'kb</td>');
+						html.push('<td class="centerText">' + info.getFileSize(item.resSize) + '</td>');
 						html.push('<td><button class="editResName" resId="' + item.resId + '" resName="' + item.resName +
 							'">编辑</button><button class="release">发布</button><button class="deleteList" resId="' + item.resId +
 							'">删除</button></td>');
@@ -465,7 +496,7 @@ var info = {
 											console.log(fileNameArr[fileNameArr.length - 1]);
 											var tr = $(['<tr id="upload-' + index + '">', '<td style="width:20px;">' + file.name +
 												'</td>', '<td>' + fileType + '</td>',
-												'<td>' + (file.size / 1014).toFixed(1) + 'kb</td>', '<td>' + '--' + '</td>',
+												'<td>' + info.getFileSize(file.size) + '</td>', '<td>' + '--' + '</td>',
 												'<td>',
 												'<button class="layui-btn layui-btn-xs demo-reload layui-hide">重传</button>',
 												'<button class="layui-btn layui-btn-xs layui-btn-danger demo-delete">删除</button>',
@@ -524,6 +555,100 @@ var info = {
 	},
 
 
+	getFileSize: function(fileByte) {
+		var fileSizeByte = fileByte;
+		var fileSizeMsg = "";
+		if (fileSizeByte < 1048576) fileSizeMsg = (fileSizeByte / 1024).toFixed(2) + "KB";
+		else if (fileSizeByte == 1048576) fileSizeMsg = "1MB";
+		else if (fileSizeByte > 1048576 && fileSizeByte < 1073741824) fileSizeMsg = (fileSizeByte / (1024 * 1024)).toFixed(2) + "MB";
+		else if (fileSizeByte > 1048576 && fileSizeByte == 1073741824) fileSizeMsg = "1GB";
+		else if (fileSizeByte > 1073741824 && fileSizeByte < 1099511627776) fileSizeMsg = (fileSizeByte / (1024 * 1024 * 1024)).toFixed(2) + "GB";
+		else fileSizeMsg = "文件超过1TB";
+		return fileSizeMsg;
+	},
+
+
+
+
+	//弹出新建试卷
+	openAddRolePage: function(userId) {
+		layer.open({
+			type: 1,
+			title: ['新建试卷', 'color:#fff;background-color:#40AFFE;;border-radius: 7px'],
+			shadeClose: true,
+			shade: 0.8,
+			skin: 'myskin',
+			area: ['700px', '80%'],
+			content: $('#addTaskPage'),
+			success: function() {
+	
+				//弹出选择人员
+				$('.selectPersonnel').click(function() {
+					layer.open({
+						type: 1,
+						title: ['选择人员', 'color:#fff;background-color:#40AFFE;;border-radius: 7px '],
+						shadeClose: true,
+						shade: 0.8,
+						skin: 'myskin',
+						area: ['600px', '50%'],
+						content: $('#selectPersonnel'),
+						success: function() {
+	
+						}
+					})
+				})
+				//点击选择试卷弹出试卷弹窗
+				$('.selectPapers').click(function() {
+					layer.open({
+						type: 1,
+						title: ['选择试卷', 'color:#fff;background-color:#40AFFE;'],
+						shadeClose: true,
+						shade: 0.8,
+						skin: 'myskin',
+						area: ['700px', '80%'],
+						content: $('#selectPapers'),
+						success: function() {
+	
+						},
+					});
+				});
+			},
+		});
+	},
+	
+	
+	
+	//弹出选择资源
+	selectResources: function() {
+	
+		layer.open({
+			type: 1,
+			title: ['选择资源', 'color:#fff;background-color:#40AFFE;border-radius: 7px '],
+			shadeClose: true,
+			shade: 0.8,
+			skin: 'myskin',
+			area: ['700px', '80%'],
+			content: $('#selectResource'),
+			success: function() {
+	
+			}
+		})
+	},
+	//弹出编辑任务
+	popupsUpdateTaskName: function() {
+		layer.open({
+			type: 1,
+			title: ['编辑任务', 'color:#fff;background-color:#40AFFE;;border-radius: 7px'],
+			shadeClose: true,
+			shade: 0.8,
+			skin: 'myskin',
+			area: ['700px', '200px'],
+			content: $('#updateTaskName'),
+			success: function() {
+	
+			}
+		})
+	},
 
 
 	

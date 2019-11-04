@@ -102,7 +102,7 @@ var info = {
 			} else {
 				item.questionType = '多选题';
 			}
-			Html.push('<p class="num">'+ (index + 1) +'. ' + item.questionType + '</p>');
+			Html.push('<p class="num">'+ (index + 1) +'. ' + item.questionType + '<span>  ' + item.newScore + '分</span></p>');
 			Html.push('<p class="distance">' + item.content + '</p>');
 			item.optionInfo.forEach(function(items, index) {
 				Html.push('<p class="distance">' + items.optionType + ' ' + items.content + '</p>');

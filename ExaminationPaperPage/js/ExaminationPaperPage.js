@@ -24,13 +24,108 @@ $(function() {
 			window.location.href = "../ResourcePage/ResourcePage.html";
 		});
 	});
+	info.selectAllUser('');
+	//用户模糊查询 回车
+	$(".userNameRetrieval").keypress(function(e) {
+		if (e.which == 13) {
+			var userNameRetrieval = $('.userNameRetrieval').val()
+			info.selectAllUser(userNameRetrieval);
+		}
+	});
+	
+	layui.use(['layer', 'form', 'laydate'], function() {
+		var layer = layui.layer,
+		form = layui.form;
+	form.on('checkbox(Staff)', function(data) {
+		var a = data.elem.checked;
+		if (a == true) {
+			$(".checkAll").prop("checked", true);
+			form.render('checkbox');
+		} else {
+			$(".checkAll").prop("checked", false);
+			form.render('checkbox');
+		}
+	
+	});
+	form.on('checkbox(c_one)', function (data) {
+      var item = $(".checkAll");
+      for (var i = 0; i < item.length; i++) {
+          if (item[i].checked == false) {
+              $("#checkAll").prop("checked", false);
+              form.render('checkbox');
+              break;
+          }
+      }
+      //如果都勾选了  勾上全选
+      var  all=item.length;
+      for (var i = 0; i < item.length; i++) {
+          if (item[i].checked == true) {
+              all--;
+          }
+      }
+      if(all==0){
+      $("#checkAll").prop("checked", true);
+      form.render('checkbox');}
+	
+	})
+	$('.search').keypress(function(e) {
+		if (e.which == 13) {
+			var search = $('.search').val();
+			info.selectTaskType(1, search);
+		}
+	})
+	var laydate = layui.laydate;
+	//执行一个laydate实例
+	laydate.render({
+		elem: '#test1', //指定元素,
+		theme: '#40AFFE',
+		type: 'datetime'
+	});
+	laydate.render({
+		elem: '#test2', //指定元素,
+		theme: '#40AFFE',
+		type: 'datetime'
+	});
+	form.render('select');
+	form.render('checkbox');
+});
+	// 点击确认(发布)
+	$('.addOk').click(function() {
+		info.addTask();
+	});
+	// 点击确认(选择人员)
+	$('.usersSelectOk').click(function() {
+		var Html = [];
+		$.each($("[name='Staff']:checked"), function(i, val) {
+			Html.push('<p >' + $(this).siblings('i').text() + '<input type="text"  hidden="" id="" value="' + $(this).val() +
+				'" /></p>')
+		})
+		$('.taskUsers').html(Html.join(''));
+		layer.close(layer.index);
+	})
+	//弹出选择人员
+	$('.selectPersonnel').click(function() {
+		layer.open({
+			type: 1,
+			title: ['选择人员', 'color:#fff;background-color:#40AFFE;border-radius: 7px 7px 0 0;overflow-x: hidden;font-size: 16px;text-align: center;'],
+			shadeClose: true,
+			shade: 0.5,
+			skin: 'myskin',
+			area: ['600px', '50%'],
+			content: $('#selectPersonnel'),
+			success: function() {
+				
+			}
+		})
+	});
 	// 新建试卷
 	$('#newTestPaper').click(function() {
 		info.newTestPaper();
 	});
 	info.TableDataRequest(1);
 });
-
+var newPaperId;
+var newPaperName = '';
 var info = {
 	//表格数据请求
 	TableDataRequest : function(pageNum) {
@@ -99,7 +194,9 @@ var info = {
 		});
 		// 点击发布
 		$('.publish').click(function() {
-			console.log("发布");
+			newPaperId = $(this).parent().parent().find('.paperId').text();
+			newPaperName = $(this).parent().parent().find('.rename').text();
+			info.releaseTask();
 		});
 		// 点击查看
 		$('.toView').click(function() {
@@ -160,8 +257,6 @@ var info = {
 				, theme: '#279ef0'
 				, curr: pageNum
 				, groups: '5'
-				// layout: ['count', 'prev', 'page', 'next', 'limit', 'refresh', 'skip'],
-				// layout: ['prev', 'page', 'next' , 'count' , 'skip'],
 				, layout: ['prev', 'page', 'next' , 'limits' , 'skip']
 				, jump: function(item , first) {
 					if (!first){
@@ -217,21 +312,18 @@ var info = {
 			layer.msg("试卷名不可为空");
 			return false;
 		}
-		var data = {
-			'paperName': paperName,
-			'cTime': today,
-			'cUser': 'mc'
-		};
 		$.ajax({
 			url : MCUrl + 'manage_system/paper/paper',
-			data : JSON.stringify(data),
+			data: {
+				'paperName': paperName
+			},
 			dataType : 'json',
 			type : 'POST',
-			contentType :'application/json;charset=utf-8',
 			success(res) {
 				console.log("操作成功");
-				// alert("操作成功");
-				parent.location.reload();	//刷新父级页面
+				// parent.location.reload();	//刷新父级页面
+				layer.closeAll();
+				info.TableDataRequest(1);
 			},
 			error (e) {
 				layer.msg("操作失败，请稍后再试");
@@ -246,7 +338,6 @@ var info = {
 			return false;
 		}
 		var data = {
-			// 'paperId': paperId,
 			'paperId': paperId,
 			'paperName': paperName,
 		};
@@ -258,7 +349,9 @@ var info = {
 			contentType :'application/json;charset=utf-8',
 			success(res) {
 				console.log("操作成功");
-				parent.location.reload();	//刷新父级页面
+				// parent.location.reload();	//刷新父级页面
+				layer.closeAll();
+				info.TableDataRequest(1);
 			},
 			error (e) {
 				layer.msg("操作失败，请稍后再试");
@@ -275,14 +368,128 @@ var info = {
 			success(res) {
 				// alert("操作成功");
 				console.log("操作成功");
-				// $(thiss).parent().parent().remove();
-				parent.location.reload();	//刷新父级页面
+				// parent.location.reload();	//刷新父级页面
+				layer.closeAll();
+				info.TableDataRequest(1);
 			},
 			error (e) {
 				layer.msg("操作失败，请稍后再试");
 			}
 		});
-	}
+	},
+	// 发布任务弹窗
+	releaseTask : function() {
+		$('.paperAdd').text('');
+		$('.paperAdd').text(newPaperName);
+		layer.open({
+			type: 1,
+			title: ['发布任务', 'color:#fff;background-color:#40AFFE;border-radius: 7px 7px 0 0;text-align: center; font-size: 20px;'],
+			shadeClose: true,
+			shade: 0.8,
+			skin: 'myskin',
+			area: ['700px', '80%'],
+			content: $('#addTaskPage'),
+			success: function() {
+				layui.use('form', function() {
+					var form = layui.form;
+					form.render('select');
+				});
+			},
+		});
+	},
+	//添加任务
+	addTask: function() {
+		var mistake = '';
+		var resId = $("input[name=res]:checked").val();
+		var index = true;
+		var userId = ''
+		$.each($("[name='Staff']:checked"), function(i, val) {
+			userId += ',' + val.value
+		})
+		if ($('#test1').val() == '') {
+			mistake = '请选择开始时间!';
+			index = false;
+		}
+		if ($('#test2').val() == '') {
+			mistake = '请选择结束时间'
+			index = false;
+		}
+		if ($('#test1').val() > $('#test2').val()) {
+			mistake = '结束时间不能小于开始时间'
+			index = false;
+		}
+		if (userId == '') {
+			mistake = '请选择做任务人员'
+			index = false;
+		}
+		if ($('.taskName').val() == '') {
+			mistake = '任务名不能为空哦！';
+			index = false;
+		}
+		var data = {
+			'resId': resId,
+			'paperId': newPaperId,
+			'taskType': $('#taskType').val(),
+			'taskName': $('.taskName').val(),
+			'taskRemark': $('.taskRemark').val(),
+			'status': 1,
+			'startTime': dateFormat($('#test1').val()),
+			'endTime': dateFormat($('#test2').val()),
+			'userId': userId
+		}
+		
+		if (index != false) {
+			console.log(data)
+			$.ajax({
+				url: LBUrl + 'manage_system/task/tasks',
+				data: JSON.stringify(data),
+				dataType: 'json',
+				type: 'POST',
+				contentType: 'application/json;charset=utf-8',
+				success(res) {
+					console.log(res.msg);
+					layer.msg(res.msg);
+					// 刷新页面
+					parent.location.reload();
+					// layer.closeAll();
+					// 清空
+					// $('.taskName').val('');
+					// $('.taskRemark').val('');
+					// $('.taskUsers').empty();
+					// $('#test1').val('');
+					// $('#test2').val('');
+				}
+			})
+		} else {
+			layer.msg(mistake);
+		}
+	},
+	//查询所有用户
+	selectAllUser: function(userName) {
+	
+		$.ajax({
+			url: LBUrl + 'manage_system/task/users',
+			data: {
+				'userName': userName
+			},
+			dataType: 'json',
+			type: 'GET',
+			success(res) {
+				var Html = []
+				res.forEach(function(item, index) {
+					Html.push('<span class="layui-form-label" style="font-size: 16px;"><input type="checkbox" value="' + item.userId +
+						'"class="checkAll " name="Staff" lay-skin="primary" lay-filter="c_one" ><i>' + item.userName +
+						'</i></span>')
+				})
+				$('#selectTaskUsers').html(Html.join(''));
+				layui.use('form', function(){
+					var form = layui.form;
+					form.render('checkbox');
+					//各种基于事件的操作，下面会有进一步介绍
+					});	
+				}
+			})
+		},
 }
 // 格式化日期
 var dateFormat =function(time) {
@@ -297,7 +504,7 @@ var dateFormat =function(time) {
 	var minutes=date.getMinutes()<10 ? "0"+date.getMinutes() : date.getMinutes();
 	var seconds=date.getSeconds()<10 ? "0"+date.getSeconds() : date.getSeconds();
 	// 拼接	
-	return year+"-"+month+"-"+day;
+	return year+"-"+month+"-"+day + " " + (hours) + ":" + minutes + ":" + seconds;
 }
 // 时间设置
 var today = '';
@@ -305,5 +512,9 @@ $(document).ready(function () {
 	var time = new Date();
 	var day = ("0" + time.getDate()).slice(-2);
 	var month = ("0" + (time.getMonth() + 1)).slice(-2);
+	var h = ("0" + (time.getHours())).slice(-2);
+	var m = ("0" + (time.getMinutes())).slice(-2);
+	var s = ("0" + (time.getSeconds())).slice(-2);
 	today = time.getFullYear() + "-" + (month) + "-" + (day);
+	// today = time.getFullYear() + "-" + (month) + "-" + (day) + " " + h + ":" + m + ":" + s;
 });

@@ -4,232 +4,235 @@ $(function() {
 	var PaperId = decodeURI(value);
 	var taskId = PaperId.split(',')[0]
 	var taskType = PaperId.split(',')[1]
-	// console.log(taskType)
-	resContent(taskId);
-	
-var	resContent = function(taskId){
+
+	console.log(taskType)
+	// resContent(taskId);
+
 	$.ajax({
-			url: LBUrl + 'manage_system/task/' + taskId,
+		url: LBUrl + 'manage_system/task/' + taskId,
+		data: {
+
+		},
+		dataType: 'json',
+		type: 'GET',
+		success(res) {
+			if (res.data != null) {
+				if (res.data.taskType == '1') {
+					console.log(res)
+					resContent(res, taskType)
+				} else if (res.data.taskType == 2) {
+					resContent(res, taskType)
+				} else if (res.data.taskType == 3) {
+					tableAjax(res, res.data.paperId);
+				}
+			} else {
+
+			}
+		}
+	})
+	var resContent = function(res, taskType) {
+
+
+		// res.data.forEach(function(item,index){
+		$.ajax({
+			url: TDXUrl + 'manage_system/resource/' + res.data.resId,
+			data: {},
+			dataType: 'json',
+			type: 'GET',
+			contentType: 'application/json;charset=utf-8',
+			success(resc) {
+				var Html = [];
+				// console.log(resc)
+				// status = resc.data.status;
+				if (resc.data.resType == 1) {
+					Html.push('<div class="Testing">' + res.data.taskName + '</div>')
+					Html.push(
+						'<div class="layui-tab tabHead layui-tab-brief"><ul class="layui-tab-title"><li class="layui-this learningTasks" style="display: hidden;" >视频学习</li><li class="testContent" style="display: hidden;" value="' +
+						res.data.paperId + '">测试内容</li>'
+					)
+
+					Html.push('<div class="colour"><div class="m"><video poster="vs.png" controls><source src="' + resc.data.path +
+						'" type="video/' + resc.data.resExt +
+						'"></video><script>plyr.setup();</script></div><div style="text-align:center;margin:50px 0; font:normal 14px/24px ' +
+						'MicroSoft YaHei' + ';color:#ffffff"></div></div></ul></div></div>')
+					$('.content').css('height', '550px')
+				} else if (resc.data.resType == 3) {
+					Html.push('<div class="Testing">' + res.data.taskName + '</div>')
+					Html.push(
+						'<div class="layui-tab tabHead layui-tab-brief"><ul class="layui-tab-title"><li class="layui-this" style="display: hidden;">文档学习</li><li style="display: hidden;" class="testContent" value="' +
+						res.data.paperId + '">测试内容</li>'
+					)
+					Html.push('<div class="colour" style="padding-top: 0;"><div class="File"><embed src="' + resc.data.path +
+						'" width="1200" height="470" ></embed></div></div></ul></div></div>')
+
+				} else if (resc.data.resType == 2) {
+					Html.push('<div class="Testing">' + res.data.taskName + '</div>')
+					Html.push(
+						'<div class="layui-tab tabHead layui-tab-brief"><ul class="layui-tab-title"><li class="layui-this" style="display: hidden;">音频学习</li><li style="display: hidden;" class="testContent" value="' +
+						res.data.paperId +
+						'">测试内容</li><div class="colour" style="padding-top: 0;"><div class="File"><audio class="frequency" controls="controls" style="padding: 20px 500px;> <source src="imgs/song.ogg" type="audio/ogg" "></audio></div></div></ul></div></div>'
+					)
+					$('.content').css('height', '200px')
+
+				}
+
+				$('.content').html(Html.join(''))
+				if (resc.data.resType == 3) {
+					$('.File').css('height', '675px')
+				}
+				$('.box-contents').prepend(
+					'<div class="comment">	<div class="comment-title">学习心得</div><ul class="comment-content" id="contentList"><li>我今天学习了java<p class="comment-time">2019-10-21 13:23:55</li></ul></div>'
+				)
+
+				if (res.data.taskType == 1) {
+					console.log()
+				} else if (res.data.taskType == 2) {
+					// console.log('asdasd')
+					console.log(res.data.taskType)
+					$('.testContent').hide()
+				} else if (res.data.taskType == 3) {
+					$('.learningTasks').hide()
+					tableAjax(resc.data.paperId);
+				}
+
+				$('.testContent').click(function() {
+					// (
+					// 
+					tableAjax(res, res.data.paperId)
+
+				})
+			}
+
+
+
+
+
+
+
+		})
+	}
+
+
+	//表格会绘制
+	var tableAjax = function(res, paperId) {
+		$.ajax({
+			url: MCUrl + 'manage_system/paper/' + paperId,
 			data: {
-	
+
+			},
+			Type: 'GET',
+			success: function(resb) {
+				if (resb || resb.data !== null) {
+					TableDrawing(resb, res);
+				}
+			},
+			error: function(e) {
+
+			}
+		});
+
+	}
+	var TableDrawing = function(resb, res) {
+		console.log(resb)
+		var Html = [];
+		$('.content .Testing').text(res.data.taskName);
+		Html.push('<div class="Testing">' + res.data.taskName + '</div>')
+		Html.push(
+			'<div class="layui-tab tabHead layui-tab-brief"><ul class="layui-tab-title"><li class="learningTasks" style="display: hidden;" >视频学习</li><li class="testContent layui-this" style="display: hidden;" value="' +
+			res.data.paperId + '">测试内容</li>'
+		)
+		resb.data.questions.forEach(function(item, index) {
+		console.log(resb)
+			Html.push('<div class="sortableitem">');
+			Html.push('<div class="topicFramework" style="text-align: left;line-height: 1;">');
+			Html.push('<input type="text" class="qusetionId" value="' + item.questionId + '" hidden="hidden"/>');
+			if (item.questionType == 1) {
+				item.questionType = '单选题';
+			} else {
+				item.questionType = '多选题';
+			}
+			Html.push('<p class="num">' + (index + 1) + '. ' + item.questionType + '</p>');
+			Html.push('<p class="distance">' + item.content + '</p>');
+			item.optionInfo.forEach(function(items, index) {
+				Html.push('<p class="distance">' + items.optionType + ' ' + items.content + '</p>');
+			});
+			Html.push('</div>');
+			Html.push('<div class="functionBox">');
+			Html.push('<button class="toView" value="'+item.questionId+'"><i class="layui-icon layui-icon-search"></i>查看解析</button>');
+			Html.push('</div>');
+			Html.push('</div>');
+
+			Html.push('</ul>')
+			Html.push('</div>')
+		});
+		
+		console.log('asdasdasd')
+		
+	$('.content').html(Html.join(''))
+		// 解析
+		$('.learningTasks').click(function() {
+			resContent(res, res.data.taskType);
+		})
+		$('.toView').off('click').on('click', function() {
+			var QusetionId = $(this).val();
+			toViewAnalysis(QusetionId);
+		});
+		if (res.data.taskType == 1) {
+			console.log()
+		} else if (res.data.taskType == 2) {
+			// console.log('asdasd')
+			console.log(res.data.taskType)
+			$('.testContent').hide()
+		} else if (res.data.taskType == 3) {
+			$('.learningTasks').hide()
+			// tableAjax(resc.data.paperId);
+		}
+	}
+	// 查看解析(弹窗)
+	// 查看解析(弹窗)
+	var toViewAnalysis = function(questionId) {
+		// 解析内容
+		var Analysis = '未定义';
+		// 正确答案
+		var OptionType = '未知';
+		$.ajax({
+			url: MCUrl + 'manage_system/question/answer',
+			data: {
+				'questionId': questionId
 			},
 			dataType: 'json',
 			type: 'GET',
 			success(res) {
-				console.log(res)
-				var Html = [];
-				// res.data.forEach(function(item,index){
-				$.ajax({
-					url: TDXUrl + 'manage_system/resource/' + 1,
-					data: {},
-					dataType: 'json',
-					type: 'GET',
-					contentType: 'application/json;charset=utf-8',
-					success(resc) {
-			console.log(resc)
-						status = resc.data.status;
-						if (status == '1') {
-							Html.push('<div class="Testing">' + res.data.taskName + '</div>')
-							Html.push(
-								'<div class="layui-tab tabHead layui-tab-brief"><ul class="layui-tab-title"><li class="layui-this learningTasks" style="display: display;" >视频学习</li><li class="testContent" style="display: display;" value="'+res.data.paperId+'">测试内容</li>'
-							)
-							Html.push('<div class="colour"><div class="m"><video poster="vs.png" controls><source src="' + resc.data.path +
-								'" type="video/' + resc.data.resExt +
-								'"></video><script>plyr.setup();</script></div><div style="text-align:center;margin:50px 0; font:normal 14px/24px ' +
-								'MicroSoft YaHei' + ';color:#ffffff"></div></div></ul></div></div>')
-						} else if (status == '3') {
-							Html.push('<div class="Testing">' + res.data.taskName + '</div>')
-							Html.push(
-								'<div class="layui-tab tabHead layui-tab-brief"><ul class="layui-tab-title"><li class="layui-this">文档学习</li><li class="testContent" value="'+res.data.paperId+'">测试内容</li>'
-							)
-							Html.push('<div class="colour" style="padding-top: 0;"><div class="File"><embed src="' + resc.data.path +
-								'" width="1200" height="470" ></embed></div></div></ul></div></div>')
-						} else if (status == '2') {
-							Html.push('<div class="Testing">' + res.data.taskName + '</div>')
-							Html.push('<div class="layui-tab tabHead layui-tab-brief"><ul class="layui-tab-title"><li class="layui-this">音频学习</li><li class="testContent" value="'+res.data.paperId+'">测试内容</li><div class="colour" style="padding-top: 0;"><div class="File"><audio class="frequency" controls="controls" style="margin: 200px 400px;> <source src="imgs/song.ogg" type="audio/ogg" "></audio></div></div></ul></div></div>')
-							
-						}
-						// Html.push('')
-						$('.content').html(Html.join(''))
-						if (taskType == '1') {
-							$('.learningTasks').css('display', 'display')
-							$('.testContent').css('display', 'display')
-						} else if (taskType == '2') {
-							$('.testContent').css('display', 'none')
-						} else if (taskType == '3') {
-							$('.learningTasks').css('display', 'none')
-							tableAjax(resc.data.paperId);
-						}
-						$('.testContent').click(function(){
-					// (
-					// console.log(res.data.paperId)
-					tableAjax(resc.data.paperId)
-							
-						})
-					}
-					
-					
-				})
-						
-			}
-	
-		
-	})
-}
-	
-					
-//表格会绘制
-var	tableAjax = function(paperId){
-						$.ajax({
-						url: MCUrl + 'manage_system/paper/' + 3,
-						Type: 'GET',
-						success: function(resb) {
-							if (res || res.data !== null) {
-								TableDrawing(resb.data,res.data.taskName);
-							}
-						},
-						error: function(e) {
-						
-						}
+				res.data.forEach(function(item, index) {
+					Analysis = item.analysis;
+					OptionType = item.optionType;
+				});
+				layui.use("layer", function() {
+					var layer = layui.layer;
+					layer.open({
+						type: 1 //Page层类型
+							,
+						closeBtn: 1,
+						area: ['790px', '300px'],
+						title: ['查看解析',
+								'background-color: #279ef0;text-align: center;font-size: 16px;line-height: 43px;color:white;letter-spacing: 5px;padding: 0px;'
+							]
+							// ,shade: 0.6 //遮罩透明度
+							,
+						content: '<div class="answerContent">' +
+							'<p>正确答案：<span class="answerOptions">' + OptionType + '</span></p>' +
+							'<p>答案解析：</p>' +
+							'<p class="analysis">' + Analysis + '</p>' +
+							'</div>'
 					});
-					
-				}
-						var TableDrawing = function(data,taskName) {
-							var Html = [];
-							Html.push('<div class="Testing">' + taskName + '</div>')
-							data.questions.forEach(function(item, index) {
-								Html.push('<li class="sortableitem">');
-								Html.push('<div class="topicFramework">');
-								Html.push('<input type="text" class="qusetionId" value="' + item.questionId + '" hidden="hidden"/>');
-								if (item.questionType == 1){
-									item.questionType = '单选题';
-								} else {
-									item.questionType = '多选题';
-								}
-								Html.push('<p class="num">'+ (index + 1) +'. ' + item.questionType + '</p>');
-								Html.push('<p class="distance">' + item.content + '</p>');
-								item.optionInfo.forEach(function(items, index) {
-									Html.push('<p class="distance">' + items.optionType + ' ' + items.content + '</p>');
-								});
-								Html.push('</div>');
-								Html.push('<div class="functionBox">');
-								Html.push('<button class="toView"><i class="layui-icon layui-icon-search"></i>查看解析</button>');
-								Html.push('</div>');
-								Html.push('</li>');
-							});
-							$('.content').html(Html.join(''));
-							// 解析
-								$('.toView').off('click').on('click', function() {
-								var QusetionId = $(this).parent().parent().find('.qusetionId').val();
-								info.toViewAnalysis(QusetionId);
-							});
-						}
-						// 查看解析(弹窗)
-						// 查看解析(弹窗)
-						var toViewAnalysis = function(questionId) {
-							// 解析内容
-							var Analysis = '未定义';
-							// 正确答案
-							var OptionType = '未知';
-							$.ajax({
-								url: MCUrl + 'manage_system/question/answer',
-								data: {
-									'questionId': questionId
-								},
-								dataType: 'json',
-								type: 'GET',
-								success(res) {
-									res.data.forEach(function(item, index) {
-										Analysis = item.analysis;
-										OptionType = item.optionType;
-									});
-									layui.use("layer", function() {
-										var layer = layui.layer;
-										layer.open({
-											type: 1 //Page层类型
-												,
-											closeBtn: 1,
-											area: ['790px', '300px'],
-											title: ['查看解析',
-													'background-color: #279ef0;text-align: center;font-size: 16px;line-height: 43px;color:white;letter-spacing: 5px;padding: 0px;'
-												]
-												// ,shade: 0.6 //遮罩透明度
-												,
-											content: '<div class="answerContent">' +
-												'<p>正确答案：<span class="answerOptions">' + OptionType + '</span></p>' +
-												'<p>答案解析：</p>' +
-												'<p class="analysis">' + Analysis + '</p>' +
-												'</div>'
-										});
-									});
-								}
-							});
-						}
-// 评论区js
-$('.testContent').click(function() {
-	window.open("../../../htmls/ViewTestPaper/ViewTestPaper.html?value=" + 1);
-})
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-$('#btnComment').click(function() {
-
-	var content = $("#contentOne").val();
-	var time = new Date();
-	var year = time.getFullYear();
-	var mouth = time.getMonth() + 1;
-	var day = time.getDate();
-	var hour = time.getHours() < 10 ? '0' + time.getHours() : time.getHours();
-	var minutes = time.getMinutes() < 10 ? '0' + time.getMinutes() : time.getMinutes();
-	var second = time.getSeconds() < 10 ? '0' + time.getSeconds() : time.getSeconds();
-	var weekIndex = time.getDay();
-	var newTime = year + "-" + mouth + "-" + day + "    " + hour + ":" + minutes + ":" + second
-	if (content === "") {
-		alert("请输入评论内容");
-	} else {
-
-		$("#contentList").append("<li>" + content + "<p>" + newTime + "</p>" + "</li>");
-		document.getElementById("contentOne").value = ""
-
+				});
+			}
+		});
 	}
-
-
-
-
-})
-
-
-
-
+	// 评论区js
+	$('.testContent').click(function() {
+		window.open("../../../htmls/ViewTestPaper/ViewTestPaper.html?value=" + 1);
+	})
 
 
 
@@ -262,6 +265,31 @@ $('#btnComment').click(function() {
 
 
 
+	$('#btnComment').click(function() {
+
+		var content = $("#contentOne").val();
+		var time = new Date();
+		var year = time.getFullYear();
+		var mouth = time.getMonth() + 1;
+		var day = time.getDate();
+		var hour = time.getHours() < 10 ? '0' + time.getHours() : time.getHours();
+		var minutes = time.getMinutes() < 10 ? '0' + time.getMinutes() : time.getMinutes();
+		var second = time.getSeconds() < 10 ? '0' + time.getSeconds() : time.getSeconds();
+		var weekIndex = time.getDay();
+		var newTime = year + "-" + mouth + "-" + day + "    " + hour + ":" + minutes + ":" + second
+		if (content === "") {
+			alert("请输入评论内容");
+		} else {
+
+			$("#contentList").append("<li>" + content + "<p>" + newTime + "</p>" + "</li>");
+			document.getElementById("contentOne").value = ""
+
+		}
+
+
+
+
+	})
 
 
 
@@ -283,22 +311,58 @@ $('#btnComment').click(function() {
 
 
 
-// 评论区js-end
-$(".search").focus(function() {
-	$('.searchIcon').hide();
-});
-$(".search").blur(function() {
-	if ($('.search').val() == '')
-		$('.searchIcon').show();
-});
-layui.use(['layer', 'form'], function() {
-var layer = layui.layer,
-	form = layui.form;
 
-All.getMenu({
-	num: 3
-});
-});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	// 评论区js-end
+	$(".search").focus(function() {
+		$('.searchIcon').hide();
+	});
+	$(".search").blur(function() {
+		if ($('.search').val() == '')
+			$('.searchIcon').show();
+	});
+	layui.use(['layer', 'form'], function() {
+		var layer = layui.layer,
+			form = layui.form;
+
+		All.getMenu({
+			num: 3
+		});
+	});
 });
 
 ! function(e, t) {

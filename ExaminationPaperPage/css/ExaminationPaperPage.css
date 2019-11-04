@@ -68,7 +68,10 @@
 th {
 	font-size: 16px !important;
 }
-th , td{
+.layui-form-select dl dd.layui-this{
+	background-color: #279ef2;
+}
+#examinationPaperList table thead th , #examinationPaperInformation td{
 	height: 46px;
 	text-indent: 25px;
 }
@@ -101,7 +104,7 @@ a{
 	line-height: 20px;
 	border: 0;
 }
-.operation{
+#examinationPaperList table thead tr .operation{
 	text-indent: 40px;
 }
 #paging{
@@ -205,4 +208,102 @@ a{
 }
 .layui-layer-tips{
 	margin-top: -75px !important;
+}
+
+/* 发布弹窗 ------------------------------------------------------- */
+
+#addTaskPage{
+	width: 600px;
+	margin: 15px auto;
+	/* border: 1px solid black; */
+}
+.layui-form-item{
+	margin: 16px auto;
+	width: 540px;
+	/* border: 1px solid black; */
+}
+#addTaskPage input{
+	width: 190px;
+	height: 35px;
+}
+#addTaskPage .taskName{
+	width: 400px;
+	border-radius: 5px;
+}
+#test1 , #test2{
+	border-radius: 5px;
+}
+.taskRemark{
+	width: 300px;
+	height: 100px;
+}
+.selectResource , .selectPapers{
+	margin: 0 0 0 35px;
+}
+.selectPersonnel{
+	margin: 0 0 0 -10px;
+}
+.selectPersonnel i{
+	line-height: 38px;
+}
+.taskUsers{
+	width: 275px;
+	height: 140px;
+	overflow-y: auto;
+	border: 1px solid #DADADA;
+	padding: 5px 10px;
+	margin: 0 0 0 37px;
+}
+.taskRemark{
+	width: 400px;
+	height: 150px;
+}
+.resourceSelection{
+	width: 150px;
+	margin: 0 auto;
+	display: block;
+}
+label{
+	font-size: 16px;
+}
+.selectResource span , .selectPapers span , .selectPersonnel span{
+	font-size: 16px;
+	color: #5FB878;
+}
+.selectPapers .paperAdd{
+	color: #606060;
+}
+/* ...搜索框 */
+.iconSearch {
+	width: 200px;
+	border: 1px solid #C9C9C9;
+	border-radius: 6px;
+}
+
+/* ...复选框 */
+.checkAll {
+	width: 15px;
+	height: 15px;
+}
+.userNameRetrieval{
+	width: 150px;
+	height: 30px;
+	margin: 0 0 0 10px;
+	border: 0;
+}
+#selectTaskUsers{
+	border: 1px solid #C9C5C5;
+	width: 510px;
+	height:200px;
+	margin-bottom: 20px;
+}
+.myskin{
+	border-radius: 7px !important;
+}
+i{
+	font-style:normal
+}
+/* 时间插件的hover样式 */
+.layui-laydate-footer span:hover{
+	color: #279ef0 !important;
 }
