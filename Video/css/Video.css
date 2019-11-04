@@ -152,7 +152,7 @@ body {
 
 .plyr audio,.plyr video {
 	width: 100%;
-	height: auto;
+	/* height: auto; */
 	vertical-align: middle;
 	border-radius: inherit
 }
@@ -840,45 +840,47 @@ body {
 	transform: translateY(-50%)
 }
 /*评论区的css样式*/
-.box-contents{	
+.box-contents{
+	overflow: auto;
 	font-size: 20px;
 	/* width: calc(98.7% - 420px); */
 	margin: 30px 0px 30px;
-	height: 400px;
+	height: 475px;
 	background-color: white;
 }
 .comment{
-
-		width:100%;
-		text-align: left:;
-		padding: 15px 10px 5px 10px;
+	text-align: left:;
+	padding: 15px 10px 5px 10px;
 }
 
 .comment .comment-title{
-	font-size:14px;
+	font-size:15px;
 	font-weight: 900;
-	border-bottom:1px solid #f6f6f6;
+	/* border-bottom:1px solid #f6f6f6; */
 	color:#5a5a5a;
+	margin-left: 5px;
 }
 
 .comment .comment-content{
 	margin:0;
 	padding:0;
+	margin-top: 5px;
 }
 .comment .comment-content li{
 	clear:both;
-	border-bottom:1px solid #f6f6f6;
+	/* border-bottom:1px solid #f6f6f6; */
 	font-size:14px;
 	color:#5a5a5a;
 	display:block;
 	text-align:left;
 	padding-top:10px;
+	padding-left: 5px;
 }
 .comment .comment-content li p{
 	text-align: right;
 	color:#409EFF;
 	font-size:12px;
-	padding-right:30px;
+	padding-right:40px;
 }
 .content {
 	height:595px;
@@ -888,10 +890,10 @@ body {
 	width: 98%;
 	height: 120px;
 	margin-top: 10px;
-	margin-left: 10px;
+	margin-left: 14px;
 }
 .btn-comment{
-	margin-top:5px;
+	margin-top:20px;
 	margin-right: 20px;
 	display: flex;
 	justify-content: flex-end;
@@ -906,8 +908,13 @@ body {
 
 }
 .btn-comment button:hover{
-	background-color:#257BD5;
+	background-color:#409EFF;
 }
 .layui-textarea{
 	resize: none;
+}
+hr{
+	color:#f6f6f6;
+	width: 99.3%;
+	margin-left: 4px;
 }

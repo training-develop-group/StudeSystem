@@ -13,16 +13,14 @@ $('#btnComment').click(function(){
 		var weekIndex = time.getDay();   
 		var newTime=year+"-"+mouth+"-"+day+"    "+hour+":"+minutes+":"+second
 		if(content === ""){
-			alert("请输入评论内容");
+			layer.msg('请输入评论内容！');
 		}else{
-			$("#contentList").append("<li>"+content+"<p>"+newTime+"</p>"+"</li>");
-			 document.getElementById("contentOne").value = "" 
+			$("#contentList").append("<li>"+content+"<p>"+newTime+"</p>"+"</li><hr>");
+			document.getElementById("contentOne").value = "" 
 	}
 })
 
-     // 评论区js-end
-	
-
+// 评论区js-end
 $(".search").focus(function() {
 	$('.searchIcon').hide();
 });
@@ -33,8 +31,8 @@ $(".search").blur(function() {
  layui.use(['layer', 'form'], function () {
 		var layer = layui.layer, form = layui.form;
 
-		All.getMenu({
-			num:2
-		});
+		// All.getMenu({
+		// 	num:2
+		// });
 	});
 });
