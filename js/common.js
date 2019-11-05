@@ -230,6 +230,9 @@ var All = {
 					case 2:
 						info.deletePaper(options.paperId);
 						break;
+                    case 3:
+                        info.delectTask(options.taskId);
+                        break;
 	            }
 	            layer.close(layer.index);
 	          });
