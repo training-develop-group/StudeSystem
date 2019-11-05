@@ -265,7 +265,7 @@ var info = {
 						$.each($("[name='Staff']:checked"), function(i, val) {
 							Html.push('<p >' + $(this).siblings('i').text() + '<input type="text"  hidden="" id="" value="' + $(this).val() +
 								'" />  <i  data-id="' + $(this).val() +
-								'" class="layui-icon layui-icon-close deleteUserName" style="font-size: 20px; margin-left:200px 	"></i></p>'
+								'" class="layui-icon layui-icon-close deleteUserName" style="font-size: 20px; margin-left:150px 	"></i></p>'
 							)
 						})
 						$('.taskUsers').html(Html.join(''));
@@ -877,7 +877,7 @@ var info = {
 			type: 'GET',
 			success(res) {
 				var Html = []
-				res.forEach(function(item, index) {
+				res.data.forEach(function(item, index) {
 					Html.push('<span class="layui-form-label" style="font-size: 16px;"><input type="checkbox" value="' + item.userId +
 						'"class="checkAll " name="Staff" lay-skin="primary" lay-filter="c_one" ><i>' + item.userName +
 						'</i></span>')

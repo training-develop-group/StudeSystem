@@ -271,13 +271,13 @@ tbody>tr:hover {
 	float: left;
 	display: block;
 	padding: 10px 15px;
-	width: 110px;
+	/* width: 110px; *//* ---------------------------------------------------------------------------------------------------------- */
 	font-weight: 400;
 	line-height: 20px;
 }
 
 .Release_content ._search span {
-	float: right;
+	/* float: right; *//* ---------------------------------------------------------------------------------------------------------- */
 	color: rgb(82, 186, 140);
 }
 
@@ -289,7 +289,7 @@ tbody>tr:hover {
 /* 任务对象选择人员---------------------------------------------------------------------- */
 /* 整体 */
 .taskUsers {
-	width: 220px;
+	width: 300px;
 	height: 120px;
 	overflow-y: auto;
 	border: 1px solid #dadada;
@@ -501,11 +501,23 @@ tbody>tr:hover {
 .selectTaskUsers {
 	border: 1px solid #C9C5C5; 
 	height:200px;
-	width: 90%;
+	width: 550px;
 	margin: auto;
 	background-color: rgb(248, 248, 248);
+	overflow: auto;
 }
-
+.selectTaskUsers .layui-form-label{
+	width: 100px;
+	padding: 9px 10px !important;
+}
+/* #selectTaskUsers span{
+  text-align: left;
+  padding-left: 20px;
+} */
+/* .taskUsers p i{
+  float: right;
+  padding-right: 20px;
+} */
 .checkboxNameList {
 	/* margin-bottom: 20px; */
 	margin: 0 0 20px 30px;

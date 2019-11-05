@@ -109,7 +109,7 @@ a{
 	width: 60px;
 }
 #examinationPaperList table thead tr .operation{
-	text-indent: 40px;
+	text-indent: 30px;
 }
 #paging{
 	margin-top: -30px;
@@ -251,12 +251,16 @@ a{
 	line-height: 38px;
 }
 .taskUsers{
-	width: 275px;
+	width: 300px;
 	height: 140px;
 	overflow-y: auto;
 	border: 1px solid #DADADA;
 	padding: 5px 10px;
 	margin: 0 0 0 37px;
+}
+.selectTaskUsers .layui-form-label{
+	width: 100px;
+	padding: 9px 10px;
 }
 .taskRemark{
 	width: 400px;
@@ -300,6 +304,7 @@ label{
 	width: 510px;
 	height:200px;
 	margin-bottom: 20px;
+	overflow: auto;
 }
 .myskin{
 	border-radius: 7px !important;
