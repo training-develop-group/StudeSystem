@@ -24,7 +24,7 @@ var info = {
 	//  todo  接口 ,获取页面试题
 	getList: function() {
 		$.ajax({
-			url: MCUrl + 'manage_system/paper/' + 3,
+			url: MCUrl + 'manage_system/paper/' + 53,
 			data: {
 
 			},

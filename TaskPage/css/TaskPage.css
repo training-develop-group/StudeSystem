@@ -9,6 +9,7 @@
 #selectTaskUsers span{
 	text-align: left;
 	padding-left: 20px;
+	
 }
 #selectTaskUsers{
 	border: 1px solid #C9C5C5; width: 550px; height:200px; margin-bottom: 20px;    overflow: auto;
@@ -130,6 +131,7 @@ ul {
     margin-top: 0;
     overflow: auto;
     padding: 10px;
+	    padding-left: 20px;
 }
 
 .layui-laydate-footer span:hover {
