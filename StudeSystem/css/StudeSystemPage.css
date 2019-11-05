@@ -1,0 +1,198 @@
+
+
+.header .logo {
+	font-size: 20px;
+	color: #000000;
+	padding-left: 75px;
+	padding-top: 15px;
+
+}
+
+.header .serachBox .search {
+	position: absolute;
+	width: 380px;
+	height: 39px;
+	border-radius: 7px;
+	margin-left: 85px;
+	margin-top: -10px;
+	z-index: 0;
+}
+
+.header .serachBox {
+	margin-left: 150px;
+	margin-top: -20px;
+}
+
+
+
+.header .serachBox .searchIcon {
+	
+	background: url(../../imgs/search.jpg) no-repeat;
+	width: 25px;
+	height: 25px;
+	background-color: #FFFFFF;
+	position: absolute;
+	margin-left: 90px;
+	margin-top: -2px;
+	z-index: 1;
+}
+
+.header .user .circular {
+	width: 39.09px;
+	height: 39px;
+	background-color: #B5B5B5;
+	border-radius: 50px;
+	margin-left: -60px;
+	margin-top: -10px;
+
+}
+
+.header .user .userText {
+	position: absolute;
+	margin-top: 7px;
+	font-size: 10px;
+	margin-left: 50px;
+	color: #FFFFFF;
+	width: 50px;
+	font-size: 17.99px;
+	font-family: "微软雅黑";
+}
+
+.header .user {
+	position: absolute;
+	float: right;
+	margin-left:  90%;
+}
+.layui-tab-title{
+	border-bottom-width:0.71cm;
+	/* border-bottom-color: #f1f1f1; */
+	border-bottom-color: #FFF;
+}
+/* .tabHead li{
+	margin-top: 20px;
+} */
+.layui-tab-brief>.layui-tab-title .layui-this{
+	color:#289ef0;
+}
+.layui-tab-brief>.layui-tab-more li.layui-this:after, .layui-tab-brief>.layui-tab-title .layui-this:after{
+	border-bottom:2px solid #289ef0;
+	margin-top:0.5cm;
+}
+.layui-badge-rim, .layui-colla-content, .layui-colla-item, .layui-collapse, .layui-elem-field, .layui-form-pane .layui-form-item[pane], .layui-form-pane .layui-form-label, .layui-input, .layui-layedit, .layui-layedit-tool, .layui-quote-nm, .layui-select, .layui-tab-bar, .layui-tab-card, .layui-tab-title, .layui-tab-title .layui-this:after, .layui-textarea{
+	margin-top: 0.5cm;
+}
+.tabHead{
+	border-radius: 7px;
+	background-color: #FFFFFF;
+}
+.content {
+	border-radius: 7px;
+}
+.content li{
+	font-size: 17px;
+}
+/* .tabHead ul{
+	height: 2.14cm;
+} */
+
+body{
+	background-color: #f1f1f1;
+	overflow-x: hidden;		/* 禁用滚动条 */
+}
+.header {
+	width: calc(100% - 20px);
+	padding: 10px;
+	height: 60PX;
+	background-color: #289ef0;
+}
+
+/*---------------- content----------- */
+.content {
+	width: calc(100% - 420px);
+	margin: 0.81cm 210px 30px;
+	height: 750px;
+	background-color: white;
+	
+}
+.layui-tab-title{
+	margin-top: 35px;
+	margin-left: 10px;
+}
+.testTask{
+	position: relative;
+	top: 20px;
+	left: 20px;
+	font-size: 18px;
+	color: #676868;
+}
+li{
+	color: #B2B2B2;
+}
+.answerCardFramework{
+	width: 1433px;
+	height: 127px;
+	background-color: #e4ebf5;
+	margin-left: 35px;
+}
+.answerCard{
+	width: 1408px;
+	height: 107px;
+	position: relative;
+	top: 10px;
+	left: 12px;
+	color: #000000;
+	background-color: #FFF;
+}
+p{
+	position: relative;
+	left: 25px;
+}
+.titleNumber{
+	width: 30px;
+	height: 30px;
+	background-color: #4aacee;
+	border-radius: 5px;
+	text-align: center;
+	display: table-cell;
+	vertical-align: middle;
+	color: #FFF;
+	position: relative;
+	left: 35px;
+	top: 20px;
+}
+.submit{
+	position: relative;
+	left: 1300px;
+	top: -45px;
+	width: 65px;
+	height: 65px;
+	border-radius: 50px;
+	background-color: #d2d2d2;
+	border: 0;
+	color: #FFF;
+	font-size: 16px;
+}
+.subjectFramework{
+	width: 1433px;
+	height: 370px;
+	background-color: #e4ebf5;
+	position: relative;
+	left: 35px;
+}
+.subject{
+	width: 1408px;
+	height: 360px;
+	background-color: #FFF;
+	position: relative;
+	left: 12px;
+}
+.bigQuestion{
+	position: relative;
+	left: 30px;
+	top: 25px;
+}
+.minorTopic{
+	position: relative;
+	left: 30px;
+	top: 40px;
+}

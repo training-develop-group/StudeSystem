@@ -1,0 +1,235 @@
+.content .resources{
+	margin-top: 25px;
+	margin-left: 223px;
+	width: 635px;
+	height:357px;
+	
+}
+.content .statistics{
+	margin-left: 223px;
+	width: 1476px;
+	height: 605px;
+	background-color: #FFFFFF;
+}
+.content .task{
+	margin-top: -372px;
+	margin-left: 878px;
+	width: 401px;
+	height:357px;
+	
+}
+.content .paper{
+	margin-top: -372px;
+	margin-left: 1300px;
+	width: 401px;
+	height:357px;
+
+}
+#title{
+	width: 100%;
+	height: 60px;
+	background-color: #279ef0;
+	/* margin-left: 10px; */
+	/* margin-top: 25px; */
+	border-radius: 7px 7px 0 0;
+}
+#centered{
+	line-height: 60px;
+}
+#centered span{
+	font-size: 20px;
+	margin-left: 30px;
+	color: white;
+	font-weight: 600;
+}
+#newTestPaper{
+	border: none;
+	font-size: 16px;
+	float: right;
+	margin-right: 20px;
+	margin-top: 10px;
+	border-radius: 5px;
+	color: #279ef2;
+}
+#examinationPaperList{
+	/* border: 1px solid black; */
+	width: 100%;
+	min-height: 650px;
+	/* margin-left: 10px; */
+	margin-top: 20px;
+	background-color: white;
+}
+.layui-table{
+	width: calc(100% - 50px);
+	margin-left: 25px;
+	border: 0;
+	cellspacing: 1;
+}
+th {
+	font-size: 16px !important;
+}
+th , td{
+	height: 46px;
+	text-indent: 25px;
+}
+.layui-table th{
+	font-weight: 600;
+	padding: 2px;
+	background-color: white;
+}
+.layui-table td{
+	padding: 0px;
+}
+.layui-table td, .layui-table th{
+	border-width: 0;
+	border-bottom: 1px solid #eeeeee;
+}
+td{
+	font-size: 14px;
+}
+.middle{
+	text-indent: 0 !important;
+	text-align: center !important;
+}
+a{
+	text-decoration:none
+	out-line: none
+}
+.edit , .selectedTopic , .toView , .delete{
+	width: 63px;
+	height: 20px;
+	line-height: 20px;
+	border: 0;
+}
+.edit{
+	margin-left: -16px;
+}
+#paging{
+	margin-top: -30px;
+}
+
+/* 弹窗位置 */
+.layui-layer{
+	top: 140px !important;
+}
+.inputLocation{
+	margin-top: 25px;
+	margin-left: 100px;
+}
+.inputLocation span{
+	font-size: 15px;
+}
+#nameOfExaminationPaper{
+	margin-left: 20px;
+	width: 480px;
+	border-radius: 4px;
+}
+.layui-input{
+	height: 30px;
+	display: inline;
+}
+#confirm{
+	margin-left: 210px;
+	margin-top: 35px;
+	width: 160px;
+	height: 30px;
+	line-height: 30px;
+	border-radius: 5px;
+	background-color: #279ef0;
+	color: white;
+}
+/* .layui-layer-btn{ */
+	/* padding: 0 293px 12px !important; */
+/* 	padding: 0 170px 12px !important;
+	margin-top: 20px;
+}
+.layui-layer-btn a{
+	margin: -15px 30px 0 !important;
+	padding: 0px !important;
+}
+.layui-layer-btn0{
+	width: 160px !important; */
+	/* height: 20px !important; */
+/* 	line-height: 39px;
+	text-align: center;
+	margin-top: -10px;
+}
+.layui-layer-btn1{
+	width: 160px !important; */
+	/* height: 20px !important; */
+/* 	line-height: 39px;
+	text-align: center;
+	margin-top: -10px;
+}
+.layui-laypage a{
+	margin-left: 5px;
+	margin-right: 5px;
+} */
+.layui-laypage a{
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+.acquiredValue{
+	width: 500px;
+	margin-left: 25px;
+}
+.renameConfirm{
+	width: 160px;
+	height: 30px;
+	background-color: #279ef0;
+	border: 1px solid #279ef0;
+	line-height: 30px;
+	text-align: center;
+	float: left;
+	margin-top: 33px;
+	margin-left: 70px;
+	color: white;
+}
+.renameCancel{
+	width: 160px;
+	height: 30px;
+	background-color: fff;
+	border: 1px solid #dedede;
+	line-height: 30px;
+	text-align: center;
+	float: right;
+	margin-top: 33px;
+	margin-right: 170px;
+	color: black;
+}
+.newTestPaperConfirm{
+	width: 160px;
+	height: 30px;
+	background-color: #279ef0;
+	border: 1px solid #279ef0;
+	line-height: 30px;
+	text-align: center;
+	float: left;
+	margin-top: 33px;
+	margin-left: 70px;
+	color: white;
+}
+
+.newTestPaperConfirm:hover {
+	color: #fff;
+}
+
+.newTestPaperCancel{
+	width: 160px;
+	height: 30px;
+	background-color: fff;
+	border: 1px solid #dedede;
+	line-height: 30px;
+	text-align: center;
+	float: right;
+	margin-top: 33px;
+	margin-right: 170px;
+	color: black;
+}
+.layui-btn-primary:hover {
+	border-color: #279ef0;
+}
+.layui-layer-tips{
+	margin-top: -75px !important;
+}

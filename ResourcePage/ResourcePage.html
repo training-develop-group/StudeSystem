@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<!-- <link rel="stylesheet" href="../css/css/font-awesome.css"> -->
+		<link rel="stylesheet" href="../css/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../js/layui/css/layui.css">
+		<link rel="stylesheet" href="../css/common.css">
+		<link rel="stylesheet" href="css/ResourcePage.css">
+
+		<title>资源页</title>
+	</head>
+	<body>
+
+		<div id="header"></div>
+		<div class="wrapper wrapper-content clearfix">
+			<div class="title">
+				<div class="title-header">
+					<span class="title-header-text">资源列表</span>
+					<span><input type="button" class="title-header-btn layui-btn layui-btn-primary" id="uploadFile" value="上传课件"></span>
+				</div>
+			</div>
+			<div class="content">
+				<table border="0" class="mainTabel">
+					<colgroup>
+						<col width="2%">
+						<col width="2%">
+						<col width="2%">
+						<col width="2%">
+						<col width="2.5%">
+					</colgroup>
+
+					<thead>
+						<tr class="table-header">
+							<td>文件名称</td>
+							<td class="centerText">资源状态</td>
+							<td class="centerText">文件类型</td>
+							<td class="centerText">文件大小</td>
+							<td class="rightText">操作</td>
+
+						</tr>
+					</thead>
+					<!-- <tr>
+						<td><a href="#" class="textFileName">文档</a></td>
+						<td class="centerText">已发布</td>
+						<td class="centerText">文档</td>
+						<td class="centerText">10MB</td>
+						<td><a href="#" class="editResName">编辑</a><a href="#" class="release">发布</a><a href="#" class="delete">删除</a></td>
+					</tr>
+					<tr>
+						<td><a href="#" class="audioFileName">音频</a></td>
+						<td class="centerText">未发布</td>
+						<td class="centerText">音频</td>
+						<td class="centerText">10MB</td>
+						<td><a href="#" class="editResName">编辑</a><a href="#" class="release">发布</a><a href="#" class="delete">删除</a></td>
+					
+					</tr>
+					<tr>
+						<td><a href="#" class="videoFileName">视频</a></td>
+						<td class="centerText">未发布</td>
+						<td class="centerText">视频</td>
+						<td class="centerText">10MB</td>
+						<td><a href="#" class="editResName">编辑</a><a href="#" class="release">发布</a><a href="#" class="delete">删除</a></td>
+					</tr> -->
+					<tbody id="contentList">
+
+					</tbody>
+				</table>
+			</div>
+			<div id="page" class="page" style="text-align: center"></div>
+		</div>
+
+		<div class="layui-upload" id="popup" style="display: none;">
+			<button type="button" class="layui-btn layui-btn-primary changeFile" id="testList">选择文件</button>
+			<div class="layui-upload-list">
+				<table class="hiddenTableList">
+					<colgroup>
+						<col width="2%">
+						<col width="2%">
+						<col width="2%">
+						<col width="2%">
+						<col width="2%">
+					</colgroup>
+					<thead>
+						<tr>
+							<td>文件名</td>
+							<td>类型</td>
+							<td>大小</td>
+							<td>状态</td>
+							<td>操作</td>
+						</tr>
+					</thead>
+					<tbody id="demoList"></tbody>
+				</table>
+			</div>
+		</div>
+		<!-- 视频调用隐藏绑定弹出层 -->
+		<div id="hiddenVideo" style="display: none;">
+			<!-- <video controls="controls">
+			<source src="http://www.jplayer.org/video/m4v/Incredibles_Teaser.m4v" type="video/mp4">
+		</video> -->
+			<!-- <video src="http://192.168.188.114:88/0f4e864639ea49f2b5e93b2a377deb55.mp4" controls="controls" preload="auto" id="myVideo">
+			Your browser does not support the video tag.
+		</video> -->
+		</div>
+
+		<!-- 音频调用绑定弹出层 -->
+		<div id="hiddenAudio" style="display: none;">
+			<!-- <audio src="http://192.168.188.114:88/b9676e1768bd4219ae7504586ce6d307.ogv" controls="controls" id="myAudio"></audio> -->
+		</div>
+
+		<div id="Doc" >
+			<!-- <iframe src="http://192.168.188.114:88/world.doc"></iframe> -->
+		</div>
+		<!-- <iframe src="text/world.docx" width="500" height="500"></iframe> -->
+		<!-- <iframe src="html:\\CLOUDEASY-PC\share\新建文件夹\world.docx"  width="500" height="500"></iframe> -->
+
+		<!-- 编辑资源名弹出层box -->
+		<div id="editResNameBox" style="display: none;">
+			<span class="editText">文件名称</span><input class="rename layui-input" />
+		</div>
+
+		<script src="../js/jQuery v3.4.1.min.js"></script>
+		<script src="../js/layui/layui.all.js"></script>
+		<script src="../js/layui/layui.js"></script>
+		<script src="../js/common.js"></script>
+		<script src="../js/address.js"></script>
+		<script src="js/ResourcePage.js"></script>
+	</body>
+</html>
