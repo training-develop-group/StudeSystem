@@ -6,7 +6,13 @@
     height: 150px;
 
 }
-
+#selectTaskUsers span{
+	text-align: left;
+	padding-left: 20px;
+}
+#selectTaskUsers{
+	border: 1px solid #C9C5C5; width: 550px; height:200px; margin-bottom: 20px;    overflow: auto;
+}
 .layui-form-label {
     line-height: 35px;
     padding: 0;
@@ -96,7 +102,10 @@ ul {
 .layui-nav-tree .layui-nav-itemed:after {
     background-color: #1E9FFF;
 }
-
+.usersSelectOk{
+	margin-left: 200px;
+	width: 130px;
+	}
 .checkAll {
     width: 15px;
     height: 15px;
@@ -135,7 +144,12 @@ ul {
 
 .taskUsers > p {
     line-height: 20px;
+	   
 }
+.taskUsers p i{
+	float: right;
+	padding-right: 20px;
+	}
 
 .selectPapersa {
     margin-top: 20px;
@@ -155,7 +169,7 @@ ul {
 
 #selectResource {
     display: none;
-    padding: 50px;
+    padding:80px;
     padding-top: 0;
     padding-bottom: 0;
     overflow: hidden;
@@ -301,6 +315,10 @@ i {
     margin-right: 20px;
     height: 100px;
     border: 1px solid #dadada;
+	margin-top: 20px;
+}
+.layui-form-radio>i{
+	margin-top: 12px;
 }
 .img-box img{
     width: 100%;

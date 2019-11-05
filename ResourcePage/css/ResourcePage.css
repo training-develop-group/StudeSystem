@@ -1,6 +1,3 @@
-* {
-	color: #1b1b1b;
-}
 
 body,
 html {
@@ -20,11 +17,12 @@ html {
 }
 
 .title-header-text {
-	font-size: 16px;
+	font-size: 18px;
 	color: white;
 	line-height: 60px;
 	/* padding: 0 32px; */
 	margin-left: 32px;
+	font-weight: 600;
 }
 
 .title-header-btn {
@@ -62,13 +60,15 @@ table {
 	/* margin: 0 25px; */
 }
 
-td {
+.content td,
+.layui-upload-list td,
+th{
 	font-size: 14px;
 	border-bottom: 1px solid #E2E2E2;
-	line-height: 45px;
 	padding: 0 25px;
-	
+	line-height: 45px;
 }
+
 td:nth-child(1) {
 	overflow: hidden;
 	text-overflow: ellipsis;
@@ -88,21 +88,31 @@ td:nth-child(1) {
 
 td>button {
 	width: 50px;
-    height: 25px;
-    margin-right: 20px;
-    /* margin-left: 20px; */
-    background-color: #FFFFFF;
-    border: none;
-    float: left;
+	height: 25px;
+	margin-right: 20px;
+	/* margin-left: 20px; */
+	background-color: #FFFFFF;
+	border: none;
+	float: left;
+	cursor: pointer;
 }
-
-thead>tr>td {
-	font-weight: 600;
+td button:hover {
+	color: #777;
+}
+th {
+	text-align: left;
 	font-size: 16px;
 }
+table th:nth-child(1) {
+	padding: 0 25px;
+}
+/* thead>tr>td {
+	font-weight: 600;
+	font-size: 16px;
+} */
 
 #rightText {
-	padding: 0 33px!important;
+	padding: 0 33px !important;
 }
 
 /* 点击上传课件弹出层按钮 */
@@ -167,7 +177,7 @@ tr td a {
 	padding: 0 100px 0 180px;
 }
 
-.layui-input {
+.rename {
 	width: 500px;
 	margin-top: 40px;
 }
@@ -186,282 +196,326 @@ tr td a {
 	border-color: #289ef0;
 	color: #252525;
 }
+
 /* tr hover样式 */
 tbody>tr:hover {
 	background-color: #eeeeee;
 }
+
 .layui-layer-msg {
-	color: #000000!important;
+	color: #000000 !important;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* .layui-form-select dl dd.layui-this {
-	background-color: rgb(64, 175, 254)
-}
-
-.layui-layer-content {
-	height: 150px;
-	
-}
-
-.layui-form-label {
-	line-height: 35px;
-	padding: 0;
-	width: 100px;
-}
-.layui-nav .layui-nav-item a {
-	color: #000000;
-	
-}
-.layui-nav .layui-this a {
-	color: #FFFFFF;
-	
-}
-
-.layui-nav .layui-nav-item {
-	color: #66AFE9;
-	line-height: 30px;
-    height: 30px;
-	
-}
-ol,
-ul {
-	margin-top: 0px;
-	margin-bottom: 0px;
-}
-.layui-this > a{
-	color: #FFFFFF;
-}
-.layui-this {
-	background-color: #1E9FFF;
-	border-bottom: 0px;
-	
-}
-
-.taskNameupdate {
-	width: 400px;
-	border-radius: 7px;
-}
-
-.taskNameupdateBox label {
-	font-size: 16px;
-	padding-right: 15px;
-}
-.taskNameupdateBox input {
-	width: calc(100% - 180px);
-}
-#updateTaskName {
-	margin-top: 20px;
-	width: 150;
-	display: none;
-}
-
-.taskNameupdateBox {
-	padding: 0 50px;
-}
-
-.resourceSelection {
-	width: 100px;
-	height: 30px;
-	margin-left: 250px;
-	margin-top: 0px;
-	background-color: rgb(64, 175, 254);
-
-}
-
-.confirmAdd {
-	width: 160px;
-	margin: 30px auto 0;
-}
-.confirmAdd button{
+#uploadBtn {
 	width: 160px;
 	text-align: center;
+	margin: auto;
+	position: fixed;
+	left: 0;
+	right: 0px;
+	top: 590px;
 }
 
-.layui-nav .layui-this:after,
-.layui-nav-bar,
-.layui-nav-tree .layui-nav-itemed:after {
-	background-color: #1E9FFF;
-}
 
-.checkAll {
-	width: 15px;
-	height: 15px;
 
-}
 
-.iconSearch {
-	width: 200px;
-	border: 1px solid #C9C9C9;
-	border-radius: 6px;
-}
 
-.layui-table {
-	background-color: rgb(248, 248, 248);
-}
 
-.taskUsers {
-	width: 300px;
-	height: 150px;
-	border: 1px solid #D3D4D3;
-	margin-left: 40px;
-	margin-top: 0;
-	overflow: auto;
-	padding: 10px;
-}
 
-.layui-laydate-footer span:hover {
-	color: rgb(64, 175, 254) !important;
-}
+
+
+
+
+
+
+
+
 
 .selectPersonnel {
 	font-size: 16px;
 	color: #5FB878;
 }
 
-.taskUsers>p {
-	line-height: 20px;
+.timeBox {
+	margin-top: 30px !important;
 }
-.selectPapersa {
-	margin-top: 20px;
+
+.Release {
+	position: relative;
+	height: 100%;
+}
+
+/* 发布弹出层内容-------------------------------------------------------------------------- */
+.Release_content {
+	padding: 25px 80px 25px 70px;
+}
+
+.layui-form-item {
 	margin-bottom: 20px;
 }
-	
-.selectPapers {
-	font-size: 16px;
-	margin-left: 40px;
-	color: #5FB878;
-}
-.selectResourcea{
-	margin-top: 20px;
-}
-#selectResource{
-	display: none; padding: 50px; padding-top: 0; padding-bottom: 0; overflow: hidden;
-}
-.selectResource {
-	font-size: 16px;
-	margin-left: 40px;
-	color: #5FB878;
+
+.layui-form-label {
+	text-align: left;
+	padding-right: 8px;
 }
 
-#taskContent {
-	background-color: #FFFFFF;
+
+/* 发布任务名称 */
+.Release_content .Release_name {
+	width: calc(100% - 110px);
+	float: left;
 }
-#taskUserDegreeCompletion{
-	background-color: #FFFFFF;
+
+.Release_content ._search {
+
+	float: left;
+	display: block;
+	padding: 10px 15px;
+	width: 110px;
+	font-weight: 400;
+	line-height: 20px;
 }
-.box {
-	width: 100%;
-	height: 90%;
+
+.Release_content ._search span {
+	float: right;
+	color: rgb(82, 186, 140);
+}
+
+.Release_content ._search i {
+	color: rgb(82, 186, 140);
+}
+
+
+/* 任务对象选择人员---------------------------------------------------------------------- */
+/* 整体 */
+.taskUsers {
+	width: 220px;
+	height: 120px;
+	overflow-y: auto;
+	border: 1px solid #dadada;
+	margin-left: 30px;
+	padding: 5px 10px;
+}
+
+.personls {
+	margin: 0 !important;
+}
+
+.Release_content .layui-form-item {
+	margin-top: 10px;
+}
+
+/*每个人员上下间距 */
+.taskUsers p {
+	line-height: 20px;
+	margin-bottom: 5px;
+}
+
+/* 名字左浮动 */
+.taskUsers p span {
+	font-size: 14px;
+	float: left;
+}
+
+/* icon右浮动 */
+.taskUsers p i {
+	font-size: 14px;
+	float: right;
+}
+/* 任务对象选择人员---------------------------------------------------------------------- */
+
+
+/* 任务描述 */
+.layui-input-block {
+	margin-left: 103px;
+}
+
+
+
+
+/* 发布任务按钮-------------------------------------------------------------------------- */
+.Release_btn {
+	position: absolute;
+	margin: 0 auto;
+	width: 140px;
+	left: 0;
+	right: 0;
+	bottom: 25px;
+}
+
+.Release_btn button {
+	width: 140px;
+}
+/* 发布任务按钮-------------------------------------------------------------------------- */
+
+
+
+
+
+/* 选择资源 */
+#selectResource {
+	display: none;
+	padding: 50px;
+	padding-top: 0;
+	padding-bottom: 0;
+	overflow: hidden;
+}
+
+#resource {
+	float: left;
+	width: 600px;
+	margin-left: 35px
+}
+
+/* 选择资源确认按钮 */
+.resourceSelection {
+	width: 140px;
+	/* height: 30px;
+	margin-left: 250px;
 	margin-top: 0px;
+	background-color: rgb(64, 175, 254); */
+
 }
 
-.headline {
-	height: 50px;
-	width: 100%;
-	background-color: #289ef0;
-	padding-top: 10px;
-	border-radius: 7px 7px 0 0;
-	margin-bottom: 10px;
+/* 选中radio盒子 ----------------------------------------------*/
+.radio_box {
+	position: relative;
+	width: 30%;
 }
 
-.content {
-	background-color: #FFFFFF;
-	width: 100%;
-	min-height: 650px;
+.radio_box .layui-form-radio {
+	position: absolute;
+	left: 5px;
+	top: 20px;
+}
+
+.img-box {
+	margin-right: 20px;
+	height: 100px;
+	border: 1px solid #dadada;
 	margin-top: 20px;
-	border-radius: 2px;
 }
 
-.layui-table td,
-.layui-table th {
-	border-style: none;
+.img-box img {
+	width: 100%;
+	height: 100%;
+}
+
+.radio_box .resName {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	width: 30%;
+}
+
+/* 选中radio盒子 ----------------------------------------------*/
+
+
+/* 选择资源radio选中颜色 */
+.layui-form-radio>i:hover,
+.layui-form-radioed>i {
+	color: rgb(64, 175, 254);
+	margin-top: 20px;
+}
+
+.layui-form-select dl dd.layui-this {
+	background-color: rgb(64, 175, 254)
+}
+
+/* 资源类型文字------------------------------------------------------ */
+.layui-nav .layui-nav-item a {
+	color: #000000;
 
 }
 
-.layui-table th {
+.layui-nav .layui-this a {
+	color: #FFFFFF;
+
+}
+
+.layui-nav .layui-nav-item {
+	color: #66AFE9;
+	line-height: 30px;
+	height: 30px;
+
+}
+
+.layui-nav .layui-this:after,
+.layui-nav-bar,
+.layui-nav-tree .layui-nav-itemed:after {
+    background-color: #1E9FFF;
+}
+
+.layui-nav {
+	padding:0;
+}
+
+.selectResHeader {
+	padding: 20px 0 0;
+}
+
+.layui-this {
+	background-color: #1E9FFF;
+	border-bottom: 0px;
+
+}
+
+/* 选择人员弹出层样式---------------------------- */
+.selectPersonnel {
 	font-size: 16px;
+	color: #5FB878;
+}
+
+/* ...搜索框 */
+#selectPersonnel .iconSearch {
+	width: 200px;
+	border: 1px solid #C9C9C9;
+	border-radius: 6px;
+	padding: 3px 10px;
+	margin: 0 0 20px 28px;
 
 }
 
-.layui-table thead tr {
+/* ...复选框 */
+.checkAll {
+	width: 15px;
+	height: 15px;
+}
+
+.nameList {
+	margin-top: 30px;
 	background-color: #FFFFFF;
 }
 
-th {
-	border: none;
-	border-bottom: 0.5px solid #E9E7E7;
+#selectPersonnel {
+	padding: 20px;
 }
 
-td {
+/* 选择人员搜索框 */
+.userNameRetrieval {
+	width: 150px; 
+	height: 30px;
 	border: none;
-	border-bottom: 0.5px solid #E9E7E7;
 }
 
-tr {
-	border: none;
-	border-bottom: 1px solid #E9E7E7;
+.selectTaskUsers {
+	border: 1px solid #C9C5C5; 
+	height:200px;
+	width: 90%;
+	margin: auto;
+	background-color: rgb(248, 248, 248);
+}
+
+.checkboxNameList {
+	/* margin-bottom: 20px; */
+	margin: 0 0 20px 30px;
 }
 
 i {
 	font-style: normal;
 }
 
-.layui-layer-btn {
-	padding: 0 293px 12px !important;
+/* 日期按钮选中颜色 */
+.layui-laydate-footer span:hover{
+	color: #279ef0 !important;
 }
-
-.releasTeask {
-	font-size: 16px;
-	float: right;
-	margin-right: 20px;
-	border-radius: 5px;
-	color: #279ef2;
-	border: none;
-}
-
-.headline>span {
-	font-size: 20px;
-	margin-left: 30px;
-	margin-top: 10px;
-	float: left;
-	line-height: 20px;
-	color: white;
-	font-weight: 600;
-}
-
-.layui-laypage a {
-	margin-left: 5px;
-	margin-right: 5px;
-}
-
-#examineTask>.layui-form {
-	padding: 20px;
-	padding-top: 10px;
-}
-
-#examineTask>.layui-table {
-	text-align: center;
-	border: 1px solid rgb(221, 221, 221);
-}
-
-.layui-layer-title {
-	border-radius: 5px 5px 0 0 !important;
-}
-
-.myskin {
-	border-radius: 5px !important;
-}
- */

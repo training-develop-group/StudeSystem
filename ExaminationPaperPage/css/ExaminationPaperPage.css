@@ -37,7 +37,7 @@
 	line-height: 60px;
 }
 #centered span{
-	font-size: 20px;
+	font-size: 18px;
 	margin-left: 30px;
 	color: white;
 	font-weight: 600;
@@ -99,10 +99,14 @@ a{
 	out-line: none
 }
 .edit , .selectedTopic , .toView , .delete , .publish{
-	/* width: 63px; */
-	height: 20px;
-	line-height: 20px;
+	width: 50px;
+	padding: 5px;
+	height: 25px;
+	line-height: 15px;
 	border: 0;
+}
+.edit{
+	width: 60px;
 }
 #examinationPaperList table thead tr .operation{
 	text-indent: 40px;

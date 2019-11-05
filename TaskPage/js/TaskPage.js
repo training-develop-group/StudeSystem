@@ -65,7 +65,7 @@ $(function() {
 			$.each($("[name='Staff']:checked"), function(i, val) {
 				Html.push('<p >' + $(this).siblings('i').text() + '<input type="text"  hidden="" id="" value="' + $(this).val() +
 					'" />  <i  data-id="' + $(this).val() +
-					'" class="layui-icon layui-icon-close deleteUserName" style="font-size: 20px; margin-left:200px 	"></i></p>'
+					'" class="layui-icon layui-icon-close deleteUserName" style="font-size: 20px; margin-left:150px 	"></i></p>'
 				)
 			})
 			$('.taskUsers').html(Html.join(''));
@@ -270,7 +270,7 @@ var info = {
 			type: 'GET',
 			success(res) {
 				var Html = [];
-				res.forEach(function(item, index) {
+				res.data.forEach(function(item, index) {
 					Html.push('<tr style="margin-top: -10px;">');
 					Html.push('<td style="text-align: center;">' + item.userName + '</td>')
 					var status = ''
@@ -351,7 +351,7 @@ var info = {
 			type: 'GET',
 			success(res) {
 				var Html = []
-				res.forEach(function(item, index) {
+				res.data.forEach(function(item, index) {
 					Html.push('<span class="layui-form-label" style="font-size: 16px;"><input type="checkbox" value="' + item.userId +
 						'"class="checkAll " name="Staff" lay-skin="primary" lay-filter="c_one" ><i>' + item.userName +
 						'</i></span>')
@@ -442,12 +442,14 @@ var info = {
 				type: 'POST',
 				contentType: 'application/json;charset=utf-8',
 				success(res) {
-					// console.log(res)
+					// console.log( location.hash.replace('#!fenye=', ''))
+					//
 				}
 			})
 			layer.msg('添加成功');
-			// layer.close(layer.index);
-			location.replace(document.referrer);
+			layer.close(layer.index);
+			info.selectTaskType(1,'');
+			// location.replace(document.referrer);
 		} else {
 			layer.msg(mistake);
 		}
@@ -498,7 +500,7 @@ var info = {
 			success(res) {
 				console.log(res)
 				var Html = [];
-				res.forEach(function(item, index) {
+				res.data.forEach(function(item, index) {
 					var aa = item.split(",")
 					Html.push('<option value="' + aa[0] + '">' + aa[1] + '</option>')
 				})
@@ -528,7 +530,7 @@ var info = {
 				res.data.list.forEach(function(item, index) {
 					Html.push('<tr>');
 					Html.push('<td style="float: left;" class="oneselfTaskName">' + item.taskName + '</td>');
-					resa.forEach(function(itemTypeName, index) {
+					resa.data.forEach(function(itemTypeName, index) {
 						var aa = itemTypeName.split(",");
 						if (item.taskType == aa[0]) {
 							Html.push('<td >' + aa[1] + '<input type="text" class="taskTypeRecord" value="' + aa[0] +
@@ -620,9 +622,8 @@ var info = {
 				// contentType: 'application/json;charset=utf-8',
 				success(res) {
 					if (res) {
-
-						layer.close(layer.index);
 						layer.msg('添加成功');
+						layer.close(layer.index);
 					}
 				}
 			})

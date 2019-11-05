@@ -1,26 +1,5 @@
 
 
-.headerBox .logobox {
-	padding: 0 80px;
-	float: left;
-}
-
-.left .searchbox {
-	width: 300px;
-	height: 30px;
-}
-
-.left .searchbox img {
-	width: 25px;
-	height: 25px;
-}
-
-.left .searchbox input {
-	width: calc(100% - 50px);
-}
-
-
-
 .title-header {
 	background-color: #289ef0;
 	width: 100%;
@@ -66,16 +45,39 @@ table {
 	/* margin: 0 25px; */
 }
 
-td {
-	font-size: 16px;
-	border-bottom: 1px solid #E2E2E2;
-	line-height: 45px;
-	text-align: center;
-}
+/*td {*/
+	/*font-size: 16px;*/
+	/*border-bottom: 1px solid #E2E2E2;*/
+	/*line-height: 45px;*/
+	/*text-align: center;*/
+/*}*/
 
 td>a {
 	padding: 0 75px 0 0;
 	font-size: 16px;
+}
+
+td {
+	font-size: 14px;
+	border-bottom: 1px solid #E2E2E2;
+	line-height: 45px;
+	padding: 0 25px;
+
+}
+td:nth-child(1) {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+thead>tr>td {
+	font-weight: 600;
+	font-size: 16px;
+}
+
+.centerText {
+	text-align: center !important;
+	/* vertical-align:middle!important; */
 }
 
 .page {
@@ -122,8 +124,4 @@ td>a {
 
 .left .searchbox input {
 	margin-top: 0px;
-}
-.layui-laypage a{
-  margin-left: 5px;
-  margin-right: 5px;
 }
