@@ -122,7 +122,7 @@ ul {
 .layui-table {
     background-color: rgb(248, 248, 248);
 }
-
+.asd
 .taskUsers {
     width: 300px;
     height: 150px;
@@ -330,7 +330,7 @@ i {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    width: 30%;
+    width: 50%;
 }
 .layui-form-radio>i:hover, .layui-form-radioed>i {
     color: rgb(64, 175, 254);
