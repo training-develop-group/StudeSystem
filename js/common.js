@@ -104,12 +104,12 @@ var All = {
             // search 搜索框是否显示
             switch (options.search) {
                 case 1:
-                    break;
-                case 2:
                     navHtml.push('<div class="searchbox">');
                     navHtml.push('<img src="./../imgs/search.jpg" class="iconSearch">');
                     navHtml.push('<input type="text" class="search" name="" value="" />');
                     navHtml.push('</div>');
+                    break;
+                case 2:
                     break;
             }
             navHtml.push('</div>');
