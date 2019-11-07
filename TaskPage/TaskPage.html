@@ -60,13 +60,14 @@
 			</div>
 		</div>
 		<!-- //新建试卷部分 -->
+		
 		<div class="layui-form" style="display: none;" id="addTaskPage">
 			<div class="layui-form-item" style=" margin-top: 15px;">
 				<div style="margin-left: 50px;">
 					<label class="layui-form-label " style="font-size: 16px;">任务名称</label>
 					<div class="layui-input-block">
 						<input type="text" name="title" required lay-verify="required" placeholder="请输入任务名" autocomplete="off" class="layui-input taskName"
-						 style="width: 400px; border-radius: 7px;">
+						 style="width: 420px; border-radius: 7px;">
 					</div>
 				</div>
 			</div>
@@ -101,7 +102,7 @@
 					<div class="layui-form-item layui-form-text">
 						<label class="layui-form-label" style="font-size: 16px;">任务描述</label>
 						<div class="layui-input-block">
-							<textarea name="desc" placeholder="请输入描述" class="layui-textarea taskRemark" style="width:400px ;height: 150px;resize: none;"></textarea>
+							<textarea name="desc" placeholder="请输入描述" class="layui-textarea taskRemark" style="width:420px ;height: 150px;resize: none;"></textarea>
 						</div>
 					</div>
 				</div>
@@ -111,18 +112,22 @@
 				</div>
 			</div>
 		</div>
+		
 		<!-- 新建任务页面结束(后面还有其他弹窗部分)--------------------------------------------------------- -->
 		
 		<!-- 选择资源部分------------------------------------- -->
 		<div id="selectResource">
 			<div style="float: none; width: 500px; height: 600px;">
 				<div style=" width: 700px;margin-left: -50px;margin-top: 10px;">
-		
-					<ul class="layui-nav" style="width: 400px; background-color: #FFFFFF; ">
+		<!-- -->
+					<ul class="layui-nav" style="width: 600px; background-color: #FFFFFF; ">
 						<li class="layui-nav-item layui-this selectRes" value="1"><a href="javascript:void(0);">视频资源</a></li>
 						<li class="layui-nav-item selectRes" value="3"><a href="javascript:void(0);">文档资源</a></li>
 						<li class="layui-nav-item selectRes" value="2"><a href="javascript:void(0);">音频资源</a></li>
+						  <div style="border: 1px solid #93D1FF; width: 200px; height: 30px; float: right; padding: 0px; border-radius: 5px;"> <img src="./../imgs/search.jpg" style="margin-bottom:5px ;"><input type="" name="" id="" value="" / style="margin-top: 10px; margin-left: 5px;"></div>
 					</ul>
+					
+					 <!--  -->
 					<p style="width: 600px;border-bottom: 2px solid #1e9fff; margin-left: 20px;"></p>
 				</div>
 				<div  id="resource" class="layui-form">

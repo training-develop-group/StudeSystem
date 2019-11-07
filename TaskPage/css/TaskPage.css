@@ -32,11 +32,24 @@
 
 .layui-nav .layui-nav-item {
     color: #66AFE9;
-    line-height: 30px;
-    height: 30px;
+    line-height: 40px;
+    height: 40px;
 
 }
+.taskUsers {
+	 margin-left: 40px;
+    width: 475px;
+    height: 150px;
+    border: 1px solid #E6E6E6;
+		overflow: auto;
+padding: 5px;
 
+	}
+   .taskUsers p{
+	   line-height: 20px;
+	   margin-left: 20px;
+	   margin-right: 40px;
+	}
 ol,
 ul {
     margin-top: 0px;
@@ -54,7 +67,7 @@ ul {
 }
 
 .taskNameupdate {
-    width: 400px;
+    width: 420px;
     border-radius: 7px;
 }
 
