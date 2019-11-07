@@ -36,9 +36,11 @@ var info = {
 					var examContent = [];
 					resb.data.questions.forEach(function(item, index) {
 						if ((index + 1) == 1) {
-							answerSheet.push('<li class="active" data-type="' + (index + 1) + '">' + (index + 1) + '</li>')
+							answerSheet.push('<li class="active"  data-type="' + (index + 1) + '">' +
+								(index + 1) + '</li>')
 						} else {
-							answerSheet.push('<li class="" data-type="' + (index + 1) + '">' + (index + 1) + '</li>')
+							answerSheet.push('<li class="" data-id="' + item.questionId + '" data-type="' + (index + 1) + '">' + (
+								index + 1) + '</li>')
 						}
 						if ((index + 1) == 1) {
 							examContent.push('<li class="questionCard" data-type="' + (index + 1) + '">')
@@ -51,8 +53,8 @@ var info = {
 							item.questionType = '多选题';
 						}
 						examContent.push(' <p class="questionCard_title"><span class="num">' + (index + 1) +
-							'.</span><span class="questuon_title">' + item.questionType +
-							'</span>(<span class="fraction">' + item.score + '</span>分)</p>')
+							'.</span><span class="questuon_title" data-id="' + item.questionId + '">' + item.questionType +
+							'</span>(<span class="fraction"> ' + item.score + '</span>分)</p>')
 						examContent.push('<p class="question_Dry">' + item.content + '</p>');
 						if (item.questionType == '单选题') {
 							examContent.push(' <ul class="radio_box textBox">')
@@ -184,33 +186,31 @@ var info = {
 	},
 	// todo 下面是交卷的接口 ,将上方  answer[]  传给后台
 	setList: function(resb) {
-
+	//点击交卷事件
 		$('.submitTest').click(function() {
 			var newScore = 0;
 			var sz = 0;
-
+			
 			var useranswerList = [];
+			//获取所有多选
 			$('.checkbox_box').each(function(index, item) {
 				var mistake = '';
-
+				//获取所有选中的
 				($('.checkbox_box').eq(index).find('li')).each(function(_index, _item) {
 					var classOption = $(this).find(".option").attr('class');
 					if (classOption == 'option active') {
+						//进行拼
 						mistake += $(this).find(".active").text() + "|";
-
-					} else {
-						// mistake += '0';
 					}
 				})
-
+				// 获取id
+				var az = $(this).parent('li').find('.questionCard_title').find('.questuon_title').attr('data-id')
 				var a = $(this).parent('li').attr('data-type')
-				console.log(a)
+				console.log(az)
 				var data = {
-					'questionId': a,
-					'answer': mistake.substring(0, mistake.length - 1)
-
+					'questionId': az,
+					'answer': mistake
 				}
-
 				useranswerList.push(data);
 			});
 			$('.radio_box').each(function(index, item) {
@@ -223,10 +223,12 @@ var info = {
 					}
 				})
 
+				var az = $(this).parent('li').find('.questionCard_title').find('.questuon_title').attr('data-id')
 				var a = $(this).parent('li').attr('data-type')
 				var data = {
-					'questionId': a,
-					'answer': mistake.substring(0, mistake.length - 1)
+					'questionId': az,
+					'answer': mistake
+
 				}
 				useranswerList.push(data);
 			});
@@ -244,133 +246,191 @@ var info = {
 						aaa = false
 					}
 				})
-			})
-			
-				$.ajax({
-					url: LBUrl + 'manage_system/paper/answers',
-					data: data,
-					dataType: 'json',
-					type: 'POST',
-					// contentType :'application/json;charset=utf-8',
-					success(res) {
-						console.log("操作成功");
-						// alert("操作成功");
-						tableAjax(resb.data.paperId);
-						// parent.location.reload();	//刷新父级页面
-					},
-					error(e) {
-						layer.msg("操作失败，请稍后再试");
-					}
-				})
 
-			
+			})
+			if (aaa == true) {
+
+			} else {
+				layui.use("layer", function() {
+					var layer = layui.layer;
+					layer.open({
+						type: 1 //Page层类型
+							,
+						closeBtn: 1,
+						area: ['400px', '200px'],
+						title: ['', 'background-color: #279ef0']
+							// ,shade: 0.6 //遮罩透明度
+							,
+						content: '<div class="confirmRelease">是否交卷?</div>' +
+							'<div class="CR-btn-box">' +
+							'<button type="button" class="layui-btn layui-btn-normal layui-btn-sm CR-btnConfirm">确认</button>' +
+							'<button type="button" class="layui-btn layui-btn-normal layui-btn-sm CR-btnCancel">取消</button>' +
+							'</div>'
+					});
+					// 点击确认
+					$('.CR-btnConfirm').click(function() {
+						layer.closeAll();
+						$.ajax({
+							url: LBUrl + 'manage_system/paper/answers',
+							data: data,
+							dataType: 'json',
+							type: 'POST',
+							// contentType :'application/json;charset=utf-8',
+							success(res) {
+								console.log("操作成功");
+								// alert("操作成功");
+
+								if (res || res.data !== null) {
+									console.log(res)
+									var Html = [];
+									// Html.push('<div class="Testing">' + res.data.taskName + '</div>')
+									Html.push(
+										'<div class="editorialContent">'
+									)
+									Html.push(
+										'<div id="title">'
+									)
+									Html.push(
+										'<div id="centered">'
+									)
+									Html.push(
+										'<span>查看试卷</span>'
+									)
+									Html.push(
+										'</div>'
+									)
+									Html.push(
+										'</div>'
+									)
+									Html.push(
+										'<ul class="layui-tab tabHead layui-tab-brief">'
+									)
+
+									res.data.questions.forEach(function(item, index) {
+										console.log(res)
+										Html.push('<li class="sortableitem" style = "background-color: #fff;">');
+										Html.push('<div class="topicFramework" style="text-align: left;line-height: 1;">');
+										Html.push('<input type="text" class="qusetionId" value="' + item.questionId +
+											'" hidden="hidden"/>');
+										if (item.questionType == 1) {
+											item.questionType = '单选题';
+										} else {
+											item.questionType = '多选题';
+										}
+										Html.push('<p class="num"><span data-id="' + item.questionId + '">' + (index + 1) +
+											'</span>. ' + item.questionType + '</p>');
+										Html.push('<p class="distance">' + item.content + '</p>');
+										item.optionInfo.forEach(function(items, index) {
+											var record = 0;
+											var a = item.userAnswer.split('|');
+											a.forEach(function(iazz, asd) {
+
+												if (items.optionType == iazz) {
+													Html.push('<p class="distance option"><span class="circular	 aaxzv">' + items.optionType +
+														' </span>' +
+														items.content + '</p>');
+													record++;
+													return false;
+												}
+											})
+											if (record == 0) {
+												Html.push('<p class="distance option"><span class="	 aaxzv">' + items.optionType +
+													' </span>' +
+													items.content + '</p>');
+											}
+
+
+										});
+										Html.push('<div class="functionBox">');
+										Html.push('<button class="toView" value="' + item.questionId +
+											'"><i class="layui-icon layui-icon-search"></i>查看解析</button>');
+										Html.push('</div>');
+										Html.push('</div>');
+										Html.push(' </li> ')
+									})
+
+									Html.push('</ul></div>')
+									console.log('asdasdasd')
+
+									$('.wrapper').html(Html.join(''))
+									
+									$('.content').css('background-color', '#fff')
+									// 解析
+									
+									$('.toView').off('click').on('click', function() {
+										var QusetionId = $(this).val();
+										// 解析内容
+										var Analysis = '未定义';
+										// 正确答案
+										var OptionType = '未知';
+										$.ajax({
+											url: MCUrl + 'manage_system/question/answer',
+											data: {
+												'questionId': QusetionId
+											},
+											dataType: 'json',
+											type: 'GET',
+											success(res) {
+												res.data.forEach(function(item, index) {
+													Analysis = item.analysis;
+													OptionType = item.optionType;
+												});
+												layui.use("layer", function() {
+													var layer = layui.layer;
+													layer.open({
+														type: 1 //Page层类型
+															,
+														closeBtn: 1,
+														area: ['790px', '300px'],
+														title: ['查看解析',
+																'background-color: #279ef0;text-align: center;font-size: 16px;line-height: 43px;color:white;letter-spacing: 5px;padding: 0px;'
+															]
+															// ,shade: 0.6 //遮罩透明度
+															,
+														content: '<div class="answerContent">' +
+															'<p>正确答案：<span class="answerOptions">' + OptionType + '</span></p>' +
+															'<p>答案解析：</p>' +
+															'<p class="analysis">' + Analysis + '</p>' +
+															'</div>'
+													});
+												});
+											}
+										});
+									});
+								}
+							},
+							error: function(e) {
+
+							}
+						});
+						// parent.location.reload();	//刷新父级页面
+
+						console.log("调用方法")
+					});
+					// 点击取消
+					$('.CR-btnCancel').click(function() {
+						layer.closeAll();
+					});
+				});
+				return false;
+			}
+
+
+
 
 			var tableAjax = function(paperId) {
-				$.ajax({
-					url: MCUrl + 'manage_system/paper/' + paperId,
-					data: {
 
-					},
-					Type: 'GET',
-					success: function(resb) {
-						if (resb || resb.data !== null) {
-							TableDrawing(resb);
-						}
-					},
-					error: function(e) {
-
-					}
-				});
 
 			}
 			var TableDrawing = function(resb) {
 				console.log(resb)
-				var Html = [];
-				// $('.content .Testing').text(res.data.taskName);
-				// Html.push('<div class="Testing">' + res.data.taskName + '</div>')
-				// Html.push(
-				// 	'<div class="layui-tab tabHead layui-tab-brief"><ul class="layui-tab-title"><li class="learningTasks" style="display: hidden;" >视频学习</li><li class="testContent layui-this" style="display: hidden;" value="' +
-				// 	res.data.paperId + '">测试内容</li>'
-				// )
-				resb.data.questions.forEach(function(item, index) {
-					console.log(resb)
-					Html.push('<div class="sortableitem">');
-					Html.push('<div class="topicFramework" style="text-align: left;line-height: 1;">');
-					Html.push('<input type="text" class="qusetionId" value="' + item.questionId + '" hidden="hidden"/>');
-					if (item.questionType == 1) {
-						item.questionType = '单选题';
-					} else {
-						item.questionType = '多选题';
-					}
-					Html.push('<p class="num">' + (index + 1) + '. ' + item.questionType + '</p>');
-					Html.push('<p class="distance">' + item.content + '</p>');
-					item.optionInfo.forEach(function(items, index) {
-						Html.push('<p class="distance">' + items.optionType + ' ' + items.content + '</p>');
-					});
-					Html.push('</div>');
-					Html.push('<div class="functionBox">');
-					Html.push('<button class="toView" value="' + item.questionId +
-						'"><i class="layui-icon layui-icon-search"></i>查看解析</button>');
-					Html.push('</div>');
-					Html.push('</div>');
 
-					Html.push('</ul>')
-					Html.push('</div>')
-				});
 
-				console.log('asdasdasd')
-
-				$('.content').html(Html.join(''))
-				// 解析
-				// $('.learningTasks').click(function() {
-				// 	resContent(res, res.data.taskType);
-				// })
-				$('.toView').off('click').on('click', function() {
-					var QusetionId = $(this).val();
-					toViewAnalysis(QusetionId);
-				});
-			
 			}
 			// 查看解析(弹窗)
 			// 查看解析(弹窗)
 			var toViewAnalysis = function(questionId) {
-				// 解析内容
-				var Analysis = '未定义';
-				// 正确答案
-				var OptionType = '未知';
-				$.ajax({
-					url: MCUrl + 'manage_system/question/answer',
-					data: {
-						'questionId': questionId
-					},
-					dataType: 'json',
-					type: 'GET',
-					success(res) {
-						res.data.forEach(function(item, index) {
-							Analysis = item.analysis;
-							OptionType = item.optionType;
-						});
-						layui.use("layer", function() {
-							var layer = layui.layer;
-							layer.open({
-								type: 1 //Page层类型
-									,
-								closeBtn: 1,
-								area: ['790px', '300px'],
-								title: ['查看解析',
-										'background-color: #279ef0;text-align: center;font-size: 16px;line-height: 43px;color:white;letter-spacing: 5px;padding: 0px;'
-									]
-									// ,shade: 0.6 //遮罩透明度
-									,
-								content: '<div class="answerContent">' +
-									'<p>正确答案：<span class="answerOptions">' + OptionType + '</span></p>' +
-									'<p>答案解析：</p>' +
-									'<p class="analysis">' + Analysis + '</p>' +
-									'</div>'
-							});
-						});
-					}
-				});
+
 			}
 
 			// var questionId = []
