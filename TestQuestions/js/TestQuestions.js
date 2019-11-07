@@ -1,4 +1,4 @@
-var leng_max_tweet = 200; // 160个字符
+﻿var leng_max_tweet = 200; // 160个字符
 $(document).ready(function() {
 	$(document).keyup(function(event) {
 		if (event.keyCode == 13) {

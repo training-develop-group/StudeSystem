@@ -1,4 +1,4 @@
-$(function() {
+﻿$(function() {
 	var urlinfo = window.location.href;
 	value = urlinfo.split("?")[1].split("value=")[1];
 	var PaperId = decodeURI(value);

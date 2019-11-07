@@ -1,4 +1,4 @@
-$(function() {
+﻿$(function() {
 	// 搜索框
 	$(".search").focus(function() {
 		$('.searchIcon').hide();

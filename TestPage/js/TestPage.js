@@ -1,7 +1,7 @@
-/**
+﻿/**
  * @name: common
 <<<<<<< HEAD
- * @author：MengXin
+ * @author锛歁engXin
  */
 $(function() {
 	layui.use(['layer', 'form'], function() {
@@ -9,16 +9,16 @@ $(function() {
 			form = layui.form;
 
 
-		// 公共头调用渲染
+		// 鍏叡澶磋皟鐢ㄦ覆鏌?
 		All.getMenu({
 			num: 3
 		});
 
-		// 获取测试题内容
+		// 鑾峰彇娴嬭瘯棰樺唴瀹?
 		info.getList();
 	});
 =======
- * @author��MengXin
+ * @author：MengXin
  */
 $(function () {
     layui.use(['layer', 'form'], function () {
@@ -26,12 +26,12 @@ $(function () {
             form = layui.form;
 
 
-        // ����ͷ������Ⱦ
+        // 公共头调用渲染
         All.getMenu({
             num: 3
         });
 
-        // ��ȡ����������
+        // 获取测试题内容
         info.getList();
     });
 >>>>>>> remotes/origin/dev-MX
@@ -41,7 +41,7 @@ var answer = [];
 
 var info = {
 <<<<<<< HEAD
-	//  todo  接口 ,获取页面试题
+	//  todo  鎺ュ彛 ,鑾峰彇椤甸潰璇曢
 	getList: function() {
 		$.ajax({
 			url: LBUrl + 'manage_system/paper/' + 2,
@@ -68,15 +68,15 @@ var info = {
 							examContent.push('<li class="questionCard hidden" data-type="' + (index + 1) + '">')
 						}
 						if (item.questionType == 1) {
-							item.questionType = '单选题';
+							item.questionType = '鍗曢€夐';
 						} else {
-							item.questionType = '多选题';
+							item.questionType = '澶氶€夐';
 						}
 						examContent.push(' <p class="questionCard_title"><span class="num">' + (index + 1) +
 							'.</span><span class="questuon_title" data-id="' + item.questionId + '">' + item.questionType +
-							'</span>(<span class="fraction"> ' + item.score + '</span>分)</p>')
+							'</span>(<span class="fraction"> ' + item.score + '</span>鍒?</p>')
 						examContent.push('<p class="question_Dry">' + item.content + '</p>');
-						if (item.questionType == '单选题') {
+						if (item.questionType == '鍗曢€夐') {
 							examContent.push(' <ul class="radio_box textBox">')
 						} else {
 							examContent.push(' <ul class="checkbox_box textBox">')
@@ -91,27 +91,27 @@ var info = {
 						examContent.push('<input type="text" value="' + item.questionId + '" class="questionId hidden">')
 						examContent.push(' </ul>')
 						examContent.push('<div class="btn-box clearfix">')
-						examContent.push('<button class="layui-btn layui-btn-normal layui-btn-sm next">下一题</button>')
-						examContent.push(' <button class="layui-btn layui-btn-normal layui-btn-sm previous">上一题</button>')
+						examContent.push('<button class="layui-btn layui-btn-normal layui-btn-sm next">涓嬩竴棰?/button>')
+						examContent.push(' <button class="layui-btn layui-btn-normal layui-btn-sm previous">涓婁竴棰?/button>')
 						examContent.push('</div>')
 					})
 
 					examContent.push('</li>')
 					$('.questionCard_box').html(examContent.join(''))
 					$('.card').html(answerSheet.join(''))
-					// 下一题点击事件
+					// 涓嬩竴棰樼偣鍑讳簨浠?
 					info.nextChange();
-					// 上一题点击事件
+					// 涓婁竴棰樼偣鍑讳簨浠?
 					info.previousChange();
-					// 最后一题不显示下一题,第一题不显示上一题
+					// 鏈€鍚庝竴棰樹笉鏄剧ず涓嬩竴棰?绗竴棰樹笉鏄剧ず涓婁竴棰?
 					$('.questionCard_box .questionCard').last().find('.next').addClass('hidden');
 					$('.questionCard_box .questionCard').first().find('.previous').addClass('hidden');
 
-					// 单选事件
+					// 鍗曢€変簨浠?
 					info.radioChange();
-					// 多选事件
+					// 澶氶€変簨浠?
 					info.checkboxChange();
-					// 提交试题内容
+					// 鎻愪氦璇曢鍐呭
 					info.setList(resb);
 
 					// TableDrawing(resb, res);
@@ -124,7 +124,7 @@ var info = {
 
 
 	},
-	// 单选事件
+	// 鍗曢€変簨浠?
 	radioChange: function() {
 		$('body').delegate('.questionCard .radio_box li span', 'click', function() {
 			$(this).parent('li').parent('.radio_box').find('li').find('span').removeClass('active');
@@ -138,7 +138,7 @@ var info = {
 	submitTest: function() {
 
 	},
-	// 多选事件
+	// 澶氶€変簨浠?
 	checkboxChange: function() {
 		$('body').delegate('.questionCard .checkbox_box li span', 'click', function() {
 			if ($(this).hasClass('active')) {
@@ -148,16 +148,16 @@ var info = {
 			}
 		});
 
-		// 下一题点击事件
+		// 涓嬩竴棰樼偣鍑讳簨浠?
 		info.nextChange();
-		// 上一题点击事件
+		// 涓婁竴棰樼偣鍑讳簨浠?
 		info.previousChange();
-		// 点击编号跳转试题
+		// 鐐瑰嚮缂栧彿璺宠浆璇曢
 		info.cardChange();
 
 
 	},
-	// 下一题点击事件
+	// 涓嬩竴棰樼偣鍑讳簨浠?
 	nextChange: function() {
 		$('.next').off('click').on('click', function() {
 			var _thisQuestion = $(this).parents('.questionCard');
@@ -170,11 +170,11 @@ var info = {
 				}
 			}
 
-			// todo 获取用户选择的值 添加到上方空数组中保存
+			// todo 鑾峰彇鐢ㄦ埛閫夋嫨鐨勫€?娣诲姞鍒颁笂鏂圭┖鏁扮粍涓繚瀛?
 		});
 
 	},
-	// 上一题点击事件
+	// 涓婁竴棰樼偣鍑讳簨浠?
 	previousChange: function() {
 		$('body').delegate('.previous', 'click', function() {
 			var _thisQuestion = $(this).parents('.questionCard');
@@ -188,7 +188,7 @@ var info = {
 				}
 			}
 
-			// todo 获取用户选择的值 添加到上方空数组中保存
+			// todo 鑾峰彇鐢ㄦ埛閫夋嫨鐨勫€?娣诲姞鍒颁笂鏂圭┖鏁扮粍涓繚瀛?
 		});
 	},
 	cardChange: function() {
@@ -204,26 +204,26 @@ var info = {
 			}
 		});
 	},
-	// todo 下面是交卷的接口 ,将上方  answer[]  传给后台
+	// todo 涓嬮潰鏄氦鍗风殑鎺ュ彛 ,灏嗕笂鏂? answer[]  浼犵粰鍚庡彴
 	setList: function(resb) {
-	//点击交卷事件
+	//鐐瑰嚮浜ゅ嵎浜嬩欢
 		$('.submitTest').click(function() {
 			var newScore = 0;
 			var sz = 0;
 			
 			var useranswerList = [];
-			//获取所有多选
+			//鑾峰彇鎵€鏈夊閫?
 			$('.checkbox_box').each(function(index, item) {
 				var mistake = '';
-				//获取所有选中的
+				//鑾峰彇鎵€鏈夐€変腑鐨?
 				($('.checkbox_box').eq(index).find('li')).each(function(_index, _item) {
 					var classOption = $(this).find(".option").attr('class');
 					if (classOption == 'option active') {
-						//进行拼
+						//杩涜鎷?
 						mistake += $(this).find(".active").text() + "|";
 					}
 				})
-				// 获取id
+				// 鑾峰彇id
 				var az = $(this).parent('li').find('.questionCard_title').find('.questuon_title').attr('data-id')
 				var a = $(this).parent('li').attr('data-type')
 				console.log(az)
@@ -274,20 +274,20 @@ var info = {
 				layui.use("layer", function() {
 					var layer = layui.layer;
 					layer.open({
-						type: 1 //Page层类型
+						type: 1 //Page灞傜被鍨?
 							,
 						closeBtn: 1,
 						area: ['400px', '200px'],
 						title: ['', 'background-color: #279ef0']
-							// ,shade: 0.6 //遮罩透明度
+							// ,shade: 0.6 //閬僵閫忔槑搴?
 							,
-						content: '<div class="confirmRelease">是否交卷?</div>' +
+						content: '<div class="confirmRelease">鏄惁浜ゅ嵎?</div>' +
 							'<div class="CR-btn-box">' +
-							'<button type="button" class="layui-btn layui-btn-normal layui-btn-sm CR-btnConfirm">确认</button>' +
-							'<button type="button" class="layui-btn layui-btn-normal layui-btn-sm CR-btnCancel">取消</button>' +
+							'<button type="button" class="layui-btn layui-btn-normal layui-btn-sm CR-btnConfirm">纭</button>' +
+							'<button type="button" class="layui-btn layui-btn-normal layui-btn-sm CR-btnCancel">鍙栨秷</button>' +
 							'</div>'
 					});
-					// 点击确认
+					// 鐐瑰嚮纭
 					$('.CR-btnConfirm').click(function() {
 						layer.closeAll();
 						$.ajax({
@@ -297,8 +297,8 @@ var info = {
 							type: 'POST',
 							// contentType :'application/json;charset=utf-8',
 							success(res) {
-								console.log("操作成功");
-								// alert("操作成功");
+								console.log("鎿嶄綔鎴愬姛");
+								// alert("鎿嶄綔鎴愬姛");
 
 								if (res || res.data !== null) {
 									console.log(res)
@@ -314,7 +314,7 @@ var info = {
 										'<div id="centered">'
 									)
 									Html.push(
-										'<span>查看试卷</span>'
+										'<span>鏌ョ湅璇曞嵎</span>'
 									)
 									Html.push(
 										'</div>'
@@ -333,9 +333,9 @@ var info = {
 										Html.push('<input type="text" class="qusetionId" value="' + item.questionId +
 											'" hidden="hidden"/>');
 										if (item.questionType == 1) {
-											item.questionType = '单选题';
+											item.questionType = '鍗曢€夐';
 										} else {
-											item.questionType = '多选题';
+											item.questionType = '澶氶€夐';
 										}
 										Html.push('<p class="num"><span data-id="' + item.questionId + '">' + (index + 1) +
 											'</span>. ' + item.questionType + '</p>');
@@ -363,7 +363,7 @@ var info = {
 										});
 										Html.push('<div class="functionBox">');
 										Html.push('<button class="toView" value="' + item.questionId +
-											'"><i class="layui-icon layui-icon-search"></i>查看解析</button>');
+											'"><i class="layui-icon layui-icon-search"></i>鏌ョ湅瑙ｆ瀽</button>');
 										Html.push('</div>');
 										Html.push('</div>');
 										Html.push(' </li> ')
@@ -375,14 +375,14 @@ var info = {
 									$('.wrapper').html(Html.join(''))
 									
 									$('.content').css('background-color', '#fff')
-									// 解析
+									// 瑙ｆ瀽
 									
 									$('.toView').off('click').on('click', function() {
 										var QusetionId = $(this).val();
-										// 解析内容
-										var Analysis = '未定义';
-										// 正确答案
-										var OptionType = '未知';
+										// 瑙ｆ瀽鍐呭
+										var Analysis = '鏈畾涔?;
+										// 姝ｇ‘绛旀
+										var OptionType = '鏈煡';
 										$.ajax({
 											url: MCUrl + 'manage_system/question/answer',
 											data: {
@@ -398,18 +398,18 @@ var info = {
 												layui.use("layer", function() {
 													var layer = layui.layer;
 													layer.open({
-														type: 1 //Page层类型
+														type: 1 //Page灞傜被鍨?
 															,
 														closeBtn: 1,
 														area: ['790px', '300px'],
-														title: ['查看解析',
+														title: ['鏌ョ湅瑙ｆ瀽',
 																'background-color: #279ef0;text-align: center;font-size: 16px;line-height: 43px;color:white;letter-spacing: 5px;padding: 0px;'
 															]
-															// ,shade: 0.6 //遮罩透明度
+															// ,shade: 0.6 //閬僵閫忔槑搴?
 															,
 														content: '<div class="answerContent">' +
-															'<p>正确答案：<span class="answerOptions">' + OptionType + '</span></p>' +
-															'<p>答案解析：</p>' +
+															'<p>姝ｇ‘绛旀锛?span class="answerOptions">' + OptionType + '</span></p>' +
+															'<p>绛旀瑙ｆ瀽锛?/p>' +
 															'<p class="analysis">' + Analysis + '</p>' +
 															'</div>'
 													});
@@ -423,11 +423,11 @@ var info = {
 
 							}
 						});
-						// parent.location.reload();	//刷新父级页面
+						// parent.location.reload();	//鍒锋柊鐖剁骇椤甸潰
 
-						console.log("调用方法")
+						console.log("璋冪敤鏂规硶")
 					});
-					// 点击取消
+					// 鐐瑰嚮鍙栨秷
 					$('.CR-btnCancel').click(function() {
 						layer.closeAll();
 					});
@@ -447,8 +447,8 @@ var info = {
 
 
 			}
-			// 查看解析(弹窗)
-			// 查看解析(弹窗)
+			// 鏌ョ湅瑙ｆ瀽(寮圭獥)
+			// 鏌ョ湅瑙ｆ瀽(寮圭獥)
 			var toViewAnalysis = function(questionId) {
 
 			}
@@ -523,34 +523,34 @@ var info = {
 	},
 }
 =======
-    //  todo  �ӿ� ,��ȡҳ������
+    //  todo  接口 ,获取页面试题
     getList:function(){
 
 
 
-        // ��ѡ�¼�
+        // 单选事件
         info.radioChange();
-        // ��ѡ�¼�
+        // 多选事件
         info.checkboxChange();
-        // �ύ��������
+        // 提交试题内容
         info.setList();
     },
-    // ��ѡ�¼�
+    // 单选事件
     radioChange: function () {
         $('body').delegate('.questionCard .radio_box li span', 'click', function () {
             $('.questionCard .radio_box li span').removeClass('active');
             $(this).addClass('active');
         });
 
-        // ��һ�����¼�
+        // 下一题点击事件
         info.nextChange();
-        // ��һ�����¼�
+        // 上一题点击事件
         info.previousChange();
-        // ���һ�ⲻ��ʾ��һ��,��һ�ⲻ��ʾ��һ��
+        // 最后一题不显示下一题,第一题不显示上一题
         $('.questionCard_box .questionCard').last().find('.next').addClass('hidden');
         $('.questionCard_box .questionCard').first().find('.previous').addClass('hidden');
     },
-    // ��ѡ�¼�
+    // 多选事件
     checkboxChange: function () {
         $('body').delegate('.questionCard .checkbox_box li span', 'click', function () {
             if ($(this).hasClass('active')) {
@@ -560,16 +560,16 @@ var info = {
             }
         });
 
-        // ��һ�����¼�
+        // 下一题点击事件
         info.nextChange();
-        // ��һ�����¼�
+        // 上一题点击事件
         info.previousChange();
-        // ��������ת����
+        // 点击编号跳转试题
         info.cardChange();
 
 
     },
-    // ��һ�����¼�
+    // 下一题点击事件
     nextChange: function () {
         $('.next').off('click').on('click', function () {
             var _thisQuestion = $(this).parents('.questionCard');
@@ -582,11 +582,11 @@ var info = {
                 }
             }
 
-            // todo ��ȡ�û�ѡ���ֵ ���ӵ��Ϸ��������б���
+            // todo 获取用户选择的值 添加到上方空数组中保存
         });
 
     },
-    // ��һ�����¼�
+    // 上一题点击事件
     previousChange: function () {
         $('body').delegate('.previous', 'click', function () {
             var _thisQuestion = $(this).parents('.questionCard');
@@ -600,7 +600,7 @@ var info = {
                 }
             }
 
-            // todo ��ȡ�û�ѡ���ֵ ���ӵ��Ϸ��������б���
+            // todo 获取用户选择的值 添加到上方空数组中保存
         });
     },
     cardChange:function () {
@@ -616,7 +616,7 @@ var info = {
             }
         });
     },
-    // todo �����ǽ����Ľӿ� ,���Ϸ�  answer[]  ������̨
+    // todo 下面是交卷的接口 ,将上方  answer[]  传给后台
     setList:function () {
 
     }

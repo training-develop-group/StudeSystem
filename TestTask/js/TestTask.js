@@ -1,4 +1,4 @@
-$(function() {
+﻿$(function() {
 	var key = '';
 	$(".search").focus(function() {
 		$('.searchIcon').hide();
