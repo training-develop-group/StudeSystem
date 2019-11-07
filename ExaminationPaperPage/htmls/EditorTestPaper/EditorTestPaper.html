@@ -27,6 +27,72 @@
 						<li class="taskPage" id="taskPage">任务</li>
 						<li class="active" id="actives">试卷</li>
 						<li class="testQuestions" id="testQuestions">试题</li>
+						<li id="StatisticsPage">统计</li>
+						<!-- <li>用户管理</li> -->
+					</ul>
+				</div>
+				<div class="right">
+					<img src="../../../imgs/HeadPortrait.jpg" class="userimg">
+					<span class="username">用户名</span>
+				</div>
+				<div class="left">
+					<div class="searchbox">
+						<img src="../../../imgs/search.jpg" class="iconSearch">
+						<input type="text" class="search" name="" value="" />
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="wrapper wrapper-content">
+			<div class="content">
+				<div id="title">
+					<div id="centered">
+						<span>编辑试卷</span>
+						<button type="button" class="layui-btn layui-btn-primary" id="saveChanges">保存更改</button>
+						<button type="button" class="layui-btn layui-btn-primary" id="newTestPaper">选择试题</button>
+					</div>
+				</div>
+				<div class="editorialContent">
+					<button class="confirmCompletion">确认完成</button>
+					<span class="totalNumberOfQuestions" style="margin-left: 80%;">共35道试题</span>
+					<ul class="mobileFramework">
+						<!-- <li class="sortableitem">
+							<div class="topicFramework">
+								<p class="distanceNum"><span class="num">1</span>. 多选题</p>
+								<p class="distance">春季里开花，十四五六。这一词，出现在那个小品里（）</p>
+								<p class="distance">A. 如此包装</p>
+								<p class="distance">B. 打工奇遇</p>
+								<p class="distance">C. 功夫令</p>
+								<p class="distance">D. 追星族</p>
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+		<link rel="stylesheet" href="../../../js/layui/css/layui.css">
+		<link rel="stylesheet" href="../../../css/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../../../css/common.css">
+		<link rel="stylesheet" type="text/css" href="../../../css/index.css" />
+		<!-- <link rel="stylesheet" href="../../../css/bootstrap.min.css" /> -->
+		<link rel="stylesheet" href="css/EditorTestPaper.css">
+
+		<title>编辑试卷</title>
+	</head>
+	<body>
+		<div id="header">
+			<div class="headerBox">
+				<div class="logobox">
+					<span>Logo</span>
+				</div>
+				<div class="navbox">
+					<ul>
+						<li class="homePage" id="homePage">首页</li>
+						<li class="resource" id="resource">资源</li>
+						<li class="taskPage" id="taskPage">任务</li>
+						<li class="active" id="actives">试卷</li>
+						<li class="testQuestions" id="testQuestions">试题</li>
 						<li>统计</li>
 						<!-- <li>用户管理</li> -->
 					</ul>
@@ -65,6 +131,78 @@
 								<p class="distance">C. 功夫令</p>
 								<p class="distance">D. 追星族</p>
 							</div>
+							</div>
+							<div class="functionBox">
+								<button class="toView"><i class="layui-icon layui-icon-search"></i>查看解析</button>
+								<button class="fraction"><img src="../../../imgs/f.png" alt="" />设定分值</button>
+								<button class="edit"><i class="layui-icon layui-icon-edit"></i>编辑</button>
+								<button class="moveOut"><i class="layui-icon layui-icon-delete"></i>移出</button>
+								<button class="moveup"><i class="layui-icon layui-icon-up"></i>上移</button>
+								<button class="movedown"><i class="layui-icon layui-icon-down"></i>下移</button>
+								<button class="joinIn"><i class="layui-icon layui-icon-add-circle"></i>加入试卷</button>
+							</div>
+						</li>
+						<li class="sortableitem">
+							<div class="topicFramework">
+								<p class="distanceNum"><span class="num">2</span> 填空题</p>
+								<p class="distance">赵丽蓉老师的搭档是谁______.</p>
+							</div>
+							<div class="functionBox">
+								<button class="toView"><i class="layui-icon layui-icon-search"></i>查看解析</button>
+								<button class="fraction"><img src="../../../imgs/f.png"  alt="" />设定分值</button>
+								<button class="edit"><i class="layui-icon layui-icon-edit"></i>编辑</button>
+								<button class="moveOut"><i class="layui-icon layui-icon-delete"></i>移出</button>
+								<button class="moveup"><i class="layui-icon layui-icon-up"></i>上移</button>
+								<button class="movedown"><i class="layui-icon layui-icon-down"></i>下移</button>
+								<button class="joinIn"><i class="layui-icon layui-icon-add-circle"></i>加入试卷</button>
+							</div>
+						</li> -->
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="footer">
+			<div id="paging"></div>
+		</div>
+		</div>
+		<div id="newlyBuild" style="display: none;">
+			<div class="layui-form selectionType">
+				<span>类型</span>
+				<input type="radio" name="selectionType" value="单选题" title="单选题" class="singleChoiceQuestion" lay-filter="beshared" checked="checked">		<!-- checked="checked" -->
+				<input type="radio" name="selectionType" value="多选题" title="多选题" class="multipleChoiceQuestions" lay-filter="beshared">
+			</div>
+			<div class="subject">
+				<span>题干</span>
+				<textarea name="" required lay-verify="required" class="layui-textarea titleInputBox"></textarea>
+			</div>
+			<div class="layui-form choiceItem">
+				<!-- <p class="outerFrame"><input type="radio" lay-skin="primary" name="choiceItem" value="A" title="A"><textarea name="" required lay-verify="required" class="layui-textarea optionA option"></textarea></p>
+				<p class="outerFrame"><input type="radio" lay-skin="primary" name="choiceItem" value="B" title="B"><textarea name="" required lay-verify="required" class="layui-textarea optionB option"></textarea></p>
+				<p class="outerFrame"><input type="radio" lay-skin="primary" name="choiceItem" value="C" title="C"><textarea name="" required lay-verify="required" class="layui-textarea optionC option"></textarea></p>
+				<p class="outerFrame"><input type="radio" lay-skin="primary" name="choiceItem" value="D" title="D"><textarea name="" required lay-verify="required" class="layui-textarea optionD option"></textarea></p> -->
+			</div>
+			<div class="manageOptions">
+				<button class="addOptions"><i class="layui-icon layui-icon-add-circle"></i> 选项</button>
+				<button class="deleteOptions"><i class="layui-icon layui-icon-delete delete"></i> 选项</button>
+			</div>
+			<div class="analysis">
+				<span>解析</span>
+				<textarea name="" required lay-verify="required" class="layui-textarea parseInputBox"></textarea>
+				<p class="hiddenText">单选题最少存在两个选项，多选题最少错在三项</p>
+			</div>
+			<button type="button" class="layui-btn" id="confirmAdd">确认</button>
+		</div>
+		<script src="../../../js/jQuery%20v3.4.1.min.js"></script>
+		<script src="../../../js/layui/layui.all.js"></script>
+		<script src="../../../js/layui/layui.js"></script>
+		<script src="../../../js/common.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../../js/clickSort.js"></script>
+		<script src="../../../js/address.js"></script>
+		<!-- <script src="../../../js/bootstrap.min.js"></script> -->
+		<script src="js/EditortestPaper.js" charset="utf-8"></script>
+	</body>
+
+</html>
 							<div class="functionBox">
 								<button class="toView"><i class="layui-icon layui-icon-search"></i>查看解析</button>
 								<button class="fraction"><img src="../../../imgs/f.png" alt="" />设定分值</button>

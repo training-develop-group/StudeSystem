@@ -1,11 +1,89 @@
 $(function() {
-	layui.use(['layer', 'form', 'laypage'], function() {
+	
+	layui.use(['layer', 'form', 'laypage', 'laydate'], function() {
 		var layer = layui.layer,
 			form = layui.form;
 		var laypage = layui.laypage,
 			layer = layui.layer;
 
+		//选择任务人员全选反选-------------------------------------------------------------------------
+		form.on('checkbox(Staff)', function(data) {
+			var a = data.elem.checked;
+			if (a == true) {
+				$(".checkAll").prop("checked", true);
+				form.render('checkbox');
+			} else {
+				$(".checkAll").prop("checked", false);
+				form.render('checkbox');
+			}
+		});
+		form.on('checkbox(c_one)', function(data) {
+			var item = $(".checkAll");
+			for (var i = 0; i < item.length; i++) {
+				if (item[i].checked == false) {
+					$("#checkAll").prop("checked", false);
+					form.render('checkbox');
+					break;
+				}
+			}
+			//如果都勾选了  勾上全选
+			var all = item.length;
+			for (var i = 0; i < item.length; i++) {
+				if (item[i].checked == true) {
+					all--;
+				}
+			}
+			if (all == 0) {
+				$("#checkAll").prop("checked", true);
+				form.render('checkbox');
+			}
+		
+		})
+		//选择任务人员全选反选-------------------------------------------------------------------------
 
+
+		
+		//layui 日期渲染--------------------------------------------------------------------------------------
+		laydate = layui.laydate;
+		//执行一个laydate实例
+		laydate.render({
+			elem: '#test1', //指定元素,
+			theme: '#40AFFE',
+			type: 'datetime',
+			
+		});
+		laydate.render({
+			elem: '#test2', //指定元素,
+			theme: '#40AFFE',
+			type: 'datetime',
+		});
+		//layui 日期渲染--------------------------------------------------------------------------------------
+		
+		
+		//根据选择的任务类型来显示或隐藏--------------------------------------------------------------------
+		//新加 清空操作
+		// form.on('select(fangxiang)', function(data) {
+		// 	var value = data.value;
+		// 	if (value == '1') {
+		// 		$('.selectPapers').show();
+		// 		$('.selectResource').show();
+		// 		$('.resAdd').text('');
+		// 		$('.paperAdd').text('');
+		// 	} else if (value == '2') {
+		// 		$('.selectResource').show();
+		// 		$('.selectPapers').hide();
+		// 		$('.resAdd').text('');
+		// 		$('.paperAdd').text('');
+		// 	} else if (value == '3') {
+		// 		$('.selectPapers').show();
+		// 		$('.selectResource').hide();
+		// 		$('.resAdd').text('');
+		// 		$('.paperAdd').text('');
+		// 	}
+		// })
+		// form.render('select');
+		// form.render('checkbox');
+		//根据选择的任务类型来显示或隐藏--------------------------------------------------------------------
 
 
 		//调用common.js的公共方法
@@ -13,13 +91,13 @@ $(function() {
 			num: 2
 		});
 
-
-
+		
+		// info.docx();
 
 		//调用音频弹出层方法
 		// info.viewByAudioFileName();
 
-		info.getVideoPlaybackTime();
+		// info.getVideoPlaybackTime();
 
 		info.selectResourceList(1); //查看
 
@@ -28,24 +106,37 @@ $(function() {
 		// 调用文档弹出层
 		// info.viewByTextFileName();
 		
-
-
+		/**
+		 * 检索关键词resName
+		 * 用回车检索
+		 */
+		$('.search').keypress(function(e) {
+			if (e.which == 13) {
+				var searchKey = $('.search').val()
+				info.selectResourceList(1,searchKey)
+			}
+		});
 	});
-
 });
+
+var total = '';
 var JumpPageNum = 1; //全局变量分页页数初始值
+var resId = '';
 var info = {
 	//获取资源列表
-	selectResourceList: function(pageNum) {
+	selectResourceList: function(pageNum, resName, resType) {
+		// console.log(resName);
 		$.ajax({
 			url: TDXUrl + 'manage_system/resource/resources',
 			data: {
 				'pageNum': pageNum,
-				'pageSize': 12
+				'pageSize': 12,
+				'resName': resName,
+				'resType': resType
 			},
 			dataType: 'json',
 			type: 'GET',
-			contentType: 'application/json;charset=utf-8',
+			// contentType: 'application/json;charset=utf-8',
 			success(res) {
 				var html = [];
 				if (res.code == 1) {
@@ -66,19 +157,21 @@ var info = {
 							item.resType = '未知'
 						}
 						html.push('<td class="centerText">' + item.resType + '</td>');
-						html.push('<td class="centerText">' + item.resSize + 'kb</td>');
-						html.push('<td><a href="#" class="editResName" resId="' + item.resId + '" resName="' + item.resName +
-							'">编辑</a><a href="#" class="release">发布</a><a href="#" class="deleteList" resId="' + item.resId +
-							'">删除</a></td>');
+						html.push('<td class="centerText">' + info.getFileSize(item.resSize) + '</td>');
+						html.push('<td><button class="editResName" resId="' + item.resId + '" resName="' + item.resName +
+							'">编辑</button><button class="release" resName="' + item.resName + '" resId="' + item.resId + '">发布</button><button class="deleteList" resId="' + item.resId +
+							'">删除</button></td>');
 						html.push('</tr>');
 					})
 					$('#contentList').html(html.join(''));
 
 					// console.log(res)
-					var total = res.data.total; //分页总数量
+					total = res.data.total; //分页总数量
 					JumpPageNum = res.data.pageNum; //下一页复制为了时删除或者修改完事后停留在原本的页数
 
 					info.Pagination(total, pageNum); //调用分页方法（总条数，页数）
+					
+					
 
 					//获取资源详情
 					$('.getResource').off('click').on('click', function() {
@@ -98,11 +191,129 @@ var info = {
 					});
 
 
+
+
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
 					//发布弹窗
 					$('.release').off('click').on('click', function() {
+						
+						//查询任务类型
+						var Html = [];
+						Html.push('<option value="2">学习任务</option>');
+						$('#taskType').html(Html.join(''));
+						
+						
+						info.selectAllUser('') //查询所有用户
+						
+						info.openAddRolePage();	//发布任务弹窗
+						resId = $(this).attr("resId");	//给全局变量赋值
+						var Html = [];
+						var resName = $(this).attr("resName");
+						Html.push(' : ' + resName)
+						$('.resAdd').html(Html.join(''));
+						
+					});
+					
+					//资源单选--------------------------------------------------------------------------------------------
+					// $('.resourceSelection').click(function() {
+					// 	var resId = $('input:radio:checked').siblings('.resName').text();
+					// 	var Html = [];
+					// 	Html.push(' : ' + resId)
+					// 	$('.resAdd').html(Html.join(''))
+					// 	layer.close(layer.index);
+					// })
+					//资源单选--------------------------------------------------------------------------------------------
+					
+					// // 选择资源
+					// $('.selectResource').click(function() {
+					// 	info.taskSelectResourceList(1);
+					// 	info.selectResources();
+					// });
+					
+					//查找资源类型----------------------------------------
+					$('.selectRes').click(function() {
+						info.taskSelectResourceList($(this).val())
+					});
+					//查找资源类型----------------------------------------
 
-
+					
+					
+					//弹出选择人员
+					$('.selectPersonnel').click(function() {
+						layer.open({
+							type: 1,
+							title: ['选择人员','color:#fff;background-color:#40AFFE;;border-radius: 7px ; text-align: center;font-size:20px'],
+							shadeClose: true,
+							skin: 'myskin',
+							area: ['600px', '450px'],
+							content: $('#selectPersonnel'),
+							success: function() {
+					
+							}
+						});
+					});
+					
+					
+					//选择人员确认按钮点击事件-------------------------------------------------------------------------------------
+					$('.usersSelectOk').click(function() {
+						var Html = [];
+						$.each($("[name='Staff']:checked"), function(i, val) {
+							Html.push('<p >' + $(this).siblings('i').text() + '<input type="text"  hidden="" id="" value="' + $(this).val() +
+								'" />  <i  data-id="' + $(this).val() +
+								'" class="layui-icon layui-icon-close deleteUserName" style="font-size: 20px; margin-left:150px 	"></i></p>'
+							)
+						})
+						$('.taskUsers').html(Html.join(''));
+					
+						//新，
+						//点击× 进行处理
+						$('.deleteUserName').click(function() {
+							$(this).parents('p').remove();
+							var userId = $(this).attr('data-id');
+							console.log(userId)
+							$.each($("[name='Staff']:checked"), function(i, val) {
+								if (val.value == userId) {
+									$("#checkAll").prop("checked", false);
+									$(this).prop("checked", false);
+									layui.use('form', function() {
+										var form = layui.form;
+										form.render('');
+									});
+								}
+							})
+						})
+						layer.close(layer.index);
 					})
+					//选择人员确认按钮点击事件-------------------------------------------------------------------------------------
+					
+					
+					//用户模糊查询 回车
+					$(".userNameRetrieval").keypress(function(e) {
+						if (e.which == 13) {
+							var userNameRetrieval = $('.userNameRetrieval').val()
+							info.selectAllUser(userNameRetrieval);
+						}
+					});
+					
+					
+					//添加任务
+					$('.addOk').click(function() {
+						info.addTask();
+					
+					});
+					
+
+
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
 
 
 					//删除资源
@@ -112,7 +323,6 @@ var info = {
 						All.layuiOpen({
 							num: 1,
 							resId: resId,
-							// JumpPageNum: JumpPageNum,
 							msg: '是否删除资源？'
 						});
 					});
@@ -143,6 +353,7 @@ var info = {
 				layout: ['prev', 'page', 'next', 'limits', 'skip'],
 				jump: function(item, first) {
 					if (!first) {
+						// console.log(item);
 						info.selectResourceList(item.curr); //下一页
 					}
 				}
@@ -161,6 +372,8 @@ var info = {
 			type: 'GET',
 			contentType: 'application/json;charset=utf-8',
 			success(res) {
+				// info.docx(res.data.path);
+				// console.log();
 				if (res.code == 1) {
 					console.log(res.data.path);
 					if (res.data.resType == 1) {
@@ -209,25 +422,12 @@ var info = {
 	},
 
 
-	//音频弹出层
-	viewByAudioFileName: function() {
-		layer.open({
-			type: 1,
-			area: ['750px', '200px'],
-			title: ['查看', 'background-color: #289ef0;text-align: center;font-size: 20px;color:white;'],
-			shade: 0.6,
-			content: $('#hiddenAudio'),
-
-		})
-	},
-
-
 	//每30秒获取
 	currentTime: function() {
 		var myVideo = document.getElementById("myVideo");
 		var currentTime = myVideo.currentTime;
 		console.log(myVideo.currentTime);
-		info.recordVideoPlaybackTime(currentTime)
+		info.recordVideoPlaybackTime(currentTime);
 	},
 
 
@@ -255,6 +455,64 @@ var info = {
 			}
 		});
 	},
+	
+	
+	//获取视频播放时长
+	getVideoPlaybackTime: function() {
+		$.ajax({
+			url: TDXUrl + 'manage_system/resource/view',
+			data: {
+				'resId': 1
+			},
+			dataType: 'json',
+			type: 'GET',
+			// contentType: 'application/json;charset=utf-8',
+			success(res) {
+				if(res.code == 1) {
+					console.log(res);
+					console.log(res.data);
+					layer.msg('获取视频播放时长成功');
+				} else {
+					layer.msg('获取视频播放时长失败');
+				}
+			},
+			error(e) {
+				layer.msg("获取视频播放时长错误");
+			}
+		});
+	},
+	
+	
+	//音频弹出层
+	viewByAudioFileName: function() {
+		layer.open({
+			type: 1,
+			area: ['750px', '200px'],
+			title: ['查看', 'background-color: #289ef0;text-align: center;font-size: 20px;color:white;'],
+			shade: 0.6,
+			content: $('#hiddenAudio'),
+	
+		})
+	},
+	
+	
+	//文档弹出层
+	docx : function(path) {
+		layer.open({
+			type: 1,
+			area: ['750px', '400'],
+			title:[],
+			shade: 0.6,
+			content: $('#Doc'),
+			success: function() {
+				var html = [];
+				console.log("http://192.168.188.114:88/" + path);
+				html.push('<iframe src="https://view.officeapps.live.com/op/view.aspx?src=http://192.168.188.114:88/'+path+'"></iframe>');
+				$('#Doc').html(html.join(''));
+				
+			}
+		});
+	},
 
 
 	//编辑资源名弹出层
@@ -271,11 +529,12 @@ var info = {
 			content: $('#editResNameBox'),
 			yes: function() {
 				var resName = $('.rename').val();
+				if (resName == '') {
+					layer.msg('文件名称不能为空');
+					return false;
+				}
 				info.update(resId, resName);
-				// layer.close(index);
-				layer.closeAll();
-				info.selectResourceList(JumpPageNum);
-
+				layer.close(layer.index);
 			}
 		});
 	},
@@ -296,6 +555,7 @@ var info = {
 				if (res.code == 1) {
 					console.log(res);
 					layer.msg('编辑资源名成功');
+					info.selectResourceList(JumpPageNum);
 				} else {
 					layer.msg('编辑资源名失败')
 				}
@@ -324,7 +584,13 @@ var info = {
 				// }
 				console.log(res);
 				layer.msg('删除资源成功');
-				info.selectResourceList(JumpPageNum);
+				// console.log(12);
+				if(total % 12 == 1) {
+					var a = JumpPageNum - 1;
+					info.selectResourceList(a);
+				} else {
+					info.selectResourceList(JumpPageNum);
+				}
 			},
 			error(e) {
 				layer.msg('删除资源错误');
@@ -366,6 +632,14 @@ var info = {
 						layer.close(layer.index);
 						info.selectResourceList(JumpPageNum);
 					},
+					end: function() {
+						var file = $("#testList") 
+						file.after(file.clone().val("")); 
+						file.remove();
+						var html = [];
+						$('#demoList').html(html.join(''));
+						
+					},
 					success: function() {
 						console.log('-----成功1----');
 						layui.use('upload', function() {
@@ -377,8 +651,9 @@ var info = {
 									elem: '#testList', //选择文件按钮
 									url: TDXUrl + 'manage_system/resource/resource',
 									accept: 'file', //上传文件类型
-									multiple: true,
-									method: 'GET',
+									multiple: true,	//允许上传多个文件
+									exts: 'mp4|avi|mov|rmvb|rm|flv|wma|mp3|ogv|cd|wav|aiff|ogg|aac|midi|docx|doc|xls|xlsx|pdf|txt',
+									// size: 1024*20,
 									// auto: false,	不用按钮点击执行
 									// bindAction: '#testListAction',
 									choose: function(obj) {
@@ -392,7 +667,7 @@ var info = {
 											console.log(fileNameArr[fileNameArr.length - 1]);
 											var tr = $(['<tr id="upload-' + index + '">', '<td style="width:20px;">' + file.name +
 												'</td>', '<td>' + fileType + '</td>',
-												'<td>' + (file.size / 1014).toFixed(1) + 'kb</td>', '<td>' + '--' + '</td>',
+												'<td>' + info.getFileSize(file.size) + '</td>', '<td>' + '--' + '</td>',
 												'<td>',
 												'<button class="layui-btn layui-btn-xs demo-reload layui-hide">重传</button>',
 												'<button class="layui-btn layui-btn-xs layui-btn-danger demo-delete">删除</button>',
@@ -418,14 +693,14 @@ var info = {
 									done: function(res, index, upload) {
 										console.log('-----成功----');
 										console.log(res);
-										// if (res.code == 0) { //上传成功
+										if (res.code == 1) { //上传成功
 										var tr = demoListView.find('tr#upload-' + index),
 											tds = tr.children();
 										tds.eq(3).html('<span style="color: #5FB878;">上传成功</span>');
 										tds.eq(4).html(''); //清空操作
 										return delete this.files[index]; //删除文件队列已经上传成功的文件
-										// }
-										this.error(index, upload);
+										}
+										// this.error(index, upload);
 									},
 									error: function(index, upload) {
 										console.log('-----失败----');
@@ -433,9 +708,17 @@ var info = {
 											tds = tr.children();
 										tds.eq(3).html('<span style="color: #FF5722;">上传失败</span>');
 										tds.eq(4).find('.demo-reload').removeClass('layui-hide'); //显示重传
+										
 									}
 								});
 						});
+					},
+					error(e) {
+						layer.msg('上传资源错误');
+						layer.close(layer.index);
+						var html = [];
+						$('#demoList').html(html.join(''));
+						info.selectResourceList(JumpPageNum);
 					}
 				});
 			});
@@ -443,30 +726,279 @@ var info = {
 	},
 
 
+	getFileSize: function(fileByte) {
+		var fileSizeByte = fileByte;
+		var fileSizeMsg = "";
+		if (fileSizeByte < 1048576) fileSizeMsg = (fileSizeByte / 1024).toFixed(2) + "KB";
+		else if (fileSizeByte == 1048576) fileSizeMsg = "1MB";
+		else if (fileSizeByte > 1048576 && fileSizeByte < 1073741824) fileSizeMsg = (fileSizeByte / (1024 * 1024)).toFixed(2) + "MB";
+		else if (fileSizeByte > 1048576 && fileSizeByte == 1073741824) fileSizeMsg = "1GB";
+		else if (fileSizeByte > 1073741824 && fileSizeByte < 1099511627776) fileSizeMsg = (fileSizeByte / (1024 * 1024 * 1024)).toFixed(2) + "GB";
+		else fileSizeMsg = "文件超过1TB";
+		return fileSizeMsg;
+	},
 
 
-	//获取视频播放时长
-	getVideoPlaybackTime: function() {
+
+	//查询任务类型
+	// selectTaskType: function() {
+		// $.ajax({
+		// 	url: LBUrl + 'manage_system/task/type',
+		// 	data: {},
+		// 	dataType: 'json',
+		// 	type: 'GET',
+		// 	success(res) {
+		// 		console.log(res)
+				// var Html = [];
+		// 		res.forEach(function(item, index) {
+		// 			var aa = item.split(",");
+		// 			console.log(aa);
+					// Html.push('<option value="' + aa[0] + '">' + aa[1] + '</option>');
+					// Html.push('<option value="2">学习任务</option>');
+		// 		})
+				// $('#taskType').html(Html.join(''));
+		// 		layui.use('form', function() {
+		// 			var form = layui.form;
+		// 			form.render('');
+		// 		});
+		// 	}
+		// })
+	// },
+	
+
+	
+	
+	
+	//查询资源-----------------------------------------------------------------------------------------
+	taskSelectResourceList: function(resType) {
 		$.ajax({
-			url: TDXUrl + 'manage_system/resource/view',
+			url: TDXUrl + 'manage_system/resource/resources',
 			data: {
-				'resId': 1
+				'pageNum': 1,
+				'pageSize': 100000,
+				'resType': resType
 			},
 			dataType: 'json',
 			type: 'GET',
-			// contentType: 'application/json;charset=utf-8',
+			contentType: 'application/json;charset=utf-8',
 			success(res) {
-				if(res.code == 1) {
-					console.log(res);
-					console.log(res.data);
-					layer.msg('获取视频播放时长成功');
-				} else {
-					layer.msg('获取视频播放时长失败');
-				}
-			},
-			error(e) {
-				layer.msg("获取视频播放时长错误");
+				console.log(res)
+				var Html = [];
+				res.data.list.forEach(function(item, index) {
+					Html.push('<div class="layui-input-inline radio_box" >')
+					Html.push(
+						'  <input type="radio" name="res" name="Staff" lay-skin="primary" lay-filter="Staff"  value="' +
+						item.resId + '">')
+					Html.push('<div class="img-box">')
+					Html.push('		<img src="' + item.path + '" >')
+					Html.push('</div>')
+					Html.push('<p class="resName">' + item.resName + '</p>')
+					Html.push('</div>')
+				})
+				$('#resource').html(Html.join(''));
+	
+				// 重新渲染
+				layui.use('form', function() {
+					var form = layui.form;
+					form.render('');
+				});
 			}
+		})
+	},
+	//查询资源-----------------------------------------------------------------------------------------
+
+
+
+	//发布任务弹出层
+	openAddRolePage: function(userId) {
+		layer.open({
+			type: 1,
+			title: ['发布任务', 'color:#fff;background-color:#40AFFE;border-radius: 7px;text-align: center; font-size: 20px;'],
+			shadeClose: true,
+			shade: 0.8,
+			skin: 'myskin',
+			area: ['700px', '750px'],
+			content: $('#addTaskPage'),
+			success: function() {
+				layui.use('form', function() {
+					var form = layui.form;
+					form.render('select');
+				});
+			
+			},
 		});
 	},
+	
+	
+	
+	
+	//弹出选择资源
+	selectResources: function() {
+	
+		layer.open({
+			type: 1,
+			title: ['选择资源', 'color:#fff;background-color:#40AFFE;border-radius: 7px;text-align: center; font-size: 20px; '],
+			shadeClose: true,
+			shade: 0,
+			skin: 'myskin',
+			area: ['700px', '80%'],
+			content: $('#selectResource'),
+			success: function() {
+				
+			}
+		})
+	},
+	
+	//弹出编辑任务
+	popupsUpdateTaskName: function() {
+		layer.open({
+			type: 1,
+			title: ['编辑任务', 'color:#fff;background-color:#40AFFE;;border-radius: 7px'],
+			shadeClose: true,
+			shade: 0.8,
+			skin: 'myskin',
+			area: ['700px', '200px'],
+			content: $('#updateTaskName'),
+			success: function() {
+	
+			}
+		})
+	},
+	
+	
+	//查询所有用户
+	selectAllUser: function(userName) {
+		$.ajax({
+			url: LBUrl + 'manage_system/task/users',
+			data: {
+				'userName': userName
+			},
+			dataType: 'json',
+			type: 'GET',
+			success(res) {
+				var Html = []
+				res.data.forEach(function(item, index) {
+					Html.push('<span class="layui-form-label" style="font-size: 16px;"><input type="checkbox" value="' + item.userId +
+						'"class="checkAll " name="Staff" lay-skin="primary" lay-filter="c_one" ><i>' + item.userName +
+						'</i></span>')
+				})
+				$('#selectTaskUsers').html(Html.join(''));
+				layui.use('form', function() {
+					var form = layui.form;
+					form.render('');
+				});
+			}
+		})
+	},
+	
+	
+	//发布任务-----------------------------------------------------------------------------------------
+	addTask: function() {
+		// var resId = $('input:radio:checked').val();
+		// var resId = resId;
+		console.log(resId);
+		var mistake = '';
+		// var resId=$("input[name=res]:checked").val();
+		var index = true;
+		var userId = ''
+		$.each($("[name='Staff']:checked"), function(i, val) {
+			userId += ',' + val.value
+		})
+		if ($('#test1').val() == '') {
+			mistake = '请选择开始时间!';
+			index = false;
+		}
+		if ($('#test2').val() == '') {
+	
+			mistake = '请选择结束时间'
+			index = false;
+		}
+		if ($('#test1').val() > $('#test2').val()) {
+			mistake = '结束时间不能小于开始时间'
+			index = false;
+		}
+		if (userId == '') {
+			mistake = '请选择做任务人员'
+			index = false;
+		}
+		if ($('#taskType').val() == '1') {
+			if (resId == undefined) {
+				mistake = '请选择资源！';
+				index = false;
+			}
+			if ($('.selectPapers').val() == '') {
+				mistake = '请选择试卷！';
+				index = false;
+			}
+	
+		} else if ($('#taskType').val() == '2') {
+			if (resId == undefined) {
+				mistake = '请选择资源！';
+				index = false;
+			}
+		} else if ($('#taskType').val() == '3') {
+			if ($('.selectPapers').val() == '') {
+				mistake = '请选择试卷！';
+				index = false;
+			}
+		}
+		if ($('.taskName').val() == '') {
+			mistake = '任务名不能为空哦！';
+			index = false;
+		}
+		var data = {
+			'resId': resId,
+			'paperId': 1,
+			'taskType': $('#taskType').val(),
+			'taskName': $('.taskName').val(),
+			'taskRemark': $('.taskRemark').val(),
+			'status': 1,
+			'startTime': dateFormata($('#test1').val()),
+			'endTime': dateFormata($('#test2').val()),
+			'userId': userId
+	
+		}
+		console.log(data.startTime)
+		if (index != false) {
+	
+			console.log(data)
+			$.ajax({
+				url: LBUrl + 'manage_system/task/tasks',
+				data: JSON.stringify(data),
+				dataType: 'json',
+				type: 'POST',
+				contentType: 'application/json;charset=utf-8',
+				success(res) {
+					// console.log(res)
+				}
+			})
+			layer.msg('添加成功');
+			// layer.close(layer.index);
+			location.replace(document.referrer);
+		} else {
+			layer.msg(mistake);
+		}
+	},
+	
+	//发布任务-----------------------------------------------------------------------------------------
+
+
+	
+}
+
+
+
+var dateFormata = function(time) {
+	var date = new Date(time);
+	var year = date.getFullYear();
+	/* 在日期格式中，月份是从0开始的，因此要加0
+	 * 使用三元表达式在小于10的前面加0，以达到格式统一  如 09:11:05
+	 * */
+	var month = date.getMonth() + 1 < 10 ? "0" + (date.getMonth() + 1) : date.getMonth() + 1;
+	var day = date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
+	var hours = date.getHours() < 10 ? "0" + date.getHours() : date.getHours();
+	var minutes = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
+	var seconds = date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds();
+	// 拼接
+	return year + "-" + month + "-" + day + " " + (hours) + ":" + minutes + ":" + seconds;
 }

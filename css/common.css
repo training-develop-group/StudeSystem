@@ -53,41 +53,7 @@ body {
     background-color: #289ef0;
     box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.1);
 }
-.yes,
-.no {
-  display: inline-block;
-  height: 30px;
-  line-height: 30px;
-  padding: 0 30px;
-  color: #FFF9EC;
-  white-space: nowrap;
-  font-size: 14px;
-  border: none;
-  border-radius: 2px;
-  background-color: #1E9FFF;
-}
 
-.btn {
-  position: absolute;
-  bottom: 20px;
-  left: 0;
-  right: 0;
-  margin: 0 auto;
-  width: 196px;
-}
-.yes:hover, .no:hover{
-  background:linear-gradient(#0092ff,#1E9FFF,#1E9FFF) ;
-}
-
-.yes {
-  margin: 0 20px 0 0;
-}
-
-.openText {
-    text-align: center;
-    margin-top: 36px;
-    font-size: 18px;
-}
 .headerBox .logobox {
     padding: 0 85px;
     float: left;
@@ -244,6 +210,43 @@ body {
 .logOut .layui-layer-title {
     padding: 0 20px 0 20px;
 }
+/* ----------------------(删除)弹窗的css↓---------------------------- */
+.yes,
+.no {
+  display: inline-block;
+  height: 30px;
+  line-height: 30px;
+  padding: 0 30px;
+  color: #FFF9EC;
+  white-space: nowrap;
+  font-size: 14px;
+  border: none;
+  border-radius: 2px;
+  background-color: #1E9FFF;
+}
+
+.btn {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: 196px;
+}
+.yes:hover, .no:hover{
+  background:linear-gradient(#0092ff,#1E9FFF,#1E9FFF) ;
+}
+
+.yes {
+  margin: 0 20px 0 0;
+}
+
+.openText {
+    text-align: center;
+    margin-top: 36px;
+    font-size: 18px;
+}
+/* ----------------------(删除)弹窗的css↑---------------------------- */
 
 @media screen and (min-width: 1500px) and (max-width: 1660px) {
     .wrapper.wrapper-content {

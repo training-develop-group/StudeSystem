@@ -318,3 +318,323 @@ tr td:nth-child(1) {
 .layui-laypage .layui-laypage-skip {
 	background-color: #f1f1f1;
 }
+
+
+ul {
+	float: left;
+}
+
+i {
+	font-style: normal
+}
+
+li {
+	list-style: none;
+}
+
+a {
+	text-decoration: none;
+}
+
+table,
+ul {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-size: 16px;
+	margin: 0;
+	height: 100%;
+	width: 100%;
+	background-color: rgb(241, 241, 241);
+}
+
+.H-left,
+.H-content,
+.H-content ul,
+.H-right {
+	height: 100%;
+}
+
+
+
+
+
+/*首页-顶框*/
+.Header {
+	height: 60px;
+	background-color: #279ef0;
+	box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+}
+
+.Header div {
+	float: left;
+}
+
+/*顶-左侧*/
+.H-left {
+	font-size: 20px;
+	width: 10%;
+}
+
+.H-left span {
+	font-size: 20px;
+	color: #000000;
+	width: 20%;
+	margin: 0 40%;
+	line-height: 60px;
+}
+
+/*顶-中间*/
+.H-content {
+	width: 80%;
+}
+
+.H-content ul {
+	color: #fff;
+	display: inline-block;
+}
+
+.H-content li {
+	float: left;
+	line-height: 60px;
+	padding: 0 30px;
+	color: #fff;
+}
+
+.H-content li:hover {
+	color: #279ef0;
+	background-color: white;
+}
+
+.H-content div {
+	float: right;
+	background-color: #FFF;
+	margin: 15px 30px;
+	width: 250px;
+	height: 30px;
+}
+
+/*输入框*/
+.HC-seek {
+	background: url(../imgs/found.jpg) 5px no-repeat;
+	border-radius: 7px;
+	box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+}
+
+.HC-seek input {
+	margin-top: 4.5px;
+	width: 210px;
+	height: 20px;
+	float: right;
+	border: none;
+	outline-color: transparent;
+
+}
+
+/*顶-右侧*/
+.H-right {
+	width: 10%;
+}
+
+.HR-picture {
+	display: inline-block;
+	margin: 10px 0;
+	margin-left: 15px;
+	width: 40px;
+	height: 40px;
+	background-color: #b5b5b5;
+	border-radius: 50%;
+}
+
+.HR-text {
+	line-height: 60px;
+	color: #fff;
+	margin-left: 20px;
+}
+
+
+
+
+
+/*首页-内容框*/
+.Content {
+	width: 100%;
+}
+
+.C-Top {
+	color: #fff;
+	background-color: #279ef0;
+	margin: 0 0 20px 0;
+	width: 100%;
+	height: 60px;
+	/* border-top-left-radius: 9px;
+	border-top-right-radius: 9px; */
+	border-radius: 7px 7px 0 0;
+	line-height: 60px;
+	box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+}
+
+.C-Top span {
+	font-size: 20px;
+	color: #fff;
+	margin-left: 30px;
+	font-weight: 600;
+}
+
+.C-Top button {
+	float: right;
+	width: 100px;
+	/* height: 27px; */
+	font-size: 16px;
+	color: #279ef0;
+	margin: 11px 20px 0 0;
+	border: none;
+	border-radius: 5px;
+	/* background-color: #fff; */
+	/* box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.4); */
+}
+
+.C-Content {
+	/* margin-left: 11.5%; */
+	background-color: #fff;
+	width: 100%;
+	min-height: 600px;
+}
+
+.Footer {
+	margin-left: 10%;
+	width: 80%;
+	height: 60px;
+	text-align: right;
+}
+
+/* resources-task-test-statistics 共通*/
+
+
+.resources,
+.task,
+.test,
+.statistics {
+	height: 730px;
+}
+
+.resources table,
+.task table,
+.test table,
+.statistics table {
+	border-collapse: separate;
+	padding: 10px 2%;
+	width: 100%;
+}
+
+.resources table tr:nth-child(1) td,
+.task table tr:nth-child(1) td,
+.test table tr:nth-child(1) td,
+.statistics table tr:nth-child(1) td {
+	font-size: 16px;
+	font-weight: 500;
+}
+
+
+.resources tr,
+.task tr,
+.test tr,
+.statistics tr {
+	height: 20px;
+}
+
+td {
+	padding: 7px 0;
+	border-bottom: 1px solid #eeeeee;
+}
+
+
+.resources tr td,
+.statistics tr td,
+.task tr td,
+.test tr td {
+	color: #000000;
+	font-size: 15px;
+	padding: 13px 0;
+	border-bottom: 1px solid #eeeeee;
+}
+
+.resourcestr tr td:nth-child(1),
+.task tr td:nth-child(1),
+.test tr td:nth-child(1),
+.statistics tr td:nth-child(1) {
+	text-align: left;
+	padding-left: 20px;
+}
+
+tr td:nth-child(1) {
+	text-align: left;
+	padding-left: 20px;
+}
+
+.resources tr td a,
+.statistics tr td a,
+.task tr td a,
+.test tr td a {
+	font-size: 15px;
+}
+
+.layui-layer-btn .layui-layer-btn0 {
+	width: 90px;
+	height: 25px;
+	line-height: 25px;
+	font-size: 16px;
+	border-radius: 4px;
+}
+
+/*弹窗公共样式*/
+
+.layui-layer,
+.Popup {
+	border-radius: 7px !important;
+}
+
+.Popup .P-top {
+	text-align: center;
+	width: 100%;
+	height: 50px;
+	background-color: #279ef0;
+	box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
+	border-top-left-radius: 7px;
+	border-top-right-radius: 7px;
+
+}
+
+.Popup .P-top span {
+	font-size: 16px;
+	color: #fff;
+	line-height: 50px;
+}
+
+.Popup .P-content {
+	height: 100%;
+	padding: 2% 2% 0 2%;
+}
+
+.Popup .layui-input {
+	border-radius: 4px;
+	height: 30px;
+}
+
+.Popup .layui-input,
+.Popup .layui-input:hover {
+	border: 1px solid rgb(181, 181, 181) !important;
+}
+
+.layui-laypage a:hover {
+	color: #279ef0;
+}
+
+.layui-laypage .layui-laypage-count,
+.layui-laypage .layui-laypage-limits,
+.layui-laypage .layui-laypage-refresh,
+.layui-laypage .layui-laypage-skip {
+	background-color: #f1f1f1;
+}

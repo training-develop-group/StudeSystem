@@ -92,16 +92,28 @@ var info = {
 	//表格会绘制
 	TableDrawing: function(data) {
 		var Html = [];
+<<<<<<< HEAD
 		data.questions.forEach(function(item, index) {
 			Html.push('<li class="sortableitem">');
 			Html.push('<div class="topicFramework">');
 			Html.push('<input type="text" class="qusetionId" value="' + item.questionId + '" hidden="hidden"/>');
+=======
+		console.log(data);
+		data.questions.forEach(function(item, index) {
+			Html.push('<li class="sortableitem">');
+			Html.push('<div class="topicFramework">');
+			Html.push('<input type="text" class="questionId" value="' + item.questionId + '" hidden="hidden"/>');
+>>>>>>> remotes/origin/dev-MX
 			if (item.questionType == 1){
 				item.questionType = '单选题';
 			} else {
 				item.questionType = '多选题';
 			}
+<<<<<<< HEAD
 			Html.push('<p class="num">'+ (index + 1) +'. ' + item.questionType + '</p>');
+=======
+			Html.push('<p class="num">'+ (index + 1) +'. ' + item.questionType + '<span>  ' + item.newScore + '分</span></p>');
+>>>>>>> remotes/origin/dev-MX
 			Html.push('<p class="distance">' + item.content + '</p>');
 			item.optionInfo.forEach(function(items, index) {
 				Html.push('<p class="distance">' + items.optionType + ' ' + items.content + '</p>');
@@ -114,13 +126,21 @@ var info = {
 		});
 		$('.mobileFramework').html(Html.join(''));
 		// 解析
+<<<<<<< HEAD
 			$('.toView').off('click').on('click', function() {
 			var QusetionId = $(this).parent().parent().find('.qusetionId').val();
+=======
+		$('.toView').click(function() {
+			var QusetionId = $(this).parent().parent().find('.questionId').val();
+>>>>>>> remotes/origin/dev-MX
 			info.toViewAnalysis(QusetionId);
 		});
 	},
 	// 查看解析(弹窗)
+<<<<<<< HEAD
 	// 查看解析(弹窗)
+=======
+>>>>>>> remotes/origin/dev-MX
 	toViewAnalysis: function(questionId) {
 		// 解析内容
 		var Analysis = '未定义';
@@ -160,5 +180,8 @@ var info = {
 			}
 		});
 	}
+<<<<<<< HEAD
 	
+=======
+>>>>>>> remotes/origin/dev-MX
 }

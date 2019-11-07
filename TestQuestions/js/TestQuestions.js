@@ -34,6 +34,10 @@ $(document).ready(function() {
 })
 var type = 1;
 var questionIdLast = 0;
+<<<<<<< HEAD
+=======
+var judged = true;
+>>>>>>> remotes/origin/dev-MX
 var info = {
 	addInputTotal: function() {
 		info.inputTotal('#newlyBuild #analysis', '#newlyBuild .num');
@@ -144,8 +148,14 @@ var info = {
 				dataType: 'json',
 				type: 'DELETE',
 				success(res) {
+<<<<<<< HEAD
 					layer.msg('删除成功(弹窗待样式)');
 					location.reload();
+=======
+					layer.closeAll();
+					info.selectQuestion(1);
+					layer.msg('删除成功(弹窗待样式)');
+>>>>>>> remotes/origin/dev-MX
 				},
 				error(e) {
 
@@ -183,6 +193,10 @@ var info = {
 		});
 	},
 	//添加
+<<<<<<< HEAD
+=======
+	
+>>>>>>> remotes/origin/dev-MX
 	addQuestion: function() {
 		$('#newlyBuild .optionErrorMsg').hide();
 		layui.use('form', function() {
@@ -235,7 +249,10 @@ var info = {
 				});
 			});
 		});
+<<<<<<< HEAD
 		var judged = true;
+=======
+>>>>>>> remotes/origin/dev-MX
 		info.addInputTotal();
 		$('#newlyBuild .addOptions').off('click').on('click', function() {
 			if (judged) {
@@ -405,8 +422,49 @@ var info = {
 				dataType: 'json',
 				type: 'POST',
 				success(res) {
+<<<<<<< HEAD
 					layer.msg('添加成功(弹窗待样式)');
 					location.reload();
+=======
+					layer.closeAll();
+					layer.msg('添加成功(弹窗待样式)');
+					$('#newlyBuild textarea').val('');
+					info.selectQuestion(1);
+					var refreshList = [];
+					if (judged) {
+						refreshList.push(
+							'<p class="outerFrame"><input type="radio" lay-skin="primary" name="choiceItem" value="A" title="A"><textarea name="" required lay-verify="required" class="layui-textarea option"></textarea></p>'
+						);
+						refreshList.push(
+							'<p class="outerFrame"><input type="radio" lay-skin="primary" name="choiceItem" value="A" title="B"><textarea name="" required lay-verify="required" class="layui-textarea option"></textarea></p>'
+						);
+						refreshList.push(
+							'<p class="outerFrame"><input type="radio" lay-skin="primary" name="choiceItem" value="A" title="C"><textarea name="" required lay-verify="required" class="layui-textarea option"></textarea></p>'
+						);
+						refreshList.push(
+							'<p class="outerFrame"><input type="radio" lay-skin="primary" name="choiceItem" value="A" title="D"><textarea name="" required lay-verify="required" class="layui-textarea option"></textarea></p>'
+						);
+					} else {
+						refreshList.push(
+							'<p class="outerFrame"><input type="checkbox" lay-skin="primary" name="choiceItem" value="A" title="A"><textarea name="" required lay-verify="required" class="layui-textarea option"></textarea></p>'
+						);
+						refreshList.push(
+							'<p class="outerFrame"><input type="checkbox" lay-skin="primary" name="choiceItem" value="A" title="B"><textarea name="" required lay-verify="required" class="layui-textarea option"></textarea></p>'
+						);
+						refreshList.push(
+							'<p class="outerFrame"><input type="checkbox" lay-skin="primary" name="choiceItem" value="A" title="C"><textarea name="" required lay-verify="required" class="layui-textarea option"></textarea></p>'
+						);
+						refreshList.push(
+							'<p class="outerFrame"><input type="checkbox" lay-skin="primary" name="choiceItem" value="A" title="D"><textarea name="" required lay-verify="required" class="layui-textarea option"></textarea></p>'
+						);
+					}
+					$("#newlyBuild .choiceItem").html(refreshList.join(''));
+
+					layui.use('form', function() {
+						var form = layui.form;
+						form.render(name);
+					});
+>>>>>>> remotes/origin/dev-MX
 
 				}
 			});
@@ -688,8 +746,14 @@ var info = {
 						dataType: 'json',
 						type: 'POST',
 						success(res) {
+<<<<<<< HEAD
 							layer.msg('修改成功(弹窗待样式)');
 							location.reload();
+=======
+							layer.closeAll();
+							info.selectQuestion(1);
+							layer.msg('修改成功(弹窗待样式)');
+>>>>>>> remotes/origin/dev-MX
 						},
 						error(e) {
 
@@ -716,7 +780,11 @@ var info = {
 				info.selectQuestion(1);
 			}
 		});
+<<<<<<< HEAD
 		
+=======
+
+>>>>>>> remotes/origin/dev-MX
 
 
 		//---------------------修改

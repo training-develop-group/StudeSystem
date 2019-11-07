@@ -18,10 +18,14 @@ body {
 	margin-top: -10px;
 	z-index: 0;
 }
+<<<<<<< HEAD
 .distance{
 	margin-top: 20px;
 	margin-left: 30px;
 }
+=======
+
+>>>>>>> remotes/origin/dev-MX
 .header .serachBox {
 	margin-left: 150px;
 	margin-top: -20px;

@@ -42,6 +42,50 @@
 	color: white;
 	font-weight: 600;
 }
+.content .resources{
+	margin-top: 25px;
+	margin-left: 223px;
+	width: 635px;
+	height:357px;
+	
+}
+.content .statistics{
+	margin-left: 223px;
+	width: 1476px;
+	height: 605px;
+	background-color: #FFFFFF;
+}
+.content .task{
+	margin-top: -372px;
+	margin-left: 878px;
+	width: 401px;
+	height:357px;
+	
+}
+.content .paper{
+	margin-top: -372px;
+	margin-left: 1300px;
+	width: 401px;
+	height:357px;
+
+}
+#title{
+	width: 100%;
+	height: 60px;
+	background-color: #279ef0;
+	/* margin-left: 10px; */
+	/* margin-top: 25px; */
+	border-radius: 7px 7px 0 0;
+}
+#centered{
+	line-height: 60px;
+}
+#centered span{
+	font-size: 18px;
+	margin-left: 30px;
+	color: white;
+	font-weight: 600;
+}
 #newTestPaper{
 	border: none;
 	font-size: 16px;
@@ -232,4 +276,278 @@ a{
 }
 .layui-layer-tips{
 	margin-top: -75px !important;
+}
+#newTestPaper{
+	border: none;
+	font-size: 16px;
+	float: right;
+	margin-right: 20px;
+	margin-top: 10px;
+	border-radius: 5px;
+	color: #279ef2;
+}
+#examinationPaperList{
+	/* border: 1px solid black; */
+	width: 100%;
+	min-height: 650px;
+	/* margin-left: 10px; */
+	margin-top: 20px;
+	background-color: white;
+}
+.layui-table{
+	width: calc(100% - 50px);
+	margin-left: 25px;
+	border: 0;
+	cellspacing: 1;
+}
+th {
+	font-size: 16px !important;
+}
+.layui-form-select dl dd.layui-this{
+	background-color: #279ef2;
+}
+#examinationPaperList table thead th , #examinationPaperInformation td{
+	height: 46px;
+	text-indent: 25px;
+}
+.layui-table th{
+	font-weight: 600;
+	padding: 2px;
+	background-color: white;
+}
+.layui-table td{
+	padding: 0px;
+}
+.layui-table td, .layui-table th{
+	border-width: 0;
+	border-bottom: 1px solid #eeeeee;
+}
+td{
+	font-size: 14px;
+}
+.middle{
+	text-indent: 0 !important;
+	text-align: center !important;
+}
+a{
+	text-decoration:none
+	out-line: none
+}
+.edit , .selectedTopic , .toView , .delete , .publish{
+	width: 50px;
+	padding: 5px;
+	height: 25px;
+	line-height: 15px;
+	border: 0;
+}
+.edit{
+	width: 60px;
+}
+#examinationPaperList table thead tr .operation{
+	text-indent: 30px;
+}
+#paging{
+	margin-top: -30px;
+}
+
+/* 弹窗位置 */
+.layui-layer{
+	top: 140px !important;
+}
+.inputLocation{
+	margin-top: 25px;
+	margin-left: 100px;
+}
+.inputLocation span{
+	font-size: 15px;
+}
+#nameOfExaminationPaper{
+	margin-left: 20px;
+	width: 480px;
+	border-radius: 4px;
+}
+.layui-input{
+	height: 30px;
+	display: inline;
+}
+#confirm{
+	margin-left: 210px;
+	margin-top: 35px;
+	width: 160px;
+	height: 30px;
+	line-height: 30px;
+	border-radius: 5px;
+	background-color: #279ef0;
+	color: white;
+}
+.layui-laypage a{
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+.acquiredValue{
+	width: 500px;
+	margin-left: 25px;
+}
+.renameConfirm{
+	width: 160px;
+	height: 30px;
+	background-color: #279ef0;
+	border: 1px solid #279ef0;
+	line-height: 30px;
+	text-align: center;
+	float: left;
+	margin-top: 33px;
+	margin-left: 70px;
+	color: white;
+}
+.renameCancel{
+	width: 160px;
+	height: 30px;
+	background-color: fff;
+	border: 1px solid #dedede;
+	line-height: 30px;
+	text-align: center;
+	float: right;
+	margin-top: 33px;
+	margin-right: 170px;
+	color: black;
+}
+.newTestPaperConfirm{
+	width: 160px;
+	height: 30px;
+	background-color: #279ef0;
+	border: 1px solid #279ef0;
+	line-height: 30px;
+	text-align: center;
+	float: left;
+	margin-top: 33px;
+	margin-left: 70px;
+	color: white;
+}
+
+.newTestPaperConfirm:hover {
+	color: #fff;
+}
+
+.newTestPaperCancel{
+	width: 160px;
+	height: 30px;
+	background-color: fff;
+	border: 1px solid #dedede;
+	line-height: 30px;
+	text-align: center;
+	float: right;
+	margin-top: 33px;
+	margin-right: 170px;
+	color: black;
+}
+.layui-btn-primary:hover {
+	border-color: #279ef0;
+}
+.layui-layer-tips{
+	margin-top: -75px !important;
+}
+
+/* 发布弹窗 ------------------------------------------------------- */
+
+#addTaskPage{
+	width: 600px;
+	margin: 15px auto;
+	/* border: 1px solid black; */
+}
+.layui-form-item{
+	margin: 16px auto;
+	width: 540px;
+	/* border: 1px solid black; */
+}
+#addTaskPage input{
+	width: 190px;
+	height: 35px;
+}
+#addTaskPage .taskName{
+	width: 400px;
+	border-radius: 5px;
+}
+#test1 , #test2{
+	border-radius: 5px;
+}
+.taskRemark{
+	width: 300px;
+	height: 100px;
+}
+.selectResource , .selectPapers{
+	margin: 0 0 0 35px;
+}
+.selectPersonnel{
+	margin: 0 0 0 -10px;
+}
+.selectPersonnel i{
+	line-height: 38px;
+}
+.taskUsers{
+	width: 300px;
+	height: 140px;
+	overflow-y: auto;
+	border: 1px solid #DADADA;
+	padding: 5px 10px;
+	margin: 0 0 0 37px;
+}
+.selectTaskUsers .layui-form-label{
+	width: 100px;
+	padding: 9px 10px;
+}
+.taskRemark{
+	width: 400px;
+	height: 150px;
+}
+.resourceSelection{
+	width: 150px;
+	margin: 0 auto;
+	display: block;
+}
+label{
+	font-size: 16px;
+}
+.selectResource span , .selectPapers span , .selectPersonnel span{
+	font-size: 16px;
+	color: #5FB878;
+}
+.selectPapers .paperAdd{
+	color: #606060;
+}
+/* ...搜索框 */
+.iconSearch {
+	width: 200px;
+	border: 1px solid #C9C9C9;
+	border-radius: 6px;
+}
+
+/* ...复选框 */
+.checkAll {
+	width: 15px;
+	height: 15px;
+}
+.userNameRetrieval{
+	width: 150px;
+	height: 30px;
+	margin: 0 0 0 10px;
+	border: 0;
+}
+#selectTaskUsers{
+	border: 1px solid #C9C5C5;
+	width: 510px;
+	height:200px;
+	margin-bottom: 20px;
+	overflow: auto;
+}
+.myskin{
+	border-radius: 7px !important;
+}
+i{
+	font-style:normal
+}
+/* 时间插件的hover样式 */
+.layui-laydate-footer span:hover{
+	color: #279ef0 !important;
 }
