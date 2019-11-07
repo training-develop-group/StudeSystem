@@ -21,73 +21,79 @@ var All = {
             navHtml.push('<span>Logo</span>');
             navHtml.push('</div>');
             navHtml.push('<div class="navbox">');
-            navHtml.push('<ul>');
-            switch (options.num) {
+            switch (options.type) {
                 case 1:
-                    navHtml.push('<li class="active" data-page="homePage">首页</li>');
-                    navHtml.push('<li data-page="resource">资源</li>');
-                    navHtml.push('<li data-page="taskPage">任务</li>');
-                    navHtml.push('<li data-page="EditorTestPaper">试卷</li>');
-                    navHtml.push('<li data-page="testQuestions">试题</li>');
-                    navHtml.push('<li data-page="StatisticsPage">统计</li>');
-                    // navHtml.push('<li data-page="userManagement">用户管理</li>')
+                    navHtml.push('<ul>');
+                    switch (options.num) {
+                        case 1:
+                            navHtml.push('<li class="active" data-page="homePage">首页</li>');
+                            navHtml.push('<li data-page="resource">资源</li>');
+                            navHtml.push('<li data-page="taskPage">任务</li>');
+                            navHtml.push('<li data-page="EditorTestPaper">试卷</li>');
+                            navHtml.push('<li data-page="testQuestions">试题</li>');
+                            navHtml.push('<li data-page="StatisticsPage">统计</li>');
+                            // navHtml.push('<li data-page="userManagement">用户管理</li>')
+                            break;
+                        case 2:
+                            navHtml.push('<li data-page="homePage">首页</li>');
+                            navHtml.push('<li class="active" data-page="resource">资源</li>');
+                            navHtml.push('<li data-page="taskPage">任务</li>');
+                            navHtml.push('<li data-page="EditorTestPaper">试卷</li>');
+                            navHtml.push('<li data-page="testQuestions">试题</li>');
+                            navHtml.push('<li data-page="StatisticsPage">统计</li>');
+                            // navHtml.push('<li data-page="userManagement">用户管理</li>')
+                            break;
+                        case 3:
+                            navHtml.push('<li  data-page="homePage">首页</li>');
+                            navHtml.push('<li data-page="resource">资源</li>');
+                            navHtml.push('<li class="active" data-page="taskPage">任务</li>');
+                            navHtml.push('<li data-page="EditorTestPaper">试卷</li>');
+                            navHtml.push('<li data-page="testQuestions">试题</li>');
+                            navHtml.push('<li data-page="StatisticsPage">统计</li>');
+                            // navHtml.push('<li data-page="userManagement">用户管理</li>')
+                            break;
+                        case 4:
+                            navHtml.push('<li id="homePage"  data-page="homePage">首页</li>');
+                            navHtml.push('<li id="resource"  data-page="resource">资源</li>');
+                            navHtml.push('<li id="taskPage" data-page="taskPage">任务</li>');
+                            navHtml.push('<li class="active"  data-page="EditorTestPaper">试卷</li>');
+                            navHtml.push('<li id="testQuestions" data-page="testQuestions">试题</li>');
+                            navHtml.push('<li data-page="StatisticsPage">统计</li>');
+                            // navHtml.push('<li data-page="userManagement">用户管理</li>')
+                            break;
+                        case 5:
+                            navHtml.push('<li data-page="homePage">首页</li>');
+                            navHtml.push('<li data-page="resource">资源</li>');
+                            navHtml.push('<li data-page="taskPage">任务</li>');
+                            navHtml.push('<li data-page="EditorTestPaper">试卷</li>');
+                            navHtml.push('<li class="active" data-page="testQuestions">试题</li>');
+                            navHtml.push('<li data-page="StatisticsPage">统计</li>');
+                            // navHtml.push('<li data-page="userManagement">用户管理</li>')
+                            break;
+                        case 6:
+                            navHtml.push('<li data-page="homePage">首页</li>');
+                            navHtml.push('<li data-page="resource">资源</li>');
+                            navHtml.push('<li data-page="taskPage">任务</li>');
+                            navHtml.push('<li data-page="EditorTestPaper">试卷</li>');
+                            navHtml.push('<li data-page="testQuestions">试题</li>');
+                            navHtml.push('<li class="active" data-page="StatisticsPage">统计</li>');
+                            // navHtml.push('<li data-page="userManagement">用户管理</li>')
+                            break;
+                        case 7:
+                            navHtml.push('<li data-page="homePage">首页</li>');
+                            navHtml.push('<li data-page="resource">资源</li>');
+                            navHtml.push('<li data-page="taskPage">任务</li>');
+                            navHtml.push('<li data-page="EditorTestPaper">试卷</li>');
+                            navHtml.push('<li data-page="testQuestions">试题</li>');
+                            navHtml.push('<li data-page="StatisticsPage">统计</li>');
+                            // navHtml.push('<li class="active" data-page="userManagement">用户管理</li>')
+                            break;
+                    }
+                    navHtml.push('</ul>');
                     break;
                 case 2:
-                    navHtml.push('<li data-page="homePage">首页</li>');
-                    navHtml.push('<li class="active" data-page="resource">资源</li>');
-                    navHtml.push('<li data-page="taskPage">任务</li>');
-                    navHtml.push('<li data-page="EditorTestPaper">试卷</li>');
-                    navHtml.push('<li data-page="testQuestions">试题</li>');
-                    navHtml.push('<li data-page="StatisticsPage">统计</li>');
-                    // navHtml.push('<li data-page="userManagement">用户管理</li>')
-                    break;
-                case 3:
-                    navHtml.push('<li  data-page="homePage">首页</li>');
-                    navHtml.push('<li data-page="resource">资源</li>');
-                    navHtml.push('<li class="active" data-page="taskPage">任务</li>');
-                    navHtml.push('<li data-page="EditorTestPaper">试卷</li>');
-                    navHtml.push('<li data-page="testQuestions">试题</li>');
-                    navHtml.push('<li data-page="StatisticsPage">统计</li>');
-                    // navHtml.push('<li data-page="userManagement">用户管理</li>')
-                    break;
-                case 4:
-                    navHtml.push('<li id="homePage"  data-page="homePage">首页</li>');
-                    navHtml.push('<li id="resource"  data-page="resource">资源</li>');
-                    navHtml.push('<li id="taskPage" data-page="taskPage">任务</li>');
-                    navHtml.push('<li class="active"  data-page="EditorTestPaper">试卷</li>');
-                    navHtml.push('<li id="testQuestions" data-page="testQuestions">试题</li>');
-                    navHtml.push('<li data-page="StatisticsPage">统计</li>');
-                    // navHtml.push('<li data-page="userManagement">用户管理</li>')
-                    break;
-                case 5:
-                    navHtml.push('<li data-page="homePage">首页</li>');
-                    navHtml.push('<li data-page="resource">资源</li>');
-                    navHtml.push('<li data-page="taskPage">任务</li>');
-                    navHtml.push('<li data-page="EditorTestPaper">试卷</li>');
-                    navHtml.push('<li class="active" data-page="testQuestions">试题</li>');
-                    navHtml.push('<li data-page="StatisticsPage">统计</li>');
-                    // navHtml.push('<li data-page="userManagement">用户管理</li>')
-                    break;
-                case 6:
-                    navHtml.push('<li data-page="homePage">首页</li>');
-                    navHtml.push('<li data-page="resource">资源</li>');
-                    navHtml.push('<li data-page="taskPage">任务</li>');
-                    navHtml.push('<li data-page="EditorTestPaper">试卷</li>');
-                    navHtml.push('<li data-page="testQuestions">试题</li>');
-                    navHtml.push('<li class="active" data-page="StatisticsPage">统计</li>');
-                    // navHtml.push('<li data-page="userManagement">用户管理</li>')
-                    break;
-                case 7:
-                    navHtml.push('<li data-page="homePage">首页</li>');
-                    navHtml.push('<li data-page="resource">资源</li>');
-                    navHtml.push('<li data-page="taskPage">任务</li>');
-                    navHtml.push('<li data-page="EditorTestPaper">试卷</li>');
-                    navHtml.push('<li data-page="testQuestions">试题</li>');
-                    navHtml.push('<li data-page="StatisticsPage">统计</li>');
-                    // navHtml.push('<li class="active" data-page="userManagement">用户管理</li>')
                     break;
             }
-            navHtml.push('</ul>');
             navHtml.push('</div>');
             navHtml.push('<div class="right">');
             navHtml.push('<img src="../imgs/HeadPortrait.jpg" class="userimg">');
@@ -96,44 +102,14 @@ var All = {
             navHtml.push('</div>');
             navHtml.push('<div class="left">');
             // search 搜索框是否显示
-            switch (options.num) {
+            switch (options.search) {
                 case 1:
+                    navHtml.push('<div class="searchbox">');
+                    navHtml.push('<img src="./../imgs/search.jpg" class="iconSearch">');
+                    navHtml.push('<input type="text" class="search" name="" value="" />');
+                    navHtml.push('</div>');
                     break;
                 case 2:
-                    navHtml.push('<div class="searchbox">');
-                    navHtml.push('<img src="./../imgs/search.jpg" class="iconSearch">');
-                    navHtml.push('<input type="text" class="search" name="" value="" />');
-                    navHtml.push('</div>');
-                    break;
-                case 3:
-                    navHtml.push('<div class="searchbox">');
-                    navHtml.push('<img src="./../imgs/search.jpg" class="iconSearch">');
-                    navHtml.push('<input type="text" class="search" name="" value="" />');
-                    navHtml.push('</div>');
-                    break;
-                case 4:
-                    navHtml.push('<div class="searchbox">');
-                    navHtml.push('<img src="./../imgs/search.jpg" class="iconSearch">');
-                    navHtml.push('<input type="text" class="search" name="" value="" />');
-                    navHtml.push('</div>');
-                    break;
-                case 5:
-                    navHtml.push('<div class="searchbox">');
-                    navHtml.push('<img src="./../imgs/search.jpg" class="iconSearch">');
-                    navHtml.push('<input type="text" class="search" name="" value="" />');
-                    navHtml.push('</div>');
-                    break;
-                case 6:
-                    navHtml.push('<div class="searchbox">');
-                    navHtml.push('<img src="./../imgs/search.jpg" class="iconSearch">');
-                    navHtml.push('<input type="text" class="search" name="" value="" />');
-                    navHtml.push('</div>');
-                    break;
-                case 7:
-                    navHtml.push('<div class="searchbox">');
-                    navHtml.push('<img src="./../imgs/search.jpg" class="iconSearch">');
-                    navHtml.push('<input type="text" class="search" name="" value="" />');
-                    navHtml.push('</div>');
                     break;
             }
             navHtml.push('</div>');
@@ -225,7 +201,7 @@ var All = {
 	          $('.yes').off('click').on('click', function() {
 	            switch (options.num){
 					case 1:
-						info.deleteResource(options.param);
+						info.deleteResource(options.resId);
 						break;
 					case 2:
 						info.deletePaper(options.paperId);
