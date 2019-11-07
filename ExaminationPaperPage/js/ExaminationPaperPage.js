@@ -12,17 +12,6 @@ $(function() {
 				info.TableDataRequest(1)
 			}
 		})
-		$('.testQuestions').click(function() {
-			console.log(1);
-			// 跳转到试题
-			window.location.href = "../TestQuestions/TestQuestions.html";
-		});
-		
-		$('.resource').click(function() {
-			console.log(2);
-			// 跳转到资源
-			window.location.href = "../ResourcePage/ResourcePage.html";
-		});
 	});
 	info.selectAllUser('');
 	//用户模糊查询 回车
@@ -68,12 +57,39 @@ $(function() {
       form.render('checkbox');}
 	
 	})
+	// 点击确认(选择人员)
+	$('.usersSelectOk').click(function() {
+		var Html = [];
+		$.each($("[name='Staff']:checked"), function(i, val) {
+			Html.push('<p >' + $(this).siblings('i').text() + '<input type="text"  hidden="" id="" value="' + $(this).val() +
+				'" />  <i  data-id="' + $(this).val() +
+				'" class="layui-icon layui-icon-close deleteUserName" style="font-size: 20px; margin: 0 0 0 200px;"></i></p>'
+			)
+		})
+		$('.taskUsers').html(Html.join(''));
+		$('.deleteUserName').click(function() {
+			$(this).parents('p').remove();
+			var userId = $(this).attr('data-id');
+			console.log(userId)
+			$.each($("[name='Staff']:checked"), function(i, val) {
+				if (val.value == userId) {
+					$("#checkAll").prop("checked", false);
+					$(this).prop("checked", false);
+					layui.use('form', function() {
+						var form = layui.form;
+						form.render('');
+					});
+				}
+			})
+		})
+		layer.close(layer.index);
+	});
 	$('.search').keypress(function(e) {
 		if (e.which == 13) {
 			var search = $('.search').val();
 			info.selectTaskType(1, search);
 		}
-	})
+	});
 	var laydate = layui.laydate;
 	//执行一个laydate实例
 	laydate.render({
@@ -93,16 +109,6 @@ $(function() {
 	$('.addOk').click(function() {
 		info.addTask();
 	});
-	// 点击确认(选择人员)
-	$('.usersSelectOk').click(function() {
-		var Html = [];
-		$.each($("[name='Staff']:checked"), function(i, val) {
-			Html.push('<p >' + $(this).siblings('i').text() + '<input type="text"  hidden="" id="" value="' + $(this).val() +
-				'" /></p>')
-		})
-		$('.taskUsers').html(Html.join(''));
-		layer.close(layer.index);
-	})
 	//弹出选择人员
 	$('.selectPersonnel').click(function() {
 		layer.open({
@@ -126,6 +132,7 @@ $(function() {
 });
 var newPaperId;
 var newPaperName = '';
+var PNum = 1;
 var info = {
 	//表格数据请求
 	TableDataRequest : function(pageNum) {
@@ -135,7 +142,7 @@ var info = {
 		}
 		var data = {
 			"pageNum": pageNum,
-			"pageSize": 10,
+			"pageSize": 12,
 			'paperName' : paperName
 		}
 		$.ajax({
@@ -161,31 +168,33 @@ var info = {
 			list: param.list,
 			pageNum: param.pageNum
 		};
+		PNum = data.pageNum;
 		data.list.forEach(function(item, index) {
 			if (item.status == 0){
 				item.status = '失效';
 			} else {
 				item.status = '正常';
 			}
+			// 转义(已防有标签的样式被html识别)
+			item.paperName = $('<div>').text(item.paperName).html();
 			Html.push('<tr>');
-			Html.push('<td hidden="hidden"><span class="paperId">' + item.paperId + '</span></td>');
-			Html.push('<td><span class="rename">' + item.paperName + '</span></td>');
+			Html.push('<td><span class="rename" title="' + item.paperName + '">' + item.paperName + '</span></td>');
 			Html.push('<td class="middle">' + item.status + '</td>');
 			Html.push('<td class="middle">' + item.single + '</td>');
 			Html.push('<td class="middle">' + item.many + '</td>');
 			Html.push('<td>');
-			Html.push('<button type="button" class="layui-btn layui-btn-primary edit">重命名</button>');
-			Html.push('<button type="button" class="layui-btn layui-btn-primary selectedTopic">编辑</button>');
-			Html.push('<button type="button" class="layui-btn layui-btn-primary publish">发布</button>');
-			Html.push('<button type="button" class="layui-btn layui-btn-primary toView">查看</button>');
-			Html.push('<button type="button" class="layui-btn layui-btn-primary delete">删除</button>');
+			Html.push('<button type="button" class="layui-btn layui-btn-primary edit" data-id="' + item.paperId + '">重命名</button>');
+			Html.push('<button type="button" class="layui-btn layui-btn-primary selectedTopic" data-id="' + item.paperId + '">编辑</button>');
+			Html.push('<button type="button" class="layui-btn layui-btn-primary publish" data-id="' + item.paperId + '">发布</button>');
+			Html.push('<button type="button" class="layui-btn layui-btn-primary toView" data-id="' + item.paperId + '">查看</button>');
+			Html.push('<button type="button" class="layui-btn layui-btn-primary delete" data-id="' + item.paperId + '">删除</button>');
 			Html.push('</td>');
 			Html.push('</tr>');
 		});
 		$('#examinationPaperInformation').html(Html.join(''));
 		// 点击删除
 		$('.delete').click(function() {
-			var paperId = $(this).parent().parent().find('.paperId').text();
+			var paperId = $(this).attr('data-id');
 			All.layuiOpen({
 				num: 2,
 				paperId: paperId,
@@ -194,38 +203,71 @@ var info = {
 		});
 		// 点击发布
 		$('.publish').click(function() {
-			newPaperId = $(this).parent().parent().find('.paperId').text();
+			newPaperId = $(this).attr('data-id');
 			newPaperName = $(this).parent().parent().find('.rename').text();
-			info.releaseTask();
+			// 单选题数
+			var single = $(this).parent().parent().find("td:nth-child(3)").text();
+			// 多选题数
+			var many = $(this).parent().parent().find("td:nth-child(4)").text();
+			if (single == 0 && many == 0){
+				layui.use("layer", function() {
+					var layer = layui.layer;
+					layer.open({
+						type: 1 //Page层类型
+						,closeBtn: 1
+						,area: ['400px', '200px']
+						,title: ['', 'background-color: #279ef0']
+						// ,shade: 0.6 //遮罩透明度
+						,content: '<div class="confirmRelease">此试卷没有试题，确认发布？</div>'
+							+ '<div class="CR-btn-box">'
+							+ '<button type="button" class="layui-btn layui-btn-normal layui-btn-sm CR-btnConfirm">确认</button>'
+							+ '<button type="button" class="layui-btn layui-btn-normal layui-btn-sm CR-btnCancel">取消</button>'
+							+ '</div>'
+					});
+					// 点击确认
+					$('.CR-btnConfirm').click(function() {
+						layer.closeAll();
+						// 调用添加方法
+						info.releaseTask();
+					});
+					// 点击取消
+					$('.CR-btnCancel').click(function() {
+						layer.closeAll();
+					});
+				});
+			} else {
+				info.releaseTask();
+			}
 		});
 		// 点击查看
 		$('.toView').click(function() {
-			var paperId = $(this).parent().parent().find('.paperId').text();
-			window.open("htmls/ViewTestPaper/ViewTestPaper.html?value=" + paperId + "" , "_blank");
+			var paperId = $(this).attr('data-id');
+			window.open("../ViewTestPaper/ViewTestPaper.html?value=" + paperId + "" , "_blank");
 		});
 		// 点击选题
 		$('.selectedTopic').click(function() {
-			var paperId = $(this).parent().parent().find('.paperId').text();
-			window.open("htmls/EditorTestPaper/EditorTestPaper.html?value=" + paperId + "" , "_blank");
+			var paperId = $(this).attr('data-id');
+			window.open("../EditorTestPaper/EditorTestPaper.html?value=" + paperId + "" , "_blank");
 		});
 		// 点击编辑进行重命名
 		$('.edit').click(function() {
 			var rename = $(this).parent().parent().find('.rename').text();
-			var paperId = $(this).parent().parent().find('.paperId').text();
+			var paperId =$(this).attr('data-id');
 			layui.use("layer", function() {
 				var layer = layui.layer;
 				layer.open({
 					type: 1 //Page层类型
-					,closeBtn: 0
+					,closeBtn: 1
 					,area: ['789px', '210px']
-					,title: ['重命名', 'background-color: #279ef0;text-align: center;font-size: 16px;line-height: 50px;color:white;letter-spacing: 5px;padding: 0px;']
+					,title: ['重命名', 'background-color: #279ef0;text-align: center;font-size: 20px;line-height: 42px;color:white;padding: 0px;']
 					// ,shade: 0.6 //遮罩透明度
 					,content: '<div class="inputLocation">'+
 							'<span>重命名</span>'
 							+ '<input type="text" autocomplete="off" class="layui-input acquiredValue">'
-							+ '<br />'
+							+ '<div class="btn-box">'
 							+ '<button type="button" class="layui-btn layui-btn-primary renameConfirm">确认</button>'
 							+ '<button type="button" class="layui-btn layui-btn-primary renameCancel">取消</button>'
+							+ '</div>'
 						+ '</div>'
 				});
 				$('.acquiredValue').val(rename);
@@ -240,8 +282,12 @@ var info = {
 				});
 			});
 		});
-		if (data.total > 10){
+		if (data.total > 12){
 			info.Page(data.total , data.pageNum);
+			// 判断paging里是否头内容↓
+		} else if ($('#paging').is(':empty') == false) {
+			// 清空#paging里的内容与标签
+			$('#paging').empty();
 		}
 	},
 	// 分页
@@ -253,7 +299,7 @@ var info = {
 			laypage.render({
 				elem: 'paging'
 				, count: total
-				, limit: 10
+				, limit: 12
 				, theme: '#279ef0'
 				, curr: pageNum
 				, groups: '5'
@@ -282,16 +328,17 @@ var info = {
 			var layer = layui.layer;
 			layer.open({
 				type: 1 //Page层类型
-				,closeBtn: 0
+				,closeBtn: 1
 				,area: ['789px', '210px']
-				,title: ['新建试卷', 'background-color: #279ef0;text-align: center;font-size: 16px;line-height: 50px;color:white;letter-spacing: 5px;padding: 0px;']
+				,title: ['新建试卷', 'background-color: #279ef0;text-align: center;font-size: 20px;line-height: 42px;color:white; cursor: move; padding: 0']
 				// ,shade: 0.6 //遮罩透明度
 				,content: '<div class="inputLocation">'+
 						'<span>试卷名称</span>'
 						+ '<input type="text" autocomplete="off" id="nameOfExaminationPaper" class="layui-input">'
-						+ '<br />'
+						+ '<div class="btn-box">'
 						+ '<button type="button" class="layui-btn layui-btn-primary newTestPaperConfirm">确认</button>'
 						+ '<button type="button" class="layui-btn layui-btn-primary newTestPaperCancel">取消</button>'
+						+ '</div>'
 					+ '</div>'
 			});
 			// 点击确认
@@ -310,6 +357,11 @@ var info = {
 		var paperName = $('#nameOfExaminationPaper').val();
 		if (paperName == ''){
 			layer.msg("试卷名不可为空");
+			return false;
+		}
+		var blank = /^[\s]*$/;		//空白符和字符串，字符串
+		if (blank.test(paperName)){
+			layer.msg("重命名不可全是空格");
 			return false;
 		}
 		$.ajax({
@@ -337,6 +389,11 @@ var info = {
 			layer.msg("重命名不可为空");
 			return false;
 		}
+		var blank = /^[\s]*$/;		//空白符和字符串，字符串
+		if (blank.test(paperName)){
+			layer.msg("重命名不可全是空格");
+			return false;
+		}
 		var data = {
 			'paperId': paperId,
 			'paperName': paperName,
@@ -351,7 +408,7 @@ var info = {
 				console.log("操作成功");
 				// parent.location.reload();	//刷新父级页面
 				layer.closeAll();
-				info.TableDataRequest(1);
+				info.TableDataRequest(PNum);
 			},
 			error (e) {
 				layer.msg("操作失败，请稍后再试");
@@ -370,7 +427,7 @@ var info = {
 				console.log("操作成功");
 				// parent.location.reload();	//刷新父级页面
 				layer.closeAll();
-				info.TableDataRequest(1);
+				info.TableDataRequest(PNum);
 			},
 			error (e) {
 				layer.msg("操作失败，请稍后再试");
@@ -379,11 +436,17 @@ var info = {
 	},
 	// 发布任务弹窗
 	releaseTask : function() {
+		// 清空试卷名
 		$('.paperAdd').text('');
+		// 试卷名赋值(赋当前试卷)
 		$('.paperAdd').text(newPaperName);
+		// 赋值今天时间(开始)
+		$('#test1').val(firstToday);
+		// 赋值明天时间(结束)
+		$('#test2').val(lastToday);
 		layer.open({
 			type: 1,
-			title: ['发布任务', 'color:#fff;background-color:#40AFFE;border-radius: 7px 7px 0 0;text-align: center; font-size: 20px;'],
+			title: ['发布任务', 'color:#fff;background-color:#40AFFE;border-radius: 7px 7px 0 0;text-align: center; font-size: 20px; padding: 0;'],
 			shadeClose: true,
 			shade: 0.8,
 			skin: 'myskin',
@@ -508,13 +571,17 @@ var dateFormat =function(time) {
 }
 // 时间设置
 var today = '';
+var firstToday = '';
+var lastToday = '';
 $(document).ready(function () {
 	var time = new Date();
 	var day = ("0" + time.getDate()).slice(-2);
+	var newDay = ("0" + (time.getDate() + 1)).slice(-2);
 	var month = ("0" + (time.getMonth() + 1)).slice(-2);
-	var h = ("0" + (time.getHours())).slice(-2);
-	var m = ("0" + (time.getMinutes())).slice(-2);
-	var s = ("0" + (time.getSeconds())).slice(-2);
-	today = time.getFullYear() + "-" + (month) + "-" + (day);
-	// today = time.getFullYear() + "-" + (month) + "-" + (day) + " " + h + ":" + m + ":" + s;
+	var hours = time.getHours();
+	var minutes = time.getMinutes();
+	var seconds = time.getDay();
+	// today = time.getFullYear() + "-" + (month) + "-" + (day);
+	firstToday = time.getFullYear() + "-" + (month) + "-" + (day) + " " + hours + ":" + minutes + ":" + seconds;
+	lastToday = time.getFullYear() + "-" + (month) + "-" + (newDay) + " " + hours + ":" + minutes + ":" + seconds;
 });

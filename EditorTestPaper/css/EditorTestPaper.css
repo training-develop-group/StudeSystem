@@ -16,9 +16,10 @@
 	line-height: 60px;
 }
 #centered span{
-	font-size: 16px;
+	font-size: 18px;
 	margin-left: 30px;
 	color: white;
+	font-weight: 600;
 }
 #newTestPaper{
 	font-size: 16px;
@@ -93,14 +94,11 @@ img{
 	color: #79be51;
 }
 .confirmCompletion{
-	background-color: #279ef0;
-	color: white;
-	width: 110px;
-	height: 30px;
-	border: 0;
+	color: #279ef2;
 	border-radius: 3px;
-	margin-left: 30px;
-	margin-top: 10px;
+	float: right;
+	font-size: 16px;
+	margin: 10px 20px 0 0;
 }
 
 /* -----------------窗口部分--------------------- */
@@ -239,6 +237,24 @@ img{
 	width: 160px;
  	line-height: 30px;
 	text-align: center;
-	display: block;
-	margin: 0 auto;
+	margin: 0 40px 0 0;
+}
+.newTestPaperCancel{
+	width: 160px;
+	line-height: 30px;
+	text-align: center;
+}
+.btn-box{
+	width: 370px;
+	margin: 40px auto 0;
+}
+
+/* 试题数量的位置 */
+.totalNumberOfQuestions{
+	float: right;
+	margin: 15px 30px 0 0 ;
+}
+.red{
+	color: red;
+	font-size: 16px;
 }

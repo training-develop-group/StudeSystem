@@ -444,11 +444,16 @@ var info = {
 				success(res) {
 					// console.log( location.hash.replace('#!fenye=', ''))
 					//
+					
+					
+					
 				}
 			})
-			layer.msg('添加成功');
 			layer.close(layer.index);
-			info.selectTaskType(1,'');
+			
+			info.selectTaskType(1);
+			
+			layer.msg('添加成功');
 			// location.replace(document.referrer);
 		} else {
 			layer.msg(mistake);
@@ -515,7 +520,7 @@ var info = {
 		if (search == undefined) {
 			search = null
 		}
-		console.log(search)
+		// console.log(search)
 		$.ajax({
 			url: LBUrl + 'manage_system/task/tasks',
 			data: {

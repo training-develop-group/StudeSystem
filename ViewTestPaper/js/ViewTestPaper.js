@@ -4,32 +4,14 @@ $(function() {
 		var layer = layui.layer,
 			form = layui.form;
 			
-		
+		All.getMenu({
+			num: 4
+		});
 	});
 	layui.use('form', function() {
 		var form = layui.form;
 		info.init();
 	});
-	// 资源
-	$('#resource').click(function(){
-		window.location.href = "../../../ResourcePage/ResourcePage.html";
-	})
-	// 试卷(特殊)
-	$('#actives').click(function(){
-		window.location.href = "../../ExaminationPaperPage.html";
-	})
-	// 试题
-	$('#testQuestions').click(function() {
-		window.location.href = "../../../TestQuestions/TestQuestions.html";
-	});
-	// 任务
-	$('#taskPage').click(function(){
-		window.location.href = "../../../TaskPage/TaskPage.html";
-	})
-	// 首页
-	$('#homePage').click(function(){
-		window.location.href = "../../../HomePage/HomePage.html";
-	})
 	// 新建试卷
 	$('#newTestPaper').click(function() {
 		// newTestPaper();
@@ -43,20 +25,6 @@ $(function() {
 		// 结束后的通知与方法
 	　　}
 	});
-	// 单选取值
-	// $('.distance').click(function() {
-	// 	var zhi = $("input[name = 'Sketch']:checked").val();
-	// 	console.log(zhi);
-	// });
-	// 复选框取值
-	// $(".distance").click(function(){
-	// 	var arr = new Array();
-	// 	$(".sortableitem input:checkbox[name='Sketch']:checked").each(function(i){
-	// 	arr[i] = $(this).val();
-	// });
-	// 	var vals = arr.join(",");
-	// 	console.log(vals,222);
-	// });
 });
 
 var info = {
@@ -103,8 +71,12 @@ var info = {
 				item.questionType = '多选题';
 			}
 			Html.push('<p class="num">'+ (index + 1) +'. ' + item.questionType + '<span>  ' + item.newScore + '分</span></p>');
+			// 转义(已防有标签的样式被html识别)
+			item.paperName = $('<div>').text(item.paperName).html();
 			Html.push('<p class="distance">' + item.content + '</p>');
 			item.optionInfo.forEach(function(items, index) {
+				// 转义(已防有标签的样式被html识别)
+				items.paperName = $('<div>').text(items.paperName).html();
 				Html.push('<p class="distance">' + items.optionType + ' ' + items.content + '</p>');
 			});
 			Html.push('</div>');

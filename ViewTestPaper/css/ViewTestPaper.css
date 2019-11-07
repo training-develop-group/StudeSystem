@@ -16,9 +16,10 @@
 	line-height: 60px;
 }
 #centered span{
-	font-size: 16px;
+	font-size: 18px;
 	margin-left: 30px;
 	color: white;
+	font-weight: 600;
 }
 #newTestPaper{
 	font-size: 16px;

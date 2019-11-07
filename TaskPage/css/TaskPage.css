@@ -9,6 +9,7 @@
 #selectTaskUsers span{
 	text-align: left;
 	padding-left: 20px;
+	
 }
 #selectTaskUsers{
 	border: 1px solid #C9C5C5; width: 550px; height:200px; margin-bottom: 20px;    overflow: auto;
@@ -31,11 +32,24 @@
 
 .layui-nav .layui-nav-item {
     color: #66AFE9;
-    line-height: 30px;
-    height: 30px;
+    line-height: 40px;
+    height: 40px;
 
 }
+.taskUsers {
+	 margin-left: 40px;
+    width: 475px;
+    height: 150px;
+    border: 1px solid #E6E6E6;
+		overflow: auto;
+padding: 5px;
 
+	}
+   .taskUsers p{
+	   line-height: 20px;
+	   margin-left: 20px;
+	   margin-right: 40px;
+	}
 ol,
 ul {
     margin-top: 0px;
@@ -53,7 +67,7 @@ ul {
 }
 
 .taskNameupdate {
-    width: 400px;
+    width: 420px;
     border-radius: 7px;
 }
 
@@ -121,7 +135,7 @@ ul {
 .layui-table {
     background-color: rgb(248, 248, 248);
 }
-
+.asd
 .taskUsers {
     width: 300px;
     height: 150px;
@@ -130,6 +144,7 @@ ul {
     margin-top: 0;
     overflow: auto;
     padding: 10px;
+	    padding-left: 20px;
 }
 
 .layui-laydate-footer span:hover {
@@ -266,7 +281,7 @@ i {
 }
 
 .headline > span {
-    font-size: 18px;
+    font-size: 20px;
     margin-left: 30px;
     margin-top: 10px;
     float: left;
@@ -328,7 +343,7 @@ i {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    width: 30%;
+    width: 50%;
 }
 .layui-form-radio>i:hover, .layui-form-radioed>i {
     color: rgb(64, 175, 254);
