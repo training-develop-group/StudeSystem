@@ -1,7 +1,6 @@
 ﻿/**
  * @name: common
-<<<<<<< HEAD
- * @author锛歁engXin
+ * @author：MengXin
  */
 $(function() {
 	layui.use(['layer', 'form'], function() {
@@ -9,39 +8,20 @@ $(function() {
 			form = layui.form;
 
 
-		// 鍏叡澶磋皟鐢ㄦ覆鏌?
+		// 公共头调用渲染
 		All.getMenu({
 			num: 3
 		});
 
-		// 鑾峰彇娴嬭瘯棰樺唴瀹?
+		// 获取测试题内容
 		info.getList();
 	});
-=======
- * @author：MengXin
- */
-$(function () {
-    layui.use(['layer', 'form'], function () {
-        var layer = layui.layer,
-            form = layui.form;
-
-
-        // 公共头调用渲染
-        All.getMenu({
-            num: 3
-        });
-
-        // 获取测试题内容
-        info.getList();
-    });
->>>>>>> remotes/origin/dev-MX
 });
 
 var answer = [];
 
 var info = {
-<<<<<<< HEAD
-	//  todo  鎺ュ彛 ,鑾峰彇椤甸潰璇曢
+	//  todo  接口 ,获取页面试题
 	getList: function() {
 		$.ajax({
 			url: LBUrl + 'manage_system/paper/' + 2,
@@ -68,15 +48,15 @@ var info = {
 							examContent.push('<li class="questionCard hidden" data-type="' + (index + 1) + '">')
 						}
 						if (item.questionType == 1) {
-							item.questionType = '鍗曢€夐';
+							item.questionType = '单选题';
 						} else {
-							item.questionType = '澶氶€夐';
+							item.questionType = '多选题';
 						}
 						examContent.push(' <p class="questionCard_title"><span class="num">' + (index + 1) +
 							'.</span><span class="questuon_title" data-id="' + item.questionId + '">' + item.questionType +
-							'</span>(<span class="fraction"> ' + item.score + '</span>鍒?</p>')
+							'</span>(<span class="fraction"> ' + item.score + '</span>分)</p>')
 						examContent.push('<p class="question_Dry">' + item.content + '</p>');
-						if (item.questionType == '鍗曢€夐') {
+						if (item.questionType == '单选题') {
 							examContent.push(' <ul class="radio_box textBox">')
 						} else {
 							examContent.push(' <ul class="checkbox_box textBox">')
@@ -91,27 +71,27 @@ var info = {
 						examContent.push('<input type="text" value="' + item.questionId + '" class="questionId hidden">')
 						examContent.push(' </ul>')
 						examContent.push('<div class="btn-box clearfix">')
-						examContent.push('<button class="layui-btn layui-btn-normal layui-btn-sm next">涓嬩竴棰?/button>')
-						examContent.push(' <button class="layui-btn layui-btn-normal layui-btn-sm previous">涓婁竴棰?/button>')
+						examContent.push('<button class="layui-btn layui-btn-normal layui-btn-sm next">下一题</button>')
+						examContent.push(' <button class="layui-btn layui-btn-normal layui-btn-sm previous">上一题</button>')
 						examContent.push('</div>')
 					})
 
 					examContent.push('</li>')
 					$('.questionCard_box').html(examContent.join(''))
 					$('.card').html(answerSheet.join(''))
-					// 涓嬩竴棰樼偣鍑讳簨浠?
+					// 下一题点击事件
 					info.nextChange();
-					// 涓婁竴棰樼偣鍑讳簨浠?
+					// 上一题点击事件
 					info.previousChange();
-					// 鏈€鍚庝竴棰樹笉鏄剧ず涓嬩竴棰?绗竴棰樹笉鏄剧ず涓婁竴棰?
+					// 最后一题不显示下一题,第一题不显示上一题
 					$('.questionCard_box .questionCard').last().find('.next').addClass('hidden');
 					$('.questionCard_box .questionCard').first().find('.previous').addClass('hidden');
 
-					// 鍗曢€変簨浠?
+					// 单选事件
 					info.radioChange();
-					// 澶氶€変簨浠?
+					// 多选事件
 					info.checkboxChange();
-					// 鎻愪氦璇曢鍐呭
+					// 提交试题内容
 					info.setList(resb);
 
 					// TableDrawing(resb, res);
@@ -124,7 +104,7 @@ var info = {
 
 
 	},
-	// 鍗曢€変簨浠?
+	// 单选事件
 	radioChange: function() {
 		$('body').delegate('.questionCard .radio_box li span', 'click', function() {
 			$(this).parent('li').parent('.radio_box').find('li').find('span').removeClass('active');
@@ -138,7 +118,7 @@ var info = {
 	submitTest: function() {
 
 	},
-	// 澶氶€変簨浠?
+	// 多选事件
 	checkboxChange: function() {
 		$('body').delegate('.questionCard .checkbox_box li span', 'click', function() {
 			if ($(this).hasClass('active')) {
@@ -148,16 +128,16 @@ var info = {
 			}
 		});
 
-		// 涓嬩竴棰樼偣鍑讳簨浠?
+		// 下一题点击事件
 		info.nextChange();
-		// 涓婁竴棰樼偣鍑讳簨浠?
+		// 上一题点击事件
 		info.previousChange();
-		// 鐐瑰嚮缂栧彿璺宠浆璇曢
+		// 点击编号跳转试题
 		info.cardChange();
 
 
 	},
-	// 涓嬩竴棰樼偣鍑讳簨浠?
+	// 下一题点击事件
 	nextChange: function() {
 		$('.next').off('click').on('click', function() {
 			var _thisQuestion = $(this).parents('.questionCard');
@@ -170,11 +150,11 @@ var info = {
 				}
 			}
 
-			// todo 鑾峰彇鐢ㄦ埛閫夋嫨鐨勫€?娣诲姞鍒颁笂鏂圭┖鏁扮粍涓繚瀛?
+			// todo 获取用户选择的值 添加到上方空数组中保存
 		});
 
 	},
-	// 涓婁竴棰樼偣鍑讳簨浠?
+	// 上一题点击事件
 	previousChange: function() {
 		$('body').delegate('.previous', 'click', function() {
 			var _thisQuestion = $(this).parents('.questionCard');
@@ -188,7 +168,7 @@ var info = {
 				}
 			}
 
-			// todo 鑾峰彇鐢ㄦ埛閫夋嫨鐨勫€?娣诲姞鍒颁笂鏂圭┖鏁扮粍涓繚瀛?
+			// todo 获取用户选择的值 添加到上方空数组中保存
 		});
 	},
 	cardChange: function() {
@@ -204,29 +184,26 @@ var info = {
 			}
 		});
 	},
-	// todo 涓嬮潰鏄氦鍗风殑鎺ュ彛 ,灏嗕笂鏂? answer[]  浼犵粰鍚庡彴
+	// todo 下面是交卷的接口 ,将上方  answer[]  传给后台
 	setList: function(resb) {
-	//鐐瑰嚮浜ゅ嵎浜嬩欢
+
 		$('.submitTest').click(function() {
 			var newScore = 0;
 			var sz = 0;
-			
+
 			var useranswerList = [];
-			//鑾峰彇鎵€鏈夊閫?
 			$('.checkbox_box').each(function(index, item) {
 				var mistake = '';
-				//鑾峰彇鎵€鏈夐€変腑鐨?
+
 				($('.checkbox_box').eq(index).find('li')).each(function(_index, _item) {
 					var classOption = $(this).find(".option").attr('class');
 					if (classOption == 'option active') {
-						//杩涜鎷?
 						mistake += $(this).find(".active").text() + "|";
 					}
 				})
-				// 鑾峰彇id
-				var az = $(this).parent('li').find('.questionCard_title').find('.questuon_title').attr('data-id')
+var az = $(this).parent('li').attr('data-data')
 				var a = $(this).parent('li').attr('data-type')
-				console.log(az)
+				console.log(a)
 				var data = {
 					'questionId': az,
 					'answer': mistake
@@ -243,7 +220,7 @@ var info = {
 					}
 				})
 
-				var az = $(this).parent('li').find('.questionCard_title').find('.questuon_title').attr('data-id')
+				var az = $(this).parent('li').parent('ul').parent('li').find().attr('data-data')
 				var a = $(this).parent('li').attr('data-type')
 				var data = {
 					'questionId': az,
@@ -274,20 +251,20 @@ var info = {
 				layui.use("layer", function() {
 					var layer = layui.layer;
 					layer.open({
-						type: 1 //Page灞傜被鍨?
+						type: 1 //Page层类型
 							,
 						closeBtn: 1,
 						area: ['400px', '200px'],
 						title: ['', 'background-color: #279ef0']
-							// ,shade: 0.6 //閬僵閫忔槑搴?
+							// ,shade: 0.6 //遮罩透明度
 							,
-						content: '<div class="confirmRelease">鏄惁浜ゅ嵎?</div>' +
+						content: '<div class="confirmRelease">是否交卷?</div>' +
 							'<div class="CR-btn-box">' +
-							'<button type="button" class="layui-btn layui-btn-normal layui-btn-sm CR-btnConfirm">纭</button>' +
-							'<button type="button" class="layui-btn layui-btn-normal layui-btn-sm CR-btnCancel">鍙栨秷</button>' +
+							'<button type="button" class="layui-btn layui-btn-normal layui-btn-sm CR-btnConfirm">确认</button>' +
+							'<button type="button" class="layui-btn layui-btn-normal layui-btn-sm CR-btnCancel">取消</button>' +
 							'</div>'
 					});
-					// 鐐瑰嚮纭
+					// 点击确认
 					$('.CR-btnConfirm').click(function() {
 						layer.closeAll();
 						$.ajax({
@@ -297,137 +274,151 @@ var info = {
 							type: 'POST',
 							// contentType :'application/json;charset=utf-8',
 							success(res) {
-								console.log("鎿嶄綔鎴愬姛");
-								// alert("鎿嶄綔鎴愬姛");
+								console.log("操作成功");
+								// alert("操作成功");
+								$.ajax({
+									url: LBUrl + 'manage_system/paper/' + resb.data.paperId,
+									data: {},
+									Type: 'GET',
+									success: function(resb) {
+										if (resb || resb.data !== null) {
+											console.log(resb)
+											var Html = [];
+											// Html.push('<div class="Testing">' + res.data.taskName + '</div>')
+											Html.push(
+												'<div class="editorialContent">'
+											)
+											Html.push(
+												'<div id="title">'
+											)
+											Html.push(
+												'<div id="centered">'
+											)
+											Html.push(
+												'<span>查看试卷</span>'
+											)
+											Html.push(
+												'</div>'
+											)
+											Html.push(
+												'</div>'
+											)
+											Html.push(
+												'<ul class="layui-tab tabHead layui-tab-brief">'
+											)
 
-								if (res || res.data !== null) {
-									console.log(res)
-									var Html = [];
-									// Html.push('<div class="Testing">' + res.data.taskName + '</div>')
-									Html.push(
-										'<div class="editorialContent">'
-									)
-									Html.push(
-										'<div id="title">'
-									)
-									Html.push(
-										'<div id="centered">'
-									)
-									Html.push(
-										'<span>鏌ョ湅璇曞嵎</span>'
-									)
-									Html.push(
-										'</div>'
-									)
-									Html.push(
-										'</div>'
-									)
-									Html.push(
-										'<ul class="layui-tab tabHead layui-tab-brief">'
-									)
-
-									res.data.questions.forEach(function(item, index) {
-										console.log(res)
-										Html.push('<li class="sortableitem" style = "background-color: #fff;">');
-										Html.push('<div class="topicFramework" style="text-align: left;line-height: 1;">');
-										Html.push('<input type="text" class="qusetionId" value="' + item.questionId +
-											'" hidden="hidden"/>');
-										if (item.questionType == 1) {
-											item.questionType = '鍗曢€夐';
-										} else {
-											item.questionType = '澶氶€夐';
-										}
-										Html.push('<p class="num"><span data-id="' + item.questionId + '">' + (index + 1) +
-											'</span>. ' + item.questionType + '</p>');
-										Html.push('<p class="distance">' + item.content + '</p>');
-										item.optionInfo.forEach(function(items, index) {
-											var record = 0;
-											var a = item.userAnswer.split('|');
-											a.forEach(function(iazz, asd) {
-
-												if (items.optionType == iazz) {
-													Html.push('<p class="distance option"><span class="circular	 aaxzv">' + items.optionType +
-														' </span>' +
-														items.content + '</p>');
-													record++;
-													return false;
+											resb.data.questions.forEach(function(item, index) {
+												console.log(resb)
+												Html.push('<li class="sortableitem" style = "background-color: #fff;">');
+												Html.push('<div class="topicFramework" style="text-align: left;line-height: 1;">');
+												Html.push('<input type="text" class="qusetionId" value="' + item.questionId +
+													'" hidden="hidden"/>');
+												if (item.questionType == 1) {
+													item.questionType = '单选题';
+												} else {
+													item.questionType = '多选题';
 												}
+												Html.push('<p class="num"><span data-id="' + item.questionId + '">' + (index + 1) +
+													'</span>. ' + item.questionType + '</p>');
+												Html.push('<p class="distance">' + item.content + '</p>');
+												item.optionInfo.forEach(function(items, index) {
+													Html.push('<p class="distance option"><span class="	 aaxzv">' + items.optionType +' </span>' +
+														items.content + '</p>');
+												});
+												Html.push('<div class="functionBox">');
+												Html.push('<button class="toView" value="' + item.questionId +
+													'"><i class="layui-icon layui-icon-search"></i>查看解析</button>');
+												Html.push('</div>');
+												Html.push('</div>');
+												Html.push(' </li> ')
 											})
-											if (record == 0) {
-												Html.push('<p class="distance option"><span class="	 aaxzv">' + items.optionType +
-													' </span>' +
-													items.content + '</p>');
-											}
 
+											Html.push('</ul></div>')
+											console.log('asdasdasd')
 
-										});
-										Html.push('<div class="functionBox">');
-										Html.push('<button class="toView" value="' + item.questionId +
-											'"><i class="layui-icon layui-icon-search"></i>鏌ョ湅瑙ｆ瀽</button>');
-										Html.push('</div>');
-										Html.push('</div>');
-										Html.push(' </li> ')
-									})
+											$('.wrapper').html(Html.join(''))
+											$('.sortableitem').each(function(index , itemt){
+											
+												$(this).find('.topicFramework').find('.option').each(function(indaa , item){
+													// useranswerList.forEach(function(izn,em){
+															// console.log(izn.questionId);
+														if(indaa	.questionId==index){
+															console.log($(this));
+														}
+													// })
+											// 		useranswerList.forEach(function(iazc,i){
+											// 			// if(item.find('.num').find('span').attr('data-id')==iazc.questionId){
+											// 				console.log(item)
+											// 			// }
 
-									Html.push('</ul></div>')
-									console.log('asdasdasd')
+											// 		})
+											// console.log($(this))
 
-									$('.wrapper').html(Html.join(''))
-									
-									$('.content').css('background-color', '#fff')
-									// 瑙ｆ瀽
-									
-									$('.toView').off('click').on('click', function() {
-										var QusetionId = $(this).val();
-										// 瑙ｆ瀽鍐呭
-										var Analysis = '鏈畾涔?;
-										// 姝ｇ‘绛旀
-										var OptionType = '鏈煡';
-										$.ajax({
-											url: MCUrl + 'manage_system/question/answer',
-											data: {
-												'questionId': QusetionId
-											},
-											dataType: 'json',
-											type: 'GET',
-											success(res) {
-												res.data.forEach(function(item, index) {
-													Analysis = item.analysis;
-													OptionType = item.optionType;
+											// 		// if($(this).find('.aaxzv').text() ==)
+
+												})
+
+											})
+											$('.content').css('background-color', '#fff')
+											// 解析
+											// $('.learningTasks').click(function() {
+											// 	resContent(res, res.data.taskType);
+											// })
+											$('.toView').off('click').on('click', function() {
+												var QusetionId = $(this).val();
+												// 解析内容
+												var Analysis = '未定义';
+												// 正确答案
+												var OptionType = '未知';
+												$.ajax({
+													url: MCUrl + 'manage_system/question/answer',
+													data: {
+														'questionId': QusetionId
+													},
+													dataType: 'json',
+													type: 'GET',
+													success(res) {
+														res.data.forEach(function(item, index) {
+															Analysis = item.analysis;
+															OptionType = item.optionType;
+														});
+														layui.use("layer", function() {
+															var layer = layui.layer;
+															layer.open({
+																type: 1 //Page层类型
+																	,
+																closeBtn: 1,
+																area: ['790px', '300px'],
+																title: ['查看解析',
+																		'background-color: #279ef0;text-align: center;font-size: 16px;line-height: 43px;color:white;letter-spacing: 5px;padding: 0px;'
+																	]
+																	// ,shade: 0.6 //遮罩透明度
+																	,
+																content: '<div class="answerContent">' +
+																	'<p>正确答案：<span class="answerOptions">' + OptionType + '</span></p>' +
+																	'<p>答案解析：</p>' +
+																	'<p class="analysis">' + Analysis + '</p>' +
+																	'</div>'
+															});
+														});
+													}
 												});
-												layui.use("layer", function() {
-													var layer = layui.layer;
-													layer.open({
-														type: 1 //Page灞傜被鍨?
-															,
-														closeBtn: 1,
-														area: ['790px', '300px'],
-														title: ['鏌ョ湅瑙ｆ瀽',
-																'background-color: #279ef0;text-align: center;font-size: 16px;line-height: 43px;color:white;letter-spacing: 5px;padding: 0px;'
-															]
-															// ,shade: 0.6 //閬僵閫忔槑搴?
-															,
-														content: '<div class="answerContent">' +
-															'<p>姝ｇ‘绛旀锛?span class="answerOptions">' + OptionType + '</span></p>' +
-															'<p>绛旀瑙ｆ瀽锛?/p>' +
-															'<p class="analysis">' + Analysis + '</p>' +
-															'</div>'
-													});
-												});
-											}
-										});
-									});
-								}
+											});
+										}
+									},
+									error: function(e) {
+
+									}
+								});
+								// parent.location.reload();	//刷新父级页面
 							},
-							error: function(e) {
-
+							error(e) {
+								layer.msg("操作失败，请稍后再试");
 							}
-						});
-						// parent.location.reload();	//鍒锋柊鐖剁骇椤甸潰
-
-						console.log("璋冪敤鏂规硶")
+						})
+						console.log("调用方法")
 					});
-					// 鐐瑰嚮鍙栨秷
+					// 点击取消
 					$('.CR-btnCancel').click(function() {
 						layer.closeAll();
 					});
@@ -447,8 +438,8 @@ var info = {
 
 
 			}
-			// 鏌ョ湅瑙ｆ瀽(寮圭獥)
-			// 鏌ョ湅瑙ｆ瀽(寮圭獥)
+			// 查看解析(弹窗)
+			// 查看解析(弹窗)
 			var toViewAnalysis = function(questionId) {
 
 			}
@@ -522,103 +513,3 @@ var info = {
 
 	},
 }
-=======
-    //  todo  接口 ,获取页面试题
-    getList:function(){
-
-
-
-        // 单选事件
-        info.radioChange();
-        // 多选事件
-        info.checkboxChange();
-        // 提交试题内容
-        info.setList();
-    },
-    // 单选事件
-    radioChange: function () {
-        $('body').delegate('.questionCard .radio_box li span', 'click', function () {
-            $('.questionCard .radio_box li span').removeClass('active');
-            $(this).addClass('active');
-        });
-
-        // 下一题点击事件
-        info.nextChange();
-        // 上一题点击事件
-        info.previousChange();
-        // 最后一题不显示下一题,第一题不显示上一题
-        $('.questionCard_box .questionCard').last().find('.next').addClass('hidden');
-        $('.questionCard_box .questionCard').first().find('.previous').addClass('hidden');
-    },
-    // 多选事件
-    checkboxChange: function () {
-        $('body').delegate('.questionCard .checkbox_box li span', 'click', function () {
-            if ($(this).hasClass('active')) {
-                $(this).removeClass('active');
-            } else {
-                $(this).addClass('active');
-            }
-        });
-
-        // 下一题点击事件
-        info.nextChange();
-        // 上一题点击事件
-        info.previousChange();
-        // 点击编号跳转试题
-        info.cardChange();
-
-
-    },
-    // 下一题点击事件
-    nextChange: function () {
-        $('.next').off('click').on('click', function () {
-            var _thisQuestion = $(this).parents('.questionCard');
-            _thisQuestion.addClass('hidden');
-            _thisQuestion.next().removeClass('hidden');
-            for (var i = 1; i <= $('.card li').length; i++) {
-                if ($('.card li:nth-child(' + [i] + ')').attr('data-type') == _thisQuestion.attr('data-type')) {
-                    $('.card li:nth-child(' + [i] + ')').removeClass('active');
-                    $('.card li:nth-child(' + [i] + ')').next().addClass('active');
-                }
-            }
-
-            // todo 获取用户选择的值 添加到上方空数组中保存
-        });
-
-    },
-    // 上一题点击事件
-    previousChange: function () {
-        $('body').delegate('.previous', 'click', function () {
-            var _thisQuestion = $(this).parents('.questionCard');
-            _thisQuestion.addClass('hidden');
-            _thisQuestion.prev().removeClass('hidden');
-
-            for (var i = 1; i <= $('.card li').length; i++) {
-                if ($('.card li:nth-child(' + [i] + ')').attr('data-type') == _thisQuestion.attr('data-type')) {
-                    $('.card li:nth-child(' + [i] + ')').removeClass('active');
-                    $('.card li:nth-child(' + [i] + ')').prev().addClass('active');
-                }
-            }
-
-            // todo 获取用户选择的值 添加到上方空数组中保存
-        });
-    },
-    cardChange:function () {
-        $('body').delegate('.card li', 'click', function () {
-            $('.card li').removeClass('active');
-            $(this).addClass('active');
-
-            for (var i = 1; i <= $('.card li').length; i++) {
-                if ($('.questionCard_box .questionCard:nth-child(' + [i] + ')').attr('data-type') == $(this).attr('data-type')) {
-                    $('.questionCard_box .questionCard').addClass('hidden');
-                    $('.questionCard_box .questionCard:nth-child(' + [i] + ')').removeClass('hidden');
-                }
-            }
-        });
-    },
-    // todo 下面是交卷的接口 ,将上方  answer[]  传给后台
-    setList:function () {
-
-    }
-};
->>>>>>> remotes/origin/dev-MX
