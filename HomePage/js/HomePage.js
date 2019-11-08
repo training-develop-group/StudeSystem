@@ -71,7 +71,7 @@ var info = {
 							item.resType = '未知'
 						}
 						Html.push('<td title="' + item.resType + '" style="text-align: content ">' + item.resType + '</td>')
-						Html.push('<td title="' + item.resSize + 'kb" style="text-align: content ">' + item.resSize + 'kb</td>')
+						Html.push('<td title="' + item.resSize + '" style="text-align: content ">' + getFileSize(item.resSize) + '</td>')
 						Html.push('</tr>')
 					})
 					$('.Resourcesreview').html(Html.join(''));
@@ -137,5 +137,24 @@ var info = {
 					},
 				})
 		});
-	}
+	},
+	
+}
+
+/**
+ * 资源size格式化
+ * @param {Object} fileByte 文件size格式化的参数
+ */
+var getFileSize = function(fileByte) {
+	var fileSizeByte = fileByte;
+	var fileSizeMsg = "";
+	if (fileSizeByte < 1048576) fileSizeMsg = (fileSizeByte / 1024).toFixed(2) + "KB";
+	else if (fileSizeByte == 1048576) fileSizeMsg = "1MB";
+	else if (fileSizeByte > 1048576 && fileSizeByte < 1073741824) fileSizeMsg = (fileSizeByte / (1024 * 1024)).toFixed(
+		2) + "MB";
+	else if (fileSizeByte > 1048576 && fileSizeByte == 1073741824) fileSizeMsg = "1GB";
+	else if (fileSizeByte > 1073741824 && fileSizeByte < 1099511627776) fileSizeMsg = (fileSizeByte / (1024 * 1024 *
+		1024)).toFixed(2) + "GB";
+	else fileSizeMsg = "文件超过1TB";
+	return fileSizeMsg;
 }

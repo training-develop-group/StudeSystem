@@ -415,6 +415,7 @@ var info = {
 			success(res) {
 				console.log("操作成功");
 				// parent.location.reload();	//刷新父级页面
+				layer.msg("操作成功");
 				layer.closeAll();
 				info.TableDataRequest(PNum);
 			},
@@ -433,6 +434,7 @@ var info = {
 			success(res) {
 				// alert("操作成功");
 				console.log("操作成功");
+				layer.msg("操作成功");
 				// parent.location.reload();	//刷新父级页面
 				layer.closeAll();
 				info.TableDataRequest(PNum);
@@ -444,6 +446,10 @@ var info = {
 	},
 	// 发布任务弹窗
 	releaseTask : function() {
+		// 清空输入框
+		$('.taskName').val('');
+		$('.taskRemark').val('');
+		$('.taskUsers').empty();
 		// 清空试卷名
 		$('.paperAdd').text('');
 		// 试卷名赋值(赋当前试卷)
@@ -523,12 +529,6 @@ var info = {
 					// 刷新页面
 					parent.location.reload();
 					// layer.closeAll();
-					// 清空
-					// $('.taskName').val('');
-					// $('.taskRemark').val('');
-					// $('.taskUsers').empty();
-					// $('#test1').val('');
-					// $('#test2').val('');
 				}
 			})
 		} else {

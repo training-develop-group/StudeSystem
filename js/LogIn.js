@@ -25,7 +25,7 @@ var logIn = function(){
 		success: function (res) {
 			console.log(res);
 			if(res.code == 1){
-				// window.location.href = 'HomePage/HomePage.html'
+				window.location.href = 'HomePage/HomePage.html'
 				console.log(res.msg);
 			}else {
 				layer.msg(res.msg);
