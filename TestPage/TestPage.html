@@ -16,16 +16,28 @@
 <div id="header"></div>
 <!--  内容区域  -->
 <div class="wrapper wrapper-content">
-	
+	 <div class="taskBox">
     <div class="aaa">
         <div class="con_nav_box">
             <h1 class="nav_title">测试任务</h1>
             <ul class="nav_list clearfix">
-                <li >视频学习</li>
-                <li class="active">测试</li>
+                <li class="study active">视频学习</li>
+                <li class=" test">测试</li>
             </ul>
         </div>
-        <div class="content">
+		  <div class="">
+		<div id="LearnPage" class="LearnContent">
+		    <div class="doc hidden">
+		        <iframe src="asdas.txt" width="100%" height="710px"></iframe>
+		    </div>
+		    <div class="video hidden">
+		        <video src="http://192.168.188.109:88/0625ae7ec85c4b94bf1cde70d2692b67.mp4" controls="controls" preload="auto" height="700px" width="100%"></video>
+		    </div>
+		    <div class="audio hidden">
+		        <audio src="https://www.w3school.com.cn/i/song.ogg" controls="controls" ></audio>
+		    </div>
+		</div>
+        <div class="content hidden">
 			
             <div class="answer_card clearfix">
                 <div class="card_left">
@@ -47,6 +59,24 @@
 			
         </div>
     </div>
+	</div>
+	</div>
+	<div class="experienceListBox hidden">
+	    <p class="experienceTitle">心得学习</p>
+	    <ul class="experienceList">
+	        <li class="List">
+	            <p></p>
+	            <p class="time"><span>2019/10/10</span><span>1:10</span></p>
+	        </li>
+	    </ul>
+	    <div class="addExperience clearfix ">
+	        <textarea class="textExperience" maxlength="2000"></textarea>
+	        <div id="page"></div>
+	        <button class="layui-btn layui-btn-normal layui-btn-sm add">提交</button>
+	        <span class="textNumBox"><span class="textNum">0</span>/2000字</span>
+	    </div>
+	
+	</div>
 </div>
 
 

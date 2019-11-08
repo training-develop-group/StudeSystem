@@ -3,18 +3,75 @@
  * @author：MengXin
  */
 $(function() {
+	var urlinfo = window.location.href;
+	var value = urlinfo.split("?")[1].split("value=")[1];
+	var PaperId = decodeURI(value);
+	var taskId = PaperId.split(',')[0]
+	var taskType = PaperId.split(',')[1]
+	// var taskType = 1
+	var paperId = PaperId.split(',')[2]
+	var resId = PaperId.split(',')[3]
+	// var resId = 68;
+
 	layui.use(['layer', 'form'], function() {
 		var layer = layui.layer,
 			form = layui.form;
+			// 公共头调用渲染
+			All.getMenu({
+				search: 2,
+				type: 2,
+				num: 3
+			});
+		if (taskType == 1) {
+			$.ajax({
+				url: TDXUrl + 'manage_system/resource/' + resId,
+				data: {},
+				dataType: 'json',
+				type: 'GET',
+				contentType: 'application/json;charset=utf-8',
+				success(resc) {
+				
+					
+				if(resc.data.resType==1){
+					$('.video').removeClass('hidden');
+					$('.video video').attr('src','http://192.168.188.109:8848/'+resc.data.path)
+				}else if(resc.data.resType==2){
+					$('.audio').removeClass('hidden');
+					$('.audio audio').attr('src','http://192.168.188.109:8848/'+resc.data.path)
+				}else if(resc.data.resType==3){
+					$('.doc').removeClass('hidden');
+					$('.doc iframe').attr('src','http://192.168.188.109:8848/'+resc.data.path)
+				}
+					
+				}
+			})
+		} else if (taskType == 2) {
+			$('.test').addClass('hidden')
+			$('.video').removeClass('hidden')
+			$('.experienceListBox').removeClass('hidden')
 
+		} else if (taskType == 3) {
+			$('.study').addClass('hidden')
+			$('.content').removeClass('hidden')
+			$('.doc,.video,.audio').addClass('hidden')
+			$('.active').removeClass('active')
+			$('.test').addClass('active')
+			info.getList(taskId, taskType, paperId, resId);
+		}
+		$('.study').click(function() {
+			layer.msg("学习完就不能回去喽")
+		})
+		$('.test').click(function() {
+			$('.content').removeClass('hidden')
+			$('.doc,.video,.audio').addClass('hidden')
+			$('.active').removeClass('active')
+			$('.test').addClass('active')
 
-		// 公共头调用渲染
-		All.getMenu({
-			num: 3
-		});
+			info.getList(taskId, taskType, paperId, resId);
+		})
 
 		// 获取测试题内容
-		info.getList();
+
 	});
 });
 
@@ -22,7 +79,7 @@ var answer = [];
 
 var info = {
 	//  todo  接口 ,获取页面试题
-	getList: function() {
+	getList: function(taskId, taskType, paperId, resId) {
 		$.ajax({
 			url: LBUrl + 'manage_system/paper/' + 2,
 			data: {
@@ -186,11 +243,11 @@ var info = {
 	},
 	// todo 下面是交卷的接口 ,将上方  answer[]  传给后台
 	setList: function(resb) {
-	//点击交卷事件
+		//点击交卷事件
 		$('.submitTest').click(function() {
 			var newScore = 0;
 			var sz = 0;
-			
+
 			var useranswerList = [];
 			//获取所有多选
 			$('.checkbox_box').each(function(index, item) {
@@ -353,10 +410,10 @@ var info = {
 									console.log('asdasdasd')
 
 									$('.wrapper').html(Html.join(''))
-									
+
 									$('.content').css('background-color', '#fff')
 									// 解析
-									
+
 									$('.toView').off('click').on('click', function() {
 										var QusetionId = $(this).val();
 										// 解析内容
@@ -433,72 +490,103 @@ var info = {
 
 			}
 
-			// var questionId = []
-			// $.each($(".checkbox_box .active"), function(i, val) {
-			// 	var sss = true;
-			// 	var dataId = $(this).attr('data-id')
-			// 	var dataNAme = $(this).parent('li').parent('ul').find('.questionId').val();
-			// 	var data = $(this).parent('li').parent('ul').parent('li').find('.questionCard_title').find('.fraction').text();
-			// 	if (i == 0) {
-			// 		sz = dataNAme
-			// 	}
-			// 	if (i + 1 == $(".checkbox_box .active").length) {
-			// 		sz = 0;
-			// 	}
-			// 	resb.data.questions.forEach(function(item, index) {
-			// 		if (dataNAme == item.questionId) {
-			// 			item.optionInfo.forEach(function(items, index) {
-			// 				if (dataId == items.ref && items.isRight == 1 && sss == true) {} else if (dataId == items.ref) {
-			// 					sss = false;
-			// 					return false;
-			// 				}
-			// 			})
-			// 		}
-			// 	})
-			// 	if (sz != dataNAme && sss == true) {
-			// 		newScore += parseInt(data);
-			// 		questionId.push(sz)
-			// 	}
-			// 	sz = dataNAme
-			// })
-			// // $.each($(".checkbox_box"), function(i, val) {
-			// // 	console.log(val)
-			// // 	$.each($(".checkbox_box:nth-child("+i+") li"), function(ai, vala) {
-			// // 			console.log(vala)
-			// // 	})	
-			// // }) 
-			// $('.questionCard_box .questionCard .checkbox').each(function(index, item) {
-			// 	console.log(index, item);
-			// });
-			// $.each($(".radio_box .active"), function(i, val) {
-			// 	var sss = true;
-			// 	var dataId = $(this).attr('data-id')
-			// 	var dataNAme = $(this).parent('li').parent('ul').find('.questionId').val();
-			// 	var data = $(this).parent('li').parent('ul').parent('li').find('.questionCard_title').find('.fraction').text();
-			// 	if (i == 0) {
-			// 		sz = dataNAme
-			// 	}
-			// 	if (i + 1 == $(".radio_box .active").length) {
-			// 		sz = 0;
-			// 	}
-			// 	resb.data.questions.forEach(function(item, index) {
-			// 		if (dataNAme == item.questionId) {
-			// 			item.optionInfo.forEach(function(items, index) {
-			// 				if (dataId == items.ref && items.isRight == 1 && sss == true) {} else if (dataId == items.ref) {
-			// 					sss = false;
-			// 					return false;
-			// 				}
-			// 			})
-			// 		}
-			// 	})
-			// 	if (sz != dataNAme && sss == true) {
-			// 		newScore += parseInt(data);
-			// 		questionId.push(sz)
-			// 	}
-			// 	sz = dataNAme
-			// })
-			// console.log(newScore)
+
 		})
 
 	},
-}
+	getExperienceList: function() {
+		var time = new Date();
+		var ExperienceList = [{
+				experience: '今天我学习了什么什么今天我学习了什么什么今天我学习了什么什么今天我学习了什么什么今天我学习了什么什么今天我学习了什么什么今天我学习了什么什么今天我学习了什么什么今天我学习了什么什么今天我学习了什么什么今天我学习了什么什么今天我学习了什么什么今天我学习了什么什么今天我学习了什么什么今天我学习了什么什么今天我学习了什么什么今天我学习了什么什么今天我学习了什么什么',
+				cTime: time
+			},
+			{
+				experience: '今天我学习了什么什么今天我学习了什么什么今天我学习了什么什么今天我学习了什么什么今天我学习了什么什么今天我学习了什么什么今天我学习了什么什么今天我学习了什么什么今天我学习了什么什么今天我学习了什么什么今天我学习了什么什么今天我学习了什么什么今天我学习了什么什么今天我学习了什么什么今天我学习了什么什么今天我学习了什么什么今天我学习了什么什么今天我学习了什么什么',
+				cTime: time
+			},
+			{
+				experience: '今天我学习了什么什么今天我学习了什么什么今天我学习了什么什么今天我学习了什么什么今天我学习了什么什么今天我学习了什么什么今天我学习了什么什么今天我学习了什么什么今天我学习了什么什么今天我学习了什么什么今天我学习了什么什么今天我学习了什么什么今天我学习了什么什么今天我学习了什么什么今天我学习了什么什么今天我学习了什么什么今天我学习了什么什么今天我学习了什么什么',
+				cTime: time
+			},
+			{
+				experience: '今天我学习了什么什么今天我学习了什么什么今天我学习了什么什么今天我学习了什么什么今天我学习了什么什么今天我学习了什么什么今天我学习了什么什么今天我学习了什么什么今天我学习了什么什么今天我学习了什么什么今天我学习了什么什么今天我学习了什么什么今天我学习了什么什么今天我学习了什么什么今天我学习了什么什么今天我学习了什么什么今天我学习了什么什么今天我学习了什么什么',
+				cTime: time
+			},
+			{
+				experience: '今天我学习了什么什么今天我学习了什么什么今天我学习了什么什么今天我学习了什么什么今天我学习了什么什么今天我学习了什么什么今天我学习了什么什么今天我学习了什么什么今天我学习了什么什么今天我学习了什么什么今天我学习了什么什么今天我学习了什么什么今天我学习了什么什么今天我学习了什么什么今天我学习了什么什么今天我学习了什么什么今天我学习了什么什么今天我学习了什么什么',
+				cTime: time
+			}
+		];
+		if (ExperienceList || ExperienceList.length > 0) {
+			var html = [];
+			ExperienceList.forEach(function(item, index) {
+				html.push('<li class="List">');
+				html.push('    <p class="uName">这里是姓名</p>');
+				html.push('    <p>' + item.experience + '</p>');
+				html.push('    <p class="time"><span>2019/10/10</span><span>1:10</span></p>');
+				html.push('</li>');
+			});
+
+			$('.experienceList').html(html.join(''));
+			// 提交心得区域显示内容
+			$('.addExperience').removeClass('hidden');
+
+
+			// 分页插件
+			info.Page(50, 1);
+
+			// 学习心得提交事件
+			info.addExperience();
+		}
+
+	},
+	// 学习心得提交事件
+	addExperience: function() {
+		$('.add').off('click').on('click', function() {
+			// 这里替换了换行与回车
+			var Experience = $('.textExperience').val().replace(/\n/g, "<br/>").replace(" ", "&nbsp;").replace("<", "&lt;").replace(
+				">", "&gt;");
+			var html = [
+				'<li class="List">',
+				'<p>' + Experience + '</p>',
+				'<p class="time"><span>2019/10/10</span><span>1:10</span></p>',
+				'</li>'
+			];
+			$('.experienceList').append(html.join(''));
+
+			// 清空内容和数字计数
+			$('.textExperience').val('');
+			var textNum = $('.textExperience').val().length;
+			$('.textNum').text(textNum);
+		});
+	},
+	// 获取心得字数
+	textNum: function() {
+		$('.textExperience').keyup(function() {
+			var textNum = $('.textExperience').val().length;
+			$('.textNum').text(textNum);
+		})
+	},
+	// 分页插件
+	Page: function(total, curr) {
+		layui.use('laypage', function() {
+			var laypage = layui.laypage;
+			//执行一个laypage实例
+			laypage.render({
+				elem: 'page', //注意，这里的 test1 是 ID，不用加 # 号
+				count: total, //数据总数，从服务端得
+				limit: '10',
+				theme: '#1E9FFF',
+				curr: curr,
+				groups: '5',
+				layout: ['prev', 'page', 'next', 'limits', 'skip'],
+				jump: function(item, first) {
+					if (!first) {
+						console.log(item.curr);
+					}
+				}
+			});
+
+		})
+	},
+};

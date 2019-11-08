@@ -5,8 +5,11 @@ $(function() {
 			form = layui.form;
 
 		All.getMenu({
+			search: 1,
+			type: 1,
 			num: 4
 		});
+		// 点击回车
 		$('.search').keypress(function(e) {
 			if (e.which == 13) {
 				info.TableDataRequest(1)
@@ -61,16 +64,15 @@ $(function() {
 	$('.usersSelectOk').click(function() {
 		var Html = [];
 		$.each($("[name='Staff']:checked"), function(i, val) {
-			Html.push('<p >' + $(this).siblings('i').text() + '<input type="text"  hidden="" id="" value="' + $(this).val() +
+			Html.push('<p>' + $(this).siblings('i').text() + '<input type="text"  hidden="" id="" value="' + $(this).val() +
 				'" />  <i  data-id="' + $(this).val() +
-				'" class="layui-icon layui-icon-close deleteUserName" style="font-size: 20px; margin: 0 0 0 200px;"></i></p>'
+				'" class="layui-icon layui-icon-close deleteUserName"></i></p>'
 			)
 		})
 		$('.taskUsers').html(Html.join(''));
 		$('.deleteUserName').click(function() {
 			$(this).parents('p').remove();
 			var userId = $(this).attr('data-id');
-			console.log(userId)
 			$.each($("[name='Staff']:checked"), function(i, val) {
 				if (val.value == userId) {
 					$("#checkAll").prop("checked", false);
@@ -171,9 +173,9 @@ var info = {
 		PNum = data.pageNum;
 		data.list.forEach(function(item, index) {
 			if (item.status == 0){
-				item.status = '失效';
+				item.status = '未发布';
 			} else {
-				item.status = '正常';
+				item.status = '已发布';
 			}
 			// 转义(已防有标签的样式被html识别)
 			item.paperName = $('<div>').text(item.paperName).html();
@@ -183,11 +185,17 @@ var info = {
 			Html.push('<td class="middle">' + item.single + '</td>');
 			Html.push('<td class="middle">' + item.many + '</td>');
 			Html.push('<td>');
-			Html.push('<button type="button" class="layui-btn layui-btn-primary edit" data-id="' + item.paperId + '">重命名</button>');
-			Html.push('<button type="button" class="layui-btn layui-btn-primary selectedTopic" data-id="' + item.paperId + '">编辑</button>');
-			Html.push('<button type="button" class="layui-btn layui-btn-primary publish" data-id="' + item.paperId + '">发布</button>');
-			Html.push('<button type="button" class="layui-btn layui-btn-primary toView" data-id="' + item.paperId + '">查看</button>');
-			Html.push('<button type="button" class="layui-btn layui-btn-primary delete" data-id="' + item.paperId + '">删除</button>');
+			if(item.status == '已发布'){
+				Html.push('<button type="button" class="layui-btn layui-btn-primary edit" data-id="' + item.paperId + '">重命名</button>');
+				Html.push('<button type="button" class="layui-btn layui-btn-primary publish" data-id="' + item.paperId + '">发布</button>');
+				Html.push('<button type="button" class="layui-btn layui-btn-primary toView" data-id="' + item.paperId + '">查看</button>');
+			} else {
+				Html.push('<button type="button" class="layui-btn layui-btn-primary edit" data-id="' + item.paperId + '">重命名</button>');
+				Html.push('<button type="button" class="layui-btn layui-btn-primary selectedTopic" data-id="' + item.paperId + '">编辑</button>');
+				Html.push('<button type="button" class="layui-btn layui-btn-primary publish" data-id="' + item.paperId + '">发布</button>');
+				Html.push('<button type="button" class="layui-btn layui-btn-primary toView" data-id="' + item.paperId + '">查看</button>');
+				Html.push('<button type="button" class="layui-btn layui-btn-primary delete" data-id="' + item.paperId + '">删除</button>');
+			}
 			Html.push('</td>');
 			Html.push('</tr>');
 		});

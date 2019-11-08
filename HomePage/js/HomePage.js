@@ -18,6 +18,8 @@ $(function() {
 		var layer = layui.layer,
 			form = layui.form;
 		All.getMenu({
+			search: 1,
+			type: 1,
 			num: 1
 		});
 	});
@@ -83,6 +85,9 @@ var info = {
 			$.ajax({
 				url: LBUrl + 'manage_system/task/tasks',
 				data: {
+					'status': 1,
+					'userId':'',
+					'userType':2,
 					"pageNum": 1,
 					"pageSize": 5,
 					'taskName': ''

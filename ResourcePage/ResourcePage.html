@@ -63,9 +63,9 @@
 					<thead>
 						<tr>
 							<th>文件名</th>
-							<th>类型</th>
-							<th>大小</th>
-							<th>状态</th>
+							<th class="centerText">类型</th>
+							<th class="centerText">大小</th>
+							<th class="centerText">状态</th>
 							<th>操作</th>
 						</tr>
 					</thead>
@@ -75,19 +75,16 @@
 			<!-- <button type="button" class="layui-btn layui-btn-normal layui-btn-sm" id="uploadBtn">确定</button> -->
 		</div>
 		<!-- 视频调用隐藏绑定弹出层 -->
-		<div id="hiddenVideo" style="display: none;"></div>
+		<div id="viewResourceBox" style="display: none;"></div>
 
 		<!-- 音频调用绑定弹出层 -->
-		<div id="hiddenAudio" style="display: none;">
-			<!-- <audio src="http://192.168.188.114:88/b9676e1768bd4219ae7504586ce6d307.ogv" controls="controls" id="myAudio"></audio> -->
-		</div>
+		<button id="hiddenAudio">666
+			<!-- <iframe src="http://192.168.188.109:8848/0625ae7ec85c4b94bf1cde70d2692b67.mp4" width="" height=""></iframe> -->
+			<!-- <a href="http://192.168.188.109:8848/f23d28377539424999be5dd1dc2b2e0d.xlsx" download>4444444444</a>
+			<a href="http://192.168.188.109:8848/0625ae7ec85c4b94bf1cde70d2692b67.mp4" download="">点击下载6666</a> -->
+		</button>
 
-		<div id="Doc">
-			<!-- <iframe src="http://192.168.188.114:88/c70c26d9a61e4075995b1c1832a24a77.docx"></iframe> -->
-		</div>
-		<!-- <iframe src="text/world.docx" width="500" height="500"></iframe> -->
-		<!-- <iframe src="html:\\CLOUDEASY-PC\share\新建文件夹\world.docx"  width="500" height="500"></iframe> -->
-
+		
 		<!-- 编辑资源名弹出层box -->
 		<div id="editResNameBox" style="display: none;">
 			<span class="editText">文件名称</span><input class="rename layui-input" />
@@ -113,35 +110,20 @@
 				</div>
 				<div class="layui-form-item">
 					<span class="_search selectResource">
-						<i class="layui-icon">&#xe602;</i>
-						<span>选择资源</span>
+						<i class="layui-icon"> &#xe602; </i>
+						<span>&nbsp;选择资源:&nbsp;</span>
 						<span class="resAdd"></span>
 					</span>
 				</div>
-				<!-- <div class="layui-form-item">
-					<span class="_search selectPapers">
-						<i class="layui-icon">&#xe602;</i>
-						<span>选择试卷</span>
-						<span class="paperAdd"></span>
-					</span>
-				</div> -->
 				<div class="layui-form-item">
 					<label class="layui-form-label">任务对象</label>
 					<span class="_search selectPersonnel">
 						<i class="layui-icon">&#xe602;</i>
-						<span>选择人员</span>
+						<span>&nbsp;选择人员</span>
 					</span>
 				</div>
 				<div class="layui-form-item personls">
-					<div class="personl taskUsers" lay-event="edit">
-						<p class="clearfix"><span>姓名</span><i class="layui-icon">&#x1006;</i></p>
-						<p class="clearfix"><span>姓名</span><i class="layui-icon">&#x1006;</i></p>
-						<p class="clearfix"><span>姓名</span><i class="layui-icon">&#x1006;</i></p>
-						<p class="clearfix"><span>姓名</span><i class="layui-icon">&#x1006;</i></p>
-						<p class="clearfix"><span>姓名</span><i class="layui-icon">&#x1006;</i></p>
-						<p class="clearfix"><span>姓名</span><i class="layui-icon">&#x1006;</i></p>
-						<p class="clearfix"><span>姓名</span><i class="layui-icon">&#x1006;</i></p>
-					</div>
+					<div class="personl taskUsers" lay-event="edit"></div>
 				</div>
 				<div class="layui-form-item timeBox">
 					<div class="layui-inline">
@@ -191,12 +173,14 @@
 
 		<!-- 选择人员部分------------------------------------------------------------------------------- -->
 		<div id="selectPersonnel" class="hidden">
-			<div class="iconSearch">
-				<img src="./../imgs/search.jpg">
-				<input type="text" class="userNameRetrieval"></div>
+			
 			<div class="layui-form nameList">
 				<div class="checkboxNameList">
 					人员名单 <input type="checkbox" lay-skin="primary" lay-filter="Staff" id="checkAll">全选
+				</div>
+				<div class="iconSearch">
+					<img src="./../imgs/search.jpg">
+					<input type="text" class="userNameRetrieval">
 				</div>
 				<div id="selectTaskUsers" class="layui-table selectTaskUsers"></div>
 			</div>
@@ -206,15 +190,6 @@
 
 		</div>
 		<!-- 选择人员结束----------------------------------------------------------------- -->
-
-
-
-
-
-
-
-
-
 
 
 		<script src="../js/jQuery v3.4.1.min.js"></script>

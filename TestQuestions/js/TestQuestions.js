@@ -9,7 +9,7 @@ $(document).ready(function() {
 	/*分页*/
 	/*上传课件*/
 	// $.ajax({
-	// 	url:'http://192.168.188.108:8888/manage_system/question/question',
+	// 	url:'http://192.168.188.131:8888/manage_system/question/question',
 	// 	data:{
 	// 		
 	// 	},
@@ -24,6 +24,8 @@ $(document).ready(function() {
 			form = layui.form;
 
 		All.getMenu({
+			search: 1,
+			type: 1,
 			num: 5
 		});
 		info.selectQuestion();
@@ -34,7 +36,6 @@ $(document).ready(function() {
 })
 var type = 1;
 var questionIdLast = 0;
-var judged = true;
 var info = {
 	addInputTotal: function() {
 		info.inputTotal('#newlyBuild #analysis', '#newlyBuild .num');
@@ -60,7 +61,7 @@ var info = {
 	},
 	selectQuestion: function(curr) {
 		$.ajax({
-			url: 'http://192.168.188.108:8888/manage_system/question/questions',
+			url: 'http://192.168.188.111:8888/manage_system/question/questions',
 			data: {
 				'pageNum': (curr || 1),
 				'pageSize': 10,
@@ -140,14 +141,13 @@ var info = {
 	deleteQuestions: function(questionId, status) {
 		if (status == 1) {
 			$.ajax({
-				url: 'http://192.168.188.108:8888/manage_system/question/' + questionId,
+				url: 'http://192.168.188.111:8888/manage_system/question/' + questionId,
 				data: '',
 				dataType: 'json',
 				type: 'DELETE',
 				success(res) {
-					layer.closeAll();
-					info.selectQuestion(1);
 					layer.msg('删除成功(弹窗待样式)');
+					location.reload();
 				},
 				error(e) {
 
@@ -161,7 +161,7 @@ var info = {
 	//查看解析
 	viewAnswer: function(questionId) {
 		$.ajax({
-			url: 'http://192.168.188.108:8888/manage_system/question/answer',
+			url: 'http://192.168.188.111:8888/manage_system/question/answer',
 			data: {
 				'questionId': questionId
 			},
@@ -185,7 +185,6 @@ var info = {
 		});
 	},
 	//添加
-	
 	addQuestion: function() {
 		$('#newlyBuild .optionErrorMsg').hide();
 		layui.use('form', function() {
@@ -238,6 +237,7 @@ var info = {
 				});
 			});
 		});
+		var judged = true;
 		info.addInputTotal();
 		$('#newlyBuild .addOptions').off('click').on('click', function() {
 			if (judged) {
@@ -402,49 +402,13 @@ var info = {
 				'questionOption': JSON.stringify(option)
 			};
 			$.ajax({
-				url: 'http://192.168.188.108:8888/manage_system/question/question',
+				url: 'http://192.168.188.111:8888/manage_system/question/question',
 				data: data,
 				dataType: 'json',
 				type: 'POST',
 				success(res) {
-					layer.closeAll();
 					layer.msg('添加成功(弹窗待样式)');
-					$('#newlyBuild textarea').val('');
-					info.selectQuestion(1);
-					var refreshList = [];
-					if (judged) {
-						refreshList.push(
-							'<p class="outerFrame"><input type="radio" lay-skin="primary" name="choiceItem" value="A" title="A"><textarea name="" required lay-verify="required" class="layui-textarea option"></textarea></p>'
-						);
-						refreshList.push(
-							'<p class="outerFrame"><input type="radio" lay-skin="primary" name="choiceItem" value="A" title="B"><textarea name="" required lay-verify="required" class="layui-textarea option"></textarea></p>'
-						);
-						refreshList.push(
-							'<p class="outerFrame"><input type="radio" lay-skin="primary" name="choiceItem" value="A" title="C"><textarea name="" required lay-verify="required" class="layui-textarea option"></textarea></p>'
-						);
-						refreshList.push(
-							'<p class="outerFrame"><input type="radio" lay-skin="primary" name="choiceItem" value="A" title="D"><textarea name="" required lay-verify="required" class="layui-textarea option"></textarea></p>'
-						);
-					} else {
-						refreshList.push(
-							'<p class="outerFrame"><input type="checkbox" lay-skin="primary" name="choiceItem" value="A" title="A"><textarea name="" required lay-verify="required" class="layui-textarea option"></textarea></p>'
-						);
-						refreshList.push(
-							'<p class="outerFrame"><input type="checkbox" lay-skin="primary" name="choiceItem" value="A" title="B"><textarea name="" required lay-verify="required" class="layui-textarea option"></textarea></p>'
-						);
-						refreshList.push(
-							'<p class="outerFrame"><input type="checkbox" lay-skin="primary" name="choiceItem" value="A" title="C"><textarea name="" required lay-verify="required" class="layui-textarea option"></textarea></p>'
-						);
-						refreshList.push(
-							'<p class="outerFrame"><input type="checkbox" lay-skin="primary" name="choiceItem" value="A" title="D"><textarea name="" required lay-verify="required" class="layui-textarea option"></textarea></p>'
-						);
-					}
-					$("#newlyBuild .choiceItem").html(refreshList.join(''));
-
-					layui.use('form', function() {
-						var form = layui.form;
-						form.render(name);
-					});
+					location.reload();
 
 				}
 			});
@@ -458,7 +422,7 @@ var info = {
 		var letter = '';
 		var questionRes = {};
 		$.ajax({
-			url: 'http://192.168.188.108:8888/manage_system/question/' + questionId,
+			url: 'http://192.168.188.111:8888/manage_system/question/' + questionId,
 			data: '',
 			dataType: 'json',
 			type: 'GET',
@@ -721,14 +685,13 @@ var info = {
 					};
 
 					$.ajax({
-						url: 'http://192.168.188.108:8888/manage_system/question/' + questionId,
+						url: 'http://192.168.188.111:8888/manage_system/question/' + questionId,
 						data: data,
 						dataType: 'json',
 						type: 'POST',
 						success(res) {
-							layer.closeAll();
-							info.selectQuestion(1);
 							layer.msg('修改成功(弹窗待样式)');
+							location.reload();
 						},
 						error(e) {
 
@@ -755,7 +718,7 @@ var info = {
 				info.selectQuestion(1);
 			}
 		});
-
+		
 
 
 		//---------------------修改

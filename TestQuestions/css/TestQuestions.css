@@ -41,14 +41,12 @@
 	color: #B2B2B2;
 }
 .editInputTotal {
-	margin-top: 5px;
 	margin-left: 385px;
 }
 .addInputTotal span{
 	color: #B2B2B2;
 }
 .addInputTotal {
-	margin-top: 5px;
 	margin-left: 385px;
 }
 .optionErrorMsg {
@@ -263,6 +261,7 @@ img {
 	height: 30px;
 	line-height: 30px;
 	background-color: #279ef0;
+	margin-top: 20px;
 	margin-left: calc(100% - 60%);
 }
 

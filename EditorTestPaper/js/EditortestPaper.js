@@ -5,6 +5,8 @@ $(function() {
 			form = layui.form;
 			
 			All.getMenu({
+				search: 1,
+				type: 1,
 				num: 4
 			});
 	});
@@ -499,7 +501,6 @@ var info = {
 		if (chack == false){
 			return false;
 		}
-		return false;
 		sorting = [];
 		for (var i = 1; i <= $('.sortableitem').length; i++){
 			var data = {

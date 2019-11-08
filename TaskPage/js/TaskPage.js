@@ -52,6 +52,8 @@ $(function() {
 			type: 'datetime'
 		});
 		All.getMenu({
+			search: 1,
+			type: 1,
 			num: 3
 		});
 		$('.search').keypress(function(e) {
@@ -63,9 +65,9 @@ $(function() {
 		$('.usersSelectOk').click(function() {
 			var Html = [];
 			$.each($("[name='Staff']:checked"), function(i, val) {
-				Html.push('<p >' + $(this).siblings('i').text() + '<input type="text"  hidden="" id="" value="' + $(this).val() +
+				Html.push('<p>' + $(this).siblings('i').text() + '<input type="text"  hidden="" id="" value="' + $(this).val() +
 					'" />  <i  data-id="' + $(this).val() +
-					'" class="layui-icon layui-icon-close deleteUserName" style="font-size: 20px; margin-left:150px 	"></i></p>'
+					'" class="layui-icon layui-icon-close deleteUserName" style="font-size: 20px;"></i></p>'
 				)
 			})
 			$('.taskUsers').html(Html.join(''));
@@ -524,6 +526,10 @@ var info = {
 		$.ajax({
 			url: LBUrl + 'manage_system/task/tasks',
 			data: {
+				
+				'status': 1,
+				'userId':'',
+				'userType':2,
 				"pageNum": pageNum,
 				"pageSize": 10,
 				'taskName': search
@@ -531,6 +537,7 @@ var info = {
 			dataType: 'json',
 			type: 'GET',
 			success(res) {
+				console.log(res)
 				var Html = [];
 				res.data.list.forEach(function(item, index) {
 					Html.push('<tr>');

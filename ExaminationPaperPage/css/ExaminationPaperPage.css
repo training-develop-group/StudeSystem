@@ -260,6 +260,15 @@ a{
 	padding: 5px 10px;
 	margin: 0 0 0 37px;
 }
+.taskUsers p {
+	line-height: 20px;
+	margin-left: 20px;
+	margin-right: 40px;
+}
+.taskUsers p i{
+	float: right;
+	margin-right: 20px;
+}
 .selectTaskUsers .layui-form-label{
 	width: 100px;
 	padding: 9px 10px;

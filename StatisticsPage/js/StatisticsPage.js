@@ -1,52 +1,16 @@
 $(document).ready(function(){
-	var first = 0;
-	var second = 0;
-	var third = 0;
-	var fourth = 0;
-	$.ajax({
-		url: 'http://localhost:8888/manage_system/stat/task-type',
-		data: {},
-		dataType: 'json',
-		type: 'GET',
-		contentType: 'application/json;charset=utf-8',
-		success(res) {
-			console.log(res.data);
-			res.data.forEach(function(item){
-				console.log(item.taskType);
-				first = first+1
-				if(item.taskType == 1) {
-					second = second+1
-				}
-				if(item.taskType == 2) {
-					third = third+1
-				}
-				if(item.taskType == 3){
-					fourth = fourth+1
-				}
-			})
-			console.log(first);
-			// toFixed
-			var fifth = second / first * 100;
-			var num1 = new Number(fifth);
-			var sixth = third / first * 100;
-			var num2 = new Number(sixth);
-			var seventh = fourth / first * 100;
-			var num3 = new Number(seventh);
-			console.log(num1.toFixed(0) + "%");
-			console.log(num2.toFixed(0) + "%");
-			console.log(num3.toFixed(0) + "%");
-			console.log(res.data);
-			
-		}
-	});
+	TableDataRequest();
 });
 
+// 分页
 $(function(){
 	layui.use(['layer','form'],function(){
 		var layer = layui.layer,
 			form = layui.form;
 		All.getMenu({
-			num:2
+			search: 1,
+			type: 1,
+			num:6
 		});
 		layui.use(['layer','form','laypage'],function(){
 			var layer = layui.layer,
@@ -63,21 +27,45 @@ $(function(){
 				}
 			});
 		});
+		
+		$('.search').keypress(function(e) {
+			
+			if (e.which == 13) {
+				console.log(1);
+				TableDataRequest();
+			}
+		});
 	});
+	
 });
-
-
-layui.use(['laypage', 'layer'], function() {
-	var laypage = layui.laypage,
-		layer = layui.layer;
-	//执行一个laypage实例
-	laypage.render({
-		elem: 'page',
-		count: 100,
-		theme: '#1E9FFF',
-		layout: ['count', 'prev', 'page', 'next', 'limit', 'refresh', 'skip'],
-		jump: function(obj) {
-			console.log(obj)
+var TableDataRequest = function() {
+	var userName = $('.search').val();
+	if(userName == undefined){
+		userName = '';
+	}
+	var data = {
+		'userName': userName
+	};
+	$.ajax({
+		url: 'http://192.168.188.151:8888/manage_system/stat/list',
+		data: data,
+		dataType: 'json',
+		type: 'GET',
+		success(res) {
+			console.log(res);
+			var Html = [];
+			
+			res.data.forEach(function(item, index) {
+				Html.push('<tr>');
+				Html.push('<td>' + item.studentName + '</td>');
+				Html.push('<td class="Centered">' + item.taskNumber + '</td>');
+				Html.push('<td class="Centered">' + item.paperInfoNumber + '</td>');
+				Html.push('<td class="Centered">' + item.questionNumber + '</td>');
+				Html.push('<td class="Centered">' + item.questionPercentage + '%' + '</td>');
+				Html.push('<td class="Centered">' + item.taskPercentage + '%' + '</td>');
+				Html.push('</tr>');
+			});
+			$('#contentList').html(Html.join(''));
 		}
 	});
-});
+}
