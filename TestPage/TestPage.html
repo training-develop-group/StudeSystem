@@ -16,77 +16,105 @@
 <div id="header"></div>
 <!--  内容区域  -->
 <div class="wrapper wrapper-content">
-    <div>
+    <div class="taskBox">
         <div class="con_nav_box">
             <h1 class="nav_title">测试任务</h1>
             <ul class="nav_list clearfix">
-                <li >视频学习</li>
+                <li>视频学习</li>
                 <li class="active">测试</li>
             </ul>
         </div>
-        <div class="content">
-            <div class="answer_card clearfix">
-                <div class="card_left">
-                    <p>[答题卡]</p>
-                    <ul class="card">
-                        <li class="active" data-type="1">1</li>
-                        <li data-type="2">2</li>
-                        <li data-type="3">3</li>
-                    </ul>
+        <div class="">
+            <div id="LearnPage" class="LearnContent">
+                <div class="doc hidden">
+                    <iframe src="TestPage.html" width="100%" height="710px"></iframe>
                 </div>
-                <div class="card_right">
-                    <div>交卷</div>
+                <div class="video hidden">
+                    <video src="http://192.168.188.114:88/0379c41dffb742ee93319783bd7d2714.mp4" controls="controls" preload="auto"  width="100%"></video>
+                </div>
+                <div class="audio ">
+                    <audio src="https://www.w3school.com.cn/i/song.ogg" controls="controls" ></audio>
                 </div>
             </div>
-
-            <ul class="questionCard_box">
-                <li class="questionCard" data-type="1" >
-                    <p class="questionCard_title"><span class="num">1.</span>
-                        <span class="questuon_title">单选题</span>(<span class="fraction">10</span>分)</p>
-                    <p class="question_Dry">单选题001</p>
-                    <ul class="radio_box">
-                        <li><span class="active" data-id="1">A</span><span>1</span></li>
-                        <li><span data-id="1">B</span><span>2</span></li>
-                        <li><span data-id="1">C</span><span>3</span></li>
-                        <li><span data-id="1">D</span><span>4</span></li>
-                    </ul>
-                    <div class="btn-box clearfix">
-                        <button class="layui-btn layui-btn-normal layui-btn-sm next">下一题</button>
-                        <button class="layui-btn layui-btn-normal layui-btn-sm previous">上一题</button>
+            <div id="AnswerPage" class="hidden content">
+                <div class="answer_card clearfix">
+                    <div class="card_left">
+                        <p>[答题卡]</p>
+                        <ul class="card">
+                            <li class="active" data-type="1">1</li>
+                            <li data-type="2">2</li>
+                            <li data-type="3">3</li>
+                        </ul>
                     </div>
-                </li>
-                <li class="questionCard hidden" data-type="2">
-                    <p class="questionCard_title"><span class="num">1.</span><span
-                            class="questuon_title">多选题</span>(<span class="fraction">10</span>分)</p>
-                    <p class="question_Dry">多选题001</p>
-                    <ul class="checkbox_box">
-                        <li><span data-id="1">A</span><span>1</span></li>
-                        <li><span data-id="1">B</span><span>2</span></li>
-                        <li><span data-id="1">C</span><span>3</span></li>
-                        <li><span data-id="1">D</span><span>4</span></li>
-                    </ul>
-                    <div class="btn-box clearfix">
-                        <button class="layui-btn layui-btn-normal layui-btn-sm next">下一题</button>
-                        <button class="layui-btn layui-btn-normal layui-btn-sm previous">上一题</button>
+                    <div class="card_right">
+                        <div>交卷</div>
                     </div>
-                </li>
-                <li class="questionCard hidden" data-type="3">
-                    <p class="questionCard_title"><span class="num">1.</span><span
-                            class="questuon_title">多选题</span>(<span class="fraction">10</span>分)</p>
-                    <p class="question_Dry">多选题002多选题002多选题002多选题002多选题002</p>
-                    <ul class="checkbox_box">
-                        <li><span data-id="1" class="active">A</span><span>1</span></li>
-                        <li><span data-id="1">B</span><span>2</span></li>
-                        <li><span data-id="1">C</span><span>3</span></li>
-                        <li><span data-id="1">D</span><span>4</span></li>
-                    </ul>
-                    <div class="btn-box clearfix">
-                        <button class="layui-btn layui-btn-normal layui-btn-sm next">下一题</button>
-                        <button class="layui-btn layui-btn-normal layui-btn-sm previous">上一题</button>
-                    </div>
-                </li>
-            </ul>
+                </div>
+                <ul class="questionCard_box">
+                    <li class="questionCard" data-type="1">
+                        <p class="questionCard_title"><span class="num">1.</span>
+                            <span class="questuon_title">单选题</span>(<span class="fraction">10</span>分)</p>
+                        <p class="question_Dry">单选题001</p>
+                        <ul class="radio_box">
+                            <li><span class="active" data-id="1">A</span><span>1</span></li>
+                            <li><span data-id="1">B</span><span>2</span></li>
+                            <li><span data-id="1">C</span><span>3</span></li>
+                            <li><span data-id="1">D</span><span>4</span></li>
+                        </ul>
+                        <div class="btn-box clearfix">
+                            <button class="layui-btn layui-btn-normal layui-btn-sm next">下一题</button>
+                            <button class="layui-btn layui-btn-normal layui-btn-sm previous">上一题</button>
+                        </div>
+                    </li>
+                    <li class="questionCard hidden" data-type="2">
+                        <p class="questionCard_title"><span class="num">1.</span><span
+                                class="questuon_title">多选题</span>(<span class="fraction">10</span>分)</p>
+                        <p class="question_Dry">多选题001</p>
+                        <ul class="checkbox_box">
+                            <li><span data-id="1">A</span><span>1</span></li>
+                            <li><span data-id="1">B</span><span>2</span></li>
+                            <li><span data-id="1">C</span><span>3</span></li>
+                            <li><span data-id="1">D</span><span>4</span></li>
+                        </ul>
+                        <div class="btn-box clearfix">
+                            <button class="layui-btn layui-btn-normal layui-btn-sm next">下一题</button>
+                            <button class="layui-btn layui-btn-normal layui-btn-sm previous">上一题</button>
+                        </div>
+                    </li>
+                    <li class="questionCard hidden" data-type="3">
+                        <p class="questionCard_title"><span class="num">1.</span><span
+                                class="questuon_title">多选题</span>(<span class="fraction">10</span>分)</p>
+                        <p class="question_Dry">多选题002多选题002多选题002多选题002多选题002</p>
+                        <ul class="checkbox_box">
+                            <li><span data-id="1" class="active">A</span><span>1</span></li>
+                            <li><span data-id="1">B</span><span>2</span></li>
+                            <li><span data-id="1">C</span><span>3</span></li>
+                            <li><span data-id="1">D</span><span>4</span></li>
+                        </ul>
+                        <div class="btn-box clearfix">
+                            <button class="layui-btn layui-btn-normal layui-btn-sm next">下一题</button>
+                            <button class="layui-btn layui-btn-normal layui-btn-sm previous">上一题</button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
         </div>
+    </div>
+    <div class="experienceListBox">
+        <p class="experienceTitle">心得学习</p>
+        <ul class="experienceList">
+            <li class="List">
+                <p></p>
+                <p class="time"><span>2019/10/10</span><span>1:10</span></p>
+            </li>
+        </ul>
+        <div class="addExperience clearfix hidden">
+            <textarea class="textExperience" maxlength="2000"></textarea>
+            <div id="page"></div>
+            <button class="layui-btn layui-btn-normal layui-btn-sm add">提交</button>
+            <span class="textNumBox"><span class="textNum">0</span>/2000字</span>
+        </div>
+
     </div>
 </div>
 

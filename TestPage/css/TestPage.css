@@ -1,7 +1,12 @@
-.wrapper.wrapper-content > div {
+.wrapper.wrapper-content {
+    padding: 20px 220px 20px;
+}
+
+.wrapper.wrapper-content .taskBox {
     background: white;
-    min-height: 600px;
+    /*min-height: 600px;*/
     padding: 25px 20px;
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.1);
 }
 
 .con_nav_box .nav_title {
@@ -148,8 +153,148 @@
     border: 2px solid #2ba0e3;
     color: #2ba0e3;
 }
-.btn-box button{
+
+.btn-box button {
     float: right;
     margin-left: 20px;
     box-shadow: 0 1px 4px 0 #2ba0e3;
+}
+
+/*   资源学习通用样式   */
+
+.LearnContent {
+    padding: 10px 0 0 0;
+}
+
+.audio {
+    width: 75%;
+    margin: 0 auto;
+}
+
+.audio audio {
+    width: 100%;
+}
+
+/*  新的列表的绘制   */
+
+.experienceListBox {
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.1);
+    padding: 15px 20px 25px 20px;
+    margin-top: 20px;
+    background: white;
+}
+
+.experienceTitle {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.experienceList li {
+    border-bottom: 1px solid #eaeaea;
+    padding: 10px 5px;
+}
+
+.experienceList li > p {
+    line-height: 28px;
+}
+
+.experienceList .uName {
+    font-weight: 600;
+}
+
+.experienceList li p:last-child {
+    text-align: right;
+}
+
+.experienceList li p:last-child > span {
+    margin-right: 20px;
+    color: #2ba0e3;
+}
+
+.addExperience textarea {
+    resize: none;
+    width: calc(100% - 20px);
+    border: 1px solid #eaeaea;
+    height: 120px;
+    padding: 10px;
+}
+
+.List:last-child {
+    border: 0;
+}
+
+.List:hover {
+    background-color: #f5f5f5;
+}
+
+.addExperience .add {
+    padding: 0 35px;
+    line-height: 26px;
+    height: 26px;
+    margin-top: 10px;
+    float: right;
+}
+
+.addExperience .textNumBox {
+    margin-top: 10px;
+    line-height: 26px;
+    height: 26px;
+    float: right;
+    margin-right: 20px;
+}
+
+#page {
+    float: left;
+}
+
+.layui-laypage a {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.layui-laypage .layui-laypage-skip {
+    background-color: #ffffff;
+}
+
+/*   单独页面兼容  修改了底边的padding值 确保只有视频的时候不会出现滚动条   */
+@media screen and (min-width: 1500px) and (max-width: 1660px) {
+    .wrapper.wrapper-content {
+        padding: 20px 120px 20px;
+    }
+
+    .navbox ul li {
+        padding: 0 15px;
+    }
+}
+
+@media screen and (min-width: 1365px) and (max-width: 1499px) {
+    .wrapper.wrapper-content {
+        padding: 20px 80px 20px;
+    }
+
+    .navbox ul li {
+        padding: 0 15px;
+    }
+}
+
+@media (max-width: 1366px) {
+
+    body,
+    html {
+        width: 1366px;
+    }
+
+    .wrapper.wrapper-content {
+        padding: 20px 50px 20px;
+        width: 1240px;
+    }
+
+    #header {
+        width: 1366px;
+    }
+
+    .navbox ul li {
+        padding: 0 15px;
+    }
 }
