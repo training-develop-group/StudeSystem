@@ -165,10 +165,11 @@ var All = {
                 type: 1,
                 skin: 'logOut',
                 area: ['450px', '180px'],
+				move: false,
                 title: ['注销登陆', 'background-color: #289ef0;text-align: center;font-size: 20px;color:white;'],
                 shade: 0.6,
                 closeBtn: 0,
-                content: "<p class=''>是否确认注销</p><div class='btn-box'><button class='layui-btn layui-btn-sm layui-btn-normal ok'>确认</button><button class='layui-btn layui-btn-sm layui-btn-primary no'>取消</button></div>",
+                content: "<p class=''>是否确认注销</p><div class='btn-box'><button class='layui-btn layui-btn-sm layui-btn-normal ok'>确认</button><button class='layui-btn layui-btn-sm no'>取消</button></div>",
                 success: function (res) {
                     $('.ok').off('click').on('click', function () {
                         layer.close(layer.index);
@@ -189,6 +190,7 @@ var All = {
 	        type: 1,
 	        // skin:'yes',
 	        area: ['400px', '200px'],
+			move: false,
 	        title: ['', 'background-color: #289ef0;'],
 	        // btn: ['确认', '取消'],
 	        content: '<p class="openText">'+options.msg+'</p>' +
@@ -202,15 +204,29 @@ var All = {
 	            switch (options.num){
 					case 1:
 						info.deleteResource(options.resId);
+						layer.close(layer.index);
 						break;
 					case 2:
+						// 试卷
 						info.deletePaper(options.paperId);
+						layer.close(layer.index);
 						break;
                     case 3:
                         info.delectTask(options.taskId);
+						layer.close(layer.index);
                         break;
+					case 4:
+						// 试卷
+						layer.close(layer.index);
+						info.releaseTask();
+						break;
+					case 5:
+						// 试题删除
+						info.deleteQuestions(options.questionId , options.status);
+						layer.close(layer.index);
+						break;
 	            }
-	            layer.close(layer.index);
+	            
 	          });
 	
 	          $('.no').off('click').on('click', function() {
@@ -220,5 +236,62 @@ var All = {
 	      });
 	    }
 	  },
-
+	// 修改方法
+	layuiOpenRename: function(options) {
+		if (options && options != null) {
+			// layui.use("layer", function() {
+			// 	var layer = layui.layer;
+				layer.open({
+					type: 1 //Page层类型
+					,closeBtn: 1
+					,move: false
+					,area: ['780px', '210px']
+					,title: ['重命名', 'background-color: #279ef0;text-align: center;font-size: 20px;line-height: 42px;color:white;padding: 0px;']
+					// ,shade: 0.6 //遮罩透明度
+					,content: '<div class="common-inputLocation">'+
+							'<span>' + options.msg + '</span>'
+							+ '<input type="text" autocomplete="off" class="layui-input common-acquiredValue">'
+							+ '</div>'
+							+ '<div class="common-btn-box">'
+							+ '<button type="button" data-id="' + options.id + '" class="layui-btn layui-btn-primary common-confirm">确认</button>'
+							+ '<button type="button" class="layui-btn layui-btn-primary common-cancel">取消</button>'
+							+ '</div>'
+					,success: function() {
+						$('.common-acquiredValue').val(options.returnValue);
+						// 点击确认
+						$('.common-confirm').off('click').on('click' , function() {
+							var name = $('.common-acquiredValue').val();
+							if (name == ''){
+								layer.msg("重命名不可为空");
+								return false;
+							}
+							var blank = /^[\s]*$/;		//空白符和字符串，字符串
+							if (blank.test(name)){
+								layer.msg("重命名不可全是空格");
+								return false;
+							}
+							switch (options.num){
+								case 1:
+									// 修改方法(试卷)
+									info.rename(options.id , name);
+									break;
+								case 2:
+									// 修改方法(资源)
+									info.updateResName(options.id, name);
+									break;
+								case 3:
+									// 修改方法(任务)
+									info.updateTaskName(options.id, name);
+									break;
+							}
+							layer.close(layer.index);
+						});
+						// 点击取消
+						$('.common-cancel').off('click').on('click' , function() {
+							layer.closeAll();
+						});
+					}
+				});
+			};
+	},
 };

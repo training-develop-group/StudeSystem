@@ -4,6 +4,7 @@ $(function() {
 			logIn();
 		}
 	});
+	$('.errorMsg p').hide();
 	$('.logIn').off('click').on('click', function() {
 		logIn();
 	});
@@ -27,8 +28,12 @@ var logIn = function(){
 			if(res.code == 1){
 				window.location.href = 'HomePage/HomePage.html'
 				console.log(res.msg);
-			}else {
-				layer.msg(res.msg);
+			} else {
+				// layer.msg(res.msg);
+				console.log(res.msg);
+			}
+			if(res.code == 3){
+				$('.errorMsg p').show();
 			}
 		},
 		error: function (e) {

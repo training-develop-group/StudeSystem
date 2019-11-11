@@ -2,16 +2,13 @@ body,
 html {
 	height: 100%;
 	width: 100%;
+	cursor: default;
 }
 
 .title-header {
 	background-color: #289ef0;
 	width: 100%;
 	height: 60px;
-	/* margin-left: 10px; */
-	/* margin: 20px -738px; */
-	/* position: relative;
-    left: 50%; */
 	border-radius: 7px 7px 0 0;
 }
 
@@ -84,17 +81,24 @@ td:nth-child(1) {
 	padding-left: 100px;
 }
 
-td>button {
+/* 资源列表操作的按钮 */
+#contentList td button {
 	width: 55px;
 	height: 25px;
-	margin-right: 20px;
+	margin-right: 10px;
 	background-color: #FFFFFF;
 	border: none;
 	float: left;
 	cursor:pointer;
 }
 
-td button:hover {
+#contentList td button a {
+	padding-right: 0px;
+	color: #606060;
+}
+
+#contentList td button:hover,
+#contentList td button a:hover{
 	color: #777;
 }
 
@@ -146,7 +150,7 @@ th {
 .layui-layer-page .layui-layer-btn a {
 	height: 30px;
 	line-height: 30px;
-	padding: 0 70px;
+	width: 140px;
 	margin: 5px 35px 0;
 }
 
@@ -214,6 +218,17 @@ tr td a {
 	left: 0;
 	right: 0px;
 	top: 590px;
+}
+
+/* 分页 */
+#page {
+	text-align: center;
+	margin-top: 12px;
+}
+
+.layui-layer-btn-c {
+	position: relative;
+	bottom: 15px;
 }
 
 
@@ -296,7 +311,7 @@ tr td a {
 /* 任务对象选择人员---------------------------------------------------------------------- */
 /* 整体 */
 .taskUsers {
-	width: 300px;
+	width: 240px;
 	height: 120px;
 	overflow-y: auto;
 	border: 1px solid #dadada;
@@ -316,22 +331,8 @@ tr td a {
 .taskUsers p {
 	line-height: 20px;
 	margin-bottom: 5px;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	
-	/* overflow: hidden;
-	text-overflow: ellipsis;
-	display: -webkit-box;
-	-webkit-line-clamp: 1;//设置行数，1超出一行
-	-webkit-box-orient: vertical; */
-	
 	width: 100px;
-	/* white-space: nowrap;
-	​over-flow: hidden;
-	text-overflow: ellipsis; */
-	
-	
+	overflow: auto;
 }
 
 /* 名字左浮动 */
@@ -537,4 +538,17 @@ i {
 /* 日期按钮选中颜色 */
 .layui-laydate-footer span:hover{
 	color: #279ef0 !important;
+}
+
+.taskObject {
+	float: left;
+	display: block;
+	padding: 9px 15px;
+	font-weight: 400;
+	line-height: 20px;
+}
+
+/* 选择人员hover */
+.taskUsers p:hover{
+	background-color: #f2f2f2;
 }

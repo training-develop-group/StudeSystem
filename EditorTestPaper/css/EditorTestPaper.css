@@ -232,6 +232,7 @@ img{
 }
 .input-box label{
 	text-align: left;
+	font-size: 16px;
 }
 .newTestPaperConfirm{
 	width: 160px;

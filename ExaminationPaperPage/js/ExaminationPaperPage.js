@@ -115,8 +115,9 @@ $(function() {
 	$('.selectPersonnel').click(function() {
 		layer.open({
 			type: 1,
-			title: ['选择人员', 'color:#fff;background-color:#40AFFE;border-radius: 7px 7px 0 0;overflow-x: hidden;font-size: 16px;text-align: center;'],
+			title: ['选择人员', 'color:#fff;background-color:#40AFFE;border-radius: 7px 7px 0 0;overflow-x: hidden;font-size: 20px;text-align: center; padding: 0;'],
 			shadeClose: true,
+			move: false,
 			shade: 0.5,
 			skin: 'myskin',
 			area: ['600px', '50%'],
@@ -218,31 +219,11 @@ var info = {
 			// 多选题数
 			var many = $(this).parent().parent().find("td:nth-child(4)").text();
 			if (single == 0 && many == 0){
-				layui.use("layer", function() {
-					var layer = layui.layer;
-					layer.open({
-						type: 1 //Page层类型
-						,closeBtn: 1
-						,area: ['400px', '200px']
-						,title: ['', 'background-color: #279ef0']
-						// ,shade: 0.6 //遮罩透明度
-						,content: '<div class="confirmRelease">此试卷没有试题，确认发布？</div>'
-							+ '<div class="CR-btn-box">'
-							+ '<button type="button" class="layui-btn layui-btn-normal layui-btn-sm CR-btnConfirm">确认</button>'
-							+ '<button type="button" class="layui-btn layui-btn-normal layui-btn-sm CR-btnCancel">取消</button>'
-							+ '</div>'
-					});
-					// 点击确认
-					$('.CR-btnConfirm').click(function() {
-						layer.closeAll();
-						// 调用添加方法
-						info.releaseTask();
-					});
-					// 点击取消
-					$('.CR-btnCancel').click(function() {
-						layer.closeAll();
-					});
-				});
+				// (待改)
+				All.layuiOpen({
+					num: 4,
+					msg: '此试卷没有试题，确认发布？'
+				})
 			} else {
 				info.releaseTask();
 			}
@@ -261,34 +242,13 @@ var info = {
 		$('.edit').click(function() {
 			var rename = $(this).parent().parent().find('.rename').text();
 			var paperId =$(this).attr('data-id');
-			layui.use("layer", function() {
-				var layer = layui.layer;
-				layer.open({
-					type: 1 //Page层类型
-					,closeBtn: 1
-					,area: ['789px', '210px']
-					,title: ['重命名', 'background-color: #279ef0;text-align: center;font-size: 20px;line-height: 42px;color:white;padding: 0px;']
-					// ,shade: 0.6 //遮罩透明度
-					,content: '<div class="inputLocation">'+
-							'<span>重命名</span>'
-							+ '<input type="text" autocomplete="off" class="layui-input acquiredValue">'
-							+ '<div class="btn-box">'
-							+ '<button type="button" class="layui-btn layui-btn-primary renameConfirm">确认</button>'
-							+ '<button type="button" class="layui-btn layui-btn-primary renameCancel">取消</button>'
-							+ '</div>'
-						+ '</div>'
-				});
-				$('.acquiredValue').val(rename);
-				// 点击确认
-				$('.renameConfirm').click(function() {
-					// 修改方法
-					info.rename(paperId);
-				});
-				// 点击取消
-				$('.renameCancel').click(function() {
-					layer.closeAll();
-				});
-			});
+			// 公共修改弹出框
+			All.layuiOpenRename({
+				num: 1,
+				id: paperId,
+				returnValue: rename,
+				msg: '试卷名称'
+			})
 		});
 		if (data.total > 12){
 			info.Page(data.total , data.pageNum);
@@ -337,6 +297,7 @@ var info = {
 			layer.open({
 				type: 1 //Page层类型
 				,closeBtn: 1
+				,move: false
 				,area: ['789px', '210px']
 				,title: ['新建试卷', 'background-color: #279ef0;text-align: center;font-size: 20px;line-height: 42px;color:white; cursor: move; padding: 0']
 				// ,shade: 0.6 //遮罩透明度
@@ -373,7 +334,7 @@ var info = {
 			return false;
 		}
 		$.ajax({
-			url : MCUrl + 'manage_system/paper/paper',
+			url : MCUrl + 'manage_system/paper/paper',	
 			data: {
 				'paperName': paperName
 			},
@@ -391,17 +352,7 @@ var info = {
 		});
 	},
 	// 修改方法(重命名)
-	rename : function(paperId){
-		var paperName = $('.acquiredValue').val();
-		if (paperName == ''){
-			layer.msg("重命名不可为空");
-			return false;
-		}
-		var blank = /^[\s]*$/;		//空白符和字符串，字符串
-		if (blank.test(paperName)){
-			layer.msg("重命名不可全是空格");
-			return false;
-		}
+	rename : function(paperId , paperName){
 		var data = {
 			'paperId': paperId,
 			'paperName': paperName,
@@ -463,6 +414,7 @@ var info = {
 			title: ['发布任务', 'color:#fff;background-color:#40AFFE;border-radius: 7px 7px 0 0;text-align: center; font-size: 20px; padding: 0;'],
 			shadeClose: true,
 			shade: 0.8,
+			move: false,
 			skin: 'myskin',
 			area: ['700px', '80%'],
 			content: $('#addTaskPage'),

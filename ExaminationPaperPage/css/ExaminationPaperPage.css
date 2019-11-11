@@ -90,6 +90,10 @@ th {
 td{
 	font-size: 14px;
 }
+/* 选择人员(小手) */
+.selectPersonnel span{
+	cursor:pointer;
+}
 /* td样式 */
 #examinationPaperInformation td:hover{
 	cursor: default;
@@ -140,9 +144,12 @@ a{
 	display: inline;
 }
 .btn-box{
-	width: 400px;
-	margin: 35px auto 0;
-	display: block;
+	width: 360px;
+	position: absolute;
+	margin: 0 auto;
+	left: 0;
+	right: 0;
+	bottom: 25px;
 }
 #confirm{
 	margin-left: 210px;
@@ -164,7 +171,7 @@ a{
 	margin-left: 25px;
 }
 .renameConfirm{
-	width: 160px;
+	width: 140px;
 	height: 30px;
 	background-color: #279ef0;
 	border: 1px solid #279ef0;
@@ -174,16 +181,13 @@ a{
 	color: white;
 }
 .renameCancel{
-	width: 160px;
+	width: 140px;
 	height: 30px;
-	background-color: fff;
-	border: 1px solid #dedede;
 	line-height: 30px;
 	text-align: center;
-	color: black;
 }
 .newTestPaperConfirm{
-	width: 160px;
+	width: 140px;
 	height: 30px;
 	background-color: #279ef0;
 	border: 1px solid #279ef0;
@@ -196,17 +200,11 @@ a{
 .newTestPaperConfirm:hover {
 	color: #fff;
 }
-#newTestPaper:hover {
-	color: #EAEAEA;
-}
 .newTestPaperCancel{
-	width: 160px;
+	width: 140px;
 	height: 30px;
-	background-color: fff;
-	border: 1px solid #dedede;
 	line-height: 30px;
 	text-align: center;
-	color: black;
 }
 .layui-btn-primary:hover {
 	border-color: #279ef0;
@@ -247,13 +245,13 @@ a{
 	margin: 0 0 0 35px;
 }
 .selectPersonnel{
-	margin: 0 0 0 -10px;
+	margin: 0 0 0 15px;
 }
 .selectPersonnel i{
 	line-height: 38px;
 }
 .taskUsers{
-	width: 300px;
+	width: 241px;
 	height: 140px;
 	overflow-y: auto;
 	border: 1px solid #DADADA;
@@ -263,7 +261,11 @@ a{
 .taskUsers p {
 	line-height: 20px;
 	margin-left: 20px;
-	margin-right: 40px;
+	/* margin-right: 40px; */
+}
+/* 选择人员hover */
+.taskUsers p:hover{
+	background-color: #f2f2f2;
 }
 .taskUsers p i{
 	float: right;
@@ -281,6 +283,7 @@ a{
 	width: 150px;
 	margin: 0 auto;
 	display: block;
+	color: white;
 }
 label{
 	font-size: 16px;
@@ -291,6 +294,9 @@ label{
 }
 .selectPapers .paperAdd{
 	color: #606060;
+}
+.layui-form-item i{
+	color: #5FB878;
 }
 /* ...搜索框 */
 .iconSearch {
@@ -342,7 +348,7 @@ i{
 	width: 230px;
 	margin: 34px auto 0;
 }
-.CR-btnConfirm{
+.CR-btnConfirm{	
 	margin: 0px 40px 0px 0px;
 }
 .CR-btnConfirm , .CR-btnCancel{
@@ -355,4 +361,12 @@ i{
 	white-space: nowrap;
 	text-overflow: ellipsis;
 	overflow: hidden;
+}
+.Release_btn{
+	position: absolute;
+	margin: 0 auto;
+	width: 140px;
+	left: 0;
+	right: 0;
+	bottom: 25px;
 }

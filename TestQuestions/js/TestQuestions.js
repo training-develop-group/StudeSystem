@@ -106,12 +106,23 @@ var info = {
 					info.viewPopup($(this).parents('.operation').find('input').val());
 				});
 				$('.questions .operation .deleteQuestions').off('click').on('click', function() {
-					info.deleteQuestions($(this).parents('.operation').find('input').val(), $(this).parents('.operation').find(
-						'p').text());
-
+					var questionId = $(this).parents('.operation').find('input').val();
+					var status = $(this).parents('.operation').find('p').text();
+					All.layuiOpen({
+						num: 5,
+						status: status,
+						questionId: questionId,
+						msg: '是否删除该试题'
+					})
 				});
 				$('.Content .TestQuestionsBrowse .Statistics .num').text(res.data.total);
-				info.page(res.data, curr);
+				if (res.data.total > 10){
+					info.page(res.data, curr);
+					// 判断paging里是否头内容↓
+				} else if ($('#test1').is(':empty') == false) {
+					// 清空#paging里的内容与标签
+					$('#test1').empty();
+				}
 			}
 		});
 	},
@@ -146,8 +157,10 @@ var info = {
 				dataType: 'json',
 				type: 'DELETE',
 				success(res) {
-					layer.msg('删除成功(弹窗待样式)');
-					location.reload();
+					layer.msg('删除成功');
+					info.selectQuestion(1);
+					console.log('删除成功');
+					// location.reload();
 				},
 				error(e) {
 
@@ -278,12 +291,12 @@ var info = {
 					'<p class="outerFrame"><input type="radio" lay-skin="primary" name="choiceItem" value="' +
 					letter +
 					'" title="' + letter +
-					'"><textarea name="" required lay-verify="required" class="layui-textarea option"></textarea></p>');
+					'"><textarea name="" required lay-verify="required" maxlength="30" class="layui-textarea option"></textarea></p>');
 			} else if (judged == false) {
 				$("#newlyBuild .choiceItem").append(
 					'<p class="outerFrame"><input type="checkbox" lay-skin="primary" name="choiceItem" value="' + letter +
 					'" title="' + letter +
-					'"><textarea name="" required lay-verify="required" class="layui-textarea option"></textarea></p>');
+					'"><textarea name="" required lay-verify="required" maxlength="30" class="layui-textarea option"></textarea></p>');
 			}
 			// 重新渲染
 			layui.use('form', function() {
@@ -440,14 +453,14 @@ var info = {
 									item.ref + '"/><input type="radio" name="choiceItem" value="' +
 									item.optionType +
 									'" title="' + item.optionType +
-									'" checked><textarea name="" required lay-verify="required" class="layui-textarea option">' + item.content +
+									'" checked><textarea name="" required lay-verify="required" maxlength="30" class="layui-textarea option">' + item.content +
 									'</textarea></p>');
 							} else {
 								$("#editBuild .choiceItem").append('<p class="outerFrame"><input class="ref" type="hidden" value = "' +
 									item.ref + '"/><input type="radio" name="choiceItem" value="' +
 									item.optionType +
 									'" title="' + item.optionType +
-									'"><textarea name="" required lay-verify="required" class="layui-textarea option">' + item.content +
+									'"><textarea name="" required lay-verify="required" maxlength="30" class="layui-textarea option">' + item.content +
 									'</textarea></p>');
 							}
 
@@ -459,14 +472,14 @@ var info = {
 									'<p class="outerFrame"><input class="ref" type="hidden" value = "' + item.ref +
 									'"/><input type="checkbox" lay-skin="primary" name="choiceItem" value="' + item.optionType +
 									'" title="' + item.optionType +
-									'" checked><textarea name="" required lay-verify="required" class="layui-textarea option">' + item.content +
+									'" checked><textarea name="" required lay-verify="required" maxlength="30" class="layui-textarea option">' + item.content +
 									'</textarea></p>');
 							} else {
 								$("#editBuild .choiceItem").append(
 									'<p class="outerFrame"><input class="ref" type="hidden" value = "' + item.ref +
 									'"/><input type="checkbox" lay-skin="primary" name="choiceItem" value="' + item.optionType +
 									'" title="' + item.optionType +
-									'"><textarea name="" required lay-verify="required" class="layui-textarea option">' + item.content +
+									'"><textarea name="" required lay-verify="required" maxlength="30" class="layui-textarea option">' + item.content +
 									'</textarea></p>');
 							}
 
@@ -491,7 +504,7 @@ var info = {
 											'"/><input type="radio" name="choiceItem" value="' +
 											item.optionType +
 											'" title="' + item.optionType +
-											'"checked><textarea name="" required lay-verify="required" class="layui-textarea option">' +
+											'"checked><textarea name="" required lay-verify="required" maxlength="30" class="layui-textarea option">' +
 											item.content +
 											'</textarea></p>');
 									} else {
@@ -500,7 +513,7 @@ var info = {
 											'"/><input type="radio" name="choiceItem" value="' +
 											item.optionType +
 											'" title="' + item.optionType +
-											'"><textarea name="" required lay-verify="required" class="layui-textarea option">' + item.content +
+											'"><textarea name="" required lay-verify="required" maxlength="30" class="layui-textarea option">' + item.content +
 											'</textarea></p>');
 									}
 									type = 1;
@@ -512,7 +525,7 @@ var info = {
 											'"/><input type="checkbox" lay-skin="primary" name="choiceItem" value="' +
 											item.optionType +
 											'" title="' + item.optionType +
-											'"checked><textarea name="" required lay-verify="required" class="layui-textarea option">' +
+											'"checked><textarea name="" required lay-verify="required" maxlength="30" class="layui-textarea option">' +
 											item.content +
 											'</textarea></p>');
 									} else {
@@ -521,7 +534,7 @@ var info = {
 											'"/><input type="checkbox" lay-skin="primary" name="choiceItem" value="' +
 											item.optionType +
 											'" title="' + item.optionType +
-											'"><textarea name="" required lay-verify="required" class="layui-textarea option">' + item.content +
+											'"><textarea name="" required lay-verify="required" maxlength="30" class="layui-textarea option">' + item.content +
 											'</textarea></p>');
 									}
 
@@ -565,12 +578,12 @@ var info = {
 						$("#editBuild .choiceItem").append('<p class="outerFrame"><input type="radio" name="choiceItem" value="' +
 							letter +
 							'" title="' + letter +
-							'"><textarea name="" required lay-verify="required" class="layui-textarea option"></textarea></p>');
+							'"><textarea name="" required lay-verify="required" maxlength="30" class="layui-textarea option"></textarea></p>');
 					} else if (type = 2) {
 						$("#editBuild .choiceItem").append(
 							'<p class="outerFrame"><input type="checkbox" lay-skin="primary" name="choiceItem" value="' + letter +
 							'" title="' + letter +
-							'"><textarea name="" required lay-verify="required" class="layui-textarea option"></textarea></p>');
+							'"><textarea name="" required lay-verify="required" maxlength="30" class="layui-textarea option"></textarea></p>');
 					}
 					// 重新渲染
 					layui.use('form', function() {
@@ -730,7 +743,7 @@ var info = {
 			layer.open({
 				type: 1,
 				title: ['新建试题',
-					'background-color: #279ef0;text-align: center;font-size: 16px;line-height: 50px;color:white;letter-spacing: 5px;padding: 0px;'
+					'background-color: #279ef0;text-align: center;font-size: 16px;line-height: 43px;color:white;padding: 0px;font-size: 20px;'
 				],
 				area: ['660px', '755px'],
 				resize: false,
@@ -740,22 +753,21 @@ var info = {
 					info.addQuestion();
 				}
 			});
-
 		});
-
-
-
 	},
 	viewPopup: function(questionId) {
 		layer.open({
 			type: 1,
 			title: false,
 			area: ['600px', '300px'],
-			closeBtn: 0,
+			closeBtn: 1,
 			resize: false,
 			move: false,
+			title: ['查看解析',
+				'background-color: #279ef0;text-align: center;border-radius: 5px 5px 0 0;font-size: 16px;line-height: 43px;color:white;padding: 0px;font-size: 20px;'
+			],
 			content: $('.PopupAnalysis'),
-			btn: '确认',
+			// btn: '确认',
 			btnAlign: 'c',
 			success: function() {
 				info.viewAnswer(questionId);
@@ -767,7 +779,7 @@ var info = {
 		layer.open({
 			type: 1,
 			title: ['编辑试题',
-				'background-color: #279ef0;text-align: center;font-size: 16px;line-height: 50px;color:white;letter-spacing: 5px;padding: 0px;'
+				'background-color: #279ef0;text-align: center;font-size: 16px;line-height: 43px;color:white;padding: 0px;font-size: 20px;'
 			],
 			area: ['660px', '755px'],
 			resize: false,

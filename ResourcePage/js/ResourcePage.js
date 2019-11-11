@@ -134,13 +134,14 @@ var info = {
 						// console.log(item.resId);
 						// console.log(res);
 						// console.log(res.data);
+						item.resName = $('<div>').text(item.resName).html();
 						html.push('<tr>');
 						html.push('<td><a href="#" class="getResource" title="'+ item.resName +'" resId="' + item.resId + '">' + item.resName + '</a></td>');
 						html.push('<td class="centerText">' + '未发布' + '</td>');
 						if (item.resType == 1) { //判断资源类型
 							item.resType = '视频'
 						} else if (item.resType == 2) {
-							item.resType = '音频'
+							item.resType = '音频	'
 						} else if (item.resType == 3) {
 							item.resType = '文档'
 						} else {
@@ -148,10 +149,10 @@ var info = {
 						}
 						html.push('<td class="centerText">' + item.resType + '</td>');
 						html.push('<td class="centerText">' + getFileSize(item.resSize) + '</td>');
-						html.push('<td><button class="editResName" resId="' + item.resId + '" resName="' + item.resName +
-							'">重命名</button><button class="release" resName="' + item.resName + '" resId="' + item.resId +
+						html.push('<td><button class="editResName" resId="' + item.resId + '" resName="' + item.resName + '">重命名</button><button class="release" resName="' + item.resName + '" resId="' + item.resId +
 							'">发布</button><button class="deleteList" resId="' + item.resId +
-							'">删除</button></td>');
+							'">删除</button><button class="download" path="'+ item.path +
+							'"><form><a href="http://192.168.188.109:8888/manage_system/resource/download">下载</a></form></button></td>');
 						html.push('</tr>');
 					})
 					$('#contentList').html(html.join(''));
@@ -170,10 +171,12 @@ var info = {
 
 					//编辑资源名点击事件
 					$('.editResName').off('click').on('click', function() {
+						// var a = this.parentElement.parentElement.firstElementChild.outerText;
+						// console.log(a);
 						var resId = $(this).attr("resId"); //点击后获取获取到按钮属性
-						var resName = $(this).attr("resName");
-						$('.rename').val(resName); //编辑资源名返回值
-						info.updateResNamePopup(resId); //调用修改弹出层传参（resId）
+						var resName = this.parentElement.parentElement.firstElementChild.outerText;
+						// $('.rename').val(resName); //编辑资源名返回值
+						info.updateResNamePopup(resId , resName); //调用修改弹出层传参（resId）
 
 					});
 
@@ -203,7 +206,7 @@ var info = {
 					
 
 					//弹出选择人员
-					$('.selectPersonnel').click(function() {
+					$('.selectPersonnel').off('click').on('click', function() {
 						layer.open({
 							type: 1,
 							title: ['选择人员','color:#fff;background-color:#40AFFE;text-align: center;font-size:20px'],
@@ -211,6 +214,7 @@ var info = {
 							shade: 0.2,
 							skin: 'myskin',
 							area: ['600px', '450px'],
+							move: false,
 							content: $('#selectPersonnel'),
 							success: function() {
 
@@ -223,14 +227,11 @@ var info = {
 					$('.usersSelectOk').click(function() {
 						var Html = [];
 						$.each($("[name='Staff']:checked"), function(i, val) {
-							// Html.push('<span>');
-							Html.push('<p>');
-							Html.push('<span>'+ $(this).siblings('i').text() +'</span>');
-							Html.push('<i data-id="' + $(this).val() + '" class="layui-icon layui-icon-close deleteUserName" style="font-size: 20px; margin-left:200px;"></i>');
-							Html.push('</p>');
-							// Html.push('</span>');
-							// <p class="clearfix"><span>姓名</span><i class="layui-icon">&#x1006;</i></p>
-						})
+										Html.push('<p>' + $(this).siblings('i').text() + '<input type="text"  hidden="" id="" value="' + $(this).val() +
+											'" />  <i  data-id="' + $(this).val() +
+											'" class="layui-icon layui-icon-close deleteUserName" style="font-size: 20px;"></i></p>'
+										)
+									})
 						$('.taskUsers').html(Html.join(''));
 
 						
@@ -281,6 +282,15 @@ var info = {
 							msg: '是否删除资源？'
 						});
 					});
+					
+					//下载资源
+					$('.download').off('click').on('click', function() {
+						var resName = this.parentElement.parentElement.firstElementChild.outerText;
+						var path = $(this).attr("path");
+						console.log(resName);
+						console.log(path);
+						info.download(resName, path);
+					});
 
 				} else {
 					layer.msg('获取资源列表操作失败');
@@ -292,6 +302,32 @@ var info = {
 			}
 		});
 	},
+
+	download: function(resName, path) {
+		var data = {
+			'resName': resName,
+			'path': path
+		}
+		$.ajax({
+			url: TDXUrl+ 'manage_system/resource/download',
+			data: data,
+			dataType: 'json',
+			// type: 'GET',
+			// contentType: 'application/octet-stream',
+			success(res) {
+				
+					// console.log(res);
+					layer.msg('下载成功');
+
+			},
+			error(e) {
+				layer.msg('下载操作错误');
+			}
+			
+		})
+	},
+
+
 
 
 	/**
@@ -377,6 +413,7 @@ var info = {
 			area: ['1296px', '774px'],
 			title: ['查看', 'background-color: #289ef0;text-align: center;font-size: 20px;color:white;'],
 			shade: 0.6,
+			move: false,
 			content: $('#viewResourceBox'),
 			success: function() {
 				// window.open('http://192.168.188.109:8848/0625ae7ec85c4b94bf1cde70d2692b67.mp4');
@@ -418,6 +455,7 @@ var info = {
 			area: ['800px', '300px'],
 			title: ['查看', 'background-color: #289ef0;text-align: center;font-size: 20px;color:white;'],
 			shade: 0.6,
+			move: false,
 			content: $('#viewResourceBox'),
 			success: function() {
 				var html = [];
@@ -439,14 +477,24 @@ var info = {
 			area: ['850px', '900px'],
 			title: ['查看', 'background-color: #289ef0;text-align: center;font-size: 20px;color:white;'],
 			shade: 0.6,
+			move: false,
 			content: $('#viewResourceBox'),
 			success: function() {
 				console.log(path);
-				var path1 = path.substring(0, path.lastIndexOf('.'));
-				console.log(path1);
-				var html = [];
-				html.push('<iframe src="http://192.168.188.109:8848/' + path1 + '.pdf" width="800px" height="800px"></iframe>');
-				$('#viewResourceBox').html(html.join(''));
+				var extPath = path.substring(path.lastIndexOf('.'));
+				console.log(extPath);
+				if (extPath == '.txt') {
+					var html = [];
+					html.push('<iframe src="http://192.168.188.109:8848/' + path + '" width="800px" height="800px"></iframe>');
+					$('#viewResourceBox').html(html.join(''));
+				} else {
+					var pdfPath = path.substring(0, path.lastIndexOf('.'));
+					console.log(pdfPath);
+					var html = [];
+					html.push('<iframe src="http://192.168.188.109:8848/' + pdfPath + '.pdf" width="800px" height="800px"></iframe>');
+					$('#viewResourceBox').html(html.join(''));
+				}
+				
 			}
 		});
 	},
@@ -520,48 +568,21 @@ var info = {
 	 * 编辑资源名称弹出层
 	 * @param {Object} resId
 	 */
-	updateResNamePopup: function(resId) {
-		console.log(JumpPageNum);
-		// return false;
-
-		layer.open({
-			type: 1,
-			area: ['790px', '220px'],
-			title: ['编辑资源名', 'background-color: #289ef0;text-align: center;font-size: 20px;color:white;'],
-			shade: 0.6,
-			btn: ['确认', '取消'],
-			btnAlign: 'c',
-			content: $('#editResNameBox'),
-			/**
-			 * 因为修改资源名方法里面有layer.msg，
-			 * 所以有必要把这个弹出层的index作为参数传给修改资源名方法
-			 * 要不然用layer.index会关闭l最新的msg
-			 * @param {Object} index
-			 */
-			yes: function(index) {
-				var resName = $('.rename').val();
-				info.updateResName(resId, resName, index);
-			},
-		});
+	updateResNamePopup: function(resId , resName) {
+		All.layuiOpenRename({
+			num: 2,
+			id: resId,
+			returnValue: resName,
+			msg: '资源名称'
+		})
 	},
-
-
 	//根据Id来修改资源名
-	updateResName: function(resId, resName, index) {
-		console.log(resName);
-		if (resName == '') {
-			layer.msg('文件名称不能为空');
-			return false;
-		} else if (resName.match(/^[ ]*$/)) {
-			layer.msg('文件名称不能全部为空格');
-			return false;
-		}
+	updateResName: function(resId, resName) {
 		
-		layer.close(index);
 
 		var data = {
 			'resId': resId,
-			'resName': resName.replace(/</g, '').replace(/>/g, '').replace(/"/g, ''),
+			'resName': resName,
 		}
 
 		$.ajax({
@@ -632,6 +653,7 @@ var info = {
 					// closeBtn: 0,
 					btn: ["确认"],
 					btnAlign: 'c',
+					move: false,
 					content: $('#popup'),
 					end: function() {
 						// 刷新列表
@@ -751,6 +773,8 @@ var info = {
 	 * @param {Object} userId
 	 */
 	openAddRolePage: function(userId) {
+		$('#test1').val(firstToday);
+		$('#test2').val(lastToday);
 		layer.open({
 			type: 1,
 			title: ['发布任务', 'color:#fff;background-color:#40AFFE;border-radius: 7px;text-align: center; font-size: 20px;'],
@@ -758,6 +782,7 @@ var info = {
 			shade: 0.8,
 			skin: 'myskin',
 			area: ['700px', '750px'],
+			move: false,
 			content: $('#addTaskPage'),
 			success: function() {
 				layui.use('form', function() {
@@ -920,6 +945,19 @@ var dateFormata = function(time) {
 	// 拼接
 	return year + "-" + month + "-" + day + " " + (hours) + ":" + minutes + ":" + seconds;
 }
-
-
-
+// 时间设置
+var today = '';
+var firstToday = '';
+var lastToday = '';
+$(document).ready(function () {
+	var time = new Date();
+	var day = ("0" + time.getDate()).slice(-2);
+	var newDay = ("0" + (time.getDate() + 1)).slice(-2);
+	var month = ("0" + (time.getMonth() + 1)).slice(-2);
+	var hours = time.getHours();
+	var minutes = time.getMinutes();
+	var seconds = time.getDay();
+	// today = time.getFullYear() + "-" + (month) + "-" + (day);
+	firstToday = time.getFullYear() + "-" + (month) + "-" + (day) + " " + hours + ":" + minutes + ":" + seconds;
+	lastToday = time.getFullYear() + "-" + (month) + "-" + (newDay) + " " + hours + ":" + minutes + ":" + seconds;
+});

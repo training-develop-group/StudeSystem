@@ -199,10 +199,12 @@ body {
 }
 
 .logOut .btn-box {
-    width: 202px;
+    width: 206px;
     margin: 30px auto 0;
 }
-
+.ok{
+	font-size: 14px;
+}
 .logOut .layui-btn + .layui-btn {
     margin-left: 30px
 }
@@ -210,6 +212,7 @@ body {
 .logOut .layui-layer-title {
     padding: 0 20px 0 20px;
 }
+
 /* ----------------------(删除)弹窗的css↓---------------------------- */
 .yes,
 .no {
@@ -246,6 +249,47 @@ body {
     margin-top: 36px;
     font-size: 18px;
 }
+
+/* ------------------------------------重命名弹窗------------------------------------ */
+
+.common-inputLocation{
+	width: 595px;
+	margin: 25px auto 0;
+}
+.common-inputLocation span{
+	font-size: 16px;
+}
+.common-inputLocation .common-acquiredValue{
+	width: 500px;
+	margin: 0 0 0 30px;
+	display: inline;
+}
+.common-btn-box{
+	width: 370px;
+	position: absolute;
+	margin: 0 auto 0;
+	left: 0;
+	right: 0;
+	bottom: 25px;
+}
+.common-btn-box .common-confirm , .common-btn-box .common-cancel{
+	width: 140px;
+	padding: 0;
+	height: 30px;
+	line-height: 30px;
+}
+.common-btn-box .common-confirm{
+	margin: 0 45px 0 0;
+	background-color: #279ef0;
+	color: white;
+	border: 1px solid #279ef0;
+}
+.common-btn-box .common-cancel{
+	margin: 0 0 0 45px;
+}
+
+
+
 /* ----------------------(删除)弹窗的css↑---------------------------- */
 
 @media screen and (min-width: 1500px) and (max-width: 1660px) {

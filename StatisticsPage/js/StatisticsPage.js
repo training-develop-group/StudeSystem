@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	TableDataRequest();
+	TableDataRequest(1);
 });
 
 // 分页
@@ -12,50 +12,32 @@ $(function(){
 			type: 1,
 			num:6
 		});
-		layui.use(['layer','form','laypage'],function(){
-			var layer = layui.layer,
-				form = layui.form;
-			var laypage = layui.laypage,
-				layer = layui.layer;
-			laypage.render({
-				elem:'page',
-				count:100,
-				theme:'#1E9FFF',
-				layout:['prev','page','next','limits','skip'],
-				jump:function(obj){
-					console.log(obj)
-				}
-			});
-		});
-		
 		$('.search').keypress(function(e) {
-			
 			if (e.which == 13) {
-				console.log(1);
-				TableDataRequest();
+				TableDataRequest(1);
 			}
 		});
 	});
 	
 });
-var TableDataRequest = function() {
+var TableDataRequest = function(pageNum) {
 	var userName = $('.search').val();
 	if(userName == undefined){
 		userName = '';
 	}
 	var data = {
-		'userName': userName
+		'userName': userName,
+		'pageNum' : pageNum,
+		'pageSize' : 12
 	};
 	$.ajax({
-		url: 'http://192.168.188.151:8888/manage_system/stat/list',
+		url: HWWUrl + 'manage_system/stat/list',
 		data: data,
 		dataType: 'json',
 		type: 'GET',
 		success(res) {
-			console.log(res);
 			var Html = [];
-			
-			res.data.forEach(function(item, index) {
+			res.data.list.forEach(function(item, index) {
 				Html.push('<tr>');
 				Html.push('<td>' + item.studentName + '</td>');
 				Html.push('<td class="Centered">' + item.taskNumber + '</td>');
@@ -66,6 +48,31 @@ var TableDataRequest = function() {
 				Html.push('</tr>');
 			});
 			$('#contentList').html(Html.join(''));
+			if(res.data.total > 12){
+				page(res.data);
+			}
 		}
+	});
+}
+// 分页
+var page = function(data){
+	layui.use('laypage', function() {
+		var laypage = layui.laypage;
+		laypage.render({
+			elem: 'page' //注意，这里的 test1 是 ID，不用加 # 号
+				,
+			count: data.total //数据总数，从服务端得到
+				,
+			limit: '12',
+			theme: '#1E9FFF',
+			curr: data.pageNum,
+			groups: '5',
+			layout:['prev','page','next','limits','skip'],
+			jump: function(item, first) {
+				if (!first) {
+					TableDataRequest(item.curr)
+				}
+			}
+		});
 	});
 }

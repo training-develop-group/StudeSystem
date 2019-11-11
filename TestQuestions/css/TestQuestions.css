@@ -108,7 +108,7 @@ img {
 }
 
 .C-Content ul {
-	width: 95%;
+	width: 100%;
 }
 
 .Q-question span:nth-child(1) {
@@ -177,7 +177,7 @@ img {
 }
 
 .selectionType {
-	margin-top: 30px;
+	margin-top: 20px;
 	margin-left: 100px;
 }
 
@@ -214,9 +214,7 @@ img {
 
 /* 选项的单选框的位置 */
 .choiceItem .layui-form-radio {
-	margin-top: 17px;
-	margin-left: 0px !important;
-	margin: 14px 8px 0 0;
+	margin: 32px 8px 0 0;
 }
 
 /* 单选框 */
@@ -230,9 +228,7 @@ img {
 
 /* 多选框 */
 .layui-form-checkbox[lay-skin=primary] {
-	margin-top: 20px;
-	/* margin-left: 18px; */
-	margin-right: 3px;
+	margin: 37px 3px 0 0;
 	padding-left: 40px;
 }
 
@@ -293,7 +289,8 @@ img {
 }
 
 .ViewParsing P {
-	margin-left: 170px;
+	margin-left: 150px;
 	margin-top: 10px;
 	font-size: 16px;
+	width: 140px;
 }

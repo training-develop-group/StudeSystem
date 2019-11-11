@@ -44,17 +44,20 @@ $(function() {
 		laydate.render({
 			elem: '#test1', //指定元素,
 			theme: '#40AFFE',
-			type: 'datetime'
+			type: 'datetime',
+			value:new Date()
 		});
 		laydate.render({
 			elem: '#test2', //指定元素,
 			theme: '#40AFFE',
-			type: 'datetime'
+			type: 'datetime',
+			value:new Date()
 		});
 		All.getMenu({
 			search: 1,
 			type: 1,
 			num: 3
+			
 		});
 		$('.search').keypress(function(e) {
 			if (e.which == 13) {
@@ -124,7 +127,7 @@ $(function() {
 		layer.open({
 			type: 1,
 			title: ['选择人员',
-				'color:#fff;background-color:#40AFFE;;border-radius: 7px ;overflow-x: hidden; text-align: center;'
+				'color:#fff;background-color:#40AFFE;;border-radius: 7px ;overflow-x: hidden; text-align: center;font-size: 20px;'
 			],
 			shadeClose: true,
 			shade: 0.8,
@@ -140,7 +143,7 @@ $(function() {
 	$('.selectPapers').click(function() {
 		layer.open({
 			type: 1,
-			title: ['选择试卷', 'color:#fff;background-color:#40AFFE; text-align: center;'],
+			title: ['选择试卷', 'color:#fff;background-color:#40AFFE; text-align: center;font-size: 20px;'],
 			shadeClose: true,
 			shade: 0.8,
 			skin: 'myskin',
@@ -194,11 +197,11 @@ var info = {
 	openAddRolePage: function(userId) {
 		layer.open({
 			type: 1,
-			title: ['新建任务', 'color:#fff;background-color:#40AFFE;;border-radius: 7px ;text-align: center;'],
+			title: ['新建任务', 'color:#fff;background-color:#40AFFE;;border-radius: 7px ;text-align: center;font-size: 20px;'],
 			shadeClose: true,
 			shade: 0.8,
 			skin: 'myskin',
-			area: ['700px', '80%'],
+			area: ['700px', '800px'],
 			content: $('#addTaskPage'),
 			success: function() {
 
@@ -210,11 +213,11 @@ var info = {
 
 		layer.open({
 			type: 1,
-			title: ['选择资源', 'color:#fff;background-color:#40AFFE;border-radius: 7px ;text-align: center;'],
+			title: ['选择资源', 'color:#fff;background-color:#40AFFE;border-radius: 7px ;text-align: center;font-size: 20px;'],
 			shadeClose: true,
 			shade: 0.8,
 			skin: 'myskin',
-			area: ['700px', '80%'],
+			area: ['700px', '800px'],
 			content: $('#selectResource'),
 			success: function() {
 
@@ -222,19 +225,14 @@ var info = {
 		})
 	},
 	//弹出编辑任务
-	popupsUpdateTaskName: function() {
-		layer.open({
-			type: 1,
-			title: ['编辑任务', 'color:#fff;background-color:#40AFFE;;border-radius: 7px;text-align: center;'],
-			shadeClose: true,
-			shade: 0.8,
-			skin: 'myskin',
-			area: ['700px', '200px'],
-			content: $('#updateTaskName'),
-			success: function() {
-
-			}
+	popupsUpdateTaskName: function(taskId , taskName) {
+		All.layuiOpenRename({
+			num: 3,
+			id: taskId,
+			returnValue: taskName,
+			msg: '任务名称'
 		})
+		
 	},
 	// 分页插件
 	Page: function(total, pageNum) {
@@ -245,7 +243,7 @@ var info = {
 			laypage.render({
 				elem: 'Page', //注意，这里的 test1 是 ID，不用加 # 号
 				count: total, //数据总数，从服务端得
-				limit: '10',
+				limit: '12',
 				theme: '#1E9FFF',
 				curr: pageNum,
 				groups: '5',
@@ -294,7 +292,7 @@ var info = {
 			url: MCUrl + 'manage_system/paper/papers',
 			data: {
 				"pageNum": 1,
-				"pageSize": 10000000,
+				"pageSize": 10,
 				'paperName': ''
 			},
 			dataType: 'json',
@@ -455,10 +453,14 @@ var info = {
 			
 			info.selectTaskType(1);
 			
-			layer.msg('添加成功');
+			layer.msg('添加成功',{
+        area:['200px', '50px']
+        });
 			// location.replace(document.referrer);
 		} else {
-			layer.msg(mistake);
+			layer.msg(mistake,{
+        area:['200px', '50px']
+        });
 		}
 	},
 	//查询资源
@@ -530,8 +532,8 @@ var info = {
 				'status': 1,
 				'userId':'',
 				'userType':2,
-				"pageNum": pageNum,
-				"pageSize": 10,
+				"pageNum": pageNum||1,
+				"pageSize": 12,
 				'taskName': search
 			},
 			dataType: 'json',
@@ -567,8 +569,8 @@ var info = {
 				//点击弹出编辑
 				$('.updateTaskName').click(function() {
 					var taskName = $(this).parents('tr').children('.oneselfTaskName').text();
-					$('.taskNameupdate').val(taskName)
-					info.popupsUpdateTaskName();
+					$('.taskNameupdate').val(taskName);
+					info.popupsUpdateTaskName($(this).val() , taskName);
 					$('.confirmAdd').val($(this).val())
 				})
 				//点击删除 删除点击的任务
@@ -582,10 +584,10 @@ var info = {
 					});
 					// info.delectTask(taskId);
 				})
-				$('.confirmAdd').click(function() {
-					info.updateTaskName($(this).val())
-					selectTaskType($('.layui-laypage-skip .layui-input').val(), $('.search').val())
-				})
+				// $('.confirmAdd').click(function() {
+				// 	info.updateTaskName($(this).val())
+				// 	selectTaskType($('.layui-laypage-skip .layui-input').val(), $('.search').val())
+				// })
 				$('.oneselfTaskName').click(function() {
 					var taskId = $(this).parents('tr').children('td').children('.updateTaskName').val();
 					var taskType = $(this).parents('tr').children('td').children('.taskTypeRecord').val();
@@ -600,11 +602,11 @@ var info = {
 					info.selectTaskUsers($(this).val())
 					layer.open({
 						type: 1,
-						title: ['查看任务', 'color:#fff;background-color:#40AFFE;;border-radius: 7px;text-align: center;'],
+						title: ['查看任务', 'color:#fff;background-color:#40AFFE;;border-radius: 7px;text-align: center;font-size: 20px;'],
 						shadeClose: true,
 						shade: 0.8,
 						skin: 'myskin',
-						area: ['600px', '50%'],
+						area: ['600px', '500px'],
 						content: $('#examineTask'),
 						success: function() {
 
@@ -617,9 +619,9 @@ var info = {
 		})
 	},
 	//修改任务名根据主键
-	updateTaskName: function(taskId) {
+	updateTaskName: function(taskId , taskName) {
 
-		var taskName = $('.taskNameupdate').val();
+		// var taskName = $('.taskNameupdate').val();
 		var data = {
 			'taskName': taskName,
 		}
@@ -634,13 +636,18 @@ var info = {
 				// contentType: 'application/json;charset=utf-8',
 				success(res) {
 					if (res) {
-						layer.msg('添加成功');
+						layer.msg('修改成功',{
+        area:['200px', '50px']
+        });
 						layer.close(layer.index);
+						info.selectTaskType(1, '')
 					}
 				}
 			})
 		} else {
-			layer.msg('不可为空');
+			layer.msg('不可为空',{
+        area:['200px', '50px']
+        });
 		}
 	},
 	//刪除任務 根据主键删除

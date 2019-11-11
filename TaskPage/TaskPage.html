@@ -61,7 +61,7 @@
 		</div>
 		<!-- //新建试卷部分 -->
 		
-		<div class="layui-form" style="display: none;" id="addTaskPage">
+		<div class="layui-form" style="display: none; position: relative;" id="addTaskPage">
 			<div class="layui-form-item" style=" margin-top: 15px;">
 				<div style="margin-left: 50px;">
 					<label class="layui-form-label " style="font-size: 16px;">任务名称</label>
@@ -73,7 +73,7 @@
 			</div>
 			<div class="layui-form-item" style="width: 600px; margin-left: 50px;">
 				<label class="layui-form-label" style="font-size: 16px;">任务类型</label>
-				<div class="layui-input-block" style="margin-bottom: 20px; width: 300px;">
+				<div class="layui-input-block" style="margin-bottom: 20px; width:190px;">
 					<select name="city" lay-verify="required" id="taskType" lay-filter="fangxiang">
 
 					</select>
@@ -106,7 +106,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="layui-form-item" style=" margin-top: 15px; margin-left: 250px; ">
+				<div class="layui-form-item" style=" margin-top: 15px; margin-left: 250px;position: absolute; ">
 					<!-- <button type="button" class="" style="background-color: #93D1FF; ">确认</button>	 -->
 					<button type="button" style="margin-left: 0; width: 100px; height: 30px;" class="layui-btn layui-btn-normal layui-btn-sm layui-btn-normal okbtn addOk button">确认</button>
 				</div>
@@ -169,9 +169,9 @@
 		
 		<!-- 选择人员部分------------------------------------------------------------------------------- -->
 		<div id="selectPersonnel" style="padding: 20px;" hidden="">
-			<div class="iconSearch" style="padding: 3px 10px; "><img src="./../imgs/search.jpg"><input type="text" class="userNameRetrieval"
-				 style="width: 150px; height: 30px;"></div>
-			<div id="" class="layui-table layui-form" style="margin: 30px 0 20px 0; background-color: #FFFFFF; ">
+			<div class="iconSearch" style="padding: 3px 10px;float: right; "><img src="./../imgs/search.jpg"><input type="text" class="userNameRetrieval"
+				 style="width: 150px; height: 30px; "></div>
+			<div id="" class="layui-table layui-form" style="margin: 10px 0 30px 0; background-color: #FFFFFF; ">
 				人员名单 <input type="checkbox" class="" lay-skin="primary" lay-filter="Staff" id="checkAll">全选
 			</div>
 			<div  id="selectTaskUsers" class="layui-table layui-form">

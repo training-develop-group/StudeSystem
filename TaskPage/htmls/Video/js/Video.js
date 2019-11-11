@@ -51,7 +51,7 @@ $(function() {
 						res.data.paperId + '">测试内容</li>'
 					)
 
-					Html.push('<div class="colour"><div class="m"><video poster="vs.png" controls><source src="' + resc.data.path +
+					Html.push('<div class="colour"><div class="m"><video poster="vs.png" controls><source src="http://192.168.188.109:8848/' + resc.data.path +
 						'" type="video/' + resc.data.resExt +
 						'"></video><script>plyr.setup();</script></div><div style="text-align:center;margin:50px 0; font:normal 14px/24px ' +
 						'MicroSoft YaHei' + ';color:#ffffff"></div></div></ul></div></div>')
@@ -62,15 +62,15 @@ $(function() {
 						'<div class="layui-tab tabHead layui-tab-brief"><ul class="layui-tab-title"><li class="layui-this" style="display: hidden;">文档学习</li><li style="display: hidden;" class="testContent" value="' +
 						res.data.paperId + '">测试内容</li>'
 					)
-					Html.push('<div class="colour" style="padding-top: 0;"><div class="File"><embed src="' + resc.data.path +
+					Html.push('<div class="colour" style="padding-top: 0;"><div class="File"><embed src="http://192.168.188.109:8848/' + resc.data.path +
 						'" width="1200" height="470" ></embed></div></div></ul></div></div>')
-
+$('.content').css('height', '780px')
 				} else if (resc.data.resType == 2) {
 					Html.push('<div class="Testing">' + res.data.taskName + '</div>')
 					Html.push(
 						'<div class="layui-tab tabHead layui-tab-brief"><ul class="layui-tab-title"><li class="layui-this" style="display: hidden;">音频学习</li><li style="display: hidden;" class="testContent" value="' +
 						res.data.paperId +
-						'">测试内容</li><div class="colour" style="padding-top: 0;"><div class="File"><audio class="frequency" controls="controls" style="padding: 20px 500px;> <source src="imgs/song.ogg" type="audio/ogg" "></audio></div></div></ul></div></div>'
+						'">测试内容</li><div class="colour" style="padding-top: 0;"><div class="File"><audio class="frequency" controls="controls" style="padding: 20px 500px;> <source src="http://192.168.188.109:8848/'+resc.data.path+'" type="audio/ogg" "></audio></div></div></ul></div></div>'
 					)
 					$('.content').css('height', '200px')
 
