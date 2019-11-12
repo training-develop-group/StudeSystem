@@ -108,7 +108,7 @@ img {
 }
 
 .C-Content ul {
-	width: 95%;
+	width: 100%;
 }
 
 .Q-question span:nth-child(1) {
@@ -139,7 +139,7 @@ img {
 
 .Footer {
 	position: relative;
-	margin-top: 30px;
+	margin-top: 3px;
 }
 
 .questions .operation span:hover {

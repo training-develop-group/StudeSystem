@@ -19,7 +19,6 @@ table {
 
 table tbody tr td,
 table tbody tr th {
-
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
@@ -36,7 +35,7 @@ table tbody tr th {
 .layui-table td {
 	border-left: none;
 	border-right: none;
-
+	
 }
 
 .left .searchbox {
@@ -165,4 +164,9 @@ table tbody tr th {
 #taskNumberDistribution {
 	width: 400px;
 	height: 300px;
+}
+
+table th,
+table td{
+	cursor: default !important;
 }

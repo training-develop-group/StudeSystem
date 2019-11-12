@@ -25,10 +25,12 @@ var logIn = function(){
 		success: function (res) {
 			console.log(res);
 			if(res.code == 1){
+				$('.PasswordError').addClass('hidden');
 				window.location.href = 'HomePage/HomePage.html'
 				console.log(res.msg);
 			}else {
-				layer.msg(res.msg);
+				layer.msg('用户名或密码错误');
+				$('.PasswordError').removeClass('hidden');
 			}
 		},
 		error: function (e) {

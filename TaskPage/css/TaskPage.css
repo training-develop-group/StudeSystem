@@ -1,350 +1,386 @@
 .layui-form-select dl dd.layui-this {
-    background-color: rgb(64, 175, 254)
+	background-color: rgb(64, 175, 254)
 }
 
 .layui-layer-content {
-    height: 150px;
+	height: 150px;
 
 }
-#selectTaskUsers span{
+
+#selectTaskUsers span {
 	text-align: left;
 	padding-left: 20px;
-	
+
 }
-#selectTaskUsers{
-	border: 1px solid #C9C5C5; width: 550px; height:200px; margin-bottom: 20px;    overflow: auto;
+
+#selectTaskUsers {
+	border: 1px solid #C9C5C5;
+	width: 550px;
+	height: 200px;
+	margin-bottom: 20px;
+	overflow: auto;
 }
+
 .layui-form-label {
-    line-height: 35px;
-    padding: 0;
-    width: 100px;
+	line-height: 35px;
+	padding: 0;
+	width: 100px;
 }
 
 .layui-nav .layui-nav-item a {
-    color: #000000;
+	color: #000000;
 
 }
 
 .layui-nav .layui-this a {
-    color: #FFFFFF;
+	color: #FFFFFF;
 
 }
 
 .layui-nav .layui-nav-item {
-    color: #66AFE9;
-    line-height: 40px;
-    height: 40px;
+	color: #66AFE9;
+	line-height: 40px;
+	height: 40px;
 
 }
-.taskUsers {
-	 margin-left: 40px;
-    width: 475px;
-    height: 150px;
-    border: 1px solid #E6E6E6;
-		overflow: auto;
-padding: 5px;
 
-	}
-   .taskUsers p{
-	   line-height: 20px;
-	   margin-left: 20px;
-	   margin-right: 40px;
-	}
+.taskUsers {
+	margin-left: 40px;
+	margin-top: 20px;
+	width: 359px;
+	height: 150px;
+	border: 1px solid #E6E6E6;
+	overflow: auto;
+	padding: 5px;
+
+}
+
+.taskUsers p {
+	line-height: 20px;
+	margin-left: 20px;
+	margin-right: 40px;
+}
+
 ol,
 ul {
-    margin-top: 0px;
-    margin-bottom: 0px;
+	margin-top: 0px;
+	margin-bottom: 0px;
 }
 
-.layui-this > a {
-    color: #FFFFFF;
+.layui-this>a {
+	color: #FFFFFF;
 }
 
 .layui-this {
-    background-color: #1E9FFF;
-    border-bottom: 0px;
+	background-color: #1E9FFF;
+	border-bottom: 0px;
 
 }
 
 .taskNameupdate {
-    width: 420px;
-    border-radius: 7px;
+	width: 420px;
+	border-radius: 7px;
 }
 
 .taskNameupdateBox label {
-    font-size: 16px;
-    padding-right: 15px;
+	font-size: 16px;
+	padding-right: 15px;
 }
 
 .taskNameupdateBox input {
-    width: calc(100% - 180px);
+	width: calc(100% - 180px);
 }
 
 #updateTaskName {
-    margin-top: 20px;
-    width: 150;
-    display: none;
+	margin-top: 40px;
+	width: 150;
+	display: none;
 }
 
 .taskNameupdateBox {
-    padding: 0 50px;
+	padding: 0 50px;
 }
 
 .resourceSelection {
-    width: 100px;
-    height: 30px;
-    margin-left: 250px;
-    margin-top: 0px;
-    background-color: rgb(64, 175, 254);
+	width: 100px;
+	height: 30px;
+	margin-left: 250px;
+	margin-top: 0px;
+	background-color: rgb(64, 175, 254);
 
 }
-#resource{
-	float: left;width: 600px;
-	}
+
+#resource {
+	float: left;
+	width: 600px;
+}
+
 .confirmAdd {
-    width: 160px;
-    margin: 30px auto 0;
+	width: 160px;
+	margin: 30px auto 0;
 }
 
 .confirmAdd button {
-    width: 160px;
-    text-align: center;
+	width: 160px;
+	text-align: center;
 }
 
 .layui-nav .layui-this:after,
 .layui-nav-bar,
 .layui-nav-tree .layui-nav-itemed:after {
-    background-color: #1E9FFF;
+	background-color: #1E9FFF;
 }
-.usersSelectOk{
+
+.usersSelectOk {
 	margin-left: 200px;
 	width: 130px;
-	}
+}
+
 .checkAll {
-    width: 15px;
-    height: 15px;
+	width: 15px;
+	height: 15px;
 
 }
 
 .iconSearch {
-    width: 200px;
-    border: 1px solid #C9C9C9;
-    border-radius: 6px;
+	width: 200px;
+	border: 1px solid #C9C9C9;
+	border-radius: 6px;
 }
 
 .layui-table {
-    background-color: rgb(248, 248, 248);
+	background-color: rgb(248, 248, 248);
 }
-.asd
-.taskUsers {
-    width: 300px;
-    height: 150px;
-    border: 1px solid #D3D4D3;
-    margin-left: 40px;
-    margin-top: 0;
-    overflow: auto;
-    padding: 10px;
-	    padding-left: 20px;
+
+.asd .taskUsers {
+	width: 300px;
+	height: 150px;
+	border: 1px solid #D3D4D3;
+	margin-left: 40px;
+	margin-top: 0;
+	overflow: auto;
+	padding: 10px;
+	padding-left: 20px;
 }
 
 .layui-laydate-footer span:hover {
-    color: rgb(64, 175, 254) !important;
+	color: rgb(64, 175, 254) !important;
 }
 
 .selectPersonnel {
-    font-size: 16px;
-
-    color: #5FB878;
+	font-size: 16px;
+	cursor: pointer;
+	color: #5FB878;
 }
 
-.taskUsers > p {
-    line-height: 20px;
-	   
+.taskUsers>p {
+	line-height: 20px;
+
 }
-.taskUsers p i{
+
+.taskUsers p i {
 	float: right;
 	padding-right: 20px;
-	}
-
-.selectPapersa {
-    margin-top: 20px;
-    margin-bottom: 20px;
 }
 
-.selectPapers {
-    font-size: 16px;
-    margin-left: 40px;
-
-    color: #5FB878;
+.selectPapersa {
+	margin-top: 20px;
+	margin-bottom: 20px;
 }
 
 .selectResourcea {
-    margin-top: 20px;
+	margin-top: 20px;
 }
 
 #selectResource {
-    display: none;
-    padding:80px;
-    padding-top: 0;
-    padding-bottom: 0;
-    overflow: hidden;
+	display: none;
+	padding: 80px;
+	padding-top: 0;
+	padding-bottom: 0;
+	overflow: hidden;
 }
 
+.selectPapers,
 .selectResource {
-    font-size: 16px;
-    margin-left: 40px;
-
-    color: #5FB878;
+	font-size: 16px;
+	margin-left: 40px;
+	cursor: pointer;
+	color: #5FB878;
 }
 
 #taskContent {
-    background-color: #FFFFFF;
+	background-color: #FFFFFF;
 }
 
 #taskUserDegreeCompletion {
-    background-color: #FFFFFF;
+	background-color: #FFFFFF;
 }
 
 .box {
-    width: 100%;
-    height: 90%;
-    margin-top: 0px;
-    /* padding: 10px 150px 10px 150px; */
+	width: 100%;
+	height: 90%;
+	margin-top: 0px;
+	/* padding: 10px 150px 10px 150px; */
 }
 
 .headline {
-    /* height: 60px; */
-    height: 50px;
-    width: 100%;
-    background-color: #289ef0;
-    padding-top: 10px;
-    border-radius: 7px 7px 0 0;
+	/* height: 60px; */
+	height: 50px;
+	width: 100%;
+	background-color: #289ef0;
+	padding-top: 10px;
+	border-radius: 7px 7px 0 0;
 
-    margin-bottom: 10px;
+	margin-bottom: 10px;
 }
 
 .content {
-    background-color: #FFFFFF;
-    width: 100%;
-    /* height: 85%; */
-    min-height: 650px;
-    margin-top: 20px;
-    border-radius: 2px;
+	background-color: #FFFFFF;
+	width: 100%;
+	/* height: 85%; */
+	min-height: 650px;
+	margin-top: 20px;
+	border-radius: 2px;
 }
 
 .layui-table td,
 .layui-table th {
-    border-style: none;
+	border-style: none;
 
 }
 
 .layui-table th {
-    font-size: 16px;
+	font-size: 16px;
 
 }
 
 .layui-table thead tr {
-    background-color: #FFFFFF;
+	background-color: #FFFFFF;
 }
 
 th {
-    border: none;
-    border-bottom: 0.5px solid #E9E7E7;
+	border: none;
+	border-bottom: 0.5px solid #E9E7E7;
 }
 
 td {
-    border: none;
-    border-bottom: 0.5px solid #E9E7E7;
+	border: none;
+	border-bottom: 0.5px solid #E9E7E7;
+	cursor: default;
 }
 
 tr {
-    border: none;
-    border-bottom: 1px solid #E9E7E7;
+	border: none;
+	border-bottom: 1px solid #E9E7E7;
+	cursor: default;
 }
 
 i {
-    font-style: normal;
+	font-style: normal;
 }
 
 .layui-layer-btn {
-    padding: 0 293px 12px !important;
+	padding: 0 293px 12px !important;
 }
 
 .releasTeask {
-    font-size: 16px;
-    float: right;
-    margin-right: 20px;
-    border-radius: 5px;
-    color: #279ef2;
+	font-size: 16px;
+	float: right;
+	margin-right: 20px;
+	border-radius: 5px;
+	color: #279ef2;
 
-    border: none;
+	border: none;
 }
 
-.headline > span {
-    font-size: 20px;
-    margin-left: 30px;
-    margin-top: 10px;
-    float: left;
-    line-height: 20px;
-    color: white;
-    font-weight: 600;
+.headline>span {
+	font-size: 20px;
+	margin-left: 30px;
+	margin-top: 10px;
+	float: left;
+	line-height: 20px;
+	color: white;
+	font-weight: 600;
 }
 
 .layui-laypage a {
-    margin-left: 5px;
-    margin-right: 5px;
+	margin-left: 5px;
+	margin-right: 5px;
 }
 
-#examineTask > .layui-form {
-    padding: 20px;
-    padding-top: 10px;
+#examineTask>.layui-form {
+	padding: 20px;
+	padding-top: 10px;
 }
 
-#examineTask > .layui-table {
-    text-align: center;
-    border: 1px solid rgb(221, 221, 221);
+#examineTask>.layui-table {
+	text-align: center;
+	border: 1px solid rgb(221, 221, 221);
 }
 
 .layui-layer-title {
-    border-radius: 5px 5px 0 0 !important;
+	border-radius: 5px 5px 0 0 !important;
 }
 
 .myskin {
-    border-radius: 5px !important;
+	border-radius: 5px !important;
 }
 
 .layui-layer-shade {
-    opacity: 0.4 !important;
+	opacity: 0.4 !important;
 }
 
 .radio_box {
 	position: relative;
-    width: 30%;
+	width: 30%;
 }
-.radio_box .layui-form-radio{
-    position: absolute;
-    left: 5px;
-    top: 5px;
+
+.radio_box .layui-form-radio {
+	position: absolute;
+	left: 5px;
+	top: 5px;
 }
-.img-box{
-    margin-right: 20px;
-    height: 100px;
-    border: 1px solid #dadada;
+
+.img-box {
+	margin-right: 20px;
+	height: 100px;
+	border: 1px solid #dadada;
 	margin-top: 20px;
 }
-.layui-form-radio>i{
+
+.layui-form-radio>i {
 	margin-top: 12px;
 }
-.img-box img{
-    width: 100%;
-    height: 100%;
+
+.img-box img {
+	width: 100%;
+	height: 100%;
 }
-.radio_box .resName{
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    width: 50%;
+
+.radio_box .resName {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	width: 50%;
 }
-.layui-form-radio>i:hover, .layui-form-radioed>i {
-    color: rgb(64, 175, 254);
+
+.layui-form-radio>i:hover,
+.layui-form-radioed>i {
+	color: rgb(64, 175, 254);
+}
+
+.layui-layer-title {
+	padding: 0 20px 0 20px !important;
+}
+
+.layui-layer-hui .layui-layer-content {
+	height: 25px;
+}
+
+.layui-btn-normal {
+	background-color: #fff;
+}
+
+.layui-btn-primary:hover {
+	border-color: rgb(208, 208, 208);
 }

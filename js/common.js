@@ -21,9 +21,10 @@ var All = {
             navHtml.push('<span>Logo</span>');
             navHtml.push('</div>');
             navHtml.push('<div class="navbox">');
+			navHtml.push('<ul>');
             switch (options.type) {
                 case 1:
-                    navHtml.push('<ul>');
+                    
                     switch (options.num) {
                         case 1:
                             navHtml.push('<li class="active" data-page="homePage">首页</li>');
@@ -89,11 +90,12 @@ var All = {
                             // navHtml.push('<li class="active" data-page="userManagement">用户管理</li>')
                             break;
                     }
-                    navHtml.push('</ul>');
+                    
                     break;
                 case 2:
                     break;
             }
+			navHtml.push('</ul>');
             navHtml.push('</div>');
             navHtml.push('<div class="right">');
             navHtml.push('<img src="../imgs/HeadPortrait.jpg" class="userimg">');

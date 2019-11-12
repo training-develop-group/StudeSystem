@@ -18,7 +18,6 @@ $(function() {
 		var layer = layui.layer,
 			form = layui.form;
 		All.getMenu({
-			search: 1,
 			type: 1,
 			num: 1
 		});

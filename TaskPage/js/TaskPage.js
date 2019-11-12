@@ -124,7 +124,7 @@ $(function() {
 		layer.open({
 			type: 1,
 			title: ['选择人员',
-				'color:#fff;background-color:#40AFFE;;border-radius: 7px ;overflow-x: hidden; text-align: center;'
+				'color:#fff;background-color:#40AFFE;;border-radius: 7px ;overflow-x: hidden; text-align: center;font-size:20px;'
 			],
 			shadeClose: true,
 			shade: 0.8,
@@ -140,7 +140,7 @@ $(function() {
 	$('.selectPapers').click(function() {
 		layer.open({
 			type: 1,
-			title: ['选择试卷', 'color:#fff;background-color:#40AFFE; text-align: center;'],
+			title: ['选择试卷', 'color:#fff;background-color:#40AFFE; text-align: center;font-size:20px;'],
 			shadeClose: true,
 			shade: 0.8,
 			skin: 'myskin',
@@ -194,7 +194,7 @@ var info = {
 	openAddRolePage: function(userId) {
 		layer.open({
 			type: 1,
-			title: ['新建任务', 'color:#fff;background-color:#40AFFE;;border-radius: 7px ;text-align: center;'],
+			title: ['新建任务', 'color:#fff;background-color:#40AFFE;border-radius: 7px ;text-align: center;font-size:20px;'],
 			shadeClose: true,
 			shade: 0.8,
 			skin: 'myskin',
@@ -210,7 +210,7 @@ var info = {
 
 		layer.open({
 			type: 1,
-			title: ['选择资源', 'color:#fff;background-color:#40AFFE;border-radius: 7px ;text-align: center;'],
+			title: ['选择资源', 'color:#fff;background-color:#40AFFE;border-radius: 7px ;text-align: center;font-size:20px;'],
 			shadeClose: true,
 			shade: 0.8,
 			skin: 'myskin',
@@ -225,7 +225,7 @@ var info = {
 	popupsUpdateTaskName: function() {
 		layer.open({
 			type: 1,
-			title: ['编辑任务', 'color:#fff;background-color:#40AFFE;;border-radius: 7px;text-align: center;'],
+			title: ['编辑任务', 'color:#fff;background-color:#279EF0;border-radius: 7px;text-align: center;font-size:20px;'],
 			shadeClose: true,
 			shade: 0.8,
 			skin: 'myskin',
@@ -600,7 +600,7 @@ var info = {
 					info.selectTaskUsers($(this).val())
 					layer.open({
 						type: 1,
-						title: ['查看任务', 'color:#fff;background-color:#40AFFE;;border-radius: 7px;text-align: center;'],
+						title: ['查看任务', 'color:#fff;background-color:#40AFFE;border-radius: 7px;text-align: center;font-size:20px;'],
 						shadeClose: true,
 						shade: 0.8,
 						skin: 'myskin',

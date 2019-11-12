@@ -261,6 +261,21 @@ var info = {
 					'#newlyBuild .choiceItem').html() == undefined) {
 				letter = 'A';
 			}
+			if (letter == '[') {
+				layer.msg('拒绝让你添加选项，有脾气吗？', {
+					time: 0 //不自动关闭
+						,
+					btn: ['有', '没有'],
+					yes: function(index) {
+						layer.close(index);
+						layer.msg('怎么？砍你好啊', {
+							icon: 6,
+							btn: ['投降', '不投降']
+						});
+					}
+				});
+				return false;
+			}
 			if (letter == '') {
 				// 取选项最后一个字母
 				var tailLetter = ($('#newlyBuild .choiceItem input').last()).val();
@@ -270,6 +285,10 @@ var info = {
 				letter = (String.fromCharCode(transformation)).toUpperCase();
 			} else {
 				letter = 'A';
+			}
+			if (letter == '[') {
+				layer.msg('选项只能到Z');
+				return false;
 			}
 			// true是单选,false是多选
 
@@ -561,6 +580,10 @@ var info = {
 					} else {
 						letter = 'A';
 					}
+					if (letter == '[') {
+						layer.msg('选项只能到Z');
+						return false;
+					}
 					if (type == 1) {
 						$("#editBuild .choiceItem").append('<p class="outerFrame"><input type="radio" name="choiceItem" value="' +
 							letter +
@@ -718,7 +741,7 @@ var info = {
 				info.selectQuestion(1);
 			}
 		});
-		
+
 
 
 		//---------------------修改
