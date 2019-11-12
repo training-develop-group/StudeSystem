@@ -53,27 +53,27 @@
 	<div class="Release hidden" id="addTaskPage">
 	      <div class="Release_content layui-form">
 	        <div class="layui-form-item">
-	          <label class="layui-form-label">任务名称</label>
+	          <label class="layui-form-label taskLocation">任务名称</label>
 	          <div class="Release_name">
 	            <input type="text" name="resName" required lay-verify="required" placeholder="请输入任务名" autocomplete="off" class="layui-input taskName">
 	          </div>
 	        </div>
 	        <div class="layui-form-item">
-	          <label class="layui-form-label">任务类型</label>
+	          <label class="layui-form-label taskLocation">任务类型</label>
 	          <div class="layui-input-inline">
 	            <select name="city" lay-verify="required" id="taskType" lay-filter="fangxiang" disabled="disabled">
 					<option value="3">测试任务</option>
 				</select>
 	          </div>
 	        </div>
-	        <div class="layui-form-item">
+	        <div class="layui-form-item spacing">
 	          <span class="_search selectPapers">
 	            <i class="layui-icon">&#xe602;</i>
-	            <span>选择试卷：</span>
+	            <span class="chooseTestPaper">选择试卷：</span>
 	            <span class="paperAdd"></span>
 	          </span>
 	        </div>
-	        <div class="layui-form-item">
+	        <div class="layui-form-item spacing">
 	          <label class="layui-form-label">任务对象</label>
 	          <span class="_search selectPersonnel">
 	            <i class="layui-icon">&#xe602;</i>
@@ -85,7 +85,7 @@
 	        </div>
 	        <div class="layui-form-item timeBox">
 	          <div class="layui-inline">
-	            <label class="layui-form-label">任务时间</label>
+	            <label class="layui-form-label taskLocation">任务时间</label>
 	            <div class="layui-input-inline">
 	              <input type="text" name="date" id="test1" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
 	            </div>
@@ -96,7 +96,7 @@
 	          </div>
 	        </div>
 	        <div class="layui-form-item">
-	          <label class="layui-form-label">任务描述</label>
+	          <label class="layui-form-label taskLocation">任务描述</label>
 	          <div class="layui-input-block">
 	            <textarea name="desc" placeholder="请输入描述" class="layui-textarea taskRemark" style="resize: none;"></textarea>
 	          </div>
@@ -107,8 +107,8 @@
 	      </div>
 	    </div>
 		<div id="selectPersonnel" style="padding: 20px;" hidden="">
-			<div class="iconSearch" style="padding: 3px 10px; float: right;"><img src="../imgs/search.jpg"><input type="text" class="userNameRetrieval"></div>
-			<div id="" class="layui-table layui-form" style="margin: 10px 0 20px 0; background-color: #FFFFFF; ">
+			<div class="iconSearch" style="padding: 3px 10px; float: right; margin: 0 8px 0px 0;"><img src="../imgs/search.jpg"><input type="text" class="userNameRetrieval"></div>
+			<div id="" class="layui-table layui-form" style="margin: 17px 0 20px 0; background-color: #FFFFFF; ">
 				人员名单 <input type="checkbox" class="" lay-skin="primary" lay-filter="Staff" id="checkAll">全选
 			</div>
 			<div id="selectTaskUsers" class="layui-table layui-form"></div>

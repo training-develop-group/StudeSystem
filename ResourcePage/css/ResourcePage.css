@@ -171,9 +171,6 @@ th {
 	width: 500px;
 }
 
-tr td a {
-	padding-right: 50px;
-}
 
 /*编辑资源名弹出层样式*/
 #editResNameBox {
@@ -205,11 +202,6 @@ tr td a {
 .hiddenTableList tbody tr:hover{
 	background-color: #eeeeee;
 }
-
-.layui-layer-msg {
-	color: #000000 !important;
-}
-
 #uploadBtn {
 	width: 160px;
 	text-align: center;
@@ -231,18 +223,9 @@ tr td a {
 	bottom: 15px;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
+.Release_content .layui-form-item .layui-form-label , .taskObject , .selectResource span , .selectPersonnel span{
+	font-size: 16px;
+}
 
 
 
@@ -262,7 +245,7 @@ tr td a {
 
 /* 发布弹出层内容-------------------------------------------------------------------------- */
 .Release_content {
-	padding: 25px 80px 25px 70px;
+	padding: 15px 80px 25px 70px;
 }
 
 .layui-form-item {
@@ -331,7 +314,7 @@ tr td a {
 .taskUsers p {
 	line-height: 20px;
 	margin-bottom: 5px;
-	width: 100px;
+	width: 200px;
 	overflow: auto;
 }
 
@@ -491,7 +474,7 @@ tr td a {
 	border: 1px solid #C9C9C9;
 	border-radius: 6px;
 	padding: 3px 10px;
-	margin: 0 28px 19px 0px;
+	margin: 0 10px 19px 0px;
 	float: right;
 }
 
@@ -507,7 +490,12 @@ tr td a {
 }
 
 #selectPersonnel {
-	padding: 20px;
+	padding: 15px;
+}
+
+#selectTaskUsers .layui-form-label {
+	width: 95px;
+	line-height: 15px;
 }
 
 /* 选择人员搜索框 */
@@ -519,15 +507,15 @@ tr td a {
 
 .selectTaskUsers {
 	border: 1px solid #C9C5C5; 
-	height:200px;
-	width: 90%;
+	height:300px;
+	width: 550px;
 	margin: auto;
 	background-color: rgb(248, 248, 248);
 	overflow: auto;
 }
 
 .checkboxNameList {
-	margin: 15px 0 0 35px;
+	margin: 15px 0 0 10px;
 	display: inline-block;
 }
 
@@ -551,4 +539,8 @@ i {
 /* 选择人员hover */
 .taskUsers p:hover{
 	background-color: #f2f2f2;
+}
+
+.chooseResource{
+	cursor: pointer;
 }

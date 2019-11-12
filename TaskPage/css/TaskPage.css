@@ -12,7 +12,24 @@
 	padding-left: 20px;
 
 }
+.selectResource{
+		cursor:pointer ;
+}
+.selectPapers{
+	cursor:pointer ; 
+}
 
+td button{
+	cursor:pointer ;
+}
+td{
+	cursor:default ;
+
+}
+ tr .oneselfTaskName{
+	cursor:pointer;
+	text-align: left;
+}
 #selectTaskUsers {
 	border: 1px solid #C9C5C5;
 	width: 550px;
@@ -66,10 +83,7 @@ ul {
 	margin-top: 0px;
 	margin-bottom: 0px;
 }
-/* 按钮的hover样式 */
-.updateTaskName , .lookOver , .deleteTask:hover{
-	cursor: pointer;
-}
+
 .layui-this>a {
 	color: #FFFFFF;
 }
@@ -172,8 +186,12 @@ ul {
 
 .selectPersonnel {
 	font-size: 16px;
-
 	color: #5FB878;
+	cursor: pointer;
+}
+
+.selectPapers span {
+	cursor: pointer;
 }
 
 .taskUsers>p {
@@ -220,9 +238,7 @@ ul {
 #taskContent {
 	background-color: #FFFFFF;
 }
-#taskContent tr:hover{
-	 cursor:default;
-}
+
 #taskUserDegreeCompletion {
 	background-color: #FFFFFF;
 }
@@ -355,7 +371,8 @@ i {
 
 .img-box {
 	margin-right: 20px;
-	height: 100px;
+	height: 80%;
+	width: 80%;
 	border: 1px solid #dadada;
 	margin-top: 20px;
 }
@@ -365,8 +382,8 @@ i {
 }
 
 .img-box img {
-	width: 100%;
-	height: 100%;
+	width: 80%;
+	height: 80%;
 }
 
 .radio_box .resName {
@@ -379,4 +396,56 @@ i {
 .layui-form-radio>i:hover,
 .layui-form-radioed>i {
 	color: rgb(64, 175, 254);
+}
+
+
+.Release_btn{
+	position: absolute;
+	margin: 0 auto;
+	width: 140px;
+	left: 0;
+	right: 0;
+	bottom: 25px;
+}
+.selectPersonnel{
+	margin: 0 0 0 23px;
+}
+.selectResource i{
+	color: #5FB878;
+}
+.selectPapers i{
+	color: #5FB878;
+}
+.selectPersonnel i{
+	color: #5FB878;
+}
+.okbtn{
+	width: 140px;
+	border: 0;
+	color: white;
+}
+
+#taskContent tr:hover{
+	background-color: #eeeeee;
+}
+
+
+
+
+.selectPapers,
+.selectResource {
+	font-size: 16px;
+	margin-left: 40px;
+	cursor: pointer;
+	color: #5FB878;
+}
+.layui-btn-primary:hover {
+	border-color: rgb(208, 208, 208);
+}
+.layui-layer-hui .layui-layer-content {
+	height: 25px;
+}
+
+.layui-nav-item a:hover{
+	color: #000000 !important;
 }

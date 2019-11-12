@@ -37,7 +37,6 @@ $(function() {
 			$(".checkAll").prop("checked", false);
 			form.render('checkbox');
 		}
-	
 	});
 	form.on('checkbox(c_one)', function (data) {
       var item = $(".checkAll");
@@ -55,9 +54,10 @@ $(function() {
               all--;
           }
       }
-      if(all==0){
-      $("#checkAll").prop("checked", true);
-      form.render('checkbox');}
+	if(all==0){
+		$("#checkAll").prop("checked", true);
+		form.render('checkbox');
+	}
 	
 	})
 	// 点击确认(选择人员)
@@ -120,7 +120,7 @@ $(function() {
 			move: false,
 			shade: 0.5,
 			skin: 'myskin',
-			area: ['600px', '50%'],
+			area: ['600px', '474px'],
 			content: $('#selectPersonnel'),
 			success: function() {
 				
@@ -416,7 +416,7 @@ var info = {
 			shade: 0.8,
 			move: false,
 			skin: 'myskin',
-			area: ['700px', '80%'],
+			area: ['700px', '748px'],
 			content: $('#addTaskPage'),
 			success: function() {
 				layui.use('form', function() {
@@ -478,9 +478,11 @@ var info = {
 				success(res) {
 					console.log(res.msg);
 					layer.msg(res.msg);
+					layer.closeAll();
+					window.location.href = "../TaskPage/TaskPage.html";
 					// 刷新页面
-					parent.location.reload();
-					// layer.closeAll();
+					// parent.location.reload();
+					
 				}
 			})
 		} else {

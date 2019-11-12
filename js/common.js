@@ -204,6 +204,9 @@ var All = {
 	            switch (options.num){
 					case 1:
 						info.deleteResource(options.resId);
+						console.log(1);
+						$('.uploadTd').remove();
+						console.log(2);
 						layer.close(layer.index);
 						break;
 					case 2:

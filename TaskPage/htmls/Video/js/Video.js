@@ -44,63 +44,74 @@ $(function() {
 				var Html = [];
 				// console.log(resc)
 				// status = resc.data.status;
-				if (resc.data.resType == 1) {
-					Html.push('<div class="Testing">' + res.data.taskName + '</div>')
-					Html.push(
-						'<div class="layui-tab tabHead layui-tab-brief"><ul class="layui-tab-title"><li class="layui-this learningTasks" style="display: hidden;" >视频学习</li><li class="testContent" style="display: hidden;" value="' +
-						res.data.paperId + '">测试内容</li>'
+				if (resc.data != null) {
+
+
+					if (resc.data.resType == 1) {
+						Html.push('<div class="Testing">' + res.data.taskName + '</div>')
+						Html.push(
+							'<div class="layui-tab tabHead layui-tab-brief"><ul class="layui-tab-title"><li class="layui-this learningTasks" style="display: hidden;" >视频学习</li><li class="testContent" style="display: hidden;" value="' +
+							res.data.paperId + '">测试内容</li>'
+						)
+
+						Html.push(
+							'<div class="colour"><div class="m"><video poster="vs.png" controls><source src="http://192.168.188.109:8848/' +
+							resc.data.path +
+							'" type="video/' + resc.data.resExt +
+							'"></video><script>plyr.setup();</script></div><div style="text-align:center;margin:50px 0; font:normal 14px/24px ' +
+							'MicroSoft YaHei' + ';color:#ffffff"></div></div></ul></div></div>')
+						$('.content').css('height', '550px')
+					} else if (resc.data.resType == 3) {
+						Html.push('<div class="Testing">' + res.data.taskName + '</div>')
+						Html.push(
+							'<div class="layui-tab tabHead layui-tab-brief"><ul class="layui-tab-title"><li class="layui-this" style="display: hidden;">文档学习</li><li style="display: hidden;" class="testContent" value="' +
+							res.data.paperId + '">测试内容</li>'
+						)
+						Html.push(
+							'<div class="colour" style="padding-top: 0;"><div class="File"><embed src="http://192.168.188.109:8848/' +
+							resc.data.path +
+							'" width="1200" height="470" ></embed></div></div></ul></div></div>')
+						$('.content').css('height', '780px')
+					} else if (resc.data.resType == 2) {
+						Html.push('<div class="Testing">' + res.data.taskName + '</div>')
+						Html.push(
+							'<div class="layui-tab tabHead layui-tab-brief"><ul class="layui-tab-title"><li class="layui-this" style="display: hidden;">音频学习</li><li style="display: hidden;" class="testContent" value="' +
+							res.data.paperId +
+							'">测试内容</li><div class="colour" style="padding-top: 0;"><div class="File"><audio class="frequency" controls="controls" style="padding: 20px 500px;> <source src="http://192.168.188.109:8848/' +
+							resc.data.path + '" type="audio/ogg" "></audio></div></div></ul></div></div>'
+						)
+						$('.content').css('height', '200px')
+
+					}
+
+					$('.content').html(Html.join(''))
+					if (resc.data.resType == 3) {
+						$('.File').css('height', '675px')
+					}
+					$('.box-contents').prepend(
+						'<div class="comment">	<div class="comment-title">学习心得</div><ul class="comment-content" id="contentList"><li>我今天学习了java<p class="comment-time">2019-10-21 13:23:55</li></ul></div>'
 					)
 
-					Html.push('<div class="colour"><div class="m"><video poster="vs.png" controls><source src="http://192.168.188.109:8848/' + resc.data.path +
-						'" type="video/' + resc.data.resExt +
-						'"></video><script>plyr.setup();</script></div><div style="text-align:center;margin:50px 0; font:normal 14px/24px ' +
-						'MicroSoft YaHei' + ';color:#ffffff"></div></div></ul></div></div>')
-					$('.content').css('height', '550px')
-				} else if (resc.data.resType == 3) {
-					Html.push('<div class="Testing">' + res.data.taskName + '</div>')
-					Html.push(
-						'<div class="layui-tab tabHead layui-tab-brief"><ul class="layui-tab-title"><li class="layui-this" style="display: hidden;">文档学习</li><li style="display: hidden;" class="testContent" value="' +
-						res.data.paperId + '">测试内容</li>'
-					)
-					Html.push('<div class="colour" style="padding-top: 0;"><div class="File"><embed src="http://192.168.188.109:8848/' + resc.data.path +
-						'" width="1200" height="470" ></embed></div></div></ul></div></div>')
-$('.content').css('height', '780px')
-				} else if (resc.data.resType == 2) {
-					Html.push('<div class="Testing">' + res.data.taskName + '</div>')
-					Html.push(
-						'<div class="layui-tab tabHead layui-tab-brief"><ul class="layui-tab-title"><li class="layui-this" style="display: hidden;">音频学习</li><li style="display: hidden;" class="testContent" value="' +
-						res.data.paperId +
-						'">测试内容</li><div class="colour" style="padding-top: 0;"><div class="File"><audio class="frequency" controls="controls" style="padding: 20px 500px;> <source src="http://192.168.188.109:8848/'+resc.data.path+'" type="audio/ogg" "></audio></div></div></ul></div></div>'
-					)
-					$('.content').css('height', '200px')
+					if (res.data.taskType == 1) {
+						console.log()
+					} else if (res.data.taskType == 2) {
+						// console.log('asdasd')
+						console.log(res.data.taskType)
+						$('.testContent').hide()
+					} else if (res.data.taskType == 3) {
+						$('.learningTasks').hide()
+						tableAjax(resc.data.paperId);
+					}
 
+					$('.testContent').click(function() {
+						// (
+						// 
+						tableAjax(res, res.data.paperId)
+
+					})
+				}else{
+					$('.wrapper-content').hide();
 				}
-
-				$('.content').html(Html.join(''))
-				if (resc.data.resType == 3) {
-					$('.File').css('height', '675px')
-				}
-				$('.box-contents').prepend(
-					'<div class="comment">	<div class="comment-title">学习心得</div><ul class="comment-content" id="contentList"><li>我今天学习了java<p class="comment-time">2019-10-21 13:23:55</li></ul></div>'
-				)
-
-				if (res.data.taskType == 1) {
-					console.log()
-				} else if (res.data.taskType == 2) {
-					// console.log('asdasd')
-					console.log(res.data.taskType)
-					$('.testContent').hide()
-				} else if (res.data.taskType == 3) {
-					$('.learningTasks').hide()
-					tableAjax(resc.data.paperId);
-				}
-
-				$('.testContent').click(function() {
-					// (
-					// 
-					tableAjax(res, res.data.paperId)
-
-				})
 			}
 
 
@@ -142,7 +153,7 @@ $('.content').css('height', '780px')
 			res.data.paperId + '">测试内容</li>'
 		)
 		resb.data.questions.forEach(function(item, index) {
-		console.log(resb)
+			console.log(resb)
 			Html.push('<div class="sortableitem">');
 			Html.push('<div class="topicFramework" style="text-align: left;line-height: 1;">');
 			Html.push('<input type="text" class="qusetionId" value="' + item.questionId + '" hidden="hidden"/>');
@@ -158,17 +169,18 @@ $('.content').css('height', '780px')
 			});
 			Html.push('</div>');
 			Html.push('<div class="functionBox">');
-			Html.push('<button class="toView" value="'+item.questionId+'"><i class="layui-icon layui-icon-search"></i>查看解析</button>');
+			Html.push('<button class="toView" value="' + item.questionId +
+				'"><i class="layui-icon layui-icon-search"></i>查看解析</button>');
 			Html.push('</div>');
 			Html.push('</div>');
 
 			Html.push('</ul>')
 			Html.push('</div>')
 		});
-		
+
 		console.log('asdasdasd')
-		
-	$('.content').html(Html.join(''))
+
+		$('.content').html(Html.join(''))
 		// 解析
 		$('.learningTasks').click(function() {
 			resContent(res, res.data.taskType);

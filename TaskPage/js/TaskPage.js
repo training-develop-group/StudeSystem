@@ -1,9 +1,9 @@
 $(function() {
 	info.selectTaskCount()
-	info.selectAllUser('')
-	info.selectTaskType(1)
-
-	info.TableDataRequest();
+	info.selectAllUser('');
+	info.selectTaskType(1);
+	info.selectResourceList(1,1);
+	info.TableDataRequest(1);
 	layui.use(['layer', 'form', 'laydate'], function() {
 		var layer = layui.layer,
 			form = layui.form;
@@ -45,19 +45,19 @@ $(function() {
 			elem: '#test1', //指定元素,
 			theme: '#40AFFE',
 			type: 'datetime',
-			value:new Date()
+			value: firstToday
 		});
 		laydate.render({
 			elem: '#test2', //指定元素,
 			theme: '#40AFFE',
 			type: 'datetime',
-			value:new Date()
+			value: lastToday
 		});
 		All.getMenu({
 			search: 1,
 			type: 1,
 			num: 3
-			
+
 		});
 		$('.search').keypress(function(e) {
 			if (e.which == 13) {
@@ -108,9 +108,7 @@ $(function() {
 				$('.selectResource').hide();
 				$('.resAdd').text('');
 				$('.paperAdd').text('');
-
 			}
-
 		})
 		form.render('select');
 		form.render('checkbox');
@@ -127,9 +125,10 @@ $(function() {
 		layer.open({
 			type: 1,
 			title: ['选择人员',
-				'color:#fff;background-color:#40AFFE;;border-radius: 7px ;overflow-x: hidden; text-align: center;font-size: 20px;'
+				'color:#fff;background-color:#40AFFE;border-radius: 7px ;overflow-x: hidden; text-align: center;font-size: 20px;'
 			],
 			shadeClose: true,
+			move: false,
 			shade: 0.8,
 			skin: 'myskin',
 			area: ['600px', '500px'],
@@ -160,7 +159,7 @@ $(function() {
 	});
 	// 选择资源
 	$('.selectResource').click(function() {
-		info.selectResourceList(1);
+	
 		info.selectResources()
 	})
 	$('.selectRes').click(function() {
@@ -176,10 +175,11 @@ $(".userNameRetrieval").keypress(function(e) {
 });
 //分页
 $('.addOk').click(function() {
-	// console.log('aSdasdasdasd')
 	info.addTask();
-
 })
+
+var JumpPageNum = '';
+var JumpTotal = '';
 var info = {
 	//页面主方法
 	init: function() {
@@ -193,13 +193,14 @@ var info = {
 		info.openAddRolePage();
 	},
 
-	//弹出新建试卷
+	//弹出新建任务
 	openAddRolePage: function(userId) {
 		layer.open({
 			type: 1,
 			title: ['新建任务', 'color:#fff;background-color:#40AFFE;;border-radius: 7px ;text-align: center;font-size: 20px;'],
 			shadeClose: true,
 			shade: 0.8,
+			move: false,
 			skin: 'myskin',
 			area: ['700px', '800px'],
 			content: $('#addTaskPage'),
@@ -225,17 +226,22 @@ var info = {
 		})
 	},
 	//弹出编辑任务
-	popupsUpdateTaskName: function(taskId , taskName) {
+	popupsUpdateTaskName: function(taskName, taskId) {
+		// 公共修改弹出框
 		All.layuiOpenRename({
 			num: 3,
 			id: taskId,
 			returnValue: taskName,
 			msg: '任务名称'
 		})
-		
 	},
 	// 分页插件
 	Page: function(total, pageNum) {
+		if(total < 13) {
+			$('#Page').css('display', 'none');
+		} else {
+			$('#Page').css('display', '');
+		}
 		layui.use('laypage', function() {
 			var laypage = layui.laypage;
 			//执行一个laypage实例
@@ -258,6 +264,52 @@ var info = {
 
 		})
 	},
+	resPage: function(total, pageNum, resType) {
+		layui.use('laypage', function() {
+			var laypage = layui.laypage;
+			//执行一个laypage实例
+
+			laypage.render({
+				elem: 'resPage', //注意，这里的 test1 是 ID，不用加 # 号
+				count: total, //数据总数，从服务端得
+				limit: '12',
+				theme: '#1E9FFF',
+				curr: pageNum,
+				groups: '5',
+				layout: ['prev', 'page', 'next', 'limits', 'skip'],
+				jump: function(item, first) {
+					if (!first) {
+						// console.log()
+						info.selectResourceList(resType, item.curr);
+					}
+				}
+			});
+
+		})
+	},
+	paperPage: function(total, pageNum) {
+		layui.use('laypage', function() {
+			var laypage = layui.laypage;
+			//执行一个laypage实例
+
+			laypage.render({
+				elem: 'paperPage', //注意，这里的 test1 是 ID，不用加 # 号
+				count: total, //数据总数，从服务端得
+				limit: '12',
+				theme: '#1E9FFF',
+				curr: pageNum,
+				groups: '5',
+				layout: ['prev', 'page', 'next', 'limits', 'skip'],
+				jump: function(item, first) {
+					if (!first) {
+						// console.log()
+						info.TableDataRequest(item.curr);
+					}
+				}
+			});
+
+		})
+	},
 	//查询from
 	//点击查看查找所有关联的用户
 	selectTaskUsers: function(taskId) {
@@ -269,29 +321,34 @@ var info = {
 			dataType: 'json',
 			type: 'GET',
 			success(res) {
+				console.log(res)
 				var Html = [];
 				res.data.forEach(function(item, index) {
+					// console.log(res)
 					Html.push('<tr style="margin-top: -10px;">');
 					Html.push('<td style="text-align: center;">' + item.userName + '</td>')
 					var status = ''
-					if (item.status == '0' && item.score == '0') {
+					if (item.status == '0') {
 						status = '未完成'
 					} else {
 						status = '已完成'
 					}
 					Html.push('<td style="text-align: center;">' + status + '</td>')
-					Html.push('<td style="text-align: center;float: left; margin-left: 20px;">' + item.score + '</td></tr>')
+					if (item.score == null) {
+						item.score = '-';
+					}
+					Html.push('<td style="text-align: center;float: left; margin-left: 20px;"> ' + item.score + ' </td></tr>')
 				})
 				$('#taskUserDegreeCompletion').html(Html.join(''));
 			}
 		})
 	},
 	//查找选择试卷
-	TableDataRequest: function() {
+	TableDataRequest: function(pageNum) {
 		$.ajax({
 			url: MCUrl + 'manage_system/paper/papers',
 			data: {
-				"pageNum": 1,
+				"pageNum": pageNum,
 				"pageSize": 10,
 				'paperName': ''
 			},
@@ -309,11 +366,12 @@ var info = {
 						Html.push(
 							'<td style="text-align: center; float: left; margin-left: 20px; "><div  class="site-demo-button"><button value="' +
 							item.paperId +
-							'" type="button" class="layui-btn layui-btn-primary layui-btn-sm layui-btn-normal selectPaper" style="width: 70px;">选择</button></div></td>	'
+							'" type="button" class="layui-btn layui-btn-primary layui-btn-sm layui-btn-normal selectPaper" style="width: 70px; background-color: white;">选择</button></div></td>	'
 						)
 						Html.push('</tr>')
 					})
 					$('#papgeContent').html(Html.join(''));
+					info.paperPage(res.data.total, res.data.pageNum);
 					$('.selectPaper').click(function() {
 						$('.selectPapers').val($(this).val());
 						var Html = []
@@ -442,34 +500,28 @@ var info = {
 				type: 'POST',
 				contentType: 'application/json;charset=utf-8',
 				success(res) {
-					// console.log( location.hash.replace('#!fenye=', ''))
-					//
-					
-					
-					
+					info.selectTaskType(1, '');
 				}
 			})
-			layer.close(layer.index);
+
+			layer.closeAll();
+			layer.msg('添加成功', {
+				area: ['200px', '50px']
+			});
 			
-			info.selectTaskType(1);
-			
-			layer.msg('添加成功',{
-        area:['200px', '50px']
-        });
-			// location.replace(document.referrer);
 		} else {
-			layer.msg(mistake,{
-        area:['200px', '50px']
-        });
+			layer.msg(mistake, {
+				area: ['200px', '50px']
+			});
 		}
 	},
 	//查询资源
-	selectResourceList: function(resType) {
+	selectResourceList: function(resType, pageNum) {
 		$.ajax({
 			url: TDXUrl + 'manage_system/resource/resources',
 			data: {
-				'pageNum': 1,
-				'pageSize': 100000,
+				'pageNum': pageNum || 1,
+				'pageSize': 12,
 				'resType': resType
 			},
 			dataType: 'json',
@@ -484,13 +536,29 @@ var info = {
 						'  <input type="radio" name="res" class=" "  name="Staff" lay-skin="primary" lay-filter="Staff"  value="' +
 						item.resId + '">')
 					Html.push('<div class="img-box">')
-					Html.push('		<img src="' + item.path + '" >')
+					if(item.resType==1){
+						Html.push('		<img src="http://192.168.188.109:8848/' + item.imgPath+ '" >')
+					}else if(item.resType==2){
+						Html.push('		<img src="../imgs/yinpin.jpg.png" >')
+					}else if(item.resType==3){
+						if(item.resExt!='.txt'){
+							Html.push('<img  src="../imgs/w4.jpg" >')
+						}else{
+							Html.push('<img src="../imgs/w2.jpg" >')
+						}
+						
+					}
+					
 					Html.push('</div>')
 					Html.push('<p class="resName">' + item.resName + '</p>')
 					Html.push('</div>')
 				})
-				$('#resource').html(Html.join(''));
-
+				$('#resource').html(Html.join('')); 
+				$('.radio_box').click(function(){
+					$(this).find('.layui-unselect').addClass('layui-form-radioed')
+					$(this).find('.layui-unselect').find('i').addClass('layui-anim-scaleSpring')
+				})
+				info.resPage(res.data.totalresType, res.data.pageNum, resType)
 				// 重新渲染
 				layui.use('form', function() {
 					var form = layui.form;
@@ -528,11 +596,11 @@ var info = {
 		$.ajax({
 			url: LBUrl + 'manage_system/task/tasks',
 			data: {
-				
+
 				'status': 1,
-				'userId':'',
-				'userType':2,
-				"pageNum": pageNum||1,
+				'userId': '',
+				'userType': 2,
+				"pageNum": pageNum,
 				"pageSize": 12,
 				'taskName': search
 			},
@@ -543,13 +611,14 @@ var info = {
 				var Html = [];
 				res.data.list.forEach(function(item, index) {
 					Html.push('<tr>');
-					Html.push('<td style="float: left;" class="oneselfTaskName">' + item.taskName + '</td>');
+					Html.push('<td class="oneselfTaskName">' + item.taskName + '</td>');
 					resa.data.forEach(function(itemTypeName, index) {
 						var aa = itemTypeName.split(",");
 						if (item.taskType == aa[0]) {
 							Html.push('<td >' + aa[1] + '<input type="text" class="taskTypeRecord" value="' + aa[0] +
 								'"hidden> </td>');
 						}
+
 					})
 					Html.push('<td>' + dateFormata(item.startTime) + ' - ' + dateFormata(item.endTime) + '</td>');
 					Html.push(
@@ -563,14 +632,18 @@ var info = {
 					Html.push('</tr>');
 				})
 
+				JumpPageNum = res.data.pageNum;
+				JumpTotal = res.data.total;
+				// if (res.data.total >= 13) {
+					info.Page(res.data.total, res.data.pageNum);
+				// }
 
-				info.Page(res.data.total, res.data.pageNum);
 				$('#taskContent').html(Html.join(''));
 				//点击弹出编辑
 				$('.updateTaskName').click(function() {
 					var taskName = $(this).parents('tr').children('.oneselfTaskName').text();
-					$('.taskNameupdate').val(taskName);
-					info.popupsUpdateTaskName($(this).val() , taskName);
+					$('.taskNameupdate').val(taskName)
+					info.popupsUpdateTaskName(taskName, $(this).val());
 					$('.confirmAdd').val($(this).val())
 				})
 				//点击删除 删除点击的任务
@@ -584,10 +657,10 @@ var info = {
 					});
 					// info.delectTask(taskId);
 				})
-				// $('.confirmAdd').click(function() {
-				// 	info.updateTaskName($(this).val())
-				// 	selectTaskType($('.layui-laypage-skip .layui-input').val(), $('.search').val())
-				// })
+				$('.confirmAdd').click(function() {
+					info.updateTaskName($(this).val())
+					info.selectTaskType($('.layui-laypage-skip .layui-input').val(), $('.search').val())
+				})
 				$('.oneselfTaskName').click(function() {
 					var taskId = $(this).parents('tr').children('td').children('.updateTaskName').val();
 					var taskType = $(this).parents('tr').children('td').children('.taskTypeRecord').val();
@@ -602,7 +675,9 @@ var info = {
 					info.selectTaskUsers($(this).val())
 					layer.open({
 						type: 1,
-						title: ['查看任务', 'color:#fff;background-color:#40AFFE;;border-radius: 7px;text-align: center;font-size: 20px;'],
+						title: ['查看任务',
+							'color:#fff;background-color:#40AFFE;;border-radius: 7px;text-align: center;font-size: 20px;'
+						],
 						shadeClose: true,
 						shade: 0.8,
 						skin: 'myskin',
@@ -619,7 +694,7 @@ var info = {
 		})
 	},
 	//修改任务名根据主键
-	updateTaskName: function(taskId , taskName) {
+	updateTaskName: function(taskId, taskName) {
 
 		// var taskName = $('.taskNameupdate').val();
 		var data = {
@@ -635,23 +710,26 @@ var info = {
 				type: 'POST',
 				// contentType: 'application/json;charset=utf-8',
 				success(res) {
+					layer.close(layer.index);
 					if (res) {
-						layer.msg('修改成功',{
-        area:['200px', '50px']
-        });
-						layer.close(layer.index);
-						info.selectTaskType(1, '')
+
+						layer.msg('修改成功', {
+							area: ['200px', '50px']
+						});
+						info.selectTaskType(1 , '');
+						// 
 					}
 				}
 			})
 		} else {
-			layer.msg('不可为空',{
-        area:['200px', '50px']
-        });
+			layer.msg('不可为空', {
+				area: ['200px', '50px']
+			});
 		}
 	},
 	//刪除任務 根据主键删除
 	delectTask: function(taskId) {
+		console.log(JumpPageNum);
 		$.ajax({
 			url: LBUrl + 'manage_system/task/' + taskId,
 			data: {},
@@ -659,18 +737,18 @@ var info = {
 			type: 'DELETE',
 			success(res) {
 				if (res) {
-
-					// window.location.reload();
-					info.selectTaskType(1);
+					if (JumpTotal % 12 == 1) {
+						var a = JumpPageNum - 1
+						info.selectTaskType(a)
+					} else {
+						info.selectTaskType(JumpPageNum);
+					}
+					
 				}
 			}
 		})
 	}
 }
-
-
-
-
 
 
 
@@ -689,3 +767,18 @@ var dateFormata = function(time) {
 	// 拼接
 	return year + "-" + month + "-" + day + " " + (hours) + ":" + minutes + ":" + seconds;
 }
+
+// 时间设置
+var firstToday = '';
+var lastToday = '';
+$(document).ready(function () {
+	var time = new Date();
+	var day = ("0" + time.getDate()).slice(-2);
+	var newDay = ("0" + (time.getDate() + 1)).slice(-2);
+	var month = ("0" + (time.getMonth() + 1)).slice(-2);
+	var hours = time.getHours();
+	var minutes = time.getMinutes();
+	var seconds = time.getDay();
+	firstToday = time.getFullYear() + "-" + (month) + "-" + (day) + " " + hours + ":" + minutes + ":" + seconds;
+	lastToday = time.getFullYear() + "-" + (month) + "-" + (newDay) + " " + hours + ":" + minutes + ":" + seconds;
+});

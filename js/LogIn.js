@@ -4,40 +4,42 @@ $(function() {
 			logIn();
 		}
 	});
-	$('.errorMsg p').hide();
 	$('.logIn').off('click').on('click', function() {
 		logIn();
 	});
 });
-var logIn = function(){
+var logIn = function() {
 	var data = {
-			userName: $('#user').val(),
-			password: $('#pwd').val()
+		userName: $('#user').val(),
+		password: $('#pwd').val()
 	};
 	if (data.userName == '' || data.password == '') {
-		layer.msg('用户名或者密码不能为空');
+		$('.PasswordError').text('*用户名、密码不可为空');
+		$('.PasswordError').removeClass('hidden');
 		return false;
 	}
 	$.ajax({
 		url: MCUrl + 'manage_system/login',
-		data:data,
-		dataType:'json',
+		data: data,
+		dataType: 'json',
 		type: "GET",
-		success: function (res) {
+		success: function(res) {
 			console.log(res);
-			if(res.code == 1){
-				window.location.href = 'HomePage/HomePage.html'
-				console.log(res.msg);
-			} else {
-				// layer.msg(res.msg);
-				console.log(res.msg);
-			}
-			if(res.code == 3){
-				$('.errorMsg p').show();
+			if (res.code == 1) {
+				if (res.data.stRoleId == 1) {
+					$('.PasswordError').addClass('hidden');
+					window.location.href = 'HomePage/HomePage.html'
+				} else if (res.data.stRoleId == 2) {
+					$('.PasswordError').addClass('hidden');
+					window.location.href = 'UserHomePage/UserHomePage.html?value=' + res.data.userId
+				}
+			} else if (res.data == null) {
+				$('.PasswordError').text('*用户名或密码错误');
+				$('.PasswordError').removeClass('hidden');
 			}
 		},
-		error: function (e) {
-	
+		error: function(e) {
+
 		}
 	})
 }

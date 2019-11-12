@@ -61,7 +61,7 @@ var info = {
 	},
 	selectQuestion: function(curr) {
 		$.ajax({
-			url: 'http://192.168.188.111:8888/manage_system/question/questions',
+			url: 'http://192.168.188.109:8888/manage_system/question/questions',
 			data: {
 				'pageNum': (curr || 1),
 				'pageSize': 10,
@@ -152,7 +152,7 @@ var info = {
 	deleteQuestions: function(questionId, status) {
 		if (status == 1) {
 			$.ajax({
-				url: 'http://192.168.188.111:8888/manage_system/question/' + questionId,
+				url: 'http://192.168.188.109:8888/manage_system/question/' + questionId,
 				data: '',
 				dataType: 'json',
 				type: 'DELETE',
@@ -174,7 +174,7 @@ var info = {
 	//查看解析
 	viewAnswer: function(questionId) {
 		$.ajax({
-			url: 'http://192.168.188.111:8888/manage_system/question/answer',
+			url: 'http://192.168.188.109:8888/manage_system/question/answer',
 			data: {
 				'questionId': questionId
 			},
@@ -283,6 +283,10 @@ var info = {
 				letter = (String.fromCharCode(transformation)).toUpperCase();
 			} else {
 				letter = 'A';
+			}
+			if (letter == '['){
+				layer.msg('选项只能到Z');
+				return false;
 			}
 			// true是单选,false是多选
 
@@ -415,7 +419,7 @@ var info = {
 				'questionOption': JSON.stringify(option)
 			};
 			$.ajax({
-				url: 'http://192.168.188.111:8888/manage_system/question/question',
+				url: 'http://192.168.188.109:8888/manage_system/question/question',
 				data: data,
 				dataType: 'json',
 				type: 'POST',
@@ -435,7 +439,7 @@ var info = {
 		var letter = '';
 		var questionRes = {};
 		$.ajax({
-			url: 'http://192.168.188.111:8888/manage_system/question/' + questionId,
+			url: 'http://192.168.188.109:8888/manage_system/question/' + questionId,
 			data: '',
 			dataType: 'json',
 			type: 'GET',
@@ -574,6 +578,10 @@ var info = {
 					} else {
 						letter = 'A';
 					}
+					if (letter == '['){
+						layer.msg('选项只能到Z');
+						return false;
+					}
 					if (type == 1) {
 						$("#editBuild .choiceItem").append('<p class="outerFrame"><input type="radio" name="choiceItem" value="' +
 							letter +
@@ -698,7 +706,7 @@ var info = {
 					};
 
 					$.ajax({
-						url: 'http://192.168.188.111:8888/manage_system/question/' + questionId,
+						url: 'http://192.168.188.109:8888/manage_system/question/' + questionId,
 						data: data,
 						dataType: 'json',
 						type: 'POST',

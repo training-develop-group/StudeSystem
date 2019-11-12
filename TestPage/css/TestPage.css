@@ -569,13 +569,18 @@ img{
     border: 2px solid #2ba0e3;
     color: #2ba0e3;
 }
-.btn-box button{
+.questionCard .btn-box button{
     float: right;
-    margin-left: 20px;
+    /* margin-left: 20px; */
     box-shadow: 0 1px 4px 0 #2ba0e3;
 }
 
-
+.noConfirmRelease{
+	font-size: 18px;
+	width: 220px;
+	margin: 30px auto 0;
+	display: block;
+}
 .confirmRelease{
 	font-size: 18px;
 	width: 85px;

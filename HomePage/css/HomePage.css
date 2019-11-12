@@ -1,5 +1,5 @@
 .content .resources {
-	width: calc(40% - 20px);
+	width: calc(33.5% - 20px);
 	height: 357px;
 	float: left;
 	margin-right: 20px;
@@ -50,20 +50,13 @@ table tbody tr th {
 }
 
 .content .task {
-	width: 30%;
+	width: 33%;
 	height: 357px;
 	float: left;
 
 }
 
 .taskMore {
-
-
-
-
-	
-	
-
 	font-size: 16px;
 	margin-top: -1px;
 	color: #9e9e9e;
@@ -80,21 +73,15 @@ table tbody tr th {
 }
 
 .testPaperMore {
-
-
-
-
-
 	font-size: 16px;
 	margin-top: -1px;
 	color: #9e9e9e;
 	margin-left: 70%;
 	cursor: pointer;
-
 }
 
 .content .paper {
-	width: calc(30% - 20px);
+	width: calc(33.5% - 20px);
 	height: 357px;
 	float: left;
 	margin-left: 20px;
@@ -165,4 +152,11 @@ table tbody tr th {
 #taskNumberDistribution {
 	width: 400px;
 	height: 300px;
+}
+
+#main , #mian , #mina{
+	width: 400px;
+	height: 300px;
+	/* float: left; */
+	margin: 0 auto;
 }
