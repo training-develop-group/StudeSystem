@@ -174,7 +174,7 @@ var All = {
                     $('.ok').off('click').on('click', function () {
                         layer.close(layer.index);
                         window.location.href = "../index.html";
-                        // localStorage.removeItem('ref');
+                        localStorage.removeItem('userType');
                     });
                     $('.no').off('click').on('click', function () {
                         layer.close(layer.index);

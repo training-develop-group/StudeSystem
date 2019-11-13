@@ -154,7 +154,7 @@ var info = {
 			dataType: 'json',
 			Type: 'GET',
 			success: function(res) {
-				if (res || res.data !== null) {
+				if (res || res.data != null) {
 					info.TableDrawing(res.data);
 				}
 			},

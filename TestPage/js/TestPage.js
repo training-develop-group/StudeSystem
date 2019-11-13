@@ -2,39 +2,51 @@
  * @name: common
  * @author：MengXin
  */
-$(function() {
-	var urlinfo = window.location.href;
+var urlinfo = window.location.href;
 	var value = urlinfo.split("?")[1].split("value=")[1];
 	var PaperId = decodeURI(value);
 	var taskId = PaperId.split(',')[0]
-	var taskType = PaperId.split(',')[1]
-	var getExperience = 0;
-	var paperId = PaperId.split(',')[2]
-	var resId = PaperId.split(',')[3]
-	var taskName = PaperId.split(',')[5]
-	var userId = PaperId.split(',')[4];
+	var userType = PaperId.split(',')[1]
+	var taskType = ''
+	var getExperience = '';
+	var paperId = ''
+	var resId = ''
+	var taskName = ''
+$(function() {
+	
+	// var userId = PaperId.split(',')[1];
 	// var resId = 68;
-	console.log(taskName)	
-	
-	
+
+
+
 	$.ajax({
-			// url:
-	
-			url: LBUrl + 'manage_system/task/'+taskId,
-			data: {},
-			dataType: 'json',
-			type: 'GET',
-			contentType: 'application/json;charset=utf-8',
-			success(res) {
-				console.log(res)
-				getExperience++;
-	
+		// url:
+
+		url: LBUrl + 'manage_system/task/' + taskId,
+		data: {},
+		dataType: 'json',
+		type: 'GET',
+		async: false,
+		contentType: 'application/json;charset=utf-8',
+		success(res) {
+			console.log(res)
+			getExperience++;
+			taskType = res.data.taskType;
+			paperId = res.data.paperId;
+			resId = res.data.resId;
+			taskName = res.data.taskName;
 			$('.nav_title').text(res.data.taskName)
-	
-			}
-	
+			
+
+		}
+
 	})
+		console.log(localStorage.getItem('userType'))
+	if(localStorage.getItem('userType')==1){
+		info.getExperienceList(1,taskId);
 	
+	}
+	console.log(taskName)
 	$('.add').off('click').on('click', function() {
 		// 这里替换了换行与回车
 		var Experience = $('.textExperience').val().replace(/\n/g, "<br/>").replace(" ", "&nbsp;").replace("<", "&lt;").replace(
@@ -42,7 +54,7 @@ $(function() {
 
 		var data = {
 			'taskId': taskId,
-			'commentUserId': userId,
+			// 'commentUserId': userId,
 			'content': Experience
 
 		}
@@ -64,6 +76,7 @@ $(function() {
 				var textNum = $('.textExperience').val().length;
 				$('.textNum').text(textNum);
 				info.textNum()
+				
 				if (getExperience > 0) {
 					info.getExperienceList(1, taskId)
 				}
@@ -71,20 +84,82 @@ $(function() {
 			}
 		})
 	})
+	if(localStorage.getItem('userType') == 2 ){
+	var myAudio = document.getElementById('myVideo')
+	myAudio.loop = false;
+	myAudio.addEventListener('ended', function() {
+		$('.measurement').addClass('text');
+		$('.measurement').click(function() {
+			console.log('asdasdasd')
+			
+			$('.doc,.video,.audio').addClass('hidden')
+			$('.active').removeClass('active')
+			$('.measurement').addClass('active')
+			$('.experienceListBox').addClass('hidden')
+			if(localStorage.getItem('userType') == 1){
+				info.getPaperList(paperId)
+			}else{
+				$('.content').removeClass('hidden')
+				info.getList(taskId, taskType, paperId, resId);
+			}
+		})
+	}, false);
+	}else{
+		$('.measurement').addClass('text');
+		$('.measurement').click(function() {
+			$('.doc,.video,.audio').addClass('hidden')
+			$('.active').removeClass('active')
+			$('.measurement').addClass('active')
+			$('.experienceListBox').addClass('hidden')
+			if(localStorage.getItem('userType') == 1){
+				info.getPaperList(paperId)
+			}else{
+				$('.content').removeClass('hidden')
+				info.getList(taskId, taskType, paperId, resId);
+			}
+			
+			})
+	}
+	if(localStorage.getItem('userType') == 2){
+		
+	
 	var myAudio = document.getElementById('myAudio')
 	myAudio.loop = false;
 	myAudio.addEventListener('ended', function() {
 		$('.measurement').addClass('text');
 		$('.measurement').click(function() {
 			console.log('asdasdasd')
-			$('.content').removeClass('hidden')
+			
 			$('.doc,.video,.audio').addClass('hidden')
 			$('.active').removeClass('active')
-			$('.test').addClass('active')
+			$('.measurement').addClass('active')
 			$('.experienceListBox').addClass('hidden')
-			info.getList(taskId, taskType, paperId, resId);
+			if(localStorage.getItem('userType') == 1){
+				info.getPaperList(paperId)
+			}else{
+				$('.content').removeClass('hidden')
+				info.getList(taskId, taskType, paperId, resId);
+			}
+			
 		})
 	}, false);
+	}else{
+		$('.measurement').addClass('text');
+		$('.measurement').click(function() {
+			$('.doc,.video,.audio').addClass('hidden')
+			$('.active').removeClass('active')
+			$('.measurement').addClass('active')
+			$('.experienceListBox').addClass('hidden')
+			if(localStorage.getItem('userType') == 1){
+				info.getPaperList(paperId)
+			}else{
+				$('.content').removeClass('hidden')
+				info.getList(taskId, taskType, paperId, resId);
+			}
+			
+			})
+	}
+	console.log(taskType)
 	layui.use(['layer', 'form'], function() {
 		var layer = layui.layer,
 			form = layui.form;
@@ -104,6 +179,7 @@ $(function() {
 				contentType: 'application/json;charset=utf-8',
 				success(resc) {
 					console.log(resc)
+					$('.taskRemarkContent').text(resc.taskRemark)
 					if (resc.data != null) {
 
 
@@ -148,7 +224,7 @@ $(function() {
 							$('.video').removeClass('hidden');
 							$('.video video').attr('src', 'http://192.168.188.109:8848/' + resc.data.path)
 							setTimeInterval = setInterval(info.NoProgressBar, 1);
-							
+
 						} else if (resc.data.resType == 2) {
 							$('.audio').removeClass('hidden');
 							$('.audio audio').attr('src', 'http://192.168.188.109:8848/' + resc.data.path)
@@ -168,15 +244,60 @@ $(function() {
 			$('.experienceListBox').removeClass('hidden')
 
 		} else if (taskType == 3) {
+			console.log(userType)
 			$('.study').addClass('hidden')
-			$('.content').removeClass('hidden')
-			$('.doc,.video,.audio').addClass('hidden')
-			$('.active').removeClass('active')
-			$('.measurement').addClass('active')
-			info.getList(taskId, taskType, paperId, resId);
+			
+				$('.doc,.video,.audio').addClass('hidden')
+				$('.active').removeClass('active')
+				$('.measurement').addClass('active')
+			if (localStorage.getItem('userType') == 1) {
+				info.getPaperList(paperId)
+			}else{
+				$('.content').removeClass('hidden')
+				info.getList(taskId, taskType, paperId, resId);
+			}
 		}
 		$('.study').click(function() {
-			layer.msg("学习完就不能回去喽")
+			$('.active').removeClass('active')
+			$('.study').addClass('active')
+			$('.test_content').addClass('hidden')
+			if(localStorage.getItem('userType') == 1){
+				$.ajax({
+					url: TDXUrl + 'manage_system/resource/' + resId,
+					data: {},
+					dataType: 'json',
+					type: 'GET',
+					contentType: 'application/json;charset=utf-8',
+					success(resc) {
+						console.log(resc)
+						if (resc.data != null) {
+				
+				
+							var pdfPath = resc.data.path.substring(0, resc.data.path.lastIndexOf('.'));
+							console.log(pdfPath);
+				
+							if (resc.data.resType == 1) {
+								$('.video').removeClass('hidden');
+								$('.video video').attr('src', 'http://192.168.188.109:8848/' + resc.data.path)
+								setTimeInterval = setInterval(info.NoProgressBar, 1);
+				
+							} else if (resc.data.resType == 2) {
+								$('.audio').removeClass('hidden');
+								$('.audio audio').attr('src', 'http://192.168.188.109:8848/' + resc.data.path)
+								setTimeInterval = setInterval(info.NoProgressBar, 1);
+							} else if (resc.data.resType == 3) {
+								$('.doc').removeClass('hidden');
+								// $('.video').addClass('hidden')
+								$('.doc iframe').attr('src', 'http://192.168.188.109:8848/' + pdfPath + '.pdf')
+							}
+						} else {
+							layer.msg('资源已被删除')
+						}
+					}
+				})
+			}else{
+				layer.msg("学习完就不能回去喽")
+			}
 		})
 		$('.test').click(function() {
 			$('.content').removeClass('hidden')
@@ -199,6 +320,104 @@ var answer = [];
 var lastTime = 0;
 
 var info = {
+	getPaperList :function(paperId){
+		$.ajax({
+			url: MCUrl + 'manage_system/paper/' + 53,
+			data: {
+			},
+			Type: 'GET',
+			success(res) {
+				console.log(res);
+		
+				if (res || res.data !== null) {
+					console.log(res)
+					var Html = [];
+					// Html.push('<div class="Testing">' + res.data.taskName + '</div>')
+					
+					Html.push(
+						'<ul class="layui-tab tabHead layui-tab-brief clearfix">'
+					)
+					if (res.data.questions[0].questionList.length == 0){
+						return 
+					}
+						res.data.questions[0].questionList.forEach(function(item, index) {
+							Html.push('<li class="sortableitem">');
+							Html.push('<div class="topicFramework">');
+							Html.push('<input type="text" class="questionId" value="' + item.questionId + '" hidden="hidden"/>');
+							if (item.questionType == 1){
+								item.questionType = "单选题";
+							} else {
+								item.questionType = "多选题";
+							}
+							var newScore = res.data.questions[0].newScoreList[index].score;
+							Html.push('<p class="num">'+ (index + 1) +'. ' + item.questionType + '<span>  ' + newScore + '分</span></p>');
+							// 转义(已防有标签的样式被html识别)
+							item.content = $('<div>').text(item.content).html();
+							Html.push('<p class="distance">' + item.content + '</p>');
+							res.data.questions[0].optionInfo.forEach(function(items, index) {
+								if (items.questionId == item.questionId){
+									// 转义(已防有标签的样式被html识别)
+									items.content = $('<div>').text(items.content).html();
+									Html.push('<p class="distance">' + items.optionType + ' ' + items.content + '</p>');
+								}
+							});
+							Html.push('</div>');
+							Html.push('<div class="functionBox">');
+							Html.push('<button class="toView"><i class="layui-icon layui-icon-search"></i>查看解析</button>');
+							Html.push('</div>');
+							Html.push('</li>');
+						});
+						Html.push('</ul>');
+		
+					$('.test_content').html(Html.join(''))
+					$('.test_content').removeClass('hidden');
+					$('.content').css('background-color', '#fff')
+					// 解析
+		
+					$('.toView').off('click').on('click', function() {
+						var QusetionId = $(this).val();
+						// 解析内容
+						var Analysis = '未定义';
+						// 正确答案
+						var OptionType = '未知';
+						$.ajax({
+							url: MCUrl + 'manage_system/question/answer',
+							data: {
+								'questionId': QusetionId
+							},
+							dataType: 'json',
+							type: 'GET',
+							success(res) {
+								res.data.forEach(function(item, index) {
+									Analysis = item.analysis;
+									OptionType = item.optionType;
+								});
+								layui.use("layer", function() {
+									var layer = layui.layer;
+									layer.open({
+										type: 1 //Page层类型
+											,
+										closeBtn: 1,
+										area: ['790px', '300px'],
+										title: ['查看解析',
+												'background-color: #279ef0;text-align: center;font-size: 16px;line-height: 43px;color:white;letter-spacing: 5px;padding: 0px;'
+											]
+											// ,shade: 0.6 //遮罩透明度
+											,
+										content: '<div class="answerContent">' +
+											'<p>正确答案：<span class="answerOptions">' + OptionType + '</span></p>' +
+											'<p>答案解析：</p>' +
+											'<p class="analysis">' + Analysis + '</p>' +
+											'</div>'
+									});
+								});
+							}
+						});
+					});
+				}
+			}
+		})
+	},
 	//  todo  接口 ,获取页面试题
 	getList: function(taskId, taskType, paperId, resId) {
 		$.ajax({
@@ -416,7 +635,7 @@ var info = {
 				useranswerList.push(data);
 			});
 			var data = {
-				'userId': userId,
+				// 'userId': userId,
 				'paperId': resb.data.paperId,
 				'taskId': taskId,
 				'jUserQuesAnswerRecord': JSON.stringify(useranswerList)
@@ -496,7 +715,7 @@ var info = {
 								'</div>'
 							)
 							Html.push(
-								'<ul class="layui-tab tabHead layui-tab-brief">'
+								'<ul class="layui-tab tabHead layui-tab-brief clearfix">'
 							)
 
 							res.data.questions.forEach(function(item, index) {
@@ -630,6 +849,7 @@ var info = {
 		// })
 
 	},
+
 	getExperienceList: function(pageNum, taskId) {
 		// var time = new Date();
 
@@ -655,10 +875,10 @@ var info = {
 				});
 				$('.experienceList').html(html.join(''));
 				$('.textExperience').keyup(function() {
-				// $('.textExperience').val().length
+					// $('.textExperience').val().length
 					var textNum = $('.textExperience').val().length;
 					$('.textNum').text(textNum);
-					
+
 				})
 				$('.addExperience').removeClass('hidden');
 				info.Page(resc.data.total, resc.data.pageNum, taskId);
@@ -691,7 +911,7 @@ var info = {
 	},
 	// 获取心得字数
 	textNum: function() {
-		
+
 	},
 	// 分页插件
 	Page: function(total, curr, taskId) {
@@ -715,17 +935,17 @@ var info = {
 
 		})
 	},
-	
+
 	NoProgressBar: function() {
-	    var myVideo = document.getElementById("myVideo"); //获取视频DOM
-	    var nowTime = myVideo.currentTime; //获取视频当前播放时间
-	    var timeInterval = nowTime - lastTime; //用当前时间减去1秒之前的时间
-	    if (timeInterval > 0.1) {  //判断相差时间是否超过一秒
-	      myVideo.pause();
-	      myVideo.currentTime = lastTime;  //返回之前的视频播放时间
-	    }
-	    lastTime = nowTime; //播放时间中转（全局变量）
-	  },
+		var myVideo = document.getElementById("myVideo"); //获取视频DOM
+		var nowTime = myVideo.currentTime; //获取视频当前播放时间
+		var timeInterval = nowTime - lastTime; //用当前时间减去1秒之前的时间
+		if (timeInterval > 0.1) { //判断相差时间是否超过一秒
+			myVideo.pause();
+			myVideo.currentTime = lastTime; //返回之前的视频播放时间
+		}
+		lastTime = nowTime; //播放时间中转（全局变量）
+	},
 
 };
 var dateFormata = function(time) {

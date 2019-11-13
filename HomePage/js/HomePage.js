@@ -95,11 +95,10 @@ var info = {
 				dataType: 'json',
 				type: 'GET',
 				success(res) {
-					console.log(res)
 					var Html = [];
 					res.data.list.forEach(function(item, index) {
 						Html.push('<tr style="border-bottom: 1px solid #e6e6e6;">');
-						Html.push('<td style="float: left; border:none" title="' + item.taskName + '">' + item.taskName + '</td>');
+						Html.push('<td style="text-align: left; border:none" title="' + item.taskName + '">' + item.taskName + '</td>');
 						if (item.taskType == 1) {
 							item.taskType = '综合任务';
 						} else if (item.taskType == 2) {
@@ -107,7 +106,7 @@ var info = {
 						} else if (item.taskType == 3) {
 							item.taskType = '测试任务';
 						}
-						Html.push('<td style="float: content;" border:none title="' + item.taskType + '">' + item.taskType + '</td>');
+						Html.push('<td class="tasktd" title="' + item.taskType + '">' + item.taskType + '</td>');
 						Html.push('</tr>');
 					})
 					$('.taskContent').html(Html.join(''))
@@ -128,7 +127,7 @@ var info = {
 						var Html = [];
 						res.data.list.forEach(function(item, index) {
 							Html.push('<tr  style="border-bottom: 1px solid #e6e6e6;">');
-							Html.push('<td style="float: left; border:none" title="' + item.paperName + '">' + item.paperName + '</td>');
+							Html.push('<td style="text-align: left; border:none" title="' + item.paperName + '">' + item.paperName + '</td>');
 							Html.push('<td style="float: content; border:none" title="' + item.single + '">' + item.single + '</td>');
 							Html.push('<td style="float: content; border:none" title="' + item.many + '">' + item.many + '</td>');
 							Html.push('</tr>');

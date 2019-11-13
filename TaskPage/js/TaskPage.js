@@ -622,7 +622,7 @@ var info = {
 				var Html = [];
 				res.data.list.forEach(function(item, index) {
 					Html.push('<tr>');
-					Html.push('<td class="oneselfTaskName">' + item.taskName + '</td>');
+					Html.push('<td class="oneselfTaskName"><span>' + item.taskName + '</span></td>');
 					resa.data.forEach(function(itemTypeName, index) {
 						var aa = itemTypeName.split(",");
 						if (item.taskType == aa[0]) {
@@ -678,7 +678,7 @@ var info = {
 					console.log(taskType)
 
 
-					window.open("htmls/Video/video.html?value=" + taskId + "," + taskType, "_blank");
+					window.open("../TestPage/TestPage.html?value=" + taskId+","+1 , "_blank");
 
 
 				})

@@ -465,10 +465,14 @@ body {
 	background-color: white;
 }
 
+.taskRemark p{
+	width: 50%;
+	}
 .Testing {
 	font-size: 18px;
 	font-weight: bold;
 	margin-left: 19px;
+	margin-bottom: 20px;
 	padding-top: 15px;
 }
 
@@ -1266,4 +1270,8 @@ body {
 }
 .layui-textarea{
 	resize: none;
+}
+
+.taskRemarkBox {
+	
 }

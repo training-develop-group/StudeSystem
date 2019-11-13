@@ -143,7 +143,7 @@ console.log(res)
 			var paperId = $(this).attr('data-paperId')
 			var resId = $(this).attr('data-resId')
 			var tsakName = $(this).text()
-          　window.location.href="../TestPage/TestPage.html?value="+TaskId+","+TaskType+","+paperId+","+resId+","+taskId+","+tsakName;
+          　window.location.href="../TestPage/TestPage.html?value="+TaskId;
         });
     }
 };

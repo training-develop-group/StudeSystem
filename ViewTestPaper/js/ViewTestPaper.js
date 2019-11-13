@@ -53,8 +53,12 @@ var info = {
 			},
 			Type: 'GET',
 			success: function(res) {
-				if (res || res.data !== null) {
-					info.TableDrawing(res.data);
+				if (res.code == 1){
+					if (res || res.data !== null) {
+						info.TableDrawing(res.data);
+					}
+				} else {
+					layer.msg(res.msg);
 				}
 			},
 			error: function(e) {

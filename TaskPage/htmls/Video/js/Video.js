@@ -49,6 +49,7 @@ $(function() {
 
 					if (resc.data.resType == 1) {
 						Html.push('<div class="Testing">' + res.data.taskName + '</div>')
+						Html.push('<div class="taskRemark"><p><b>任务描述:</b></p><p> ' + res.data.taskRemark + '</p></div>')
 						Html.push(
 							'<div class="layui-tab tabHead layui-tab-brief"><ul class="layui-tab-title"><li class="layui-this learningTasks" style="display: hidden;" >视频学习</li><li class="testContent" style="display: hidden;" value="' +
 							res.data.paperId + '">测试内容</li>'
@@ -60,7 +61,8 @@ $(function() {
 							'" type="video/' + resc.data.resExt +
 							'"></video><script>plyr.setup();</script></div><div style="text-align:center;margin:50px 0; font:normal 14px/24px ' +
 							'MicroSoft YaHei' + ';color:#ffffff"></div></div></ul></div></div>')
-						$('.content').css('height', '550px')
+						$('.content').css('height', '570px')
+						
 					} else if (resc.data.resType == 3) {
 						Html.push('<div class="Testing">' + res.data.taskName + '</div>')
 						Html.push(
@@ -80,6 +82,7 @@ $(function() {
 							'">测试内容</li><div class="colour" style="padding-top: 0;"><div class="File"><audio class="frequency" controls="controls" style="padding: 20px 500px;> <source src="http://192.168.188.109:8848/' +
 							resc.data.path + '" type="audio/ogg" "></audio></div></div></ul></div></div>'
 						)
+						$('.experienceListBox').show()
 						$('.content').css('height', '200px')
 						
 
@@ -186,8 +189,12 @@ $(function() {
 			'<div class="layui-tab tabHead layui-tab-brief"><ul class="layui-tab-title"><li class="learningTasks" style="display: hidden;" >视频学习</li><li class="testContent layui-this" style="display: hidden;" value="' +
 			res.data.paperId + '">测试内容</li>'
 		)
+		console.log(resb)
+		if(resb.data!=null){
+			
+	
 		resb.data.questions.forEach(function(item, index) {
-			console.log(resb)
+			
 			Html.push('<div class="sortableitem">');
 			Html.push('<div class="topicFramework" style="text-align: left;line-height: 1;">');
 			Html.push('<input type="text" class="qusetionId" value="' + item.questionId + '" hidden="hidden"/>');
@@ -211,7 +218,9 @@ $(function() {
 			Html.push('</ul>')
 			Html.push('</div>')
 		});
-
+	}else{
+		layer.msg('资源已被删除')
+	}
 		console.log('asdasdasd')
 
 		$('.content').html(Html.join(''))

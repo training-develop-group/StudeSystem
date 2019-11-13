@@ -61,12 +61,12 @@ var info = {
 	},
 	selectQuestion: function(curr) {
 		$.ajax({
-			url: 'http://192.168.188.109:8888/manage_system/question/questions',
+			url: WTQUrl + 'manage_system/question/questions',
 			data: {
 				'pageNum': (curr || 1),
 				'pageSize': 10,
 				'questionType': type,
-				'content': $('.search').val()
+				'content': $.trim($('.search').val())
 			},
 			dataType: 'json',
 			type: 'GET',
@@ -153,7 +153,7 @@ var info = {
 	deleteQuestions: function(questionId, status) {
 		if (status == 1) {
 			$.ajax({
-				url: 'http://192.168.188.109:8888/manage_system/question/' + questionId,
+				url: WTQUrl + 'manage_system/question/' + questionId,
 				data: '',
 				dataType: 'json',
 				type: 'DELETE',
@@ -175,7 +175,7 @@ var info = {
 	//查看解析
 	viewAnswer: function(questionId) {
 		$.ajax({
-			url: 'http://192.168.188.109:8888/manage_system/question/answer',
+			url: WTQUrl + 'manage_system/question/answer',
 			data: {
 				'questionId': questionId
 			},
@@ -419,7 +419,7 @@ var info = {
 				'questionOption': JSON.stringify(option)
 			};
 			$.ajax({
-				url: 'http://192.168.188.109:8888/manage_system/question/question',
+				url: WTQUrl + 'manage_system/question/question',
 				data: data,
 				dataType: 'json',
 				type: 'POST',
@@ -439,7 +439,7 @@ var info = {
 		var letter = '';
 		var questionRes = {};
 		$.ajax({
-			url: 'http://192.168.188.109:8888/manage_system/question/' + questionId,
+			url: WTQUrl + 'manage_system/question/' + questionId,
 			data: '',
 			dataType: 'json',
 			type: 'GET',
@@ -706,7 +706,7 @@ var info = {
 					};
 
 					$.ajax({
-						url: 'http://192.168.188.109:8888/manage_system/question/' + questionId,
+						url: WTQUrl + 'manage_system/question/' + questionId,
 						data: data,
 						dataType: 'json',
 						type: 'POST',

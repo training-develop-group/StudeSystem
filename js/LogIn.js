@@ -26,10 +26,12 @@ var logIn = function() {
 		success: function(res) {
 			console.log(res);
 			if (res.code == 1) {
+				localStorage.setItem('userType',res.data.stRoleId);
 				if (res.data.stRoleId == 1) {
 					$('.PasswordError').addClass('hidden');
 					window.location.href = 'HomePage/HomePage.html'
 				} else if (res.data.stRoleId == 2) {
+					localStorage.setItem('userType',res.data.stRoleId);
 					$('.PasswordError').addClass('hidden');
 					window.location.href = 'UserHomePage/UserHomePage.html?value=' + res.data.userId
 				}
