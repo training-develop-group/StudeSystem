@@ -1,6 +1,6 @@
 $(function() {
 	
-	// 评论区js
+// 评论区js
 $('#btnComment').click(function(){
 
 		var content= $("#contentOne").val();
@@ -21,20 +21,20 @@ $('#btnComment').click(function(){
 		}
 })
 
-     // 评论区js-end
+// 评论区js-end
 
-	$(".search").focus(function() {
-		$('.searchIcon').hide();
+$(".search").focus(function() {
+	$('.searchIcon').hide();
+});
+$(".search").blur(function() {
+	if ($('.search').val() == '')
+		$('.searchIcon').show();
+});
+ layui.use(['layer', 'form'], function () {
+		var layer = layui.layer, form = layui.form;
+
+		// All.getMenu({
+		//     num:2
+		// });
 	});
-	$(".search").blur(function() {
-		if ($('.search').val() == '')
-			$('.searchIcon').show();
-	});
-	 layui.use(['layer', 'form'], function () {
-	        var layer = layui.layer, form = layui.form;
-	
-	        // All.getMenu({
-	        //     num:2
-	        // });
-	    });
 });
