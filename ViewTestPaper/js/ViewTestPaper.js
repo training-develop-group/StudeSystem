@@ -9,17 +9,18 @@ $(function() {
 			type: 1,
 			num: 4
 		});
+		// 点击回车
+		$('.search').keypress(function(e) {
+			if (e.which == 13) {
+				info.TableDataRequest(PaperId);
+			}
+		})
 	});
 	layui.use('form', function() {
 		var form = layui.form;
 		info.init();
 	});
-	// 新建试卷
-	$('#newTestPaper').click(function() {
-		// newTestPaper();
-		layer.msg("暂无此功能");
-	});
-	
+
 	$('.mobileFramework').clickSort({
 	    speed:500,
 	　　callback:function(){
@@ -28,7 +29,7 @@ $(function() {
 	　　}
 	});
 });
-
+var PaperId;
 var info = {
 	//页面主方法
 	init: function() {
@@ -39,15 +40,17 @@ var info = {
 		// 获取URL里的参数
 		var urlinfo = window.location.href;
 		value = urlinfo.split("?")[1].split("value=")[1];
-		var PaperId = decodeURI(value);
+		PaperId = decodeURI(value);
 		
 		info.TableDataRequest(PaperId);
 	},
 	//表格数据请求
 	TableDataRequest: function(PaperId) {
-		// var paperId = 2;
 		$.ajax({
 			url: MCUrl + 'manage_system/paper/' + PaperId,
+			data: {
+				'content': $.trim($('.search').val())
+			},
 			Type: 'GET',
 			success: function(res) {
 				if (res || res.data !== null) {
@@ -61,25 +64,32 @@ var info = {
 	},
 	//表格会绘制
 	TableDrawing: function(data) {
+		if (data == null){
+			return false;
+		}
 		var Html = [];
-		console.log(data);
-		data.questions.forEach(function(item, index) {
+		// 转义(已防有标签的样式被html识别)
+		// items.paperName = $('<div>').text(items.paperName).html();
+		data.questions[0].questionList.forEach(function(item, index) {
 			Html.push('<li class="sortableitem">');
 			Html.push('<div class="topicFramework">');
 			Html.push('<input type="text" class="questionId" value="' + item.questionId + '" hidden="hidden"/>');
 			if (item.questionType == 1){
-				item.questionType = '单选题';
+				item.questionType = "单选题";
 			} else {
-				item.questionType = '多选题';
+				item.questionType = "多选题";
 			}
-			Html.push('<p class="num">'+ (index + 1) +'. ' + item.questionType + '<span>  ' + item.newScore + '分</span></p>');
+			var newScore = data.questions[0].newScoreList[index].score;
+			Html.push('<p class="num">'+ (index + 1) +'. ' + item.questionType + '<span>  ' + newScore + '分</span></p>');
 			// 转义(已防有标签的样式被html识别)
-			item.paperName = $('<div>').text(item.paperName).html();
+			item.content = $('<div>').text(item.content).html();
 			Html.push('<p class="distance">' + item.content + '</p>');
-			item.optionInfo.forEach(function(items, index) {
-				// 转义(已防有标签的样式被html识别)
-				items.paperName = $('<div>').text(items.paperName).html();
-				Html.push('<p class="distance">' + items.optionType + ' ' + items.content + '</p>');
+			data.questions[0].optionInfo.forEach(function(items, index) {
+				if (items.questionId == item.questionId){
+					// 转义(已防有标签的样式被html识别)
+					items.content = $('<div>').text(items.content).html();
+					Html.push('<p class="distance">' + items.optionType + ' ' + items.content + '</p>');
+				}
 			});
 			Html.push('</div>');
 			Html.push('<div class="functionBox">');
@@ -118,7 +128,8 @@ var info = {
 						type: 1 //Page层类型
 							,
 						closeBtn: 1,
-						area: ['790px', '300px'],
+						move: false,
+						area: ['700px', '260px'],
 						title: ['查看解析',
 								'background-color: #279ef0;text-align: center;font-size: 16px;line-height: 43px;color:white;letter-spacing: 5px;padding: 0px;'
 							]

@@ -1,27 +1,26 @@
-/* .content {
-	width: 98%;
-	margin: 0.81cm 20px 30px;
-	height: 750px;
-	background-color: white;
-} */
-#title{
+.logobox text {
+	font-family: '幼圆', serif;
+}
+
+#title {
 	width: 100%;
 	height: 60px;
 	background-color: #279ef0;
-	/* margin-left: 43px; */
-	margin-top: 25px;
 	border-radius: 5px 5px 0 0;
 }
-#centered{
+
+#centered {
 	line-height: 60px;
 }
-#centered span{
+
+#centered span {
 	font-size: 18px;
 	margin-left: 30px;
 	color: white;
 	font-weight: 600;
 }
-#newTestPaper{
+
+#newTestPaper {
 	font-size: 16px;
 	float: right;
 	margin-right: 20px;
@@ -29,7 +28,8 @@
 	border-radius: 3px;
 	color: #279ef2;
 }
-.editorialContent{
+
+.editorialContent {
 	float: left;
 	width: 100%;
 	/* height: calc(100% - 43px); */
@@ -41,21 +41,24 @@
 	padding: 0px 0px 30px;
 	border-radius: 3px;
 }
-.sortableitem{
+
+.sortableitem {
 	width: calc(100% - 60px);
 	float: left;
 	margin-left: 28px;
 	margin-top: 25px;
 	border: 1px solid #dadada;
 }
-.functionBox{
+
+.functionBox {
 	width: 100%;
 	height: 50px;
 	/* border: 1px solid black; */
 	background-color: #f5f5f5;
 	margin-top: 20px;
 }
-.functionBox button{
+
+.functionBox button {
 	font-size: 16px;
 	margin-left: 20px;
 	/* margin-top: 12px; */
@@ -63,53 +66,64 @@
 	border: 0;
 	background-color: #f5f5f5;
 }
-.sortableitem .num{
+
+.sortableitem .num {
 	margin-top: 15px;
 	margin-left: 20px;
 }
-.distance{
+
+.distance {
 	margin-top: 20px;
 	margin-left: 30px;
 }
-img{
+
+img {
 	width: 30px;
 }
-.layui-icon{
+
+.layui-icon {
 	color: #2ba0e3;
 }
-.footer{
+
+.footer {
 	margin-left: 35%;
-	width:740px;
-	height:55px;
+	width: 740px;
+	height: 55px;
 }
+
 /* 弹窗位置 */
-.layui-layer{
+.layui-layer {
 	top: 140px !important;
 }
+
 /* 按钮位置 */
-.layui-layer-btn{
+.layui-layer-btn {
 	padding: 0 293px 12px !important;
 }
+
 /* 按钮位置 */
-.layui-layer-btn a{
+.layui-layer-btn a {
 	margin: -15px 5px 0 !important;
 }
+
 /* 按钮位置 */
-.layui-layer-btn0{
+.layui-layer-btn0 {
 	width: 160px !important;
-	/* height: 20px !important; */
 	line-height: 39px;
 	text-align: center;
 	margin-top: -10px;
 }
-.analysis{
+
+.analysis {
 	width: 300px;
 	text-indent: 25px;
 }
-.answerContent{
-	margin-left: 250px;
-	margin-top: 40px;
+
+.answerContent {
+	margin: 10px 20px;
+	
 }
-.answerContent p{
+
+.answerContent p {
 	margin-top: 10px;
 }

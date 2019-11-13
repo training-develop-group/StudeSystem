@@ -66,10 +66,13 @@ table tbody tr th {
 
 .layui-card-header {
 	font-weight: 600;
+	text-align: left;
+	padding-left: 33px;
 }
 
 .layui-table th {
 	font-weight: 600;
+	padding-left: 20px;
 }
 
 .testPaperMore {
@@ -90,16 +93,11 @@ table tbody tr th {
 
 .resorceMore {
 	font-size: 16px;
-
 	color: #9e9e9e;
 	cursor: pointer;
-
-
 	margin-top: -1px;
-
-	margin-left: 80%;
-
-
+	/* margin-left: 80%; */
+	float: right;
 }
 
 .content .statistics {

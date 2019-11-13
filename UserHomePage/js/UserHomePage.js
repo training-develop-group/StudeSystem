@@ -62,9 +62,19 @@ console.log(res)
 						
                         listHtml.push('<li class="clearfix">');
                         listHtml.push('   <div class="leftBox">');
-                        listHtml.push('      <div class="imgBox ">');
-						// if()
-                        listHtml.push('          <img src="../imgs/w5.jpg" alt="任务图片"/>');
+                        ;
+						if(item.taskType==1){
+							listHtml.push('      <div class="imgBox "  style="border: 1px solid #0aae47;">')
+							  listHtml.push('<img src="../imgs/sp2.png" height="50px" alt="任务图片"/>');
+							  
+						}else if(item.taskType==2){
+							listHtml.push('      <div class="imgBox " style="border: 1px solid #42b0fe;">')
+							  listHtml.push('<img src="../imgs/sp1.png" height="50px" alt="任务图片"/>');
+						}else if(item.taskType == 3){
+							listHtml.push('      <div class="imgBox "  style="border: 1px solid #fe9540;">')
+							 listHtml.push('<img src="../imgs/sp3.png" height="50px" alt="任务图片"/>');
+						}
+                      
                         listHtml.push('      </div>');
                         listHtml.push('   </div>');
                         listHtml.push('   <div class="rightBox">');
@@ -123,12 +133,17 @@ console.log(res)
         })
     },
     ToTask:function () {
+		var urlinfo = window.location.href;
+		var value = urlinfo.split("?")[1].split("value=")[1];
+		var PaperId = decodeURI(value);
+		var taskId = PaperId.split(',')[0]
         $('body').delegate('.rightBox .ToTask','click',function () {
             var TaskType = $(this).attr('data-type');
             var TaskId = $(this).attr('data-id');
 			var paperId = $(this).attr('data-paperId')
 			var resId = $(this).attr('data-resId')
-          　window.location.href="../TestPage/TestPage.html?value="+TaskId+","+TaskType+","+paperId+","+resId;
+			var tsakName = $(this).text()
+          　window.location.href="../TestPage/TestPage.html?value="+TaskId+","+TaskType+","+paperId+","+resId+","+taskId+","+tsakName;
         });
     }
 };

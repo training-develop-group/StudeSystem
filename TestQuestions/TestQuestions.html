@@ -30,14 +30,22 @@
 				<textarea id="content" required lay-verify="required" maxlength="60" class="layui-textarea titleInputBox"></textarea>
 			</div>
 			<div class="layui-form choiceItem">
-				<p class="outerFrame"><input type="radio" lay-skin="primary" name="choiceItem" value="A" title="A"><textarea name=""
-					 required lay-verify="required" maxlength="30" class="layui-textarea optionA option"></textarea></p>
-				<p class="outerFrame"><input type="radio" lay-skin="primary" name="choiceItem" value="B" title="B"><textarea name=""
-					 required lay-verify="required" maxlength="30" class="layui-textarea optionB option"></textarea></p>
-				<p class="outerFrame"><input type="radio" lay-skin="primary" name="choiceItem" value="C" title="C"><textarea name=""
-					 required lay-verify="required" maxlength="30" class="layui-textarea optionC option"></textarea></p>
-				<p class="outerFrame"><input type="radio" lay-skin="primary" name="choiceItem" value="D" title="D"><textarea name=""
-					 required lay-verify="required" maxlength="30" class="layui-textarea optionD option"></textarea></p>
+				<p class="outerFrame">
+					<input type="radio" lay-skin="primary" name="choiceItem" value="A" title="A">
+					<textarea name="" required lay-verify="required" maxlength="30" class="layui-textarea optionA option"></textarea>
+				</p>
+				<p class="outerFrame">
+					<input type="radio" lay-skin="primary" name="choiceItem" value="B" title="B">
+					<textarea name="" required lay-verify="required" maxlength="30" class="layui-textarea optionB option"></textarea>
+				</p>
+				<p class="outerFrame">
+					<input type="radio" lay-skin="primary" name="choiceItem" value="C" title="C">
+					<textarea name="" required lay-verify="required" maxlength="30" class="layui-textarea optionC option"></textarea>
+				</p>
+				<p class="outerFrame">
+					<input type="radio" lay-skin="primary" name="choiceItem" value="D" title="D">
+					<textarea name="" required lay-verify="required" maxlength="30" class="layui-textarea optionD option"></textarea>
+				</p>
 			</div>
 			<div class="manageOptions">
 				<button class="addOptions"><i class="layui-icon layui-icon-add-circle"></i> 选项</button>
@@ -47,7 +55,7 @@
 				<span>解析</span>
 				<textarea name="" required lay-verify="required" id="analysis" maxlength="200" class="layui-textarea parseInputBox"></textarea>
 				<div class="addInputTotal">
-				<span>可输入：</span><span class="num">200</span>
+					<span>可输入：</span><span class="num">200</span>
 				</div>
 			</div>
 			<p class="optionErrorMsg">单选题最少存在两个选项，多选最少存在三个选项！</p>
@@ -76,7 +84,7 @@
 				<span>解析</span>
 				<textarea name="" required lay-verify="required" id="analysis" maxlength="200" class="layui-textarea parseInputBox"></textarea>
 				<div class="editInputTotal">
-				<span>可输入：</span><span class="num">200</span>
+					<span>可输入：</span><span class="num">200</span>
 				</div>
 			</div>
 			<p class="optionErrorMsg">单选题最少存在两个选项，多选最少存在三个选项！</p>
@@ -84,7 +92,7 @@
 		</div>
 		<!--解析-->
 		<div class="Popup PopupAnalysis hidden">
-		<!-- 	<div class="P-top">
+			<!-- 	<div class="P-top">
 				<span>查看解析</span>
 			</div> -->
 			<div class="P-content">
@@ -92,7 +100,6 @@
 					<p>正确答案:<span>A</span></p>
 					<p>答案解析:</p>
 					<p class="analysis">因为集合M={1，2，3}，所以1∈M;</p>
-					<p class="answer">故选:A.</p>
 				</div>
 			</div>
 
@@ -102,7 +109,6 @@
 			<div class="Content ChangeToaminationPape">
 				<div class="C-Top">
 					<span>试题列表</span>
-					<!-- <button class="NewTestQuestion">新增试题</button> -->
 					<button type="button" class="layui-btn layui-btn-primary NewTestQuestion">新增试题</button>
 				</div>
 				<div class="C-Content">
@@ -135,8 +141,6 @@
 							</div>
 						</li>
 					</ul>
-
-
 				</div>
 			</div>
 			<div class="Footer" style="text-align: center">

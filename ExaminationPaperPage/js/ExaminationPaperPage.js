@@ -20,7 +20,7 @@ $(function() {
 	//用户模糊查询 回车
 	$(".userNameRetrieval").keypress(function(e) {
 		if (e.which == 13) {
-			var userNameRetrieval = $('.userNameRetrieval').val()
+			var userNameRetrieval = $.trim($('.userNameRetrieval').val());
 			info.selectAllUser(userNameRetrieval);
 		}
 	});
@@ -89,7 +89,7 @@ $(function() {
 	$('.search').keypress(function(e) {
 		if (e.which == 13) {
 			var search = $('.search').val();
-			info.selectTaskType(1, search);
+			info.TableDataRequest(1, search);
 		}
 	});
 	var laydate = layui.laydate;
@@ -139,7 +139,7 @@ var PNum = 1;
 var info = {
 	//表格数据请求
 	TableDataRequest : function(pageNum) {
-		var paperName = $('.search').val();
+		var paperName = $.trim($('.search').val());
 		if (paperName == undefined){
 			paperName = '';
 		}

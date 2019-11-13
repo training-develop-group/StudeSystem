@@ -282,10 +282,7 @@ var info = {
 					});
 
 
-					//发布任务
-					$('.addOk').click(function() {
-						info.addTask();
-					});
+					
 
 					//-------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -465,7 +462,7 @@ var info = {
 				console.log(path);
 				var extPath = path.substring(path.lastIndexOf('.'));
 				console.log(extPath);
-				if (extPath == '.txt') {
+				if (extPath == '.txt' || extPath == '.pdf') {
 					var html = [];
 					html.push('<iframe src="http://192.168.188.109:8848/' + path + '" width="800px" height="800px"></iframe>');
 					$('#viewResourceBox').html(html.join(''));
@@ -587,7 +584,7 @@ var info = {
 
 
 	//根据Id删除资源
-	deleteResource: function(resId) {
+	deleteResource: function(resId, index) {
 		$.ajax({
 			url: TDXUrl + 'manage_system/resource/' + resId,
 			data: {},
@@ -595,21 +592,15 @@ var info = {
 			type: 'DELETE',
 			contentType: 'application/json;charset=utf-8',
 			success(res) {
-				// if(res.code == 1) {
-					console.log(res);
-					layer.msg('删除资源成功');
-					// console.log(12);
-					if (total % 12 == 1) {
-						var a = JumpPageNum - 1;
-						info.selectResourceList(a);
-						
-					} else {
-						info.selectResourceList(JumpPageNum);
-					}
-					
-				// } else {	
-				// 	layer.msg('删除资源失败');
-				// }
+				console.log(res);
+				layer.msg('删除资源成功');
+				// console.log(12);
+				if (total % 12 == 1) {
+					var a = JumpPageNum - 1;
+					info.selectResourceList(a);
+				} else {
+					info.selectResourceList(JumpPageNum);
+				}
 				
 			},
 			error(e) {
@@ -617,7 +608,7 @@ var info = {
 			}
 		});
 	},
-
+	
 
 	//上传文件
 	uploadPopup: function() {
@@ -649,6 +640,7 @@ var info = {
 						$('#demoList').html(html.join(''));
 					},
 					success: function() {
+						var resIdList = [];
 						console.log('-----成功1----');
 						layui.use('upload', function() {
 							var $ = layui.jquery,
@@ -680,6 +672,7 @@ var info = {
 											// 	layer.msg('选择的文件中不包含支持的格式');
 											// 	return false;
 											// }
+											 console.log(file);
 											var tr = $(['<tr id="upload-' + index + '" class="uploadTd">',
 												'<td style="width:20px;" title="'+file.name+'">' + file.name + '</td>', 
 												'<td class="centerText">' + fileType + '</td>',
@@ -687,35 +680,50 @@ var info = {
 												'<td class="centerText">' + '--' + '</td>',
 												'<td>',
 												// '<button class="layui-btn layui-btn-xs demo-reload layui-hide">重传</button>',
-												'<button class="layui-btn layui-btn-xs layui-btn-danger demo-delete">删除</button>',
+												'<button class="layui-btn layui-btn-xs layui-btn-danger demo-delete resId="'+ deleteResId +'" ">删除</button>',
 												'</td>',
 												'</tr>'
 											].join(''));
-
+											console.log(index);
+	
 											//单个重传
 											tr.find('.demo-reload').on('click', function() {
 												obj.upload(index, file);
 											});
-
-											//删除
-											tr.find('.demo-delete').on('click', function() {
-												console.log(deleteResId);
-												//调用common.js公共
-												All.layuiOpen({
-													num: 1,
-													resId: deleteResId,
-													msg: '是否删除资源?'
-												});
-											});
-
+	
+											
+	
 											demoListView.append(tr);
 										});
 									},
 									done: function(res, index, upload) {
-										console.log('-----成功----');
-										console.log(res);
-										var resId = res.data.resId;
-										deleteResId = resId;
+										console.log(index);
+										var upload_index = 'upload-'+index;
+										var a = $('#'+upload_index);
+										deleteResId = res.data.resId;
+										resIdList.push(deleteResId);
+										console.log(resIdList);
+										
+										//删除
+										$('.demo-delete').off('click').on('click', function() {
+											var resId = $(this).attr('resId');
+											var id = $(this).parent('td').parent('tr').attr('id');
+											$('.uploadTd').each(function(index, item){
+												if($(this).attr('id')==id){
+													console.log(resIdList[index]);
+												}
+											})
+											console.log(id);
+											var deleteThis = $(this).parent('td').parent('tr')
+											//调用common.js公共
+											All.layuiOpen({
+												num: 1,
+												resId: resId,
+												index: 1,
+												deleteThis: deleteThis,
+												msg: '是否删除资源?'
+											});
+										});
 										var resType = '';
 										if(res.data.resType == 1) {
 											resType = '视频';
@@ -729,8 +737,9 @@ var info = {
 												tds = tr.children();
 											tds.eq(3).html('<span style="color: #5FB878;" class="centerText">上传成功</span>');
 											tds.eq(1).html('<span>'+ resType +'</span>');
+											tds.eq(4).find('button').removeClass('hidden');
 											// tds.eq(4).html(''); //清空操作
-											return delete this.files[index]; //删除文件队列已经上传成功的文件
+											// return delete this.files[index]; //删除文件队列已经上传成功的文件
 										}
 										// this.error(index, upload);
 									},
@@ -740,10 +749,11 @@ var info = {
 											tds = tr.children();
 										tds.eq(3).html('<span style="color: #FF5722;">上传失败</span>');
 										tds.eq(4).find('.demo-reload').removeClass('layui-hide'); //显示重传
-
+	
 									}
 								});
 						});
+					
 					},
 					error(e) {
 						layer.msg('上传资源错误');
@@ -777,17 +787,21 @@ var info = {
 			type: 1,
 			title: ['发布任务', 'color:#fff;background-color:#40AFFE;border-radius: 7px;text-align: center; font-size: 20px;'],
 			shadeClose: true,
-			shade: 0.8,
+			shade: 0.6,
 			skin: 'myskin',
 			area: ['700px', '750px'],
 			move: false,
 			content: $('#addTaskPage'),
-			success: function() {
+			success: function(index) {
 				layui.use('form', function() {
 					var form = layui.form;
 					form.render('select');
 				});
-
+				
+				//发布任务
+				$('.addOk').click(function() {
+					info.addTask();
+				});
 			},
 		});
 	},
@@ -892,12 +906,11 @@ var info = {
 				type: 'POST',
 				contentType: 'application/json;charset=utf-8',
 				success(res) {
-					// console.log(res)
+					layer.msg('添加成功');
+					info.selectResourceList(JumpPageNum);
 				}
 			})
-			layer.msg('添加成功');
-			// layer.close(layer.index);
-			location.replace(document.referrer);
+			layer.closeAll();
 			
 		} else {
 			layer.msg(mistake);

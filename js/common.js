@@ -203,10 +203,8 @@ var All = {
 	          $('.yes').off('click').on('click', function() {
 	            switch (options.num){
 					case 1:
-						info.deleteResource(options.resId);
-						console.log(1);
-						$('.uploadTd').remove();
-						console.log(2);
+						info.deleteResource(options.resId, options.index);
+						$(options.deleteThis).remove();
 						layer.close(layer.index);
 						break;
 					case 2:
@@ -252,7 +250,7 @@ var All = {
 					,title: ['重命名', 'background-color: #279ef0;text-align: center;font-size: 20px;line-height: 42px;color:white;padding: 0px;']
 					// ,shade: 0.6 //遮罩透明度
 					,content: '<div class="common-inputLocation">'+
-							'<span>' + options.msg + '</span>'
+							'<span maxlength="60">' + options.msg + '</span>'
 							+ '<input type="text" autocomplete="off" class="layui-input common-acquiredValue">'
 							+ '</div>'
 							+ '<div class="common-btn-box">'
@@ -287,7 +285,7 @@ var All = {
 									info.updateTaskName(options.id, name);
 									break;
 							}
-							layer.close(layer.index);
+							layer.closeAll();
 						});
 						// 点击取消
 						$('.common-cancel').off('click').on('click' , function() {

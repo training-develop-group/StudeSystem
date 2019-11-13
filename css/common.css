@@ -138,7 +138,7 @@ body {
 
 .headerBox .right {
     float: right;
-    margin-right: 80px;
+    margin-right: 40px;
 }
 
 .headerBox .right .userimg {
@@ -185,7 +185,7 @@ body {
 }
 
 .layui-btn-primary:hover {
-    border-color: #1E9FFF;
+    border-color: #279EF0;
 }
 
 .logOut p {
@@ -199,8 +199,8 @@ body {
 }
 
 .logOut .btn-box {
-    width: 206px;
-    margin: 30px auto 0;
+	width: 208px;
+	margin: 30px auto 0;
 }
 .ok{
 	font-size: 14px;
@@ -211,6 +211,20 @@ body {
 
 .logOut .layui-layer-title {
     padding: 0 20px 0 20px;
+}
+
+.layui-card-body {
+	padding-top: 0px;
+	cursor: default;
+}
+
+.layui-card-header {
+	font-size: 18px;
+	margin-top: 15px;
+}
+
+a:hover {
+	color: #1b1b1b;
 }
 
 /* ----------------------(删除)弹窗的css↓---------------------------- */
@@ -227,6 +241,11 @@ body {
   border-radius: 2px;
   background-color: #1E9FFF;
 }
+.no {
+	background-color: #fff;
+	color: #1b1b1b;
+	border: 1px solid #dedede;
+}
 
 .btn {
   position: absolute;
@@ -234,10 +253,15 @@ body {
   left: 0;
   right: 0;
   margin: 0 auto;
-  width: 196px;
+  width: 198px;
 }
-.yes:hover, .no:hover{
-  background:linear-gradient(#0092ff,#1E9FFF,#1E9FFF) ;
+.yes:hover {
+	background-color: #40AFFE;
+}
+
+.no:hover {
+	background-color: #C0C0C0;
+	border: 1px solid #dedede;
 }
 
 .yes {
@@ -250,6 +274,31 @@ body {
     font-size: 18px;
 }
 
+#Page {
+	margin-top: 18px;
+}
+
+button {
+	cursor: pointer !important;
+}
+
+/* layui样式覆盖 */
+
+
+.layui-layer {
+	border-radius: 7px !important;
+}
+
+.layui-laypage .layui-laypage-curr {
+	top: -3px;
+	margin: 0 6px;
+}
+
+.layui-laypage .layui-laypage-curr .layui-laypage-em {
+	top: 0.5px;
+	width: 98%;
+	height: 94%
+}
 /* ------------------------------------重命名弹窗------------------------------------ */
 
 .common-inputLocation{

@@ -8,6 +8,59 @@ body {
 	padding-top: 15px;
 	font-family: "微软雅黑";
 }
+.experienceListBox {
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.1);
+    padding: 15px 20px 25px 20px;
+    margin-top: 20px;
+    background: white;
+}
+.experienceTitle {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+.experienceList li {
+    border-bottom: 1px solid #eaeaea;
+    padding: 10px 5px;
+}
+.addExperience textarea {
+    resize: none;
+    width: calc(100% - 20px);
+    border: 1px solid #eaeaea;
+    height: 120px;
+    padding: 10px;
+}
+.addExperience .add {
+    padding: 0 35px;
+    line-height: 26px;
+    height: 26px;
+    margin-top: 10px;
+    float: right;
+}
+
+.addExperience .textNumBox {
+    margin-top: 10px;
+    line-height: 26px;
+    height: 26px;
+    float: right;
+    margin-right: 20px;
+}
+.experienceList li > p {
+    line-height: 28px;
+}
+
+.experienceList .uName {
+    font-weight: 600;
+}
+
+.experienceList li p:last-child {
+    text-align: right;
+}
+
+.experienceList li p:last-child > span {
+    margin-right: 20px;
+    color: #2ba0e3;
+}
 
 .header .serachBox .search {
 	position: absolute;

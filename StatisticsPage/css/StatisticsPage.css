@@ -45,13 +45,6 @@ table {
 	/* margin: 0 25px; */
 }
 
-/*td {*/
-	/*font-size: 16px;*/
-	/*border-bottom: 1px solid #E2E2E2;*/
-	/*line-height: 45px;*/
-	/*text-align: center;*/
-/*}*/
-
 td>a {
 	padding: 0 75px 0 0;
 	font-size: 16px;
@@ -142,5 +135,5 @@ thead>tr>td {
 	background-color: #f1f1f1;
 }
 .Left{
-	text-align:left
+	text-align:left;
 }

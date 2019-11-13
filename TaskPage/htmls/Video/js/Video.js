@@ -81,6 +81,7 @@ $(function() {
 							resc.data.path + '" type="audio/ogg" "></audio></div></div></ul></div></div>'
 						)
 						$('.content').css('height', '200px')
+						
 
 					}
 
@@ -89,14 +90,47 @@ $(function() {
 						$('.File').css('height', '675px')
 					}
 					$('.box-contents').prepend(
-						'<div class="comment">	<div class="comment-title">学习心得</div><ul class="comment-content" id="contentList"><li>我今天学习了java<p class="comment-time">2019-10-21 13:23:55</li></ul></div>'
+							
+						
+						
 					)
 
 					if (res.data.taskType == 1) {
 						console.log()
 					} else if (res.data.taskType == 2) {
 						// console.log('asdasd')
-						console.log(res.data.taskType)
+						$.ajax({
+							url: LBUrl + 'manage_system/task/comments',
+							data: {
+								'taskId': taskId,
+								'pageNum': 1,
+								'pageSize': 10
+							},
+							dataType: 'json',
+							type: 'GET',
+							contentType: 'application/json;charset=utf-8',
+							success(resc) {
+								console.log(resc)
+								var html = [];
+								resc.data.list.forEach(function(item, index) {
+									html.push('<li class="List">');
+									html.push('    <p class="uName">' + item.userName + '</p>');
+									html.push('    <p>' + item.content + '</p>');
+									html.push('    <p class="time"><span>' + dateFormata(item.cTime) + '</span><span></span></p>');
+									html.push('</li>');
+								});
+								$('.experienceList').html(html.join(''));
+								$('.textExperience').keyup(function() {
+								// $('.textExperience').val().length
+									// var textNum = $('.textExperience').val().length;
+									// $('.textNum').text(textNum);
+									
+								})
+								// $('.addExperience').removeClass('hidden');
+								// info.Page(resc.data.total, resc.data.pageNum, taskId);
+								// info.addExperience(taskId,resc.data.list[1]);
+							}
+						})
 						$('.testContent').hide()
 					} else if (res.data.taskType == 3) {
 						$('.learningTasks').hide()

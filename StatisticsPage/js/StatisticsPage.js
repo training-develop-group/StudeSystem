@@ -48,24 +48,27 @@ var TableDataRequest = function(pageNum) {
 				Html.push('</tr>');
 			});
 			$('#contentList').html(Html.join(''));
+			$('#page').hide();
 			if(res.data.total > 12){
-				page(res.data);
+				page(res.data.total,res.data.pageNum);
+				$('#page').show();
 			}
 		}
 	});
 }
 // 分页
-var page = function(data){
+var page = function(total,pageNum){
+	console.log(1)
 	layui.use('laypage', function() {
 		var laypage = layui.laypage;
 		laypage.render({
 			elem: 'page' //注意，这里的 test1 是 ID，不用加 # 号
 				,
-			count: data.total //数据总数，从服务端得到
+			count: total //数据总数，从服务端得到
 				,
 			limit: '12',
 			theme: '#1E9FFF',
-			curr: data.pageNum,
+			curr: pageNum,
 			groups: '5',
 			layout:['prev','page','next','limits','skip'],
 			jump: function(item, first) {

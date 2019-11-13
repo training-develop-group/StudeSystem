@@ -51,6 +51,9 @@
 	border-radius: 5px;
 	color: #279ef2;
 }
+#newTestPaper:hover{
+	color: #1b1b1b;
+}
 #examinationPaperList{
 	/* border: 1px solid black; */
 	width: 100%;

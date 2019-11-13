@@ -65,6 +65,13 @@ $(function() {
 				info.selectTaskType(1, search);
 			}
 		})
+		$('#resName').keypress(function(e){
+			if (e.which == 13) {
+				var search = $('#resName').val()
+				var resType = $('.layui-nav .layui-this').val();
+				info.selectResourceList(1,resType, search);
+			}
+		})
 		$('.usersSelectOk').click(function() {
 			var Html = [];
 			$.each($("[name='Staff']:checked"), function(i, val) {
@@ -516,13 +523,17 @@ var info = {
 		}
 	},
 	//查询资源
-	selectResourceList: function(resType, pageNum) {
+	selectResourceList: function(resType, pageNum,resName) {
+		if(resName == undefined){
+			resName = ''
+		}
 		$.ajax({
 			url: TDXUrl + 'manage_system/resource/resources',
 			data: {
 				'pageNum': pageNum || 1,
 				'pageSize': 12,
-				'resType': resType
+				'resType': resType,
+				'resName':resName
 			},
 			dataType: 'json',
 			type: 'GET',

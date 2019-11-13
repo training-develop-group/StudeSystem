@@ -2,34 +2,34 @@
 	background-color: rgb(64, 175, 254)
 }
 
-.layui-layer-content {
-	height: 150px;
-
-}
-
 #selectTaskUsers span {
 	text-align: left;
 	padding-left: 20px;
 
 }
-.selectResource{
-		cursor:pointer ;
-}
-.selectPapers{
-	cursor:pointer ; 
+
+.selectResource {
+	cursor: pointer;
 }
 
-td button{
-	cursor:pointer ;
+.selectPapers {
+	cursor: pointer;
 }
-td{
-	cursor:default ;
+
+td button {
+	cursor: pointer;
+}
+
+td {
+	cursor: default;
 
 }
- tr .oneselfTaskName{
-	cursor:pointer;
+
+tr .oneselfTaskName {
+	cursor: pointer;
 	text-align: left;
 }
+
 #selectTaskUsers {
 	border: 1px solid #C9C5C5;
 	width: 550px;
@@ -69,19 +69,28 @@ td{
 	overflow: auto;
 	padding: 5px;
 }
-.layui-layer-title {
- 
-}
+
+.layui-layer-title {}
+
 .taskUsers p {
-	/* line-height: 20px; */
 	margin-left: 20px;
-	/* margin-right: 40px; */
 }
 
 ol,
 ul {
 	margin-top: 0px;
 	margin-bottom: 0px;
+}
+
+ul div img {
+	position: relative;
+	top: -1px;
+	left: 2px;
+}
+
+ul div input {
+	height: 25px;
+	margin-top: 4px !important;
 }
 
 .layui-this>a {
@@ -163,10 +172,6 @@ ul {
 	width: 200px;
 	border: 1px solid #C9C9C9;
 	border-radius: 6px;
-}
-
-.layui-table {
-	background-color: rgb(248, 248, 248);
 }
 
 .asd .taskUsers {
@@ -337,9 +342,11 @@ i {
 	padding: 20px;
 	padding-top: 10px;
 }
-.taskUsers p:hover{
-  background-color: #f2f2f2;
+
+.taskUsers p:hover {
+	background-color: #f2f2f2;
 }
+
 #examineTask>.layui-table {
 	text-align: center;
 	border: 1px solid rgb(221, 221, 221);
@@ -347,7 +354,7 @@ i {
 
 .layui-layer .layui-layer-title {
 	border-radius: 5px 5px 0 0 !important;
-	padding: 0 ;
+	padding: 0;
 }
 
 .myskin {
@@ -371,8 +378,8 @@ i {
 
 .img-box {
 	margin-right: 20px;
-	height: 80%;
-	width: 80%;
+	height: 150px;
+	width: 150px;
 	border: 1px solid #dadada;
 	margin-top: 20px;
 }
@@ -382,8 +389,9 @@ i {
 }
 
 .img-box img {
-	width: 80%;
-	height: 80%;
+	margin: 25px;
+	width: 65%;
+	height: 65%;
 }
 
 .radio_box .resName {
@@ -399,7 +407,7 @@ i {
 }
 
 
-.Release_btn{
+.Release_btn {
 	position: absolute;
 	margin: 0 auto;
 	width: 140px;
@@ -407,30 +415,32 @@ i {
 	right: 0;
 	bottom: 25px;
 }
-.selectPersonnel{
+
+.selectPersonnel {
 	margin: 0 0 0 23px;
 }
-.selectResource i{
+
+.selectResource i {
 	color: #5FB878;
 }
-.selectPapers i{
+
+.selectPapers i {
 	color: #5FB878;
 }
-.selectPersonnel i{
+
+.selectPersonnel i {
 	color: #5FB878;
 }
-.okbtn{
+
+.okbtn {
 	width: 140px;
 	border: 0;
 	color: white;
 }
 
-#taskContent tr:hover{
+#taskContent tr:hover {
 	background-color: #eeeeee;
 }
-
-
-
 
 .selectPapers,
 .selectResource {
@@ -439,13 +449,33 @@ i {
 	cursor: pointer;
 	color: #5FB878;
 }
+
 .layui-btn-primary:hover {
 	border-color: rgb(208, 208, 208);
 }
+
 .layui-layer-hui .layui-layer-content {
 	height: 25px;
 }
 
-.layui-nav-item a:hover{
+.layui-layer-content .layui-laypage-skip {
+	background-color: #fff;
+}
+
+.layui-nav-item a:hover {
 	color: #000000 !important;
+}
+
+#layui-layer100027,
+.layui-layer-msg {
+	color: #000 !important;
+}
+
+tr .oneselfTaskName span,
+.paperName span {
+	display: inline-block;
+	width: 170px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }

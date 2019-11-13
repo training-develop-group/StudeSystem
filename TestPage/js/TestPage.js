@@ -11,8 +11,30 @@ $(function() {
 	var getExperience = 0;
 	var paperId = PaperId.split(',')[2]
 	var resId = PaperId.split(',')[3]
-	var userId = '22f0b533-ff6c-11e9-8737-704d7bb7c44d';
+	var taskName = PaperId.split(',')[5]
+	var userId = PaperId.split(',')[4];
 	// var resId = 68;
+	console.log(taskName)	
+	
+	
+	$.ajax({
+			// url:
+	
+			url: LBUrl + 'manage_system/task/'+taskId,
+			data: {},
+			dataType: 'json',
+			type: 'GET',
+			contentType: 'application/json;charset=utf-8',
+			success(res) {
+				console.log(res)
+				getExperience++;
+	
+			$('.nav_title').text(res.data.taskName)
+	
+			}
+	
+	})
+	
 	$('.add').off('click').on('click', function() {
 		// 这里替换了换行与回车
 		var Experience = $('.textExperience').val().replace(/\n/g, "<br/>").replace(" ", "&nbsp;").replace("<", "&lt;").replace(
@@ -180,7 +202,7 @@ var info = {
 	//  todo  接口 ,获取页面试题
 	getList: function(taskId, taskType, paperId, resId) {
 		$.ajax({
-			url: LBUrl + 'manage_system/paper/' + 2,
+			url: LBUrl + 'manage_system/paper/' + paperId,
 			data: {
 
 			},
@@ -394,9 +416,9 @@ var info = {
 				useranswerList.push(data);
 			});
 			var data = {
-				'userId': "1",
+				'userId': userId,
 				'paperId': resb.data.paperId,
-				'taskId': 3,
+				'taskId': taskId,
 				'jUserQuesAnswerRecord': JSON.stringify(useranswerList)
 			}
 			if (flag) {
@@ -632,6 +654,12 @@ var info = {
 					html.push('</li>');
 				});
 				$('.experienceList').html(html.join(''));
+				$('.textExperience').keyup(function() {
+				// $('.textExperience').val().length
+					var textNum = $('.textExperience').val().length;
+					$('.textNum').text(textNum);
+					
+				})
 				$('.addExperience').removeClass('hidden');
 				info.Page(resc.data.total, resc.data.pageNum, taskId);
 				// info.addExperience(taskId,resc.data.list[1]);
@@ -663,11 +691,7 @@ var info = {
 	},
 	// 获取心得字数
 	textNum: function() {
-		$('.textExperience').keyup(function() {
-			console.log($('.textExperience').val().length)
-			var textNum = $('.textExperience').val().length;
-			$('.textNum').text(textNum);
-		})
+		
 	},
 	// 分页插件
 	Page: function(total, curr, taskId) {

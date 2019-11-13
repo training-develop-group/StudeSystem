@@ -149,6 +149,7 @@ var info = {
 		});
 
 	},
+	// 删除实试题
 	deleteQuestions: function(questionId, status) {
 		if (status == 1) {
 			$.ajax({
@@ -189,7 +190,6 @@ var info = {
 					} else {
 						answer = answer + ',' + item.optionType;
 					}
-					$('.PopupAnalysis .ViewParsing .answer').text('故选:' + answer + '.');
 					$('.PopupAnalysis .ViewParsing span').text(answer);
 				});
 			}
@@ -295,12 +295,12 @@ var info = {
 					'<p class="outerFrame"><input type="radio" lay-skin="primary" name="choiceItem" value="' +
 					letter +
 					'" title="' + letter +
-					'"><textarea name="" required lay-verify="required" maxlength="30" class="layui-textarea option"></textarea></p>');
+					'"><textarea name="" required lay-verify="required" maxlength="200" class="layui-textarea option"></textarea></p>');
 			} else if (judged == false) {
 				$("#newlyBuild .choiceItem").append(
 					'<p class="outerFrame"><input type="checkbox" lay-skin="primary" name="choiceItem" value="' + letter +
 					'" title="' + letter +
-					'"><textarea name="" required lay-verify="required" maxlength="30" class="layui-textarea option"></textarea></p>');
+					'"><textarea name="" required lay-verify="required" maxlength="200" class="layui-textarea option"></textarea></p>');
 			}
 			// 重新渲染
 			layui.use('form', function() {
@@ -457,14 +457,14 @@ var info = {
 									item.ref + '"/><input type="radio" name="choiceItem" value="' +
 									item.optionType +
 									'" title="' + item.optionType +
-									'" checked><textarea name="" required lay-verify="required" maxlength="30" class="layui-textarea option">' + item.content +
+									'" checked><textarea name="" required lay-verify="required" maxlength="200" class="layui-textarea option">' + item.content +
 									'</textarea></p>');
 							} else {
 								$("#editBuild .choiceItem").append('<p class="outerFrame"><input class="ref" type="hidden" value = "' +
 									item.ref + '"/><input type="radio" name="choiceItem" value="' +
 									item.optionType +
 									'" title="' + item.optionType +
-									'"><textarea name="" required lay-verify="required" maxlength="30" class="layui-textarea option">' + item.content +
+									'"><textarea name="" required lay-verify="required" maxlength="200" class="layui-textarea option">' + item.content +
 									'</textarea></p>');
 							}
 
@@ -476,14 +476,14 @@ var info = {
 									'<p class="outerFrame"><input class="ref" type="hidden" value = "' + item.ref +
 									'"/><input type="checkbox" lay-skin="primary" name="choiceItem" value="' + item.optionType +
 									'" title="' + item.optionType +
-									'" checked><textarea name="" required lay-verify="required" maxlength="30" class="layui-textarea option">' + item.content +
+									'" checked><textarea name="" required lay-verify="required" maxlength="200" class="layui-textarea option">' + item.content +
 									'</textarea></p>');
 							} else {
 								$("#editBuild .choiceItem").append(
 									'<p class="outerFrame"><input class="ref" type="hidden" value = "' + item.ref +
 									'"/><input type="checkbox" lay-skin="primary" name="choiceItem" value="' + item.optionType +
 									'" title="' + item.optionType +
-									'"><textarea name="" required lay-verify="required" maxlength="30" class="layui-textarea option">' + item.content +
+									'"><textarea name="" required lay-verify="required" maxlength="200" class="layui-textarea option">' + item.content +
 									'</textarea></p>');
 							}
 
@@ -508,7 +508,7 @@ var info = {
 											'"/><input type="radio" name="choiceItem" value="' +
 											item.optionType +
 											'" title="' + item.optionType +
-											'"checked><textarea name="" required lay-verify="required" maxlength="30" class="layui-textarea option">' +
+											'"checked><textarea name="" required lay-verify="required" maxlength="200" class="layui-textarea option">' +
 											item.content +
 											'</textarea></p>');
 									} else {
@@ -517,7 +517,7 @@ var info = {
 											'"/><input type="radio" name="choiceItem" value="' +
 											item.optionType +
 											'" title="' + item.optionType +
-											'"><textarea name="" required lay-verify="required" maxlength="30" class="layui-textarea option">' + item.content +
+											'"><textarea name="" required lay-verify="required" maxlength="200" class="layui-textarea option">' + item.content +
 											'</textarea></p>');
 									}
 									type = 1;
@@ -529,7 +529,7 @@ var info = {
 											'"/><input type="checkbox" lay-skin="primary" name="choiceItem" value="' +
 											item.optionType +
 											'" title="' + item.optionType +
-											'"checked><textarea name="" required lay-verify="required" maxlength="30" class="layui-textarea option">' +
+											'"checked><textarea name="" required lay-verify="required" maxlength="200" class="layui-textarea option">' +
 											item.content +
 											'</textarea></p>');
 									} else {
@@ -538,7 +538,7 @@ var info = {
 											'"/><input type="checkbox" lay-skin="primary" name="choiceItem" value="' +
 											item.optionType +
 											'" title="' + item.optionType +
-											'"><textarea name="" required lay-verify="required" maxlength="30" class="layui-textarea option">' + item.content +
+											'"><textarea name="" required lay-verify="required" maxlength="200" class="layui-textarea option">' + item.content +
 											'</textarea></p>');
 									}
 
@@ -586,12 +586,12 @@ var info = {
 						$("#editBuild .choiceItem").append('<p class="outerFrame"><input type="radio" name="choiceItem" value="' +
 							letter +
 							'" title="' + letter +
-							'"><textarea name="" required lay-verify="required" maxlength="30" class="layui-textarea option"></textarea></p>');
+							'"><textarea name="" required lay-verify="required" maxlength="200" class="layui-textarea option"></textarea></p>');
 					} else if (type = 2) {
 						$("#editBuild .choiceItem").append(
 							'<p class="outerFrame"><input type="checkbox" lay-skin="primary" name="choiceItem" value="' + letter +
 							'" title="' + letter +
-							'"><textarea name="" required lay-verify="required" maxlength="30" class="layui-textarea option"></textarea></p>');
+							'"><textarea name="" required lay-verify="required" maxlength="200" class="layui-textarea option"></textarea></p>');
 					}
 					// 重新渲染
 					layui.use('form', function() {
