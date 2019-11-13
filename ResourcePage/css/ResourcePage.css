@@ -1,3 +1,7 @@
+* {
+	color: #1b1b1b;
+}
+
 body,
 html {
 	height: 100%;
@@ -16,10 +20,10 @@ html {
 }
 
 .title-header-text {
-	font-size: 18px;
+	font-size: 16px;
 	color: white;
 	line-height: 60px;
-	font-weight: 600;
+	/* padding: 0 32px; */
 	margin-left: 32px;
 }
 
@@ -103,6 +107,10 @@ thead>tr>td {
 	font-size: 16px;
 }
 
+#rightText {
+	padding: 0 33px!important;
+}
+
 th {
 	text-align: left;
 	font-size: 16px;
@@ -162,10 +170,11 @@ th {
 	margin-right: 5px;
 }
 
-
-/* 音频大小 */
+/* 音频大小和位置 */
 #myAudio {
-	width: 500px;
+	width: 550px;
+	margin-top: 45px;
+	margin-left: 100px;
 }
 
 tr td a {
@@ -196,25 +205,12 @@ tr td a {
 	border-color: #289ef0;
 	color: #252525;
 }
-
 /* tr hover样式 */
-.mainTabel tbody tr:hover,
-.hiddenTableList tbody tr:hover{
+tbody>tr:hover {
 	background-color: #eeeeee;
 }
-
 .layui-layer-msg {
-	color: #000000 !important;
-}
-
-#uploadBtn {
-	width: 160px;
-	text-align: center;
-	margin: auto;
-	position: fixed;
-	left: 0;
-	right: 0px;
-	top: 590px;
+	color: #000000!important;
 }
 
 
@@ -309,19 +305,19 @@ tr td a {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
-	
+
 	/* overflow: hidden;
 	text-overflow: ellipsis;
 	display: -webkit-box;
 	-webkit-line-clamp: 1;//设置行数，1超出一行
 	-webkit-box-orient: vertical; */
-	
+
 	width: 100px;
 	/* white-space: nowrap;
 	​over-flow: hidden;
 	text-overflow: ellipsis; */
-	
-	
+
+
 }
 
 /* 名字左浮动 */

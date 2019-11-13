@@ -3,13 +3,13 @@
  * @author：
  */
 $(function() {
-	layui.use(['layer', 'form'], function() {
-		var layer = layui.layer,
-			form = layui.form;
+    layui.use(['layer', 'form'], function() {
+        var layer = layui.layer,
+            form = layui.form;
 
 
         All.getMenu();
-	});
+    });
 });
 
 var All = {
@@ -21,10 +21,10 @@ var All = {
             navHtml.push('<span>Logo</span>');
             navHtml.push('</div>');
             navHtml.push('<div class="navbox">');
-			navHtml.push('<ul>');
+            navHtml.push('<ul>');
             switch (options.type) {
                 case 1:
-                    
+
                     switch (options.num) {
                         case 1:
                             navHtml.push('<li class="active" data-page="homePage">首页</li>');
@@ -90,12 +90,12 @@ var All = {
                             // navHtml.push('<li class="active" data-page="userManagement">用户管理</li>')
                             break;
                     }
-                    
+
                     break;
                 case 2:
                     break;
             }
-			navHtml.push('</ul>');
+            navHtml.push('</ul>');
             navHtml.push('</div>');
             navHtml.push('<div class="right">');
             navHtml.push('<img src="../imgs/HeadPortrait.jpg" class="userimg">');
@@ -184,43 +184,43 @@ var All = {
             })
         })
     },
-	// 删除方法
-	layuiOpen: function(options) {
-	    if (options && options != null) {
-	      layer.open({
-	        type: 1,
-	        // skin:'yes',
-	        area: ['400px', '200px'],
-	        title: ['', 'background-color: #289ef0;'],
-	        // btn: ['确认', '取消'],
-	        content: '<p class="openText">'+options.msg+'</p>' +
-	          '<div class="btn">'+
-	          '<button data-id="'+ options.id +'" class="yes" >确认</button>'+
-	          '<button class="no">取消</button>'+
-	          '</div>',
-	        success: function() {
-	          
-	          $('.yes').off('click').on('click', function() {
-	            switch (options.num){
-					case 1:
-						info.deleteResource(options.resId);
-						break;
-					case 2:
-						info.deletePaper(options.paperId);
-						break;
-                    case 3:
-                        info.delectTask(options.taskId);
-                        break;
-	            }
-	            layer.close(layer.index);
-	          });
-	
-	          $('.no').off('click').on('click', function() {
-	            layer.close(layer.index);
-	          });
-	        },
-	      });
-	    }
-	  },
+    // 删除方法
+    layuiOpen: function(options) {
+        if (options && options != null) {
+            layer.open({
+                type: 1,
+                // skin:'yes',
+                area: ['400px', '200px'],
+                title: ['', 'background-color: #289ef0;'],
+                // btn: ['确认', '取消'],
+                content: '<p class="openText">'+options.msg+'</p>' +
+                '<div class="btn">'+
+                '<button data-id="'+ options.id +'" class="yes" >确认</button>'+
+                '<button class="no">取消</button>'+
+                '</div>',
+                success: function() {
+
+                    $('.yes').off('click').on('click', function() {
+                        switch (options.num){
+                            case 1:
+                                info.deleteResource(options.resId);
+                                break;
+                            case 2:
+                                info.deletePaper(options.paperId);
+                                break;
+                            case 3:
+                                info.delectTask(options.taskId);
+                                break;
+                        }
+                        layer.close(layer.index);
+                    });
+
+                    $('.no').off('click').on('click', function() {
+                        layer.close(layer.index);
+                    });
+                },
+            });
+        }
+    },
 
 };

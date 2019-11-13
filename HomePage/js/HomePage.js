@@ -39,7 +39,7 @@ $(function() {
 
 });
 var info = {
-	//页面主方法
+	//页面主方�?
 	init: function() {
 		layui.use('form', function() {
 			var form = layui.form;
@@ -112,7 +112,7 @@ var info = {
 					$('.taskContent').html(Html.join(''))
 				}
 			})
-			
+
 			$.ajax({
 				url: MCUrl + 'manage_system/paper/papers',
 				data: {
@@ -137,11 +137,11 @@ var info = {
 				})
 		});
 	},
-	
+
 }
 
 /**
- * 资源size格式化
+ * 资源size格式�?
  * @param {Object} fileByte 文件size格式化的参数
  */
 var getFileSize = function(fileByte) {
