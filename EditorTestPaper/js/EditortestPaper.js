@@ -69,12 +69,6 @@ $(function() {
 		// 隐藏分页
 		$('#paging').hide();
 		info.viewQuestion();
-		// if (questionIdBackfilling.length != 0){
-		// 	storageQusetionId = $.merge( storageQusetionId, questionIdBackfilling );
-		// }
-		for (var i = 0; i < storageQusetionId.length; i++) {
-			info.viewQuestion(storageQusetionId[i]);
-		}
 		// 没加入试卷就清空内容
 		if (storageQusetionId.length == 0) {
 			$('.mobileFramework').empty();
@@ -105,8 +99,6 @@ var PaperQuestionPesult = [];
 var sorting = [];
 // 选题数量
 var numberOfQuestions = 0;
-// 计题数
-var viewHtmlNum = 1;
 // 试卷下有题就存到数组(回填用)
 var questionIdBackfilling = [];
 
@@ -308,15 +300,6 @@ var info = {
 		});
 		$('.mobileFramework').html(Html.join(''));
 		$('.removeQuestions').addClass('hidden');
-		// for(var j = 0; j < data.list.length; j++){
-		// 	for (var i = 0; i < questionIdBackfilling.length; i++){
-		// 		if (questionIdBackfilling[i] == data.list[j].questionId){
-		// 			$('#data-joinIn-' + j).addClass('hidden');
-		// 			$('#data-remove-' + j).removeClass('hidden');
-		// 			break;
-		// 		}
-		// 	}
-		// }
 		for(var j = 0; j < data.list.length; j++){
 			for (var i = 0; i < storageQusetionId.length; i++){
 				if (storageQusetionId[i] == data.list[j].questionId){
@@ -400,12 +383,10 @@ var info = {
 			$('#paging').empty();
 		}
 	},
-	viewQuestion: function(questionId) {
-		if (questionId == undefined) {
-			return false;
-		}
+	viewQuestion: function() {
 		$.ajax({
-			url: MCUrl + 'manage_system/question/' + questionId,
+			url: MCUrl + 'manage_system/paper/questionIdList',
+			data: {'questionIdList': JSON.stringify(storageQusetionId)},
 			Type: 'GET',
 			success: function(res) {
 				if (res || res.data !== null) {
@@ -417,9 +398,8 @@ var info = {
 			}
 		});
 	},
-	// 查询单个试题
+	// 查询部分试题
 	viewQuestions: function(data) {
-		viewChack++;
 		data.forEach(function(item, index) {
 			viewHtml.push('<li class="sortableitem">');
 			viewHtml.push('<div class="topicFramework" data-id="' + item.questionId + '">');
@@ -432,9 +412,7 @@ var info = {
 			if (item.newScore == null){
 				item.newScore = 0;
 			}
-			viewHtml.push('<p class="distanceNum"><span class="num">' + viewHtmlNum + '</span>. ' + item.questionType + '  <span class="newScore">' + item.newScore +
-			 '</span>分</p>');
-			 viewHtmlNum++;
+			viewHtml.push('<p class="distanceNum"><span class="num">' + (index + 1) + '</span>. ' + item.questionType + '  <span class="newScore">' + item.newScore + '</span></p>');
 			// 转义(已防有标签的样式被html识别)
 			item.content = $('<div>').text(item.content).html();
 			viewHtml.push('<p class="distance">' + item.content + '</p>');
@@ -454,58 +432,55 @@ var info = {
 			viewHtml.push('</li>');
 		});
 		// 判断是否是最后一次的调用，如果是最后一次就往页面里塞入数据
-		if (storageQusetionId.length == viewChack) {
-			$('.mobileFramework').html(viewHtml.join(''));
-			console.log(viewHtml);
-			viewHtml = [];
-			// 移出
-			$('.moveOut').off('click').on('click', function() {
-				var QusetionId = $(this).parent().parent().find('.qusetionId').val();
-				for (var i = 0; i < storageQusetionId.length; i++) {
-					if (QusetionId == storageQusetionId[i]) {
-						storageQusetionId.splice($.inArray(storageQusetionId[i], storageQusetionId), 1);
-						break;
-					}
+		$('.mobileFramework').html(viewHtml.join(''));
+		viewHtml = [];
+		// 移出
+		$('.moveOut').off('click').on('click', function() {
+			var QusetionId = $(this).parent().parent().find('.qusetionId').val();
+			for (var i = 0; i < storageQusetionId.length; i++) {
+				if (QusetionId == storageQusetionId[i]) {
+					storageQusetionId.splice($.inArray(storageQusetionId[i], storageQusetionId), 1);
+					break;
 				}
-				if (storageQusetionId.length == 0) {
-					// 有问题
-					$('#saveChanges').hide();
-					viewChack = 0;
-				} else {
-					$('#saveChanges').show();
-				}
-				$(this).parent().parent().remove();
-				
-			});
-			// 点击上移
-			$('.moveup').off('click').on('click', function() {
-				// 显示保存更改按钮
+			}
+			if (storageQusetionId.length == 0) {
+				// 有问题
+				$('#saveChanges').hide();
+				viewChack = 0;
+			} else {
 				$('#saveChanges').show();
-			});
-			// 点击下移
-			$('.movedown').off('click').on('click', function() {
-				// 显示保存更改按钮
-				$('#saveChanges').show();
-			});
-			// 设置分值
-			$('.fraction').off('click').on('click', function() {
-				var QusetionId = $(this).parent().parent().find('.qusetionId').val();
-				info.fraction(QusetionId, this);
-			});
-			// 解析
-			$('.toView').off('click').on('click', function() {
-				var QusetionId = $(this).parent().parent().find('.qusetionId').val();
-				info.toViewAnalysis(QusetionId);
-			});
-			// 点击保存更改
-			$('#saveChanges').off('click').on('click', function() {
-				Array.prototype.push.apply(storageResults, storageQusetionId);
-				// 清空数组
-				storageQusetionId = [];
-				// 修改试卷方法
-				info.addOrRemoveRelationships();
-			});
-		}
+			}
+			$(this).parent().parent().remove();
+			
+		});
+		// 点击上移
+		$('.moveup').off('click').on('click', function() {
+			// 显示保存更改按钮
+			$('#saveChanges').show();
+		});
+		// 点击下移
+		$('.movedown').off('click').on('click', function() {
+			// 显示保存更改按钮
+			$('#saveChanges').show();
+		});
+		// 设置分值
+		$('.fraction').off('click').on('click', function() {
+			var QusetionId = $(this).parent().parent().find('.qusetionId').val();
+			info.fraction(QusetionId, this);
+		});
+		// 解析
+		$('.toView').off('click').on('click', function() {
+			var QusetionId = $(this).parent().parent().find('.qusetionId').val();
+			info.toViewAnalysis(QusetionId);
+		});
+		// 点击保存更改
+		$('#saveChanges').off('click').on('click', function() {
+			Array.prototype.push.apply(storageResults, storageQusetionId);
+			// 清空数组
+			storageQusetionId = [];
+			// 修改试卷方法
+			info.addOrRemoveRelationships();
+		});
 	},
 	// 修改试卷
 	addOrRemoveRelationships: function() {
@@ -564,7 +539,6 @@ var info = {
 		if (PaperQuestionPesult == 0) {
 			PaperQuestionPesult = [];
 		}
-		console.log(sorting);
 		var data = {
 			'JPaperQuestion': JSON.stringify(JPaperQuestion),
 			'PaperQuestionPesult': JSON.stringify(PaperQuestionPesult),

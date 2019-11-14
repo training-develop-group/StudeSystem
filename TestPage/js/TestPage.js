@@ -1037,16 +1037,20 @@ var info = {
 	},
 
 	NoProgressBar: function() {
-		var myVideo = document.getElementById("myVideo"); //获取视频DOM
-		var myVideo = document.getElementById("myVideo"); //获取音频DOM
-		var nowTime = myVideo.currentTime; //获取视频当前播放时间
-		var newTime = myVideo.currentTime; //获取音频当前播放时间
-		var timeInterval = nowTime - lastTime; //用当前时间减去1秒之前的时间
-		if (timeInterval > 0.1) { //判断相差时间是否超过一秒
-			myVideo.pause();
-			myVideo.currentTime = lastTime; //返回之前的视频播放时间
-		}
-		lastTime = nowTime; //播放时间中转（全局变量）
+		// var myAudio = document.getElementById("myAudio"); //获取视频DOM
+		// var myVideo = document.getElementById("myVideo"); //获取音频DOM
+		// var nowTime = myAudio.currentTime; //获取视频当前播放时间
+		// var newTime = myVideo.currentTime; //获取音频当前播放时间
+		// var timeInterval = nowTime - lastTime; //用当前时间减去1秒之前的时间
+		// if (timeInterval > 0.1) { //判断相差时间是否超过一秒
+		// 	myVideo.pause();
+		// 	myVideo.currentTime = lastTime; //返回之前的视频播放时间
+		// }
+		// if (timeInterval > 0.1) { //判断相差时间是否超过一秒
+		// 	myAudio.pause();
+		// 	myAudio.currentTime = lastTime; //返回之前的视频播放时间
+		// }
+		// lastTime = nowTime; //播放时间中转（全局变量）
 	},
 
 };
