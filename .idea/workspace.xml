@@ -1,14 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="60f95631-7e6e-4dbe-9c67-125e4944f0a6" name="Default Changelist" comment="merga">
+    <list default="true" id="60f95631-7e6e-4dbe-9c67-125e4944f0a6" name="Default Changelist" comment="merge">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/ExaminationPaperPage/js/ExaminationPaperPage.js" afterPath="$PROJECT_DIR$/ExaminationPaperPage/js/ExaminationPaperPage.js" />
-      <change beforePath="$PROJECT_DIR$/ResourcePage/css/ResourcePage.css" afterPath="$PROJECT_DIR$/ResourcePage/css/ResourcePage.css" />
-      <change beforePath="$PROJECT_DIR$/ResourcePage/js/ResourcePage.js" afterPath="$PROJECT_DIR$/ResourcePage/js/ResourcePage.js" />
-      <change beforePath="$PROJECT_DIR$/TestPage/js/TestPage.js" afterPath="$PROJECT_DIR$/TestPage/js/TestPage.js" />
-      <change beforePath="$PROJECT_DIR$/UserHomePage/UserHomePage.html" afterPath="$PROJECT_DIR$/UserHomePage/UserHomePage.html" />
-      <change beforePath="$PROJECT_DIR$/UserHomePage/js/UserHomePage.js" afterPath="$PROJECT_DIR$/UserHomePage/js/UserHomePage.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -65,11 +60,11 @@
       <file leaf-file-name="ExaminationPaperPage.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ExaminationPaperPage/js/ExaminationPaperPage.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="132">
-              <caret line="324" column="17" lean-forward="true" selection-start-line="324" selection-start-column="17" selection-end-line="324" selection-end-column="17" />
+            <state relative-caret-position="157">
+              <caret line="325" column="26" lean-forward="true" selection-start-line="325" selection-start-column="26" selection-end-line="325" selection-end-column="26" />
               <folding>
-                <marker date="1573713682311" expanded="true" signature="8368:8384" ph="..." />
-                <marker date="1573713682311" expanded="true" signature="13297:13313" ph="..." />
+                <marker date="1573715217897" expanded="true" signature="8368:8384" ph="..." />
+                <marker date="1573715217897" expanded="true" signature="13221:13237" ph="..." />
               </folding>
             </state>
           </provider>
@@ -207,7 +202,13 @@
             <path>
               <item name="StudeSystem" type="b2602c69:ProjectViewProjectNode" />
               <item name="StudeSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="UserHomePage" type="462c0819:PsiDirectoryNode" />
+              <item name="ExaminationPaperPage" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="StudeSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="StudeSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="ExaminationPaperPage" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -389,11 +390,18 @@
       <option name="project" value="LOCAL" />
       <updated>1573713783185</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="merge">
+      <created>1573715107162</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1573715107162</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="114740000" />
+    <option name="totallyTimeSpent" value="114869000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1912" y="-8" width="1936" height="1066" extended-state="6" />
@@ -426,7 +434,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="merga" />
-    <option name="LAST_COMMIT_MESSAGE" value="merga" />
+    <MESSAGE value="merge" />
+    <option name="LAST_COMMIT_MESSAGE" value="merge" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -687,11 +696,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ExaminationPaperPage/js/ExaminationPaperPage.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="324" column="17" lean-forward="true" selection-start-line="324" selection-start-column="17" selection-end-line="324" selection-end-column="17" />
+        <state relative-caret-position="157">
+          <caret line="325" column="26" lean-forward="true" selection-start-line="325" selection-start-column="26" selection-end-line="325" selection-end-column="26" />
           <folding>
-            <marker date="1573713682311" expanded="true" signature="8368:8384" ph="..." />
-            <marker date="1573713682311" expanded="true" signature="13297:13313" ph="..." />
+            <marker date="1573715217897" expanded="true" signature="8368:8384" ph="..." />
+            <marker date="1573715217897" expanded="true" signature="13221:13237" ph="..." />
           </folding>
         </state>
       </provider>
