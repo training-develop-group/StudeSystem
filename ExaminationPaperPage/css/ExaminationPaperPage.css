@@ -109,7 +109,7 @@ td{
 	text-align: center !important;
 }
 a{
-	text-decoration:none
+	text-decoration:none;
 	out-line: none
 }
 .edit , .selectedTopic , .toView , .delete , .publish{
@@ -118,6 +118,9 @@ a{
 	height: 25px;
 	line-height: 15px;
 	border: 0;
+}
+.toView:hover{
+	cursor: pointer !important;
 }
 .edit{
 	width: 60px;
