@@ -1,5 +1,5 @@
 .content .resources {
-	width: calc(40% - 20px);
+	width: calc(33.5% - 20px);
 	height: 357px;
 	float: left;
 	margin-right: 20px;
@@ -50,51 +50,40 @@ table tbody tr th {
 }
 
 .content .task {
-	width: 30%;
+	width: 33%;
 	height: 357px;
 	float: left;
 
 }
 
 .taskMore {
-
-
-
-
-	
-	
-
 	font-size: 16px;
 	margin-top: -1px;
 	color: #9e9e9e;
-	margin-left: 80%;
 	cursor: pointer;
 }
 
 .layui-card-header {
 	font-weight: 600;
+	text-align: left;
+	padding-left: 33px;
+	cursor: default;/*更改项*/
 }
 
 .layui-table th {
 	font-weight: 600;
+	padding-left: 20px;
 }
 
 .testPaperMore {
-
-
-
-
-
 	font-size: 16px;
 	margin-top: -1px;
 	color: #9e9e9e;
-	margin-left: 70%;
 	cursor: pointer;
-
 }
 
 .content .paper {
-	width: calc(30% - 20px);
+	width: calc(33.5% - 20px);
 	height: 357px;
 	float: left;
 	margin-left: 20px;
@@ -103,16 +92,9 @@ table tbody tr th {
 
 .resorceMore {
 	font-size: 16px;
-
 	color: #9e9e9e;
 	cursor: pointer;
-
-
 	margin-top: -1px;
-
-	margin-left: 80%;
-
-
 }
 
 .content .statistics {
@@ -144,7 +126,7 @@ table tbody tr th {
 .layui-table td {
 	border-left: none;
 	border-right: none;
-    padding: 10px 20px;
+	padding: 10px 20px;
 }
 
 #taskAccuracyDistribution {
@@ -165,4 +147,36 @@ table tbody tr th {
 #taskNumberDistribution {
 	width: 400px;
 	height: 300px;
+}
+
+#main,
+#mian,
+#mina {
+	width: 400px;
+	height: 300px;
+	/* float: left; */
+	margin: 0 auto;
+}
+
+.taskContent tr:hover,
+.Resourcesreview tr:hover,
+.examinationContent tr:hover {
+	background-color: #f2f2f2;
+}
+
+.Lbtask {
+	border: none;
+	text-align: center;
+}
+
+.resorceMore,
+.taskMore,
+.testPaperMore {
+	float: right;
+	margin: 0;/*更改项*/
+	font-size: 15px;/*更改项*/
+}
+
+.layui-table th {
+	padding: 10px 20px;
 }

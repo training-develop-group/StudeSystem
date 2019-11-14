@@ -1,3 +1,5 @@
+
+
 .title-header {
 	background-color: #289ef0;
 	width: 100%;
@@ -6,11 +8,11 @@
 }
 
 .title-header-text {
-	font-size: 20px;
+	font-size: 18px;
 	color: white;
 	line-height: 60px;
 	margin-left: 32px;
-	font-weight: bold;
+	font-weight: 600;
 }
 
 .title-header-btn {
@@ -40,6 +42,7 @@ table {
 .hiddenTableList {
 	position: absolute;
 	top: 45px;
+	/* margin: 0 25px; */
 }
 
 td>a {
@@ -80,10 +83,11 @@ thead>tr>td {
 
 .centerText {
 	text-align: center !important;
+	/* vertical-align:middle!important; */
 }
 
 .page {
-	margin: 0 230px;
+	margin: 22px auto 0;
 	text-align: center;
 }
 
@@ -125,10 +129,10 @@ thead>tr>td {
 }
 
 .left .searchbox input {
-	margin-top: -3px;
+	margin-top: 5px;
 }
 #contentList tr:hover {
-	background-color: #f2f2f2;
+	background-color: #f1f1f1;
 }
 .Left{
 	text-align:left;

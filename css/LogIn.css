@@ -1,0 +1,130 @@
+* {
+	font-size: 14px;
+	font-family: '微软雅黑', serif !important;/*更改项*/
+	color: #1b1b1b;
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+body,
+html {
+	height: 50%;
+	width: 100%;
+	background: url(../imgs/LogBackground.jpg) 0px -90px no-repeat;
+	text-align: center;
+	font: 14px Helvetica Neue, Helvetica, PingFang SC, Tahoma, Arial, sans-serif;
+}
+
+.hidden {
+	display: none;
+}
+
+.Welcome {
+	padding-top: 90px;
+	font-size: 60px;
+	color: #fff;
+	text-shadow: 2px 2px rgba(0, 0, 0, 0.2);
+}
+
+.StudyLog {
+	color: #fff;
+	font-size: 30px;
+	padding-top: 70px;
+	text-shadow: 2px 2px rgba(0, 0, 0, 0.2);
+	font-weight: 300;
+	letter-spacing: 7px;
+}
+
+.Login {
+	margin: 50px auto;/*更改项*/
+	width: 500px;
+	height: 300px;
+	background-color: rgba(2255, 255, 255, 0.3);
+	box-shadow: 0.5px 0.5px 1px 2px rgba(0, 0, 0, 0.1);
+	border-radius: 7px;
+}
+
+form {
+	padding-top: 10%;
+}
+
+form .layui-form-item:nth-child(1),
+form .layui-form-item:nth-child(2) {
+	box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+	border: 1px solid #dedede;
+	background-color: #fff;
+	margin: 18px auto;
+	width: 400px;
+}
+
+form .layui-form-item:nth-child(2) {
+	margin-bottom: 0px;
+}
+
+.layui-form-label {
+	text-align: center;
+	width: 30px;
+}
+
+.layui-input-block {
+	margin: 0;
+}
+
+.layui-input {
+	border: none;
+	width: 340px;
+	height: 40px;
+}
+
+.layui-btn {
+	font-size: 16px;
+	line-height: 50px;
+	width: 400px;
+	height: 50px;
+	background-color: #279ef0;
+	box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+}
+
+form p {
+	height: 20px;
+	margin: 15px auto;
+	width: 400px;
+	text-align: left;
+}
+
+form p span {
+	font-size: 12px;
+	color: red;
+}
+
+form .layui-form-item:nth-child(1),
+form .layui-form-item:nth-child(2),
+.layui-btn,
+.layui-input {
+	border-radius: 7px;
+}
+
+.layui-layer-content {
+	color: #fff;
+}
+
+.Top p{
+	cursor: default;
+}
+
+@media (max-width: 1600px) {
+
+	body,
+	html {
+		width: 1600px;
+	}
+}
+
+@media (max-width: 1600px) {
+
+	body,
+	html {
+		width: 1600px;
+	}
+}

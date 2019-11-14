@@ -8,22 +8,21 @@ $(function(){
 		var layer = layui.layer,
 			form = layui.form;
 		All.getMenu({
+			search: 1,
+			type: 1,
 			num:6
 		});
 		$('.search').keypress(function(e) {
-			
 			if (e.which == 13) {
-				console.log(1);
 				TableDataRequest(1);
 			}
 		});
 	});
+	
 });
-
 var TableDataRequest = function(pageNum) {
-	var userName = $.trim($('.search').val());
-	console.log(userName)
-	if(userName == undefined || $.trim(userName) == ''){
+	var userName = $('.search').val();
+	if(userName == undefined){
 		userName = '';
 	}
 	var data = {
@@ -32,14 +31,12 @@ var TableDataRequest = function(pageNum) {
 		'pageSize' : 12
 	};
 	$.ajax({
-		url: 'http://192.168.188.151:8888/manage_system/stat/list',
+		url: HWWUrl + 'manage_system/stat/list',
 		data: data,
 		dataType: 'json',
 		type: 'GET',
 		success(res) {
-			console.log(res);
 			var Html = [];
-			console.log(res)
 			res.data.list.forEach(function(item, index) {
 				Html.push('<tr>');
 				Html.push('<td>' + item.studentName + '</td>');
@@ -59,7 +56,7 @@ var TableDataRequest = function(pageNum) {
 		}
 	});
 }
-
+// 分页
 var page = function(total,pageNum){
 	console.log(1)
 	layui.use('laypage', function() {
