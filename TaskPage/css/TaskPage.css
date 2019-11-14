@@ -248,6 +248,14 @@ ul div input {
 	background-color: #FFFFFF;
 }
 
+#taskUserDegreeCompletion tr td:nth-child(1) span {
+	display: inline-block;
+	width: 120px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
 .box {
 	width: 100%;
 	height: 90%;
@@ -476,6 +484,14 @@ tr .oneselfTaskName span,
 	display: inline-block;
 	width: 170px;
 	white-space: nowrap;
-	overflow: hidden;
 	text-overflow: ellipsis;
+}
+
+#resPage {
+	position: absolute;
+	right: 0;
+	left: 0;
+	top: 630px;
+	bottom: 0;
+	margin: auto;
 }

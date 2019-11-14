@@ -123,7 +123,6 @@ var info = {
 				dataType: 'json',
 				Type: 'GET',
 				success: function(res) {
-					console.log(res)
 						var Html = [];
 						res.data.list.forEach(function(item, index) {
 							Html.push('<tr  style="border-bottom: 1px solid #e6e6e6;">');

@@ -68,32 +68,31 @@ var info = {
 	},
 	//表格会绘制
 	TableDrawing: function(data) {
+		console.log(data);
 		if (data == null){
 			return false;
 		}
 		var Html = [];
+		console.log(data);
 		// 转义(已防有标签的样式被html识别)
 		// items.paperName = $('<div>').text(items.paperName).html();
-		data.questions[0].questionList.forEach(function(item, index) {
+		data.questionList.forEach(function(item, index) {
 			Html.push('<li class="sortableitem">');
-			Html.push('<div class="topicFramework">');
+			Html.push('<div class="topicFramework" data-id="' + item.questionId + '">');
 			Html.push('<input type="text" class="questionId" value="' + item.questionId + '" hidden="hidden"/>');
-			if (item.questionType == 1){
-				item.questionType = "单选题";
+			if (item.questionType == 1) {
+				item.questionType = '单选题';
 			} else {
-				item.questionType = "多选题";
+				item.questionType = '多选题';
 			}
-			var newScore = data.questions[0].newScoreList[index].score;
-			Html.push('<p class="num">'+ (index + 1) +'. ' + item.questionType + '<span>  ' + newScore + '分</span></p>');
+			Html.push('<p class="distanceNum"><span class="num">' + (index + 1) + '</span>. ' + item.questionType + '  <span class="newScore">' + item.score + '</span>分</p>');
 			// 转义(已防有标签的样式被html识别)
 			item.content = $('<div>').text(item.content).html();
 			Html.push('<p class="distance">' + item.content + '</p>');
-			data.questions[0].optionInfo.forEach(function(items, index) {
-				if (items.questionId == item.questionId){
-					// 转义(已防有标签的样式被html识别)
-					items.content = $('<div>').text(items.content).html();
-					Html.push('<p class="distance">' + items.optionType + ' ' + items.content + '</p>');
-				}
+			item.optionInfo.forEach(function(items, index) {
+				// 转义(已防有标签的样式被html识别)
+				items.content = $('<div>').text(items.content).html();
+				Html.push('<p class="distance">' + items.optionType + ' ' + items.content + '</p>');
 			});
 			Html.push('</div>');
 			Html.push('<div class="functionBox">');
@@ -105,6 +104,7 @@ var info = {
 		// 解析
 		$('.toView').click(function() {
 			var QusetionId = $(this).parent().parent().find('.questionId').val();
+			console.log(QusetionId);
 			info.toViewAnalysis(QusetionId);
 		});
 	},

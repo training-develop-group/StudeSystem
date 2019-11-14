@@ -162,6 +162,7 @@ $(function() {
 	});
 	//点击发布任务调出弹窗
 	$('.releasTeask').click(function() {
+		
 		info.showDisplay()
 	});
 	// 选择资源
@@ -202,6 +203,31 @@ var info = {
 
 	//弹出新建任务
 	openAddRolePage: function(userId) {
+		// 清空输入框
+		info.selectTaskType(1,'',1);
+		console.log(1);
+		layui.use('form', function() {
+			var form = layui.form;
+			form.render('');
+		});
+		var layer = layui.layer,
+			form = layui.form;
+			$(".checkAll").prop("checked", false);
+			$("#checkAll").prop("checked",false)
+			form.render('checkbox');
+			$('.selectResource').css('display' ,'' )
+			$('.selectPapers').css('display' ,'' )
+		$('.taskName').val('');
+		$('.taskRemark').val('');
+		$('.taskUsers').empty();
+		// 清空试卷名
+		$('.paperAdd').text('');
+		$('.resAdd').text('');
+		
+		// 赋值今天时间(开始)
+		$('#test1').val(firstToday);
+		// 赋值明天时间(结束)
+		$('#test2').val(lastToday);
 		layer.open({
 			type: 1,
 			title: ['新建任务', 'color:#fff;background-color:#40AFFE;;border-radius: 7px ;text-align: center;font-size: 20px;'],
@@ -279,7 +305,7 @@ var info = {
 			laypage.render({
 				elem: 'resPage', //注意，这里的 test1 是 ID，不用加 # 号
 				count: total, //数据总数，从服务端得
-				limit: '12',
+				limit: '9',
 				theme: '#1E9FFF',
 				curr: pageNum,
 				groups: '5',
@@ -293,7 +319,7 @@ var info = {
 			});
 
 		})
-	},
+	},	
 	paperPage: function(total, pageNum) {
 		layui.use('laypage', function() {
 			var laypage = layui.laypage;
@@ -333,7 +359,7 @@ var info = {
 				res.data.forEach(function(item, index) {
 					// console.log(res)
 					Html.push('<tr style="margin-top: -10px;">');
-					Html.push('<td style="text-align: center;">' + item.userName + '</td>')
+					Html.push('<td style="text-align: center;"><span>' + item.userName + '</span></td>')
 					var status = ''
 					if (item.status == '0') {
 						status = '未完成'
@@ -522,8 +548,10 @@ var info = {
 			});
 		}
 	},
+	
 	//查询资源
 	selectResourceList: function(resType, pageNum,resName) {
+		
 		if(resName == undefined){
 			resName = ''
 		}
@@ -531,7 +559,7 @@ var info = {
 			url: TDXUrl + 'manage_system/resource/resources',
 			data: {
 				'pageNum': pageNum || 1,
-				'pageSize': 12,
+				'pageSize': 9,
 				'resType': resType,
 				'resName':resName
 			},
@@ -569,7 +597,8 @@ var info = {
 					$(this).find('.layui-unselect').addClass('layui-form-radioed')
 					$(this).find('.layui-unselect').find('i').addClass('layui-anim-scaleSpring')
 				})
-				info.resPage(res.data.totalresType, res.data.pageNum, resType)
+				console.log(res.data.total)
+				info.resPage(res.data.total, res.data.pageNum, resType)
 				// 重新渲染
 				layui.use('form', function() {
 					var form = layui.form;
@@ -579,7 +608,7 @@ var info = {
 		})
 	},
 	//查询任务类型
-	selectTaskType: function(pageNum, search) {
+	selectTaskType: function(pageNum, search,type) {
 		$.ajax({
 			url: LBUrl + 'manage_system/task/type',
 			data: {},
@@ -589,12 +618,18 @@ var info = {
 				console.log(res)
 				var Html = [];
 				res.data.forEach(function(item, index) {
-					var aa = item.split(",")
-					Html.push('<option value="' + aa[0] + '">' + aa[1] + '</option>')
-				})
+					var taskType = item.split(",")
+					Html.push('<option value="' + taskType[0] + '">' + taskType[1] + '</option>');
+				})	
 				$('#taskType').html(Html.join(''));
-				info.selectTaskAll(res, pageNum, search)
-
+				layui.use('form', function() {
+					var form = layui.form;
+					form.render('');
+				});
+				if(type!=1){
+					info.selectTaskAll(res, pageNum, search);
+				}
+				
 			}
 		})
 	},
@@ -624,9 +659,9 @@ var info = {
 					Html.push('<tr>');
 					Html.push('<td class="oneselfTaskName"><span>' + item.taskName + '</span></td>');
 					resa.data.forEach(function(itemTypeName, index) {
-						var aa = itemTypeName.split(",");
-						if (item.taskType == aa[0]) {
-							Html.push('<td >' + aa[1] + '<input type="text" class="taskTypeRecord" value="' + aa[0] +
+						var typeName = itemTypeName.split(",");
+						if (item.taskType == typeName[0]) {
+							Html.push('<td >' + typeName[1] + '<input type="text" class="taskTypeRecord" value="' + typeName[0] +
 								'"hidden> </td>');
 						}
 
@@ -648,7 +683,7 @@ var info = {
 				// if (res.data.total >= 13) {
 					info.Page(res.data.total, res.data.pageNum);
 				// }
-
+				$('.search').val('')
 				$('#taskContent').html(Html.join(''));
 				//点击弹出编辑
 				$('.updateTaskName').click(function() {
@@ -686,8 +721,9 @@ var info = {
 					info.selectTaskUsers($(this).val())
 					layer.open({
 						type: 1,
+						move: false,
 						title: ['查看任务',
-							'color:#fff;background-color:#40AFFE;;border-radius: 7px;text-align: center;font-size: 20px;'
+							'color:#fff;background-color:#40AFFE;;border-radius: 7px;text-align: center;font-size: 20px;cursor: default;'
 						],
 						shadeClose: true,
 						shade: 0.8,
@@ -749,8 +785,7 @@ var info = {
 			success(res) {
 				if (res) {
 					if (JumpTotal % 12 == 1) {
-						var a = JumpPageNum - 1
-						info.selectTaskType(a)
+						info.selectTaskType(JumpPageNum - 1)
 					} else {
 						info.selectTaskType(JumpPageNum);
 					}

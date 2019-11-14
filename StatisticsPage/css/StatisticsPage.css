@@ -86,9 +86,14 @@ thead>tr>td {
 	/* vertical-align:middle!important; */
 }
 
-.page {
-	margin: 22px auto 0;
+#page {
 	text-align: center;
+	margin-top: 18px;
+}
+
+.layui-laypage a {
+    margin-left: 5px;
+    margin-right: 5px;
 }
 
 /* 浮窗边框 */
@@ -134,6 +139,12 @@ thead>tr>td {
 #contentList tr:hover {
 	background-color: #f1f1f1;
 }
+.title-header-text,
+table td,
+table th{
+	cursor: default;
+}
+
 .Left{
 	text-align:left;
 }

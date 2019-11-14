@@ -30,6 +30,8 @@ $(function() {
 	$('#saveChanges').hide();
 	// 点击选择试题
 	$('#newTestPaper').off('click').on('click', function() {
+		// 显示分页
+		$('#paging').show();
 		numberOfQuestions = 0;
 		$('.red').text(numberOfQuestions);
 		layer.msg("本次选题只能选择一次，望慎重考虑");
@@ -62,6 +64,8 @@ $(function() {
 		$('.fraction').show();
 		$('.removeQuestions').hide();
 		$('#saveChanges').show();
+		// 隐藏分页
+		$('#paging').hide();
 		info.viewQuestion();
 		for (var i = 0; i < storageQusetionId.length; i++) {
 			info.viewQuestion(storageQusetionId[i]);
@@ -135,10 +139,7 @@ var info = {
 	},
 	//表格会绘制
 	TableDrawings: function(data) {
-		if (data == null){
-			return false;
-		}
-		if (data.questions[0].questionList.length == 0) {
+		if (data.questionList.length == 0) {
 			judge = false;
 		} else {
 			$('#newTestPaper').attr('disabled', true);
@@ -146,7 +147,7 @@ var info = {
 			$('#newTestPaper').css('cursor', 'not-allowed');
 		}
 		var Html = [];
-		data.questions[0].questionList.forEach(function(item, index) {
+		data.questionList.forEach(function(item, index) {
 			Html.push('<li class="sortableitem">');
 			Html.push('<div class="topicFramework" data-id="' + item.questionId + '">');
 			Html.push('<input type="text" class="qusetionId" value="' + item.questionId + '" hidden="hidden"/>');
@@ -155,17 +156,14 @@ var info = {
 			} else {
 				item.questionType = '多选题';
 			}
-			var newScore = data.questions[0].newScoreList[index].score;
-			Html.push('<p class="distanceNum"><span class="num">' + (index + 1) + '</span>. ' + item.questionType + '  <span class="newScore">' + newScore + '</span>分</p>');
+			Html.push('<p class="distanceNum"><span class="num">' + (index + 1) + '</span>. ' + item.questionType + '  <span class="newScore">' + item.score + '</span>分</p>');
 			// 转义(已防有标签的样式被html识别)
 			item.content = $('<div>').text(item.content).html();
 			Html.push('<p class="distance">' + item.content + '</p>');
-			data.questions[0].optionInfo.forEach(function(items, index) {
-				if (items.questionId == item.questionId){
-					// 转义(已防有标签的样式被html识别)
-					items.content = $('<div>').text(items.content).html();
-					Html.push('<p class="distance">' + items.optionType + ' ' + items.content + '</p>');
-				}
+			item.optionInfo.forEach(function(items, index) {
+				// 转义(已防有标签的样式被html识别)
+				items.content = $('<div>').text(items.content).html();
+				Html.push('<p class="distance">' + items.optionType + ' ' + items.content + '</p>');
 			});
 			Html.push('</div>');
 			Html.push('<div class="functionBox">');
@@ -553,6 +551,7 @@ var info = {
 		if (PaperQuestionPesult == 0) {
 			PaperQuestionPesult = [];
 		}
+		console.log(sorting);
 		var data = {
 			'JPaperQuestion': JSON.stringify(JPaperQuestion),
 			'PaperQuestionPesult': JSON.stringify(PaperQuestionPesult),

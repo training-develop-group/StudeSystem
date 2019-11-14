@@ -13,11 +13,11 @@ html {
 	width: 100%;
 	background: url(../imgs/LogBackground.jpg) 0px -90px no-repeat;
 	text-align: center;
-	font: 14px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+	font: 14px Helvetica Neue, Helvetica, PingFang SC, Tahoma, Arial, sans-serif;
 }
 
-.hidden{
-    display: none;
+.hidden {
+	display: none;
 }
 
 .Welcome {
@@ -37,42 +37,48 @@ html {
 }
 
 .Login {
-	margin: 48px auto;
+	margin: 63px auto;
+	/* 更改项 */
 	width: 500px;
 	height: 300px;
-	background-color: rgba(2255,255,255,0.3);
+	background-color: rgba(2255, 255, 255, 0.3);
 	box-shadow: 0.5px 0.5px 1px 2px rgba(0, 0, 0, 0.1);
 	border-radius: 7px;
 }
 
-form{
+form {
 	padding-top: 10%;
 }
+
 form .layui-form-item:nth-child(1),
-form .layui-form-item:nth-child(2){
+form .layui-form-item:nth-child(2) {
 	box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
 	border: 1px solid #dedede;
 	background-color: #fff;
 	margin: 18px auto;
 	width: 400px;
 }
-form .layui-form-item:nth-child(2){
+
+form .layui-form-item:nth-child(2) {
 	margin-bottom: 0px;
 }
-.layui-form-label{
+
+.layui-form-label {
 	text-align: center;
 	width: 30px;
 }
 
-.layui-input-block{
+.layui-input-block {
 	margin: 0;
 }
-.layui-input{
+
+.layui-input {
 	border: none;
 	width: 340px;
 	height: 40px;
 }
-.layui-btn{
+
+.layui-btn {
 	font-size: 16px;
 	line-height: 50px;
 	width: 400px;
@@ -81,13 +87,14 @@ form .layui-form-item:nth-child(2){
 	box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
 }
 
-form p{
+form p {
 	height: 20px;
 	margin: 15px auto;
 	width: 400px;
 	text-align: left;
 }
-form p span{
+
+form p span {
 	font-size: 12px;
 	color: red;
 }
@@ -95,22 +102,34 @@ form p span{
 form .layui-form-item:nth-child(1),
 form .layui-form-item:nth-child(2),
 .layui-btn,
-.layui-input{
+.layui-input {
 	border-radius: 7px;
 }
 
 .layui-layer-content {
-    color: #fff;
+	color: #fff;
+}
+
+#contentList td:nth-child(1) a {
+	width: 170px;
+	display: inline-block;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 @media (max-width: 1600px) {
-    body, html {
-        width: 1600px;
-    }
+
+	body,
+	html {
+		width: 1600px;
+	}
 }
 
 @media (max-width: 1600px) {
-    body, html {
-        width: 1600px;
-    }
+
+	body,
+	html {
+		width: 1600px;
+	}
 }

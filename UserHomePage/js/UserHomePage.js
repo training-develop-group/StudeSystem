@@ -32,6 +32,7 @@ var info = {
             var dataType = $(this).attr('data-type');
             console.log(dataType);
             info.taskList( 1,dataType);
+			info.ToTask();
         });
     },
     // 页面列表
@@ -44,7 +45,6 @@ var info = {
         		"pageNum": curr,
         		"pageSize": 5,
         		'status': 0,
-				'userId':'22f0b533-ff6c-11e9-8737-704d7bb7c44d',
 				'taskName':null,
 				'userType':userType
         	},
@@ -143,7 +143,7 @@ console.log(res)
 			var paperId = $(this).attr('data-paperId')
 			var resId = $(this).attr('data-resId')
 			var tsakName = $(this).text()
-          　window.location.href="../TestPage/TestPage.html?value="+TaskId;
+          window.open("../TestPage/TestPage.html?value="+TaskId , "_blank");
         });
     }
 };

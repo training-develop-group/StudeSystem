@@ -397,6 +397,11 @@ var info = {
 	},
 	// 发布任务弹窗
 	releaseTask : function() {
+		var layer = layui.layer,
+			form = layui.form;
+			$(".checkAll").prop("checked", false);
+			$("#checkAll").prop("checked",false)
+			form.render('checkbox');
 		// 清空输入框
 		$('.taskName').val('');
 		$('.taskRemark').val('');

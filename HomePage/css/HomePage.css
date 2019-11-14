@@ -67,6 +67,7 @@ table tbody tr th {
 	font-weight: 600;
 	text-align: left;
 	padding-left: 33px;
+	cursor: default;
 }
 
 .layui-table th {
@@ -165,7 +166,7 @@ table tbody tr th {
 }
 .resorceMore , .taskMore , .testPaperMore{
 	float: right;
-	margin: 0 40px 0 0;
+	font-size: 14px;
 }
 
 .layui-table th{

@@ -84,6 +84,7 @@ $(function() {
 			//提交表单，实现下载
 			$eleForm.submit();
 		});
+		
 
 
 
@@ -178,7 +179,7 @@ var info = {
 
 					total = res.data.total; //分页总数量
 					JumpPageNum = res.data.pageNum; //下一页复制为了时删除或者修改完事后停留在原本的页数
-
+					$('.search').val('')
 					info.Pagination(total, pageNum); //调用分页方法（总条数，页数）
 
 					//获取资源详情点击事件
@@ -660,7 +661,7 @@ var info = {
 									url: TDXUrl + 'manage_system/resource/resource',
 									accept: 'file', //上传文件类型
 									multiple: true, //允许上传多个文件
-									exts: 'mp4|avi|mov|rmvb|rm|flv|wma|mp3|ogv|cd|wav|aiff|aac|midi|docx|doc|xls|xlsx|pdf|txt|ppt|ppts',
+									exts: 'mp4|avi|mov|rmvb|rm|flv|wma|mp3|ogv|cd|wav|aiff|aac|midi|docx|doc|xls|xlsx|pdf|txt|ppt|pptx',
 									choose: function(obj) {
 										console.log(obj);
 										var files = this.files = obj.pushFile(); //将每次选择的文件追加到文件队列
@@ -786,12 +787,16 @@ var info = {
 	 * @param {Object} userId
 	 */
 	openAddRolePage: function(userId) {
+		
+		var layer = layui.layer,
+			form = layui.form;
+			$(".checkAll").prop("checked", false);
+			$("#checkAll").prop("checked",false)
+			form.render('checkbox');
 		// 清空输入框
 		$('.taskName').val('');
 		$('.taskRemark').val('');
 		$('.taskUsers').empty();
-		// 清空试卷名
-		$('.paperAdd').text('');
 		$('#test1').val(firstToday);
 		$('#test2').val(lastToday);
 		layer.open({
@@ -811,8 +816,10 @@ var info = {
 
 				//发布任务
 				$('.addOk').click(function() {
+					$(this).attr('disabled', 'disabled');
 					info.addTask();
 				});
+				
 			},
 		});
 	},
@@ -922,9 +929,9 @@ var info = {
 				}
 			})
 			layer.closeAll();
-
 		} else {
 			layer.msg(mistake);
+			$('.addOk').removeAttr('disabled');
 		}
 	},
 }

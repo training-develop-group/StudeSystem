@@ -291,13 +291,13 @@ button {
 
 .layui-laypage .layui-laypage-curr {
 	top: -3px;
-	margin: 0 6px;
+	margin: 0 6px !important;
 }
 
 .layui-laypage .layui-laypage-curr .layui-laypage-em {
-	top: 0.5px;
-	width: 98%;
-	height: 94%
+	top: 0.5px !important;
+	width: 98% !important;
+	height: 94% !important;
 }
 /* ------------------------------------重命名弹窗------------------------------------ */
 

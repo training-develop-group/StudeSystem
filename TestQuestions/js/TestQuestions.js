@@ -77,10 +77,10 @@ var info = {
 					Html.push('<li class="questions">');
 					if (item.questionType == 1) {
 						Html.push('<span class="Q-question"><span class="num">' + index +
-							'.</span>单选题（2018）<span>(10分)</span></span>');
+							'.</span>单选题</span></span>');
 					} else {
 						Html.push('<span class="Q-question"><span class="num">' + index +
-							'.</span>多选题（2018）<span>(10分)</span></span>');
+							'.</span>多选题</span></span>');
 					}
 					Html.push('<span>');
 					Html.push('<p>' + item.content + '</p>');
@@ -91,11 +91,15 @@ var info = {
 					Html.push('<div class="operation">');
 					Html.push('<input type="hidden"  value="' + item.questionId + '">')
 					Html.push('<p style="display:none;">' + item.status + '</p>')
-					Html.push('<span class="view"><i class="layui-icon">&#xe615;</i>查看解析</span>');
-					Html.push('<span class="edit"><i style="color: #009688;" class="layui-icon">&#xe642;</i>编辑试题</span>');
-					Html.push(
-						'<span class="deleteQuestions"><i style="color:#FF0000;" class="layui-icon">&#xe640;</i>删除试题</span>');
-					Html.push('</div>');
+					console.log()
+					if (item.status == 1){
+						Html.push('<span class="view"><i class="layui-icon">&#xe615;</i>查看解析</span>');
+					} else {
+						Html.push('<span class="edit"><i style="color: #009688;" class="layui-icon">&#xe642;</i>编辑试题</span>');
+						Html.push(
+							'<span class="deleteQuestions"><i style="color:#FF0000;" class="layui-icon">&#xe640;</i>删除试题</span>');
+						Html.push('</div>');
+					}
 					Html.push('</li>');
 				});
 				$('.C-Content ul').html(Html.join(''));

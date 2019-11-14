@@ -57,7 +57,7 @@ table {
 
 .content td,
 .layui-upload-list td,
-th{
+th {
 	font-size: 14px;
 	border-bottom: 1px solid #E2E2E2;
 	padding: 0 25px;
@@ -89,7 +89,7 @@ td:nth-child(1) {
 	background-color: #FFFFFF;
 	border: none;
 	float: left;
-	cursor:pointer;
+	cursor: pointer;
 }
 
 #contentList td button a {
@@ -98,7 +98,7 @@ td:nth-child(1) {
 }
 
 #contentList td button:hover,
-#contentList td button a:hover{
+#contentList td button a:hover {
 	color: #777;
 }
 
@@ -112,7 +112,7 @@ th {
 	font-size: 16px;
 }
 
-.mainTabel tr th:nth-child(5){
+.mainTabel tr th:nth-child(5) {
 	padding: 0 31px !important;
 }
 
@@ -158,7 +158,7 @@ th {
 	position: absolute;
 	top: 50%;
 	left: 50%;
-	transform:translate(-50%,-50%);
+	transform: translate(-50%, -50%);
 }
 
 .layui-laypage a {
@@ -199,9 +199,10 @@ th {
 
 /* tr hover样式 */
 .mainTabel tbody tr:hover,
-.hiddenTableList tbody tr:hover{
+.hiddenTableList tbody tr:hover {
 	background-color: #eeeeee;
 }
+
 #uploadBtn {
 	width: 160px;
 	text-align: center;
@@ -223,7 +224,10 @@ th {
 	bottom: 15px;
 }
 
-.Release_content .layui-form-item .layui-form-label , .taskObject , .selectResource span , .selectPersonnel span{
+.Release_content .layui-form-item .layui-form-label,
+.taskObject,
+.selectResource span,
+.selectPersonnel span {
 	font-size: 16px;
 }
 
@@ -232,6 +236,7 @@ th {
 .selectPersonnel {
 	font-size: 16px;
 	color: #5FB878;
+	padding-left: 0 !important;
 }
 
 .timeBox {
@@ -279,7 +284,7 @@ th {
 }
 
 .resAdd {
-	color: #606060!important;
+	color: #606060 !important;
 }
 
 
@@ -312,9 +317,10 @@ th {
 
 /*每个人员上下间距 */
 .taskUsers p {
+	cursor: pointer;
 	line-height: 20px;
 	margin-bottom: 5px;
-	width: 200px;
+	width: 230px;
 	overflow: auto;
 }
 
@@ -329,6 +335,7 @@ th {
 	font-size: 14px;
 	float: right;
 }
+
 /* 任务对象选择人员---------------------------------------------------------------------- */
 
 
@@ -353,6 +360,7 @@ th {
 .Release_btn button {
 	width: 140px;
 }
+
 /* 发布任务按钮-------------------------------------------------------------------------- */
 
 
@@ -445,11 +453,11 @@ th {
 .layui-nav .layui-this:after,
 .layui-nav-bar,
 .layui-nav-tree .layui-nav-itemed:after {
-    background-color: #1E9FFF;
+	background-color: #1E9FFF;
 }
 
 .layui-nav {
-	padding:0;
+	padding: 0;
 }
 
 .selectResHeader {
@@ -500,14 +508,14 @@ th {
 
 /* 选择人员搜索框 */
 .userNameRetrieval {
-	width: 150px; 
+	width: 150px;
 	height: 30px;
 	border: none;
 }
 
 .selectTaskUsers {
-	border: 1px solid #C9C5C5; 
-	height:300px;
+	border: 1px solid #C9C5C5;
+	height: 300px;
 	width: 550px;
 	margin: auto;
 	background-color: rgb(248, 248, 248);
@@ -524,7 +532,7 @@ i {
 }
 
 /* 日期按钮选中颜色 */
-.layui-laydate-footer span:hover{
+.layui-laydate-footer span:hover {
 	color: #279ef0 !important;
 }
 
@@ -537,10 +545,10 @@ i {
 }
 
 /* 选择人员hover */
-.taskUsers p:hover{
+.taskUsers p:hover {
 	background-color: #f2f2f2;
 }
 
-.chooseResource{
+.chooseResource {
 	cursor: pointer;
 }

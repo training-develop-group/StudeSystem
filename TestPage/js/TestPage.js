@@ -3,17 +3,17 @@
  * @author：MengXin
  */
 var urlinfo = window.location.href;
-	var value = urlinfo.split("?")[1].split("value=")[1];
-	var PaperId = decodeURI(value);
-	var taskId = PaperId.split(',')[0]
-	var userType = PaperId.split(',')[1]
-	var taskType = ''
-	var getExperience = '';
-	var paperId = ''
-	var resId = ''
-	var taskName = ''
+var value = urlinfo.split("?")[1].split("value=")[1];
+var PaperId = decodeURI(value);
+var taskId = PaperId.split(',')[0]
+// var userType = PaperId.split(',')[1]
+var taskType = ''
+var getExperience = '';
+var paperId = ''
+var resId = ''
+var taskName = ''
 $(function() {
-	
+
 	// var userId = PaperId.split(',')[1];
 	// var resId = 68;
 
@@ -30,21 +30,22 @@ $(function() {
 		contentType: 'application/json;charset=utf-8',
 		success(res) {
 			console.log(res)
+			$('.taskRemarkContent').text(res.data.taskRemark)
 			getExperience++;
 			taskType = res.data.taskType;
 			paperId = res.data.paperId;
 			resId = res.data.resId;
 			taskName = res.data.taskName;
 			$('.nav_title').text(res.data.taskName)
-			
+
 
 		}
 
 	})
-		console.log(localStorage.getItem('userType'))
-	if(localStorage.getItem('userType')==1){
-		info.getExperienceList(1,taskId);
-	
+	console.log(localStorage.getItem('userType'))
+	if (localStorage.getItem('userType') == 1) {
+		info.getExperienceList(1, taskId);
+
 	}
 	console.log(taskName)
 	$('.add').off('click').on('click', function() {
@@ -58,7 +59,7 @@ $(function() {
 			'content': Experience
 
 		}
-		console.log(userId)
+		// console.log(userId)
 
 		$.ajax({
 			// url:
@@ -76,7 +77,7 @@ $(function() {
 				var textNum = $('.textExperience').val().length;
 				$('.textNum').text(textNum);
 				info.textNum()
-				
+
 				if (getExperience > 0) {
 					info.getExperienceList(1, taskId)
 				}
@@ -84,80 +85,84 @@ $(function() {
 			}
 		})
 	})
-	if(localStorage.getItem('userType') == 2 ){
 	var myAudio = document.getElementById('myVideo')
-	myAudio.loop = false;
-	myAudio.addEventListener('ended', function() {
-		$('.measurement').addClass('text');
-		$('.measurement').click(function() {
-			console.log('asdasdasd')
-			
-			$('.doc,.video,.audio').addClass('hidden')
-			$('.active').removeClass('active')
-			$('.measurement').addClass('active')
-			$('.experienceListBox').addClass('hidden')
-			if(localStorage.getItem('userType') == 1){
-				info.getPaperList(paperId)
-			}else{
-				$('.content').removeClass('hidden')
-				info.getList(taskId, taskType, paperId, resId);
-			}
-		})
-	}, false);
-	}else{
-		$('.measurement').addClass('text');
-		$('.measurement').click(function() {
-			$('.doc,.video,.audio').addClass('hidden')
-			$('.active').removeClass('active')
-			$('.measurement').addClass('active')
-			$('.experienceListBox').addClass('hidden')
-			if(localStorage.getItem('userType') == 1){
-				info.getPaperList(paperId)
-			}else{
-				$('.content').removeClass('hidden')
-				info.getList(taskId, taskType, paperId, resId);
-			}
-			
+	if (localStorage.getItem('userType') == 2) {
+
+		myAudio.loop = false;
+		myAudio.addEventListener('ended', function() {
+			$('.measurement').addClass('text');
+			$('.measurement').click(function() {
+				console.log('asdasdasd')
+
+				$('.doc,.video,.audio').addClass('hidden')
+				$('.active').removeClass('active')
+				$('.measurement').addClass('active')
+				$('.experienceListBox').addClass('hidden')
+				if (localStorage.getItem('userType') == 1) {
+					info.getPaperList(paperId)
+				} else {
+					$('.content').removeClass('hidden')
+					info.getList(taskId, taskType, paperId, resId);
+				}
 			})
+		}, false);
+	} else {
+		$('.measurement').addClass('text');
+		$('.measurement').click(function() {
+			$('.doc,.video,.audio').addClass('hidden')
+			$('.active').removeClass('active')
+			$('.measurement').addClass('active')
+			myAudio.pause();
+			$('.experienceListBox').addClass('hidden')
+			if (localStorage.getItem('userType') == 1) {
+				info.getPaperList(paperId)
+			} else {
+				$('.content').removeClass('hidden')
+				info.getList(taskId, taskType, paperId, resId);
+			}
+
+		})
 	}
-	if(localStorage.getItem('userType') == 2){
-		
-	
-	var myAudio = document.getElementById('myAudio')
-	myAudio.loop = false;
-	myAudio.addEventListener('ended', function() {
-		$('.measurement').addClass('text');
-		$('.measurement').click(function() {
-			console.log('asdasdasd')
-			
-			$('.doc,.video,.audio').addClass('hidden')
-			$('.active').removeClass('active')
-			$('.measurement').addClass('active')
-			$('.experienceListBox').addClass('hidden')
-			if(localStorage.getItem('userType') == 1){
-				info.getPaperList(paperId)
-			}else{
-				$('.content').removeClass('hidden')
-				info.getList(taskId, taskType, paperId, resId);
-			}
-			
-		})
-	}, false);
-	}else{
-		$('.measurement').addClass('text');
-		$('.measurement').click(function() {
-			$('.doc,.video,.audio').addClass('hidden')
-			$('.active').removeClass('active')
-			$('.measurement').addClass('active')
-			$('.experienceListBox').addClass('hidden')
-			if(localStorage.getItem('userType') == 1){
-				info.getPaperList(paperId)
-			}else{
-				$('.content').removeClass('hidden')
-				info.getList(taskId, taskType, paperId, resId);
-			}
-			
+	if (localStorage.getItem('userType') == 2) {
+
+
+		var myAudio = document.getElementById('myAudio')
+		myAudio.loop = false;
+		myAudio.addEventListener('ended', function() {
+			$('.measurement').addClass('text');
+			$('.measurement').click(function() {
+				console.log('asdasdasd')
+
+				$('.doc,.video,.audio').addClass('hidden')
+				$('.active').removeClass('active')
+				$('.measurement').addClass('active')
+				$('.experienceListBox').addClass('hidden')
+				if (localStorage.getItem('userType') == 1) {
+					info.getPaperList(paperId)
+				} else {
+					$('.content').removeClass('hidden')
+					info.getList(taskId, taskType, paperId, resId);
+				}
+
 			})
+		}, false);
+	} else {
+		$('.measurement').addClass('text');
+		$('.measurement').click(function() {
+			$('.doc,.video,.audio').addClass('hidden')
+			$('.active').removeClass('active')
+			$('.measurement').addClass('active')
+			$('.experienceListBox').addClass('hidden')
+
+			myAudio.pause();
+			if (localStorage.getItem('userType') == 1) {
+				info.getPaperList(paperId)
+			} else {
+				$('.content').removeClass('hidden')
+				info.getList(taskId, taskType, paperId, resId);
+			}
+
+		})
 	}
 	console.log(taskType)
 	layui.use(['layer', 'form'], function() {
@@ -179,7 +184,6 @@ $(function() {
 				contentType: 'application/json;charset=utf-8',
 				success(resc) {
 					console.log(resc)
-					$('.taskRemarkContent').text(resc.taskRemark)
 					if (resc.data != null) {
 
 
@@ -214,8 +218,9 @@ $(function() {
 				contentType: 'application/json;charset=utf-8',
 				success(resc) {
 					console.log(resc)
-					if (resc.data != null) {
 
+					if (resc.data != null) {
+						$('.taskRemarkContent').text(resc.data.taskRemark)
 
 						var pdfPath = resc.data.path.substring(0, resc.data.path.lastIndexOf('.'));
 						console.log(pdfPath);
@@ -244,15 +249,14 @@ $(function() {
 			$('.experienceListBox').removeClass('hidden')
 
 		} else if (taskType == 3) {
-			console.log(userType)
 			$('.study').addClass('hidden')
-			
-				$('.doc,.video,.audio').addClass('hidden')
-				$('.active').removeClass('active')
-				$('.measurement').addClass('active')
+
+			$('.doc,.video,.audio').addClass('hidden')
+			$('.active').removeClass('active')
+			$('.measurement').addClass('active')
 			if (localStorage.getItem('userType') == 1) {
 				info.getPaperList(paperId)
-			}else{
+			} else {
 				$('.content').removeClass('hidden')
 				info.getList(taskId, taskType, paperId, resId);
 			}
@@ -261,7 +265,7 @@ $(function() {
 			$('.active').removeClass('active')
 			$('.study').addClass('active')
 			$('.test_content').addClass('hidden')
-			if(localStorage.getItem('userType') == 1){
+			if (localStorage.getItem('userType') == 1) {
 				$.ajax({
 					url: TDXUrl + 'manage_system/resource/' + resId,
 					data: {},
@@ -271,16 +275,16 @@ $(function() {
 					success(resc) {
 						console.log(resc)
 						if (resc.data != null) {
-				
-				
+
+
 							var pdfPath = resc.data.path.substring(0, resc.data.path.lastIndexOf('.'));
 							console.log(pdfPath);
-				
+
 							if (resc.data.resType == 1) {
 								$('.video').removeClass('hidden');
 								$('.video video').attr('src', 'http://192.168.188.109:8848/' + resc.data.path)
 								setTimeInterval = setInterval(info.NoProgressBar, 1);
-				
+
 							} else if (resc.data.resType == 2) {
 								$('.audio').removeClass('hidden');
 								$('.audio audio').attr('src', 'http://192.168.188.109:8848/' + resc.data.path)
@@ -295,7 +299,7 @@ $(function() {
 						}
 					}
 				})
-			}else{
+			} else {
 				layer.msg("学习完就不能回去喽")
 			}
 		})
@@ -320,42 +324,43 @@ var answer = [];
 var lastTime = 0;
 
 var info = {
-	getPaperList :function(paperId){
+	getPaperList: function(paperId) {
 		$.ajax({
-			url: MCUrl + 'manage_system/paper/' + 53,
-			data: {
-			},
+			url: MCUrl + 'manage_system/paper/' + paperId,
+			data: {},
 			Type: 'GET',
 			success(res) {
 				console.log(res);
-		
+
 				if (res || res.data !== null) {
 					console.log(res)
 					var Html = [];
 					// Html.push('<div class="Testing">' + res.data.taskName + '</div>')
-					
 					Html.push(
 						'<ul class="layui-tab tabHead layui-tab-brief clearfix">'
 					)
-					if (res.data.questions[0].questionList.length == 0){
-						return 
-					}
-						res.data.questions[0].questionList.forEach(function(item, index) {
+					if (res.data.questionList == undefined || res.data.questionList.length == 0) {
+
+
+					} else {
+
+						res.data.questionList.forEach(function(item, index) {
 							Html.push('<li class="sortableitem">');
 							Html.push('<div class="topicFramework">');
 							Html.push('<input type="text" class="questionId" value="' + item.questionId + '" hidden="hidden"/>');
-							if (item.questionType == 1){
+							if (item.questionType == 1) {
 								item.questionType = "单选题";
 							} else {
 								item.questionType = "多选题";
 							}
-							var newScore = res.data.questions[0].newScoreList[index].score;
-							Html.push('<p class="num">'+ (index + 1) +'. ' + item.questionType + '<span>  ' + newScore + '分</span></p>');
+							// var newScore = res.data.questions[0].newScoreList[index].score;
+							Html.push('<p class="num">' + (index + 1) + '. ' + item.questionType + '<span>  ' + item.score +
+								'分</span></p>');
 							// 转义(已防有标签的样式被html识别)
 							item.content = $('<div>').text(item.content).html();
 							Html.push('<p class="distance">' + item.content + '</p>');
-							res.data.questions[0].optionInfo.forEach(function(items, index) {
-								if (items.questionId == item.questionId){
+							item.optionInfo.forEach(function(items, index) {
+								if (items.questionId == item.questionId) {
 									// 转义(已防有标签的样式被html识别)
 									items.content = $('<div>').text(items.content).html();
 									Html.push('<p class="distance">' + items.optionType + ' ' + items.content + '</p>');
@@ -363,56 +368,59 @@ var info = {
 							});
 							Html.push('</div>');
 							Html.push('<div class="functionBox">');
-							Html.push('<button class="toView"><i class="layui-icon layui-icon-search"></i>查看解析</button>');
+							Html.push('<button class="toView" value='+item.questionId+'><i class="layui-icon layui-icon-search"></i>查看解析</button>');
 							Html.push('</div>');
 							Html.push('</li>');
 						});
 						Html.push('</ul>');
-		
+					}
 					$('.test_content').html(Html.join(''))
 					$('.test_content').removeClass('hidden');
 					$('.content').css('background-color', '#fff')
 					// 解析
-		
+
 					$('.toView').off('click').on('click', function() {
 						var QusetionId = $(this).val();
+						console.log(QusetionId)
 						// 解析内容
-						var Analysis = '未定义';
-						// 正确答案
-						var OptionType = '未知';
-						$.ajax({
-							url: MCUrl + 'manage_system/question/answer',
-							data: {
-								'questionId': QusetionId
-							},
-							dataType: 'json',
-							type: 'GET',
-							success(res) {
-								res.data.forEach(function(item, index) {
-									Analysis = item.analysis;
-									OptionType = item.optionType;
-								});
-								layui.use("layer", function() {
-									var layer = layui.layer;
-									layer.open({
-										type: 1 //Page层类型
-											,
-										closeBtn: 1,
-										area: ['790px', '300px'],
-										title: ['查看解析',
-												'background-color: #279ef0;text-align: center;font-size: 16px;line-height: 43px;color:white;letter-spacing: 5px;padding: 0px;'
-											]
-											// ,shade: 0.6 //遮罩透明度
-											,
-										content: '<div class="answerContent">' +
-											'<p>正确答案：<span class="answerOptions">' + OptionType + '</span></p>' +
-											'<p>答案解析：</p>' +
-											'<p class="analysis">' + Analysis + '</p>' +
-											'</div>'
-									});
-								});
-							}
+					var Analysis = '未定义';
+				// 正确答案
+					var OptionType = '未知';
+					$.ajax({
+					url: MCUrl + 'manage_system/question/answer',
+					data: {
+						'questionId': QusetionId
+					},
+					dataType: 'json',
+					type: 'GET',
+					success(res) {
+						console.log(res)
+						res.data.forEach(function(item, index) {
+							Analysis = item.analysis;
+							OptionType = item.optionType;
 						});
+						layui.use("layer", function() {
+							var layer = layui.layer;
+							layer.open({
+								type: 1 //Page层类型
+									,
+								closeBtn: 1,
+								move: false,
+								area: ['700px', '260px'],
+								title: ['查看解析',
+										'background-color: #279ef0;text-align: center;font-size: 16px;line-height: 43px;color:white;letter-spacing: 5px;padding: 0px;'
+									]
+									// ,shade: 0.6 //遮罩透明度
+									,
+								content: '<div class="answerContent">' +
+									'<p>正确答案：<span class="answerOptions">' + OptionType + '</span></p>' +
+									'<p>答案解析：</p>' +
+									'<p class="analysis">' + Analysis + '</p>' +
+									'</div>'
+							});
+						});
+					}
+				});
 					});
 				}
 			}
@@ -421,7 +429,7 @@ var info = {
 	//  todo  接口 ,获取页面试题
 	getList: function(taskId, taskType, paperId, resId) {
 		$.ajax({
-			url: LBUrl + 'manage_system/paper/' + paperId,
+			url: MCUrl + 'manage_system/paper/' +paperId,
 			data: {
 
 			},
@@ -431,7 +439,7 @@ var info = {
 					console.log(resb)
 					var answerSheet = [];
 					var examContent = [];
-					resb.data.questions.forEach(function(item, index) {
+					resb.data.questionList.forEach(function(item, index) {
 						if ((index + 1) == 1) {
 							answerSheet.push('<li class="active"  data-type="' + (index + 1) + '">' +
 								(index + 1) + '</li>')
@@ -683,13 +691,13 @@ var info = {
 			$('.CR-btnConfirm').click(function() {
 				layer.closeAll();
 				$.ajax({
-					url: LBUrl + 'manage_system/paper/answers',
+					url: MCUrl + 'manage_system/paper/answers',
 					data: data,
 					dataType: 'json',
 					type: 'POST',
 					// contentType :'application/json;charset=utf-8',
 					success(res) {
-						console.log("操作成功");
+						
 						// alert("操作成功");
 
 						if (res || res.data !== null) {
@@ -706,7 +714,10 @@ var info = {
 								'<div id="centered">'
 							)
 							Html.push(
-								'<span>查看试卷</span>'
+								'<span>查看答案</span>'
+							)
+							Html.push(
+								'<span style="float: right; margin-right:20px">总分:'+res.data.userScore+'</span>'
 							)
 							Html.push(
 								'</div>'
@@ -718,7 +729,7 @@ var info = {
 								'<ul class="layui-tab tabHead layui-tab-brief clearfix">'
 							)
 
-							res.data.questions.forEach(function(item, index) {
+							res.data.questionList.forEach(function(item, index) {
 								console.log(res)
 								Html.push('<li class="sortableitem" style = "background-color: #fff;">');
 								Html.push('<div class="topicFramework" style="text-align: left;line-height: 1;">');
@@ -762,8 +773,6 @@ var info = {
 							})
 
 							Html.push('</ul></div>')
-							console.log('asdasdasd')
-
 							$('.wrapper').html(Html.join(''))
 
 							$('.content').css('background-color', '#fff')

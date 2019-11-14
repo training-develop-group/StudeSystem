@@ -58,7 +58,6 @@ var TableDataRequest = function(pageNum) {
 }
 // 分页
 var page = function(total,pageNum){
-	console.log(1)
 	layui.use('laypage', function() {
 		var laypage = layui.laypage;
 		laypage.render({
