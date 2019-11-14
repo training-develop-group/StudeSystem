@@ -149,7 +149,7 @@ var info = {
 						} else if (item.resType == 2) {
 							item.resType = '音频'
 						} else if (item.resType == 3) {
-                            item.resType = '文档	'
+							item.resType = '文档'
 						} else {
 							item.resType = '未知'
 						}

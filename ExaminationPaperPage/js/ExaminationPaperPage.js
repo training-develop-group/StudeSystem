@@ -181,7 +181,7 @@ var info = {
 			// 转义(已防有标签的样式被html识别)
 			item.paperName = $('<div>').text(item.paperName).html();
 			Html.push('<tr>');
-			Html.push('<td><span class="rename" title="' + item.paperName + '">' + item.paperName + '</span></td>');
+			Html.push('<td class="toView" data-id="' + item.paperId + '"><span class="rename " title="' + item.paperName + '" >' + item.paperName + '</span></td>');
 			Html.push('<td class="middle">' + item.status + '</td>');
 			Html.push('<td class="middle">' + item.single + '</td>');
 			Html.push('<td class="middle">' + item.many + '</td>');
@@ -189,12 +189,10 @@ var info = {
 			if(item.status == '已发布'){
 				Html.push('<button type="button" class="layui-btn layui-btn-primary edit" data-id="' + item.paperId + '">重命名</button>');
 				Html.push('<button type="button" class="layui-btn layui-btn-primary publish" data-id="' + item.paperId + '">发布</button>');
-				Html.push('<button type="button" class="layui-btn layui-btn-primary toView" data-id="' + item.paperId + '">查看</button>');
 			} else {
 				Html.push('<button type="button" class="layui-btn layui-btn-primary edit" data-id="' + item.paperId + '">重命名</button>');
 				Html.push('<button type="button" class="layui-btn layui-btn-primary selectedTopic" data-id="' + item.paperId + '">编辑</button>');
 				Html.push('<button type="button" class="layui-btn layui-btn-primary publish" data-id="' + item.paperId + '">发布</button>');
-				Html.push('<button type="button" class="layui-btn layui-btn-primary toView" data-id="' + item.paperId + '">查看</button>');
 				Html.push('<button type="button" class="layui-btn layui-btn-primary delete" data-id="' + item.paperId + '">删除</button>');
 			}
 			Html.push('</td>');

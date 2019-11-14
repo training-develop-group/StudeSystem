@@ -72,9 +72,7 @@ tr .oneselfTaskName {
 
 .layui-layer-title {}
 
-.taskUsers p {
-	margin-left: 20px;
-}
+
 
 ol,
 ul {
@@ -202,12 +200,11 @@ ul div input {
 
 .taskUsers>p {
 	line-height: 20px;
-
+	padding: 0 10px;
 }
-
 .taskUsers p i {
 	float: right;
-	padding-right: 20px;
+	cursor: pointer;
 }
 
 .selectPapersa {

@@ -18,7 +18,8 @@ var All = {
 			var navHtml = [];
 			navHtml.push('<div class="headerBox">');
 			navHtml.push('<div class="logobox">');
-			navHtml.push('<span>Logo</span>');
+			// navHtml.push('<span>logo</span>');
+			navHtml.push('<img src="../imgs/logo.png" alt="logo" class="logo"/>');
 			navHtml.push('</div>');
 			navHtml.push('<div class="navbox">');
 			switch (options.type) {
@@ -95,6 +96,7 @@ var All = {
 					break;
 			}
 			navHtml.push('</div>');
+			navHtml.push('<div class="rightBox">');
 			navHtml.push('<div class="right">');
 			navHtml.push('<img src="../imgs/HeadPortrait.jpg" class="userimg">');
 			navHtml.push('<span class="username">用户名</span>');
@@ -112,6 +114,7 @@ var All = {
 				case 2:
 					break;
 			}
+			navHtml.push('</div>');
 			navHtml.push('</div>');
 			navHtml.push('</div>');
 

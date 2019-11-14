@@ -121,6 +121,9 @@ a{
 	line-height: 15px;
 	border: 0;
 }
+.toView:hover{
+	cursor: pointer !important;
+}
 .edit{
 	width: 60px;
 }
