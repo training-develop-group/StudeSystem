@@ -34,6 +34,9 @@ $(function() {
 		$('#paging').show();
 		numberOfQuestions = 0;
 		$('.red').text(numberOfQuestions);
+		// if (numberOfQuestions != 0){
+		// 	questionIdBackfilling = [];
+		// }
 		layer.msg("本次选题只能选择一次，望慎重考虑");
 		$('.joinIn').show();
 		$('.confirmCompletion').show();
@@ -45,9 +48,7 @@ $(function() {
 		$('.movedown').hide();
 		$('.fraction').hide();
 		$('#saveChanges').hide();
-		$('#newTestPaper').attr('disabled', true);
-		$('#newTestPaper').css('background-color', '#AAAAAA');
-		$('#newTestPaper').css('cursor', 'not-allowed');
+		$('#newTestPaper').hide();
 		info.TableDataRequest(1);
 	});
 
@@ -64,18 +65,19 @@ $(function() {
 		$('.fraction').show();
 		$('.removeQuestions').hide();
 		$('#saveChanges').show();
+		$('#newTestPaper').show();
 		// 隐藏分页
 		$('#paging').hide();
 		info.viewQuestion();
+		// if (questionIdBackfilling.length != 0){
+		// 	storageQusetionId = $.merge( storageQusetionId, questionIdBackfilling );
+		// }
 		for (var i = 0; i < storageQusetionId.length; i++) {
 			info.viewQuestion(storageQusetionId[i]);
 		}
 		// 没加入试卷就清空内容
 		if (storageQusetionId.length == 0) {
 			$('.mobileFramework').empty();
-			$('#newTestPaper').attr('disabled', false);
-			$('#newTestPaper').css('background-color', '#FFFFFF');
-			$('#newTestPaper').css('cursor', 'pointer');
 		}
 		
 	});
@@ -105,6 +107,8 @@ var sorting = [];
 var numberOfQuestions = 0;
 // 计题数
 var viewHtmlNum = 1;
+// 试卷下有题就存到数组(回填用)
+var questionIdBackfilling = [];
 
 var info = {
 	//页面主方法
@@ -141,13 +145,13 @@ var info = {
 	TableDrawings: function(data) {
 		if (data.questionList.length == 0) {
 			judge = false;
-		} else {
-			$('#newTestPaper').attr('disabled', true);
-			$('#newTestPaper').css('background-color', '#AAAAAA');
-			$('#newTestPaper').css('cursor', 'not-allowed');
 		}
 		var Html = [];
 		data.questionList.forEach(function(item, index) {
+			// 储存试题ID(用来回填)
+			// questionIdBackfilling.push(item.questionId);
+			storageQusetionId.push(item.questionId);
+			
 			Html.push('<li class="sortableitem">');
 			Html.push('<div class="topicFramework" data-id="' + item.questionId + '">');
 			Html.push('<input type="text" class="qusetionId" value="' + item.questionId + '" hidden="hidden"/>');
@@ -226,9 +230,6 @@ var info = {
 			$(this).parent().parent().remove();
 			var a = $(".mobileFramework").find('.sortableitem').length;
 			if (a == 0){
-				$('#newTestPaper').attr('disabled', false);
-				$('#newTestPaper').css('background-color', '#FFFFFF');
-				$('#newTestPaper').css('cursor', 'pointer');
 				$('#saveChanges').hide();
 			} else {
 				$('#saveChanges').show();
@@ -271,7 +272,6 @@ var info = {
 	//表格会绘制
 	TableDrawing: function(data, curr) {
 		var Html = [];
-		console.log(data);
 		data.list.forEach(function(item, index) {
 			Html.push('<li class="sortableitem">');
 			Html.push('<div class="topicFramework" data-id="' + item.questionId + '">');
@@ -301,13 +301,33 @@ var info = {
 			Html.push('<button class="moveOut"><i class="layui-icon layui-icon-delete"></i>移出</button>');
 			Html.push('<button class="moveup"><i class="layui-icon layui-icon-up"></i>上移</button>');
 			Html.push('<button class="movedown"><i class="layui-icon layui-icon-down"></i>下移</button>');
-			Html.push('<button class="joinIn"><i class="layui-icon layui-icon-add-circle"></i>加入试卷</button>');
-			Html.push('<button class="removeQuestions"><i class="layui-icon layui-icon-delete"></i>移出试卷</button>');
+			Html.push('<button class="joinIn" id="data-joinIn-' + index + '"><i class="layui-icon layui-icon-add-circle"></i>加入试卷</button>');
+			Html.push('<button class="removeQuestions" id="data-remove-' + index + '"><i class="layui-icon layui-icon-delete"></i>移出试卷</button>');
 			Html.push('</div>');
 			Html.push('</li>');
 		});
 		$('.mobileFramework').html(Html.join(''));
-		$('.removeQuestions').hide();
+		$('.removeQuestions').addClass('hidden');
+		// for(var j = 0; j < data.list.length; j++){
+		// 	for (var i = 0; i < questionIdBackfilling.length; i++){
+		// 		if (questionIdBackfilling[i] == data.list[j].questionId){
+		// 			$('#data-joinIn-' + j).addClass('hidden');
+		// 			$('#data-remove-' + j).removeClass('hidden');
+		// 			break;
+		// 		}
+		// 	}
+		// }
+		for(var j = 0; j < data.list.length; j++){
+			for (var i = 0; i < storageQusetionId.length; i++){
+				if (storageQusetionId[i] == data.list[j].questionId){
+					$('#data-joinIn-' + j).addClass('hidden');
+					$('#data-remove-' + j).removeClass('hidden');
+					break;
+				}
+			}
+		}
+		numberOfQuestions = storageQusetionId.length;
+		$('.red').text(numberOfQuestions);
 		$('.fraction').hide();
 		$('.moveOut').hide();
 		$('.moveup').hide();
@@ -436,10 +456,8 @@ var info = {
 		// 判断是否是最后一次的调用，如果是最后一次就往页面里塞入数据
 		if (storageQusetionId.length == viewChack) {
 			$('.mobileFramework').html(viewHtml.join(''));
-			// 清空数组
+			console.log(viewHtml);
 			viewHtml = [];
-			$('.joinIn').hide();
-			$('.removeQuestions').hide();
 			// 移出
 			$('.moveOut').off('click').on('click', function() {
 				var QusetionId = $(this).parent().parent().find('.qusetionId').val();
@@ -450,9 +468,6 @@ var info = {
 					}
 				}
 				if (storageQusetionId.length == 0) {
-					$('#newTestPaper').attr('disabled', false);
-					$('#newTestPaper').css('background-color', '#FFFFFF');
-					$('#newTestPaper').css('cursor', 'pointer');
 					// 有问题
 					$('#saveChanges').hide();
 					viewChack = 0;
@@ -462,9 +477,6 @@ var info = {
 				$(this).parent().parent().remove();
 				
 			});
-			$('#newTestPaper').attr('disabled', true);
-			$('#newTestPaper').css('background-color', '#AAAAAA');
-			$('#newTestPaper').css('cursor', 'not-allowed');
 			// 点击上移
 			$('.moveup').off('click').on('click', function() {
 				// 显示保存更改按钮
@@ -538,7 +550,7 @@ var info = {
 			var data = {
 				'paperId': PaperId,
 				'questionId': $('.sortableitem:nth-child('+ [i] +') .topicFramework').attr('data-id'),
-				'score': 0,
+				'score': $('.sortableitem:nth-child('+ [i] +') .newScore').text(),
 				'orderIndex': i,
 				'cTime': today,
 				'cUser': 'mc'
@@ -572,6 +584,8 @@ var info = {
 				JPaperQuestion = [];
 				PaperQuestionPesult = [];
 				questionScore = [];
+				// 刷新上一个页面
+				opener.location.reload();
 				// 覆盖当前页
 				window.location.href = "../ViewTestPaper/ViewTestPaper.html?value=" + PaperId;
 			}

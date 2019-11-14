@@ -503,6 +503,7 @@ var info = {
 			type: 'GET',
 			success(res) {
 				var Html = []
+				console.log(res);
 				res.data.forEach(function(item, index) {
 					Html.push('<span class="layui-form-label" style="font-size: 16px;"><input type="checkbox" value="' + item.userId +
 						'"class="checkAll " name="Staff" lay-skin="primary" lay-filter="c_one" ><i>' + item.userName +

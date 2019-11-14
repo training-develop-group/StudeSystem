@@ -11,6 +11,7 @@ var taskType = ''
 var getExperience = '';
 var paperId = ''
 var resId = ''
+var setTimeInterval = '';
 var taskName = ''
 $(function() {
 
@@ -42,6 +43,12 @@ $(function() {
 		}
 
 	})
+	setTimeInterval = setInterval(info.currentTime, 300000000)
+	if(localStorage.getItem('userType')==2){
+		
+	
+	setTimeInterval = setInterval(info.NoProgressBar, 1);
+	}
 	console.log(localStorage.getItem('userType'))
 	if (localStorage.getItem('userType') == 1) {
 		info.getExperienceList(1, taskId);
@@ -90,10 +97,8 @@ $(function() {
 
 		myAudio.loop = false;
 		myAudio.addEventListener('ended', function() {
-			$('.measurement').addClass('text');
+			$('.measurement').addClass('test');
 			$('.measurement').click(function() {
-				console.log('asdasdasd')
-
 				$('.doc,.video,.audio').addClass('hidden')
 				$('.active').removeClass('active')
 				$('.measurement').addClass('active')
@@ -107,12 +112,12 @@ $(function() {
 			})
 		}, false);
 	} else {
-		$('.measurement').addClass('text');
+		$('.measurement').addClass('test');
 		$('.measurement').click(function() {
 			$('.doc,.video,.audio').addClass('hidden')
 			$('.active').removeClass('active')
 			$('.measurement').addClass('active')
-			myAudio.pause();
+			// myAudio.pause();
 			$('.experienceListBox').addClass('hidden')
 			if (localStorage.getItem('userType') == 1) {
 				info.getPaperList(paperId)
@@ -129,7 +134,7 @@ $(function() {
 		var myAudio = document.getElementById('myAudio')
 		myAudio.loop = false;
 		myAudio.addEventListener('ended', function() {
-			$('.measurement').addClass('text');
+			$('.measurement').addClass('test');
 			$('.measurement').click(function() {
 				console.log('asdasdasd')
 
@@ -147,13 +152,13 @@ $(function() {
 			})
 		}, false);
 	} else {
-		$('.measurement').addClass('text');
+		$('.measurement').addClass('test');
 		$('.measurement').click(function() {
 			$('.doc,.video,.audio').addClass('hidden')
 			$('.active').removeClass('active')
 			$('.measurement').addClass('active')
 			$('.experienceListBox').addClass('hidden')
-
+			$('.content').addClass('hidden')
 			myAudio.pause();
 			if (localStorage.getItem('userType') == 1) {
 				info.getPaperList(paperId)
@@ -164,6 +169,8 @@ $(function() {
 
 		})
 	}
+
+
 	console.log(taskType)
 	layui.use(['layer', 'form'], function() {
 		var layer = layui.layer,
@@ -191,17 +198,31 @@ $(function() {
 						console.log(pdfPath);
 
 						if (resc.data.resType == 1) {
-							$('.video').removeClass('hidden');
+							var myVideo = document.getElementById('myVideo')
 							$('.video video').attr('src', 'http://192.168.188.109:8848/' + resc.data.path);
-							setTimeInterval = setInterval(info.NoProgressBar, 1);
+							info.getVideoPlaybackTime(resId, myVideo);
+							$('.video').removeClass('hidden');
+
 						} else if (resc.data.resType == 2) {
-							$('.audio').removeClass('hidden');
+							var myAudio = document.getElementById("myAudio");
+
 							$('.audio audio').attr('src', 'http://192.168.188.109:8848/' + resc.data.path);
-							setTimeInterval = setInterval(info.NoProgressBar, 1);
+							info.getVideoPlaybackTime(resId, myAudio)
+							$('.audio').removeClass('hidden');
 						} else if (resc.data.resType == 3) {
+
 							$('.doc').removeClass('hidden');
 							$('.video').addClass('hidden')
 							$('.doc iframe').attr('src', 'http://192.168.188.109:8848/' + pdfPath + '.pdf')
+							$('.measurement').addClass('test');
+							$('.test').click(function() {
+								$('.content').removeClass('hidden')
+								$('.doc,.video,.audio').addClass('hidden')
+								$('.active').removeClass('active')
+								$('.test').addClass('active')
+
+								info.getList(taskId, taskType, paperId, resId);
+							})
 						}
 					} else {
 						layer.msg('资源已被删除')
@@ -226,14 +247,20 @@ $(function() {
 						console.log(pdfPath);
 
 						if (resc.data.resType == 1) {
+							var myAudio = document.getElementById('myAudio')
 							$('.video').removeClass('hidden');
 							$('.video video').attr('src', 'http://192.168.188.109:8848/' + resc.data.path)
 							setTimeInterval = setInterval(info.NoProgressBar, 1);
+							// info.currentTime();
+							info.getVideoPlaybackTime(resId, myAudio);
 
 						} else if (resc.data.resType == 2) {
+							var myAud = document.getElementById("myAudio");
 							$('.audio').removeClass('hidden');
 							$('.audio audio').attr('src', 'http://192.168.188.109:8848/' + resc.data.path)
 							setTimeInterval = setInterval(info.NoProgressBar, 1);
+							// info.currentTime();
+							info.getVideoPlaybackTime(resId, myAud)
 						} else if (resc.data.resType == 3) {
 							$('.doc').removeClass('hidden');
 							// $('.video').addClass('hidden')
@@ -262,8 +289,9 @@ $(function() {
 			}
 		}
 		$('.study').click(function() {
-			$('.active').removeClass('active')
+			$('.nav_list .active').removeClass('active')
 			$('.study').addClass('active')
+			$('.content').addClass('hidden')
 			$('.test_content').addClass('hidden')
 			if (localStorage.getItem('userType') == 1) {
 				$.ajax({
@@ -283,14 +311,15 @@ $(function() {
 							if (resc.data.resType == 1) {
 								$('.video').removeClass('hidden');
 								$('.video video').attr('src', 'http://192.168.188.109:8848/' + resc.data.path)
-								setTimeInterval = setInterval(info.NoProgressBar, 1);
+								setTimeInterval = setInterval(info.NoProgressBar);
 
 							} else if (resc.data.resType == 2) {
 								$('.audio').removeClass('hidden');
 								$('.audio audio').attr('src', 'http://192.168.188.109:8848/' + resc.data.path)
-								setTimeInterval = setInterval(info.NoProgressBar, 1);
+								setTimeInterval = setInterval(info.NoProgressBar);
 							} else if (resc.data.resType == 3) {
 								$('.doc').removeClass('hidden');
+								$('.measurement').addClass('text');
 								// $('.video').addClass('hidden')
 								$('.doc iframe').attr('src', 'http://192.168.188.109:8848/' + pdfPath + '.pdf')
 							}
@@ -324,6 +353,67 @@ var answer = [];
 var lastTime = 0;
 
 var info = {
+	recordVideoPlaybackTime: function(resId, seconds) {
+		$.ajax({
+			url: TDXUrl + 'manage_system/resource/view',
+			data: {
+				'resId': resId,
+				'seconds': Math.round(seconds)
+			},
+			dataType: 'json',
+			type: 'POST',
+			// contentType: 'application/json;charset=utf-8',
+			success(res) {
+				if (res.code == 1) {
+					console.log(res);
+					// layer.msg('获取视频播放时长成功');
+				} else {
+					// layer.msg('获取视频播放时长失败');
+				}
+			},
+			error(e) {
+				// layer.msg('获取视频播放时长错误');
+			}
+		});
+	},
+	getVideoPlaybackTime: function(resId, myVid) {
+		$.ajax({
+			url: TDXUrl + 'manage_system/resource/view',
+			data: {
+				'resId': resId
+			},
+			dataType: 'json',
+			type: 'GET',
+			async: false,
+			// contentType: 'application/json;charset=utf-8',
+			success(res) {
+				if (res.code == 1) {
+					console.log('前' + myVid.currentTime);
+					myVid.currentTime = res.data;
+					console.log('后' + myVid.currentTime);
+					// layer.msg('获取视频播放时长成功');
+				} else {
+					// layer.msg('获取视频播放时长失败');
+				}
+			},
+			error(e) {
+				// layer.msg("获取视频播放时长错误");
+			}
+		});
+	},
+	currentTime: function() {
+		var myVideo = document.getElementById("myVideo"); //获取视频DOM元素
+		var myAudio = document.getElementById("myAudio");
+		var myVideoTime = myVideo.currentTime; //获取视频播放到的时间
+		var myAudioTime = myAudio.currentTime; //获取视频播放到的时间
+		// console.log(myVideoTime.currentTime);
+		// var myVid=document.getElementById("myVideo");
+		// info.getVideoPlaybackTime(resId,myAudio)
+		info.recordVideoPlaybackTime(resId, myAudioTime); //调用记录方法
+		// info.getVideoPlaybackTime(resId,myVideo)
+		info.recordVideoPlaybackTime(resId, myVideoTime); //调用记录方法
+	},
+
 	getPaperList: function(paperId) {
 		$.ajax({
 			url: MCUrl + 'manage_system/paper/' + paperId,
@@ -948,7 +1038,9 @@ var info = {
 
 	NoProgressBar: function() {
 		var myVideo = document.getElementById("myVideo"); //获取视频DOM
+		var myVideo = document.getElementById("myVideo"); //获取音频DOM
 		var nowTime = myVideo.currentTime; //获取视频当前播放时间
+		var newTime = myVideo.currentTime; //获取音频当前播放时间
 		var timeInterval = nowTime - lastTime; //用当前时间减去1秒之前的时间
 		if (timeInterval > 0.1) { //判断相差时间是否超过一秒
 			myVideo.pause();
