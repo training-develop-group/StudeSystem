@@ -59,7 +59,7 @@ $(function() {
 			'content': Experience
 
 		}
-		console.log(userId)
+		// console.log(userId)
 
 		$.ajax({
 			// url:

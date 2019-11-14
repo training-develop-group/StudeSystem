@@ -312,6 +312,7 @@ var info = {
 			});
 			// 点击确认
 			$('.newTestPaperConfirm').click(function() {
+
 				// 调用添加方法
 				info.increase();
 			});
@@ -333,6 +334,7 @@ var info = {
 			layer.msg("重命名不可全是空格");
 			return false;
 		}
+		$('.newTestPaperConfirm').attr('disabled','disabled');
 		$.ajax({
 			url : MCUrl + 'manage_system/paper/paper',	
 			data: {

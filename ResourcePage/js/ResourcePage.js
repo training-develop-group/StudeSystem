@@ -721,11 +721,6 @@ var info = {
 											} else if (res.data.resType == 3) {
 												resType = '文档';
 											}
-<<<<<<< HEAD
-										
-=======
-
->>>>>>> 2ea1271ad37788b0384245dfeee65365bff0b1d4
 											var tr = demoListView.find('tr#upload-' + index),
 												tds = tr.children();
 											tds.eq(3).html('<span style="color: #5FB878;" class="centerText">上传成功</span>');

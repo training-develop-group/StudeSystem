@@ -104,7 +104,6 @@ td:nth-child(1) {
 
 #contentList td:nth-child(1) a {
 	width: 170px;
-	display: inline-block;
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;

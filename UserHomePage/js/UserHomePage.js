@@ -37,29 +37,26 @@ var info = {
     },
     // 页面列表
     taskList: function ( curr, userType) {
-     
+		var status = $('.active').attr('data-type')
 		var search = $('.search').val()
         $.ajax({
         	url: LBUrl + 'manage_system/task/tasks',
         	data: {
         		"pageNum": curr,
         		"pageSize": 5,
-        		'status': 0,
+        		'status': status,
 				'taskName':null,
 				'userType':userType
         	},
         	dataType: 'json',
         	type: 'GET',
         	success(res) {
-console.log(res)
                 var time = new Date();
+				console.log(res)
                 if (res.data!=null) {
                     var listHtml = [];
 							// console.log(res)
                     res.data.list.forEach(function (item, index) {
-						if(item.status==userType){
-							
-						
                         listHtml.push('<li class="clearfix">');
                         listHtml.push('   <div class="leftBox">');
                         ;
@@ -86,7 +83,6 @@ console.log(res)
                         listHtml.push('       <p> 开始/结束   '+ item.startTime +' - '+item.endTime+'</p>');
                         listHtml.push('   </div>');
                         listHtml.push('</li>');
-						}
                     });
 
                     $('#taskList').html(listHtml.join(''));
