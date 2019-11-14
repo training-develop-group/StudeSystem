@@ -10,6 +10,8 @@
 				//两个要交换的对象
 				var parent = $(this).parents('.sortableitem');
 				var prevItem = parent.prev('.sortableitem');
+				parent.css('width',parent.width());
+				prevItem.css('width',parent.width());
 				//要交换对象的值
 				var parentnum = parent.find('.num').text();
 				var prevItemnum = prevItem.find('.num').text();
@@ -45,11 +47,17 @@
 					$(this).remove();
 					prevItem.css('visibility', 'visible');
 				});
+
+				parent.css('width','calc(100% - 60px)');
+				prevItem.css('width','calc(100% - 60px)');
+
 			});
 			_this.on('click', '.movedown', function() {
 				//两个要交换的对象
 				var parent = $(this).parents('.sortableitem');
 				var nextItem = parent.next('.sortableitem');
+				parent.css('width',parent.width());
+				nextItem.css('width',parent.width());
 				//要交换对象的值
 				var parentnum = parent.find('.num').text();
 				var nextItemnum = nextItem.find('.num').text();
@@ -85,6 +93,8 @@
 					$(this).remove();
 					nextItem.css('visibility', 'visible');
 				});
+				parent.css('width','calc(100% - 60px)');
+				nextItem.css('width','calc(100% - 60px)');
 			});
 
 		});

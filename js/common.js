@@ -226,7 +226,7 @@ var All = {
 								// 试卷
 								layer.close(layer.index);
 								info.releaseTask();
-								break; 
+								break;
 							case 5:
 								// 试题删除
 								info.deleteQuestions(options.questionId, options.status);
@@ -234,7 +234,6 @@ var All = {
 								layer.msg('删除成功');
 								break;
 						}
-						$('.yes').remove('disabled');
 
 					});
 
@@ -262,8 +261,8 @@ var All = {
 					// ,shade: 0.6 //遮罩透明度
 					,
 				content: '<div class="common-inputLocation">' +
-					'<span>' + options.msg + '</span>' +
-					'<input type="text" maxlength="60" autocomplete="off" class="layui-input common-acquiredValue">' +
+					'<span maxlength="60">' + options.msg + '</span>' +
+					'<input type="text" autocomplete="off" class="layui-input common-acquiredValue">' +
 					'</div>' +
 					'<div class="common-btn-box">' +
 					'<button type="button" data-id="' + options.id +
@@ -274,7 +273,7 @@ var All = {
 					$('.common-acquiredValue').val(options.returnValue);
 					// 点击确认
 					$('.common-confirm').off('click').on('click', function() {
-						
+
 						console.log('1');
 						var name = $('.common-acquiredValue').val();
 						if (name == '') {
@@ -301,8 +300,12 @@ var All = {
 								info.updateTaskName(options.id, name);
 								break;
 						}
-						layer.closeAll();
+
+                        layer.closeAll();
+
+                        $('.common-confirm').removeAttr('disabled');
 					});
+
 					// 点击取消
 					$('.common-cancel').off('click').on('click', function() {
 						layer.closeAll();

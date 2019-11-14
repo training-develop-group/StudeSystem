@@ -68,7 +68,6 @@ var info = {
 	},
 	//表格会绘制
 	TableDrawing: function(data) {
-		console.log(data);
 		if (data == null){
 			return false;
 		}
@@ -104,7 +103,6 @@ var info = {
 		// 解析
 		$('.toView').click(function() {
 			var QusetionId = $(this).parent().parent().find('.questionId').val();
-			console.log(QusetionId);
 			info.toViewAnalysis(QusetionId);
 		});
 	},

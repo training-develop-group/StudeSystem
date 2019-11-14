@@ -1,6 +1,6 @@
 * {
 	font-size: 14px;
-	font-family: '微软雅黑', serif;
+	font-family: '微软雅黑', serif !important;/*更改项*/
 	color: #1b1b1b;
 	margin: 0;
 	padding: 0;
@@ -37,8 +37,7 @@ html {
 }
 
 .Login {
-	margin: 63px auto;
-	/* 更改项 */
+	margin: 50px auto;/*更改项*/
 	width: 500px;
 	height: 300px;
 	background-color: rgba(2255, 255, 255, 0.3);
@@ -108,6 +107,10 @@ form .layui-form-item:nth-child(2),
 
 .layui-layer-content {
 	color: #fff;
+}
+
+.Top p {
+    cursor: default;
 }
 
 #contentList td:nth-child(1) a {

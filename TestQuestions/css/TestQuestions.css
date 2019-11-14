@@ -190,6 +190,7 @@ img {
 .choiceItem,
 .analysis {
 	margin-top: 20px;
+	word-wrap:break-word;
 }
 
 .choiceItem {
@@ -198,7 +199,7 @@ img {
 
 .manageOptions {
 	margin-top: 20px;
-	margin-left: 65px;
+	margin-left: 150px;
 }
 
 .option {
@@ -223,7 +224,7 @@ img {
 
 /* 单选框 */
 .layui-form-radio {
-	margin-left: 28px;
+	margin-left: 20px;
 }
 
 .layui-form-radio>i {
@@ -291,8 +292,10 @@ img {
 	font-size: 16px;
 }
 
+/*更改项*/
 .ViewParsing P {
+	margin-left: 15px;
 	margin-top: 10px;
 	font-size: 16px;
-	width: 576px;
+	width: 545px;
 }

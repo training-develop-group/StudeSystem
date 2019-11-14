@@ -5,9 +5,6 @@ $(function() {
 			form = layui.form;
 		var laypage = layui.laypage,
 			layer = layui.layer;
-
-
-
 		//选择任务人员全选反选-------------------------------------------------------------------------
 		form.on('checkbox(Staff)', function(data) {
 			var a = data.elem.checked;
@@ -84,7 +81,6 @@ $(function() {
 			//提交表单，实现下载
 			$eleForm.submit();
 		});
-		
 
 
 
@@ -179,6 +175,7 @@ var info = {
 
 					total = res.data.total; //分页总数量
 					JumpPageNum = res.data.pageNum; //下一页复制为了时删除或者修改完事后停留在原本的页数
+
 					$('.search').val('')
 					info.Pagination(total, pageNum); //调用分页方法（总条数，页数）
 
@@ -609,8 +606,6 @@ var info = {
 						info.selectResourceList(JumpPageNum);
 					}
 				}
-				
-
 			},
 			error(e) {
 				layer.msg('删除资源错误');
@@ -623,6 +618,13 @@ var info = {
 	uploadPopup: function() {
 		// $('#uploadFile').click(function() {
 		$(document).on('click', '#uploadFile', function() {
+
+			$('.upMsg').hover(function() {
+				$('.upMsgContent').slideDown("slow");
+			}, function() {
+				$('.upMsgContent').slideUp("slow");
+			});
+
 			layui.use("layer", function() {
 				var layer = layui.layer;
 				layer.open({
@@ -649,6 +651,9 @@ var info = {
 						$('#demoList').html(html.join(''));
 					},
 					success: function() {
+
+
+
 						var resIdList = [];
 						console.log('-----成功1----');
 						layui.use('upload', function() {
@@ -716,7 +721,11 @@ var info = {
 											} else if (res.data.resType == 3) {
 												resType = '文档';
 											}
+<<<<<<< HEAD
 										
+=======
+
+>>>>>>> 2ea1271ad37788b0384245dfeee65365bff0b1d4
 											var tr = demoListView.find('tr#upload-' + index),
 												tds = tr.children();
 											tds.eq(3).html('<span style="color: #5FB878;" class="centerText">上传成功</span>');
@@ -725,7 +734,7 @@ var info = {
 											// tds.eq(4).html(''); //清空操作
 											// return delete this.files[index]; //删除文件队列已经上传成功的文件
 
-											
+
 											deleteResId = res.data.resId;
 											tds.eq(4).attr('resId', deleteResId)
 											// resIdList.push(deleteResId);
@@ -733,6 +742,7 @@ var info = {
 
 											//删除
 											$('.demo-delete').off('click').on('click', function() {
+												$(this).attr('disabled');
 												var resId = $(this).parent('td').attr('resId');
 												// var id = $(this).parent('td').parent('tr').attr('id');
 												// $('.uploadTd').each(function(index, item) {
@@ -751,8 +761,7 @@ var info = {
 													msg: '是否删除资源?'
 												});
 											});
-											
-
+											$('.demo-delete').removeAttr('disabled');
 										} // this.error(index, upload);
 									},
 									error: function(index, upload) {
@@ -787,7 +796,7 @@ var info = {
 	 * @param {Object} userId
 	 */
 	openAddRolePage: function(userId) {
-		
+
 		var layer = layui.layer,
 			form = layui.form;
 			$(".checkAll").prop("checked", false);
@@ -797,6 +806,8 @@ var info = {
 		$('.taskName').val('');
 		$('.taskRemark').val('');
 		$('.taskUsers').empty();
+		// 清空试卷名
+		$('.paperAdd').text('');
 		$('#test1').val(firstToday);
 		$('#test2').val(lastToday);
 		layer.open({
@@ -819,7 +830,7 @@ var info = {
 					$(this).attr('disabled', 'disabled');
 					info.addTask();
 				});
-				
+
 			},
 		});
 	},

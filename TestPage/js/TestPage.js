@@ -3,15 +3,15 @@
  * @author：MengXin
  */
 var urlinfo = window.location.href;
-var value = urlinfo.split("?")[1].split("value=")[1];
-var PaperId = decodeURI(value);
-var taskId = PaperId.split(',')[0]
-// var userType = PaperId.split(',')[1]
-var taskType = ''
-var getExperience = '';
-var paperId = ''
-var resId = ''
-var taskName = ''
+	var value = urlinfo.split("?")[1].split("value=")[1];
+	var PaperId = decodeURI(value);
+	var taskId = PaperId.split(',')[0]
+	var userType = PaperId.split(',')[1]
+	var taskType = ''
+	var getExperience = '';
+	var paperId = ''
+	var resId = ''
+	var taskName = ''
 $(function() {
 
 	// var userId = PaperId.split(',')[1];
@@ -59,7 +59,7 @@ $(function() {
 			'content': Experience
 
 		}
-		// console.log(userId)
+		console.log(userId)
 
 		$.ajax({
 			// url:
@@ -555,7 +555,6 @@ var info = {
 				}
 			}
 
-			// todo 获取用户选择的值 添加到上方空数组中保存
 		});
 
 	},
@@ -572,8 +571,6 @@ var info = {
 					$('.card li:nth-child(' + [i] + ')').prev().addClass('active');
 				}
 			}
-
-			// todo 获取用户选择的值 添加到上方空数组中保存
 		});
 	},
 	cardChange: function() {
@@ -589,7 +586,6 @@ var info = {
 			}
 		});
 	},
-	// todo 下面是交卷的接口 ,将上方  answer[]  传给后台
 	setList: function(resb) {
 		//点击交卷事件
 		$('.submitTest').click(function() {
@@ -697,7 +693,7 @@ var info = {
 					type: 'POST',
 					// contentType :'application/json;charset=utf-8',
 					success(res) {
-						
+
 						// alert("操作成功");
 
 						if (res || res.data !== null) {

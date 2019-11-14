@@ -67,7 +67,7 @@ table tbody tr th {
 	font-weight: 600;
 	text-align: left;
 	padding-left: 33px;
-	cursor: default;
+	cursor: default;/*更改项*/
 }
 
 .layui-table th {
@@ -126,7 +126,7 @@ table tbody tr th {
 .layui-table td {
 	border-left: none;
 	border-right: none;
-    padding: 10px 20px;
+	padding: 10px 20px;
 }
 
 #taskAccuracyDistribution {
@@ -149,26 +149,34 @@ table tbody tr th {
 	height: 300px;
 }
 
-#main , #mian , #mina{
+#main,
+#mian,
+#mina {
 	width: 400px;
 	height: 300px;
 	/* float: left; */
 	margin: 0 auto;
 }
 
-.taskContent tr:hover , .Resourcesreview tr:hover , .examinationContent tr:hover{
+.taskContent tr:hover,
+.Resourcesreview tr:hover,
+.examinationContent tr:hover {
 	background-color: #f2f2f2;
 }
 
-.Lbtask{
-	border:none;
+.Lbtask {
+	border: none;
 	text-align: center;
 }
-.resorceMore , .taskMore , .testPaperMore{
+
+.resorceMore,
+.taskMore,
+.testPaperMore {
 	float: right;
-	font-size: 14px;
+	margin: 0;/*更改项*/
+	font-size: 15px;/*更改项*/
 }
 
-.layui-table th{
+.layui-table th {
 	padding: 10px 20px;
 }

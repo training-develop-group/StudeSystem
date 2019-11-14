@@ -199,6 +199,10 @@
 	background: white;
 }
 
+.experienceListBox .layui-laypage-skip{
+	background-color: #f1f1f1 !important;
+}
+
 .experienceTitle {
 	font-size: 16px;
 	font-weight: 600;
@@ -271,6 +275,12 @@
 
 .layui-laypage .layui-laypage-skip {
 	background-color: #ffffff;
+}
+
+#examinationPaperInformation td:last-child{
+	    white-space: nowrap;
+	    text-overflow: ellipsis;
+	    overflow: hidden;
 }
 
 /*   单独页面兼容  修改了底边的padding值 确保只有视频的时候不会出现滚动条   */

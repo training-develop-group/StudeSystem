@@ -299,10 +299,10 @@ var info = {
 				,closeBtn: 1
 				,move: false
 				,area: ['789px', '210px']
-				,title: ['新建试卷', 'background-color: #279ef0;text-align: center;font-size: 20px;line-height: 42px;color:white; cursor: move; padding: 0']
+				,title: ['新建试卷', 'background-color: #279ef0;text-align: center;font-size: 20px;line-height: 42px;color:white; cursor: default; padding: 0']
 				// ,shade: 0.6 //遮罩透明度
 				,content: '<div class="inputLocation">'+
-						'<span>试卷名称</span>'
+						'<span style="cursor: default;">试卷名称</span>'
 						+ '<input type="text" autocomplete="off" id="nameOfExaminationPaper" class="layui-input">'
 						+ '<div class="btn-box">'
 						+ '<button type="button" class="layui-btn layui-btn-primary newTestPaperConfirm">确认</button>'
@@ -366,9 +366,10 @@ var info = {
 			success(res) {
 				console.log("操作成功");
 				// parent.location.reload();	//刷新父级页面
-				layer.msg("操作成功");
 				layer.closeAll();
+				layer.msg("操作成功");
 				info.TableDataRequest(PNum);
+
 			},
 			error (e) {
 				layer.msg("操作失败，请稍后再试");

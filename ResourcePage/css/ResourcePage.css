@@ -102,6 +102,14 @@ td:nth-child(1) {
 	color: #777;
 }
 
+#contentList td:nth-child(1) a {
+	width: 170px;
+	display: inline-block;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
 thead>tr>td {
 	font-weight: 600;
 	font-size: 16px;
@@ -124,8 +132,52 @@ th {
 	padding: 5px 18px;
 	line-height: initial;
 	height: auto;
-	margin: 10px 0 0 25px;
+	margin: 0 0 0 25px;
 	color: #9e9e9e;
+	float: left;
+}
+
+.upMsg {
+	float: left;
+	position: relative;
+	color: #ffffff;
+	background: #5A5A5A;
+	width: 25px;
+	height: 25px;
+	border-radius: 50%;
+	line-height: 25px;
+	text-align: center;
+	margin-left: 20px;
+	margin-top: 3px;
+}
+
+.upMsgContent {
+	/* content: ""; */
+	background: #5A5A5A;
+	color: #ffffff;
+	width: 200px;
+	min-height: 30px;
+	padding: 10px;
+	border-radius: 5px;
+	font-size: 12px;
+	position: absolute;
+	left: 50px;
+	top: 50px;
+	animation: 2s;
+	-webkit-animation: 2s;
+	z-index: 9999;
+}
+
+.upMsgContent:before {
+	content: " ";
+	width: 15px;
+	height: 15px;
+	background: #5A5A5A;
+	transform: rotate(45deg);
+	-webkit-transform: rotate(45deg);
+	position: absolute;
+	top: -8px;
+	left: 93px;
 }
 
 /* 浮窗边框 */
@@ -217,11 +269,6 @@ th {
 #page {
 	text-align: center;
 	margin-top: 12px;
-}
-
-.layui-layer-btn-c {
-	position: relative;
-	bottom: 15px;
 }
 
 .Release_content .layui-form-item .layui-form-label,
@@ -550,5 +597,18 @@ i {
 }
 
 .chooseResource {
+	cursor: default;
+}
+
+.selectPersonnel .chooseResource {
 	cursor: pointer;
+}
+
+.layui-layer-border .layui-layer-content,
+.layui-layer-border .layui-layer-padding {
+	color: #000000;
+}
+
+.layui-layer-hui {
+	color: #fff !important;
 }
