@@ -368,7 +368,8 @@ var info = {
 							});
 							Html.push('</div>');
 							Html.push('<div class="functionBox">');
-							Html.push('<button class="toView" value='+item.questionId+'><i class="layui-icon layui-icon-search"></i>查看解析</button>');
+							Html.push('<button class="toView" value=' + item.questionId +
+								'><i class="layui-icon layui-icon-search"></i>查看解析</button>');
 							Html.push('</div>');
 							Html.push('</li>');
 						});
@@ -383,44 +384,44 @@ var info = {
 						var QusetionId = $(this).val();
 						console.log(QusetionId)
 						// 解析内容
-					var Analysis = '未定义';
-				// 正确答案
-					var OptionType = '未知';
-					$.ajax({
-					url: MCUrl + 'manage_system/question/answer',
-					data: {
-						'questionId': QusetionId
-					},
-					dataType: 'json',
-					type: 'GET',
-					success(res) {
-						console.log(res)
-						res.data.forEach(function(item, index) {
-							Analysis = item.analysis;
-							OptionType = item.optionType;
+						var Analysis = '未定义';
+						// 正确答案
+						var OptionType = '未知';
+						$.ajax({
+							url: MCUrl + 'manage_system/question/answer',
+							data: {
+								'questionId': QusetionId
+							},
+							dataType: 'json',
+							type: 'GET',
+							success(res) {
+								console.log(res)
+								res.data.forEach(function(item, index) {
+									Analysis = item.analysis;
+									OptionType = item.optionType;
+								});
+								layui.use("layer", function() {
+									var layer = layui.layer;
+									layer.open({
+										type: 1 //Page层类型
+											,
+										closeBtn: 1,
+										move: false,
+										area: ['700px', '260px'],
+										title: ['查看解析',
+												'background-color: #279ef0;text-align: center;font-size: 16px;line-height: 43px;color:white;letter-spacing: 5px;padding: 0px;'
+											]
+											// ,shade: 0.6 //遮罩透明度
+											,
+										content: '<div class="answerContent">' +
+											'<p>正确答案：<span class="answerOptions">' + OptionType + '</span></p>' +
+											'<p>答案解析：</p>' +
+											'<p class="analysis">' + Analysis + '</p>' +
+											'</div>'
+									});
+								});
+							}
 						});
-						layui.use("layer", function() {
-							var layer = layui.layer;
-							layer.open({
-								type: 1 //Page层类型
-									,
-								closeBtn: 1,
-								move: false,
-								area: ['700px', '260px'],
-								title: ['查看解析',
-										'background-color: #279ef0;text-align: center;font-size: 16px;line-height: 43px;color:white;letter-spacing: 5px;padding: 0px;'
-									]
-									// ,shade: 0.6 //遮罩透明度
-									,
-								content: '<div class="answerContent">' +
-									'<p>正确答案：<span class="answerOptions">' + OptionType + '</span></p>' +
-									'<p>答案解析：</p>' +
-									'<p class="analysis">' + Analysis + '</p>' +
-									'</div>'
-							});
-						});
-					}
-				});
 					});
 				}
 			}
@@ -429,7 +430,7 @@ var info = {
 	//  todo  接口 ,获取页面试题
 	getList: function(taskId, taskType, paperId, resId) {
 		$.ajax({
-			url: MCUrl + 'manage_system/paper/' +paperId,
+			url: MCUrl + 'manage_system/paper/' + paperId,
 			data: {
 
 			},
@@ -697,7 +698,7 @@ var info = {
 					type: 'POST',
 					// contentType :'application/json;charset=utf-8',
 					success(res) {
-						
+
 						// alert("操作成功");
 
 						if (res || res.data !== null) {
@@ -717,7 +718,7 @@ var info = {
 								'<span>查看答案</span>'
 							)
 							Html.push(
-								'<span style="float: right; margin-right:20px">总分:'+res.data.userScore+'</span>'
+								'<span style="float: right; margin-right:20px">总分:' + res.data.userScore + '</span>'
 							)
 							Html.push(
 								'</div>'

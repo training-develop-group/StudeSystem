@@ -484,10 +484,7 @@ var info = {
 					console.log(res.msg);
 					layer.msg(res.msg);
 					layer.closeAll();
-					window.location.href = "../TaskPage/TaskPage.html";
-					// 刷新页面
-					// parent.location.reload();
-					
+					info.TableDataRequest(PNum);
 				}
 			})
 		} else {

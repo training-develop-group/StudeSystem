@@ -258,7 +258,7 @@ var info = {
 			dataType: 'json',
 			Type: 'GET',
 			success: function(res) {
-				if (res || res.data !== null) {
+				if (res || res.data != null) {
 					// info.TableDrawing(res.data , curr);
 					info.TableDrawing(res.data, curr);
 				}
@@ -271,6 +271,7 @@ var info = {
 	//表格会绘制
 	TableDrawing: function(data, curr) {
 		var Html = [];
+		console.log(data);
 		data.list.forEach(function(item, index) {
 			Html.push('<li class="sortableitem">');
 			Html.push('<div class="topicFramework" data-id="' + item.questionId + '">');

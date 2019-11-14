@@ -209,18 +209,15 @@ var All = {
 								info.deleteResource(options.resId, options.index);
 								$(options.deleteThis).remove();
 								layer.close(layer.index);
-								layer.msg('删除成功');
 								break;
 							case 2:
 								// 试卷
 								info.deletePaper(options.paperId);
 								layer.close(layer.index);
-								layer.msg('删除成功');
 								break;
 							case 3:
 								info.delectTask(options.taskId);
 								layer.close(layer.index);
-								layer.msg('删除成功');
 								break;
 							case 4:
 								// 试卷
@@ -231,7 +228,6 @@ var All = {
 								// 试题删除
 								info.deleteQuestions(options.questionId, options.status);
 								layer.close(layer.index);
-								layer.msg('删除成功');
 								break;
 						}
 						$('.yes').remove('disabled');

@@ -3,7 +3,9 @@
 	/* min-height: 600px; */
 	padding: 25px 20px;
 }
-
+.List p {
+	word-wrap:break-word;
+}
 .con_nav_box .nav_title {
 	font-size: 18px;
 	font-weight: 600;
