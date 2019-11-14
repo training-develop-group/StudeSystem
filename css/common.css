@@ -4,6 +4,7 @@
 	list-style: none;
 }
 
+<<<<<<< HEAD
 body {
 	background-color: #f1f1f1;
 }
@@ -139,3 +140,24 @@ body {
 		padding: 0 15px;
 	}
 }
+=======
+body, html {
+    width: 100%;
+    height: 100%;
+}
+.hidden{
+    display: none;
+}
+
+/* @media (max-width: 1600px) {
+    body, html {
+        width: 1600px;
+    }
+}
+
+@media (max-width: 1600px) {
+    body, html {
+        width: 1600px;
+    }
+} */
+>>>>>>> master
