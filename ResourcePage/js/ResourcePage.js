@@ -135,8 +135,7 @@ var info = {
 						// console.log(res.data);
 						item.resName = $('<div>').text(item.resName).html();
 						html.push('<tr>');
-						html.push('<td><a href="#" class="getResource" title="' + item.resName + '" resId="' + item.resId + '">' +
-							item.resName + '</a></td>');
+						html.push('<td class="getResource" title="' + item.resName + '" resId="' + item.resId + '">' +item.resName + '</td>');
 						if (item.status == 0) {
 							item.status = '未发布';
 						} else if (item.status == 1) {
