@@ -21,7 +21,7 @@ $(function(){
 	
 });
 var TableDataRequest = function(pageNum) {
-	var userName = $('.search').val();
+	var userName = $.trim($('.search').val());
 	if(userName == undefined){
 		userName = '';
 	}

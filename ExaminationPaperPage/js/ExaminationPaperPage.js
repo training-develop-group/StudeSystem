@@ -310,7 +310,6 @@ var info = {
 			});
 			// 点击确认
 			$('.newTestPaperConfirm').click(function() {
-
 				// 调用添加方法
 				info.increase();
 			});
@@ -369,7 +368,6 @@ var info = {
 				layer.closeAll();
 				layer.msg("操作成功");
 				info.TableDataRequest(PNum);
-
 			},
 			error (e) {
 				layer.msg("操作失败，请稍后再试");
@@ -474,7 +472,6 @@ var info = {
 		}
 		
 		if (index != false) {
-			console.log(data);
 			$.ajax({
 				url: LBUrl + 'manage_system/task/tasks',
 				data: JSON.stringify(data),

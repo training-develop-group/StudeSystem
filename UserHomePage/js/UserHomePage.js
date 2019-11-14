@@ -52,11 +52,14 @@ var info = {
         	type: 'GET',
         	success(res) {
                 var time = new Date();
-				console.log(res)
                 if (res.data!=null) {
                     var listHtml = [];
 							// console.log(res)
                     res.data.list.forEach(function (item, index) {
+
+						// if(item.status==userType){
+							
+						
                         listHtml.push('<li class="clearfix">');
                         listHtml.push('   <div class="leftBox">');
                         ;
@@ -83,6 +86,7 @@ var info = {
                         listHtml.push('       <p> 开始/结束   '+ item.startTime +' - '+item.endTime+'</p>');
                         listHtml.push('   </div>');
                         listHtml.push('</li>');
+						// }
                     });
 
                     $('#taskList').html(listHtml.join(''));

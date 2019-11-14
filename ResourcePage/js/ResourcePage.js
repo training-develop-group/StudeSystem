@@ -399,7 +399,7 @@ var info = {
 			success: function() {
 				// window.open('http://192.168.188.109:8848/0625ae7ec85c4b94bf1cde70d2692b67.mp4');
 				//计时器每3秒经行一次方法
-				// setTimeInterval = setInterval(info.currentTime, 3000);
+				// setTimeInterval = setInterval(info.currentTime, 30000);
 				// setTimeInterval2 = setInterval(info.NoProgressBar, 1000);
 				console.log(a);
 				var html = [];

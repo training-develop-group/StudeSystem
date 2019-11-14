@@ -45,11 +45,10 @@ $(function() {
 		$('.movedown').hide();
 		$('.fraction').hide();
 		$('#saveChanges').hide();
-		// $('#newTestPaper').attr('disabled', true);
-		// $('#newTestPaper').css('background-color', '#AAAAAA');
-		// $('#newTestPaper').css('cursor', 'not-allowed');
+		$('#newTestPaper').attr('disabled', true);
+		$('#newTestPaper').css('background-color', '#AAAAAA');
+		$('#newTestPaper').css('cursor', 'not-allowed');
 		info.TableDataRequest(1);
-        $('#newTestPaper').addClass('hidden');
 	});
 
 	// 点击确认完成
@@ -65,6 +64,7 @@ $(function() {
 		$('.fraction').show();
 		$('.removeQuestions').hide();
 		$('#saveChanges').show();
+		$('#newTestPaper').show();
 		// 隐藏分页
 		$('#paging').hide();
 		info.viewQuestion();
@@ -74,9 +74,6 @@ $(function() {
 		// 没加入试卷就清空内容
 		if (storageQusetionId.length == 0) {
 			$('.mobileFramework').empty();
-			// $('#newTestPaper').attr('disabled', false);
-			// $('#newTestPaper').css('background-color', '#FFFFFF');
-			// $('#newTestPaper').css('cursor', 'pointer');
             $('#newTestPaper').removeClass('hidden');
 		}
 		
@@ -107,6 +104,8 @@ var sorting = [];
 var numberOfQuestions = 0;
 // 计题数
 var viewHtmlNum = 1;
+// 试卷下有题就存到数组(回填用)
+var questionIdBackfilling = [];
 
 var info = {
 	//页面主方法
@@ -144,9 +143,6 @@ var info = {
 		if (data.questionList.length == 0) {
 			judge = false;
 		} else {
-			// $('#newTestPaper').attr('disabled', true);
-            // $('#newTestPaper').css('background-color', '#AAAAAA');
-            // $('#newTestPaper').css('cursor', 'not-allowed');
             $('#newTestPaper').addClass('hidden');
 		}
 		var Html = [];
@@ -267,7 +263,7 @@ var info = {
 			dataType: 'json',
 			Type: 'GET',
 			success: function(res) {
-				if (res || res.data !== null) {
+				if (res || res.data != null) {
 					// info.TableDrawing(res.data , curr);
 					info.TableDrawing(res.data, curr);
 				}
@@ -309,13 +305,24 @@ var info = {
 			Html.push('<button class="moveOut"><i class="layui-icon layui-icon-delete"></i>移出</button>');
 			Html.push('<button class="moveup"><i class="layui-icon layui-icon-up"></i>上移</button>');
 			Html.push('<button class="movedown"><i class="layui-icon layui-icon-down"></i>下移</button>');
-			Html.push('<button class="joinIn"><i class="layui-icon layui-icon-add-circle"></i>加入试卷</button>');
-			Html.push('<button class="removeQuestions"><i class="layui-icon layui-icon-delete"></i>移出试卷</button>');
+			Html.push('<button class="joinIn" id="data-joinIn-' + index + '"><i class="layui-icon layui-icon-add-circle"></i>加入试卷</button>');
+			Html.push('<button class="removeQuestions" id="data-remove-' + index + '"><i class="layui-icon layui-icon-delete"></i>移出试卷</button>');
 			Html.push('</div>');
 			Html.push('</li>');
 		});
 		$('.mobileFramework').html(Html.join(''));
-		$('.removeQuestions').hide();
+		$('.removeQuestions').addClass('hidden');
+		for(var j = 0; j < data.list.length; j++){
+			for (var i = 0; i < storageQusetionId.length; i++){
+				if (storageQusetionId[i] == data.list[j].questionId){
+					$('#data-joinIn-' + j).addClass('hidden');
+					$('#data-remove-' + j).removeClass('hidden');
+					break;
+				}
+			}
+		}
+		numberOfQuestions = storageQusetionId.length;
+		$('.red').text(numberOfQuestions);
 		$('.fraction').hide();
 		$('.moveOut').hide();
 		$('.moveup').hide();
@@ -461,9 +468,6 @@ var info = {
 					}
 				}
 				if (storageQusetionId.length == 0) {
-					// $('#newTestPaper').attr('disabled', false);
-					// $('#newTestPaper').css('background-color', '#FFFFFF');
-					// $('#newTestPaper').css('cursor', 'pointer');
                     $('#newTestPaper').removeClass('hidden');
 					// 有问题
 					$('#saveChanges').hide();
@@ -476,9 +480,6 @@ var info = {
 					$('.sortableitem').eq(i).find('.num').text(i+1)
 				}
 			});
-			// $('#newTestPaper').attr('disabled', true);
-			// $('#newTestPaper').css('background-color', '#AAAAAA');
-			// $('#newTestPaper').css('cursor', 'not-allowed');
             $('#newTestPaper').addClass('hidden');
 			// 点击上移
 			$('.moveup').off('click').on('click', function() {
