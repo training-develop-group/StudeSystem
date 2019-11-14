@@ -56,22 +56,29 @@ body {
 }
 
 .headerBox .logobox {
-	padding: 0 85px;
-	float: left;
+    width: 220px;
+    position: relative;
+    height: 100%;
 }
 
-.headerBox .logobox span {
-	font-size: 25px;
-	color: white;
-	line-height: 60px;
+.headerBox .logobox img {
+    width :80px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
 }
 
 .headerBox .navbox {
-	display: inline-block;
+    display: inline-block;
+    position: relative;
+    left: 220px;
+    top: -60px;
 }
 
 .navbox ul li {
-
 	list-style-type: none;
 	float: left;
 	padding: 0 30px;
@@ -86,6 +93,14 @@ body {
 	color: #289ef0;
 	background-color: white;
 	cursor: pointer;
+}
+
+.rightBox{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 505px;
+    height: 100%;
 }
 
 .btn:hover,
@@ -105,7 +120,6 @@ body {
 	background-color: white;
 	/* height: 40px; */
 	margin-top: 9px;
-	widows: 250px;
 }
 
 .left .searchbox img {
@@ -145,7 +159,7 @@ body {
 .headerBox .right .userimg {
 	width: 40px;
 	height: 40px;
-	margin: 10px;
+	margin: 0 10px 10px 10px;
 	border: 2px solid #b5b5b5;
 	border-radius: 50px;
 	cursor: pointer;
