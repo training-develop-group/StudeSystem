@@ -59,6 +59,7 @@ var info = {
 			$(msg).html(leng_msg);
 		}
 	},
+	// 查看试题
 	selectQuestion: function(curr) {
 		$.ajax({
 			url: WTQUrl + 'manage_system/question/questions',
@@ -76,28 +77,27 @@ var info = {
 					index++;
 					Html.push('<li class="questions">');
 					if (item.questionType == 1) {
-						Html.push('<span class="Q-question"><span class="num">' + index +
-							'.</span>单选题</span></span>');
+						Html.push('<p class="Q-question"><span class="num">' + index +
+							'.</span>单选题</p></p>');
 					} else {
 						Html.push('<span class="Q-question"><span class="num">' + index +
 							'.</span>多选题</span></span>');
 					}
 					Html.push('<span>');
-					Html.push('<p>' + item.content + '</p>');
+					Html.push('<p class="QuestionContent">' + item.content + '</p>');
 					item.optionInfo.forEach(function(optionItem, optionIndex) {
-						Html.push('<p>' + optionItem.optionType + '.' + optionItem.content + '</p>');
+						Html.push('<p class="distance">' + optionItem.optionType + '.' + optionItem.content + '</p>');
 					});
 					Html.push('</span>');
 					Html.push('<div class="operation">');
-					Html.push('<input type="hidden"  value="' + item.questionId + '">')
-					Html.push('<p style="display:none;">' + item.status + '</p>')
-					console.log()
+					Html.push('<input type="hidden"  value="' + item.questionId + '">');
+					Html.push('<p  class="distance" style="display:none;">' + item.status + '</p>');
 					if (item.status == 1){
-						Html.push('<span class="view"><i class="layui-icon">&#xe615;</i>查看解析</span>');
+						Html.push('<span class="view"><img src="../imgs/stf.png" />查看解析</span>');
 					} else {
-						Html.push('<span class="edit"><i style="color: #009688;" class="layui-icon">&#xe642;</i>编辑试题</span>');
+						Html.push('<span class="edit"><img src="../../imgs/sfb.png" />编辑试题</span>');
 						Html.push(
-							'<span class="deleteQuestions"><i style="color:#FF0000;" class="layui-icon">&#xe640;</i>删除试题</span>');
+							'<span class="deleteQuestions"><img src="../../imgs/stt.png" />删除试题</span>');
 						Html.push('</div>');
 					}
 					Html.push('</li>');
@@ -119,7 +119,7 @@ var info = {
 						msg: '是否删除该试题'
 					})
 				});
-				$('.Content .TestQuestionsBrowse .Statistics .num').text(res.data.total);
+				$('.Content .TestlBrowse .Statistics .num').text(res.data.total);
 				if (res.data.total > 10){
 					info.page(res.data, curr);
 					// 判断paging里是否头内容↓
@@ -296,15 +296,14 @@ var info = {
 
 			if (judged == true) {
 				$("#newlyBuild .choiceItem").append(
-					'<p class="outerFrame"><input type="radio" lay-skin="primary" name="choiceItem" value="' +
-					letter +
-					'" title="' + letter +
-					'"><textarea name="" required lay-verify="required" maxlength="200" class="layui-textarea option"></textarea></p>');
+					'<p class="outerFrame"><input type="radio" lay-skin="primary" name="choiceItem" value="' + letter + '" title="' + letter + '">' +
+					'<textarea name="" required lay-verify="required" maxlength="200" class="layui-textarea option" style="margin-left: 6px"></textarea>' +
+					'</p>');
 			} else if (judged == false) {
 				$("#newlyBuild .choiceItem").append(
-					'<p class="outerFrame"><input type="checkbox" lay-skin="primary" name="choiceItem" value="' + letter +
-					'" title="' + letter +
-					'"><textarea name="" required lay-verify="required" maxlength="200" class="layui-textarea option"></textarea></p>');
+					'<p class="outerFrame"><input type="checkbox" lay-skin="primary" name="choiceItem" value="' + letter + '" title="' + letter + '">' +
+					'<textarea name="" required lay-verify="required" maxlength="200" class="layui-textarea option" style="margin-left: 6px"></textarea>' +
+					'</p>');
 			}
 			// 重新渲染
 			layui.use('form', function() {
@@ -457,19 +456,16 @@ var info = {
 							type = 1;
 							$('#editBuild .singleChoiceQuestion').prop('checked', true);
 							if (item.isRight == 1) {
-								$("#editBuild .choiceItem").append('<p class="outerFrame"><input class="ref" type="hidden" value = "' +
-									item.ref + '"/><input type="radio" name="choiceItem" value="' +
-									item.optionType +
-									'" title="' + item.optionType +
-									'" checked><textarea name="" required lay-verify="required" maxlength="200" class="layui-textarea option">' + item.content +
-									'</textarea></p>');
+								$("#editBuild .choiceItem").append('<p class="outerFrame">' +
+									'<input class="ref" type="hidden" value = "' + item.ref + '"/>' +
+									'<input type="radio" name="choiceItem" value="' + item.optionType + '" title="' + item.optionType + '" checked><textarea name="" required lay-verify="required" maxlength="200" class="layui-textarea option">' + item.content + '</textarea>'+
+									'</p>');
 							} else {
-								$("#editBuild .choiceItem").append('<p class="outerFrame"><input class="ref" type="hidden" value = "' +
-									item.ref + '"/><input type="radio" name="choiceItem" value="' +
-									item.optionType +
-									'" title="' + item.optionType +
-									'"><textarea name="" required lay-verify="required" maxlength="200" class="layui-textarea option">' + item.content +
-									'</textarea></p>');
+								$("#editBuild .choiceItem").append(
+									'<p class="outerFrame">' +
+									'<input class="ref" type="hidden" value = "' + item.ref + '"/>' +
+									'<input type="radio" name="choiceItem" value="' + item.optionType + '" title="' + item.optionType + '"><textarea name="" required lay-verify="required" maxlength="200" class="layui-textarea option">' + item.content + '</textarea>'+
+									'</p>');
 							}
 
 
@@ -477,18 +473,16 @@ var info = {
 							type = 2;
 							if (item.isRight == 1) {
 								$("#editBuild .choiceItem").append(
-									'<p class="outerFrame"><input class="ref" type="hidden" value = "' + item.ref +
-									'"/><input type="checkbox" lay-skin="primary" name="choiceItem" value="' + item.optionType +
-									'" title="' + item.optionType +
-									'" checked><textarea name="" required lay-verify="required" maxlength="200" class="layui-textarea option">' + item.content +
-									'</textarea></p>');
+									'<p class="outerFrame">' +
+									'<input class="ref" type="hidden" value = "' + item.ref + '"/>' +
+									'<input type="checkbox" lay-skin="primary" name="choiceItem" value="' + item.optionType + '" title="' + item.optionType + '" checked><textarea name="" required lay-verify="required" maxlength="200" class="layui-textarea option">' + item.content + '</textarea>' +
+									'</p>');
 							} else {
 								$("#editBuild .choiceItem").append(
-									'<p class="outerFrame"><input class="ref" type="hidden" value = "' + item.ref +
-									'"/><input type="checkbox" lay-skin="primary" name="choiceItem" value="' + item.optionType +
-									'" title="' + item.optionType +
-									'"><textarea name="" required lay-verify="required" maxlength="200" class="layui-textarea option">' + item.content +
-									'</textarea></p>');
+									'<p class="outerFrame">' +
+									'<input class="ref" type="hidden" value = "' + item.ref + '"/>' +
+									'<input type="checkbox" lay-skin="primary" name="choiceItem" value="' + item.optionType + '" title="' + item.optionType + '"><textarea name="" required lay-verify="required" maxlength="200" class="layui-textarea option">' + item.content + '</textarea>'+
+									'</p>');
 							}
 
 							$('#editBuild .multipleChoiceQuestions').prop('checked', true);
@@ -508,41 +502,35 @@ var info = {
 								if (data.value == '单选题') {
 									if (item.isRight == 1) {
 										$("#editBuild .choiceItem").append(
-											'<p class="outerFrame"><input class="ref" type="hidden" value = "' + item.ref +
-											'"/><input type="radio" name="choiceItem" value="' +
-											item.optionType +
-											'" title="' + item.optionType +
-											'"checked><textarea name="" required lay-verify="required" maxlength="200" class="layui-textarea option">' +
-											item.content +
-											'</textarea></p>');
+											'<p class="outerFrame">' +
+											'<input class="ref" type="hidden" value = "' + item.ref + '"/>' +
+											'<input type="radio" name="choiceItem" value="' + item.optionType + 	'" title="' + item.optionType + '" checked>'+
+											' <textarea name="" required lay-verify="required" maxlength="200" class="layui-textarea option">' + item.content + '</textarea>'+
+											'</p>');
 									} else {
 										$("#editBuild .choiceItem").append(
-											'<p class="outerFrame"><input class="ref" type="hidden" value = "' + item.ref +
-											'"/><input type="radio" name="choiceItem" value="' +
-											item.optionType +
-											'" title="' + item.optionType +
-											'"><textarea name="" required lay-verify="required" maxlength="200" class="layui-textarea option">' + item.content +
-											'</textarea></p>');
+											'<p class="outerFrame">' +
+											'<input class="ref" type="hidden" value = "' + item.ref + '"/>' +
+											'<input type="radio" name="choiceItem" value="' + item.optionType + '" title="' + item.optionType + '">'+
+											' <textarea name="" required lay-verify="required" maxlength="200" class="layui-textarea option">' + item.content + '</textarea>'+
+											'</p>');
 									}
 									type = 1;
 									form.render();
 								} else {
 									if (item.isRight == 1) {
 										$("#editBuild .choiceItem").append(
-											'<p class="outerFrame"><input class="ref" type="hidden" value = "' + item.ref +
-											'"/><input type="checkbox" lay-skin="primary" name="choiceItem" value="' +
-											item.optionType +
-											'" title="' + item.optionType +
-											'"checked><textarea name="" required lay-verify="required" maxlength="200" class="layui-textarea option">' +
+											'<p class="outerFrame"><input class="ref" type="hidden" value = "' + item.ref +'"/>' +
+											'<input type="checkbox" lay-skin="primary" name="choiceItem" value="' +item.optionType +'" title="' + item.optionType +'" checked>' +
+											'<textarea name="" required lay-verify="required" maxlength="200" class="layui-textarea option">' +
 											item.content +
 											'</textarea></p>');
 									} else {
 										$("#editBuild .choiceItem").append(
-											'<p class="outerFrame"><input class="ref" type="hidden" value = "' + item.ref +
-											'"/><input type="checkbox" lay-skin="primary" name="choiceItem" value="' +
-											item.optionType +
-											'" title="' + item.optionType +
-											'"><textarea name="" required lay-verify="required" maxlength="200" class="layui-textarea option">' + item.content +
+											'<p class="outerFrame">' +
+											'<input class="ref" type="hidden" value = "' + item.ref +'"/>' +
+											'<input type="checkbox" lay-skin="primary" name="choiceItem" value="' +item.optionType +'" title="' + item.optionType +'">' +
+											'<textarea name="" required lay-verify="required" maxlength="200" class="layui-textarea option">' + item.content +
 											'</textarea></p>');
 									}
 
@@ -587,15 +575,13 @@ var info = {
 						return false;
 					}
 					if (type == 1) {
-						$("#editBuild .choiceItem").append('<p class="outerFrame"><input type="radio" name="choiceItem" value="' +
-							letter +
-							'" title="' + letter +
-							'"><textarea name="" required lay-verify="required" maxlength="200" class="layui-textarea option"></textarea></p>');
+						$("#editBuild .choiceItem").append('<p class="outerFrame"><input type="radio" name="choiceItem" value="' +letter +'" title="' + letter +'">' +
+							'<textarea name="" required lay-verify="required" maxlength="200" class="layui-textarea option" style="margin-left: 4px;"></textarea></p>');
 					} else if (type = 2) {
 						$("#editBuild .choiceItem").append(
 							'<p class="outerFrame"><input type="checkbox" lay-skin="primary" name="choiceItem" value="' + letter +
-							'" title="' + letter +
-							'"><textarea name="" required lay-verify="required" maxlength="200" class="layui-textarea option"></textarea></p>');
+							'" title="' + letter +'">' +
+							'<textarea name="" required lay-verify="required" maxlength="200" class="layui-textarea option" style="margin-left: 4px;"></textarea></p>');
 					}
 					// 重新渲染
 					layui.use('form', function() {
@@ -757,6 +743,7 @@ var info = {
 				title: ['新建试题',
 					'background-color: #279ef0;text-align: center;font-size: 16px;line-height: 43px;color:white;padding: 0px;font-size: 20px;'
 				],
+                skin:'addTestQuestion',
 				area: ['660px', '755px'],
 				resize: false,
 				move: false,
@@ -770,7 +757,6 @@ var info = {
 	viewPopup: function(questionId) {
 		layer.open({
 			type: 1,
-			title: false,
 			area: ['600px', '300px'],
 			closeBtn: 1,
 			resize: false,

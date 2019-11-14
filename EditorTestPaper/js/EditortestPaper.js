@@ -45,10 +45,11 @@ $(function() {
 		$('.movedown').hide();
 		$('.fraction').hide();
 		$('#saveChanges').hide();
-		$('#newTestPaper').attr('disabled', true);
-		$('#newTestPaper').css('background-color', '#AAAAAA');
-		$('#newTestPaper').css('cursor', 'not-allowed');
+		// $('#newTestPaper').attr('disabled', true);
+		// $('#newTestPaper').css('background-color', '#AAAAAA');
+		// $('#newTestPaper').css('cursor', 'not-allowed');
 		info.TableDataRequest(1);
+        $('#newTestPaper').addClass('hidden');
 	});
 
 	// 点击确认完成
@@ -73,9 +74,10 @@ $(function() {
 		// 没加入试卷就清空内容
 		if (storageQusetionId.length == 0) {
 			$('.mobileFramework').empty();
-			$('#newTestPaper').attr('disabled', false);
-			$('#newTestPaper').css('background-color', '#FFFFFF');
-			$('#newTestPaper').css('cursor', 'pointer');
+			// $('#newTestPaper').attr('disabled', false);
+			// $('#newTestPaper').css('background-color', '#FFFFFF');
+			// $('#newTestPaper').css('cursor', 'pointer');
+            $('#newTestPaper').removeClass('hidden');
 		}
 		
 	});
@@ -139,32 +141,29 @@ var info = {
 	},
 	//表格会绘制
 	TableDrawings: function(data) {
-		if (data == null){
-			return false;
-		}
-		if (data.questions[0].questionList.length == 0) {
+		if (data.questionList.length == 0) {
 			judge = false;
 		} else {
-			$('#newTestPaper').attr('disabled', true);
-			$('#newTestPaper').css('background-color', '#AAAAAA');
-			$('#newTestPaper').css('cursor', 'not-allowed');
+			// $('#newTestPaper').attr('disabled', true);
+            // $('#newTestPaper').css('background-color', '#AAAAAA');
+            // $('#newTestPaper').css('cursor', 'not-allowed');
+            $('#newTestPaper').addClass('hidden');
 		}
 		var Html = [];
-		data.questions[0].questionList.forEach(function(item, index) {
+        data.questionList.forEach(function(item, index) {
 			Html.push('<li class="sortableitem">');
 			Html.push('<div class="topicFramework" data-id="' + item.questionId + '">');
 			Html.push('<input type="text" class="qusetionId" value="' + item.questionId + '" hidden="hidden"/>');
 			if (item.questionType == 1) {
 				item.questionType = '单选题';
 			} else {
-				item.questionType = '多选题';
-			}
-			var newScore = data.questions[0].newScoreList[index].score;
-			Html.push('<p class="distanceNum"><span class="num">' + (index + 1) + '</span>. ' + item.questionType + '  <span class="newScore">' + newScore + '</span>分</p>');
+                item.questionType = '多选题';
+            }
+			Html.push('<p class="distanceNum"><span class="num">' + (index + 1) + '</span>. ' + item.questionType + '  <span class="newScore">' + item.score + '</span>分</p>');
 			// 转义(已防有标签的样式被html识别)
 			item.content = $('<div>').text(item.content).html();
 			Html.push('<p class="distance">' + item.content + '</p>');
-			data.questions[0].optionInfo.forEach(function(items, index) {
+            item.optionInfo.forEach(function(items, index) {
 				if (items.questionId == item.questionId){
 					// 转义(已防有标签的样式被html识别)
 					items.content = $('<div>').text(items.content).html();
@@ -173,13 +172,13 @@ var info = {
 			});
 			Html.push('</div>');
 			Html.push('<div class="functionBox">');
-			Html.push('<button class="toView"><i class="layui-icon layui-icon-search"></i>查看解析</button>');
-			Html.push('<button class="fraction"><img src="../imgs/f.png" alt="" />设定分值</button>');
-			Html.push('<button class="moveOut"><i class="layui-icon layui-icon-delete"></i>移出</button>');
-			Html.push('<button class="moveup"><i class="layui-icon layui-icon-up"></i>上移</button>');
-			Html.push('<button class="movedown"><i class="layui-icon layui-icon-down"></i>下移</button>');
-			Html.push('<button class="joinIn"><i class="layui-icon layui-icon-add-circle"></i>加入试卷</button>');
-			Html.push('<button class="removeQuestions"><i class="layui-icon layui-icon-delete"></i>移出试卷</button>');
+			Html.push('<span class="toView"><img src="../imgs/stb.png" alt="" />查看解析</span>');
+			Html.push('<span class="fraction"><img src="../imgs/stz.png" alt="" />设定分值</span>');
+			Html.push('<span class="moveOut"><img src="../imgs/stt.png">移出</span>');
+			Html.push('<span class="moveup"><img src="../imgs/sts.png" alt="" />上移</span>');
+			Html.push('<span class="movedown"><img src="../imgs/stx.png" alt="" />下移</span>');
+			Html.push('<span class="joinIn"><img src="../imgs/stb.png" alt="" />加入试卷</span>');
+			Html.push('<span class="removeQuestions"><img src="../imgs/stb.png" alt="" />移出试卷</span>');
 			Html.push('</div>');
 			Html.push('</li>');
 		});
@@ -235,9 +234,10 @@ var info = {
 				$('.sortableitem').eq(i).find('.num').text(i+1)
 			}
 			if (a == 0){
-				$('#newTestPaper').attr('disabled', false);
-				$('#newTestPaper').css('background-color', '#FFFFFF');
-				$('#newTestPaper').css('cursor', 'pointer');
+				// $('#newTestPaper').attr('disabled', false);
+				// $('#newTestPaper').css('background-color', '#FFFFFF');
+				// $('#newTestPaper').css('cursor', 'pointer');
+                $('#newTestPaper').removeClass('hidden');
 				$('#saveChanges').hide();
 			} else {
 				$('#saveChanges').show();
@@ -461,9 +461,10 @@ var info = {
 					}
 				}
 				if (storageQusetionId.length == 0) {
-					$('#newTestPaper').attr('disabled', false);
-					$('#newTestPaper').css('background-color', '#FFFFFF');
-					$('#newTestPaper').css('cursor', 'pointer');
+					// $('#newTestPaper').attr('disabled', false);
+					// $('#newTestPaper').css('background-color', '#FFFFFF');
+					// $('#newTestPaper').css('cursor', 'pointer');
+                    $('#newTestPaper').removeClass('hidden');
 					// 有问题
 					$('#saveChanges').hide();
 					viewChack = 0;
@@ -475,9 +476,10 @@ var info = {
 					$('.sortableitem').eq(i).find('.num').text(i+1)
 				}
 			});
-			$('#newTestPaper').attr('disabled', true);
-			$('#newTestPaper').css('background-color', '#AAAAAA');
-			$('#newTestPaper').css('cursor', 'not-allowed');
+			// $('#newTestPaper').attr('disabled', true);
+			// $('#newTestPaper').css('background-color', '#AAAAAA');
+			// $('#newTestPaper').css('cursor', 'not-allowed');
+            $('#newTestPaper').addClass('hidden');
 			// 点击上移
 			$('.moveup').off('click').on('click', function() {
 				// 显示保存更改按钮
@@ -551,7 +553,7 @@ var info = {
 			var data = {
 				'paperId': PaperId,
 				'questionId': $('.sortableitem:nth-child('+ [i] +') .topicFramework').attr('data-id'),
-				'score': 0,
+				'score': $('.sortableitem:nth-child('+ [i] +') .newScore').text(),
 				'orderIndex': i,
 				'cTime': today,
 				'cUser': 'mc'
@@ -584,6 +586,8 @@ var info = {
 				JPaperQuestion = [];
 				PaperQuestionPesult = [];
 				questionScore = [];
+                // 刷新上一个页面
+                opener.location.reload();
 				// 覆盖当前页
 				window.location.href = "../ViewTestPaper/ViewTestPaper.html?value=" + PaperId;
 			}

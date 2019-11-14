@@ -135,8 +135,8 @@ var info = {
 						// console.log(res.data);
 						item.resName = $('<div>').text(item.resName).html();
 						html.push('<tr>');
-						html.push('<td><a href="#" class="getResource" title="' + item.resName + '" resId="' + item.resId + '">' +
-							item.resName + '</a></td>');
+						html.push('<td><a href="#" class="getResource" title="' + item.resName +  item.resExt +'" resId="' + item.resId + '">' +
+							item.resName + item.resExt +'</a></td>');
 						if (item.status == 0) {
 							item.status = '未发布';
 						} else if (item.status == 1) {
@@ -147,9 +147,9 @@ var info = {
 						if (item.resType == 1) { //判断资源类型
 							item.resType = '视频'
 						} else if (item.resType == 2) {
-							item.resType = '音频	'
+							item.resType = '音频'
 						} else if (item.resType == 3) {
-							item.resType = '文档'
+                            item.resType = '文档	'
 						} else {
 							item.resType = '未知'
 						}

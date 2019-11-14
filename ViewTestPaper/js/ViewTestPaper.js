@@ -95,7 +95,7 @@ var info = {
 			});
 			Html.push('</div>');
 			Html.push('<div class="functionBox">');
-			Html.push('<button class="toView"><i class="layui-icon layui-icon-search"></i>查看解析</button>');
+			Html.push('<span class="toView"><img src="../imgs/stf.png" />查看解析</span>');
 			Html.push('</div>');
 			Html.push('</li>');
 		});

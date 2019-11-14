@@ -12,7 +12,7 @@
 	color: white;
 	line-height: 60px;
 	margin-left: 32px;
-	font-weight: 600;
+	cursor: default;
 }
 
 .title-header-btn {

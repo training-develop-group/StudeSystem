@@ -299,7 +299,7 @@ var info = {
 				,closeBtn: 1
 				,move: false
 				,area: ['789px', '210px']
-				,title: ['新建试卷', 'background-color: #279ef0;text-align: center;font-size: 20px;line-height: 42px;color:white; cursor: default; padding: 0']
+				,title: ['新建试卷', 'background-color: #279ef0;text-align: center;font-size: 20px;line-height: 42px;color:white; cursor: default; padding: 0;']
 				// ,shade: 0.6 //遮罩透明度
 				,content: '<div class="inputLocation">'+
 						'<span style="cursor: default;">试卷名称</span>'
@@ -448,15 +448,15 @@ var info = {
 			index = false;
 		}
 		if ($('#test2').val() == '') {
-			mistake = '请选择结束时间'
+			mistake = '请选择结束时间';
 			index = false;
 		}
 		if ($('#test1').val() > $('#test2').val()) {
-			mistake = '结束时间不能小于开始时间'
+			mistake = '结束时间不能小于开始时间';
 			index = false;
 		}
 		if (userId == '') {
-			mistake = '请选择做任务人员'
+			mistake = '请选择做任务人员';
 			index = false;
 		}
 		if ($('.taskName').val() == '') {
@@ -476,7 +476,7 @@ var info = {
 		}
 		
 		if (index != false) {
-			console.log(data)
+			console.log(data);
 			$.ajax({
 				url: LBUrl + 'manage_system/task/tasks',
 				data: JSON.stringify(data),
@@ -505,11 +505,11 @@ var info = {
 			dataType: 'json',
 			type: 'GET',
 			success(res) {
-				var Html = []
-				res.data.forEach(function(item, index) {
+				var Html = [];
+				res.data.forEach(function(item,index) {
 					Html.push('<span class="layui-form-label" style="font-size: 16px;"><input type="checkbox" value="' + item.userId +
 						'"class="checkAll " name="Staff" lay-skin="primary" lay-filter="c_one" ><i>' + item.userName +
-						'</i></span>')
+						'</i></span>');
 				})
 				$('#selectTaskUsers').html(Html.join(''));
 				layui.use('form', function(){
@@ -518,7 +518,7 @@ var info = {
 					//各种基于事件的操作，下面会有进一步介绍
 					});	
 				}
-			})
+			});
 		},
 }
 // 格式化日期
