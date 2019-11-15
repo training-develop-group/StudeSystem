@@ -99,12 +99,12 @@
 .functionBox button img {
     width: 20px !important;
     height: 20px !important;
-    margin-top: -3px;
+    margin: -3px 5px 0 0;
 }
 
 
 .functionBox button {
-    font-size: 16px;
+    font-size: 18px;
     margin-left: 20px;
     margin-top: 12px;
     border: 0;
@@ -345,11 +345,11 @@ img {
     line-height: 50px;
 }
 
-.functionBox span img {
-    width: 20px;
-    height: 20px;
-    margin-right: 5px;
-}
+/*.functionBox span img {*/
+    /*width: 20px;*/
+    /*height: 20px;*/
+    /*margin-right: 5px;*/
+/*}*/
 
 .newScore,
 .num {

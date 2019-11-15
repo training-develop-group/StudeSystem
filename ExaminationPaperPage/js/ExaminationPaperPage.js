@@ -181,7 +181,11 @@ var info = {
 			// 转义(已防有标签的样式被html识别)
 			item.paperName = $('<div>').text(item.paperName).html();
 			Html.push('<tr>');
-			Html.push('<td class="toView" data-id="' + item.paperId + '"><span class="rename " title="' + item.paperName + '" >' + item.paperName + '</span></td>');
+			if( item.paperName.length > 20 ){
+                Html.push('<td class="toView" data-id="' + item.paperId + '"><pre class="rename " title="' + item.paperName + '" >' + item.paperName.substring(0, 40) + '...</pre></td>');
+			}else {
+                Html.push('<td class="toView" data-id="' + item.paperId + '"><pre class="rename " title="' + item.paperName + '" >' + item.paperName + '</pre></td>');
+			}
 			Html.push('<td class="middle">' + item.status + '</td>');
 			Html.push('<td class="middle">' + item.single + '</td>');
 			Html.push('<td class="middle">' + item.many + '</td>');

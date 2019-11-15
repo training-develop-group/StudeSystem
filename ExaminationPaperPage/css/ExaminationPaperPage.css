@@ -384,7 +384,6 @@ i{
 .rename {
 	display: inline-block;
 	width: 96%;
-	white-space: nowrap;
 	text-overflow: ellipsis;
 	overflow: hidden;
 }
