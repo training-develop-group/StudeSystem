@@ -15,11 +15,12 @@ table {
 	text-align: center;
 }
 
-
+.content .resources tr th:nth-child(2) {
+	white-space: nowrap;
+}
 
 table tbody tr td,
 table tbody tr th {
-
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
@@ -162,6 +163,14 @@ table tbody tr th {
 .Resourcesreview tr:hover,
 .examinationContent tr:hover {
 	background-color: #f2f2f2;
+}
+
+.taskContent tr td:nth-child(1),
+.Resourcesreview tr td:nth-child(1),
+.examinationContent tr td:nth-child(1){
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .Lbtask {

@@ -14,7 +14,7 @@ var logIn = function() {
 		password: $('#pwd').val()
 	};
 	if (data.userName == '' || data.password == '') {
-		$('.PasswordError').text('*用户名、密码不可为空');
+		$('.PasswordError').text('！用户名或密码不可为空');
 		$('.PasswordError').removeClass('hidden');
 		return false;
 	}
@@ -37,7 +37,7 @@ var logIn = function() {
 					window.location.href = 'UserHomePage/UserHomePage.html?value=' + res.data.userId +","+ 2 
 				}
 			} else if (res.data == null) {
-				$('.PasswordError').text('*用户名或密码错误');
+				$('.PasswordError').text('！用户名或密码错误');
 				$('.PasswordError').removeClass('hidden');
 			}
 		},

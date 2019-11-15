@@ -104,8 +104,17 @@ td {
 }
 
 tr .oneselfTaskName {
-    cursor: pointer;
-    text-align: left;
+	cursor: pointer;
+	text-align: left;
+	padding-right: 0 ;
+}
+
+.oneselfTaskName span{
+	display: inline-block;
+	width: 267px;
+	white-space: nowrap;
+	text-overflow:ellipsis;
+	overflow:hidden;
 }
 
 #selectTaskUsers {
@@ -256,8 +265,7 @@ ul div input {
     margin-left: 40px;
     margin-top: 0;
     overflow: auto;
-    padding: 10px;
-    padding-left: 20px;
+    padding: 10px 10px 10px 20px;
 }
 
 .layui-laydate-footer span:hover {
@@ -427,8 +435,7 @@ i {
 }
 
 #examineTask > .layui-form {
-    padding: 20px;
-    padding-top: 10px;
+    padding: 10px 20px 20px 20px;
 }
 
 .taskUsers p:hover {
@@ -496,10 +503,6 @@ i {
     bottom: 25px;
 }
 
-.selectPersonnel {
-    margin: 0 0 0 23px;
-}
-
 .selectResource i {
     color: #5FB878;
 }
@@ -530,6 +533,10 @@ i {
     color: #5FB878;
 }
 
+.selectPapers img{
+	margin-top: 5px;
+}
+
 .layui-btn-primary:hover {
     border-color: rgb(208, 208, 208);
 }
@@ -551,13 +558,13 @@ i {
     color: #000 !important;
 }
 
-tr .oneselfTaskName span,
 .paperName span {
-    display: inline-block;
-    width: 170px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+	display: inline-block;
+	width: 150px;
+	word-wrap: break-word;
+	white-space: pre;
+	text-overflow: ellipsis;
+	overflow: hidden;
 }
 
 #paperPage {

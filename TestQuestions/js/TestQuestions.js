@@ -5,20 +5,6 @@ $(document).ready(function() {
 			info.selectQuestion(1);
 		}
 	});
-
-	/*分页*/
-	/*上传课件*/
-	// $.ajax({
-	// 	url:'http://192.168.188.131:8888/manage_system/question/question',
-	// 	data:{
-	// 		
-	// 	},
-	// 	dataType:'json',
-	// 	type:'POST',
-	// 	success(res){
-	// 			console.log(res);
-	// 	}
-	// });
 	layui.use(['layer', 'form'], function() {
 		var layer = layui.layer,
 			form = layui.form;
@@ -35,7 +21,6 @@ $(document).ready(function() {
 
 })
 var type = 1;
-var questionIdLast = 0;
 var info = {
 	addInputTotal: function() {
 		info.inputTotal('#newlyBuild #analysis', '#newlyBuild .num');
@@ -78,14 +63,14 @@ var info = {
 					Html.push('<li class="questions">');
 					if (item.questionType == 1) {
 						Html.push('<p class="Q-question"><span class="num">' + index +
-							'.</span>单选题</p></p>');
+							'.</span>单选题</p>');
 					} else {
-						Html.push('<span class="Q-question"><span class="num">' + index +
-							'.</span>多选题</span></span>');
+						Html.push('<p class="Q-question"><span class="num">' + index +
+							'.</span>多选题</p>');
 					}
 					Html.push('<span>');
 					Html.push('<p class="QuestionContent">' + item.content + '</p>');
-					item.optionInfo.forEach(function(optionItem, optionIndex) {
+					item.optionInfo.forEach(function(optionItem) {
 						Html.push('<p class="distance">' + optionItem.optionType + '.' + optionItem.content + '</p>');
 					});
 					Html.push('</span>');
@@ -95,9 +80,10 @@ var info = {
 					if (item.status == 1){
 						Html.push('<span class="view"><img src="../imgs/stf.png" />查看解析</span>');
 					} else {
-						Html.push('<span class="edit"><img src="../../imgs/sfb.png" />编辑试题</span>');
+                        Html.push('<span class="view"><img src="../imgs/stf.png" />查看解析</span>');
+						Html.push('<span class="edit"><img src="../imgs/stb.png" />编辑试题</span>');
 						Html.push(
-							'<span class="deleteQuestions"><img src="../../imgs/stt.png" />删除试题</span>');
+							'<span class="deleteQuestions"><img src="../imgs/stt.png" />删除试题</span>');
 						Html.push('</div>');
 					}
 					Html.push('</li>');
@@ -153,7 +139,7 @@ var info = {
 		});
 
 	},
-	// 删除实试题
+	// 删除试题
 	deleteQuestions: function(questionId, status) {
 		if (status == 1) {
 			$.ajax({
@@ -162,10 +148,10 @@ var info = {
 				dataType: 'json',
 				type: 'DELETE',
 				success(res) {
-					layer.msg('删除成功');
-					info.selectQuestion(1);
-					console.log('删除成功');
-					// location.reload();
+					if(res.code  == 1){
+                        layer.msg('删除成功');
+                        info.selectQuestion(1);
+					}
 				},
 				error(e) {
 
@@ -296,12 +282,12 @@ var info = {
 			if (judged == true) {
 				$("#newlyBuild .choiceItem").append(
 					'<p class="outerFrame"><input type="radio" lay-skin="primary" name="choiceItem" value="' + letter + '" title="' + letter + '">' +
-					'<textarea name="" required lay-verify="required" maxlength="300" class="layui-textarea option" style="margin-left: 4px"></textarea>' +
+					'<textarea name="" required lay-verify="required" maxlength="500" class="layui-textarea option" style="margin-left: 4px"></textarea>' +
 					'</p>');
 			} else if (judged == false) {
 				$("#newlyBuild .choiceItem").append(
 					'<p class="outerFrame"><input type="checkbox" lay-skin="primary" name="choiceItem" value="' + letter + '" title="' + letter + '">' +
-					'<textarea name="" required lay-verify="required" maxlength="300" class="layui-textarea option" style="margin-left: 4px"></textarea>' +
+					'<textarea name="" required lay-verify="required" maxlength="500" class="layui-textarea option" style="margin-left: 4px"></textarea>' +
 					'</p>');
 			}
 			// 重新渲染
@@ -413,7 +399,7 @@ var info = {
 				'score': score,
 				'analysis': analysis,
 				'difficulty': difficulty,
-				'status': status,
+				'status': 0,
 			};
 
 			var data = {
@@ -426,14 +412,13 @@ var info = {
 				dataType: 'json',
 				type: 'POST',
 				success(res) {
-					layer.msg('添加成功(弹窗待样式)');
-					location.reload();
-
+					location.reload(); // 刷新页面
+                    layer.msg('添加成功(弹窗待样式)');
 				}
 			});
 		});
 	},
-	//修改
+	// 编辑试题
 	editQuestion: function(questionId) {
 		$('#editBuild .choiceItem').html('');
 		$('#editBuild .optionErrorMsg').hide();
@@ -457,30 +442,28 @@ var info = {
 							if (item.isRight == 1) {
 								$("#editBuild .choiceItem").append('<p class="outerFrame">' +
 									'<input class="ref" type="hidden" value = "' + item.ref + '"/>' +
-									'<input type="radio" name="choiceItem" value="' + item.optionType + '" title="' + item.optionType + '" checked><textarea name="" required lay-verify="required" maxlength="300" class="layui-textarea option">' + item.content + '</textarea>'+
+									'<input type="radio" name="choiceItem" value="' + item.optionType + '" title="' + item.optionType + '" checked><textarea name="" required lay-verify="required" maxlength="300" class="layui-textarea option"style="margin-left: 4px">' + item.content + '</textarea>'+
 									'</p>');
 							} else {
 								$("#editBuild .choiceItem").append(
 									'<p class="outerFrame">' +
 									'<input class="ref" type="hidden" value = "' + item.ref + '"/>' +
-									'<input type="radio" name="choiceItem" value="' + item.optionType + '" title="' + item.optionType + '"><textarea name="" required lay-verify="required" maxlength="300" class="layui-textarea option">' + item.content + '</textarea>'+
+									'<input type="radio" name="choiceItem" value="' + item.optionType + '" title="' + item.optionType + '"><textarea name="" required lay-verify="required" maxlength="300" class="layui-textarea option"style="margin-left: 4px">' + item.content + '</textarea>'+
 									'</p>');
 							}
-
-
 						} else {
 							type = 2;
 							if (item.isRight == 1) {
 								$("#editBuild .choiceItem").append(
 									'<p class="outerFrame">' +
 									'<input class="ref" type="hidden" value = "' + item.ref + '"/>' +
-									'<input type="checkbox" lay-skin="primary" name="choiceItem" value="' + item.optionType + '" title="' + item.optionType + '" checked><textarea name="" required lay-verify="required" maxlength="300" class="layui-textarea option">' + item.content + '</textarea>' +
+									'<input type="checkbox" lay-skin="primary" name="choiceItem" value="' + item.optionType + '" title="' + item.optionType + '" checked><textarea name="" required lay-verify="required" maxlength="300" class="layui-textarea option"style="margin-left: 4px">' + item.content + '</textarea>' +
 									'</p>');
 							} else {
 								$("#editBuild .choiceItem").append(
 									'<p class="outerFrame">' +
 									'<input class="ref" type="hidden" value = "' + item.ref + '"/>' +
-									'<input type="checkbox" lay-skin="primary" name="choiceItem" value="' + item.optionType + '" title="' + item.optionType + '"><textarea name="" required lay-verify="required" maxlength="300" class="layui-textarea option">' + item.content + '</textarea>'+
+									'<input type="checkbox" lay-skin="primary" name="choiceItem" value="' + item.optionType + '" title="' + item.optionType + '"><textarea name="" required lay-verify="required" maxlength="300" class="layui-textarea option"style="margin-left: 4px">' + item.content + '</textarea>'+
 									'</p>');
 							}
 
@@ -503,15 +486,13 @@ var info = {
 										$("#editBuild .choiceItem").append(
 											'<p class="outerFrame">' +
 											'<input class="ref" type="hidden" value = "' + item.ref + '"/>' +
-											'<input type="radio" name="choiceItem" value="' + item.optionType + 	'" title="' + item.optionType + '" checked>'+
-											' <textarea name="" required lay-verify="required" maxlength="300" class="layui-textarea option">' + item.content + '</textarea>'+
+											'<input type="radio" name="choiceItem" value="' + item.optionType + '" title="' + item.optionType + '" checked><textarea name="" required lay-verify="required" maxlength="300" class="layui-textarea option"style="margin-left: 4px">' + item.content + '</textarea>'+
 											'</p>');
 									} else {
 										$("#editBuild .choiceItem").append(
 											'<p class="outerFrame">' +
 											'<input class="ref" type="hidden" value = "' + item.ref + '"/>' +
-											'<input type="radio" name="choiceItem" value="' + item.optionType + '" title="' + item.optionType + '">'+
-											' <textarea name="" required lay-verify="required" maxlength="300" class="layui-textarea option">' + item.content + '</textarea>'+
+											'<input type="radio" name="choiceItem" value="' + item.optionType + '" title="' + item.optionType + '"><textarea name="" required lay-verify="required" maxlength="300" class="layui-textarea option"style="margin-left: 4px">' + item.content + '</textarea>'+
 											'</p>');
 									}
 									type = 1;
@@ -520,17 +501,14 @@ var info = {
 									if (item.isRight == 1) {
 										$("#editBuild .choiceItem").append(
 											'<p class="outerFrame"><input class="ref" type="hidden" value = "' + item.ref +'"/>' +
-											'<input type="checkbox" lay-skin="primary" name="choiceItem" value="' +item.optionType +'" title="' + item.optionType +'" checked>' +
-											'<textarea name="" required lay-verify="required" maxlength="300" class="layui-textarea option">' +
-											item.content +
-											'</textarea></p>');
+											'<input type="checkbox" lay-skin="primary" name="choiceItem" value="' +item.optionType +'" title="' + item.optionType +'" checked><textarea name="" required lay-verify="required" maxlength="300" class="layui-textarea option"style="margin-left: 4px">' +item.content +'</textarea>' +
+											'</p>');
 									} else {
 										$("#editBuild .choiceItem").append(
 											'<p class="outerFrame">' +
 											'<input class="ref" type="hidden" value = "' + item.ref +'"/>' +
-											'<input type="checkbox" lay-skin="primary" name="choiceItem" value="' +item.optionType +'" title="' + item.optionType +'">' +
-											'<textarea name="" required lay-verify="required" maxlength="300" class="layui-textarea option">' + item.content +
-											'</textarea></p>');
+											'<input type="checkbox" lay-skin="primary" name="choiceItem" value="' +item.optionType +'" title="' + item.optionType +'"><textarea name="" required lay-verify="required" maxlength="300" class="layui-textarea option"style="margin-left: 4px">' + item.content + '</textarea>' +
+											'</p>');
 									}
 
 									type = 2;
@@ -574,13 +552,15 @@ var info = {
 						return false;
 					}
 					if (type == 1) {
-						$("#editBuild .choiceItem").append('<p class="outerFrame"><input type="radio" name="choiceItem" value="' +letter +'" title="' + letter +'">' +
-							'<textarea name="" required lay-verify="required" maxlength="300" class="layui-textarea option" ></textarea></p>');
+						$("#editBuild .choiceItem").append(
+							'<p class="outerFrame"><input type="radio" name="choiceItem" value="' +letter +'" title="' + letter +'">' +
+							'<textarea name="" required lay-verify="required" maxlength="500" class="layui-textarea option" ></textarea>' +
+							'</p>');
 					} else if (type = 2) {
 						$("#editBuild .choiceItem").append(
-							'<p class="outerFrame"><input type="checkbox" lay-skin="primary" name="choiceItem" value="' + letter +
-							'" title="' + letter +'">' +
-							'<textarea name="" required lay-verify="required" maxlength="300" class="layui-textarea option" ></textarea></p>');
+							'<p class="outerFrame"><input type="checkbox" lay-skin="primary" name="choiceItem" value="' + letter +'" title="' + letter +'">' +
+							'<textarea name="" required lay-verify="required" maxlength="500" class="layui-textarea option" ></textarea>' +
+							'</p>');
 					}
 					// 重新渲染
 					layui.use('form', function() {
@@ -614,7 +594,7 @@ var info = {
 					var option = [];
 					var score = 10;
 					var difficulty = 2;
-					var status = 1;
+					var status = 0;
 					var analysis = $('#editBuild #analysis').val();
 					if (content == '') {
 						layer.msg('题目为空！');
@@ -734,7 +714,7 @@ var info = {
 		//---------------------修改
 
 	},
-	//弹窗
+	// 添加试题弹窗
 	addPopup: function() {
 		$('.NewTestQuestion').off('click').on('click', function() {
 			layer.open({
@@ -753,6 +733,7 @@ var info = {
 			});
 		});
 	},
+	// 查看解析弹窗
 	viewPopup: function(questionId) {
 		layer.open({
 			type: 1,
@@ -772,6 +753,7 @@ var info = {
 		});
 
 	},
+	// 编辑试题弹窗
 	editPopup: function(questionId) {
 		layer.open({
 			type: 1,

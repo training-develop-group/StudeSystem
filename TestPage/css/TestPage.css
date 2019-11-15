@@ -214,6 +214,7 @@
 .experienceList li {
 	border-bottom: 1px solid #eaeaea;
 	padding: 10px 5px;
+	margin: 0 auto;
 }
 
 .experienceList li>p {
@@ -704,4 +705,8 @@ img {
 }
 .taskRemarkBox .taskRemarkContent{
 	word-wrap:break-word;
+}
+
+.List p:nth-child(2){
+	padding-left: 15px;
 }

@@ -132,7 +132,7 @@ $(function () {
 		layer.open({
 			type: 1,
 			title: ['选择人员',
-				'color:#fff;background-color:#40AFFE;border-radius: 7px ;overflow-x: hidden; text-align: center;font-size: 20px;'
+				'color:#fff;background-color:#40AFFE;border-radius: 7px ;overflow-x: hidden; text-align: center;font-size: 20px;cursor: default;'
 			],
 			shadeClose: true,
 			move: false,
@@ -149,9 +149,10 @@ $(function () {
     $('.selectPapers').click(function () {
         layer.open({
             type: 1,
-            title: ['选择试卷', 'color:#fff;background-color:#40AFFE; text-align: center;font-size: 20px;'],
+            title: ['选择试卷', 'color:#fff;background-color:#40AFFE; text-align: center;font-size: 20px;cursor: default;'],
             shadeClose: true,
             shade: 0.8,
+            move: false,
             skin: 'myskin',
             area: ['700px', '800px'],
             content: $('#selectPapers'),
@@ -250,7 +251,7 @@ var info = {
 
         layer.open({
             type: 1,
-            title: ['选择资源', 'color:#fff;background-color:#40AFFE;border-radius: 7px ;text-align: center;font-size: 20px;'],
+            title: ['选择资源', 'color:#fff;background-color:#40AFFE;border-radius: 7px ;text-align: center;font-size: 20px; cursor: default;'],
             shadeClose: true,
             shade: 0.8,
             move: false,
@@ -374,7 +375,7 @@ var info = {
                     if (item.score == null) {
                         item.score = '-';
                     }
-                    Html.push('<td style="text-align: center;float: left; margin-left: 20px;"> ' + item.score + ' </td></tr>')
+                    Html.push('<td style="text-align: center;"> ' + item.score + ' </td></tr>')
                 })
                 $('#taskUserDegreeCompletion').html(Html.join(''));
             }
@@ -397,7 +398,7 @@ var info = {
                     var Html = []
                     res.data.list.forEach(function (item, index) {
                         Html.push('<tr style="margin-top: -10px;">')
-                        Html.push('<td style="text-align: center;" class="paperName">' + item.paperName + '</td>')
+                        Html.push('<td style="text-align: center;" class="paperName"><span>' + item.paperName + '</span></td>')
                         Html.push('<td style="text-align: center;">' + item.single + '</td>')
                         Html.push('<td style="text-align: center;">' + item.many + '</td>')
                         Html.push(
@@ -737,7 +738,7 @@ var info = {
                     layer.open({
                         type: 1,
                         move: false,
-                        title: ['查看任务',
+                        title: ['完成情况',
                             'color:#fff;background-color:#40AFFE;;border-radius: 7px;text-align: center;font-size: 20px;cursor: default;'
                         ],
                         shadeClose: true,

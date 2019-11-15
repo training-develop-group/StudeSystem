@@ -68,6 +68,7 @@ td:nth-child(1) {
 	text-overflow: ellipsis;
 	white-space: nowrap;
 	cursor: pointer;
+	padding-right: 0;
 }
 
 
