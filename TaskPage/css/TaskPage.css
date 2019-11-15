@@ -20,6 +20,9 @@
     position: relative;
     margin: 0 10px;
     float: left;
+    width: 152px;
+    height: 190px;
+    overflow: hidden;
 }
 
 #resPage{
@@ -37,7 +40,7 @@
     height: 150px;
     width: 150px;
     border: 1px solid #dadada;
-    margin-top: 20px;
+    margin: 20px 0 0 0;
     position: relative;
     cursor: pointer;
 }
@@ -59,8 +62,8 @@
 
 .img-box.checked {
     border: 3px solid rgb(64, 175, 254);
-    width: 144px;
-    height: 144px;
+    width: 146px;
+    height: 146px;
 }
 
 .img-box.checked img {
