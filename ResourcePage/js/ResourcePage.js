@@ -135,10 +135,11 @@ var info = {
 						// console.log(res.data);
 						item.resName = $('<div>').text(item.resName).html();
 						html.push('<tr>');
-						html.push('<td class="getResource" resId="' + item.resId + '">' +
-							'<a href="#" title="' + item.resName +  item.resExt +'">' +
-							item.resName + '</a><span>'+ item.resExt +'</span>' +
-							'</td>');
+                        if( item.resName.length > 30 ){
+                            html.push('<td class="getResource" resId="' + item.resId + '"><pre title="' + item.resName +  item.resExt +'">' + item.resName.substring(0,30) + '...</pre>'+'</td>');
+                        }else {
+                            html.push('<td class="getResource" resId="' + item.resId + '"><pre title="' + item.resName +  item.resExt +'">' + item.resName + '<span>'+ item.resExt +'</span></pre>' +'</td>');
+                        }
 						if (item.status == 0) {
 							item.status = '未发布';
 						} else if (item.status == 1) {
@@ -161,15 +162,15 @@ var info = {
 						if (item.status == '已发布') {
 							html.push('<td><button class="editResName" resId="' + item.resId + '" resName="' + item.resName +
 								'">重命名</button><button class="release" resName="' + item.resName + '" resId="' + item.resId +
-								'">发布</button><a href="http://192.168.188.109:8888/manage_system/resource/download?resName=' + item.resName +
-								'&path=' + item.path + '"><button class="download">下载</button></a></td>');
+								'">发布</button><pre href="http://192.168.188.109:8888/manage_system/resource/download?resName=' + item.resName +
+								'&path=' + item.path + '"><button class="download">下载</button></pre></td>');
 							html.push('</tr>');
 						} else if (item.status == '未发布') {
 							html.push('<td><button class="editResName" resId="' + item.resId + '" resName="' + item.resName +
 								'">重命名</button><button class="release" resName="' + item.resName + '" resId="' + item.resId +
 								'">发布</button><button class="deleteList" resId="' + item.resId +
-								'">删除</button><a href="http://192.168.188.109:8888/manage_system/resource/download?resName=' + item.resName +
-								'&path=' + item.path + '"><button class="download">下载</button></a></td>');
+								'">删除</button><pre href="http://192.168.188.109:8888/manage_system/resource/download?resName=' + item.resName +
+								'&path=' + item.path + '"><button class="download">下载</button></pre></td>');
 							html.push('</tr>');
 						}
 					})

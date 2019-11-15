@@ -65,10 +65,15 @@ $(function () {
 				info.selectTaskType(1, search);
 			}
 		})
+        $('#paperName').keypress(function (e) {
+            var search = $('#paperName').val()
+            info.TableDataRequest(1,search)
+        })
 		$('#resName').keypress(function(e) {
 			if (e.which == 13) {
 				var search = $('#resName').val()
 				var resType = $('.layui-nav .layui-this').val();
+				console.log(resType + '22222'+  search )
 				info.selectResourceList(1, resType, search);
 			}
 		})
@@ -172,7 +177,7 @@ $(function () {
         info.selectResources()
     })
     $('.selectRes').click(function () {
-        info.selectResourceList($(this).val())
+        info.selectResourceList(1,$(this).val(),'')
     })
 });
 //用户模糊查询 回车
@@ -303,6 +308,11 @@ var info = {
         })
     },
     resPage: function (total, pageNum, resType) {
+
+if(total>9){
+
+
+            $('#resPage').show();
         layui.use('laypage', function () {
             var laypage = layui.laypage;
             //执行一个laypage实例
@@ -318,14 +328,21 @@ var info = {
                 jump: function (item, first) {
                     if (!first) {
                         // console.log()
-                        info.selectResourceList(resType, item.curr);
+                        var search = $('#resName').val()
+                        info.selectResourceList(item.curr,resType, search);
                     }
                 }
             });
 
         })
+}else{
+    $('#resPage').hide();
+}
     },
     paperPage: function (total, pageNum) {
+        if(total>12){
+            $('#paperPage').show();
+
         layui.use('laypage', function () {
             var laypage = layui.laypage;
             //执行一个laypage实例
@@ -347,6 +364,9 @@ var info = {
             });
 
         })
+        }else{
+            $('#paperPage').hide();
+        }
     },
     //查询from
     //点击查看查找所有关联的用户
@@ -382,13 +402,13 @@ var info = {
         })
     },
     //查找选择试卷
-    TableDataRequest: function (pageNum) {
+    TableDataRequest: function (pageNum,paperName) {
         $.ajax({
             url: MCUrl + 'manage_system/paper/papers',
             data: {
                 "pageNum": pageNum,
                 "pageSize": 10,
-                'paperName': ''
+                'paperName': paperName||''
             },
             dataType: 'json',
             Type: 'GET',
@@ -556,8 +576,8 @@ var info = {
     },
 
     //查询资源
-    selectResourceList: function (resType, pageNum, resName) {
-
+    selectResourceList: function (pageNum ,resType, resName) {
+    console.log(resType+'iiiii'+resName)
         if (resName == undefined) {
             resName = ''
         }
@@ -686,8 +706,8 @@ var info = {
                     Html.push(
                         '<td><button style="width: 50px;height: 25px;margin-right:20px; margin-left: 20px; background-color: #FFFFFF;border: none;float: left;" class="updateTaskName"value="' +
                         item.taskId + '">重命名</button>' +
-                        '<button class="lookOver" style="width: 50px;height: 25px;margin-right:20px;border: none;background-color: #FFFFFF; margin-left: 20px; float: left;"value="' +
-                        item.taskId + '">查看</button>' +
+                        '<button class="lookOver" style="width: 65px;height: 25px;margin-right:20px;border: none;background-color: #FFFFFF; margin-left: 20px; float: left;"value="' +
+                        item.taskId + '">完成情况</button>' +
                         '<button class="deleteTask" style="width: 50px;height: 25px;margin-right:20px;border: none;background-color: #FFFFFF; margin-left: 20px; float: left;" value="' +
                         item.taskId + '"><span>删除</span></button></td>'
                     );
