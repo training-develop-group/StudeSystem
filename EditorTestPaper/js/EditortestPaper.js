@@ -46,7 +46,7 @@ $(function () {
         $('.fraction').hide();
         $('#saveChanges').hide();
         $('#newTestPaper').hide();
-
+        $('#goBack').hide();
         // 记录已选择试题和试题分值
 
         for (var i = 0; i < $('.mobileFramework .sortableitem').length; i++) {
@@ -88,6 +88,10 @@ $(function () {
             $('#newTestPaper').removeClass('hidden');
         }
 
+    });
+
+    $('#goBack').off('click').on('click',function () {
+        window.location.href = "../ExaminationPaperPage/ExaminationPaperPage.html?" ;
     });
 });
 // 试卷ID(全局)
@@ -168,7 +172,7 @@ var info = {
             } else {
                 item.questionType = '多选题';
             }
-            Html.push('<p class="distanceNum"><span class="num">' + (index + 1) + '</span>. ' + item.questionType + '  <span class="newScore">' + item.score + '</span>分</p>');
+            Html.push('<p class="distanceNum"><span class="num">' + (index + 1) + '</span>. ' + item.questionType + '  （<span class="newScore">' + item.score + '</span> 分）</p>');
             // 转义(已防有标签的样式被html识别)
             item.content = $('<div>').text(item.content).html();
             Html.push('<p class="distance title">' + item.content + '</p>');
@@ -224,6 +228,7 @@ var info = {
         // 点击保存更改
         $('#saveChanges').off('click').on('click', function () {
             // 修改试卷方法
+            $('#goBack').show();
             info.addOrRemoveRelationships();
         });
     },
@@ -366,6 +371,7 @@ var info = {
         // 点击保存更改
         $('#saveChanges').off('click').on('click', function () {
             // 修改试卷方法
+            $('#goBack').show();
             info.addOrRemoveRelationships();
         });
         if (data.total > 10) {
@@ -406,7 +412,7 @@ var info = {
             if (item.newScore == null) {
                 item.newScore = 0;
             }
-            viewHtml.push('<p class="distanceNum"><span class="num">' + (index + 1) + '</span>. ' + item.questionType + '  <span class="newScore"  id="data-score-' + index + '">' + item.newScore + '</span>分</p>');
+            viewHtml.push('<p class="distanceNum"><span class="num">' + (index + 1) + '</span>. ' + item.questionType + '  （<span class="newScore"  id="data-score-' + index + '">' + item.newScore + '</span> 分）</p>');
             // 转义(已防有标签的样式被html识别)
             item.content = $('<div>').text(item.content).html();
             viewHtml.push('<p class="distance title">' + item.content + '</p>');
@@ -484,6 +490,7 @@ var info = {
             // 清空数组
             storageQusetionId = [];
             // 修改试卷方法
+            $('#goBack').show();
             info.addOrRemoveRelationships();
         });
     },
