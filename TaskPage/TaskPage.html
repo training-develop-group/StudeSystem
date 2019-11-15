@@ -46,7 +46,7 @@
 									<th style="text-align: center; float: left; font-weight:bold">任务名</th>
 									<th style="text-align: center;font-weight:bold">任务类型</th>
 									<th style="text-align: center;font-weight:bold">任务时间</th>
-									<th style="text-align: center; float: left; margin-left: 30px;font-weight:bold">操作</th>
+									<th style="text-align: center; float: left; margin-left: 24px;font-weight:bold">操作</th>
 								</tr>
 							</thead>
 							<tbody id="taskContent">
@@ -85,7 +85,7 @@
 						<i class="layui-icon">&#xe602;</i>选择试卷</label><span class="paperAdd"></span></p>
 				<label href="" style="font-size: 16px; margin-left: 40px; ">任务对象</label>
 				<label href="" class="selectPersonnel"><i class="layui-icon">&#xe602;</i>选择人员</label><br><br>
-				<div class="taskUsers " lay-event="edit" style="">
+				<div class="taskUsers " lay-event="edit">
 				</div>
 				<div class="layui-form-item" style=" margin-top: 20px;">
 					<div>
@@ -117,24 +117,20 @@
 		
 		<!-- 选择资源部分------------------------------------- -->
 		<div id="selectResource">
-			<div style="float: none; width: 500px; height: 600px;">
-				<div style=" width: 700px;margin-left: -50px;margin-top: 10px;">
-		<!-- -->
-					<ul class="layui-nav" style="width: 600px; background-color: #FFFFFF; ">
+			<div style="float: none;  height: 630px;">
+				<div style=" margin-top: 10px;">
+					<ul class="layui-nav resourceNav">
 						<li class="layui-nav-item layui-this selectRes" value="1"><a href="javascript:void(0);">视频资源</a></li>
 						<li class="layui-nav-item selectRes" value="3"><a href="javascript:void(0);">文档资源</a></li>
 						<li class="layui-nav-item selectRes" value="2"><a href="javascript:void(0);">音频资源</a></li>
 						  <div style="border: 1px solid #c3c3c3; width: 200px; height: 30px; float: right; padding: 0px; border-radius: 5px;"> <img src="./../imgs/search.jpg" style="margin-bottom:5px ;"><input type="" name="" id="resName" value=""  style="margin-top: 10px; margin-left: 5px;"></div>
 					</ul>
-					
-					 <!--  -->
-					<p style="width: 600px;border-bottom: 2px solid #1e9fff; margin-left: 20px;"></p>
 				</div>
-				<div  id="resource" class="layui-form">
+				<div  id="resource" class="clearfix">
 				</div>
 			</div>
 			
-			<div id="resPage" style="margin-left: 120px;"></div>
+			<div id="resPage"></div>
 			<div class="site-demo-button Release_btn">
 				<button type="button" class="layui-btn layui-btn-normal layui-btn-sm layui-btn-normal okbtn resourceSelection" style="margin: 0;">确认</button>
 			</div>

@@ -272,8 +272,6 @@ var All = {
 					$('.common-acquiredValue').val(options.returnValue);
 					// 点击确认
 					$('.common-confirm').off('click').on('click', function() {
-
-						console.log('1');
 						var name = $('.common-acquiredValue').val();
 						if (name == '') {
 							layer.msg("重命名不可为空");

@@ -253,6 +253,7 @@ var info = {
             title: ['选择资源', 'color:#fff;background-color:#40AFFE;border-radius: 7px ;text-align: center;font-size: 20px;'],
             shadeClose: true,
             shade: 0.8,
+            move: false,
             skin: 'myskin',
             area: ['700px', '800px'],
             content: $('#selectResource'),
@@ -312,7 +313,7 @@ var info = {
                 theme: '#1E9FFF',
                 curr: pageNum,
                 groups: '5',
-                layout: ['prev', 'page', 'next', 'limits', 'skip'],
+                layout: ['prev', 'page', 'next', 'limits'],
                 jump: function (item, first) {
                     if (!first) {
                         // console.log()
@@ -574,13 +575,13 @@ var info = {
                 console.log(res)
                 var Html = [];
                 res.data.list.forEach(function (item, index) {
-                    Html.push('<div class="layui-input-inline radio_box" >')
+                    Html.push('<div class="radio_box" >')
                     // Html.push(
                     //     '  <input type="radio" name="res" class=" "  name="Staff" lay-skin="primary" lay-filter="Staff"  value="' +
                     //     item.resId + '">')
                     Html.push('<div class="img-box" data-resid="' + item.resId + '">')
                     if (item.resType == 1) {
-                        Html.push('		<img src="http://192.168.188.109:8848/' + item.imgPath + '" >')
+                        Html.push('		<img src="http://192.168.188.109:8848/' + item.imgPath + '"  style="width: 140px;height: 140px;">')
                     } else if (item.resType == 2) {
                         Html.push('		<img src="../imgs/yinpin.jpg.png" >')
                     } else if (item.resType == 3) {
@@ -671,7 +672,7 @@ var info = {
                 var Html = [];
                 res.data.list.forEach(function (item, index) {
                     Html.push('<tr>');
-                    Html.push('<td class="oneselfTaskName"><span>' + item.taskName + '</span></td>');
+                    Html.push('<td class="oneselfTaskName"><pre>' + item.taskName + '</pre></td>');
                     resa.data.forEach(function (itemTypeName, index) {
                         var typeName = itemTypeName.split(",");
                         if (item.taskType == typeName[0]) {
@@ -683,7 +684,7 @@ var info = {
                     Html.push('<td>' + dateFormata(item.startTime) + ' - ' + dateFormata(item.endTime) + '</td>');
                     Html.push(
                         '<td><button style="width: 50px;height: 25px;margin-right:20px; margin-left: 20px; background-color: #FFFFFF;border: none;float: left;" class="updateTaskName"value="' +
-                        item.taskId + '">编辑</button>' +
+                        item.taskId + '">重命名</button>' +
                         '<button class="lookOver" style="width: 50px;height: 25px;margin-right:20px;border: none;background-color: #FFFFFF; margin-left: 20px; float: left;"value="' +
                         item.taskId + '">查看</button>' +
                         '<button class="deleteTask" style="width: 50px;height: 25px;margin-right:20px;border: none;background-color: #FFFFFF; margin-left: 20px; float: left;" value="' +
@@ -699,7 +700,7 @@ var info = {
                 // }
                 $('.search').val('')
                 $('#taskContent').html(Html.join(''));
-                //点击弹出编辑
+                //点击弹出重命名
                 $('.updateTaskName').click(function () {
                     var taskName = $(this).parents('tr').children('.oneselfTaskName').text();
                     $('.taskNameupdate').val(taskName)

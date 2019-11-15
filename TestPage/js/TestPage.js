@@ -57,8 +57,7 @@ $(function() {
 	console.log(taskName)
 	$('.add').off('click').on('click', function() {
 		// 这里替换了换行与回车
-		var Experience = $('.textExperience').val().replace(/\n/g, "<br/>").replace(" ", "&nbsp;").replace("<", "&lt;").replace(
-			">", "&gt;");
+		var Experience = $('.textExperience').val();
 
 		var data = {
 			'taskId': taskId,
@@ -789,7 +788,7 @@ var info = {
 					type: 'POST',
 					// contentType :'application/json;charset=utf-8',
 					success(res) {
-						
+
 						// alert("操作成功");
 
 						if (res || res.data !== null) {
@@ -969,9 +968,9 @@ var info = {
 				var html = [];
 				resc.data.list.forEach(function(item, index) {
 					html.push('<li class="List">');
-					html.push('    <p class="uName">' + item.userName + '</p>');
-					html.push('    <p>' + item.content + '</p>');
-					html.push('    <p class="time"><span>' + dateFormata(item.cTime) + '</span><span></span></p>');
+					html.push('<p class="uName">' + item.userName + '</p>');
+					html.push('<pre>' + item.content + '</pre>');
+					html.push('<p class="time"><span>' + dateFormata(item.cTime) + '</span><span></span></p>');
 					html.push('</li>');
 				});
 				$('.experienceList').html(html.join(''));
