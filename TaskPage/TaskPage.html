@@ -25,25 +25,23 @@
 				<!-- 功能栏 -->
 				<div class="headline">
 					<span>任务列表</span>
-					<button type="button" class="layui-btn layui-btn-primary releasTeask">发布任务</button>
+					<button type="button" class="layui-btn layui-btn-primary releasTeask">新建任务</button>
 					<!-- <button type="button" class="releasTeask" style=" border-radius :3px;height: 30px;width: 90px; float: right; margin-right: 20px; background-color: #FFFFFF; color: blue; line-height: 30px; margin-top: 10px; height: 38px;">发布任务</button> -->
 				</div>
 				<!-- 功能栏end-->
 				<!-- 操作內容 -->
 				<div class="content">
 					<div class="layui-form" style="padding: 1px 35px;">
-
 						<table class="layui-table" style="text-align: center; ">
 							<colgroup>
 								<col width="20%">
 								<col width="10%">
 								<col width="40%">
 								<col width="40%">
-
 							</colgroup>
 							<thead>
 								<tr style="margin-top: -10px; ">
-									<th style="text-align: center; float: left; font-weight:bold">任务名</th>
+									<th style="text-align: center; float: left; font-weight:bold">任务名称</th>
 									<th style="text-align: center;font-weight:bold">任务类型</th>
 									<th style="text-align: center;font-weight:bold">任务时间</th>
 									<th style="text-align: center; float: left; margin-left: 30px;font-weight:bold">操作</th>
@@ -124,7 +122,10 @@
 						<li class="layui-nav-item layui-this selectRes" value="1"><a href="javascript:void(0);">视频资源</a></li>
 						<li class="layui-nav-item selectRes" value="3"><a href="javascript:void(0);">文档资源</a></li>
 						<li class="layui-nav-item selectRes" value="2"><a href="javascript:void(0);">音频资源</a></li>
-						  <div style="border: 1px solid #c3c3c3; width: 200px; height: 30px; float: right; padding: 0px; border-radius: 5px;"> <img src="./../imgs/search.jpg" style="margin-bottom:5px ;"><input type="" name="" id="resName" value=""  style="margin-top: 10px; margin-left: 5px;"></div>
+						<div style="border: 1px solid #c3c3c3; width: 200px; height: 30px; float: right; padding: 0px; border-radius: 5px;">
+							<img src="./../imgs/search.jpg" style="margin-bottom:5px ;">
+							<input type="" name="" id="resName" value=""  style="margin-top: 10px; margin-left: 5px;">
+						</div>
 					</ul>
 					
 					 <!--  -->
@@ -144,6 +145,10 @@
 		<!-- 选择试卷部分-------------------------------------------------------------- -->
 		<div id="selectPapers" hidden="">
 			<div class="layui-form" style="padding: 20px; padding-top: 10px;">
+				<div style="border: 1px solid #c3c3c3; width: 200px; height: 30px; float: right; padding: 0px; border-radius: 5px;">
+					<img src="./../imgs/search.jpg" style="position: relative;top: 0px;">
+					<input type="" name="" id="resName" value=""  style="margin-top: 5px; margin-left: 5px;">
+				</div>
 				<table class="layui-table" style="text-align: center; ">
 					<colgroup>
 		
@@ -213,12 +218,12 @@
 
 					</colgroup>
 					<thead>
-						<tr style="margin-top: -10px;">
+						<tr style="margin-top: -10px; cursor: default;">
 
 							<th style="text-align: center;">人员名单</th>
 
 							<th style="text-align: center;">类型</th>
-							<th style="text-align: center; float: left; margin-left: 20px;">任务得分</th>
+							<th style="text-align: center; ">任务得分</th>
 						</tr>
 					</thead>
 					<tbody id="taskUserDegreeCompletion">

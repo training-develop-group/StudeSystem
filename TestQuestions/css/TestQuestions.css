@@ -42,6 +42,11 @@
 	color: #279ef0;
 }
 
+#editBuild {
+	width: 88%;
+	margin: 0 11%;
+}
+
 .editInputTotal span {
 	color: #B2B2B2;
 }
@@ -75,15 +80,13 @@
 
 .questions p span,
 .questions p{
-	font-size: 18px !important;
+	font-size: 18px;
 }
 
 .Q-question {
 	margin: 15px 0;
-}
+	font-size: 18px;
 
-.questions span:nth-child(2) p {
-	padding: 5px 0 5px 25px;
 }
 
 .Q-question span:nth-child(2) {
@@ -135,18 +138,10 @@
 	margin: 0 2%;
 }
 
-.TestQuestionsBrowse .sort em {
-	margin: 0 10px;
-}
-
 .TestQuestionsBrowse .Statistics {
 	float: right;
 }
 
-.sort em:hover {
-	color: #279ef0;
-	cursor: pointer;
-}
 
 .emColor {
 	color: #279ef0;
@@ -162,14 +157,6 @@
 	color: #279ef0;
 	cursor: pointer;
 }
-
-/* #test1 {
-	position: absolute;
-	bottom: 0;
-	left: 50%;
-	transform: translate(-50%, -50%);
-} */
-
 
 
 .delete {
@@ -295,7 +282,7 @@
 }
 
 .sort span {
-	font-size: 16px;
+	font-size: 18px;
 }
 
 .sort span:last-child {
@@ -303,7 +290,7 @@
 }
 
 .Statistics span {
-	font-size: 16px;
+	font-size: 18px;
 }
 
 /*更改项*/
@@ -322,6 +309,7 @@
 .distance {
 	margin-top: 20px;
 	margin-left: 30px;
+	font-size: 16px !important;
 }
 
 .addTestQuestion .layui-unselect.layui-form-radio div{

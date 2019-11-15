@@ -560,9 +560,9 @@ var info = {
 						// examContent.push(' <ul class="checkbox_box">')
 						item.optionInfo.forEach(function(itemx, index) {
 							// console.log('asdasd')
-							examContent.push(' <li><div data-id="' + itemx.ref + '" class="option">' + itemx.optionType +
-								'</div><div>' + itemx
-								.content + '</div></li>')
+							examContent.push(' <li><span data-id="' + itemx.ref + '" class="option">' + itemx.optionType +
+								'</span><span>' + itemx
+								.content + '</span></li>')
 						})
 						examContent.push('<input type="text" value="' + item.questionId + '" class="questionId hidden">')
 						examContent.push(' </ul>')
@@ -602,9 +602,9 @@ var info = {
 	},
 	// 单选事件
 	radioChange: function() {
-		$('body').delegate('.questionCard .radio_box li div', 'click', function() {
+		$('body').delegate('.questionCard .radio_box li span', 'click', function() {
 			$(this).parent('li').parent('.radio_box').find('li').find('span').removeClass('active');
-			$('.questionCard .radio_box li div').removeClass('active');
+			// $('.questionCard .radio_box li span').removeClass('active');
 			$(this).addClass('active');
 		});
 
@@ -616,7 +616,7 @@ var info = {
 	},
 	// 多选事件
 	checkboxChange: function() {
-		$('body').delegate('.questionCard .checkbox_box li div', 'click', function() {
+		$('body').delegate('.questionCard .checkbox_box li span', 'click', function() {
 			if ($(this).hasClass('active')) {
 				$(this).removeClass('active');
 			} else {

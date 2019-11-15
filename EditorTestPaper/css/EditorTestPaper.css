@@ -84,15 +84,20 @@
 	border: 0;
 	background-color: #f5f5f5;
 }
+
+
 .sortableitem .distanceNum{
 	font-size: 18px;
 	margin-top: 15px;
 	margin-left: 20px;
 }
+
 .distance{
 	margin-top: 20px;
 	margin-left: 30px;
+	font-size: 16px;
 }
+
 img{
 	width: 30px;
 }
@@ -285,7 +290,7 @@ img{
 }
 
 .newScore,
-.num,
-.distance{
+.num ,
+.questionContent{
 	font-size:18px;
 }

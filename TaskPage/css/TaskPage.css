@@ -99,6 +99,15 @@ td {
 tr .oneselfTaskName {
 	cursor: pointer;
 	text-align: left;
+	padding-right: 0 ;
+}
+
+.oneselfTaskName span{
+	display: inline-block;
+	width: 267px;
+	white-space: nowrap;
+	text-overflow:ellipsis;
+	overflow:hidden;
 }
 
 #selectTaskUsers {
@@ -493,10 +502,6 @@ i {
 	bottom: 25px;
 }
 
-.selectPersonnel {
-	margin: 0 0 0 23px;
-}
-
 .selectResource i {
 	color: #5FB878;
 }
@@ -527,6 +532,10 @@ i {
 	color: #5FB878;
 }
 
+.selectPapers img{
+	margin-top: 5px;
+}
+
 .layui-btn-primary:hover {
 	border-color: rgb(208, 208, 208);
 }
@@ -548,13 +557,13 @@ i {
 	color: #000 !important;
 }
 
-tr .oneselfTaskName span,
 .paperName span {
 	display: inline-block;
-	width: 170px;
-	white-space: nowrap;
-	overflow: hidden;
+	width: 150px;
+	word-wrap: break-word;
+	white-space: pre;
 	text-overflow: ellipsis;
+	overflow: hidden;
 }
 
 #paperPage {
@@ -564,16 +573,6 @@ tr .oneselfTaskName span,
     left: 0;
     right: 0;
     margin: 0 auto;
-}
-
-/*更改项*/
-
-.paperName span{
-	display: inline-block;
-	width: 150px;
-	white-space: nowrap;
-	text-overflow: ellipsis;
-	overflow: hidden;
 }
 
 .img-box .videoImg{

@@ -34,7 +34,7 @@ $(function() {
 	});
 	$(".search").blur(function() {
 		if ($('.search').val() == '')
-			$('.searchIcon').show();
+            $('.searchIcon').show();
 	});
 
 
@@ -45,8 +45,6 @@ var info = {
 		layui.use('form', function() {
 			var form = layui.form;
 			form.render('select');
-
-
 			$.ajax({
 				url: TDXUrl + 'manage_system/resource/resources',
 				data: {
@@ -57,9 +55,12 @@ var info = {
 				type: 'GET',
 				contentType: 'application/json;charset=utf-8',
 				success(res) {
-					var Html = []
+					var Html = [];
+					console.log(123456789);
 					res.data.list.forEach(function(item, index) {
 						Html.push('<tr>');
+                        // 转义(已防有标签的样式被html识别)
+                        item.resName = $('<div>').text(item.resName).html();
 						Html.push('<td title="' + item.resName + '" style="text-align: left ">' + item.resName + '</td>')
 						if (item.resType == 1) { //判断资源类型
 							item.resType = '视频'
@@ -70,8 +71,8 @@ var info = {
 						} else {
 							item.resType = '未知'
 						}
-						Html.push('<td title="' + item.resType + '" style="text-align: content ">' + item.resType + '</td>')
-						Html.push('<td title="' + item.resSize + '" style="text-align: content ">' + getFileSize(item.resSize) + '</td>')
+						Html.push('<td title="' + item.resType + '" style="text-align: content ">' + item.resType + '</td>');
+						Html.push('<td title="' + item.resSize + '" style="text-align: content ">' + getFileSize(item.resSize) + '</td>');
 						Html.push('</tr>')
 					})
 					$('.Resourcesreview').html(Html.join(''));
@@ -80,8 +81,6 @@ var info = {
 					layer.msg('获取资源列表错误')
 				}
 			});
-
-
 			$.ajax({
 				url: LBUrl + 'manage_system/task/tasks',
 				data: {
@@ -98,7 +97,10 @@ var info = {
 					var Html = [];
 					res.data.list.forEach(function(item, index) {
 						Html.push('<tr style="border-bottom: 1px solid #e6e6e6;">');
-						Html.push('<td style="text-align: left; border:none" title="' + item.taskName + '">' + item.taskName + '</td>');
+                        // 转义(已防有标签的样式被html识别)
+                        item.taskName = $('<div>').text(item.taskName).html();
+						Html.push(
+							'<td style="text-align: left; border:none" title="' + item.taskName + '">' + item.taskName + '</td>');
 						if (item.taskType == 1) {
 							item.taskType = '综合任务';
 						} else if (item.taskType == 2) {
@@ -108,8 +110,8 @@ var info = {
 						}
 						Html.push('<td class="tasktd" title="' + item.taskType + '">' + item.taskType + '</td>');
 						Html.push('</tr>');
-					})
-					$('.taskContent').html(Html.join(''))
+					});
+					$('.taskContent').html(Html.join(''));
 				}
 			})
 			
@@ -124,14 +126,18 @@ var info = {
 				Type: 'GET',
 				success: function(res) {
 						var Html = [];
+                    console.log(res.data);
 						res.data.list.forEach(function(item, index) {
-							Html.push('<tr  style="border-bottom: 1px solid #e6e6e6;">');
+							Html.push('<tr  style="border-bottom:1px solid #e6e6e6;">');
+                            // 转义(已防有标签的样式被html识别)
+                            item.paperName = $('<div>').text(item.paperName).html();
+                            console.log(item.paperName);
 							Html.push('<td style="text-align: left; border:none" title="' + item.paperName + '">' + item.paperName + '</td>');
 							Html.push('<td style="float: content; border:none" title="' + item.single + '">' + item.single + '</td>');
 							Html.push('<td style="float: content; border:none" title="' + item.many + '">' + item.many + '</td>');
 							Html.push('</tr>');
 						})
-						$('.examinationContent').html(Html.join(''))
+						$('.examinationContent').html(Html.join(''));
 					},
 				})
 		});

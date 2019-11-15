@@ -34,10 +34,6 @@ $(function() {
 		$('#paging').show();
 		numberOfQuestions = 0;
 		$('.red').text(numberOfQuestions);
-		// if (numberOfQuestions != 0){
-		// 	questionIdBackfilling = [];
-		// }
-		layer.msg("本次选题只能选择一次，望慎重考虑");
 		$('.joinIn').show();
 		$('.confirmCompletion').show();
 		$('.totalNumberOfQuestions').show();
@@ -134,10 +130,11 @@ var info = {
 			}
 		});
 	},
-	//表格会绘制
+	// 显示当前试卷下所有试题方法
 	TableDrawings: function(data) {
 		if (data.questionList.length == 0) {
 			judge = false;
+			layer.msg('当前试卷下没有试题');
 		}
 		var Html = [];
 		data.questionList.forEach(function(item, index) {
@@ -386,7 +383,7 @@ var info = {
 	},
 	viewQuestion: function() {
 		$.ajax({
-			url: MCUrl + 'manage_system/paper/questionIdList',
+			url: MCUrl + 'manage_system/paper/questions',
 			data: {'questionIdList': JSON.stringify(storageQusetionId)},
 			Type: 'GET',
 			success: function(res) {
@@ -416,7 +413,7 @@ var info = {
 			viewHtml.push('<p class="distanceNum"><span class="num">' + (index + 1) + '</span>. ' + item.questionType + '  <span class="newScore">' + item.newScore + '</span></p>');
 			// 转义(已防有标签的样式被html识别)
 			item.content = $('<div>').text(item.content).html();
-			viewHtml.push('<p class="distance">' + item.content + '</p>');
+			viewHtml.push('<p class="distance questionContent">' + item.content + '</p>');
 			item.optionInfo.forEach(function(items, index) {
 				// 转义(已防有标签的样式被html识别)
 				items.content = $('<div>').text(items.content).html();

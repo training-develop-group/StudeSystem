@@ -163,7 +163,7 @@ var info = {
 			}
 		});
 	},
-	//表格会绘制
+	//表格绘制
 	TableDrawing : function(param){
 		var Html = [];		// 选项
 		var data = {
@@ -236,7 +236,7 @@ var info = {
 			var paperId = $(this).attr('data-id');
 			window.open("../EditorTestPaper/EditorTestPaper.html?value=" + paperId + "" , "_blank");
 		});
-		// 点击编辑进行重命名
+		// 点击进行重命名
 		$('.edit').click(function() {
 			var rename = $(this).parent().parent().find('.rename').text();
 			var paperId =$(this).attr('data-id');
