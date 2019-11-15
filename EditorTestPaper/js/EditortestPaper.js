@@ -228,7 +228,6 @@ var info = {
         // 点击保存更改
         $('#saveChanges').off('click').on('click', function () {
             // 修改试卷方法
-            $('#goBack').show();
             info.addOrRemoveRelationships();
         });
     },
@@ -371,7 +370,6 @@ var info = {
         // 点击保存更改
         $('#saveChanges').off('click').on('click', function () {
             // 修改试卷方法
-            $('#goBack').show();
             info.addOrRemoveRelationships();
         });
         if (data.total > 10) {
@@ -490,7 +488,6 @@ var info = {
             // 清空数组
             storageQusetionId = [];
             // 修改试卷方法
-            $('#goBack').show();
             info.addOrRemoveRelationships();
         });
     },
@@ -532,6 +529,7 @@ var info = {
         if (chack == false) {
             return false;
         }
+        $('#goBack').show();
         sorting = [];
         for (var i = 1; i <= $('.sortableitem').length; i++) {
             var data = {
