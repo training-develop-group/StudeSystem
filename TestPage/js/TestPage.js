@@ -215,7 +215,7 @@ $(function() {
 							$('.doc iframe').attr('src', 'http://192.168.188.109:8848/' + pdfPath + '.pdf')
 							$('.measurement').addClass('test');
 							$('.test').click(function() {
-								$('.content').removeClass('hidden')
+								// $('.content').removeClass('hidden')
 								$('.doc,.video,.audio').addClass('hidden')
 								$('.active').removeClass('active')
 								$('.test').addClass('active')
@@ -332,7 +332,11 @@ $(function() {
 			}
 		})
 		$('.test').click(function() {
-			$('.content').removeClass('hidden')
+
+            if(localStorage.getItem('userType') == 2){
+                $('.content').removeClass('hidden')
+            }
+
 			$('.doc,.video,.audio').addClass('hidden')
 			$('.active').removeClass('active')
 			$('.test').addClass('active')
