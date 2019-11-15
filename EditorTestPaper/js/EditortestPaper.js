@@ -196,6 +196,7 @@ var info = {
         $('.fraction').off('click').on('click', function () {
             var QusetionId = $(this).parent().parent().find('.qusetionId').val();
             info.fraction(QusetionId, this);
+            $('#goBack').hide();
         });
         // 解析
         $('.toView').off('click').on('click', function () {
@@ -206,6 +207,7 @@ var info = {
         $('.moveup').off('click').on('click', function () {
             // 显示保存更改按钮
             $('#saveChanges').show();
+            $('#goBack').hide();
         });
         // 点击移出，删除本身
         $('.moveOut').off('click').on('click', function () {
@@ -219,11 +221,13 @@ var info = {
             } else {
                 $('#saveChanges').show();
             }
+            $('#goBack').hide();
         });
         // 点击下移
         $('.movedown').off('click').on('click', function () {
             // 显示保存更改按钮
             $('#saveChanges').show();
+            $('#goBack').hide();
         });
         // 点击保存更改
         $('#saveChanges').off('click').on('click', function () {
@@ -348,6 +352,7 @@ var info = {
         $('.moveup').off('click').on('click', function () {
             // 显示保存更改按钮
             $('#saveChanges').show();
+            $('#goBack').hide();
         });
         // 点击移出，删除本身
         $('.moveOut').off('click').on('click', function () {
@@ -356,16 +361,19 @@ var info = {
             // 删除this的父级的父级
             $(this).parent().parent().remove();
             $('#saveChanges').show();
+            $('#goBack').hide();
         });
         // 点击下移
         $('.movedown').off('click').on('click', function () {
             // 显示保存更改按钮
             $('#saveChanges').show();
+            $('#goBack').hide();
         });
         // 设置分值
         $('.fraction').off('click').on('click', function () {
             var QusetionId = $(this).parent().parent().find('.qusetionId').val();
             info.fraction(QusetionId, this);
+            $('#goBack').hide();
         });
         // 点击保存更改
         $('#saveChanges').off('click').on('click', function () {
@@ -460,22 +468,25 @@ var info = {
                 $('#saveChanges').show();
             }
             $(this).parent().parent().remove();
-
+            $('#goBack').hide();
         });
         // 点击上移
         $('.moveup').off('click').on('click', function () {
             // 显示保存更改按钮
             $('#saveChanges').show();
+            $('#goBack').hide();
         });
         // 点击下移
         $('.movedown').off('click').on('click', function () {
             // 显示保存更改按钮
             $('#saveChanges').show();
+            $('#goBack').hide();
         });
         // 设置分值
         $('.fraction').off('click').on('click', function () {
             var QusetionId = $(this).parent().parent().find('.qusetionId').val();
             info.fraction(QusetionId, this);
+            $('#goBack').hide();
         });
         // 解析
         $('.toView').off('click').on('click', function () {
