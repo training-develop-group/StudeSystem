@@ -164,13 +164,13 @@ var info = {
 			});
 			Html.push('</div>');
 			Html.push('<div class="functionBox">');
-			Html.push('<button class="toView"><i class="layui-icon layui-icon-search"></i>查看解析</button>');
-			Html.push('<button class="fraction"><img src="../imgs/f.png" alt="" />设定分值</button>');
-			Html.push('<button class="moveOut"><i class="layui-icon layui-icon-delete"></i>移出</button>');
-			Html.push('<button class="moveup"><i class="layui-icon layui-icon-up"></i>上移</button>');
-			Html.push('<button class="movedown"><i class="layui-icon layui-icon-down"></i>下移</button>');
-			Html.push('<button class="joinIn"><i class="layui-icon layui-icon-add-circle"></i>加入试卷</button>');
-			Html.push('<button class="removeQuestions"><i class="layui-icon layui-icon-delete"></i>移出试卷</button>');
+            Html.push('<button class="toView"><img src="../imgs/stf.png" alt="" />查看解析</button>');
+            Html.push('<button class="fraction"><img src="../imgs/stz.png" alt="" />设定分值</button>');
+            Html.push('<button class="moveOut"><img src="../imgs/stt.png" alt="" />移出</button>');
+            Html.push('<button class="moveup"><img src="../imgs/sts.png" alt="" /></i>上移</button>');
+            Html.push('<button class="movedown"><img src="../imgs/stx.png" alt="" />下移</button>');
+            Html.push('<button class="joinIn" id="data-joinIn-' + index + '"><img src="../imgs/xjz.png" alt="" />加入试卷</button>');
+            Html.push('<button class="removeQuestions" id="data-remove-' + index + '"><img src="../imgs/xjs.png" alt="" />移出试卷</button>');
 			Html.push('</div>');
 			Html.push('</li>');
 		});
@@ -289,13 +289,13 @@ var info = {
 			});
 			Html.push('</div>');
 			Html.push('<div class="functionBox">');
-			Html.push('<button class="toView"><i class="layui-icon layui-icon-search"></i>查看解析</button>');
-			Html.push('<button class="fraction"><img src="../imgs/f.png" alt="" />设定分值</button>');
-			Html.push('<button class="moveOut"><i class="layui-icon layui-icon-delete"></i>移出</button>');
-			Html.push('<button class="moveup"><i class="layui-icon layui-icon-up"></i>上移</button>');
-			Html.push('<button class="movedown"><i class="layui-icon layui-icon-down"></i>下移</button>');
-			Html.push('<button class="joinIn" id="data-joinIn-' + index + '"><i class="layui-icon layui-icon-add-circle"></i>加入试卷</button>');
-			Html.push('<button class="removeQuestions" id="data-remove-' + index + '"><i class="layui-icon layui-icon-delete"></i>移出试卷</button>');
+			Html.push('<button class="toView"><img src="../imgs/stf.png" alt="" />查看解析</button>');
+			Html.push('<button class="fraction"><img src="../imgs/stz.png" alt="" />设定分值</button>');
+			Html.push('<button class="moveOut"><img src="../imgs/stt.png" alt="" />移出</button>');
+			Html.push('<button class="moveup"><img src="../imgs/sts.png" alt="" /></i>上移</button>');
+			Html.push('<button class="movedown"><img src="../imgs/stx.png" alt="" />下移</button>');
+			Html.push('<button class="joinIn" id="data-joinIn-' + index + '"><img src="../imgs/xjz.png" alt="" />加入试卷</button>');
+			Html.push('<button class="removeQuestions" id="data-remove-' + index + '"><img src="../imgs/xjs.png" alt="" />移出试卷</button>');
 			Html.push('</div>');
 			Html.push('</li>');
 		});
@@ -424,16 +424,17 @@ var info = {
 			});
 			viewHtml.push('</div>');
 			viewHtml.push('<div class="functionBox">');
-			viewHtml.push('<button class="toView"><i class="layui-icon layui-icon-search"></i>查看解析</button>');
-			viewHtml.push('<button class="fraction"><img src="../imgs/f.png" alt="" />设定分值</button>');
-			viewHtml.push('<button class="moveOut"><i class="layui-icon layui-icon-delete"></i>移出</button>');
-			viewHtml.push('<button class="moveup"><i class="layui-icon layui-icon-up"></i>上移</button>');
-			viewHtml.push('<button class="movedown"><i class="layui-icon layui-icon-down"></i>下移</button>');
+            viewHtml.push('<button class="toView"><img src="../imgs/stf.png" alt="" />查看解析</button>');
+            viewHtml.push('<button class="fraction"><img src="../imgs/stz.png" alt="" />设定分值</button>');
+            viewHtml.push('<button class="moveOut"><img src="../imgs/stt.png" alt="" />移出</button>');
+            viewHtml.push('<button class="moveup"><img src="../imgs/sts.png" alt="" /></i>上移</button>');
+            viewHtml.push('<button class="movedown"><img src="../imgs/stx.png" alt="" />下移</button>');
 			viewHtml.push('</div>');
 			viewHtml.push('</li>');
 		});
 		// 判断是否是最后一次的调用，如果是最后一次就往页面里塞入数据
 		$('.mobileFramework').html(viewHtml.join(''));
+		// 清空数组
 		viewHtml = [];
 		// 移出
 		$('.moveOut').off('click').on('click', function() {

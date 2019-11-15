@@ -1,6 +1,6 @@
 .C-Content {
 	overflow: hidden;
-	padding: 15px 0;
+	padding: 25px 0;
 }
 
 .C-Content div:nth-child(1) {
@@ -111,6 +111,7 @@
 	width: 20px;
 	height: 20px;
 	margin-right: 5px;
+	margin-top: -5px;
 }
 
 .SetScore {
@@ -258,6 +259,12 @@
 	margin-left: 18px;
 	border: 0;
 	background-color: white;
+}
+
+.deleteOptions img,
+.addOptions img{
+	width: 20px;
+	height: 20px;
 }
 
 .choiceItem input {

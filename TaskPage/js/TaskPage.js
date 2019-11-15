@@ -121,7 +121,7 @@ $(function () {
 		form.render('checkbox');
 	});
 	$('.resourceSelection').click(function() {
-		var resId = $('input:radio:checked').siblings('.resName').text();
+		var resId = $('.layui-input-inline .checked').parent('div').find('.resName').text();
 		var Html = [];
 		Html.push(' : ' + resId)
 		$('.resAdd').html(Html.join(''))
@@ -463,7 +463,7 @@ var info = {
 
     //添加任务
     addTask: function () {
-        var resId = $('.resourceSelection').attr('data-resid');
+        var resId = $('.radio_box .checked').attr('data-resid');
         var mistake = '';
         // var resId=$("input[name=res]:checked").val();
         var index = true;

@@ -51,6 +51,7 @@ var info = {
         	dataType: 'json',
         	type: 'GET',
         	success(res) {
+        	    console.log(res)
                 var time = new Date();
                 if (res.data!=null) {
                     var listHtml = [];
@@ -77,7 +78,7 @@ var info = {
                       
                         listHtml.push('      </div>');
                         listHtml.push('   </div>');
-                        listHtml.push('   <div class="rightBox">');
+                        listHtml.push('   <div class="contentText">');
                         if(item.taskName.length > 50){
                             listHtml.push('       <h3><b title="'+ item.taskName + '" class="ToTask" data-id="'+ item.taskId +'" data-type="'+ item.taskType+'" data-paperId="'+item.paperId+'" data-resId="'+item.resId+'">'+ item.taskName.substring(0, 60) + '...</b></h3>');
                         } else {
@@ -107,11 +108,13 @@ var info = {
 
 
         // 分页插件
-    },
-	});
+             },
+	    });
 	},
     // 分页插件
     Page: function (total, curr,userType) {
+        if(total>5){
+            $('#page').removeClass('hidden')
         layui.use('laypage', function () {
             var laypage = layui.laypage;
             //执行一个laypage实例
@@ -129,15 +132,17 @@ var info = {
                     }
                 }
             });
-
         })
+        }else{
+            $('#page').addClass('hidden')
+        }
     },
     ToTask:function () {
 		var urlinfo = window.location.href;
 		var value = urlinfo.split("?")[1].split("value=")[1];
 		var PaperId = decodeURI(value);
 		var taskId = PaperId.split(',')[0]
-        $('body').delegate('.rightBox .ToTask','click',function () {
+        $('body').delegate('.contentText .ToTask','click',function () {
             var TaskType = $(this).attr('data-type');
             var TaskId = $(this).attr('data-id');
 			var paperId = $(this).attr('data-paperId')

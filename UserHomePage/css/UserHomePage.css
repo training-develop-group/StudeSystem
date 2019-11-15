@@ -69,17 +69,17 @@
 	width: 100px;
 }
 
-.rightBox {
-	float: left;
+.contentText {
+	/*float: left;*/
 	width: calc(100% - 100px);
 }
 
-.rightBox h3 b {
+.contentText h3 b {
 	line-height: 45px;
 	cursor: pointer;
 }
 
-.rightBox p {
+.contentText p {
 	cursor: default;
 }
 

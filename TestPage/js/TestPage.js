@@ -43,7 +43,7 @@ $(function() {
 		}
 
 	})
-	setTimeInterval = setInterval(info.currentTime, 300000000)
+	setTimeInterval = setInterval(info.currentTime, 30000)
 	if(localStorage.getItem('userType')==2){
 
 
@@ -560,9 +560,9 @@ var info = {
 						// examContent.push(' <ul class="checkbox_box">')
 						item.optionInfo.forEach(function(itemx, index) {
 							// console.log('asdasd')
-							examContent.push(' <li><span data-id="' + itemx.ref + '" class="option">' + itemx.optionType +
-								'</span><span>' + itemx
-								.content + '</span></li>')
+							examContent.push(' <li><div data-id="' + itemx.ref + '" class="option">' + itemx.optionType +
+								'</div><div>' + itemx
+								.content + '</div></li>')
 						})
 						examContent.push('<input type="text" value="' + item.questionId + '" class="questionId hidden">')
 						examContent.push(' </ul>')
@@ -602,9 +602,9 @@ var info = {
 	},
 	// 单选事件
 	radioChange: function() {
-		$('body').delegate('.questionCard .radio_box li span', 'click', function() {
+		$('body').delegate('.questionCard .radio_box li div', 'click', function() {
 			$(this).parent('li').parent('.radio_box').find('li').find('span').removeClass('active');
-			// $('.questionCard .radio_box li span').removeClass('active');
+			$('.questionCard .radio_box li div').removeClass('active');
 			$(this).addClass('active');
 		});
 
@@ -616,7 +616,7 @@ var info = {
 	},
 	// 多选事件
 	checkboxChange: function() {
-		$('body').delegate('.questionCard .checkbox_box li span', 'click', function() {
+		$('body').delegate('.questionCard .checkbox_box li div', 'click', function() {
 			if ($(this).hasClass('active')) {
 				$(this).removeClass('active');
 			} else {
@@ -743,19 +743,20 @@ var info = {
 				layui.use("layer", function() {
 					var layer = layui.layer;
 					layer.open({
-						type: 1 //Page层类型
-							,
+						type: 1 ,
 						closeBtn: 1,
 						area: ['400px', '200px'],
-						title: ['', 'background-color: #279ef0']
-							// ,shade: 0.6 //遮罩透明度
-							,
-
+                        // shade: 0.6 //遮罩透明度
+						move:false,
+						title: ['', 'background-color: #279ef0'],
 						content: '<div class="confirmRelease">是否交卷?</div>' +
 							'<div class="CR-btn-box">' +
 							'<button type="button" class="layui-btn layui-btn-normal layui-btn-sm CR-btnConfirm">确认</button>' +
 							'<button type="button" class="layui-btn layui-btn-normal layui-btn-sm CR-btnCancel">取消</button>' +
-							'</div>'
+							'</div>',
+						success: function(){
+							// layer.iframeAuto(index);
+						}
 					});
 				})
 			} else {
@@ -857,7 +858,7 @@ var info = {
 								});
 								Html.push('<div class="functionBox">');
 								Html.push('<button class="toView" value="' + item.questionId +
-									'"><i class="layui-icon layui-icon-search"></i>查看解析</button>');
+									'"><img src="../imgs/stf.png">查看解析</button>');
 								Html.push('</div>');
 								Html.push('</div>');
 								Html.push(' </li> ')

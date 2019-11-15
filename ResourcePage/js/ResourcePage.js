@@ -137,7 +137,7 @@ var info = {
 						html.push('<tr>');
 						html.push('<td class="getResource" resId="' + item.resId + '">' +
 							'<a href="#" title="' + item.resName +  item.resExt +'">' +
-							item.resName + item.resExt +'</a>' +
+							item.resName + '</a><span>'+ item.resExt +'</span>' +
 							'</td>');
 						if (item.status == 0) {
 							item.status = '未发布';
@@ -193,7 +193,10 @@ var info = {
 						// var a = this.parentElement.parentElement.firstElementChild.outerText;
 						// console.log(a);
 						var resId = $(this).attr("resId"); //点击后获取获取到按钮属性
+                        console.log(resId);
 						var resName = this.parentElement.parentElement.firstElementChild.outerText;
+						console.log(this.parentElement.parentElement.firstElementChild);
+						resName = resName.substring(0, resName.lastIndexOf('.'));
 						// $('.rename').val(resName); //编辑资源名返回值
 						info.updateResNamePopup(resId, resName); //调用修改弹出层传参（resId）
 

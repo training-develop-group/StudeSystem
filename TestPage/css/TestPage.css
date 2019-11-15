@@ -285,6 +285,14 @@
 	    overflow: hidden;
 }
 
+
+.toView img {
+	width: 20px;
+	height: 20px;
+	margin-top: -3px;
+	margin-right: 5px;
+}
+
 /*   单独页面兼容  修改了底边的padding值 确保只有视频的时候不会出现滚动条   */
 @media screen and (min-width: 1500px) and (max-width: 1660px) {
 	.wrapper.wrapper-content {
@@ -351,8 +359,6 @@
 	width: 100%;
 	height: 60px;
 	background-color: #279ef0;
-	/* margin-left: 43px; */
-	/* margin-top: 25px; */
 	border-radius: 5px 5px 0 0;
 }
 
@@ -361,7 +367,7 @@
 }
 
 #centered span {
-	font-size: 16px;
+	font-size: 18px;
 	margin-left: 30px;
 	color: white;
 }
@@ -410,9 +416,8 @@
 }
 
 .functionBox button {
-	font-size: 16px;
+	font-size: 18px;
 	margin-left: 20px;
-	/* margin-top: 12px; */
 	line-height: 50px;
 	border: 0;
 	background-color: #f5f5f5;
@@ -426,6 +431,11 @@
 .distance {
 	margin-top: 20px;
 	margin-left: 30px;
+}
+
+.topicFramework p,
+.topicFramework p span{
+	font-size: 18px;
 }
 
 img {
@@ -568,7 +578,7 @@ img {
 	margin: 10px 0;
 }
 
-.radio_box li span:first-child {
+.radio_box li div:first-child {
 	width: 30px;
 	height: 30px;
 	line-height: 30px;
@@ -581,7 +591,7 @@ img {
 	cursor: pointer;
 }
 
-.checkbox_box li span:first-child {
+.checkbox_box li div:first-child {
 	width: 30px;
 	height: 30px;
 	line-height: 30px;
@@ -598,14 +608,18 @@ img {
 	padding: 10px 5px;
 }
 
-.checkbox_box li span:last-child,
-.radio_box li span:last-child {
+.checkbox_box li div:last-child,
+.radio_box li div:last-child {
+	display: inline-block;
+	white-space:normal;
+	word-break:break-all;
 	margin-left: 25px;
 	font-size: 16px;
+	max-width: 1300px;
 }
 
-.checkbox_box li span:first-child.active,
-.radio_box li span:first-child.active {
+.checkbox_box li div:first-child.active,
+.radio_box li div:first-child.active {
 	border: 2px solid #2ba0e3;
 	color: #2ba0e3;
 }
