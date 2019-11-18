@@ -182,7 +182,7 @@ var info = {
             item.paperName = $('<div>').text(item.paperName).html();
             Html.push('<tr>');
             if (item.paperName.length > 20) {
-                Html.push('<td class="toView" data-id="' + item.paperId + '"><pre class="rename " title="' + item.paperName + '" >' + item.paperName.substring(0, 40) + '...</pre></td>');
+                Html.push('<td class="toView" data-id="' + item.paperId + '"><pre class="rename " title="' + item.paperName + '" >' + item.paperName.substring(0, 20) + '...</pre></td>');
             } else {
                 Html.push('<td class="toView" data-id="' + item.paperId + '"><pre class="rename " title="' + item.paperName + '" >' + item.paperName + '</pre></td>');
             }

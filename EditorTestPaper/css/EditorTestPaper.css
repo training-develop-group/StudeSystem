@@ -72,8 +72,7 @@
     background-color: white;
     /* margin-left: 43px; */
     margin-top: 25px;
-    margin-bottom: 20px;
-    padding: 0px 0px 30px;
+    padding: 0 0 30px;
     border-radius: 3px;
 }
 
@@ -416,4 +415,8 @@ img {
 
 .layui-laypage .layui-laypage-skip {
     background-color: #f1f1f1;
+}
+
+.answerOptions {
+    font-size: 18px ;
 }
