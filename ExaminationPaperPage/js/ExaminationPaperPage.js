@@ -350,7 +350,6 @@ var info = {
             dataType: 'json',
             type: 'POST',
             success(res) {
-                console.log("操作成功");
                 // parent.location.reload();	//刷新父级页面
                 layer.closeAll();
                 info.TableDataRequest(1);
@@ -373,7 +372,6 @@ var info = {
             type: 'POST',
             contentType: 'application/json;charset=utf-8',
             success(res) {
-                console.log("操作成功");
                 // parent.location.reload();	//刷新父级页面
                 layer.closeAll();
                 layer.msg("操作成功");
@@ -392,10 +390,7 @@ var info = {
             type: 'DELETE',
             // contentType: 'application/json;charset=utf-8',
             success(res) {
-                // alert("操作成功");
-                console.log("操作成功");
                 layer.msg("操作成功");
-                // parent.location.reload();	//刷新父级页面
                 layer.closeAll();
                 info.TableDataRequest(PNum);
             },
@@ -425,7 +420,7 @@ var info = {
         $('#test2').val(lastToday);
         layer.open({
             type: 1,
-            title: ['发布任务', 'color:#fff;background-color:#40AFFE;border-radius: 7px 7px 0 0;text-align: center; font-size: 20px; padding: 0;'],
+            title: ['发布任务', 'color:#fff;background-color:#279EF0;text-align: center; font-size: 20px;'],
             shadeClose: false,
             shade: 0.5,
             move: false,

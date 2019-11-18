@@ -174,7 +174,6 @@
 .btn-box button {
 	float: right;
 	margin-left: 20px;
-	box-shadow: 0 1px 4px 0 #2ba0e3;
 }
 
 /*   资源学习通用样式   */
@@ -451,11 +450,6 @@ img {
 	margin-left: 35%;
 	width: 740px;
 	height: 55px;
-}
-
-/* 弹窗位置 */
-.layui-layer {
-	top: 140px !important;
 }
 
 /* 按钮位置 */

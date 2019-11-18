@@ -137,7 +137,7 @@ $(function () {
         layer.open({
             type: 1,
             title: ['选择人员',
-                'color:#fff;background-color:#40AFFE;border-radius: 7px ;overflow-x: hidden; text-align: center;font-size: 20px;cursor: default;'
+                'color:#fff;background-color:#279EF0;overflow-x: hidden; text-align: center;font-size: 20px;cursor: default;'
             ],
             shadeClose: false,
             move: false,
@@ -154,7 +154,7 @@ $(function () {
     $('.selectPapers').click(function () {
         layer.open({
             type: 1,
-            title: ['选择试卷', 'color:#fff;background-color:#40AFFE; text-align: center;font-size: 20px;cursor: default;'],
+            title: ['选择试卷', 'color:#fff;background-color:#279EF0; text-align: center;font-size: 20px;cursor: default;'],
             shadeClose: false,
             shade: 0.8,
             move: false,
@@ -183,6 +183,7 @@ $(function () {
 //用户模糊查询 回车
 $(".userNameRetrieval").keypress(function (e) {
     if (e.which == 13) {
+        $('.myskin #selectPersonnel .layui-form-checkbox').removeClass('layui-form-checked');
         var userNameRetrieval = $('.userNameRetrieval').val();
         info.selectAllUser(userNameRetrieval);
     }
@@ -237,7 +238,7 @@ var info = {
         $('#test2').val(lastToday);
         layer.open({
             type: 1,
-            title: ['新建任务', 'color:#fff;background-color:#40AFFE;;border-radius: 7px ;text-align: center;font-size: 20px;'],
+            title: ['新建任务', 'color:#fff;background-color:#279EF0;text-align: center;font-size: 20px;'],
             shadeClose: false,
             shade: 0.8,
             move: false,
@@ -255,7 +256,7 @@ var info = {
         layer.open({
             type: 1,
             title: ['选择资源',
-                'color:#fff;background-color:#40AFFE;border-radius: 7px ;text-align: center;font-size: 20px; cursor: default;'
+                'color:#fff;background-color:#279EF0;border-radius: 7px ;text-align: center;font-size: 20px; cursor: default;'
             ],
             shadeClose: false,
             shade: 0.8,
@@ -293,7 +294,7 @@ var info = {
                 elem: 'Page', //注意，这里的 test1 是 ID，不用加 # 号
                 count: total, //数据总数，从服务端得
                 limit: '12',
-                theme: '#1E9FFF',
+                theme: '#279ef0',
                 curr: pageNum,
                 groups: '5',
                 layout: ['prev', 'page', 'next', 'limits', 'skip'],
@@ -320,7 +321,7 @@ var info = {
                     elem: 'resPage', //注意，这里的 test1 是 ID，不用加 # 号
                     count: total, //数据总数，从服务端得
                     limit: '9',
-                    theme: '#1E9FFF',
+                    theme: '#279EF0',
                     curr: pageNum,
                     groups: '5',
                     layout: ['prev', 'page', 'next', 'limits'],
@@ -349,7 +350,7 @@ var info = {
                     elem: 'paperPage', //注意，这里的 test1 是 ID，不用加 # 号
                     count: total, //数据总数，从服务端得
                     limit: '12',
-                    theme: '#1E9FFF',
+                    theme: '#279EF0',
                     curr: pageNum,
                     groups: '5',
                     layout: ['prev', 'page', 'next', 'limits', 'skip'],
@@ -466,17 +467,19 @@ var info = {
             dataType: 'json',
             type: 'GET',
             success(res) {
-                var Html = [];
-                res.data.forEach(function (item, index) {
-                    Html.push('<span class="layui-form-label" style="font-size: 16px;"><input type="checkbox" value="' + item.userId +
-                        '"class="checkAll " name="Staff" lay-skin="primary" lay-filter="c_one" ><i>' + item.userName +
-                        '</i></span>')
-                })
-                $('#selectTaskUsers').html(Html.join(''));
-                layui.use('form', function () {
-                    var form = layui.form;
-                    form.render('');
-                });
+                if(res.code == 1){
+                    var Html = [];
+                    res.data.forEach(function (item, index) {
+                        Html.push('<span class="layui-form-label" style="font-size: 16px;"><input type="checkbox" value="' + item.userId +
+                            '"class="checkAll " name="Staff" lay-skin="primary" lay-filter="c_one" ><i>' + item.userName +
+                            '</i></span>');
+                    });
+                    $('#selectTaskUsers').html(Html.join(''));
+                    layui.use('form', function () {
+                        var form = layui.form;
+                        form.render('');
+                    });
+                }
             }
         })
     },
@@ -748,7 +751,7 @@ var info = {
                         type: 1,
                         move: false,
                         title: ['完成情况',
-                            'color:#fff;background-color:#40AFFE;;border-radius: 7px;text-align: center;font-size: 20px;cursor: default;'
+                            'color:#fff;background-color:#279EF0;text-align: center;font-size: 20px;cursor: default;'
                         ],
                         shadeClose: false,
                         shade: 0.8,

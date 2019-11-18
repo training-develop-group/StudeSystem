@@ -621,8 +621,8 @@ var info = {
                     skin: 'errorMsg',
                     area: ['450px', '180px'],
                     move: false,
-                    title: [' ', 'background-color: #289ef0;text-align: center;font-size: 20px;color:white;padding:0 20px;'],
-                    shade: 0.6,
+                    title: [' ', 'background-color: #279ef0;text-align: center;font-size: 20px;color:white;padding:0 20px;'],
+                    shade: 0.5,
                     closeBtn: 1,
                     content: "<p class=''>分数不能为0</p><div class='btn-box'><button class='layui-btn layui-btn-sm layui-btn-normal ok'>确认</button></div>",
                     success: function (res) {
@@ -677,7 +677,9 @@ var info = {
                 PaperQuestionPesult = [];
                 questionScore = [];
                 // 覆盖当前页
-                window.location.href = "../ViewTestPaper/ViewTestPaper.html?value=" + PaperId;
+                setTimeout(function(){
+                    window.location.href = "../ViewTestPaper/ViewTestPaper.html?value=" + PaperId;
+                },2000);
             }
         });
     },

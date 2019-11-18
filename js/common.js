@@ -170,7 +170,7 @@ var All = {
 				area: ['450px', '180px'],
 				move: false,
 				title: ['注销登陆', 'background-color: #289ef0;text-align: center;font-size: 20px;color:white;'],
-				shade: 0.6,
+				shade: 0.5,
 				closeBtn: 0,
 				content: "<p class=''>是否确认注销</p><div class='btn-box'><button class='layui-btn layui-btn-sm layui-btn-normal ok'>确认</button><button class='layui-btn layui-btn-sm no'>取消</button></div>",
 				success: function(res) {

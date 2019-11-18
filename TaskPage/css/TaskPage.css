@@ -122,7 +122,7 @@ tr .oneselfTaskName {
 
 #selectTaskUsers {
     border: 1px solid #C9C5C5;
-    width: 550px;
+    width: 505px;
     height: 300px;
     margin-bottom: 20px;
     overflow: auto;
@@ -159,10 +159,6 @@ tr .oneselfTaskName {
     overflow: auto;
     padding: 5px;
 }
-
-.layui-layer-title {
-}
-
 
 ol,
 ul {
@@ -463,10 +459,6 @@ i {
     border: 1px solid rgb(221, 221, 221);
 }
 
-.layui-layer .layui-layer-title {
-    border-radius: 5px 5px 0 0 !important;
-    padding: 0;
-}
 
 .myskin {
     border-radius: 5px !important;
@@ -607,3 +599,5 @@ i {
     height: 100%;
     margin: 0;
 }
+
+

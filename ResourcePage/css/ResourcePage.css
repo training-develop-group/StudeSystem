@@ -265,12 +265,6 @@ th {
 	top: 590px;
 }
 
-/* 分页 */
-#page {
-	text-align: center;
-	margin-top: 12px;
-}
-
 .Release_content .layui-form-item .layui-form-label,
 .taskObject,
 .selectResource span,

@@ -138,11 +138,6 @@
     font-weight: 600;
 }
 
-.Footer {
-    position: relative;
-    margin-top: 30px;
-}
-
 .questions .operation span:hover {
     color: #279ef0;
     cursor: pointer;

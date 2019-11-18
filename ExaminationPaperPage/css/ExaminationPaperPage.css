@@ -1,414 +1,486 @@
-.content .resources{
-	margin-top: 25px;
-	margin-left: 223px;
-	width: 635px;
-	height:357px;
-	
-}
-.content .statistics{
-	margin-left: 223px;
-	width: 1476px;
-	height: 605px;
-	background-color: #FFFFFF;
-}
-.content .task{
-	margin-top: -372px;
-	margin-left: 878px;
-	width: 401px;
-	height:357px;
-	
-}
-.content .paper{
-	margin-top: -372px;
-	margin-left: 1300px;
-	width: 401px;
-	height:357px;
+.content .resources {
+    margin-top: 25px;
+    margin-left: 223px;
+    width: 635px;
+    height: 357px;
 
 }
-#title{
-	width: 100%;
-	height: 60px;
-	background-color: #279ef0;
-	border-radius: 7px 7px 0 0;
+
+.content .statistics {
+    margin-left: 223px;
+    width: 1476px;
+    height: 605px;
+    background-color: #FFFFFF;
 }
-#centered{
-	line-height: 60px;
+
+.content .task {
+    margin-top: -372px;
+    margin-left: 878px;
+    width: 401px;
+    height: 357px;
+
 }
-#centered span{
-	font-size: 18px;
-	margin-left: 30px;
-	color: white;
-	cursor: default;
+
+.content .paper {
+    margin-top: -372px;
+    margin-left: 1300px;
+    width: 401px;
+    height: 357px;
+
 }
-#newTestPaper{
-	border: none;
-	font-size: 16px;
-	float: right;
-	margin-right: 20px;
-	margin-top: 10px;
-	border-radius: 5px;
-	color: #279ef2;
+
+#title {
+    width: 100%;
+    height: 60px;
+    background-color: #279ef0;
+    border-radius: 7px 7px 0 0;
 }
-#newTestPaper:hover{
-	color: #1b1b1b;
+
+#centered {
+    line-height: 60px;
 }
-#examinationPaperList{
-	/* border: 1px solid black; */
-	width: 100%;
-	min-height: 650px;
-	/* margin-left: 10px; */
-	margin-top: 20px;
-	background-color: white;
+
+#centered span {
+    font-size: 18px;
+    margin-left: 30px;
+    color: white;
+    cursor: default;
 }
-#examinationPaperList .layui-table{
-	width: calc(100% - 50px);
-	margin-left: 25px;
-	border: 0;
-	cellspacing: 1;
+
+#newTestPaper {
+    border: none;
+    font-size: 16px;
+    float: right;
+    margin-right: 20px;
+    margin-top: 10px;
+    border-radius: 5px;
+    color: #279ef2;
 }
+
+#newTestPaper:hover {
+    color: #1b1b1b;
+}
+
+#examinationPaperList {
+    /* border: 1px solid black; */
+    width: 100%;
+    min-height: 650px;
+    /* margin-left: 10px; */
+    margin-top: 20px;
+    background-color: white;
+}
+
+#examinationPaperList .layui-table {
+    width: calc(100% - 50px);
+    margin-left: 25px;
+    border: 0;
+    cellspacing: 1;
+}
+
 th {
-	font-size: 16px !important;
-}
-.layui-form-select dl dd.layui-this{
-	background-color: #279ef2;
-}
-#examinationPaperList table thead th , #examinationPaperInformation td{
-	height: 46px;
-	text-indent: 25px;
-}
-.layui-table th{
-	font-weight: 600;
-	padding: 2px;
-	background-color: white;
-}
-.layui-table td{
-	padding: 0px;
-}
-.layui-table td, .layui-table th{
-	border-width: 0;
-	border-bottom: 1px solid #eeeeee;
-}
-td{
-	font-size: 14px;
-}
-/* 选择人员(小手) */
-.selectPersonnel span{
-	cursor:pointer;
-}
-/* td样式 */
-#examinationPaperInformation td:hover{
-	cursor: default;
-}
-#examinationPaperInformation tr td:nth-child(1){
-	text-indent: 14px;
-}
-.middle{
-	text-indent: 0 !important;
-	text-align: center !important;
-}
-a{
-	text-decoration:none;
-	out-line: none;
-}
-.edit ,
-.selectedTopic ,
-.toView ,
-.delete ,
-.publish{
-	width: 50px;
-	padding: 5px;
-	height: 25px;
-	line-height: 15px;
-	border: 0;
-}
-.toView:hover{
-	cursor: pointer !important;
-}
-.edit{
-	width: 60px;
-}
-#examinationPaperList table thead tr .operation{
-	text-indent: 30px;
-}
-#paging{
-	margin-top: -30px;
-}
-.inputLocation{
-	width: 570px;
-	margin: 30px auto;
-	display: block;
-}
-.inputLocation span{
-	font-size: 15px;
-}
-#nameOfExaminationPaper{
-	margin-left: 20px;
-	width: 480px;
-	border-radius: 4px;
-}
-.layui-input{
-	height: 38px;
-	/* height: 30px; */
-	display: inline;
-}
-.btn-box{
-	width: 360px;
-	position: absolute;
-	margin: 0 auto;
-	left: 0;
-	right: 0;
-	bottom: 25px;
-}
-#confirm{
-	margin-left: 210px;
-	margin-top: 35px;
-	width: 160px;
-	height: 30px;
-	line-height: 30px;
-	border-radius: 5px;
-	background-color: #279ef0;
-	color: white;
-}
-.layui-laypage a{
-	margin-left: 5px;
-	margin-right: 5px;
+    font-size: 16px !important;
 }
 
-.acquiredValue{
-	width: 500px;
-	margin-left: 25px;
+.layui-form-select dl dd.layui-this {
+    background-color: #279ef2;
 }
-.renameConfirm{
-	width: 140px;
-	height: 30px;
-	background-color: #279ef0;
-	border: 1px solid #279ef0;
-	margin: 0 70px 0 0;
-	line-height: 30px;
-	text-align: center;
-	color: white;
+
+#examinationPaperList table thead th, #examinationPaperInformation td {
+    height: 46px;
+    text-indent: 25px;
 }
-.renameCancel{
-	width: 140px;
-	height: 30px;
-	line-height: 30px;
-	text-align: center;
+
+.layui-table th {
+    font-weight: 600;
+    padding: 2px;
+    background-color: white;
 }
-.newTestPaperConfirm{
-	width: 140px;
-	height: 30px;
-	background-color: #279ef0;
-	border: 1px solid #279ef0;
-	line-height: 30px;
-	margin: 0 70px 0 0;
-	text-align: center;
-	color: white;
+
+.layui-table td {
+    padding: 0px;
+}
+
+.layui-table td, .layui-table th {
+    border-width: 0;
+    border-bottom: 1px solid #eeeeee;
+}
+
+td {
+    font-size: 14px;
+}
+
+/* 选择人员(小手) */
+.selectPersonnel span {
+    cursor: pointer;
+}
+
+/* td样式 */
+#examinationPaperInformation td:hover {
+    cursor: default;
+}
+
+#examinationPaperInformation tr td:nth-child(1) {
+    text-indent: 14px;
+}
+
+.middle {
+    text-indent: 0 !important;
+    text-align: center !important;
+}
+
+a {
+    text-decoration: none;
+    out-line: none;
+}
+
+.edit,
+.selectedTopic,
+.toView,
+.delete,
+.publish {
+    width: 50px;
+    padding: 5px;
+    height: 25px;
+    line-height: 15px;
+    border: 0;
+}
+
+.toView:hover {
+    cursor: pointer !important;
+}
+
+.edit {
+    width: 60px;
+}
+
+#examinationPaperList table thead tr .operation {
+    text-indent: 30px;
+}
+
+.inputLocation {
+    width: 570px;
+    margin: 30px auto;
+    display: block;
+}
+
+.inputLocation span {
+    font-size: 15px;
+}
+
+#nameOfExaminationPaper {
+    margin-left: 20px;
+    width: 480px;
+    border-radius: 4px;
+}
+
+.layui-input {
+    height: 38px;
+    /* height: 30px; */
+    display: inline;
+}
+
+.btn-box {
+    width: 360px;
+    position: absolute;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    bottom: 25px;
+}
+
+#confirm {
+    margin-left: 210px;
+    margin-top: 35px;
+    width: 160px;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 5px;
+    background-color: #279ef0;
+    color: white;
+}
+
+.layui-laypage a {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.acquiredValue {
+    width: 500px;
+    margin-left: 25px;
+}
+
+.renameConfirm {
+    width: 140px;
+    height: 30px;
+    background-color: #279ef0;
+    border: 1px solid #279ef0;
+    margin: 0 70px 0 0;
+    line-height: 30px;
+    text-align: center;
+    color: white;
+}
+
+.renameCancel {
+    width: 140px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+}
+
+.newTestPaperConfirm {
+    width: 140px;
+    height: 30px;
+    background-color: #279ef0;
+    border: 1px solid #279ef0;
+    line-height: 30px;
+    margin: 0 70px 0 0;
+    text-align: center;
+    color: white;
 }
 
 .newTestPaperConfirm:hover {
-	color: #fff;
-}
-.newTestPaperCancel{
-	width: 140px;
-	height: 30px;
-	line-height: 30px;
-	text-align: center;
-}
-.layui-btn-primary:hover {
-	border-color: #279ef0;
+    color: #fff;
 }
 
-.layui-layer-tips{
-	margin-top: -75px !important;
+.newTestPaperCancel {
+    width: 140px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+}
+
+.layui-btn-primary:hover {
+    border-color: #279ef0;
+}
+
+.layui-layer-tips {
+    margin-top: -75px !important;
 }
 
 /* 发布弹窗 ------------------------------------------------------- */
-.Release_content{
-	margin: 25px 0 0 0;
+.Release_content {
+    margin: 25px 0 0 0;
 }
-#addTaskPage{
-	width: 600px;
-	margin: 15px 0 0 25px;
-	/* border: 1px solid black; */
+
+#addTaskPage {
+    width: 600px;
+    margin: 15px 0 0 25px;
+    /* border: 1px solid black; */
 }
-.taskLocation{
-	margin: -2px 0 0 0;
+
+.taskLocation {
+    margin: -2px 0 0 0;
 }
-.layui-form-item{
-	margin: 23px auto;
-	width: 540px;
-	/* border: 1px solid black; */
+
+.layui-form-item {
+    margin: 23px auto;
+    width: 540px;
+    /* border: 1px solid black; */
 }
-#addTaskPage input{
-	width: 190px;
-	height: 35px;
+
+#addTaskPage input {
+    width: 190px;
+    height: 35px;
 }
-#addTaskPage .taskName{
-	width: 407px;
+
+#addTaskPage .taskName {
+    width: 407px;
 }
-#test1 , #test2{
-	border-radius: 5px;
+
+#test1, #test2 {
+    border-radius: 5px;
 }
-.taskRemark{
-	width: 300px;
-	height: 100px;
+
+.taskRemark {
+    width: 300px;
+    height: 100px;
 }
-.selectResource , .selectPapers{
-	margin: 0 0 0 35px;
+
+.selectResource, .selectPapers {
+    margin: 0 0 0 35px;
 }
-.selectPersonnel{
-	margin: 0 0 0 15px;
+
+.selectPersonnel {
+    margin: 0;
+    position: relative;
+    left: -6px;
 }
-.selectPersonnel i{
-	line-height: 38px;
+
+.selectPersonnel i {
+    line-height: 38px;
 }
-.taskUsers{
-	width: 241px;
-	height: 121px;
-	overflow-y: auto;
-	border: 1px solid #DADADA;
-	padding: 5px 10px;
-	margin: 0 0 0 37px;
+
+.taskUsers {
+    width: 241px;
+    height: 121px;
+    overflow-y: auto;
+    border: 1px solid #DADADA;
+    padding: 5px 10px;
+    margin: 0 0 0 37px;
 }
+
 .taskUsers p {
-	line-height: 20px;
-	margin-left: 20px;
-	/* margin-right: 40px; */
+    line-height: 20px;
+    margin-left: 20px;
+    /* margin-right: 40px; */
 }
+
 /* 选择人员hover */
-.taskUsers p:hover{
-	background-color: #f2f2f2;
+.taskUsers p:hover {
+    background-color: #f2f2f2;
 }
-.taskUsers p i{
-	float: right;
-	margin-right: 20px;
+
+.taskUsers p i {
+    float: right;
+    margin-right: 20px;
 }
-.selectTaskUsers .layui-form-label{
-	width: 100px;
-	padding: 9px 10px;
+
+.selectTaskUsers .layui-form-label {
+    width: 100px;
+    padding: 9px 10px;
 }
-.taskRemark{
-	width: 447px;
-	height: 86px;
+
+.taskRemark {
+    width: 447px;
+    height: 86px;
 }
-.resourceSelection{
-	border: 0;
+
+.resourceSelection {
+    border: 0;
 }
-.resourceSelection , .usersSelectOk{
-	width: 140px;
+
+.resourceSelection, .usersSelectOk {
+    width: 140px;
 }
-.resourceSelection:hover{
-	color: white;
-	border: 0;
+
+.resourceSelection:hover {
+    color: white;
+    border: 0;
 }
-.usersSelectOk{
-	color: white;
-	position: absolute;
-	margin: 0 auto;
-	width: 140px;
-	left: 0;
-	right: 0;
-	bottom: 25px;
+
+.usersSelectOk {
+    color: white;
+    position: absolute;
+    margin: 0 auto;
+    width: 140px;
+    left: 0;
+    right: 0;
+    bottom: 25px;
 }
-label{
-	font-size: 16px;
+
+label {
+    font-size: 16px;
 }
-.selectResource span , .selectPapers span , .selectPersonnel span{
-	font-size: 16px;
-	color: #5FB878;
+
+.selectResource span, .selectPapers span, .selectPersonnel span {
+    font-size: 16px;
+    color: #5FB878;
 }
-.selectPapers .paperAdd{
-	color: #606060;
+
+.selectPapers .paperAdd {
+    color: #606060;
 }
-.layui-form-item i{
-	color: #5FB878;
+
+.layui-form-item i {
+    color: #5FB878;
 }
+
 /* ...搜索框 */
 .iconSearch {
-	width: 200px;
-	border: 1px solid #C9C9C9;
-	border-radius: 6px;
+    width: 200px;
+    border: 1px solid #C9C9C9;
+    border-radius: 6px;
 }
 
 /* ...复选框 */
 .checkAll {
-	width: 15px;
-	height: 15px;
+    width: 15px;
+    height: 15px;
 }
-.userNameRetrieval{
-	width: 150px;
-	height: 30px;
-	margin: 0 0 0 10px;
-	border: 0;
+
+.userNameRetrieval {
+    width: 150px;
+    height: 30px;
+    margin: 0 0 0 10px;
+    border: 0;
 }
-#selectTaskUsers{
-	border: 1px solid #C9C5C5;
-	width: 550px;
-	height: 275px;
-	margin-bottom: 20px;
-	overflow: auto;
-	background-color: rgb(248, 248, 248);
+
+#selectTaskUsers {
+    border: 1px solid #C9C5C5;
+    width: 550px;
+    height: 275px;
+    margin-bottom: 20px;
+    overflow: auto;
+    background-color: rgb(248, 248, 248);
 }
-#selectTaskUsers .layui-form-label{
-	width: 100px;
-	text-align: left;
+
+#selectTaskUsers .layui-form-label {
+    width: 100px;
+    text-align: left;
 }
-.myskin{
-	border-radius: 7px !important;
+
+.myskin {
+    border-radius: 7px !important;
 }
-i{
-	font-style:normal
+
+i {
+    font-style: normal
 }
+
 /* 时间插件的hover样式 */
-.layui-laydate-footer span:hover{
-	color: #279ef0 !important;
+.layui-laydate-footer span:hover {
+    color: #279ef0 !important;
 }
 
 /* 提示发布弹窗------------------------------------------------- */
-.confirmRelease{
-	width: 235px;
-	margin: 30px auto 0;
-	font-size: 18px;
-}
-.CR-btn-box{	
-	width: 230px;
-	margin: 34px auto 0;
-}
-.CR-btnConfirm{	
-	margin: 0px 40px 0px 0px;
-}
-.CR-btnConfirm , .CR-btnCancel{
-	width: 90px;
-}
-/* 表格....样式 */
-.rename {
-	display: inline-block;
-	width: 96%;
-	text-overflow: ellipsis;
-	overflow: hidden;
-}
-.Release_btn{
-	position: absolute;
-	margin: 0 auto;
-	width: 140px;
-	left: 0;
-	right: 0;
-	bottom: 25px;
-}
-.spacing{
-	margin: 34px auto;
-}
-.timeBox{
-	margin: 37px auto 0;
-}
-.personls{
-	margin: -13px auto;
+.confirmRelease {
+    width: 235px;
+    margin: 30px auto 0;
+    font-size: 18px;
 }
 
-/* 鼠标小手 */
-.chooseTestPaper {
-	cursor: pointer;
+.CR-btn-box {
+    width: 230px;
+    margin: 34px auto 0;
 }
-.taskUsers p i{
-	color: #000000;
+
+.CR-btnConfirm {
+    margin: 0px 40px 0px 0px;
+}
+
+.CR-btnConfirm, .CR-btnCancel {
+    width: 90px;
+}
+
+/* 表格....样式 */
+.rename {
+    display: inline-block;
+    width: 96%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.Release_btn {
+    position: absolute;
+    margin: 0 auto;
+    width: 140px;
+    left: 0;
+    right: 0;
+    bottom: 25px;
+}
+
+.spacing {
+    margin: 34px auto;
+}
+
+.timeBox {
+    margin: 37px auto 0;
+}
+
+.personls {
+    margin: -13px auto;
+}
+
+.taskUsers p i {
+    color: #000000;
 }

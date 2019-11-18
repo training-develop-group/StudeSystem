@@ -37,7 +37,7 @@ $(function () {
                 form.render('checkbox');
             }
 
-        })
+        });
         //选择任务人员全选反选-------------------------------------------------------------------------
 
 
@@ -46,13 +46,13 @@ $(function () {
         //执行一个laydate实例
         laydate.render({
             elem: '#test1', //指定元素,
-            theme: '#40AFFE',
+            theme: '#279EF0',
             type: 'datetime',
 
         });
         laydate.render({
             elem: '#test2', //指定元素,
-            theme: '#40AFFE',
+            theme: '#279EF0',
             type: 'datetime',
         });
         //layui 日期渲染--------------------------------------------------------------------------------------
@@ -88,7 +88,7 @@ $(function () {
          */
         $('.search').keypress(function (e) {
             if (e.which == 13) {
-                var searchKey = $('.search').val()
+                var searchKey = $('.search').val();
                 info.selectResourceList(1, searchKey)
             }
         });
@@ -112,6 +112,7 @@ var lastTime = 0;
 var info = {
     //获取资源列表
     selectResourceList: function (pageNum, resName, resType) {
+        // console.log(resName);
         $.ajax({
             url: TDXUrl + 'manage_system/resource/resources',
             data: {
@@ -173,7 +174,7 @@ var info = {
                     total = res.data.total; //分页总数量
                     JumpPageNum = res.data.pageNum; //下一页复制为了时删除或者修改完事后停留在原本的页数
 
-                    $('.search').val('')
+                    $('.search').val('');
                     info.Pagination(total, pageNum); //调用分页方法（总条数，页数）
 
                     //获取资源详情点击事件
@@ -207,17 +208,17 @@ var info = {
                         Html.push('<option value="2">学习任务</option>');
                         $('#taskType').html(Html.join(''));
 
-                        info.selectAllUser('');//查询所有用户
+                        info.selectAllUser('') //查询所有用户
 
                         info.openAddRolePage(); //发布任务弹窗
 
                         resId = $(this).attr("resId"); //给全局变量resId赋值（添加任务取到resId）
 
                         //发布弹出层中显示被选中的资源名
-                        var Html2 = [];
+                        var Html = [];
                         var resName = $(this).attr("resName");
-                        Html.push(resName);
-                        $('.resAdd').html(Html2.join(''));
+                        Html.push(resName)
+                        $('.resAdd').html(Html.join(''));
 
                     });
 
@@ -226,7 +227,7 @@ var info = {
                     $('.selectPersonnel').off('click').on('click', function () {
                         layer.open({
                             type: 1,
-                            title: ['选择人员', 'color:#fff;background-color:#40AFFE;text-align: center;font-size:20px'],
+                            title: ['选择人员', 'color:#fff;background-color:#279EF0;text-align: center;font-size:20px'],
                             shadeClose: false,
                             shade: 0.2,
                             skin: 'myskin',
@@ -249,7 +250,7 @@ var info = {
                                 '" />  <i  data-id="' + $(this).val() +
                                 '" class="layui-icon layui-icon-close deleteUserName" style="font-size: 20px;"></i></p>'
                             )
-                        })
+                        });
                         $('.taskUsers').html(Html.join(''));
 
 
@@ -268,15 +269,15 @@ var info = {
                                     });
                                 }
                             })
-                        })
+                        });
                         layer.close(layer.index);
-                    })
+                    });
 
 
                     //回车点击事件（模糊查询）
                     $(".userNameRetrieval").keypress(function (e) {
                         if (e.which == 13) {
-                            var userNameRetrieval = $('.userNameRetrieval').val()
+                            var userNameRetrieval = $('.userNameRetrieval').val();
                             info.selectAllUser(userNameRetrieval);
                         }
                     });
@@ -320,12 +321,12 @@ var info = {
         }
         //执行一个laypage实例
         layui.use('laypage', function () {
-            var laypage = layui.laypage
+            var laypage = layui.laypage;
             laypage.render({
                 elem: 'page',
                 count: total,
                 limit: '12',
-                theme: '#1E9FFF',
+                theme: '#279EF0',
                 curr: pageNum,
                 group: '5',
                 layout: ['prev', 'page', 'next', 'limits', 'skip'],
@@ -387,8 +388,9 @@ var info = {
         layer.open({
             type: 1,
             area: ['1296px', '774px'],
-            title: ['查看', 'background-color: #289ef0;text-align: center;font-size: 20px;color:white;'],
-            shade: 0.6,
+            title: ['查看', 'background-color: #279EF0;text-align: center;font-size: 20px;color:white;'],
+            shadeClose: false,
+            shade: 0.5,
             move: false,
             content: $('#viewResourceBox'),
             success: function () {
@@ -430,7 +432,7 @@ var info = {
         layer.open({
             type: 1,
             area: ['800px', '300px'],
-            title: ['查看', 'background-color: #289ef0;text-align: center;font-size: 20px;color:white;'],
+            title: ['查看', 'background-color:#279EF0;text-align: center;font-size: 20px;color:white;'],
             shade: 0.6,
             move: false,
             content: $('#viewResourceBox'),
@@ -453,8 +455,9 @@ var info = {
         layer.open({
             type: 1,
             area: ['850px', '900px'],
-            title: ['查看', 'background-color: #289ef0;text-align: center;font-size: 20px;color:white;'],
-            shade: 0.6,
+            title: ['查看', 'background-color: #279EF0;text-align: center;font-size: 20px;color:white;'],
+            shade: 0.5,
+            shadeClose: false,
             move: false,
             content: $('#viewResourceBox'),
             success: function () {
@@ -560,7 +563,7 @@ var info = {
         var data = {
             'resId': resId,
             'resName': resName,
-        }
+        };
 
         $.ajax({
             url: TDXUrl + 'manage_system/resource/res-name',
@@ -627,8 +630,10 @@ var info = {
                 layer.open({
                     type: 1, //Page层类型
                     area: ['790px', '320px'],
-                    title: ['上传资源', 'background-color: #289ef0;text-align: center;font-size: 20px;color:white;'],
-                    shade: 0.6, //遮罩透明度
+                    title: ['上传资源', 'background-color: #279EF0;text-align: center;font-size: 20px;color:white;'],
+                    shade: 0.5, //遮罩透明度
+                    shadeClose: false,
+                    // closeBtn: 0,
                     btn: ["确认"],
                     btnAlign: 'c',
                     move: false,
@@ -638,7 +643,7 @@ var info = {
                         info.selectResourceList(1);
 
                         //清空上传文件缓存
-                        var file = $("#testList")
+                        var file = $("#testList");
                         file.after(file.clone().val(""));
                         file.remove();
 
@@ -787,7 +792,7 @@ var info = {
         var layer = layui.layer,
             form = layui.form;
         $(".checkAll").prop("checked", false);
-        $("#checkAll").prop("checked", false)
+        $("#checkAll").prop("checked", false);
         form.render('checkbox');
         // 清空输入框
         $('.taskName').val('');
@@ -799,9 +804,9 @@ var info = {
         $('#test2').val(lastToday);
         layer.open({
             type: 1,
-            title: ['发布任务', 'color:#fff;background-color:#40AFFE;border-radius: 7px;text-align: center; font-size: 20px;'],
+            title: ['发布任务', 'color:#fff;background-color:#279EF0;text-align: center; font-size: 20px;'],
             shadeClose: false,
-            shade: 0.6,
+            shade: 0.5,
             skin: 'myskin',
             area: ['700px', '750px'],
             move: false,
@@ -833,12 +838,12 @@ var info = {
             dataType: 'json',
             type: 'GET',
             success(res) {
-                var Html = []
+                var Html = [];
                 res.data.forEach(function (item, index) {
                     Html.push('<span class="layui-form-label" style="font-size: 16px;"><input type="checkbox" value="' + item.userId +
                         '"class="checkAll " name="Staff" lay-skin="primary" lay-filter="c_one" ><i>' + item.userName +
                         '</i></span>')
-                })
+                });
                 $('#selectTaskUsers').html(Html.join(''));
                 layui.use('form', function () {
                     var form = layui.form;
@@ -854,7 +859,7 @@ var info = {
         console.log(resId);
         var mistake = '';
         var index = true;
-        var userId = ''
+        var userId = '';
         $.each($("[name='Staff']:checked"), function (i, val) {
             userId += ',' + val.value
         })
@@ -864,15 +869,15 @@ var info = {
         }
         if ($('#test2').val() == '') {
 
-            mistake = '请选择结束时间'
+            mistake = '请选择结束时间';
             index = false;
         }
         if ($('#test1').val() > $('#test2').val()) {
-            mistake = '结束时间不能小于开始时间'
+            mistake = '结束时间不能小于开始时间';
             index = false;
         }
         if (userId == '') {
-            mistake = '请选择做任务人员'
+            mistake = '请选择做任务人员';
             index = false;
         }
         if ($('#taskType').val() == '1') {
@@ -911,10 +916,10 @@ var info = {
             'endTime': dateFormata($('#test2').val()),
             'userId': userId
 
-        }
-        console.log(data.startTime)
+        };
+        console.log(data.startTime);
         if (index != false) {
-            console.log(data)
+            console.log(data);
             $.ajax({
                 url: LBUrl + 'manage_system/task/tasks',
                 data: JSON.stringify(data),
@@ -925,14 +930,14 @@ var info = {
                     layer.msg('添加成功');
                     info.selectResourceList(JumpPageNum);
                 }
-            })
+            });
             layer.closeAll();
         } else {
             layer.msg(mistake);
             $('.addOk').removeAttr('disabled');
         }
     },
-}
+};
 
 
 /**

@@ -32,7 +32,7 @@ body {
 
 
 .wrapper.wrapper-content {
-    padding: 20px 220px 50px;
+    padding: 20px 220px 0px;
 }
 
 .clearfix:after {
@@ -232,8 +232,9 @@ body {
     margin-left: 30px
 }
 
-.logOut .layui-layer-title {
-    padding: 0 20px 0 20px;
+.layui-layer-title {
+    padding: 0 20px 0 20px !important;
+    border-radius: 5px 5px 0 0 !important;
 }
 
 .layui-card-body {
@@ -268,7 +269,7 @@ a:hover {
 .no {
     background-color: #fff;
     color: #1b1b1b;
-    border: 1px solid #dedede;
+    border: 1px solid rgb(208, 208, 208) !important;
 }
 
 .btn {
@@ -285,8 +286,8 @@ a:hover {
 }
 
 .no:hover {
-    background-color: #C0C0C0;
-    border: 1px solid #dedede;
+    border-color: #dedede !important;
+    color: #1b1b1b !important;
 }
 
 .yes {
