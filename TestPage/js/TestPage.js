@@ -264,11 +264,12 @@ $(function () {
                                 $('.video video').attr('src', 'http://192.168.188.109:8848/' + resc.data.path);
                                 setTimeInterval = setInterval(info.NoProgressBar);
 
-                            } else if (resc.data.resType === 2) {
+
+                            } else if (resc.data.resType == 2) {
                                 $('.audio').removeClass('hidden');
                                 $('.audio audio').attr('src', 'http://192.168.188.109:8848/' + resc.data.path);
                                 setTimeInterval = setInterval(info.NoProgressBar);
-                            } else if (resc.data.resType === 3) {
+                            } else if (resc.data.resType == 3) {
                                 $('.doc').removeClass('hidden');
                                 $('.measurement').addClass('text');
                                 // $('.video').addClass('hidden')
@@ -284,17 +285,39 @@ $(function () {
                 layer.msg("学习完就不能回去喽")
             }
         });
-        //点击
+        //点击测试
         $('.test').off('click').on('click', function () {
-            if (localStorage.getItem('userType') === 2) {
-                $('.content').removeClass('hidden')
-            }
-            $('.doc,.video,.audio').addClass('hidden');
-            $('.active').removeClass('active');
-            $('.test').addClass('active');
-            info.getList(taskId, taskType, paperId, resId);
+            layer.open({
+                type: 1,
+                skin: 'testStart',
+                area: ['450px', '180px'],
+                move: false,
+                title: ['开始测试', 'background-color: #289ef0;text-align: center;font-size: 20px;color:white;'],
+                shade: 0.5,
+                closeBtn: 0,
+                content: "<p class=''>准备好了吗？考试期间无法退出</p><div class='btn-box'><button class='layui-btn layui-btn-sm layui-btn-normal ok'>准备好了</button><button class='layui-btn layui-btn-sm no'>还没有</button></div>",
+                success: function (res) {
+                    $('.testStart .ok').off('click').on('click', function () {
+                        debugger;
+                        if (localStorage.getItem('userType') == 2) {
+                            $('.content').removeClass('hidden')
+                        }
+                        $('.doc,.video,.audio').addClass('hidden');
+                        $('.active').removeClass('active');
+                        $('.test').addClass('active');
+                        info.getList(taskId, taskType, paperId, resId);
+                        layer.close(layer.index);
+                    });
+
+                    $('.no').off('click').on('click', function () {
+                        layer.close(layer.index);
+                    });
+                }
+            })
         })
     });
+    // 返回用户首页
+    info.goBack();
 });
 
 
@@ -863,6 +886,11 @@ var info = {
         // }
         // lastTime = nowTime; //播放时间中转（全局变量）
     },
+    goBack: function () {
+        $('.goBack').off('click').on('click', function () {
+            window.location.href = '/StudeSystemdevelop/UserHomePage/UserHomePage.html'
+        });
+    }
 };
 var dateFormata = function (time) {
     var date = new Date(time);
