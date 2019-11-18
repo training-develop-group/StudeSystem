@@ -20,9 +20,12 @@
     position: relative;
     margin: 0 10px;
     float: left;
+    width: 152px;
+    height: 190px;
+    overflow: hidden;
 }
 
-#resPage{
+#resPage {
     text-align: center;
 }
 
@@ -37,7 +40,7 @@
     height: 150px;
     width: 150px;
     border: 1px solid #dadada;
-    margin-top: 20px;
+    margin: 20px 0 0 0;
     position: relative;
     cursor: pointer;
 }
@@ -59,8 +62,8 @@
 
 .img-box.checked {
     border: 3px solid rgb(64, 175, 254);
-    width: 144px;
-    height: 144px;
+    width: 146px;
+    height: 146px;
 }
 
 .img-box.checked img {
@@ -104,17 +107,17 @@ td {
 }
 
 tr .oneselfTaskName {
-	cursor: pointer;
-	text-align: left;
-	padding-right: 0 ;
+    cursor: pointer;
+    text-align: left;
+    padding-right: 0;
 }
 
-.oneselfTaskName span{
-	display: inline-block;
-	width: 267px;
-	white-space: nowrap;
-	text-overflow:ellipsis;
-	overflow:hidden;
+.oneselfTaskName span {
+    display: inline-block;
+    width: 267px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 #selectTaskUsers {
@@ -371,21 +374,34 @@ ul div input {
     border-radius: 2px;
 }
 
+#TaskList table thead th{
+    font-weight: 600;
+}
+
+
 .layui-table td,
 .layui-table th {
     border-style: none;
-
+    height: 46px;
+    padding: 0;
+    text-indent: 25px;
 }
 
 .layui-table th {
     font-size: 16px;
-
 }
 
 .layui-table thead tr {
     background-color: #FFFFFF;
 }
-
+.TaskList{
+    width: 100%;
+}
+.layui-table{
+    width: calc(100% - 50px);
+    margin-left: 25px;
+    border: 0;
+}
 th {
     border: none;
     border-bottom: 0.5px solid #E9E7E7;
@@ -533,8 +549,8 @@ i {
     color: #5FB878;
 }
 
-.selectPapers img{
-	margin-top: 5px;
+.selectPapers img {
+    margin-top: 5px;
 }
 
 .layui-btn-primary:hover {
@@ -559,12 +575,12 @@ i {
 }
 
 .paperName span {
-	display: inline-block;
-	width: 150px;
-	word-wrap: break-word;
-	white-space: pre;
-	text-overflow: ellipsis;
-	overflow: hidden;
+    display: inline-block;
+    width: 150px;
+    word-wrap: break-word;
+    white-space: pre;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 #paperPage {

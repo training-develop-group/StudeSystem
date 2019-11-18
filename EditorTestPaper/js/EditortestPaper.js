@@ -56,8 +56,8 @@ $(function () {
             console.log(getQuestionId, getQuestionScore);
             // 将试题id和试题分值保存到对象中
             var questionData = {
-                questionId:getQuestionId,
-                questionScore:getQuestionScore
+                questionId: getQuestionId,
+                questionScore: getQuestionScore
             };
             // 将保存好的对象添加到数组中
             backSelectQuestions.push(questionData);
@@ -90,8 +90,8 @@ $(function () {
 
     });
 
-    $('#goBack').off('click').on('click',function () {
-        window.location.href = "../ExaminationPaperPage/ExaminationPaperPage.html?" ;
+    $('#goBack').off('click').on('click', function () {
+        window.location.href = "../ExaminationPaperPage/ExaminationPaperPage.html?";
     });
 });
 // 试卷ID(全局)
@@ -175,11 +175,11 @@ var info = {
             Html.push('<p class="distanceNum"><span class="num">' + (index + 1) + '</span>. ' + item.questionType + '  （<span class="newScore">' + item.score + '</span> 分）</p>');
             // 转义(已防有标签的样式被html识别)
             item.content = $('<div>').text(item.content).html();
-            Html.push('<p class="distance title">' + item.content + '</p>');
+            Html.push('<pre class="distance title">' + item.content + '</pre>');
             item.optionInfo.forEach(function (items, index) {
                 // 转义(已防有标签的样式被html识别)
                 items.content = $('<div>').text(items.content).html();
-                Html.push('<p class="distance">' + items.optionType + ' ' + items.content + '</p>');
+                Html.push('<div class="optionStyle clearfix"><span>' + items.optionType + '.</span><pre>' + items.content + '</pre></div>');
             });
             Html.push('</div>');
             Html.push('<div class="functionBox">');
@@ -196,6 +196,7 @@ var info = {
         $('.fraction').off('click').on('click', function () {
             var QusetionId = $(this).parent().parent().find('.qusetionId').val();
             info.fraction(QusetionId, this);
+            $('#goBack').hide();
         });
         // 解析
         $('.toView').off('click').on('click', function () {
@@ -206,24 +207,51 @@ var info = {
         $('.moveup').off('click').on('click', function () {
             // 显示保存更改按钮
             $('#saveChanges').show();
+            $('#goBack').hide();
         });
         // 点击移出，删除本身
         $('.moveOut').off('click').on('click', function () {
             var QusetionIdS = $(this).parent().parent().find('.qusetionId').val();
             allQuestions.push(QusetionIdS);
+            var $that = $(this);
             // 删除this的父级的父级
-            $(this).parent().parent().remove();
+            layer.open({
+                type: 1,
+                skin: 'removeQusetion',
+                area: ['450px', '180px'],
+                move: false,
+                title: ['确认移除', 'background-color: #289ef0;text-align: center;font-size: 20px;color:white;padding:0 20px;'],
+                shade: 0.6,
+                closeBtn: 1,
+                content: "<p class=''>确认移除该选择题？</p><div class='btn-box'><button class='layui-btn layui-btn-sm layui-btn-normal ok'>确认</button><button class='layui-btn layui-btn-sm layui-btn-primary close'>取消</button></div>",
+                success: function (res) {
+                    $('.ok').off('click').on('click', function () {
+                        layer.close(layer.index);
+                        $that.parent().parent().remove();
+                        layer.msg('移除成功');
+                        console.log($('.mobileFramework .sortableitem').length);
+                        for(var i = 0; i <= $('.mobileFramework .sortableitem').length; i++){
+                            $('.mobileFramework .sortableitem .num').eq(i).text(i+1);
+                        }
+                    });
+                    $('.close').off('click').on('click', function () {
+                        layer.close(layer.index);
+                    });
+                }
+            });
             var a = $(".mobileFramework").find('.sortableitem').length;
             if (a == 0) {
                 $('#saveChanges').hide();
             } else {
                 $('#saveChanges').show();
             }
+            $('#goBack').hide();
         });
         // 点击下移
         $('.movedown').off('click').on('click', function () {
             // 显示保存更改按钮
             $('#saveChanges').show();
+            $('#goBack').hide();
         });
         // 点击保存更改
         $('#saveChanges').off('click').on('click', function () {
@@ -273,14 +301,11 @@ var info = {
             Html.push('<p class="distanceNum"><span class="num">' + (index + 1) + '</span>. ' + item.questionType + '</p>');
             // 转义(已防有标签的样式被html识别)
             item.content = $('<div>').text(item.content).html();
-            Html.push('<p class="distance title">' + item.content + '</p>');
+            Html.push('<pre class="distance title">' + item.content + '</pre>');
             item.optionInfo.forEach(function (items, index) {
                 // 转义(已防有标签的样式被html识别)
                 items.content = $('<div>').text(items.content).html();
-                if (index == 0 ) {
-                    Html.push('<p class="distance title">' + items.optionType + ' ' + items.content + '</p>');
-                }
-                Html.push('<p class="distance">' + items.optionType + ' ' + items.content + '</p>');
+                Html.push('<div class="optionStyle clearfix"><span>' + items.optionType + '.</span><pre>' + items.content + '</pre></div>');
             });
             Html.push('</div>');
             Html.push('<div class="functionBox">');
@@ -348,24 +373,52 @@ var info = {
         $('.moveup').off('click').on('click', function () {
             // 显示保存更改按钮
             $('#saveChanges').show();
+            $('#goBack').hide();
         });
         // 点击移出，删除本身
         $('.moveOut').off('click').on('click', function () {
             var QusetionIdS = $(this).parent().parent().find('.qusetionId').val();
             allQuestions.push(QusetionIdS);
+            var $that = $(this);
             // 删除this的父级的父级
-            $(this).parent().parent().remove();
+            layer.open({
+                type: 1,
+                skin: 'removeQusetion',
+                area: ['450px', '180px'],
+                move: false,
+                title: ['确认移除', 'background-color: #289ef0;text-align: center;font-size: 20px;color:white;padding:0 20px;'],
+                shade: 0.6,
+                closeBtn: 1,
+                content: "<p class=''>确认移除该选择题？</p><div class='btn-box'><button class='layui-btn layui-btn-sm layui-btn-normal ok'>确认</button><button class='layui-btn layui-btn-sm layui-btn-primary close'>取消</button></div>",
+                success: function (res) {
+                    $('.ok').off('click').on('click', function () {
+                        layer.close(layer.index);
+                        $that.parent().parent().remove();
+                        layer.msg('移除成功');
+                        console.log($('.mobileFramework .sortableitem').length);
+                        for(var i = 0; i <= $('.mobileFramework .sortableitem').length; i++){
+                            $('.mobileFramework .sortableitem .num').eq(i).text(i+1);
+                        }
+                    });
+                    $('.close').off('click').on('click', function () {
+                        layer.close(layer.index);
+                    });
+                }
+            });
             $('#saveChanges').show();
+            $('#goBack').hide();
         });
         // 点击下移
         $('.movedown').off('click').on('click', function () {
             // 显示保存更改按钮
             $('#saveChanges').show();
+            $('#goBack').hide();
         });
         // 设置分值
         $('.fraction').off('click').on('click', function () {
             var QusetionId = $(this).parent().parent().find('.qusetionId').val();
             info.fraction(QusetionId, this);
+            $('#goBack').hide();
         });
         // 点击保存更改
         $('#saveChanges').off('click').on('click', function () {
@@ -413,11 +466,11 @@ var info = {
             viewHtml.push('<p class="distanceNum"><span class="num">' + (index + 1) + '</span>. ' + item.questionType + '  （<span class="newScore"  id="data-score-' + index + '">' + item.newScore + '</span> 分）</p>');
             // 转义(已防有标签的样式被html识别)
             item.content = $('<div>').text(item.content).html();
-            viewHtml.push('<p class="distance title">' + item.content + '</p>');
+            viewHtml.push('<pre class="distance title">' + item.content + '</pre>');
             item.optionInfo.forEach(function (items, index) {
                 // 转义(已防有标签的样式被html识别)
                 items.content = $('<div>').text(items.content).html();
-                viewHtml.push('<p class="distance">' + items.optionType + ' ' + items.content + '</p>');
+                viewHtml.push('<div class="optionStyle clearfix"><span>' + items.optionType + '.</span><pre>' + items.content + '</pre></div>');
             });
             viewHtml.push('</div>');
             viewHtml.push('<div class="functionBox">');
@@ -436,7 +489,7 @@ var info = {
         for (var j = 0; j < data.length; j++) {
             console.log(backSelectQuestions.length);
             for (var i = 0; i < backSelectQuestions.length; i++) {
-                if(backSelectQuestions[i].questionId == data[j].questionId){
+                if (backSelectQuestions[i].questionId == data[j].questionId) {
                     $('#data-score-' + j).text(backSelectQuestions[i].questionScore);
                 }
             }
@@ -459,23 +512,51 @@ var info = {
             } else {
                 $('#saveChanges').show();
             }
-            $(this).parent().parent().remove();
-
+            var $that = $(this);
+            // 删除this的父级的父级
+            layer.open({
+                type: 1,
+                skin: 'removeQusetion',
+                area: ['450px', '180px'],
+                move: false,
+                title: ['确认移除', 'background-color: #289ef0;text-align: center;font-size: 20px;color:white;padding:0 20px;'],
+                shade: 0.6,
+                closeBtn: 1,
+                content: "<p class=''>确认移除该选择题？</p><div class='btn-box'><button class='layui-btn layui-btn-sm layui-btn-normal ok'>确认</button><button class='layui-btn layui-btn-sm layui-btn-primary close'>取消</button></div>",
+                success: function (res) {
+                    $('.ok').off('click').on('click', function () {
+                        layer.close(layer.index);
+                        $that.parent().parent().remove();
+                        layer.msg('移除成功');
+                        console.log($('.mobileFramework .sortableitem').length);
+                        for(var i = 0; i <= $('.mobileFramework .sortableitem').length; i++){
+                            $('.mobileFramework .sortableitem .num').eq(i).text(i+1);
+                        }
+                    });
+                    $('.close').off('click').on('click', function () {
+                        layer.close(layer.index);
+                    });
+                }
+            });
+            $('#goBack').hide();
         });
         // 点击上移
         $('.moveup').off('click').on('click', function () {
             // 显示保存更改按钮
             $('#saveChanges').show();
+            $('#goBack').hide();
         });
         // 点击下移
         $('.movedown').off('click').on('click', function () {
             // 显示保存更改按钮
             $('#saveChanges').show();
+            $('#goBack').hide();
         });
         // 设置分值
         $('.fraction').off('click').on('click', function () {
             var QusetionId = $(this).parent().parent().find('.qusetionId').val();
             info.fraction(QusetionId, this);
+            $('#goBack').hide();
         });
         // 解析
         $('.toView').off('click').on('click', function () {
@@ -517,11 +598,39 @@ var info = {
         $(".newScore").each(function () {
             var NScore = $(this).text();
             if (NScore == '' || NScore == null || NScore == undefined) {
-                layer.msg("有试题未设置分数，请设置分数");
+                layer.open({
+                    type: 1,
+                    skin: 'errorMsg',
+                    area: ['450px', '180px'],
+                    move: false,
+                    title: [' ', 'background-color: #289ef0;text-align: center;font-size: 20px;color:white;padding:0 20px;'],
+                    shade: 0.6,
+                    closeBtn: 1,
+                    content: "<p class=''>有试题未设置分数，请设置分数</p><div class='btn-box'><button class='layui-btn layui-btn-sm layui-btn-normal ok'>确认</button></div>",
+                    success: function (res) {
+                        $('.ok').off('click').on('click', function () {
+                            layer.close(layer.index);
+                        });
+                    }
+                });
                 chack = false;
                 return false;
             } else if (NScore == 0) {
-                layer.msg("分数不能为0");
+                layer.open({
+                    type: 1,
+                    skin: 'errorMsg',
+                    area: ['450px', '180px'],
+                    move: false,
+                    title: [' ', 'background-color: #289ef0;text-align: center;font-size: 20px;color:white;padding:0 20px;'],
+                    shade: 0.6,
+                    closeBtn: 1,
+                    content: "<p class=''>分数不能为0</p><div class='btn-box'><button class='layui-btn layui-btn-sm layui-btn-normal ok'>确认</button></div>",
+                    success: function (res) {
+                        $('.ok').off('click').on('click', function () {
+                            layer.close(layer.index);
+                        });
+                    }
+                });
                 chack = false;
                 return false;
             }
@@ -563,13 +672,10 @@ var info = {
             success(res) {
                 // 隐藏保存更改按钮
                 $('#saveChanges').hide();
-                console.log(res.msg);
                 layer.msg(res.msg);
                 JPaperQuestion = [];
                 PaperQuestionPesult = [];
                 questionScore = [];
-                // 刷新上一个页面
-                opener.location.reload();
                 // 覆盖当前页
                 window.location.href = "../ViewTestPaper/ViewTestPaper.html?value=" + PaperId;
             }

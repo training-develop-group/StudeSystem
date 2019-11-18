@@ -63,27 +63,26 @@ var info = {
 					Html.push('<li class="questions">');
 					if (item.questionType == 1) {
 						Html.push('<p class="Q-question"><span class="num">' + index +
-							'.</span>单选题</p>');
+							'. </span>单选题</p>');
 					} else {
 						Html.push('<p class="Q-question"><span class="num">' + index +
-							'.</span>多选题</p>');
+							'. </span>多选题</p>');
 					}
 					Html.push('<span>');
-					Html.push('<p class="QuestionContent">' + item.content + '</p>');
+					Html.push('<pre class="QuestionContent">' + item.content + '</pre>');
 					item.optionInfo.forEach(function(optionItem) {
-						Html.push('<p class="distance">' + optionItem.optionType + '.' + optionItem.content + '</p>');
+						Html.push('<div class="optionStyle clearfix"><span>' + optionItem.optionType + '.</span><pre>' + optionItem.content + '</pre></div>');
 					});
 					Html.push('</span>');
-					Html.push('<div class="operation">');
+					Html.push('<div class="operation functionBox">');
 					Html.push('<input type="hidden"  value="' + item.questionId + '">');
-					Html.push('<p  class="distance" style="display:none;">' + item.status + '</p>');
+					Html.push('<p  class="distance " style="display:none;">' + item.status + '</p>');
 					if (item.status == 1){
-						Html.push('<span class="view"><img src="../imgs/stf.png" />查看解析</span>');
+						Html.push('<button class="view"><img src="../imgs/stf.png" />查看解析</button>');
 					} else {
-                        Html.push('<span class="view"><img src="../imgs/stf.png" />查看解析</span>');
-						Html.push('<span class="edit"><img src="../imgs/stb.png" />编辑试题</span>');
-						Html.push(
-							'<span class="deleteQuestions"><img src="../imgs/stt.png" />删除试题</span>');
+                        Html.push('<button class="view"><img src="../imgs/stf.png" />查看解析</button>');
+						Html.push('<button class="edit"><img src="../imgs/stb.png" />编辑试题</button>');
+						Html.push('<button class="deleteQuestions"><img src="../imgs/stt.png" />删除试题</button>');
 						Html.push('</div>');
 					}
 					Html.push('</li>');
