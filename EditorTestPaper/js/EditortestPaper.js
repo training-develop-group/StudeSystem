@@ -709,7 +709,6 @@ var info = {
                         title: ['查看解析',
                             'background-color: #279ef0;text-align: center;font-size: 20px;line-height: 43px;color:white;padding: 0px;'
                         ],
-                        // shade: 0.6, //遮罩透明度
                         content: '<div class="answerContent">' +
                             '<p>正确答案：<span class="answerOptions">' + OptionType + '</span></p>' +
                             '<p>答案解析：</p>' +
