@@ -375,6 +375,8 @@ ul div input {
 }
 
 
+#selectPapers .layui-table td,
+#selectPapers .layui-table th,
 .layui-table td,
 .layui-table th {
     border-style: none;

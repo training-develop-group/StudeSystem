@@ -72,8 +72,7 @@ $(function () {
 
         info.uploadPopup(); //上传文件
 
-
-        $('#hiddenAudio').click(function () {
+        $('#hiddenAudio').off('click').on('click', function () {
             var $eleForm = $("<form method='get'></form>");
             $eleForm.attr("action", "http://192.168.188.109:8848/0625ae7ec85c4b94bf1cde70d2692b67.mp4");
             $(document.body).append($eleForm);
@@ -123,10 +122,9 @@ var info = {
             },
             dataType: 'json',
             type: 'GET',
-            // contentType: 'application/json;charset=utf-8',
             success(res) {
                 var html = [];
-                if (res.code == 1) {
+                if (res.code === 1) {
                     res.data.list.forEach(function (item) {
                         item.resName = $('<div>').text(item.resName).html();
                         html.push('<tr>');
@@ -139,7 +137,6 @@ var info = {
                             item.status = '未发布';
                         } else if (item.status == 1) {
                             item.status = '已发布';
-
                         }
                         html.push('<td class="centerText">' + item.status + '</td>');
                         if (item.resType == 1) { //判断资源类型
@@ -168,7 +165,7 @@ var info = {
                                 '&path=' + item.path + '"><button class="download">下载</button></pre></td>');
                             html.push('</tr>');
                         }
-                    })
+                    });
                     $('#contentList').html(html.join(''));
 
                     total = res.data.total; //分页总数量
@@ -208,7 +205,7 @@ var info = {
                         Html.push('<option value="2">学习任务</option>');
                         $('#taskType').html(Html.join(''));
 
-                        info.selectAllUser('') //查询所有用户
+                        info.selectAllUser('');//查询所有用户
 
                         info.openAddRolePage(); //发布任务弹窗
 
@@ -242,12 +239,12 @@ var info = {
 
 
                     //选择人员确认按钮点击事件
-                    $('.usersSelectOk').click(function () {
+                    $('.usersSelectOk').off('click').on('click',function(){
                         var Html = [];
                         $.each($("[name='Staff']:checked"), function (i, val) {
                             Html.push('<p>' + $(this).siblings('i').text() + '<input type="text"  hidden="" id="" value="' + $(this)
                                     .val() +
-                                '" />  <i  data-id="' + $(this).val() +
+                                '" /> <i  data-id="' + $(this).val() +
                                 '" class="layui-icon layui-icon-close deleteUserName" style="font-size: 20px;"></i></p>'
                             )
                         });
@@ -255,7 +252,7 @@ var info = {
 
 
                         //点击“ × ”删除被选择的指定人员
-                        $('.deleteUserName').click(function () {
+                        $('.deleteUserName').off('click').on('click',function(){
                             $(this).parents('p').remove();
                             var userId = $(this).attr('data-id');
                             console.log(userId)
@@ -345,6 +342,8 @@ var info = {
      * 根据resId获取资源详情
      * @param {Object} resId 获取资源详情的条件
      */
+
+    // 获取资源
     getResource: function (resId) {
         $.ajax({
             url: TDXUrl + 'manage_system/resource/' + resId,
@@ -433,7 +432,7 @@ var info = {
             type: 1,
             area: ['800px', '300px'],
             title: ['查看', 'background-color:#279EF0;text-align: center;font-size: 20px;color:white;'],
-            shade: 0.6,
+            shade: 0.5,
             move: false,
             content: $('#viewResourceBox'),
             success: function () {
@@ -480,8 +479,6 @@ var info = {
             }
         });
     },
-
-
     //获取视频播放到的时间然后记录
     currentTime: function () {
         var myVideo = document.getElementById("myVideo"); //获取视频DOM元素
@@ -489,8 +486,6 @@ var info = {
         console.log(myVideo.currentTime);
         info.recordVideoPlaybackTime(currentTime); //调用记录方法
     },
-
-
     /**
      * 记录视频播放的时间
      * @param {Object} seconds
@@ -616,15 +611,12 @@ var info = {
 
     //上传文件
     uploadPopup: function () {
-        // $('#uploadFile').click(function() {
         $(document).on('click', '#uploadFile', function () {
-
             $('.upMsg').hover(function () {
                 $('.upMsgContent').slideDown("slow");
             }, function () {
                 $('.upMsgContent').slideUp("slow");
             });
-
             layui.use("layer", function () {
                 var layer = layui.layer;
                 layer.open({
@@ -816,9 +808,8 @@ var info = {
                     var form = layui.form;
                     form.render('select');
                 });
-
                 //发布任务
-                $('.addOk').click(function () {
+                $('.addOk').off('click').on('click',function(){
                     $(this).attr('disabled', 'disabled');
                     info.addTask();
                 });

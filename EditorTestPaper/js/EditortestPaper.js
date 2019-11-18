@@ -230,8 +230,8 @@ var info = {
                         $that.parent().parent().remove();
                         layer.msg('移除成功');
                         console.log($('.mobileFramework .sortableitem').length);
-                        for(var i = 0; i <= $('.mobileFramework .sortableitem').length; i++){
-                            $('.mobileFramework .sortableitem .num').eq(i).text(i+1);
+                        for (var i = 0; i <= $('.mobileFramework .sortableitem').length; i++) {
+                            $('.mobileFramework .sortableitem .num').eq(i).text(i + 1);
                         }
                     });
                     $('.close').off('click').on('click', function () {
@@ -396,8 +396,8 @@ var info = {
                         $that.parent().parent().remove();
                         layer.msg('移除成功');
                         console.log($('.mobileFramework .sortableitem').length);
-                        for(var i = 0; i <= $('.mobileFramework .sortableitem').length; i++){
-                            $('.mobileFramework .sortableitem .num').eq(i).text(i+1);
+                        for (var i = 0; i <= $('.mobileFramework .sortableitem').length; i++) {
+                            $('.mobileFramework .sortableitem .num').eq(i).text(i + 1);
                         }
                     });
                     $('.close').off('click').on('click', function () {
@@ -529,8 +529,8 @@ var info = {
                         $that.parent().parent().remove();
                         layer.msg('移除成功');
                         console.log($('.mobileFramework .sortableitem').length);
-                        for(var i = 0; i <= $('.mobileFramework .sortableitem').length; i++){
-                            $('.mobileFramework .sortableitem .num').eq(i).text(i+1);
+                        for (var i = 0; i <= $('.mobileFramework .sortableitem').length; i++) {
+                            $('.mobileFramework .sortableitem .num').eq(i).text(i + 1);
                         }
                     });
                     $('.close').off('click').on('click', function () {
@@ -677,9 +677,9 @@ var info = {
                 PaperQuestionPesult = [];
                 questionScore = [];
                 // 覆盖当前页
-                setTimeout(function(){
+                setTimeout(function () {
                     window.location.href = "../ViewTestPaper/ViewTestPaper.html?value=" + PaperId;
-                },2000);
+                }, 2000);
             }
         });
     },
@@ -747,7 +747,7 @@ var info = {
             // 给输入框赋值
             $('#nameOfExaminationPaper').val(oldScores);
             // 点击确认
-            $('.newTestPaperConfirm').click(function () {
+            $('.newTestPaperConfirm').off('click').on('click', function () {
                 var score = $('#nameOfExaminationPaper').val();
                 // 验证是否是数字
                 var reg = /^\d+((\.\d+|\/[1-9]+))?$/;
@@ -774,7 +774,7 @@ var info = {
                 $('#saveChanges').show();
             });
             // 点击取消
-            $('.newTestPaperCancel').click(function () {
+            $('.newTestPaperCancel').off('click').on('click', function () {
                 // 关闭弹窗
                 layer.closeAll();
             });

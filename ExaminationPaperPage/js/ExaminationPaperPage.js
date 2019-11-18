@@ -59,9 +59,9 @@ $(function () {
                 form.render('checkbox');
             }
 
-        })
+        });
         // 点击确认(选择人员)
-        $('.usersSelectOk').click(function () {
+        $('.usersSelectOk').off('click').on('click', function () {
             var Html = [];
             $.each($("[name='Staff']:checked"), function (i, val) {
                 Html.push('<p>' + $(this).siblings('i').text() + '<input type="text"  hidden="" id="" value="' + $(this).val() +
@@ -70,7 +70,7 @@ $(function () {
                 )
             })
             $('.taskUsers').html(Html.join(''));
-            $('.deleteUserName').click(function () {
+            $('.deleteUserName').off('click').on('click', function () {
                 $(this).parents('p').remove();
                 var userId = $(this).attr('data-id');
                 $.each($("[name='Staff']:checked"), function (i, val) {
@@ -108,11 +108,11 @@ $(function () {
         form.render('checkbox');
     });
     // 点击确认(发布)
-    $('.addOk').off('click').on('click',function () {
+    $('.addOk').off('click').on('click', function () {
         info.addTask();
     });
     //弹出选择人员
-    $('.selectPersonnel').off('click').on('click',function () {
+    $('.selectPersonnel').off('click').on('click', function () {
         layer.open({
             type: 1,
             title: ['选择人员', 'color:#fff;background-color:#279EF0;overflow-x: hidden;font-size: 20px;text-align: center; padding: 0;'],
@@ -128,7 +128,7 @@ $(function () {
         })
     });
     // 新建试卷
-    $('#newTestPaper').click(function () {
+    $('#newTestPaper').off('click').on('click', function () {
         info.newTestPaper();
     });
     info.TableDataRequest(1);
@@ -147,7 +147,7 @@ var info = {
             "pageNum": pageNum,
             "pageSize": 12,
             'paperName': paperName
-        }
+        };
         $.ajax({
             url: MCUrl + 'manage_system/paper/papers',
             data: data,
@@ -204,7 +204,7 @@ var info = {
         });
         $('#examinationPaperInformation').html(Html.join(''));
         // 点击删除
-        $('.delete').click(function () {
+        $('.delete').off('click').on('click', function () {
             var paperId = $(this).attr('data-id');
             All.layuiOpen({
                 num: 2,
@@ -213,7 +213,7 @@ var info = {
             })
         });
         // 点击发布
-        $('.publish').click(function () {
+        $('.publish').off('click').on('click', function () {
             newPaperId = $(this).attr('data-id');
             newPaperName = $(this).parent().parent().find('.rename').text();
             // 单选题数
@@ -231,18 +231,18 @@ var info = {
             }
         });
         // 点击查看
-        $('.toView').click(function () {
+        $('.toView').off('click').on('click', function () {
             var paperId = $(this).attr('data-id');
             window.location.href = "../ViewTestPaper/ViewTestPaper.html?value=" + paperId;
         });
         // 点击编辑
-        $('.selectedTopic').click(function () {
+        $('.selectedTopic').off('click').on('click', function () {
             var paperId = $(this).attr('data-id');
             window.location.href = "../EditorTestPaper/EditorTestPaper.html?value=" + paperId;
 
         });
         // 点击进行重命名
-        $('.edit').click(function () {
+        $('.edit').off('click').on('click', function () {
             var rename = $(this).parent().parent().find('.rename').text();
             var paperId = $(this).attr('data-id');
             // 公共修改弹出框
@@ -319,12 +319,12 @@ var info = {
                     + '</div>'
             });
             // 点击确认
-            $('.newTestPaperConfirm').click(function () {
+            $('.newTestPaperConfirm').off('click').on('click', function () {
                 // 调用添加方法
                 info.increase();
             });
             // 点击取消
-            $('.newTestPaperCancel').click(function () {
+            $('.newTestPaperCancel').off('click').on('click', function () {
                 layer.closeAll();
             });
         });
@@ -440,15 +440,15 @@ var info = {
         var mistake = '';
         var resId = $("input[name=res]:checked").val();
         var index = true;
-        var userId = ''
+        var userId = '';
         $.each($("[name='Staff']:checked"), function (i, val) {
             userId += ',' + val.value
-        })
-        if ($('#test1').val() == '') {
+        });
+        if ($('#test1').val() === '') {
             mistake = '请选择开始时间!';
             index = false;
         }
-        if ($('#test2').val() == '') {
+        if ($('#test2').val() === '') {
             mistake = '请选择结束时间';
             index = false;
         }
@@ -460,7 +460,7 @@ var info = {
             mistake = '请选择做任务人员';
             index = false;
         }
-        if ($('.taskName').val() == '') {
+        if ($('.taskName').val() === '') {
             mistake = '任务名不能为空哦！';
             index = false;
         }
@@ -510,7 +510,7 @@ var info = {
                     Html.push('<span class="layui-form-label" style="font-size: 16px;"><input type="checkbox" value="' + item.userId +
                         '"class="checkAll " name="Staff" lay-skin="primary" lay-filter="c_one" ><i>' + item.userName +
                         '</i></span>');
-                })
+                });
                 $('#selectTaskUsers').html(Html.join(''));
                 layui.use('form', function () {
                     var form = layui.form;
@@ -520,7 +520,7 @@ var info = {
             }
         });
     },
-}
+};
 // 格式化日期
 var dateFormat = function (time) {
     var date = new Date(time);
@@ -535,7 +535,7 @@ var dateFormat = function (time) {
     var seconds = date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds();
     // 拼接
     return year + "-" + month + "-" + day + " " + (hours) + ":" + minutes + ":" + seconds;
-}
+};
 // 时间设置
 var today = '';
 var firstToday = '';

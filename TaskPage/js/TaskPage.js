@@ -9,7 +9,7 @@ $(function () {
             form = layui.form;
         form.on('checkbox(Staff)', function (data) {
             var a = data.elem.checked;
-            if (a == true) {
+            if (a === true) {
                 $(".checkAll").prop("checked", true);
                 form.render('checkbox');
             } else {
@@ -20,7 +20,7 @@ $(function () {
         form.on('checkbox(c_one)', function (data) {
             var item = $(".checkAll");
             for (var i = 0; i < item.length; i++) {
-                if (item[i].checked == false) {
+                if (item[i].checked === false) {
                     $("#checkAll").prop("checked", false);
                     form.render('checkbox');
                     break;
@@ -29,16 +29,16 @@ $(function () {
             //如果都勾选了  勾上全选
             var all = item.length;
             for (var i = 0; i < item.length; i++) {
-                if (item[i].checked == true) {
+                if (item[i].checked === true) {
                     all--;
                 }
             }
-            if (all == 0) {
+            if (all === 0) {
                 $("#checkAll").prop("checked", true);
                 form.render('checkbox');
             }
 
-        })
+        });
         laydate = layui.laydate;
         //执行一个laydate实例
         laydate.render({
@@ -60,7 +60,7 @@ $(function () {
 
         });
         $('.search').keypress(function (e) {
-            if (e.which == 13) {
+            if (e.which === 13) {
                 var search = $('.search').val();
                 info.selectTaskType(1, search);
             }
@@ -70,14 +70,14 @@ $(function () {
             info.TableDataRequest(1, search)
         });
         $('#resName').keypress(function (e) {
-            if (e.which == 13) {
+            if (e.which === 13) {
                 var search = $('#resName').val();
                 var resType = $('.layui-nav .layui-this').val();
                 console.log(resType + '22222' + search);
                 info.selectResourceList(1, resType, search);
             }
         });
-        $('.usersSelectOk').click(function () {
+        $('.usersSelectOk').off('click').on('click', function () {
             var Html = [];
             $.each($("[name='Staff']:checked"), function (i, val) {
                 Html.push('<p>' + $(this).siblings('i').text() + '<input type="text"  hidden="" id="" value="' + $(this).val() +
@@ -86,12 +86,12 @@ $(function () {
                 )
             });
             $('.taskUsers').html(Html.join(''));
-            $('.deleteUserName').click(function () {
+            $('.deleteUserName').off('click').on('click', function () {
                 $(this).parents('p').remove();
                 var userId = $(this).attr('data-id');
-                console.log(userId)
+                console.log(userId);
                 $.each($("[name='Staff']:checked"), function (i, val) {
-                    if (val.value == userId) {
+                    if (val.value === userId) {
                         $("#checkAll").prop("checked", false);
                         $(this).prop("checked", false);
                         layui.use('form', function () {
@@ -105,17 +105,17 @@ $(function () {
         });
         form.on('select(fangxiang)', function (data) {
             var value = data.value;
-            if (value == '1') {
+            if (value === '1') {
                 $('.selectPapers').show();
                 $('.selectResource').show();
                 $('.resAdd').text('');
                 $('.paperAdd').text('');
-            } else if (value == '2') {
+            } else if (value === '2') {
                 $('.selectResource').show();
                 $('.selectPapers').hide();
                 $('.resAdd').text('');
                 $('.paperAdd').text('');
-            } else if (value == '3') {
+            } else if (value === '3') {
                 $('.selectPapers').show();
                 $('.selectResource').hide();
                 $('.resAdd').text('');
@@ -125,7 +125,7 @@ $(function () {
         form.render('select');
         form.render('checkbox');
     });
-    $('.resourceSelection').click(function () {
+    $('.resourceSelection').off('click').on('click', function () {
         var resId = $('.layui-input-inline .checked').parent('div').find('.resName').text();
         var Html = [];
         Html.push(' : ' + resId);
@@ -133,7 +133,7 @@ $(function () {
         layer.close(layer.index);
     });
     //弹出选择人员
-    $('.selectPersonnel').click(function () {
+    $('.selectPersonnel').off('click').on('click', function () {
         layer.open({
             type: 1,
             title: ['选择人员',
@@ -141,7 +141,7 @@ $(function () {
             ],
             shadeClose: false,
             move: false,
-            shade: 0.8,
+            shade: 0.5,
             skin: 'myskin',
             area: ['600px', '500px'],
             content: $('#selectPersonnel'),
@@ -151,12 +151,12 @@ $(function () {
         })
     });
     //点击选择试卷弹出试卷弹窗
-    $('.selectPapers').click(function () {
+    $('.selectPapers').off('click').on('click', function () {
         layer.open({
             type: 1,
             title: ['选择试卷', 'color:#fff;background-color:#279EF0; text-align: center;font-size: 20px;cursor: default;'],
             shadeClose: false,
-            shade: 0.8,
+            shade: 0.5,
             move: false,
             skin: 'myskin',
             area: ['700px', '800px'],
@@ -167,29 +167,28 @@ $(function () {
         });
     });
     //点击发布任务调出弹窗
-    $('.releasTeask').click(function () {
-
+    $('.releasTeask').off('click').on('click', function () {
         info.showDisplay()
     });
     // 选择资源
-    $('.selectResource').click(function () {
+    $('.selectResource').off('click').on('click', function () {
 
         info.selectResources()
     });
-    $('.selectRes').click(function () {
+    $('.selectRes').off('click').on('click', function () {
         info.selectResourceList(1, $(this).val(), '')
     })
 });
 //用户模糊查询 回车
 $(".userNameRetrieval").keypress(function (e) {
-    if (e.which == 13) {
+    if (e.which === 13) {
         $('.myskin #selectPersonnel .layui-form-checkbox').removeClass('layui-form-checked');
         var userNameRetrieval = $('.userNameRetrieval').val();
         info.selectAllUser(userNameRetrieval);
     }
 });
 //分页
-$('.addOk').click(function () {
+$('.addOk').off('click').on('click', function () {
     $(this).attr('disabled');
     info.addTask();
 });
@@ -259,7 +258,7 @@ var info = {
                 'color:#fff;background-color:#279EF0;border-radius: 7px ;text-align: center;font-size: 20px; cursor: default;'
             ],
             shadeClose: false,
-            shade: 0.8,
+            shade: 0.5,
             move: false,
             skin: 'myskin',
             area: ['700px', '800px'],
@@ -300,7 +299,6 @@ var info = {
                 layout: ['prev', 'page', 'next', 'limits', 'skip'],
                 jump: function (item, first) {
                     if (!first) {
-                        console.log()
                         info.selectTaskType(item.curr, $('.search').val());
                     }
                 }
@@ -328,7 +326,7 @@ var info = {
                     jump: function (item, first) {
                         if (!first) {
                             // console.log()
-                            var search = $('#resName').val()
+                            var search = $('#resName').val();
                             info.selectResourceList(item.curr, resType, search);
                         }
                     }
@@ -378,24 +376,23 @@ var info = {
             dataType: 'json',
             type: 'GET',
             success(res) {
-                console.log(res)
                 var Html = [];
                 res.data.forEach(function (item, index) {
                     // console.log(res)
                     Html.push('<tr style="margin-top: -10px;">');
-                    Html.push('<td style="text-align: center;"><span>' + item.userName + '</span></td>')
-                    var status = ''
-                    if (item.status == '0') {
+                    Html.push('<td style="text-align: center;"><span>' + item.userName + '</span></td>');
+                    var status = '';
+                    if (item.status === '0') {
                         status = '未完成'
                     } else {
                         status = '已完成'
                     }
-                    Html.push('<td style="text-align: center;">' + status + '</td>')
+                    Html.push('<td style="text-align: center;">' + status + '</td>');
                     if (item.score == null) {
                         item.score = '-';
                     }
                     Html.push('<td style="text-align: center;"> ' + item.score + ' </td></tr>')
-                })
+                });
                 $('#taskUserDegreeCompletion').html(Html.join(''));
             }
         })
@@ -412,31 +409,33 @@ var info = {
             dataType: 'json',
             Type: 'GET',
             success: function (res) {
-                console.log(res)
                 if (res || res.data !== null) {
-                    var Html = []
+                    var Html = [];
                     res.data.list.forEach(function (item, index) {
-                        Html.push('<tr style="margin-top: -10px;">')
-                        Html.push('<td style="text-align: center;" class="paperName"><pre>' + item.paperName.substring(0, 30) +
-                            '</pre></td>')
-                        Html.push('<td style="text-align: center;">' + item.single + '</td>')
-                        Html.push('<td style="text-align: center;">' + item.many + '</td>')
+                        Html.push('<tr style="margin-top: -10px;">');
+                        if (item.paperName.length > 8) {
+                            Html.push('<td style="text-align: center;" class="paperName"><pre>' + item.paperName.substring(0, 8) + '...</pre></td>');
+                        } else {
+                            Html.push('<td style="text-align: center;" class="paperName"><pre>' + item.paperName + '</pre></td>');
+                        }
+                        Html.push('<td style="text-align: center;">' + item.single + '</td>');
+                        Html.push('<td style="text-align: center;">' + item.many + '</td>');
                         Html.push(
                             '<td style="text-align: center; float: left; margin-left: 20px; "><div  class="site-demo-button"><button value="' +
                             item.paperId +
-                            '" type="button" class="layui-btn layui-btn-primary layui-btn-sm layui-btn-normal selectPaper" style="width: 70px; background-color: white;">选择</button></div></td>	'
-                        )
-                        Html.push('</tr>')
-                    })
+                            '" type="button" class="layui-btn layui-btn-primary layui-btn-sm layui-btn-normal selectPaper" style="width: 70px; background-color: white;">选择</button></div></td>'
+                        );
+                        Html.push('</tr>');
+                    });
                     $('#papgeContent').html(Html.join(''));
                     info.paperPage(res.data.total, res.data.pageNum);
-                    $('.selectPaper').click(function () {
+                    $('.selectPaper').off('click').on('click', function () {
                         $('.selectPapers').val($(this).val());
-                        var Html = []
-                        Html.push(' : ' + $(this).parents('tr').children('.paperName').text())
-                        $('.paperAdd').html(Html.join(''))
-                        $('.paperAdd').val($(this).val())
-                        $('.paperAdd').attr('data-id', $(this).val())
+                        var Html = [];
+                        Html.push(' : ' + $(this).parents('tr').children('.paperName').text());
+                        $('.paperAdd').html(Html.join(''));
+                        $('.paperAdd').val($(this).val());
+                        $('.paperAdd').attr('data-id', $(this).val());
                         layer.close(layer.index);
                     })
                 }
@@ -467,7 +466,7 @@ var info = {
             dataType: 'json',
             type: 'GET',
             success(res) {
-                if(res.code == 1){
+                if (res.code === 1) {
                     var Html = [];
                     res.data.forEach(function (item, index) {
                         Html.push('<span class="layui-form-label" style="font-size: 16px;"><input type="checkbox" value="' + item.userId +
@@ -490,49 +489,49 @@ var info = {
         var mistake = '';
         // var resId=$("input[name=res]:checked").val();
         var index = true;
-        var userId = ''
+        var userId = '';
         $.each($("[name='Staff']:checked"), function (i, val) {
             userId += ',' + val.value
         })
-        if ($('#test1').val() == '') {
+        if ($('#test1').val() === '') {
             mistake = '请选择开始时间!';
             index = false;
         }
-        if ($('#test2').val() == '') {
+        if ($('#test2').val() === '') {
 
-            mistake = '请选择结束时间'
+            mistake = '请选择结束时间';
             index = false;
         }
         if ($('#test1').val() > $('#test2').val()) {
-            mistake = '结束时间不能小于开始时间'
+            mistake = '结束时间不能小于开始时间';
             index = false;
         }
-        if (userId == '') {
-            mistake = '请选择做任务人员'
+        if (userId === '') {
+            mistake = '请选择做任务人员';
             index = false;
         }
-        if ($('#taskType').val() == '1') {
+        if ($('#taskType').val() === '1') {
             if (resId == undefined) {
                 mistake = '请选择资源！';
                 index = false;
             }
-            if ($('.selectPapers').val() == '') {
+            if ($('.selectPapers').val() === '') {
                 mistake = '请选择试卷！';
                 index = false;
             }
 
-        } else if ($('#taskType').val() == '2') {
+        } else if ($('#taskType').val() === '2') {
             if (resId == undefined) {
                 mistake = '请选择资源！';
                 index = false;
             }
-        } else if ($('#taskType').val() == '3') {
-            if ($('.selectPapers').val() == '') {
+        } else if ($('#taskType').val() === '3') {
+            if ($('.selectPapers').val() === '') {
                 mistake = '请选择试卷！';
                 index = false;
             }
         }
-        if ($('.taskName').val() == '') {
+        if ($('.taskName').val() === '') {
             mistake = '任务名不能为空哦！';
             index = false;
         }
@@ -548,11 +547,11 @@ var info = {
             'endTime': dateFormata($('#test2').val()),
             'userId': userId
 
-        }
-        console.log(data.startTime)
+        };
+        console.log(data.startTime);
         if (index != false) {
 
-            console.log(data)
+            console.log(data);
             $.ajax({
                 url: LBUrl + 'manage_system/task/tasks',
                 data: JSON.stringify(data),
@@ -562,7 +561,7 @@ var info = {
                 success(res) {
                     info.selectTaskType(1, '');
                 }
-            })
+            });
 
             layer.closeAll();
             layer.msg('添加成功', {
@@ -578,8 +577,8 @@ var info = {
 
     //查询资源
     selectResourceList: function (pageNum, resType, resName) {
-        console.log(resType + 'iiiii' + resName)
-        if (resName == undefined) {
+        console.log(resType + 'iiiii' + resName);
+        if (resName === undefined) {
             resName = ''
         }
         $.ajax({
@@ -594,36 +593,33 @@ var info = {
             type: 'GET',
             contentType: 'application/json;charset=utf-8',
             success(res) {
-                console.log(res)
                 var Html = [];
                 res.data.list.forEach(function (item, index) {
-                    Html.push('<div class="radio_box" >')
-                    Html.push('<div class="img-box" data-resid="' + item.resId + '">')
-                    if (item.resType == 1) {
-                        Html.push('		<img src="http://192.168.188.109:8848/' + item.imgPath +
-                            '"  style="width: 140px;height: 140px;">')
-                    } else if (item.resType == 2) {
-                        Html.push('		<img src="../imgs/yinpin.jpg.png" >')
-                    } else if (item.resType == 3) {
+                    Html.push('<div class="radio_box" >');
+                    Html.push('<div class="img-box" data-resid="' + item.resId + '">');
+                    if (item.resType === 1) {
+                        Html.push('<img src="http://192.168.188.109:8848/' + item.imgPath +
+                            '"  style="width:140px;height:140px;">')
+                    } else if (item.resType === 2) {
+                        Html.push('<img src="../imgs/yinpin.jpg.png" >')
+                    } else if (item.resType === 3) {
                         if (item.resExt != '.txt') {
                             Html.push('<img  src="../imgs/w4.jpg" >')
                         } else {
                             Html.push('<img src="../imgs/w2.jpg" >')
                         }
-
                     }
-
-                    Html.push('</div>')
-                    Html.push('<p class="resName">' + item.resName + '</p>')
-                    Html.push('</div>')
-                })
+                    Html.push('</div>');
+                    Html.push('<p class="resName">' + item.resName + '</p>');
+                    Html.push('</div>');
+                });
                 $('#resource').html(Html.join(''));
-                $('.radio_box').click(function () {
-                    $(this).find('.layui-unselect').addClass('layui-form-radioed')
+                $('.radio_box').off('click').on('click', function () {
+                    $(this).find('.layui-unselect').addClass('layui-form-radioed');
                     $(this).find('.layui-unselect').find('i').addClass('layui-anim-scaleSpring')
-                })
-                console.log(res.data.total)
-                info.resPage(res.data.total, res.data.pageNum, resType)
+                });
+                console.log(res.data.total);
+                info.resPage(res.data.total, res.data.pageNum, resType);
                 /***********资源选择模拟********/
                 $('.img-box').off('click').on('click', function () {
                     $('.img-box').removeClass('checked');
@@ -643,12 +639,11 @@ var info = {
             dataType: 'json',
             type: 'GET',
             success(res) {
-                console.log(res)
                 var Html = [];
                 res.data.forEach(function (item, index) {
-                    var taskType = item.split(",")
+                    var taskType = item.split(",");
                     Html.push('<option value="' + taskType[0] + '">' + taskType[1] + '</option>');
-                })
+                });
                 $('#taskType').html(Html.join(''));
                 layui.use('form', function () {
                     var form = layui.form;
@@ -663,7 +658,7 @@ var info = {
     },
     //查询全部
     selectTaskAll: function (resa, pageNum, search) {
-        if (search == undefined) {
+        if (search === undefined) {
             search = null
         }
         // console.log(search)
@@ -681,19 +676,17 @@ var info = {
             dataType: 'json',
             type: 'GET',
             success(res) {
-                console.log(res)
                 var Html = [];
                 res.data.list.forEach(function (item, index) {
                     Html.push('<tr>');
                     Html.push('<td class="oneselfTaskName"><pre>' + item.taskName.substring(0, 30) + '</pre></td>');
                     resa.data.forEach(function (itemTypeName, index) {
                         var typeName = itemTypeName.split(",");
-                        if (item.taskType == typeName[0]) {
+                        if (item.taskType === typeName[0]) {
                             Html.push('<td >' + typeName[1] + '<input type="text" class="taskTypeRecord" value="' + typeName[0] +
                                 '"hidden> </td>');
                         }
-
-                    })
+                    });
                     Html.push('<td>' + dateFormata(item.startTime) + ' - ' + dateFormata(item.endTime) + '</td>');
                     Html.push(
                         '<td><button style="width: 50px;height: 25px;margin-right:20px; margin-left: 20px; background-color: #FFFFFF;border: none;float: left;" class="updateTaskName"value="' +
@@ -704,24 +697,24 @@ var info = {
                         item.taskId + '"><span>删除</span></button></td>'
                     );
                     Html.push('</tr>');
-                })
+                });
 
                 JumpPageNum = res.data.pageNum;
                 JumpTotal = res.data.total;
                 // if (res.data.total >= 13) {
                 info.Page(res.data.total, res.data.pageNum);
                 // }
-                $('.search').val('')
+                $('.search').val('');
                 $('#taskContent').html(Html.join(''));
                 //点击弹出重命名
-                $('.updateTaskName').click(function () {
+                $('.updateTaskName').off('click').on('click', function () {
                     var taskName = $(this).parents('tr').children('.oneselfTaskName').text();
                     $('.taskNameupdate').val(taskName)
                     info.popupsUpdateTaskName(taskName, $(this).val());
                     $('.confirmAdd').val($(this).val())
-                })
+                });
                 //点击删除 删除点击的任务
-                $('.deleteTask').click(function () {
+                $('.deleteTask').off('click').on('click', function () {
                     //调用common.js公共
                     All.layuiOpen({
                         num: 3,
@@ -730,12 +723,12 @@ var info = {
                         msg: '是否删除任务？'
                     });
                     // info.delectTask(taskId);
-                })
-                $('.confirmAdd').click(function () {
-                    info.updateTaskName($(this).val())
+                });
+                $('.confirmAdd').off('click').on('click',function(){
+                    info.updateTaskName($(this).val());
                     info.selectTaskType($('.layui-laypage-skip .layui-input').val(), $('.search').val())
-                })
-                $('.oneselfTaskName').click(function () {
+                });
+                $('.oneselfTaskName').off().on('click',function(){
                     var taskId = $(this).parents('tr').children('td').children('.updateTaskName').val();
                     var taskType = $(this).parents('tr').children('td').children('.taskTypeRecord').val();
                     console.log(taskType)
@@ -744,9 +737,9 @@ var info = {
                     window.open("../TestPage/TestPage.html?value=" + taskId + "," + 1, "_blank");
 
 
-                })
-                $('.lookOver').click(function () {
-                    info.selectTaskUsers($(this).val())
+                });
+                $('.lookOver').off().on('click',function(){
+                    info.selectTaskUsers($(this).val());
                     layer.open({
                         type: 1,
                         move: false,
@@ -773,7 +766,7 @@ var info = {
         // var taskName = $('.taskNameupdate').val();
         var data = {
             'taskName': taskName,
-        }
+        };
         if (taskName != '') {
 
 
@@ -810,7 +803,7 @@ var info = {
             type: 'DELETE',
             success(res) {
                 if (res) {
-                    if (JumpTotal % 12 == 1) {
+                    if (JumpTotal % 12 === 1) {
                         info.selectTaskType(JumpPageNum - 1)
                     } else {
                         info.selectTaskType(JumpPageNum);
@@ -820,7 +813,7 @@ var info = {
             }
         })
     }
-}
+};
 
 
 var dateFormata = function (time) {
@@ -836,7 +829,7 @@ var dateFormata = function (time) {
     var seconds = date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds();
     // 拼接
     return year + "-" + month + "-" + day + " " + (hours) + ":" + minutes + ":" + seconds;
-}
+};
 
 // 时间设置
 var firstToday = '';

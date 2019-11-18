@@ -20,7 +20,6 @@ $(function() {
 		var form = layui.form;
 		info.init();
 	});
-
 	$('.mobileFramework').clickSort({
 	    speed:500,
 	　　callback:function(){
@@ -101,7 +100,7 @@ var info = {
 		});
 		$('.mobileFramework').html(Html.join(''));
 		// 解析
-		$('.toView').click(function() {
+		$('.toView').off('click').on('click',function(){
 			var QusetionId = $(this).parent().parent().find('.questionId').val();
 			info.toViewAnalysis(QusetionId);
 		});
