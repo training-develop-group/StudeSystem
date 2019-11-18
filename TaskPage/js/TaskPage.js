@@ -679,7 +679,19 @@ var info = {
                 var Html = [];
                 res.data.list.forEach(function (item, index) {
                     Html.push('<tr>');
-                    Html.push('<td class="oneselfTaskName"><pre>' + item.taskName.substring(0, 30) + '</pre></td>');
+                    if(item.taskName.length > 15){
+                        Html.push('<td class="oneselfTaskName"><pre>' + item.taskName.substring(0, 15) + '...</pre></td>');
+                    }else{
+                        Html.push('<td class="oneselfTaskName"><pre>' + item.taskName + '</pre></td>');
+                    }
+                    if(item.taskType === 1){
+                        Html.push('<td >综合任务</td>');
+                    }else if(item.taskType === 2){
+                        Html.push('<td >学习任务</td>');
+                    }else if(item.taskType === 3){
+                        Html.push('<td >测试任务</td>');
+                    }
+
                     resa.data.forEach(function (itemTypeName, index) {
                         var typeName = itemTypeName.split(",");
                         if (item.taskType === typeName[0]) {
@@ -724,11 +736,11 @@ var info = {
                     });
                     // info.delectTask(taskId);
                 });
-                $('.confirmAdd').off('click').on('click',function(){
+                $('.confirmAdd').off('click').on('click', function () {
                     info.updateTaskName($(this).val());
                     info.selectTaskType($('.layui-laypage-skip .layui-input').val(), $('.search').val())
                 });
-                $('.oneselfTaskName').off().on('click',function(){
+                $('.oneselfTaskName').off().on('click', function () {
                     var taskId = $(this).parents('tr').children('td').children('.updateTaskName').val();
                     var taskType = $(this).parents('tr').children('td').children('.taskTypeRecord').val();
                     console.log(taskType)
@@ -738,7 +750,7 @@ var info = {
 
 
                 });
-                $('.lookOver').off().on('click',function(){
+                $('.lookOver').off().on('click', function () {
                     info.selectTaskUsers($(this).val());
                     layer.open({
                         type: 1,
@@ -768,7 +780,6 @@ var info = {
             'taskName': taskName,
         };
         if (taskName != '') {
-
 
             $.ajax({
                 url: LBUrl + 'manage_system/task/task/' + taskId,
