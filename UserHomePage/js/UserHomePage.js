@@ -20,7 +20,8 @@ $(function () {
         // 模拟未完成被选中
         $('.title li').eq(0).click();
 
-
+        // 任务点击跳转任务详情
+        info.ToTask();
     });
 });
 var info = {
@@ -84,8 +85,7 @@ var info = {
                     $('#taskList').html(listHtml.join(''));
                     //分页方法
                     info.Page(res.data.total, curr, userType);
-                    // 任务点击跳转任务详情
-                    info.ToTask();
+
                 } else {
                     var listHtml = [];
                     listHtml.push('<div class="endTask"> 没有任务 </div>');

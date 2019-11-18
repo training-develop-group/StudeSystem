@@ -279,11 +279,19 @@
 }
 
 /*更改项*/
-.ViewParsing P {
+.answerContent {
+    margin: 10px;
+    font-size: 18px;
+}
+
+.answerContent p {
     margin-left: 15px;
     margin-top: 10px;
-    font-size: 16px;
-    width: 545px;
+    font-size: 18px;
+}
+
+.analysis {
+    text-indent: 38px;
 }
 
 .QuestionContent{

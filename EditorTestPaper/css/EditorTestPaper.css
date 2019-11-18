@@ -260,19 +260,17 @@ img {
 
 .answerContent {
     margin: 10px;
+    font-size: 18px;
 }
 
 .answerContent p {
+    margin-left: 15px;
     margin-top: 10px;
-}
-
-.answerContent .analysis {
-    width: 300px;
-    margin-left: 0px;
+    font-size: 18px;
 }
 
 .analysis {
-    text-indent: 25px;
+    text-indent: 38px;
 }
 
 /* 给js调用的 */
