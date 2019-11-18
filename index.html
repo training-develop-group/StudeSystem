@@ -1,64 +1,61 @@
 <!doctype html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport"
-		content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<script src="js/jQuery v3.4.1.min.js"></script>
-	<script src="js/layui/layui.all.js"></script>
-	<link rel="stylesheet" href="js/layui/css/layui.css">
-	<link rel="stylesheet" href="css/common.css">
-	<link href="https://fonts.font.im/css?family=Roboto" rel="stylesheet">
-	<link rel="stylesheet" href="css/LogIn.css">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="js/jQuery v3.4.1.min.js"></script>
+    <script src="js/layui/layui.all.js"></script>
+    <link rel="stylesheet" href="js/layui/css/layui.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link href="https://fonts.font.im/css?family=Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="css/LogIn.css">
 
-	
-	<title>登录页</title>
+
+    <title>登录页</title>
 </head>
 <body>
 <!--这里可以直接写成登陆页面-->
 <div class="bg-indistinct">
     <div class="Top">
-    		<p class="Welcome">Welcome</p>
-    		<p class="StudyLog">学习网登录</p>
-    	</div>
-    	<div class="Content">
-    		<div class="Login">
-    			<form class="layui-form" action="">
-    				<div class="layui-form-item">
-    					<label class="layui-form-label">
-    						<i class="layui-icon">&#xe66f;</i>
-    					</label>
-    					<div class="layui-input-block inputBox">
-    						<!-- <input type="text" name="UserName" lay-verify="title" autocomplete="off" placeholder="请输入用户名" class="layui-input UserName"> -->
-    						<input type="text" id="user" name="userName" lay-verify="title" autocomplete="off" placeholder="请输入用户名" value="" class="layui-input">
-    					</div>
-    				</div>
-    				<div class="layui-form-item">
-    					<label class="layui-form-label">
-    						<i class="layui-icon">&#xe673;</i>
-    					</label>
-    					<div class="layui-input-block inputBox">
-    						<input type="password" id="pwd" name="passWord" lay-verify="title" autocomplete="off" placeholder="请输入密码" value="" class="layui-input">
-    						
-    						<!-- <input type="text" name="PassWord" lay-verify="title" autocomplete="off" placeholder="请输入密码" class="layui-input PassWord"> -->
-    					</div>
-    				</div>
-    				<p><span class="PasswordError hidden">！用户名或密码错误</span></p>
-    				<div class="layui-form-item">
-    					<a id="Login">
-    						<!-- <span class="layui-btn">登录</span> -->
-    						<span class="layui-btn  logIn">登 录</span>
-    					</a>
-    				</div>
-    			</form>
-    		</div>
-    	</div>
+        <p class="Welcome">Welcome</p>
+        <p class="StudyLog">学习网登录</p>
+    </div>
+    <div class="Content">
+        <div class="Login">
+            <form class="layui-form" action="">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">
+                        <i class="layui-icon">&#xe66f;</i>
+                    </label>
+                    <div class="layui-input-block inputBox">
+                        <input type="text" id="user" name="userName" lay-verify="title" autocomplete="off" placeholder="请输入用户名" value="" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">
+                        <i class="layui-icon">&#xe673;</i>
+                    </label>
+                    <div class="layui-input-block inputBox">
+                        <input type="password" id="pwd" name="passWord" lay-verify="title" autocomplete="off" placeholder="请输入密码" value="" class="layui-input">
+                    </div>
+                </div>
+                <p><span class="PasswordError hidden">！用户名或密码错误</span></p>
+                <div class="layui-form-item">
+                    <a id="Login">
+                        <!-- <span class="layui-btn">登录</span> -->
+                        <span class="layui-btn  logIn">登 录</span>
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
 
-<script src="js/jQuery%20v3.4.1.min.js"></script>
-<script src="js/layui/layui.all.js"></script>
-<script src="js/address.js"></script>
-<script src="js/common.js" charset="utf-8"></script>
-<script src="js/LogIn.js" charset="utf-8"></script>
+    <script src="js/jQuery%20v3.4.1.min.js"></script>
+    <script src="js/layui/layui.all.js"></script>
+    <script src="js/address.js"></script>
+    <script src="js/common.js" charset="utf-8"></script>
+    <script src="js/LogIn.js" charset="utf-8"></script>
 </body>
 </html>

@@ -108,14 +108,14 @@ $(function () {
         form.render('checkbox');
     });
     // 点击确认(发布)
-    $('.addOk').click(function () {
+    $('.addOk').off('click').on('click',function () {
         info.addTask();
     });
     //弹出选择人员
-    $('.selectPersonnel').click(function () {
+    $('.selectPersonnel').off('click').on('click',function () {
         layer.open({
             type: 1,
-            title: ['选择人员', 'color:#fff;background-color:#40AFFE;border-radius: 7px 7px 0 0;overflow-x: hidden;font-size: 20px;text-align: center; padding: 0;'],
+            title: ['选择人员', 'color:#fff;background-color:#279EF0;overflow-x: hidden;font-size: 20px;text-align: center; padding: 0;'],
             shadeClose: false,
             move: false,
             shade: 0.5,
@@ -140,7 +140,7 @@ var info = {
     //表格数据请求
     TableDataRequest: function (pageNum) {
         var paperName = $.trim($('.search').val());
-        if (paperName == undefined) {
+        if (paperName === undefined) {
             paperName = '';
         }
         var data = {
@@ -173,7 +173,7 @@ var info = {
         };
         PNum = data.pageNum;
         data.list.forEach(function (item, index) {
-            if (item.status == 0) {
+            if (item.status === 0) {
                 item.status = '未发布';
             } else {
                 item.status = '已发布';
@@ -182,7 +182,7 @@ var info = {
             item.paperName = $('<div>').text(item.paperName).html();
             Html.push('<tr>');
             if (item.paperName.length > 20) {
-                Html.push('<td class="toView" data-id="' + item.paperId + '"><pre class="rename " title="' + item.paperName + '" >' + item.paperName.substring(0, 40) + '...</pre></td>');
+                Html.push('<td class="toView" data-id="' + item.paperId + '"><pre class="rename " title="' + item.paperName + '" >' + item.paperName.substring(0, 20) + '...</pre></td>');
             } else {
                 Html.push('<td class="toView" data-id="' + item.paperId + '"><pre class="rename " title="' + item.paperName + '" >' + item.paperName + '</pre></td>');
             }
