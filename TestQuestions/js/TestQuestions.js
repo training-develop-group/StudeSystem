@@ -736,7 +736,7 @@ var info = {
 	viewPopup: function(questionId) {
 		layer.open({
 			type: 1,
-			area: ['600px', '300px'],
+			area: ['660px', '300px'],
 			closeBtn: 1,
 			resize: false,
 			move: false,

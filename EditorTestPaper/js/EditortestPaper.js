@@ -705,7 +705,7 @@ var info = {
                         type: 1, //Page层类型
                         closeBtn: 1,
                         move: false,
-                        area: ['700px', '260px'],
+                        area: ['660px', '300px'],
                         title: ['查看解析',
                             'background-color: #279ef0;text-align: center;font-size: 20px;line-height: 43px;color:white;padding: 0px;'
                         ],
