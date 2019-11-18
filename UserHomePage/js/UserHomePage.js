@@ -31,6 +31,7 @@ var info = {
             $(this).addClass('active');
             var dataType = $(this).attr('data-type');
             info.taskList(1, dataType);
+            console.log(dataType);
         });
     },
     // 页面列表
@@ -48,7 +49,7 @@ var info = {
             dataType: 'json',
             type: 'GET',
             success(res) {
-                console.log(res)
+                // console.log(res);
                 var time = new Date();
                 if (res.data != null) {
                     var listHtml = [];

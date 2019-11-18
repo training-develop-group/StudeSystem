@@ -39,6 +39,8 @@ var logIn = function() {
 			} else if (res.data == null) {
 				$('.PasswordError').text('！用户名或密码错误');
 				$('.PasswordError').removeClass('hidden');
+			}else {
+				layer.msg('网络未连接！');
 			}
 		},
 		error: function(e) {

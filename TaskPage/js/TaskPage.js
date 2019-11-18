@@ -1,5 +1,5 @@
 $(function () {
-    info.selectTaskCount()
+    info.selectTaskCount();
     info.selectAllUser('');
     info.selectTaskType(1);
     info.selectResourceList(1, 1);
@@ -58,104 +58,104 @@ $(function () {
             type: 1,
             num: 3
 
-		});
-		$('.search').keypress(function(e) {
-			if (e.which == 13) {
-				var search = $('.search').val()
-				info.selectTaskType(1, search);
-			}
-		})
+        });
+        $('.search').keypress(function (e) {
+            if (e.which == 13) {
+                var search = $('.search').val();
+                info.selectTaskType(1, search);
+            }
+        });
         $('#paperName').keypress(function (e) {
-            var search = $('#paperName').val()
-            info.TableDataRequest(1,search)
-        })
-		$('#resName').keypress(function(e) {
-			if (e.which == 13) {
-				var search = $('#resName').val()
-				var resType = $('.layui-nav .layui-this').val();
-				console.log(resType + '22222'+  search )
-				info.selectResourceList(1, resType, search);
-			}
-		})
-		$('.usersSelectOk').click(function() {
-			var Html = [];
-			$.each($("[name='Staff']:checked"), function(i, val) {
-				Html.push('<p>' + $(this).siblings('i').text() + '<input type="text"  hidden="" id="" value="' + $(this).val() +
-					'" />  <i  data-id="' + $(this).val() +
-					'" class="layui-icon layui-icon-close deleteUserName" style="font-size: 20px;"></i></p>'
-				)
-			})
-			$('.taskUsers').html(Html.join(''));
-			$('.deleteUserName').click(function() {
-				$(this).parents('p').remove();
-				var userId = $(this).attr('data-id');
-				console.log(userId)
-				$.each($("[name='Staff']:checked"), function(i, val) {
-					if (val.value == userId) {
-						$("#checkAll").prop("checked", false);
-						$(this).prop("checked", false);
-						layui.use('form', function() {
-							var form = layui.form;
-							form.render('');
-						});
-					}
-				})
-			})
-			layer.close(layer.index);
-		})
-		form.on('select(fangxiang)', function(data) {
-			var value = data.value;
-			if (value == '1') {
-				$('.selectPapers').show();
-				$('.selectResource').show();
-				$('.resAdd').text('');
-				$('.paperAdd').text('');
-			} else if (value == '2') {
-				$('.selectResource').show();
-				$('.selectPapers').hide();
-				$('.resAdd').text('');
-				$('.paperAdd').text('');
-			} else if (value == '3') {
-				$('.selectPapers').show();
-				$('.selectResource').hide();
-				$('.resAdd').text('');
-				$('.paperAdd').text('');
-			}
-		})
-		form.render('select');
-		form.render('checkbox');
-	});
-	$('.resourceSelection').click(function() {
-		var resId = $('.layui-input-inline .checked').parent('div').find('.resName').text();
-		var Html = [];
-		Html.push(' : ' + resId)
-		$('.resAdd').html(Html.join(''))
-		layer.close(layer.index);
-	})
-	//弹出选择人员
-	$('.selectPersonnel').click(function() {
-		layer.open({
-			type: 1,
-			title: ['选择人员',
-				'color:#fff;background-color:#40AFFE;border-radius: 7px ;overflow-x: hidden; text-align: center;font-size: 20px;cursor: default;'
-			],
-			shadeClose: true,
-			move: false,
-			shade: 0.8,
-			skin: 'myskin',
-			area: ['600px', '500px'],
-			content: $('#selectPersonnel'),
-			success: function() {
+            var search = $('#paperName').val();
+            info.TableDataRequest(1, search)
+        });
+        $('#resName').keypress(function (e) {
+            if (e.which == 13) {
+                var search = $('#resName').val();
+                var resType = $('.layui-nav .layui-this').val();
+                console.log(resType + '22222' + search);
+                info.selectResourceList(1, resType, search);
+            }
+        });
+        $('.usersSelectOk').click(function () {
+            var Html = [];
+            $.each($("[name='Staff']:checked"), function (i, val) {
+                Html.push('<p>' + $(this).siblings('i').text() + '<input type="text"  hidden="" id="" value="' + $(this).val() +
+                    '" />  <i  data-id="' + $(this).val() +
+                    '" class="layui-icon layui-icon-close deleteUserName" style="font-size: 20px;"></i></p>'
+                )
+            });
+            $('.taskUsers').html(Html.join(''));
+            $('.deleteUserName').click(function () {
+                $(this).parents('p').remove();
+                var userId = $(this).attr('data-id');
+                console.log(userId)
+                $.each($("[name='Staff']:checked"), function (i, val) {
+                    if (val.value == userId) {
+                        $("#checkAll").prop("checked", false);
+                        $(this).prop("checked", false);
+                        layui.use('form', function () {
+                            var form = layui.form;
+                            form.render('');
+                        });
+                    }
+                })
+            });
+            layer.close(layer.index);
+        });
+        form.on('select(fangxiang)', function (data) {
+            var value = data.value;
+            if (value == '1') {
+                $('.selectPapers').show();
+                $('.selectResource').show();
+                $('.resAdd').text('');
+                $('.paperAdd').text('');
+            } else if (value == '2') {
+                $('.selectResource').show();
+                $('.selectPapers').hide();
+                $('.resAdd').text('');
+                $('.paperAdd').text('');
+            } else if (value == '3') {
+                $('.selectPapers').show();
+                $('.selectResource').hide();
+                $('.resAdd').text('');
+                $('.paperAdd').text('');
+            }
+        });
+        form.render('select');
+        form.render('checkbox');
+    });
+    $('.resourceSelection').click(function () {
+        var resId = $('.layui-input-inline .checked').parent('div').find('.resName').text();
+        var Html = [];
+        Html.push(' : ' + resId);
+        $('.resAdd').html(Html.join(''));
+        layer.close(layer.index);
+    });
+    //弹出选择人员
+    $('.selectPersonnel').click(function () {
+        layer.open({
+            type: 1,
+            title: ['选择人员',
+                'color:#fff;background-color:#40AFFE;border-radius: 7px ;overflow-x: hidden; text-align: center;font-size: 20px;cursor: default;'
+            ],
+            shadeClose: false,
+            move: false,
+            shade: 0.8,
+            skin: 'myskin',
+            area: ['600px', '500px'],
+            content: $('#selectPersonnel'),
+            success: function () {
 
             }
         })
-    })
+    });
     //点击选择试卷弹出试卷弹窗
     $('.selectPapers').click(function () {
         layer.open({
             type: 1,
             title: ['选择试卷', 'color:#fff;background-color:#40AFFE; text-align: center;font-size: 20px;cursor: default;'],
-            shadeClose: true,
+            shadeClose: false,
             shade: 0.8,
             move: false,
             skin: 'myskin',
@@ -175,23 +175,23 @@ $(function () {
     $('.selectResource').click(function () {
 
         info.selectResources()
-    })
+    });
     $('.selectRes').click(function () {
-        info.selectResourceList(1,$(this).val(),'')
+        info.selectResourceList(1, $(this).val(), '')
     })
 });
 //用户模糊查询 回车
 $(".userNameRetrieval").keypress(function (e) {
     if (e.which == 13) {
-        var userNameRetrieval = $('.userNameRetrieval').val()
+        var userNameRetrieval = $('.userNameRetrieval').val();
         info.selectAllUser(userNameRetrieval);
     }
 });
 //分页
-$('.addOk').click(function() {
-	$(this).attr('disabled');
-	info.addTask();
-})
+$('.addOk').click(function () {
+    $(this).attr('disabled');
+    info.addTask();
+});
 
 var JumpPageNum = '';
 var JumpTotal = '';
@@ -212,7 +212,6 @@ var info = {
     openAddRolePage: function (userId) {
         // 清空输入框
         info.selectTaskType(1, '', 1);
-        console.log(1);
         layui.use('form', function () {
             var form = layui.form;
             form.render('');
@@ -220,11 +219,11 @@ var info = {
         var layer = layui.layer,
             form = layui.form;
         $(".checkAll").prop("checked", false);
-        $("#checkAll").prop("checked", false)
+        $("#checkAll").prop("checked", false);
         form.render('checkbox');
-		$('.img-box').removeClass('checked');
-        $('.selectResource').css('display', '')
-        $('.selectPapers').css('display', '')
+        $('.img-box').removeClass('checked');
+        $('.selectResource').css('display', '');
+        $('.selectPapers').css('display', '');
         $('.taskName').val('');
         $('.taskRemark').val('');
         $('.taskUsers').empty();
@@ -239,7 +238,7 @@ var info = {
         layer.open({
             type: 1,
             title: ['新建任务', 'color:#fff;background-color:#40AFFE;;border-radius: 7px ;text-align: center;font-size: 20px;'],
-            shadeClose: true,
+            shadeClose: false,
             shade: 0.8,
             move: false,
             skin: 'myskin',
@@ -247,17 +246,18 @@ var info = {
             content: $('#addTaskPage'),
             success: function () {
 
-
-			},
-		});
-	},
-	//弹出选择资源
-	selectResources: function() {
+            },
+        });
+    },
+    //弹出选择资源
+    selectResources: function () {
 
         layer.open({
             type: 1,
-            title: ['选择资源', 'color:#fff;background-color:#40AFFE;border-radius: 7px ;text-align: center;font-size: 20px; cursor: default;'],
-            shadeClose: true,
+            title: ['选择资源',
+                'color:#fff;background-color:#40AFFE;border-radius: 7px ;text-align: center;font-size: 20px; cursor: default;'
+            ],
+            shadeClose: false,
             shade: 0.8,
             move: false,
             skin: 'myskin',
@@ -309,62 +309,60 @@ var info = {
     },
     resPage: function (total, pageNum, resType) {
 
-if(total>9){
-
+        if (total > 9) {
 
             $('#resPage').show();
-        layui.use('laypage', function () {
-            var laypage = layui.laypage;
-            //执行一个laypage实例
+            layui.use('laypage', function () {
+                var laypage = layui.laypage;
+                //执行一个laypage实例
 
-            laypage.render({
-                elem: 'resPage', //注意，这里的 test1 是 ID，不用加 # 号
-                count: total, //数据总数，从服务端得
-                limit: '9',
-                theme: '#1E9FFF',
-                curr: pageNum,
-                groups: '5',
-                layout: ['prev', 'page', 'next', 'limits'],
-                jump: function (item, first) {
-                    if (!first) {
-                        // console.log()
-                        var search = $('#resName').val()
-                        info.selectResourceList(item.curr,resType, search);
+                laypage.render({
+                    elem: 'resPage', //注意，这里的 test1 是 ID，不用加 # 号
+                    count: total, //数据总数，从服务端得
+                    limit: '9',
+                    theme: '#1E9FFF',
+                    curr: pageNum,
+                    groups: '5',
+                    layout: ['prev', 'page', 'next', 'limits'],
+                    jump: function (item, first) {
+                        if (!first) {
+                            // console.log()
+                            var search = $('#resName').val()
+                            info.selectResourceList(item.curr, resType, search);
+                        }
                     }
-                }
-            });
-
-        })
-}else{
-    $('#resPage').hide();
-}
+                });
+            })
+        } else {
+            $('#resPage').hide();
+        }
     },
     paperPage: function (total, pageNum) {
-        if(total>12){
+        if (total > 12) {
             $('#paperPage').show();
 
-        layui.use('laypage', function () {
-            var laypage = layui.laypage;
-            //执行一个laypage实例
+            layui.use('laypage', function () {
+                var laypage = layui.laypage;
+                //执行一个laypage实例
 
-            laypage.render({
-                elem: 'paperPage', //注意，这里的 test1 是 ID，不用加 # 号
-                count: total, //数据总数，从服务端得
-                limit: '12',
-                theme: '#1E9FFF',
-                curr: pageNum,
-                groups: '5',
-                layout: ['prev', 'page', 'next', 'limits', 'skip'],
-                jump: function (item, first) {
-                    if (!first) {
-                        // console.log()
-                        info.TableDataRequest(item.curr);
+                laypage.render({
+                    elem: 'paperPage', //注意，这里的 test1 是 ID，不用加 # 号
+                    count: total, //数据总数，从服务端得
+                    limit: '12',
+                    theme: '#1E9FFF',
+                    curr: pageNum,
+                    groups: '5',
+                    layout: ['prev', 'page', 'next', 'limits', 'skip'],
+                    jump: function (item, first) {
+                        if (!first) {
+                            // console.log()
+                            info.TableDataRequest(item.curr);
+                        }
                     }
-                }
-            });
+                });
 
-        })
-        }else{
+            })
+        } else {
             $('#paperPage').hide();
         }
     },
@@ -402,13 +400,13 @@ if(total>9){
         })
     },
     //查找选择试卷
-    TableDataRequest: function (pageNum,paperName) {
+    TableDataRequest: function (pageNum, paperName) {
         $.ajax({
             url: MCUrl + 'manage_system/paper/papers',
             data: {
                 "pageNum": pageNum,
                 "pageSize": 10,
-                'paperName': paperName||''
+                'paperName': paperName || ''
             },
             dataType: 'json',
             Type: 'GET',
@@ -418,7 +416,8 @@ if(total>9){
                     var Html = []
                     res.data.list.forEach(function (item, index) {
                         Html.push('<tr style="margin-top: -10px;">')
-                        Html.push('<td style="text-align: center;" class="paperName"><span>' + item.paperName + '</span></td>')
+                        Html.push('<td style="text-align: center;" class="paperName"><pre>' + item.paperName.substring(0, 30) +
+                            '</pre></td>')
                         Html.push('<td style="text-align: center;">' + item.single + '</td>')
                         Html.push('<td style="text-align: center;">' + item.many + '</td>')
                         Html.push(
@@ -467,7 +466,7 @@ if(total>9){
             dataType: 'json',
             type: 'GET',
             success(res) {
-                var Html = []
+                var Html = [];
                 res.data.forEach(function (item, index) {
                     Html.push('<span class="layui-form-label" style="font-size: 16px;"><input type="checkbox" value="' + item.userId +
                         '"class="checkAll " name="Staff" lay-skin="primary" lay-filter="c_one" ><i>' + item.userName +
@@ -481,7 +480,6 @@ if(total>9){
             }
         })
     },
-
 
     //添加任务
     addTask: function () {
@@ -576,8 +574,8 @@ if(total>9){
     },
 
     //查询资源
-    selectResourceList: function (pageNum ,resType, resName) {
-    console.log(resType+'iiiii'+resName)
+    selectResourceList: function (pageNum, resType, resName) {
+        console.log(resType + 'iiiii' + resName)
         if (resName == undefined) {
             resName = ''
         }
@@ -597,12 +595,10 @@ if(total>9){
                 var Html = [];
                 res.data.list.forEach(function (item, index) {
                     Html.push('<div class="radio_box" >')
-                    // Html.push(
-                    //     '  <input type="radio" name="res" class=" "  name="Staff" lay-skin="primary" lay-filter="Staff"  value="' +
-                    //     item.resId + '">')
                     Html.push('<div class="img-box" data-resid="' + item.resId + '">')
                     if (item.resType == 1) {
-                        Html.push('		<img src="http://192.168.188.109:8848/' + item.imgPath + '"  style="width: 140px;height: 140px;">')
+                        Html.push('		<img src="http://192.168.188.109:8848/' + item.imgPath +
+                            '"  style="width: 140px;height: 140px;">')
                     } else if (item.resType == 2) {
                         Html.push('		<img src="../imgs/yinpin.jpg.png" >')
                     } else if (item.resType == 3) {
@@ -625,19 +621,12 @@ if(total>9){
                 })
                 console.log(res.data.total)
                 info.resPage(res.data.total, res.data.pageNum, resType)
-
-                // // 重新渲染
-                // layui.use('form', function () {
-                //     var form = layui.form;
-                //     form.render('');
-                // });
-
                 /***********资源选择模拟********/
                 $('.img-box').off('click').on('click', function () {
                     $('.img-box').removeClass('checked');
                     $(this).addClass('checked');
                     console.log($(this).attr('data-resid'));
-                    $('.Release_btn button').attr('data-resid',$(this).attr('data-resid'));
+                    $('.Release_btn button').attr('data-resid', $(this).attr('data-resid'));
                 });
 
             }
@@ -693,7 +682,7 @@ if(total>9){
                 var Html = [];
                 res.data.list.forEach(function (item, index) {
                     Html.push('<tr>');
-                    Html.push('<td class="oneselfTaskName"><pre>' + item.taskName + '</pre></td>');
+                    Html.push('<td class="oneselfTaskName"><pre>' + item.taskName.substring(0, 30) + '</pre></td>');
                     resa.data.forEach(function (itemTypeName, index) {
                         var typeName = itemTypeName.split(",");
                         if (item.taskType == typeName[0]) {
@@ -761,7 +750,7 @@ if(total>9){
                         title: ['完成情况',
                             'color:#fff;background-color:#40AFFE;;border-radius: 7px;text-align: center;font-size: 20px;cursor: default;'
                         ],
-                        shadeClose: true,
+                        shadeClose: false,
                         shade: 0.8,
                         skin: 'myskin',
                         area: ['600px', '500px'],
@@ -772,7 +761,6 @@ if(total>9){
                     })
                 })
                 //弹出查看
-
             }
         })
     },
@@ -800,7 +788,6 @@ if(total>9){
                             area: ['200px', '50px']
                         });
                         info.selectTaskType(1, '');
-                        //
                     }
                 }
             })

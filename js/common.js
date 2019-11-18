@@ -193,11 +193,10 @@ var All = {
 		if (options && options != null) {
 			layer.open({
 				type: 1,
-				// skin:'yes',
+				shadeClose: false,
 				area: ['400px', '200px'],
 				move: false,
 				title: ['', 'background-color: #289ef0;'],
-				// btn: ['确认', '取消'],
 				content: '<p class="openText">' + options.msg + '</p>' +
 					'<div class="btn">' +
 					'<button data-id="' + options.id + '" class="yes" >确认</button>' +
