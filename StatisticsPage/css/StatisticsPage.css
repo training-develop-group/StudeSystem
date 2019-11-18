@@ -86,11 +86,6 @@ thead>tr>td {
 	/* vertical-align:middle!important; */
 }
 
-#page {
-	text-align: center;
-	margin-top: 40px;
-}
-
 .layui-laypage a {
     margin-left: 5px;
     margin-right: 5px;

@@ -1,147 +1,159 @@
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-		<meta http-equiv="X-UA-Compatible" content="ie=edge">
-		<!--<link rel="stylesheet" href="../css/css/font-awesome.css">-->
-		<link rel="stylesheet" href="../js/layui/css/layui.css">
-		<link rel="stylesheet" href="../css/All.css">
-		<link rel="stylesheet" href="../css/common.css">
-		<link rel="stylesheet" href="css/TestQuestions.css">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!--<link rel="stylesheet" href="../css/css/font-awesome.css">-->
+    <link rel="stylesheet" href="../js/layui/css/layui.css">
+    <link rel="stylesheet" href="../css/All.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="css/TestQuestions.css">
 
-		<title>试题页</title>
+    <title>试题页</title>
 
-	</head>
-	<body>
+</head>
+<body>
 
-		<div id="header"></div>
-		<!--新增试题页-->
-		<div id="newlyBuild" style="display: none;">
-			<div class="layui-form selectionType">
-				<span>类型</span>
-				<input type="radio" name="selectionType" value="单选题" title="单选题" class="singleChoiceQuestion" lay-filter="beshared"
-				 checked="checked">
-				<input type="radio" name="selectionType" value="多选题" title="多选题" class="multipleChoiceQuestions" lay-filter="beshared">
-			</div>
-			<div class="subject">
-				<span>题干</span>
-				<textarea id="content" required lay-verify="required" maxlength="500" class="layui-textarea titleInputBox"></textarea>
-			</div>
-			<div class="layui-form choiceItem">
-				<p class="outerFrame">
-					<input type="radio" lay-skin="primary" name="choiceItem" value="A" title="A">
-					<textarea name="" required lay-verify="required" maxlength="300" class="layui-textarea optionA option"></textarea>
-				</p>
-				<p class="outerFrame">
-					<input type="radio" lay-skin="primary" name="choiceItem" value="B" title="B">
-					<textarea name="" required lay-verify="required" maxlength="300" class="layui-textarea optionB option"></textarea>
-				</p>
-				<p class="outerFrame">
-					<input type="radio" lay-skin="primary" name="choiceItem" value="C" title="C">
-					<textarea name="" required lay-verify="required" maxlength="300" class="layui-textarea optionC option"></textarea>
-				</p>
-				<p class="outerFrame">
-					<input type="radio" lay-skin="primary" name="choiceItem" value="D" title="D">
-					<textarea name="" required lay-verify="required" maxlength="300" class="layui-textarea optionD option"></textarea>
-				</p>
-			</div>
-			<div class="manageOptions">
-				<span class="addOptions"><img src="../imgs/xjz.png" /> 选项</span>
-				<span class="deleteOptions"><img src="../imgs/xjs.png" /> 选项</span>
-			</div>
-			<div class="analysis">
-				<span>解析</span>
-				<textarea name="" required lay-verify="required" id="analysis" maxlength="500" class="layui-textarea parseInputBox"></textarea>
-				<div class="addInputTotal">
-					<span>可输入：</span><span class="num">200</span>
-				</div>
-			</div>
-			<p class="optionErrorMsg">单选题最少存在两个选项，多选最少存在三个选项！</p>
-			<button type="button" class="layui-btn" id="confirmAdd">确认</button>
-		</div>
-		<!-- 编辑试题页 -->
-		<div id="editBuild" style="display: none;">
-			<div class="layui-form selectionType">
-				<span>类型</span>
-				<input type="radio" name="selectionType" value="单选题" title="单选题" class="singleChoiceQuestion" lay-filter="beshared">
-				<input type="radio" name="selectionType" value="多选题" title="多选题" class="multipleChoiceQuestions" lay-filter="beshared">
-			</div>
-			<div class="subject">
-				<span>题干</span>
-				<textarea id="content" required lay-verify="required" maxlength="500" class="layui-textarea titleInputBox"></textarea>
-			</div>
-			<div class="layui-form choiceItem"></div>
-			<div class="manageOptions">
-				<button class="addOptions"><i class="layui-icon layui-icon-add-circle"></i> 选项</button>
-				<button class="deleteOptions"><i class="layui-icon layui-icon-delete delete"></i> 选项</button>
-			</div>
-			<div class="analysis">
-				<span>解析</span>
-				<textarea name="" required lay-verify="required" id="analysis" maxlength="500" class="layui-textarea parseInputBox"></textarea>
-				<div class="editInputTotal">
-					<span>可输入：</span><span class="num">200</span>
-				</div>
-			</div>
-			<p class="optionErrorMsg">单选题最少存在两个选项，多选最少存在三个选项！</p>
-			<button type="button" class="layui-btn" id="confirmAdd">确认</button>
-		</div>
-		<!--解析-->
-		<div class="Popup PopupAnalysis hidden">
-			<div class="answerContent">
-				<div class="ViewParsing">
-					<p>正确答案：<span class="answerOptions">A</span></p>
-					<p>答案解析：</p>
-					<p class="analysis">因为集合M={1，2，3}，所以1∈M;</p>
-				</div>
-			</div>
+<div id="header"></div>
+<!--新增试题页-->
+<div id="newlyBuild" style="display: none;">
+    <div class="layui-form selectionType">
+        <span>类型</span>
+        <input type="radio" name="selectionType" value="单选题" title="单选题" class="singleChoiceQuestion"
+               lay-filter="beshared"
+               checked="checked">
+        <input type="radio" name="selectionType" value="多选题" title="多选题" class="multipleChoiceQuestions"
+               lay-filter="beshared">
+    </div>
+    <div class="subject">
+        <span>题干</span>
+        <textarea id="content" required lay-verify="required" maxlength="500"
+                  class="layui-textarea titleInputBox"></textarea>
+    </div>
+    <div class="layui-form choiceItem">
+        <p class="outerFrame">
+            <input type="radio" lay-skin="primary" name="choiceItem" value="A" title="A">
+            <textarea name="" required lay-verify="required" maxlength="300"
+                      class="layui-textarea optionA option"></textarea>
+        </p>
+        <p class="outerFrame">
+            <input type="radio" lay-skin="primary" name="choiceItem" value="B" title="B">
+            <textarea name="" required lay-verify="required" maxlength="300"
+                      class="layui-textarea optionB option"></textarea>
+        </p>
+        <p class="outerFrame">
+            <input type="radio" lay-skin="primary" name="choiceItem" value="C" title="C">
+            <textarea name="" required lay-verify="required" maxlength="300"
+                      class="layui-textarea optionC option"></textarea>
+        </p>
+        <p class="outerFrame">
+            <input type="radio" lay-skin="primary" name="choiceItem" value="D" title="D">
+            <textarea name="" required lay-verify="required" maxlength="300"
+                      class="layui-textarea optionD option"></textarea>
+        </p>
+    </div>
+    <div class="manageOptions">
+        <span class="addOptions"><img src="../imgs/xjz.png"/> 选项</span>
+        <span class="deleteOptions"><img src="../imgs/xjs.png"/> 选项</span>
+    </div>
+    <div class="analysis">
+        <span>解析</span>
+        <textarea name="" required lay-verify="required" id="analysis" maxlength="500"
+                  class="layui-textarea parseInputBox"></textarea>
+        <div class="addInputTotal">
+            <span>可输入：</span><span class="num">200</span>
+        </div>
+    </div>
+    <p class="optionErrorMsg">单选题最少存在两个选项，多选最少存在三个选项！</p>
+    <button type="button" class="layui-btn" id="confirmAdd">确认</button>
+</div>
+<!-- 编辑试题页 -->
+<div id="editBuild" style="display: none;">
+    <div class="layui-form selectionType">
+        <span>类型</span>
+        <input type="radio" name="selectionType" value="单选题" title="单选题" class="singleChoiceQuestion"
+               lay-filter="beshared">
+        <input type="radio" name="selectionType" value="多选题" title="多选题" class="multipleChoiceQuestions"
+               lay-filter="beshared">
+    </div>
+    <div class="subject">
+        <span>题干</span>
+        <textarea id="content" required lay-verify="required" maxlength="500"
+                  class="layui-textarea titleInputBox"></textarea>
+    </div>
+    <div class="layui-form choiceItem"></div>
+    <div class="manageOptions">
+        <button class="addOptions"><i class="layui-icon layui-icon-add-circle"></i> 选项</button>
+        <button class="deleteOptions"><i class="layui-icon layui-icon-delete delete"></i> 选项</button>
+    </div>
+    <div class="analysis">
+        <span>解析</span>
+        <textarea name="" required lay-verify="required" id="analysis" maxlength="500"
+                  class="layui-textarea parseInputBox"></textarea>
+        <div class="editInputTotal">
+            <span>可输入：</span><span class="num">200</span>
+        </div>
+    </div>
+    <p class="optionErrorMsg">单选题最少存在两个选项，多选最少存在三个选项！</p>
+    <button type="button" class="layui-btn" id="confirmAdd">确认</button>
+</div>
+<!--解析-->
+<div class="Popup PopupAnalysis hidden">
+    <div class="answerContent">
+        <div class="ViewParsing">
+            <p>正确答案：<span class="answerOptions">A</span></p>
+            <p>答案解析：</p>
+            <p class="analysis">因为集合M={1，2，3}，所以1∈M;</p>
+        </div>
+    </div>
 
-		</div>
-		<div class="wrapper wrapper-content ">
-			<!--主页面-->
-			<div class="Content ChangeToaminationPape">
-				<div class="C-Top">
-					<span>试题列表</span>
-					<button type="button" class="layui-btn layui-btn-primary NewTestQuestion">新建试题</button>
-				</div>
-				<div class="C-Content">
-					<p class="TestQuestionsBrowse">
+</div>
+<div class="wrapper wrapper-content ">
+    <!--主页面-->
+    <div class="Content ChangeToaminationPape">
+        <div class="C-Top">
+            <span>试题列表</span>
+            <button type="button" class="layui-btn layui-btn-primary NewTestQuestion">新建试题</button>
+        </div>
+        <div class="C-Content">
+            <p class="TestQuestionsBrowse">
 						<span class="sort">
 							<span class="emColor">单选题</span>
 							<span>多选题</span>
 						</span>
-						<span class="Statistics">
+                <span class="Statistics">
 							<span>共</span>
 							<span class="num" style="color: red;">0</span>
 							<span>道题</span>
 						</span>
-					</p>
-					<ul></ul>
-				</div>
-			</div>
-			<div class="Footer" style="text-align: center">
-				<div id="test1"></div>
-			</div>
-		</div>
+            </p>
+            <ul></ul>
+        </div>
+    </div>
+</div>
 
+<div class="Footer" style="text-align: center">
+    <div id="test1"></div>
+</div>
+<!-- <script type="text/javascrppt">
+    $('#changeBox').clickSort({
+        speed: 500,
+        callback: function() {
+            // 　　　　alert('ok');
+            //结束后的通知与方法
 
-		<!-- <script type="text/javascrppt">
-			$('#changeBox').clickSort({
-				speed: 500,
-				callback: function() {
-					// 　　　　alert('ok');
-					//结束后的通知与方法
-	
-				}
-			});
-		</script> -->
+        }
+    });
+</script> -->
 
-		<script src="../js/jQuery v3.4.1.min.js"></script>
-		<script src="../js/layui/layui.all.js"></script>
-		<script src="../js/All.js"></script>
-		<script src="../js/clickSort.js"></script>
-		<script src="../js/common.js"></script>
-		<script src="../js/address.js"></script>
-		<script src="js/TestQuestions.js"></script>
-	</body>
+<script src="../js/jQuery v3.4.1.min.js"></script>
+<script src="../js/layui/layui.all.js"></script>
+<script src="../js/All.js"></script>
+<script src="../js/clickSort.js"></script>
+<script src="../js/common.js"></script>
+<script src="../js/address.js"></script>
+<script src="js/TestQuestions.js"></script>
+</body>
 </html>
