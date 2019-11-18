@@ -370,7 +370,7 @@ ul div input {
     border-radius: 2px;
 }
 
-#TaskList table thead th{
+#TaskList table thead th {
     font-weight: 600;
 }
 
@@ -390,14 +390,17 @@ ul div input {
 .layui-table thead tr {
     background-color: #FFFFFF;
 }
-.TaskList{
+
+.TaskList {
     width: 100%;
 }
-.layui-table{
+
+.layui-table {
     width: calc(100% - 50px);
     margin-left: 25px;
     border: 0;
 }
+
 th {
     border: none;
     border-bottom: 0.5px solid #E9E7E7;
