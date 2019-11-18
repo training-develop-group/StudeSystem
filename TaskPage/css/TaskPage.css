@@ -25,7 +25,7 @@
     overflow: hidden;
 }
 
-#resPage{
+#resPage {
     text-align: center;
 }
 
@@ -107,17 +107,17 @@ td {
 }
 
 tr .oneselfTaskName {
-	cursor: pointer;
-	text-align: left;
-	padding-right: 0 ;
+    cursor: pointer;
+    text-align: left;
+    padding-right: 0;
 }
 
-.oneselfTaskName span{
-	display: inline-block;
-	width: 267px;
-	white-space: nowrap;
-	text-overflow:ellipsis;
-	overflow:hidden;
+.oneselfTaskName span {
+    display: inline-block;
+    width: 267px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 #selectTaskUsers {
@@ -374,21 +374,34 @@ ul div input {
     border-radius: 2px;
 }
 
+#TaskList table thead th{
+    font-weight: 600;
+}
+
+
 .layui-table td,
 .layui-table th {
     border-style: none;
-
+    height: 46px;
+    padding: 0;
+    text-indent: 25px;
 }
 
 .layui-table th {
     font-size: 16px;
-
 }
 
 .layui-table thead tr {
     background-color: #FFFFFF;
 }
-
+.TaskList{
+    width: 100%;
+}
+.layui-table{
+    width: calc(100% - 50px);
+    margin-left: 25px;
+    border: 0;
+}
 th {
     border: none;
     border-bottom: 0.5px solid #E9E7E7;
@@ -536,8 +549,8 @@ i {
     color: #5FB878;
 }
 
-.selectPapers img{
-	margin-top: 5px;
+.selectPapers img {
+    margin-top: 5px;
 }
 
 .layui-btn-primary:hover {
@@ -562,12 +575,12 @@ i {
 }
 
 .paperName span {
-	display: inline-block;
-	width: 150px;
-	word-wrap: break-word;
-	white-space: pre;
-	text-overflow: ellipsis;
-	overflow: hidden;
+    display: inline-block;
+    width: 150px;
+    word-wrap: break-word;
+    white-space: pre;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 #paperPage {
