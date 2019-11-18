@@ -11,10 +11,23 @@
 .con_nav_box .nav_title {
     font-size: 18px;
     font-weight: 600;
+    width: calc(100% - 60px);
+    display: inline-block;
+}
+
+.con_nav_box .goBack *{
+    font-size: 18px;
+    color: #2ba0e3;
 }
 
 .sortableitem {
+    width: 100%;
     padding: 1px 0;
+    float: left;
+    border: 1px solid #dadada;
+}
+.sortableitem + .sortableitem{
+    margin-top: 25px;
 }
 
 .wrapper.wrapper-content {
@@ -26,11 +39,6 @@
     /*min-height: 600px;*/
     padding: 25px 20px;
     box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.1);
-}
-
-.con_nav_box .nav_title {
-    font-size: 18px;
-    font-weight: 600;
 }
 
 .con_nav_box .nav_list li {
@@ -176,12 +184,6 @@
 .radio_box li span:first-child.active {
     border: 2px solid #2ba0e3;
     color: #2ba0e3;
-}
-
-.btn-box button {
-    float: right;
-    margin-left: 20px;
-    box-shadow: 0 1px 4px 0 #2ba0e3;
 }
 
 /*   资源学习通用样式   */
@@ -396,21 +398,6 @@
     border-radius: 3px;
 }
 
-.sortableitem {
-    width: calc(100% - 60px);
-    float: left;
-    margin-left: 28px;
-    border: 1px solid #dadada;
-}
-
-.sortableitem + .sortableitem {
-    width: calc(100% - 60px);
-    float: left;
-    margin-left: 28px;
-    margin-top: 25px;
-    border: 1px solid #dadada;
-}
-
 .functionBox {
     width: 100%;
     height: 50px;
@@ -430,11 +417,6 @@
 .sortableitem .num {
     margin-top: 15px;
     margin-left: 20px;
-}
-
-.distance {
-    margin-top: 20px;
-    margin-left: 30px;
 }
 
 .topicFramework p,
@@ -702,11 +684,6 @@ img {
     float: none;
 }
 
-.logOut .btn-box {
-    width: 232px;
-    margin: 30px auto 0;
-}
-
 .logOut .layui-btn + .layui-btn {
     margin-left: 20px;
 }
@@ -756,5 +733,48 @@ img {
 }
 
 .sortableitem .distance {
+    font-size: 16px;
+    padding: 10px 30px;
+}
+
+/*****开始测试弹窗 Start *****/
+.testStart p{
+    text-align: center;
+    margin-top: 30px;
+    font-size: 16px;
+}
+.testStart .btn-box{
+    width: 250px;
+    margin: 30px auto 0;
+}
+.testStart .btn-box button{
+    display: inline-block;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 30px;
+    white-space: nowrap;
+    font-size: 14px;
+    border-radius: 2px;
+}
+.testStart .layui-btn+.layui-btn{
+    margin-left: 30px;
+}
+/*****开始测试弹窗 end *****/
+
+.optionStyle {
+    padding: 0 30px 10px;
+}
+
+.optionStyle span {
+    float: left;
+    font-size: 16px;
+    width: 20px;
+    height: 20px;
+    vertical-align: center;
+}
+
+.optionStyle pre {
+    width: calc(100% - 25px);
+    float: right;
     font-size: 16px;
 }
