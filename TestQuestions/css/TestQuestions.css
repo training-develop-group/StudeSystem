@@ -218,9 +218,8 @@
     vertical-align: top;
     width: 400px;
     height: 100px;
-    display: inline-block;
-    white-space: pre-wrap;
-    border: 1px solid #dadada;
+    resize: none;
+    display: inline;
 }
 
 .addOptions,

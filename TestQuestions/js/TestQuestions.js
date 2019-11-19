@@ -73,6 +73,7 @@ var info = {
 					item.optionInfo.forEach(function(optionItem) {
 						Html.push('<div class="optionStyle clearfix"><span>' + optionItem.optionType + '.</span>');
 						// todo  optionItem.content 循环转码
+						var optioncontent = '';
 						Html.push('<pre>' + optionItem.content + '</pre></div>');
 					});
 					Html.push('</span>');
@@ -433,7 +434,7 @@ var info = {
 			success(res) {
 				questionRes = res;
 				res.data.forEach(function(questionItem, questionIndex) {
-					$('#editBuild .parseInputBox').text(questionItem.analysis);
+					$('#editBuild .parseInputBox').val(questionItem.analysis);
 					$('#editBuild .titleInputBox').val(questionItem.content);
 					questionItem.optionInfo.forEach(function(item, index) {
 						if (questionItem.questionType == 1) { //1单选 2多选
@@ -605,7 +606,7 @@ var info = {
 					var score = 10;
 					var difficulty = 2;
 					var status = 0;
-					var analysis = $('#editBuild #analysis').text().toString();
+					var analysis = $('#editBuild #analysis').val().toString();
 					if (content == '') {
 						layer.msg('题目为空！');
 						return false;
