@@ -82,7 +82,7 @@ var info = {
 					} else {
                         Html.push('<button class="view"><img src="../imgs/stf.png" />查看解析</button>');
 						Html.push('<button class="edit"><img src="../imgs/stb.png" />编辑试题</button>');
-						Html.push('<button class="deleteQuestions"><img src="../imgs/stt.png" />删除试题</button>');
+						Html.push('<button class="deleteQuestions" data-id="'+item.questionId+'"><img src="../imgs/stt.png" />删除试题</button>');
 						Html.push('</div>');
 					}
 					Html.push('</li>');
@@ -95,7 +95,7 @@ var info = {
 					info.viewPopup($(this).parents('.operation').find('input').val());
 				});
 				$('.questions .operation .deleteQuestions').off('click').on('click', function() {
-					var questionId = $(this).parents('.operation').find('input').val();
+					var questionId = $(this).attr('data-id');
 					var status = $(this).parents('.operation').find('p').text();
 					All.layuiOpen({
 						num: 5,
@@ -140,7 +140,8 @@ var info = {
 	},
 	// 删除试题
 	deleteQuestions: function(questionId, status) {
-		if (status == 1) {
+		// status 试题的状态 如果为1 则不可删除
+		if (status == 0) {
 			$.ajax({
 				url: WTQUrl + 'manage_system/question/' + questionId,
 				data: '',
@@ -157,7 +158,7 @@ var info = {
 				}
 			})
 		} else {
-
+			layer.msg('删除失败');
 		}
 	},
 
@@ -341,7 +342,7 @@ var info = {
 				if ($(this).find('.option').val() == '') {
 					checkInputContent = true;
 				} else {
-					person.content = $(this).find('.option').val();
+					person.content = $(this).find('.option').val().replace('<','&lt;') .replace('>','&gt;');
 				}
 				if (judged) {
 					person.optionType = $(this).find('.layui-unselect div').text();
@@ -621,7 +622,7 @@ var info = {
 							checkInputContent = true;
 							return false;
 						} else {
-							person.content = $(this).find('.option').val();
+							person.content = $(this).find('.option').val().replace('<','&lt;') .replace('>','&gt;');
 						}
 						if (type == 1) {
 							person.optionType = $(this).find('.layui-unselect div').text();
