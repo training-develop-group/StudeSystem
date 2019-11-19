@@ -102,7 +102,7 @@ var info = {
 						status: status,
 						questionId: questionId,
 						msg: '是否删除该试题'
-					})
+					});
 				});
 				$('.Content .TestQuestionsBrowse .Statistics .num').text(res.data.total);
 				if (res.data.total > 10){
@@ -140,7 +140,7 @@ var info = {
 	},
 	// 删除试题
 	deleteQuestions: function(questionId, status) {
-		if (status == 1) {
+		if (status == 0) {
 			$.ajax({
 				url: WTQUrl + 'manage_system/question/' + questionId,
 				data: '',
@@ -153,14 +153,13 @@ var info = {
 					}
 				},
 				error(e) {
-
+					layer.msg('删除失败');
 				}
 			})
 		} else {
 
 		}
 	},
-
 	//查看解析
 	viewAnswer: function(questionId) {
 		$.ajax({

@@ -126,9 +126,10 @@ var info = {
     ToTask: function () {
         $('body').delegate('#taskList .ToTask', 'click', function () {
             var TaskId = $(this).attr('data-id');
+			var taskDegreeOfCompletion = $('.active').attr('data-type')
             // window.open("../TestPage/TestPage.html?value=" + TaskId, "_blank");
             // 本页打开
-            window.location.href = "../TestPage/TestPage.html?value=" + TaskId;
+            window.location.href = "../TestPage/TestPage.html?value=" + TaskId +','+taskDegreeOfCompletion;
         });
     }
 };
