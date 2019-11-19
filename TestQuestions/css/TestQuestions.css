@@ -147,7 +147,7 @@
 #newlyBuild {
     width: 80%;
     height: 680px;
-    margin-left: 10%;
+    margin-left: 13%;
 }
 
 #editQuestion {
@@ -245,7 +245,7 @@
     line-height: 30px;
     background-color: #279ef0;
     margin-top: 20px;
-    margin-left: calc(100% - 64%);
+    margin-left: calc(100% - 67%);
 }
 
 .layui-form-radio > i:hover,
@@ -284,10 +284,6 @@
     margin-left: 15px;
     margin-top: 10px;
     font-size: 18px;
-}
-
-.analysis {
-    text-indent: 38px;
 }
 
 .QuestionContent{

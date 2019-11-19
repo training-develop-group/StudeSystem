@@ -48,8 +48,6 @@ table {
 
 .hiddenTableList {
     position: absolute;
-    top: 45px;
-    /* margin: 0 25px; */
 }
 
  td, th {
@@ -603,4 +601,13 @@ i {
 
 .layui-layer-hui {
     color: #fff !important;
+}
+
+
+/* 上传资源 */
+.layui-upload-list {
+    position: relative;
+    height: 400px;
+    overflow: auto;
+    margin: 0;
 }

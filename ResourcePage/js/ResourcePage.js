@@ -614,7 +614,7 @@ var info = {
     },
 
 
-    //上传文件
+    //上传资源
     uploadPopup: function () {
         // $('#uploadFile').click(function() {
         $(document).on('click', '#uploadFile', function () {
@@ -629,7 +629,7 @@ var info = {
                 var layer = layui.layer;
                 layer.open({
                     type: 1, //Page层类型
-                    area: ['790px', '320px'],
+                    area: ['790px', '550px'],
                     title: ['上传资源', 'background-color: #279EF0;text-align: center;font-size: 20px;color:white;'],
                     shade: 0.5, //遮罩透明度
                     shadeClose: false,
@@ -641,18 +641,15 @@ var info = {
                     end: function () {
                         // 刷新列表
                         info.selectResourceList(1);
-
                         //清空上传文件缓存
                         var file = $("#testList");
                         file.after(file.clone().val(""));
                         file.remove();
-
                         //清空上传文件表格
                         var html = [];
                         $('#demoList').html(html.join(''));
                     },
                     success: function () {
-
 
                         var resIdList = [];
                         console.log('-----成功1----');
@@ -687,18 +684,34 @@ var info = {
                                             // 	return false;
                                             // }
                                             console.log(file);
-                                            var tr = $(['<tr id="upload-' + index + '" class="uploadTd">',
-                                                '<td style="width:20px;" title="' + file.name + '">' + file.name + '</td>',
-                                                '<td class="centerText">' + fileType + '</td>',
-                                                '<td class="centerText">' + getFileSize(file.size) + '</td>',
-                                                '<td class="centerText">' + '--' + '</td>',
-                                                '<td>',
-                                                // '<button class="layui-btn layui-btn-xs demo-reload layui-hide">重传</button>',
-                                                '<button class="layui-btn layui-btn-xs layui-btn-danger demo-delete resId="' + deleteResId +
-                                                '" ">删除</button>',
-                                                '</td>',
-                                                '</tr>'
-                                            ].join(''));
+                                            if(file.name.length > 8){
+                                                var tr = $(['<tr id="upload-' + index + '" class="uploadTd">',
+                                                    '<td style="width:20px;" title="' + file.name + '"><pre>' + file.name.substring(0,8) + '...</pre></td>',
+                                                    '<td class="centerText">' + fileType + '</td>',
+                                                    '<td class="centerText">' + getFileSize(file.size) + '</td>',
+                                                    '<td class="centerText">' + '--' + '</td>',
+                                                    '<td>',
+                                                    // '<button class="layui-btn layui-btn-xs demo-reload layui-hide">重传</button>',
+                                                    '<button class="layui-btn layui-btn-xs layui-btn-danger demo-delete resId="' + deleteResId +
+                                                    '" ">删除</button>',
+                                                    '</td>',
+                                                    '</tr>'
+                                                ].join(''));
+                                            }else{
+                                                var tr = $(['<tr id="upload-' + index + '" class="uploadTd">',
+                                                    '<td style="width:20px;" title="' + file.name + '"><pre>' + file.name + '</pre></td>',
+                                                    '<td class="centerText">' + fileType + '</td>',
+                                                    '<td class="centerText">' + getFileSize(file.size) + '</td>',
+                                                    '<td class="centerText">' + '--' + '</td>',
+                                                    '<td>',
+                                                    // '<button class="layui-btn layui-btn-xs demo-reload layui-hide">重传</button>',
+                                                    '<button class="layui-btn layui-btn-xs layui-btn-danger demo-delete resId="' + deleteResId +
+                                                    '" ">删除</button>',
+                                                    '</td>',
+                                                    '</tr>'
+                                                ].join(''));
+                                            }
+
                                             console.log(index);
 
                                             //单个重传
