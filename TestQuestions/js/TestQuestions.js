@@ -71,7 +71,9 @@ var info = {
 					Html.push('<span>');
 					Html.push('<pre class="QuestionContent">' + item.content + '</pre>');
 					item.optionInfo.forEach(function(optionItem) {
-						Html.push('<div class="optionStyle clearfix"><span>' + optionItem.optionType + '.</span><pre>' + optionItem.content + '</pre></div>');
+						Html.push('<div class="optionStyle clearfix"><span>' + optionItem.optionType + '.</span>');
+						// todo  optionItem.content 循环转码
+						Html.push('<pre>' + optionItem.content + '</pre></div>');
 					});
 					Html.push('</span>');
 					Html.push('<div class="operation functionBox">');
@@ -431,7 +433,7 @@ var info = {
 			success(res) {
 				questionRes = res;
 				res.data.forEach(function(questionItem, questionIndex) {
-					$('#editBuild .parseInputBox').val(questionItem.analysis);
+					$('#editBuild .parseInputBox').text(questionItem.analysis);
 					$('#editBuild .titleInputBox').val(questionItem.content);
 					questionItem.optionInfo.forEach(function(item, index) {
 						if (questionItem.questionType == 1) { //1单选 2多选
@@ -598,12 +600,12 @@ var info = {
 					}
 				});
 				$('#editBuild #confirmAdd').off('click').on('click', function() {
-					var content = $('#editBuild #content').val().replace('<','&lt;') .replace('>','&gt;').replace("</","&lt;\/");
+					var content = $('#editBuild #content').val().toString();
 					var option = [];
 					var score = 10;
 					var difficulty = 2;
 					var status = 0;
-					var analysis = $('#editBuild #analysis').val().replace('<','&lt;') .replace('>','&gt;').replace("</","&lt;\/");
+					var analysis = $('#editBuild #analysis').text().toString();
 					if (content == '') {
 						layer.msg('题目为空！');
 						return false;
@@ -622,7 +624,7 @@ var info = {
 							checkInputContent = true;
 							return false;
 						} else {
-							person.content = $(this).find('.option').val().replace('<','&lt;') .replace('>','&gt;').replace("</","&lt;\/");
+							person.content = $(this).find('.option').val().toString();
 						}
 						if (type == 1) {
 							person.optionType = $(this).find('.layui-unselect div').text();
