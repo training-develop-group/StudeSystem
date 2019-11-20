@@ -173,16 +173,16 @@ var info = {
         };
         PNum = data.pageNum;
         data.list.forEach(function (item, index) {
+            // 转义(已防有标签的样式被html识别)
+            item.paperName = $('<div>').text(item.paperName).html();
             if (item.status === 0) {
                 item.status = '未发布';
             } else {
                 item.status = '已发布';
             }
-            // 转义(已防有标签的样式被html识别)
-            item.paperName = $('<div>').text(item.paperName).html();
             Html.push('<tr>');
-            if (item.paperName.length > 20) {
-                Html.push('<td class="toView" data-id="' + item.paperId + '"><pre class="rename " title="' + item.paperName + '" >' + item.paperName.substring(0, 20) + '...</pre></td>');
+            if (item.paperName.length > 16) {
+                Html.push('<td class="toView" data-id="' + item.paperId + '"><pre class="rename " title="' + item.paperName + '" >' + item.paperName.substring(0, 16) + '...</pre></td>');
             } else {
                 Html.push('<td class="toView" data-id="' + item.paperId + '"><pre class="rename " title="' + item.paperName + '" >' + item.paperName + '</pre></td>');
             }
@@ -191,10 +191,10 @@ var info = {
             Html.push('<td class="middle">' + item.many + '</td>');
             Html.push('<td>');
             if (item.status == '已发布') {
-                Html.push('<button type="button" class="layui-btn layui-btn-primary edit" data-id="' + item.paperId + '">重命名</button>');
+                Html.push('<button type="button" class="layui-btn layui-btn-primary edit" data-id="' + item.paperId + '" data-paperName="' + item.paperName + '">重命名</button>');
                 Html.push('<button type="button" class="layui-btn layui-btn-primary publish" data-id="' + item.paperId + '">发布</button>');
             } else {
-                Html.push('<button type="button" class="layui-btn layui-btn-primary edit" data-id="' + item.paperId + '">重命名</button>');
+                Html.push('<button type="button" class="layui-btn layui-btn-primary edit" data-id="' + item.paperId + '" data-paperName="' + item.paperName + '">重命名</button>');
                 Html.push('<button type="button" class="layui-btn layui-btn-primary selectedTopic" data-id="' + item.paperId + '">编辑</button>');
                 Html.push('<button type="button" class="layui-btn layui-btn-primary publish" data-id="' + item.paperId + '">发布</button>');
                 Html.push('<button type="button" class="layui-btn layui-btn-primary delete" data-id="' + item.paperId + '">删除</button>');
@@ -243,7 +243,7 @@ var info = {
         });
         // 点击进行重命名
         $('.edit').off('click').on('click', function () {
-            var rename = $(this).parent().parent().find('.rename').text();
+            var rename = $(this).attr('data-paperName');
             var paperId = $(this).attr('data-id');
             // 公共修改弹出框
             All.layuiOpenRename({

@@ -423,7 +423,7 @@ var info = {
                         Html.push(
                             '<td style="text-align: center; float: left; margin-left: 20px; "><div  class="site-demo-button"><button value="' +
                             item.paperId +
-                            '" type="button" class="layui-btn layui-btn-primary layui-btn-sm layui-btn-normal selectPaper" style="width: 70px; background-color: white;">选择</button></div></td>'
+                            '" type="button" class="layui-btn layui-btn-primary layui-btn-sm layui-btn-normal selectPaper" style="width: 70px; background-color: white;margin-top: 7px;">选择</button></div></td>'
                         );
                         Html.push('</tr>');
                     });
@@ -677,17 +677,19 @@ var info = {
             success(res) {
                 var Html = [];
                 res.data.list.forEach(function (item, index) {
+                    // 转义(已防有标签的样式被html识别)
+                    item.taskName = $('<div>').text(item.taskName).html();
                     Html.push('<tr>');
-                    if(item.taskName.length > 15){
-                        Html.push('<td class="oneselfTaskName"><pre>' + item.taskName.substring(0, 15) + '...</pre></td>');
-                    }else{
-                        Html.push('<td class="oneselfTaskName"><pre>' + item.taskName + '</pre></td>');
+                    if (item.taskName.length > 20) {
+                        Html.push('<td class="oneselfTaskName" title="' + item.taskName + '"><pre>' + item.taskName.substring(0, 20) + '...</pre></td>');
+                    } else {
+                        Html.push('<td class="oneselfTaskName" title="' + item.taskName + '"><pre>' + item.taskName + '</pre></td>');
                     }
-                    if(item.taskType === 1){
+                    if (item.taskType === 1) {
                         Html.push('<td >综合任务</td>');
-                    }else if(item.taskType === 2){
+                    } else if (item.taskType === 2) {
                         Html.push('<td >学习任务</td>');
-                    }else if(item.taskType === 3){
+                    } else if (item.taskType === 3) {
                         Html.push('<td >测试任务</td>');
                     }
 
@@ -700,7 +702,7 @@ var info = {
                     });
                     Html.push('<td>' + dateFormata(item.startTime) + ' - ' + dateFormata(item.endTime) + '</td>');
                     Html.push(
-                        '<td><button style="width: 50px;height: 25px;margin-right:20px; margin-left: 20px; background-color: #FFFFFF;border: none;float: left;" class="updateTaskName"value="' +
+                        '<td><button style="width: 50px;height: 25px;margin-right:20px; margin-left: 20px; background-color: #FFFFFF;border: none;float: left;" data-taskName="' + item.taskName + '" class="updateTaskName"value="' +
                         item.taskId + '">重命名</button>' +
                         '<button class="lookOver" style="width: 65px;height: 25px;margin-right:20px;border: none;background-color: #FFFFFF; margin-left: 20px; float: left;"value="' +
                         item.taskId + '">完成情况</button>' +
@@ -719,8 +721,9 @@ var info = {
                 $('#taskContent').html(Html.join(''));
                 //点击弹出重命名
                 $('.updateTaskName').off('click').on('click', function () {
-                    var taskName = $(this).parents('tr').children('.oneselfTaskName').text();
-                    $('.taskNameupdate').val(taskName)
+                    var taskName = $(this).attr('data-taskName');
+                    console.log(taskName);
+                    $('.taskNameupdate').val(taskName);
                     info.popupsUpdateTaskName(taskName, $(this).val());
                     $('.confirmAdd').val($(this).val())
                 });
@@ -742,12 +745,7 @@ var info = {
                 $('.oneselfTaskName').off().on('click', function () {
                     var taskId = $(this).parents('tr').children('td').children('.updateTaskName').val();
                     var taskType = $(this).parents('tr').children('td').children('.taskTypeRecord').val();
-                    console.log(taskType)
-
-
                     window.open("../TestPage/TestPage.html?value=" + taskId + "," + 1, "_blank");
-
-
                 });
                 $('.lookOver').off().on('click', function () {
                     info.selectTaskUsers($(this).val());

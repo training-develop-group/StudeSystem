@@ -701,6 +701,8 @@ var info = {
                     Analysis = item.analysis;
                     OptionType = item.optionType;
                 });
+                // 转义(已防有标签的样式被html识别)
+                Analysis = $('<div>').text(Analysis).html();
                 layui.use("layer", function () {
                     var layer = layui.layer;
                     layer.open({

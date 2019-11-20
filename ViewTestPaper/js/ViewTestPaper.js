@@ -123,6 +123,10 @@ var info = {
 					Analysis = item.analysis;
 					OptionType = item.optionType;
 				});
+
+				// 转义(已防有标签的样式被html识别)
+				Analysis = $('<div>').text(Analysis).html();
+
 				layui.use("layer", function() {
 					var layer = layui.layer;
 					layer.open({
@@ -132,7 +136,7 @@ var info = {
 						move: false,
 						area: ['700px', '260px'],
 						title: ['查看解析',
-								'background-color: #279ef0;text-align: center;font-size: 16px;line-height: 43px;color:white;letter-spacing: 5px;padding: 0px;'
+								'background-color: #279ef0;text-align: center;font-size: 20px;line-height: 43px;color:white;letter-spacing: 2px;padding: 0px;'
 							]
 							// ,shade: 0.6 //遮罩透明度
 							,

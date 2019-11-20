@@ -21,8 +21,7 @@
 }
 
 .sortableitem {
-    width: calc(100% - 40px);
-    margin: 0 20px;
+    width: 100%;
     float: left;
     border: 1px solid #dadada;
 }
@@ -410,7 +409,7 @@
 .functionBox button {
     font-size: 18px;
     margin-left: 20px;
-    line-height: 50px;
+    line-height: 49px;
     border: 0;
     background-color: #f5f5f5;
 }
@@ -459,7 +458,7 @@ img {
 }
 
 .analysis {
-    width: 600px;
+    width: 665px;
 }
 
 .answerContent {
@@ -638,6 +637,14 @@ img {
 
 .CR-btnCancel {
     width: 100px;
+    background-color: #fff;
+    color: #1b1b1b;
+    border: 1px solid #dadada;
+}
+
+.CR-btnCancel:hover {
+    color: #1b1b1b;
+    border: 1px solid #279ef0;
 }
 
 .editorialContent {
@@ -805,4 +812,8 @@ img {
     width: calc(100% - 25px);
     float: right;
     font-size: 16px;
+}
+
+.answerOptions{
+    font-size: 18px;
 }

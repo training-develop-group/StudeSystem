@@ -155,8 +155,7 @@ var info = {
                         html.push('<td class="centerText">' + getFileSize(item.resSize) + '</td>');
 
                         if (item.status == '已发布') {
-                            html.push('<td><button class="editResName" resId="' + item.resId + '" resName="' + item.resName +
-                                '">重命名</button><button class="release" resName="' + item.resName + '" resId="' + item.resId +
+                            html.push('<td><button class="editResName" resId="' + item.resId + '" resName="' + item.resName +'">重命名</button><button class="release" resName="' + item.resName + '" resId="' + item.resId +
                                 '">发布</button><pre href="http://192.168.188.109:8888/manage_system/resource/download?resName=' + item.resName +
                                 '&path=' + item.path + '"><button class="download">下载</button></pre></td>');
                             html.push('</tr>');
@@ -168,13 +167,13 @@ var info = {
                                 '&path=' + item.path + '"><button class="download">下载</button></pre></td>');
                             html.push('</tr>');
                         }
-                    })
+                    });
                     $('#contentList').html(html.join(''));
 
                     total = res.data.total; //分页总数量
                     JumpPageNum = res.data.pageNum; //下一页复制为了时删除或者修改完事后停留在原本的页数
 
-                    $('.search').val('')
+                    $('.search').val('');
                     info.Pagination(total, pageNum); //调用分页方法（总条数，页数）
 
                     //获取资源详情点击事件
@@ -186,14 +185,10 @@ var info = {
 
                     //编辑资源名点击事件
                     $('.editResName').off('click').on('click', function () {
-                        // var a = this.parentElement.parentElement.firstElementChild.outerText;
-                        // console.log(a);
                         var resId = $(this).attr("resId"); //点击后获取获取到按钮属性
                         console.log(resId);
-                        var resName = this.parentElement.parentElement.firstElementChild.outerText;
-                        console.log(this.parentElement.parentElement.firstElementChild);
-                        resName = resName.substring(0, resName.lastIndexOf('.'));
-                        // $('.rename').val(resName); //编辑资源名返回值
+                        var resName = $(this).attr("resName");
+                        console.log(resName);
                         info.updateResNamePopup(resId, resName); //调用修改弹出层传参（resId）
 
                     });
@@ -208,7 +203,7 @@ var info = {
                         Html.push('<option value="2">学习任务</option>');
                         $('#taskType').html(Html.join(''));
 
-                        info.selectAllUser('') //查询所有用户
+                        info.selectAllUser(''); //查询所有用户
 
                         info.openAddRolePage(); //发布任务弹窗
 

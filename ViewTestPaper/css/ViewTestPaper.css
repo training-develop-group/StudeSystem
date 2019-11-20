@@ -119,6 +119,7 @@ img {
 
 .answerContent p {
     margin-top: 10px;
+    font-size: 18px;
 }
 
 .layui-layer-title {
@@ -153,4 +154,8 @@ pre {
     margin-left: 55px;
     margin-top: -25px;
 	width: 95%;
+}
+
+.answerOptions{
+    font-size: 18px;
 }

@@ -69,12 +69,14 @@ var info = {
 							'. </span>多选题</p>');
 					}
 					Html.push('<span>');
+					item.content = $('<div>').text(item.content).html();
 					Html.push('<pre class="QuestionContent">' + item.content + '</pre>');
 					item.optionInfo.forEach(function(optionItem) {
+
 						Html.push('<div class="optionStyle clearfix"><span>' + optionItem.optionType + '.</span>');
 						// todo  optionItem.content 循环转码
 						var optioncontent = '';
-						itemx.content = $('<div>').text(itemx.content).html();
+						optionItem.content = $('<div>').text(optionItem.content).html();
 						Html.push('<pre>' + optionItem.content + '</pre></div>');
 					});
 					Html.push('</span>');
@@ -182,11 +184,10 @@ var info = {
 					} else {
 						answer = answer + ',' + item.optionType;
 					}
+
 					$('.PopupAnalysis .ViewParsing span').text(answer);
 				});
 			}
-
-
 		});
 	},
 	//添加
