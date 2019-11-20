@@ -21,9 +21,8 @@
 }
 
 .sortableitem {
-    width: 96%;
-    margin: 15px 2%;
-    padding: 1px 0;
+    width: calc(100% - 40px);
+    margin: 0 20px;
     float: left;
     border: 1px solid #dadada;
 }
@@ -396,7 +395,7 @@
     /* margin-left: 43px; */
     margin-top: 25px;
     margin-bottom: 20px;
-    padding: 0px 0px 30px;
+    padding: 0 0 30px;
     border-radius: 3px;
 }
 
@@ -505,7 +504,7 @@ img {
 }
 
 .card_left .card {
-    margin: 15px 0 15px 10px;
+    margin: 15px 0 0 10px;
 }
 
 .card_left .card li {
@@ -609,7 +608,7 @@ img {
 
 .questionCard .btn-box button {
     float: right;
-    /* margin-left: 20px; */
+     margin-left: 20px;
     box-shadow: 0 1px 4px 0 #2ba0e3;
 }
 
@@ -726,8 +725,8 @@ img {
     cursor: pointer;
 }
 
-.option .optionStyle {
-    width: calc(100% - 30px);
+.editorialContent .option .optionStyle {
+    width: calc(100% - 50px);
     float: right;
     font-size: 16px;
     line-height: 25px;
@@ -765,6 +764,29 @@ img {
     margin-left: 30px;
 }
 
+/*****开始测试弹窗 end *****/
+
+/*****开始测试弹窗 Start *****/
+.comeback p {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 16px;
+}
+
+.comeback .btn-box {
+    width: 116px;
+    margin: 30px auto 0;
+}
+
+.comeback .btn-box button {
+    display: inline-block;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 30px;
+    white-space: nowrap;
+    font-size: 14px;
+    border-radius: 2px;
+}
 /*****开始测试弹窗 end *****/
 
 .optionStyle {
