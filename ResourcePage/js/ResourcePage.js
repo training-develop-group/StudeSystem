@@ -210,10 +210,13 @@ var info = {
                         resId = $(this).attr("resId"); //给全局变量resId赋值（添加任务取到resId）
 
                         //发布弹出层中显示被选中的资源名
-                        var Html = [];
                         var resName = $(this).attr("resName");
-                        Html.push(resName)
-                        $('.resAdd').html(Html.join(''));
+                        if(resName.length > 25){
+                            $('.resAdd').html('：'+ resName.substring(0, 25) + '...');
+                        } else {
+                            $('.resAdd').html('：'+ resName);
+                        }
+                        $('.resAdd').attr('title',resName);
 
                     });
 

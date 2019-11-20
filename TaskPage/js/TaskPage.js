@@ -492,7 +492,7 @@ var info = {
         var userId = '';
         $.each($("[name='Staff']:checked"), function (i, val) {
             userId += ',' + val.value
-        })
+        });
         if ($('#test1').val() === '') {
             mistake = '请选择开始时间!';
             index = false;
