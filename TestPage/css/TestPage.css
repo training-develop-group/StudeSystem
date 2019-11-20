@@ -21,8 +21,7 @@
 }
 
 .sortableitem {
-    width: 96%;
-    margin: 15px 2%;
+    width: 100%;
     padding: 1px 0;
     float: left;
     border: 1px solid #dadada;
@@ -505,7 +504,7 @@ img {
 }
 
 .card_left .card {
-    margin: 15px 0 15px 10px;
+    margin: 15px 0 0 10px;
 }
 
 .card_left .card li {

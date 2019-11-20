@@ -6,7 +6,7 @@ var urlinfo = window.location.href;
 var value = urlinfo.split("?")[1].split("value=")[1];
 var PaperId = decodeURI(value);
 var taskId = PaperId.split(',')[0];
-var taskDegreeOfCompletion = PaperId.split(',')[1];
+var taskDegreeOfCompletion = PaperId.split(',')[1]
 var taskType = '';
 var getExperience = '';
 var paperId = '';
@@ -24,7 +24,7 @@ $(function () {
             type: 2,
             num: 3
         });
-    });
+    })
 
     $.ajax({
         url: LBUrl + 'manage_system/task/' + taskId,
@@ -52,11 +52,12 @@ $(function () {
             } else {
                 layer.msg('任务已删除')
             }
+            ;
         },
     });
 
-    if (localStorage.getItem('userType') === 1) {
-        if (taskType === 1) {
+    if (localStorage.getItem('userType') == 1) {
+        if (taskType == 1) {
             $.ajax({
                 url: TDXUrl + 'manage_system/resource/' + resId,
                 data: {},
@@ -71,64 +72,66 @@ $(function () {
                         var myAudio = $("#myAudio").attr('id');
                         $('.study').removeClass('hidden');
                         $('.measurement').removeClass('hidden')
-                        if (resc.data.resType === 1) {
+                        if (resc.data.resType == 1) {
                             $('.video').removeClass('hidden');
                             $('.video video').attr('src', 'http://192.168.188.109:8848/' + resc.data.path);
                             info.getVideoPlaybackTime(resId, myVideo);
                             $('.measurement').addClass('test');
-                        } else if (resc.data.resType === 2) {
+                        } else if (resc.data.resType == 2) {
                             $('.audio').removeClass('hidden');
                             //音频地址赋值
                             $('.audio audio').attr('src', 'http://192.168.188.109:8848/' + resc.data.path);
                             info.getVideoPlaybackTime(resId, myAudio);
                             $('.measurement').addClass('test');
-                        } else if (resc.data.resType === 3) {
+                        } else if (resc.data.resType == 3) {
                             $('.doc').removeClass('hidden');
                             $('.doc iframe').attr('src', 'http://192.168.188.109:8848/' + pdfPath + '.pdf');
                             $('.measurement').addClass('test');
                         }
+                        ;
                         $('.test').off('click').on('click', function () {
                             $('.content').addClass('hidden');
                             //隐藏掉所有
-                            $('.video').addClass('hidden');
-                            $('.audio').addClass('hidden');
-                            $('.doc').addClass('hidden');
-                            $('.active').removeClass('active');
-                            $(this).addClass('active');
+                            $('.video').addClass('hidden')
+                            $('.audio').addClass('hidden')
+                            $('.doc').addClass('hidden')
+                            $('.active').removeClass('active')
+                            $(this).addClass('active')
 
                             info.getPaperList(paperId);
-                        });
+                        })
                         $('.study').off('click').on('click', function () {
                             $('.active').removeClass('active')
                             $(this).addClass('active')
                             $('.content').addClass('hidden');
                             $('.test_content').addClass('hidden');
-                            if (resc.data.resType === 1) {
+                            if (resc.data.resType == 1) {
                                 $('.video').removeClass('hidden');
                                 $('.video video').attr('src', 'http://192.168.188.109:8848/' + resc.data.path);
                                 info.getVideoPlaybackTime(resId, myVideo);
                                 $('.measurement').addClass('test');
-                            } else if (resc.data.resType === 2) {
+                            } else if (resc.data.resType == 2) {
                                 $('.audio').removeClass('hidden');
                                 //音频地址赋值
                                 $('.audio audio').attr('src', 'http://192.168.188.109:8848/' + resc.data.path);
                                 info.getVideoPlaybackTime(resId, myAudio);
                                 $('.measurement').addClass('test');
-                            } else if (resc.data.resType === 3) {
+                            } else if (resc.data.resType == 3) {
                                 $('.doc').removeClass('hidden');
-                                if (extPath === '.txt' || extPath === '.pdf') {
+                                if (extPath == '.txt' || extPath == '.pdf') {
                                     $('.doc iframe').attr('src', 'http://192.168.188.109:8848/' + resc, data.path + '');
                                 } else {
                                     $('.doc iframe').attr('src', 'http://192.168.188.109:8848/' + pdfPath + '.pdf');
                                 }
                                 $('.measurement').addClass('test');
                             }
+                            ;
                         })
                     }
                 }
             })
 
-        } else if (taskType === 2) {
+        } else if (taskType == 2) {
             $.ajax({
                 url: TDXUrl + 'manage_system/resource/' + resId,
                 data: {},
@@ -142,32 +145,33 @@ $(function () {
                         var myVideo = $('#myVideo').attr('id');
                         var myAudio = $("#myAudio").attr('id');
                         $('.study').removeClass('hidden');
-                        if (resc.data.resType === 1) {
+                        if (resc.data.resType == 1) {
                             $('.video').removeClass('hidden');
                             $('.video video').attr('src', 'http://192.168.188.109:8848/' + resc.data.path);
                             info.getVideoPlaybackTime(resId, myVideo);
-                        } else if (resc.data.resType === 2) {
+                        } else if (resc.data.resType == 2) {
                             $('.audio').removeClass('hidden');
                             //音频地址赋值
                             $('.audio audio').attr('src', 'http://192.168.188.109:8848/' + resc.data.path);
                             info.getVideoPlaybackTime(resId, myAudio);
-                        } else if (resc.data.resType === 3) {
+                        } else if (resc.data.resType == 3) {
                             $('.doc').removeClass('hidden');
-                            if (extPath === '.txt' || extPath === '.pdf') {
+                            if (extPath == '.txt' || extPath == '.pdf') {
                                 $('.doc iframe').attr('src', 'http://192.168.188.109:8848/' + resc, data.path + '');
                             } else {
                                 $('.doc iframe').attr('src', 'http://192.168.188.109:8848/' + pdfPath + '.pdf');
                             }
                         }
-                        $('.experienceListBox').removeClass('hidden');
-                        info.getExperienceList(1, taskId);
+                        ;
+                        $('.experienceListBox').removeClass('hidden')
+                        info.getExperienceList(1, taskId)
                         $('.add').off('click').on('click', function () {
                             // 这里替换了换行与回车
                             var Experience = $('.textExperience').val();
                             var data = {
                                 'taskId': taskId,
                                 'content': Experience
-                            };
+                            }
                             $.ajax({
                                 url: LBUrl + 'manage_system/task/comment',
                                 data: JSON.stringify(data),
@@ -189,15 +193,15 @@ $(function () {
                     }
                 }
             })
-        } else if (taskType === 3) {
-            $('.video').addClass('hidden');
-            $('.audio').addClass('hidden');
-            $('.doc').addClass('hidden');
+        } else if (taskType == 3) {
+            $('.video').addClass('hidden')
+            $('.audio').addClass('hidden')
+            $('.doc').addClass('hidden')
             $('.content').addClass('hidden');
             info.getPaperList(paperId);
         }
     } else {
-        if (taskType === 1) {
+        if (taskType == 1) {
             $.ajax({
                 url: TDXUrl + 'manage_system/resource/' + resId,
                 data: {},
@@ -211,8 +215,8 @@ $(function () {
                         var myVideo = document.getElementById('myVideo');
                         var myAudio = document.getElementById('myAudio');
                         $('.study').removeClass('hidden');
-                        $('.measurement').removeClass('hidden');
-                        if (resc.data.resType === 1) {
+                        $('.measurement').removeClass('hidden')
+                        if (resc.data.resType == 1) {
                             myVideo.loop = false;
                             // 是否看完
                             myVideo.addEventListener('ended', function () {
@@ -229,7 +233,7 @@ $(function () {
                                         content: "<p class=''>准备好了吗？考试期间无法退出</p><div class='btn-box'><button class='layui-btn layui-btn-sm layui-btn-normal ok'>准备好了</button><button class='layui-btn layui-btn-sm no'>还没有</button></div>",
                                         success: function (res) {
                                             $('.testStart .ok').off('click').on('click', function () {
-                                                $('.goBack').addClass('hidden');
+                                                $('.goBack').addClass('hidden')
                                                 $('.content').removeClass('hidden');
                                                 //隐藏掉所有
                                                 $('.video').addClass('hidden');
@@ -238,9 +242,9 @@ $(function () {
                                                 $('.active').removeClass('active');
                                                 $('.test').addClass('active');
                                                 $('.measurement').removeClass('test');
-                                                info.getList(taskId, taskType, paperId, resId);
+                                                info.getList(taskId, taskType, paperId, resId)
                                                 layer.close(layer.index);
-                                            });
+                                            })
                                             $('.no').off('click').on('click', function () {
                                                 layer.close(layer.index);
                                             });
@@ -251,7 +255,7 @@ $(function () {
                             $('.video').removeClass('hidden');
                             $('.video video').attr('src', 'http://192.168.188.109:8848/' + resc.data.path);
                             info.getVideoPlaybackTime(resId, myVideo);
-                        } else if (resc.data.resType === 2) {
+                        } else if (resc.data.resType == 2) {
                             $('.audio').removeClass('hidden');
                             //音频地址赋值
                             $('.audio audio').attr('src', 'http://192.168.188.109:8848/' + resc.data.path);
@@ -278,11 +282,11 @@ $(function () {
                                                 $('.doc').addClass('hidden');
                                                 $('.active').removeClass('active');
                                                 $('.test').addClass('active');
-                                                $('.goBack').addClass('hidden');
+                                                $('.goBack').addClass('hidden')
                                                 $('.measurement').removeClass('test');
-                                                info.getList(taskId, taskType, paperId, resId);
+                                                info.getList(taskId, taskType, paperId, resId)
                                                 layer.close(layer.index);
-                                            });
+                                            })
                                             $('.no').off('click').on('click', function () {
                                                 layer.close(layer.index);
                                             });
@@ -290,9 +294,9 @@ $(function () {
                                     })
                                 })
                             }, false)
-                        } else if (resc.data.resType === 3) {
+                        } else if (resc.data.resType == 3) {
                             $('.doc').removeClass('hidden');
-                            if (extPath === '.txt' || extPath === '.pdf') {
+                            if (extPath == '.txt' || extPath == '.pdf') {
                                 $('.doc iframe').attr('src', 'http://192.168.188.109:8848/' + resc, data.path + '');
                             } else {
                                 $('.doc iframe').attr('src', 'http://192.168.188.109:8848/' + pdfPath + '.pdf');
@@ -312,17 +316,17 @@ $(function () {
                                         $('.testStart .ok').off('click').on('click', function () {
                                             $('.content').removeClass('hidden');
                                             //隐藏掉所有
-                                            $('.goBack').addClass('hidden');
+                                            $('.goBack').addClass('hidden')
                                             $('.video').addClass('hidden');
                                             $('.audio').addClass('hidden');
                                             $('.doc').addClass('hidden');
                                             $('.active').removeClass('active');
                                             $('.measurement').removeClass('test');
 
-                                            info.getList(taskId, taskType, paperId, resId);
+                                            info.getList(taskId, taskType, paperId, resId)
                                             $(this).addClass('active');
                                             layer.close(layer.index);
-                                        });
+                                        })
                                         $('.no').off('click').on('click', function () {
                                             layer.close(layer.index);
                                         });
@@ -332,13 +336,15 @@ $(function () {
                                 // info.getPaperList(paperId);
                             })
                         }
+                        ;
+
                     } else {
                         layer.msg('资源已被删除')
                     }
                 }
             });
-        } else if (taskType === 2) {
-            if (taskDegreeOfCompletion === 1) {
+        } else if (taskType == 2) {
+            if (taskDegreeOfCompletion == 1) {
                 info.getExperienceList(1, taskId)
             }
             $.ajax({
@@ -354,21 +360,21 @@ $(function () {
                         var myVideo = document.getElementById('myVideo');
                         var myAudio = document.getElementById('myAudio');
                         $('.study').removeClass('hidden');
-                        if (resc.data.resType === 1) {
-                            $('.experienceListBox').removeClass('hidden');
+                        if (resc.data.resType == 1) {
+                            $('.experienceListBox').removeClass('hidden')
                             $('.video').removeClass('hidden');
                             $('.video video').attr('src', 'http://192.168.188.109:8848/' + resc.data.path);
                             info.getVideoPlaybackTime(resId, myVideo);
-                        } else if (resc.data.resType === 2) {
-                            $('.experienceListBox').removeClass('hidden');
+                        } else if (resc.data.resType == 2) {
+                            $('.experienceListBox').removeClass('hidden')
                             $('.audio').removeClass('hidden');
                             //音频地址赋值
                             $('.audio audio').attr('src', 'http://192.168.188.109:8848/' + resc.data.path);
                             info.getVideoPlaybackTime(resId, myAudio);
-                        } else if (resc.data.resType === 3) {
-                            $('.experienceListBox').removeClass('hidden');
+                        } else if (resc.data.resType == 3) {
+                            $('.experienceListBox').removeClass('hidden')
                             $('.doc').removeClass('hidden');
-                            if (extPath === '.txt' || extPath === '.pdf') {
+                            if (extPath == '.txt' || extPath == '.pdf') {
                                 $('.doc iframe').attr('src', 'http://192.168.188.109:8848/' + resc, data.path + '');
                             } else {
                                 $('.doc iframe').attr('src', 'http://192.168.188.109:8848/' + pdfPath + '.pdf');
@@ -379,13 +385,13 @@ $(function () {
                     }
                 }
             })
-        } else if (taskType === 3) {
-            $('.measurement').removeClass('hidden');
+        } else if (taskType == 3) {
+            $('.measurement').removeClass('hidden')
             $('.active').removeClass('active');
             $('.measurement').addClass('active');
             $('.content').removeClass('hidden');
             //隐藏掉所有
-            $('.goBack').addClass('hidden');
+            $('.goBack').addClass('hidden')
             $('.video').addClass('hidden');
             $('.audio').addClass('hidden');
             $('.doc').addClass('hidden');
@@ -393,7 +399,7 @@ $(function () {
         }
     }
 
-    setTimeInterval = setInterval(info.currentTime, 30000);
+    setTimeInterval = setInterval(info.currentTime, 30000)
     // 添加心得
     $('.add').off('click').on('click', function () {
         // 这里替换了换行与回车
@@ -401,7 +407,7 @@ $(function () {
         var data = {
             'taskId': taskId,
             'content': Experience
-        };
+        }
         $.ajax({
             url: LBUrl + 'manage_system/task/comment',
             data: JSON.stringify(data),
@@ -434,7 +440,7 @@ var info = {
             dataType: 'json',
             type: 'POST',
             success(res) {
-                if (res.code === 1) {
+                if (res.code == 1) {
                     console.log(res);
                 } else {
                 }
@@ -454,8 +460,8 @@ var info = {
             async: false,
             // contentType: 'application/json;charset=utf-8',
             success(res) {
-                if (res.code === 1) {
-                    console.log(res);
+                if (res.code == 1) {
+                    console.log(res)
                     console.log('前' + myVid.currentTime);
                     myVid.currentTime = res.data;
                     console.log('后' + myVid.currentTime);
@@ -487,26 +493,26 @@ var info = {
                 if (res || res.data !== null) {
                     var Html = [];
                     Html.push('<ul class="layui-tab tabHead layui-tab-brief clearfix">');
-                    if (res.data.questionList === undefined || res.data.questionList.length === 0) {
+                    if (res.data.questionList == undefined || res.data.questionList.length == 0) {
 
                     } else {
                         res.data.questionList.forEach(function (item, index) {
                             Html.push('<li class="sortableitem">');
                             Html.push('<div class="topicFramework">');
                             Html.push('<input type="text" class="questionId" value="' + item.questionId + '" hidden="hidden"/>');
-                            if (item.questionType === 1) {
+                            if (item.questionType == 1) {
                                 item.questionType = "单选题";
                             } else {
                                 item.questionType = "多选题";
                             }
                             // var newScore = res.data.questions[0].newScoreList[index].score;
-                            Html.push('<p class="num">' + (index + 1) + '. ' + item.questionType + '<span>' + item.score +
+                            Html.push('<p class="num">' + (index + 1) + '. ' + item.questionType + '<span>  ' + item.score +
                                 '分</span></p>');
                             // 转义(已防有标签的样式被html识别)
                             item.content = $('<div>').text(item.content).html();
                             Html.push('<pre class="distance">' + item.content + '</pre>');
                             item.optionInfo.forEach(function (items, index) {
-                                if (items.questionId === item.questionId) {
+                                if (items.questionId == item.questionId) {
                                     // 转义(已防有标签的样式被html识别)
                                     items.content = $('<div>').text(items.content).html();
                                     Html.push('<div class="optionStyle clearfix distance"><span>' + items.optionType + '.</span><pre>' +
@@ -576,51 +582,52 @@ var info = {
             data: {},
             Type: 'GET',
             success: function (resb) {
+                console.log(resb)
                 if (resb.data != null) {
                     var answerSheet = [];
                     var examContent = [];
                     resb.data.questionList.forEach(function (item, index) {
-                        if ((index + 1) === 1) {
+                        if ((index + 1) == 1) {
                             answerSheet.push('<li class="active"  data-type="' + (index + 1) + '">' +
                                 (index + 1) + '</li>')
                         } else {
                             answerSheet.push('<li class="" data-id="' + item.questionId + '" data-type="' + (index + 1) + '">' + (
                                 index + 1) + '</li>')
                         }
-                        if ((index + 1) === 1) {
+                        if ((index + 1) == 1) {
                             examContent.push('<li class="questionCard" data-type="' + (index + 1) + '">')
                         } else {
                             examContent.push('<li class="questionCard hidden" data-type="' + (index + 1) + '">')
                         }
-                        if (item.questionType === 1) {
+                        if (item.questionType == 1) {
                             item.questionType = '单选题';
                         } else {
                             item.questionType = '多选题';
                         }
-                        examContent.push('<p class="questionCard_title"><span class="num">' + (index + 1) +
+                        examContent.push(' <p class="questionCard_title"><span class="num">' + (index + 1) +
                             '.</span><span class="questuon_title" data-id="' + item.questionId + '">' + item.questionType +
-                            '</span>(<span class="fraction">' + item.score + '</span>分)</p>');
+                            '</span>(<span class="fraction"> ' + item.score + '</span>分)</p>');
                         examContent.push('<p class="question_Dry">' + item.content + '</p>');
-                        if (item.questionType === '单选题') {
-                            examContent.push('<ul class="radio_box textBox">')
+                        if (item.questionType == '单选题') {
+                            examContent.push(' <ul class="radio_box textBox">')
                         } else {
-                            examContent.push('<ul class="checkbox_box textBox">')
+                            examContent.push(' <ul class="checkbox_box textBox">')
                         }
                         item.optionInfo.forEach(function (itemx, index) {
                             examContent.push('<li class="clearfix"><span data-id="' + itemx.ref + '" class="option">' + itemx.optionType +
                                 '</span><pre class="optionStyle">' + itemx.content + '</pre></li>')
                         });
                         examContent.push('<input type="text" value="' + item.questionId + '" class="questionId hidden">');
-                        examContent.push('</ul>');
+                        examContent.push(' </ul>');
                         examContent.push('<div class="btn-box clearfix">');
                         examContent.push('<button class="layui-btn layui-btn-normal layui-btn-sm next">下一题</button>');
-                        examContent.push('<button class="layui-btn layui-btn-normal layui-btn-sm previous">上一题</button>');
+                        examContent.push(' <button class="layui-btn layui-btn-normal layui-btn-sm previous">上一题</button>');
                         examContent.push('</div>')
                     });
 
-                    examContent.push('</li>');
-                    $('.questionCard_box').html(examContent.join(''));
-                    $('.card').html(answerSheet.join(''));
+                    examContent.push('</li>')
+                    $('.questionCard_box').html(examContent.join(''))
+                    $('.card').html(answerSheet.join(''))
                     // 下一题点击事件
                     info.nextChange();
                     // 上一题点击事件
@@ -636,7 +643,7 @@ var info = {
                     // 提交试题内容
                     info.setList(resb);
                 } else {
-                    layer.msg('无效试卷');
+                    layer.msg('无效试卷')
                     $('.goBack').removeClass('hidden')
                 }
             },
@@ -680,7 +687,7 @@ var info = {
             _thisQuestion.addClass('hidden');
             _thisQuestion.next().removeClass('hidden');
             for (var i = 1; i <= $('.card li').length; i++) {
-                if ($('.card li:nth-child(' + [i] + ')').attr('data-type') === _thisQuestion.attr('data-type')) {
+                if ($('.card li:nth-child(' + [i] + ')').attr('data-type') == _thisQuestion.attr('data-type')) {
                     $('.card li:nth-child(' + [i] + ')').removeClass('active');
                     $('.card li:nth-child(' + [i] + ')').next().addClass('active');
                 }
@@ -694,7 +701,7 @@ var info = {
             _thisQuestion.addClass('hidden');
             _thisQuestion.prev().removeClass('hidden');
             for (var i = 1; i <= $('.card li').length; i++) {
-                if ($('.card li:nth-child(' + [i] + ')').attr('data-type') === _thisQuestion.attr('data-type')) {
+                if ($('.card li:nth-child(' + [i] + ')').attr('data-type') == _thisQuestion.attr('data-type')) {
                     $('.card li:nth-child(' + [i] + ')').removeClass('active');
                     $('.card li:nth-child(' + [i] + ')').prev().addClass('active');
                 }
@@ -727,16 +734,16 @@ var info = {
                 //获取所有选中的
                 ($('.checkbox_box').eq(index).find('li')).each(function (_index, _item) {
                     var classOption = $(this).find(".option").attr('class');
-                    if (classOption === 'option active') {
+                    if (classOption == 'option active') {
                         //进行拼
                         answer += $(this).find(".active").text() + "|";
                     }
                 });
-                if (answer === "") {
+                if (answer == "") {
                     flag = false;
                 }
                 // 获取id
-                var questionId = $(this).parent('li').find('.questionCard_title').find('.questuon_title').attr('data-id');
+                var questionId = $(this).parent('li').find('.questionCard_title').find('.questuon_title').attr('data-id')
                 // var a = $(this).parent('li').attr('data-type')
                 // console.log(az)
                 var data = {
@@ -750,14 +757,14 @@ var info = {
 
                 ($('.radio_box').eq(index).find('li')).each(function (_index, _item) {
                     var classOption = $(this).find(".option").attr('class');
-                    if (classOption === 'option active') {
+                    if (classOption == 'option active') {
                         answer += $(this).find(".active").text() + "|";
                     }
                 });
-                if (answer === "") {
+                if (answer == "") {
                     flag = false;
                 }
-                var questionId = $(this).parent('li').find('.questionCard_title').find('.questuon_title').attr('data-id');
+                var questionId = $(this).parent('li').find('.questionCard_title').find('.questuon_title').attr('data-id')
                 // var a = $(this).parent('li').attr('data-type')
                 var data = {
                     'questionId': questionId,
@@ -819,19 +826,21 @@ var info = {
                             Html.push('<div class="editorialContent">');
                             Html.push('<div id="title">');
                             Html.push('<div id="centered">');
+
+
                             Html.push('<span>查看答案</span>');
-                            Html.push('<a href="#" class="goBack" style="float:right;margin-right:20px"><i class="layui-icon">&#xe602;</i><span style="margin-left:0;">返回</span> </a>');
-                            Html.push('<span style="float:right;margin-right:20px">得分:' + res.data.userScore + '</span>');
+                            Html.push('<a href="#" class="goBack" style="float: right; margin-right:20px"><i class="layui-icon">&#xe602;</i><span style="margin-left : 0px;">返回</span> </a>');
+                            Html.push('<span style="float: right; margin-right:20px">得分:' + res.data.userScore + '</span>');
 
                             Html.push('</div>');
                             Html.push('</div>');
                             Html.push('<ul class="layui-tab tabHead layui-tab-brief clearfix">');
                             res.data.questionList.forEach(function (item, index) {
-                                Html.push('<li class="sortableitem" style = "background-color:#fff;">');
-                                Html.push('<div class="topicFramework" style="text-align:left;line-height:1;">');
+                                Html.push('<li class="sortableitem" style = "background-color: #fff;">');
+                                Html.push('<div class="topicFramework" style="text-align: left;line-height: 1;">');
                                 Html.push('<input type="text" class="qusetionId" value="' + item.questionId +
                                     '" hidden="hidden"/>');
-                                if (item.questionType === 1) {
+                                if (item.questionType == 1) {
                                     item.questionType = '单选题';
                                 } else {
                                     item.questionType = '多选题';
@@ -843,27 +852,29 @@ var info = {
                                     var record = 0;
                                     var a = item.userAnswer.split('|');
                                     a.forEach(function (iazz, asd) {
-                                        if (items.optionType === iazz) {
+                                        if (items.optionType == iazz) {
                                             Html.push('<div class="distance clearfix option"><span class="circular">' + items.optionType +
                                                 '</span><pre class="optionStyle">' + items.content + '</pre></div>');
                                             record++;
                                             return false;
                                         }
                                     });
-                                    if (record === 0) {
+                                    if (record == 0) {
                                         Html.push('<div class="distance option clearfix"><span class="optionNum">' + items.optionType +
                                             '</span><pre class="optionStyle">' + items.content + '</pre></div>');
                                     }
                                 });
                                 Html.push('<div class="functionBox">');
-                                Html.push('<button class="toView" value="' + item.questionId + '"><img src="../imgs/stf.png">查看解析</button>');
+                                Html.push('<button class="toView" value="' + item.questionId +
+                                    '"><img src="../imgs/stf.png">查看解析</button>');
                                 Html.push('</div>');
                                 Html.push('</div>');
                                 Html.push('</li>')
                             });
+
                             Html.push('</ul></div>');
                             $('.wrapper').html(Html.join(''));
-                            $('.goBack *').css('color', '#fff');
+                            $('.goBack *').css('color', '#fff')
                             $('.content').css('background-color', '#fff');
                             // 解析
                             $('body').css('padding', '0');
@@ -896,8 +907,7 @@ var info = {
                                                 title: ['查看解析',
                                                     'background-color: #279ef0;text-align: center;font-size: 20px;line-height: 43px;color:white;padding: 0px;'
                                                 ],
-												shadeClose:false,
-                                                shade: 0.5,
+                                                // shade: 0.6, //遮罩透明度
                                                 content: '<div class="answerContent">' +
                                                     '<p>正确答案：<span class="answerOptions">' + OptionType + '</span></p>' +
                                                     '<p>答案解析：</p>' +
@@ -921,7 +931,7 @@ var info = {
             });
         });
     },
-	// 查询心得
+
     getExperienceList: function (pageNum, taskId) {
         $.ajax({
             url: LBUrl + 'manage_system/task/comments',
@@ -976,7 +986,6 @@ var info = {
 
         })
     },
-
     NoProgressBar: function () {
         // var myAudio = document.getElementById("myAudio"); //获取视频DOM
         // var myVideo = document.getElementById("myVideo"); //获取音频DOM
@@ -993,8 +1002,8 @@ var info = {
         // }
         // lastTime = nowTime; //播放时间中转（全局变量）
     },
-	// 返回页面【管理员/用户】
     goBack: function () {
+
         $('.goBack').off('click').on('click', function () {
             if (localStorage.getItem('userType') == 1) {
                 window.location.href = '/StudeSystem/TaskPage/TaskPage.html'
