@@ -320,13 +320,13 @@ var info = {
 			}
 		});
 		$('#newlyBuild #confirmAdd').off('click').on('click', function() {
-			var content = $('#newlyBuild #content').val().replace('<','&lt;') .replace('>','&gt;').replace("</","&lt;\/");
+			var content = $('#newlyBuild #content').val().toString();
 			var questionType = 0;
 			var option = [];
 			var score = 10;
 			var difficulty = 2;
 			var status = 1;
-			var analysis = $('#newlyBuild #analysis').val().replace('<','&lt;') .replace('>','&gt;').replace("</","&lt;\/");
+			var analysis = $('#newlyBuild #analysis').val().toString();
 			if (content == '') {
 				layer.msg('题目为空！');
 				return false;
@@ -344,12 +344,11 @@ var info = {
 				if ($(this).find('.option').val() == '') {
 					checkInputContent = true;
 				} else {
-					person.content = $(this).find('.option').val().replace('<','&lt;') .replace('>','&gt;').replace("</","&lt;\/");
+					person.content = $(this).find('.option').val().toString();
 				}
 				if (judged) {
 					person.optionType = $(this).find('.layui-unselect div').text();
 					if ($(this).find('.layui-form-radio').is('.layui-form-radioed')) {
-						console.log('有对的');
 						checkRadioSelect = true;
 						person.isRight = 1;
 					} else {
