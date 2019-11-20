@@ -153,6 +153,8 @@ var info = {
             data: data,
             dataType: 'json',
             Type: 'GET',
+            beforeSend(){
+            },
             success: function (res) {
                 if (res || res.data != null) {
                     info.TableDrawing(res.data);

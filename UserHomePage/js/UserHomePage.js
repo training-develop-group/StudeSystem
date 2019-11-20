@@ -73,6 +73,8 @@ var info = {
                         listHtml.push('</div>');
                         listHtml.push('</div>');
                         listHtml.push('<div class="contentText">');
+                        // 转义(已防有标签的样式被html识别)
+                        item.taskName = $('<div>').text(item.taskName).html();
                         if (item.taskName.length > 50) {
                             listHtml.push('<h3><b title="' + item.taskName + '" >' + item.taskName.substring(0, 60) + '...</b></h3>');
                         } else {

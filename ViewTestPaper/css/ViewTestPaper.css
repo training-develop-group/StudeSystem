@@ -83,11 +83,6 @@ img {
     height: 55px;
 }
 
-/* 弹窗位置 */
-.layui-layer {
-    top: 140px !important;
-}
-
 /* 按钮位置 */
 .layui-layer-btn {
     padding: 0 293px 12px !important;
@@ -141,6 +136,7 @@ img {
     line-height: 50px;
     border: 0;
     background-color: #f5f5f5;
+    cursor: pointer;
 }
 
 .toView img {

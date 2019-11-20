@@ -21,7 +21,8 @@
 }
 
 .sortableitem {
-    width: 100%;
+    width: calc(100% - 40px);
+    margin: 0 20px;
     float: left;
     border: 1px solid #dadada;
 }
@@ -458,7 +459,7 @@ img {
 }
 
 .analysis {
-    width: 665px;
+    width: 600px;
 }
 
 .answerContent {
