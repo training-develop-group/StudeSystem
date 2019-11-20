@@ -9,13 +9,11 @@ $(function() {
 		});
 		
 		$('.EditorTestPaper').click(function() {
-			console.log(1);
 			// 跳转到试题
 			window.location.href = "../EditorTestPaper/EditorTestPaper.html";
 		});
 		
 		$('.testQuestions').click(function() {
-			console.log(1);
 			// 跳转到试题
 			window.location.href = "../testQuestions/testQuestions.html";
 		});

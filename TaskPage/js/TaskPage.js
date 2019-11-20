@@ -549,24 +549,25 @@ var info = {
 
         };
         if (index != false) {
-
-            console.log(data);
             $.ajax({
                 url: LBUrl + 'manage_system/task/tasks',
                 data: JSON.stringify(data),
                 dataType: 'json',
                 type: 'POST',
                 contentType: 'application/json;charset=utf-8',
+                beforeSend() {
+                    layer.load(2);
+                },
                 success(res) {
-                    info.selectTaskType(1, '');
+                    if (res.code == 1) {
+                        layer.msg('发布成功');
+                        setTimeout(function () {
+                            layer.closeAll();
+                        }, 3000);
+                        info.selectTaskType(1, '');
+                    }
                 }
             });
-
-            layer.closeAll();
-            layer.msg('添加成功', {
-                area: ['200px', '50px']
-            });
-
         } else {
             layer.msg(mistake, {
                 area: ['200px', '50px']
@@ -663,7 +664,6 @@ var info = {
         $.ajax({
             url: LBUrl + 'manage_system/task/tasks',
             data: {
-
                 'status': 1,
                 'userId': '',
                 'userType': 2,
@@ -673,100 +673,106 @@ var info = {
             },
             dataType: 'json',
             type: 'GET',
+            beforeSend() {
+
+            },
             success(res) {
-                var Html = [];
-                res.data.list.forEach(function (item, index) {
-                    Html.push('<tr>');
-                    if(item.taskName.length > 15){
-                        Html.push('<td class="oneselfTaskName"><pre>' + item.taskName.substring(0, 15) + '...</pre></td>');
-                    }else{
-                        Html.push('<td class="oneselfTaskName"><pre>' + item.taskName + '</pre></td>');
-                    }
-                    if(item.taskType === 1){
-                        Html.push('<td >综合任务</td>');
-                    }else if(item.taskType === 2){
-                        Html.push('<td >学习任务</td>');
-                    }else if(item.taskType === 3){
-                        Html.push('<td >测试任务</td>');
-                    }
-
-                    resa.data.forEach(function (itemTypeName, index) {
-                        var typeName = itemTypeName.split(",");
-                        if (item.taskType === typeName[0]) {
-                            Html.push('<td >' + typeName[1] + '<input type="text" class="taskTypeRecord" value="' + typeName[0] +
-                                '"hidden> </td>');
+                if (res.code == 1) {
+                    var Html = [];
+                    res.data.list.forEach(function (item, index) {
+                        Html.push('<tr>');
+                        if (item.taskName.length > 15) {
+                            Html.push('<td class="oneselfTaskName"><pre>' + item.taskName.substring(0, 15) + '...</pre></td>');
+                        } else {
+                            Html.push('<td class="oneselfTaskName"><pre>' + item.taskName + '</pre></td>');
                         }
-                    });
-                    Html.push('<td>' + dateFormata(item.startTime) + ' - ' + dateFormata(item.endTime) + '</td>');
-                    Html.push(
-                        '<td><button style="width: 50px;height: 25px;margin-right:20px; margin-left: 20px; background-color: #FFFFFF;border: none;float: left;" class="updateTaskName"value="' +
-                        item.taskId + '">重命名</button>' +
-                        '<button class="lookOver" style="width: 65px;height: 25px;margin-right:20px;border: none;background-color: #FFFFFF; margin-left: 20px; float: left;"value="' +
-                        item.taskId + '">完成情况</button>' +
-                        '<button class="deleteTask" style="width: 50px;height: 25px;margin-right:20px;border: none;background-color: #FFFFFF; margin-left: 20px; float: left;" value="' +
-                        item.taskId + '"><span>删除</span></button></td>'
-                    );
-                    Html.push('</tr>');
-                });
-
-                JumpPageNum = res.data.pageNum;
-                JumpTotal = res.data.total;
-                // if (res.data.total >= 13) {
-                info.Page(res.data.total, res.data.pageNum);
-                // }
-                $('.search').val('');
-                $('#taskContent').html(Html.join(''));
-                //点击弹出重命名
-                $('.updateTaskName').off('click').on('click', function () {
-                    var taskName = $(this).parents('tr').children('.oneselfTaskName').text();
-                    $('.taskNameupdate').val(taskName)
-                    info.popupsUpdateTaskName(taskName, $(this).val());
-                    $('.confirmAdd').val($(this).val())
-                });
-                //点击删除 删除点击的任务
-                $('.deleteTask').off('click').on('click', function () {
-                    //调用common.js公共
-                    All.layuiOpen({
-                        num: 3,
-                        taskId: $(this).val(),
-                        // JumpPageNum: JumpPageNum,
-                        msg: '是否删除任务？'
-                    });
-                    // info.delectTask(taskId);
-                });
-                $('.confirmAdd').off('click').on('click', function () {
-                    info.updateTaskName($(this).val());
-                    info.selectTaskType($('.layui-laypage-skip .layui-input').val(), $('.search').val())
-                });
-                $('.oneselfTaskName').off().on('click', function () {
-                    var taskId = $(this).parents('tr').children('td').children('.updateTaskName').val();
-                    var taskType = $(this).parents('tr').children('td').children('.taskTypeRecord').val();
-                    console.log(taskType)
-
-
-                    window.open("../TestPage/TestPage.html?value=" + taskId + "," + 1, "_blank");
-
-
-                });
-                $('.lookOver').off().on('click', function () {
-                    info.selectTaskUsers($(this).val());
-                    layer.open({
-                        type: 1,
-                        move: false,
-                        title: ['完成情况',
-                            'color:#fff;background-color:#279EF0;text-align: center;font-size: 20px;cursor: default;'
-                        ],
-                        shadeClose: false,
-                        shade: 0.8,
-                        skin: 'myskin',
-                        area: ['600px', '500px'],
-                        content: $('#examineTask'),
-                        success: function () {
-
+                        if (item.taskType === 1) {
+                            Html.push('<td >综合任务</td>');
+                        } else if (item.taskType === 2) {
+                            Html.push('<td >学习任务</td>');
+                        } else if (item.taskType === 3) {
+                            Html.push('<td >测试任务</td>');
                         }
+
+                        resa.data.forEach(function (itemTypeName, index) {
+                            var typeName = itemTypeName.split(",");
+                            if (item.taskType === typeName[0]) {
+                                Html.push('<td >' + typeName[1] + '<input type="text" class="taskTypeRecord" value="' + typeName[0] +
+                                    '"hidden> </td>');
+                            }
+                        });
+                        Html.push('<td>' + dateFormata(item.startTime) + ' - ' + dateFormata(item.endTime) + '</td>');
+                        Html.push(
+                            '<td><button style="width: 50px;height: 25px;margin-right:20px; margin-left: 20px; background-color: #FFFFFF;border: none;float: left;" class="updateTaskName"value="' +
+                            item.taskId + '">重命名</button>' +
+                            '<button class="lookOver" style="width: 65px;height: 25px;margin-right:20px;border: none;background-color: #FFFFFF; margin-left: 20px; float: left;"value="' +
+                            item.taskId + '">完成情况</button>' +
+                            '<button class="deleteTask" style="width: 50px;height: 25px;margin-right:20px;border: none;background-color: #FFFFFF; margin-left: 20px; float: left;" value="' +
+                            item.taskId + '"><span>删除</span></button></td>'
+                        );
+                        Html.push('</tr>');
+                    });
+
+                    JumpPageNum = res.data.pageNum;
+                    JumpTotal = res.data.total;
+                    // if (res.data.total >= 13) {
+                    info.Page(res.data.total, res.data.pageNum);
+                    // }
+                    $('.search').val('');
+                    $('#taskContent').html(Html.join(''));
+                    //点击弹出重命名
+                    $('.updateTaskName').off('click').on('click', function () {
+                        var taskName = $(this).parents('tr').children('.oneselfTaskName').text();
+                        $('.taskNameupdate').val(taskName)
+                        info.popupsUpdateTaskName(taskName, $(this).val());
+                        $('.confirmAdd').val($(this).val())
+                    });
+                    //点击删除 删除点击的任务
+                    $('.deleteTask').off('click').on('click', function () {
+                        //调用common.js公共
+                        All.layuiOpen({
+                            num: 3,
+                            taskId: $(this).val(),
+                            // JumpPageNum: JumpPageNum,
+                            msg: '是否删除任务？'
+                        });
+                        // info.delectTask(taskId);
+                    });
+                    $('.confirmAdd').off('click').on('click', function () {
+                        info.updateTaskName($(this).val());
+                        info.selectTaskType($('.layui-laypage-skip .layui-input').val(), $('.search').val())
+                    });
+                    $('.oneselfTaskName').off().on('click', function () {
+                        var taskId = $(this).parents('tr').children('td').children('.updateTaskName').val();
+                        var taskType = $(this).parents('tr').children('td').children('.taskTypeRecord').val();
+                        console.log(taskType)
+
+
+                        window.open("../TestPage/TestPage.html?value=" + taskId + "," + 1, "_blank");
+
+
+                    });
+                    $('.lookOver').off().on('click', function () {
+                        info.selectTaskUsers($(this).val());
+                        layer.open({
+                            type: 1,
+                            move: false,
+                            title: ['完成情况',
+                                'color:#fff;background-color:#279EF0;text-align: center;font-size: 20px;cursor: default;'
+                            ],
+                            shadeClose: false,
+                            shade: 0.8,
+                            skin: 'myskin',
+                            area: ['600px', '500px'],
+                            content: $('#examineTask'),
+                            success: function () {
+
+                            }
+                        })
                     })
-                })
-                //弹出查看
+                    //弹出查看
+                }
+
             }
         })
     },
