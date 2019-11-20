@@ -223,7 +223,10 @@ $(function () {
                             // 是否看完
                             myVideo.addEventListener('ended', function () {
                                 $('.measurement').addClass('test');
-                                $('.test').one('click', function () {
+                                $('.test').off('click').on('click', function () {
+                                    if($(this).hasClass('active')){
+                                        return false;
+                                    }
                                     if (taskDegreeOfCompletion == 0) {
                                         layer.open({
                                             type: 1,
@@ -256,7 +259,7 @@ $(function () {
                                             }
                                         })
                                     } else {
-                                        info.getPaperList(paperId)
+                                        info.getPaperList(paperId);
                                         $('.study').off('click').on('click', function () {
                                             layer.open({
                                                 type: 1,
@@ -288,7 +291,10 @@ $(function () {
                             myAudio.loop = false;
                             myAudio.addEventListener('ended', function () {
                                 $('.measurement').addClass('test');
-                                $('.test').one('click', function () {
+                                $('.test').off('click').on('click', function () {
+                                    if($(this).hasClass('active')){
+                                        return false;
+                                    }
                                     if (taskDegreeOfCompletion == 0) {
                                         layer.open({
                                             type: 1,
@@ -348,7 +354,10 @@ $(function () {
                                 $('.doc iframe').attr('src', 'http://192.168.188.109:8848/' + pdfPath + '.pdf');
                             }
                             $('.measurement').addClass('test');
-                            $('.test').one('click', function () {
+                            $('.test').off('click').on('click', function () {
+                                if($(this).hasClass('active')){
+                                    return false;
+                                }
                                 var $this = $(this);
                                 if (taskDegreeOfCompletion == 0) {
                                     layer.open({
@@ -469,8 +478,28 @@ $(function () {
                 $('.content').addClass('hidden');
             }
         }
-
+        $('.study').off('click').on('click', function () {
+            if ($('.test').hasClass('active')) {
+                layer.open({
+                    type: 1,
+                    skin: 'comeback',
+                    area: ['450px', '180px'],
+                    move: false,
+                    title: ['返回资源', 'background-color: #289ef0;text-align: center;font-size: 20px;color:white;'],
+                    shade: 0.5,
+                    closeBtn: 0,
+                    content: "<p class=''>进入测试就不能回去啦！</p><div class='btn-box'><button class='layui-btn layui-btn-sm layui-btn-normal ok'>我知道了</button></div>",
+                    success: function (res) {
+                        $('.comeback .ok').off('click').on('click', function () {
+                            layer.close(layer.index);
+                        });
+                    }
+                });
+            }
+        });
     }
+
+
     setTimeInterval = setInterval(info.currentTime, 30000);
     // 添加心得
     $('.add').off('click').on('click', function () {

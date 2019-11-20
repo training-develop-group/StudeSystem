@@ -80,16 +80,13 @@ $(function () {
         $('.usersSelectOk').off('click').on('click', function () {
             var Html = [];
             $.each($("[name='Staff']:checked"), function (i, val) {
-                Html.push('<p>' + $(this).siblings('i').text() + '<input type="text"  hidden="" id="" value="' + $(this).val() +
-                    '" />  <i  data-id="' + $(this).val() +
-                    '" class="layui-icon layui-icon-close deleteUserName" style="font-size: 20px;"></i></p>'
-                )
+                Html.push('<p>' + $(this).siblings('i').text() + '<input type="text"  hidden="" id="" value="' + $(this).val() +'" /> ' +
+                    '<i  data-id="' + $(this).val() +'" class="layui-icon layui-icon-close deleteUserName" style="font-size: 20px;"></i></p>')
             });
             $('.taskUsers').html(Html.join(''));
             $('.deleteUserName').off('click').on('click', function () {
                 $(this).parents('p').remove();
                 var userId = $(this).attr('data-id');
-                console.log(userId);
                 $.each($("[name='Staff']:checked"), function (i, val) {
                     if (val.value === userId) {
                         $("#checkAll").prop("checked", false);
@@ -126,10 +123,13 @@ $(function () {
         form.render('checkbox');
     });
     $('.resourceSelection').off('click').on('click', function () {
-        var resId = $('.layui-input-inline .checked').parent('div').find('.resName').text();
-        var Html = [];
-        Html.push(' : ' + resId);
-        $('.resAdd').html(Html.join(''));
+        var resName = $(this).attr('data-resname');
+        if(resName.length > 30){
+            $('.resAdd').html('：'+ resName.substring(0, 30) + '...');
+        } else {
+            $('.resAdd').html('：'+ resName);
+        }
+        $('.resAdd').attr('title',resName);
         layer.close(layer.index);
     });
     //弹出选择人员
@@ -343,7 +343,6 @@ var info = {
             layui.use('laypage', function () {
                 var laypage = layui.laypage;
                 //执行一个laypage实例
-
                 laypage.render({
                     elem: 'paperPage', //注意，这里的 test1 是 ID，不用加 # 号
                     count: total, //数据总数，从服务端得
@@ -429,10 +428,11 @@ var info = {
                     });
                     $('#papgeContent').html(Html.join(''));
                     info.paperPage(res.data.total, res.data.pageNum);
+                    // 选择按钮的点击事件
                     $('.selectPaper').off('click').on('click', function () {
                         $('.selectPapers').val($(this).val());
                         var Html = [];
-                        Html.push(' : ' + $(this).parents('tr').children('.paperName').text());
+                        Html.push('：' + $(this).parents('tr').children('.paperName').text());
                         $('.paperAdd').html(Html.join(''));
                         $('.paperAdd').val($(this).val());
                         $('.paperAdd').attr('data-id', $(this).val());
@@ -595,7 +595,7 @@ var info = {
                 var Html = [];
                 res.data.list.forEach(function (item, index) {
                     Html.push('<div class="radio_box" >');
-                    Html.push('<div class="img-box" data-resid="' + item.resId + '">');
+                    Html.push('<div class="img-box" data-resid="' + item.resId + '" data-resName="'+ item.resName +'">');
                     if (item.resType === 1) {
                         Html.push('<img src="http://192.168.188.109:8848/' + item.imgPath +
                             '"  style="width:140px;height:140px;">')
@@ -623,8 +623,8 @@ var info = {
                 $('.img-box').off('click').on('click', function () {
                     $('.img-box').removeClass('checked');
                     $(this).addClass('checked');
-                    console.log($(this).attr('data-resid'));
                     $('.Release_btn button').attr('data-resid', $(this).attr('data-resid'));
+                    $('.Release_btn button').attr('data-resname', $(this).attr('data-resname'));
                 });
 
             }
