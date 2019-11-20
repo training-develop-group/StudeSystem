@@ -25,7 +25,6 @@ $(function () {
             num: 3
         });
     });
-
     $.ajax({
         url: LBUrl + 'manage_system/task/' + taskId,
         data: {},
@@ -37,6 +36,7 @@ $(function () {
             if (res.data != null) {
                 //为任务描述赋值
                 $('.taskRemarkContent').text(res.data.taskRemark);
+
                 //记录心得分页页数
                 getExperience++;
                 //给任务类型赋值
@@ -54,7 +54,6 @@ $(function () {
             }
         },
     });
-
     if (localStorage.getItem('userType') === 1) {
         if (taskType === 1) {
             $.ajax({
@@ -99,8 +98,8 @@ $(function () {
                             info.getPaperList(paperId);
                         });
                         $('.study').off('click').on('click', function () {
-                            $('.active').removeClass('active')
-                            $(this).addClass('active')
+                            $('.active').removeClass('active');
+                            $(this).addClass('active');
                             $('.content').addClass('hidden');
                             $('.test_content').addClass('hidden');
                             if (resc.data.resType === 1) {
@@ -161,6 +160,7 @@ $(function () {
                         }
                         $('.experienceListBox').removeClass('hidden');
                         info.getExperienceList(1, taskId);
+
                         $('.add').off('click').on('click', function () {
                             // 这里替换了换行与回车
                             var Experience = $('.textExperience').val();
@@ -394,34 +394,41 @@ $(function () {
     }
 
     setTimeInterval = setInterval(info.currentTime, 30000);
+
     // 添加心得
     $('.add').off('click').on('click', function () {
-        // 这里替换了换行与回车
-        var Experience = $('.textExperience').val();
-        var data = {
-            'taskId': taskId,
-            'content': Experience
-        };
-        $.ajax({
-            url: LBUrl + 'manage_system/task/comment',
-            data: JSON.stringify(data),
-            dataType: 'json',
-            type: 'POST',
-            contentType: 'application/json;charset=utf-8',
-            success(res) {
-                layer.msg('添加成功');
-                getExperience++;
-                $('.textExperience').val('');
-                var textNum = $('.textExperience').val().length;
-                $('.textNum').text(textNum);
-                if (getExperience > 0) {
-                    info.getExperienceList(1, taskId)
-                }
+        var textExperience = $('.textExperience').val();
+        if (textExperience === '' || textExperience === null || textExperience === undefined) {
+            layer.msg('心得为空不可提交');
+        } else {
+            // 这里替换了换行与回车
+            var Experience = $('.textExperience').val();
+            var data = {
+                'taskId': taskId,
+                'content': Experience
+            };
+            $.ajax({
+                url: LBUrl + 'manage_system/task/comment',
+                data: JSON.stringify(data),
+                dataType: 'json',
+                type: 'POST',
+                contentType: 'application/json;charset=utf-8',
+                success(res) {
+                    layer.msg('添加成功');
+                    getExperience++;
+                    $('.textExperience').val('');
+                    var textNum = $('.textExperience').val().length;
+                    $('.textNum').text(textNum);
+                    if (getExperience > 0) {
+                        info.getExperienceList(1, taskId)
+                    }
 
-            }
-        })
+                }
+            })
+        }
+
     })
-})
+});
 
 var info = {
     recordVideoPlaybackTime: function (resId, seconds) {
@@ -477,7 +484,6 @@ var info = {
         // info.getVideoPlaybackTime(resId,myVideo)
         info.recordVideoPlaybackTime(resId, myVideoTime); //调用记录方法
     },
-
     getPaperList: function (paperId) {
         $.ajax({
             url: MCUrl + 'manage_system/paper/' + paperId,
@@ -617,7 +623,6 @@ var info = {
                         examContent.push('<button class="layui-btn layui-btn-normal layui-btn-sm previous">上一题</button>');
                         examContent.push('</div>')
                     });
-
                     examContent.push('</li>');
                     $('.questionCard_box').html(examContent.join(''));
                     $('.card').html(answerSheet.join(''));
@@ -628,7 +633,6 @@ var info = {
                     // 最后一题不显示下一题,第一题不显示上一题
                     $('.questionCard_box .questionCard').last().find('.next').addClass('hidden');
                     $('.questionCard_box .questionCard').first().find('.previous').addClass('hidden');
-
                     // 单选事件
                     info.radioChange();
                     // 多选事件
@@ -794,6 +798,9 @@ var info = {
                     var layer = layui.layer;
                     layer.open({
                         type: 1,
+                        move: false,
+                        shade:0.5,
+                        shadeClose: false,
                         closeBtn: 1,
                         area: ['400px', '200px'],
                         title: ['', 'background-color: #279ef0'],
@@ -896,7 +903,7 @@ var info = {
                                                 title: ['查看解析',
                                                     'background-color: #279ef0;text-align: center;font-size: 20px;line-height: 43px;color:white;padding: 0px;'
                                                 ],
-												shadeClose:false,
+                                                shadeClose: false,
                                                 shade: 0.5,
                                                 content: '<div class="answerContent">' +
                                                     '<p>正确答案：<span class="answerOptions">' + OptionType + '</span></p>' +
@@ -921,7 +928,7 @@ var info = {
             });
         });
     },
-	// 查询心得
+    // 查询心得
     getExperienceList: function (pageNum, taskId) {
         $.ajax({
             url: LBUrl + 'manage_system/task/comments',
@@ -944,10 +951,9 @@ var info = {
                 });
                 $('.experienceList').html(html.join(''));
                 $('.textExperience').keyup(function () {
-                    // $('.textExperience').val().length
+                    // $('.textExperience').val().length;
                     var textNum = $('.textExperience').val().length;
                     $('.textNum').text(textNum);
-
                 });
                 $('.addExperience').removeClass('hidden');
                 info.Page(resc.data.total, resc.data.pageNum, taskId);
@@ -993,7 +999,7 @@ var info = {
         // }
         // lastTime = nowTime; //播放时间中转（全局变量）
     },
-	// 返回页面【管理员/用户】
+    // 返回页面【管理员/用户】
     goBack: function () {
         $('.goBack').off('click').on('click', function () {
             if (localStorage.getItem('userType') == 1) {

@@ -74,6 +74,7 @@ var info = {
 						Html.push('<div class="optionStyle clearfix"><span>' + optionItem.optionType + '.</span>');
 						// todo  optionItem.content 循环转码
 						var optioncontent = '';
+						itemx.content = $('<div>').text(itemx.content).html();
 						Html.push('<pre>' + optionItem.content + '</pre></div>');
 					});
 					Html.push('</span>');
@@ -139,7 +140,6 @@ var info = {
 			});
 
 		});
-
 	},
 	// 删除试题
 	deleteQuestions: function(questionId, status) {
