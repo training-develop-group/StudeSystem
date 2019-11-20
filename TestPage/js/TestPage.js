@@ -55,7 +55,7 @@ $(function () {
             }
         },
     });
-    // 用户判断
+    // 用户判断  1 是管理员
     if (localStorage.getItem('userType') == 1) {
         if (taskType === 1) {
             $.ajax({
@@ -257,6 +257,23 @@ $(function () {
                                         })
                                     } else {
                                         info.getPaperList(paperId)
+                                        $('.study').off('click').on('click', function () {
+                                            layer.open({
+                                                type: 1,
+                                                skin: 'comeback',
+                                                area: ['450px', '180px'],
+                                                move: false,
+                                                title: ['返回资源', 'background-color: #289ef0;text-align: center;font-size: 20px;color:white;'],
+                                                shade: 0.5,
+                                                closeBtn: 0,
+                                                content: "<p class=''>进入测试就不能回去啦！</p><div class='btn-box'><button class='layui-btn layui-btn-sm layui-btn-normal ok'>我知道了</button></div>",
+                                                success: function (res) {
+                                                    $('.comeback .ok').off('click').on('click', function () {
+                                                        layer.close(layer.index);
+                                                    });
+                                                }
+                                            });
+                                        });
                                     }
                                 })
                             }, false);
@@ -302,7 +319,24 @@ $(function () {
                                             }
                                         })
                                     } else {
-                                        info.getPaperList(paperId)
+                                        info.getPaperList(paperId);
+                                        $('.study').off('click').on('click', function () {
+                                            layer.open({
+                                                type: 1,
+                                                skin: 'comeback',
+                                                area: ['450px', '180px'],
+                                                move: false,
+                                                title: ['返回资源', 'background-color: #289ef0;text-align: center;font-size: 20px;color:white;'],
+                                                shade: 0.5,
+                                                closeBtn: 0,
+                                                content: "<p class=''>进入测试就不能回去啦！</p><div class='btn-box'><button class='layui-btn layui-btn-sm layui-btn-normal ok'>我知道了</button></div>",
+                                                success: function (res) {
+                                                    $('.comeback .ok').off('click').on('click', function () {
+                                                        layer.close(layer.index);
+                                                    });
+                                                }
+                                            });
+                                        });
                                     }
                                 })
                             }, false)
@@ -315,6 +349,7 @@ $(function () {
                             }
                             $('.measurement').addClass('test');
                             $('.test').one('click', function () {
+                                var $this = $(this);
                                 if (taskDegreeOfCompletion == 0) {
                                     layer.open({
                                         type: 1,
@@ -335,7 +370,7 @@ $(function () {
                                                 $('.doc').addClass('hidden');
                                                 $('.active').removeClass('active');
                                                 $('.measurement').removeClass('test');
-                                                $(this).addClass('active');
+                                                $this.addClass('active');
                                                 layer.close(layer.index);
                                                 info.getList(taskId, taskType, paperId, resId)
                                             });
@@ -344,8 +379,29 @@ $(function () {
                                             });
                                         }
                                     });
+
                                 } else {
+                                    $('.active').removeClass('active');
+                                    $this.addClass('active');
+                                    $('.doc').addClass('hidden');
                                     info.getPaperList(paperId)
+                                    $('.study').off('click').on('click', function () {
+                                        layer.open({
+                                            type: 1,
+                                            skin: 'comeback',
+                                            area: ['450px', '180px'],
+                                            move: false,
+                                            title: ['返回资源', 'background-color: #289ef0;text-align: center;font-size: 20px;color:white;'],
+                                            shade: 0.5,
+                                            closeBtn: 0,
+                                            content: "<p class=''>进入测试就不能回去啦！</p><div class='btn-box'><button class='layui-btn layui-btn-sm layui-btn-normal ok'>我知道了</button></div>",
+                                            success: function (res) {
+                                                $('.comeback .ok').off('click').on('click', function () {
+                                                    layer.close(layer.index);
+                                                });
+                                            }
+                                        });
+                                    });
                                 }
                             })
                         }
@@ -413,23 +469,7 @@ $(function () {
                 $('.content').addClass('hidden');
             }
         }
-        $('.study').off('click').on('click', function () {
-            layer.open({
-                type: 1,
-                skin: 'comeback',
-                area: ['450px', '180px'],
-                move: false,
-                title: ['返回资源', 'background-color: #289ef0;text-align: center;font-size: 20px;color:white;'],
-                shade: 0.5,
-                closeBtn: 0,
-                content: "<p class=''>进入测试就不能回去啦！</p><div class='btn-box'><button class='layui-btn layui-btn-sm layui-btn-normal ok'>我知道了</button></div>",
-                success: function (res) {
-                    $('.comeback .ok').off('click').on('click', function () {
-                        layer.close(layer.index);
-                    });
-                }
-            });
-        });
+
     }
 
     setTimeInterval = setInterval(info.currentTime, 30000);
@@ -562,7 +602,8 @@ var info = {
                     $('.test_content').html(Html.join(''));
                     $('.test_content').removeClass('hidden');
                     $('.content').css('background-color', '#fff');
-
+                    // 调用点击返回事件
+                    info.goBack();
                     // 解析
                     $('.toView').off('click').on('click', function () {
                         var QusetionId = $(this).val();
@@ -757,7 +798,7 @@ var info = {
     // todo 下面是交卷的接口 ,将上方  answer[]  传给后台
     setList: function (resb) {
         //点击交卷事件
-        $('.submitTest').off('click').on('click',function () {
+        $('.submitTest').off('click').on('click', function () {
             var newScore = 0;
             var sz = 0;
             var flag = true;
@@ -786,6 +827,7 @@ var info = {
                 };
                 useranswerList.push(data);
             });
+            // 获取单选
             $('.radio_box').each(function (index, item) {
                 var answer = '';
 
@@ -824,7 +866,7 @@ var info = {
                         content: '<div class="confirmRelease">是否交卷?</div>' +
                             '<div class="CR-btn-box">' +
                             '<button type="button" class="layui-btn layui-btn-normal layui-btn-sm CR-btnConfirm">确认</button>' +
-                            '<button type="button" class="layui-btn layui-btn-normal layui-btn-sm CR-btnCancel">取消</button>' +
+                            '<button type="button" class="layui-btn layui-btn-primary layui-btn-sm CR-btnCancel">取消</button>' +
                             '</div>',
                         success: function () {
                         }
@@ -844,7 +886,7 @@ var info = {
                         content: '<div class="noConfirmRelease">你有题目没答 是否交卷?</div>' +
                             '<div class="CR-btn-box">' +
                             '<button type="button" class="layui-btn layui-btn-normal layui-btn-sm CR-btnConfirm">确认</button>' +
-                            '<button type="button" class="layui-btn layui-btn-normal layui-btn-sm CR-btnCancel">取消</button>' +
+                            '<button type="button" class="layui-btn layui-btn-primary layui-btn-sm CR-btnCancel">取消</button>' +
                             '</div>'
                     });
                 })
@@ -914,7 +956,9 @@ var info = {
                             });
                             Html.push('</ul></div>');
                             $('.wrapper').html(Html.join(''));
-                            $('.goBack *').css('color', '#fff')
+                            $('.goBack *').css('color', '#fff');
+                            // 调用点击返回事件
+                            info.goBack();
                             $('.content').css('background-color', '#fff');
                             // 解析
                             $('body').css('padding', '0');
@@ -1043,6 +1087,8 @@ var info = {
                     $('.wrapper').html(Html.join(''));
                     $('.goBack *').css('color', '#fff');
                     $('.content').css('background-color', '#fff');
+                    // 返回事件调用
+                    info.goBack();
                     // 解析
                     $('body').css('padding', '0');
                     // 查看解析
@@ -1165,16 +1211,16 @@ var info = {
     goBack: function () {
         $('.goBack').off('click').on('click', function () {
             if (localStorage.getItem('userType') == 1) {
-                window.location.href = '..//TaskPage/TaskPage.html'
+                window.location.href = '../TaskPage/TaskPage.html'
             } else {
-                window.location.href = '..//UserHomePage/UserHomePage.html'
+                window.location.href = '../UserHomePage/UserHomePage.html'
             }
 
         });
     },
     // 获取心得字数
-    textNum: function() {
-        $('.textExperience').keyup(function() {
+    textNum: function () {
+        $('.textExperience').keyup(function () {
             var textNum = $('.textExperience').val().length;
             $('.textNum').text(textNum);
         })

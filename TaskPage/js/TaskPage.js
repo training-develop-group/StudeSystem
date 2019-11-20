@@ -548,26 +548,26 @@ var info = {
             'userId': userId
 
         };
-        console.log(data.startTime);
         if (index != false) {
-
-            console.log(data);
             $.ajax({
                 url: LBUrl + 'manage_system/task/tasks',
                 data: JSON.stringify(data),
                 dataType: 'json',
                 type: 'POST',
                 contentType: 'application/json;charset=utf-8',
+                beforeSend() {
+                    layer.load(2);
+                },
                 success(res) {
-                    info.selectTaskType(1, '');
+                    if (res.code == 1) {
+                        layer.msg('发布成功');
+                        setTimeout(function () {
+                            layer.closeAll();
+                        }, 3000);
+                        info.selectTaskType(1, '');
+                    }
                 }
             });
-
-            layer.closeAll();
-            layer.msg('添加成功', {
-                area: ['200px', '50px']
-            });
-
         } else {
             layer.msg(mistake, {
                 area: ['200px', '50px']
@@ -664,7 +664,6 @@ var info = {
         $.ajax({
             url: LBUrl + 'manage_system/task/tasks',
             data: {
-
                 'status': 1,
                 'userId': '',
                 'userType': 2,
@@ -674,6 +673,9 @@ var info = {
             },
             dataType: 'json',
             type: 'GET',
+            beforeSend() {
+
+            },
             success(res) {
                 var Html = [];
                 res.data.list.forEach(function (item, index) {
@@ -803,7 +805,6 @@ var info = {
     },
     //刪除任務 根据主键删除
     delectTask: function (taskId) {
-        console.log(JumpPageNum);
         $.ajax({
             url: LBUrl + 'manage_system/task/' + taskId,
             data: {},

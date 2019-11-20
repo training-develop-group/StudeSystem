@@ -25,7 +25,6 @@
 						</div>
 						<div class="layui-card-body">
 							<div>
-
 								<table class="layui-table content" style="text-align: center;">
 									<colgroup>
 										<col width="40%">
@@ -41,9 +40,7 @@
 									</thead>
 									<tbody class="Resourcesreview">
 										<tr>
-											<td title="微课堂微课堂微课堂微课堂微课堂微课堂微课堂微课堂微课堂微课堂微课堂微课堂微课堂" style="text-align: left ">
-												微课堂微课堂微课堂微课堂微课堂微课堂微课堂微课堂微课堂微课堂微课堂微课堂微课堂
-											</td>
+											<td title="" style="text-align: left "></td>
 											<td title="微课堂">微课堂</td>
 											<td title="小明" style="text-align: center ">小明</td>
 										</tr>
@@ -149,19 +146,22 @@
 				var comprehensive = 0;
 				var test = 0;
 				var learning = 0;
+				var noMsg = 0;
 				$.ajax({
 					url: HWWUrl + 'manage_system/stat/task-type',
 					data: {},
 					dataType: 'json',
 					Type: 'GET',
-
 					success: function(res) {
-						comprehensive = res.data.comprehensive;
-						test = res.data.test;
-						learning = res.data.learning;
+						if (res.code === 3){
+							noMsg = 1;
+						} else {
+							comprehensive = res.data.comprehensive;
+							test = res.data.test;
+							learning = res.data.learning ;
+						}
 						var myChart = echarts.init(document.getElementById('main'));
 						// 指定图表的配置项和数据
-						console.log(myChart)
 						var option = {
 							title: { //标题组件
 								text: '各类任务数分布',
@@ -180,7 +180,7 @@
 								formatter: "{a} <br/>{b} : {c} ({d}%)" //提示框浮层内容格式器
 							},
 
-							color: ['rgb(96, 132, 254)', 'rgb(234, 96, 1)', 'rgb(139, 190, 121)'], //手动设置每个图例的颜色
+							color: ['rgb(96, 132, 254)', 'rgb(234, 96, 1)', 'rgb(139, 190, 121)', '#dadada'], //手动设置每个图例的颜色
 							legend: { //图例组件
 								right: 0, //图例组件离右边的距离
 								orient: 'vertical', //布局  纵向布局 图例标记居文字的左边 vertical则反之
@@ -234,6 +234,10 @@
 											value: learning,
 											name: '学习任务'
 										},
+										{
+											value: noMsg,
+											name: '没有任务'
+										},
 
 									]
 								}
@@ -250,14 +254,19 @@
 			var studentTask = function() {
 				var completed = 0;
 				var notCompleted = 0;
+				var noMsg = 0;
 				$.ajax({
 					url: HWWUrl + 'manage_system/stat/task',
 					data: {},
 					dataType: 'json',
 					Type: 'GET',
 					success: function(res) {
-						completed = res.data.completed;
-						notCompleted = res.data.notCompleted;
+						if (res.code === 3){
+							noMsg = 1;
+						} else {
+							completed = res.data.completed;
+							notCompleted = res.data.notCompleted;
+						}
 						var myChart = echarts.init(document.getElementById('mian'));
 						// 指定图表的配置项和数据
 						var option = {
@@ -275,7 +284,7 @@
 								trigger: 'item', //触发类型(饼状图片就是用这个)
 								formatter: "{a} <br/>{b} : {c} ({d}%)" //提示框浮层内容格式器
 							},
-							color: ['rgb(96, 132, 254)', 'rgb(234, 96, 1)'], //手动设置每个图例的颜色
+							color: ['rgb(96, 132, 254)', 'rgb(234, 96, 1)','#dadada'], //手动设置每个图例的颜色
 							legend: { //图例组件
 								//right:100,  //图例组件离右边的距离
 								orient: 'horizontal	', //布局  纵向布局 图例标记居文字的左边 vertical则反之
@@ -323,7 +332,11 @@
 										{
 											value: notCompleted,
 											name: '未完成'
-										}
+										},
+										{
+											value: noMsg,
+											name: '没有任务'
+										},
 									]
 								}
 							]
@@ -334,20 +347,23 @@
 			
 					}
 				});
-			}
-
-
+			};
 			var studentsAnswer = function() {
 				var singleElection = 0;
 				var multipleSelection = 0;
+				var noMsg = 0;
 				$.ajax({
 					url: HWWUrl + 'manage_system/stat/answer',
 					data: {},
 					dataType: 'json',
 					Type: 'GET',
 					success: function(res) {
-						singleElection = res.data.singleElection;
-						multipleSelection = res.data.multipleSelection;
+						if (res.code === 3){
+							noMsg = 1;
+						} else {
+							singleElection = res.data.singleElection;
+							multipleSelection = res.data.multipleSelection;
+						}
 						var myChart = echarts.init(document.getElementById('mina'));
 						// 指定图表的配置项和数据
 						var option = {
@@ -365,7 +381,7 @@
 								trigger: 'item', //触发类型(饼状图片就是用这个)
 								formatter: "{a} <br/>{b} : {c} ({d}%)" //提示框浮层内容格式器
 							},
-							color: ['rgb(96, 132, 254)', 'rgb(234, 96, 1)'], //手动设置每个图例的颜色
+							color: ['rgb(96, 132, 254)', 'rgb(234, 96, 1)', '#dadada'], //手动设置每个图例的颜色
 							legend: { //图例组件
 								//right:100,  //图例组件离右边的距离
 								orient: 'vertical', //布局  纵向布局 图例标记居文字的左边 vertical则反之
@@ -413,8 +429,11 @@
 										{
 											value: multipleSelection,
 											name: '多选题'
+										},
+										{
+											value: noMsg,
+											name: '没有试题'
 										}
-
 									]
 								}
 							]
