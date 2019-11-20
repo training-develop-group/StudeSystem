@@ -83,14 +83,14 @@ var info = {
 			} else {
 				item.questionType = '多选题';
 			}
-			Html.push('<p class="distanceNum"><span class="num">' + (index + 1) + '</span>. ' + item.questionType + '  <span class="newScore">' + item.score + '</span>分</p>');
+			Html.push('<p class="distanceNum"><span class="num">' + (index + 1) + '</span>.' + item.questionType + '<span class="newScore">' + item.score + '</span>分</p>');
 			// 转义(已防有标签的样式被html识别)
 			item.content = $('<div>').text(item.content).html();
 			Html.push('<p class="distance">' + item.content + '</p>');
 			item.optionInfo.forEach(function(items, index) {
 				// 转义(已防有标签的样式被html识别)
 				items.content = $('<div>').text(items.content).html();
-				Html.push('<p class="distance">' + items.optionType + ' ' + items.content + '</p>');
+				Html.push('<p class="distance"><span>' + items.optionType + '</span>'+ ' '+'<pre>'+ items.content + '</pre></p>');
 			});
 			Html.push('</div>');
 			Html.push('<div class="functionBox">');

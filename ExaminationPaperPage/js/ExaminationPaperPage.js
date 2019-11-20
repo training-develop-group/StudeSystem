@@ -224,7 +224,7 @@ var info = {
                 // (待改)
                 All.layuiOpen({
                     num: 4,
-                    msg: '此试卷没有试题，确认发布？'
+                    msg: '此试卷没有试题，不能发布'
                 })
             } else {
                 info.releaseTask();
@@ -390,8 +390,8 @@ var info = {
             type: 'DELETE',
             // contentType: 'application/json;charset=utf-8',
             success(res) {
-                layer.msg("操作成功");
                 layer.closeAll();
+                layer.msg("操作成功");
                 info.TableDataRequest(PNum);
             },
             error(e) {

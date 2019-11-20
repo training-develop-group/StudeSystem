@@ -21,7 +21,8 @@
 }
 
 .sortableitem {
-    width: 100%;
+    width: 96%;
+    margin: 15px 2%;
     padding: 1px 0;
     float: left;
     border: 1px solid #dadada;
@@ -713,7 +714,7 @@ img {
 }
 
 .questionCard .optionStyle {
-    width: calc(100% - 60px);
+    width: calc(100% - 55px);
     float: right;
     font-size: 16px;
     line-height: 25px;
@@ -767,7 +768,7 @@ img {
 /*****开始测试弹窗 end *****/
 
 .optionStyle {
-    padding: 0 30px 10px;
+    padding: 0 10px;
 }
 
 .optionStyle span {

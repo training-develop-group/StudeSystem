@@ -441,7 +441,7 @@ i {
 }
 
 .CR-btnConfirm {
-    margin: 0px 40px 0px 0px;
+    margin: 0 40px 0 0;
 }
 
 .CR-btnConfirm, .CR-btnCancel {
@@ -478,4 +478,18 @@ i {
 
 .taskUsers p i {
     color: #000000;
+}
+
+.know{
+    text-align: center;
+}
+
+.know .no{
+    background-color: #279ef0;
+    color: #fff;
+}
+.know .no:hover{
+    background-color: #1e9fff;
+    color: #fff !important;
+    opacity: 0.8;
 }

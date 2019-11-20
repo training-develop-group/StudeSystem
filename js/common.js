@@ -198,9 +198,8 @@ var All = {
 				move: false,
 				title: ['', 'background-color: #289ef0;'],
 				content: '<p class="openText">' + options.msg + '</p>' +
-					'<div class="btn">' +
-					'<button data-id="' + options.id + '" class="yes" >确认</button>' +
-					'<button class="no">取消</button>' +
+					'<div class="btn know">' +
+					'<button class="no">知道了</button>' +
 					'</div>',
 				success: function() {
 
@@ -224,7 +223,6 @@ var All = {
 							case 4:
 								// 试卷
 								layer.close(layer.index);
-								info.releaseTask();
 								break;
 							case 5:
 								// 试题删除
