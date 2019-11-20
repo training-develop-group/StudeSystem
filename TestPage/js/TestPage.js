@@ -223,7 +223,7 @@ $(function () {
                             // 是否看完
                             myVideo.addEventListener('ended', function () {
                                 $('.measurement').addClass('test');
-                                $('.test').one('click', function () {
+                                $('.test').off('click').on('click', function () {
                                     if (taskDegreeOfCompletion == 0) {
                                         layer.open({
                                             type: 1,

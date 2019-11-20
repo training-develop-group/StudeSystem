@@ -469,10 +469,6 @@ i {
     border-radius: 5px !important;
 }
 
-.layui-layer-shade {
-    opacity: 0.4 !important;
-}
-
 .radio_box .layui-form-radio {
     position: absolute;
     left: 5px;
@@ -605,4 +601,7 @@ i {
     margin: 0;
 }
 
+.layui-layer-loading{
+    background-color: rgba(0,0,0,0.1) !important;
+}
 

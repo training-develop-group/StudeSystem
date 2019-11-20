@@ -239,7 +239,7 @@ var info = {
             type: 1,
             title: ['新建任务', 'color:#fff;background-color:#279EF0;text-align: center;font-size: 20px;'],
             shadeClose: false,
-            shade: 0.8,
+            shade: 0.5,
             move: false,
             skin: 'myskin',
             area: ['700px', '800px'],
@@ -550,9 +550,10 @@ var info = {
         };
         if (index != false) {
             $.ajax({
-                url: LBUrl + 'manage_system/task/tasks',
+                url: 'http://192.168.188.111:8888/manage_system/task/tasks',
                 data: JSON.stringify(data),
                 dataType: 'json',
+                shade: 0.1,
                 type: 'POST',
                 contentType: 'application/json;charset=utf-8',
                 beforeSend() {

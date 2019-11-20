@@ -167,10 +167,11 @@
 .analysis {
     margin-top: 20px;
     word-wrap: break-word;
+    text-indent: 35px;
 }
 
 .choiceItem {
-    margin-top: 0px;
+    margin-top: 0;
 }
 
 .manageOptions {
