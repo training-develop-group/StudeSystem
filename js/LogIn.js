@@ -30,11 +30,11 @@ var logIn = function() {
 				if (res.data.stRoleId == 1) {
 						localStorage.setItem('userType',res.data.stRoleId);
 					$('.PasswordError').addClass('hidden');
-					window.location.href = 'HomePage/HomePage.html'
+					window.location.href = './HomePage/HomePage.html'
 				} else if (res.data.stRoleId == 2) {
 					localStorage.setItem('userType',res.data.stRoleId);
 					$('.PasswordError').addClass('hidden');
-					window.location.href = 'UserHomePage/UserHomePage.html?value=' + res.data.userId +","+ 2 
+					window.location.href = './UserHomePage/UserHomePage.html?value=' + res.data.userId +","+ 2
 				}
 			} else if (res.data == null) {
 				$('.PasswordError').text('！用户名或密码错误');

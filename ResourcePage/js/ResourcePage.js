@@ -650,9 +650,7 @@ var info = {
                         $('#demoList').html(html.join(''));
                     },
                     success: function () {
-
                         var resIdList = [];
-                        console.log('-----成功1----');
                         layui.use('upload', function () {
                             var $ = layui.jquery,
                                 upload = layui.upload;
@@ -930,7 +928,6 @@ var info = {
             'userId': userId
 
         };
-        console.log(data.startTime);
         if (index != false) {
             console.log(data);
             $.ajax({
@@ -939,12 +936,19 @@ var info = {
                 dataType: 'json',
                 type: 'POST',
                 contentType: 'application/json;charset=utf-8',
+                beforeSend(){
+                    layer.load(2);
+                },
                 success(res) {
-                    layer.msg('添加成功');
-                    info.selectResourceList(JumpPageNum);
+                    if (res.code == 1) {
+                        layer.msg('发布成功');
+                        setTimeout(function () {
+                            layer.closeAll();
+                        },3000);
+                        info.selectResourceList(JumpPageNum);
+                    }
                 }
             });
-            layer.closeAll();
         } else {
             layer.msg(mistake);
             $('.addOk').removeAttr('disabled');

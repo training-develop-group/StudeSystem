@@ -548,7 +548,6 @@ var info = {
             'userId': userId
 
         };
-        console.log(data.startTime);
         if (index != false) {
 
             console.log(data);
@@ -805,7 +804,6 @@ var info = {
     },
     //刪除任務 根据主键删除
     delectTask: function (taskId) {
-        console.log(JumpPageNum);
         $.ajax({
             url: LBUrl + 'manage_system/task/' + taskId,
             data: {},

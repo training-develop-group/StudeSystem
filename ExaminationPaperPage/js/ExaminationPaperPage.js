@@ -474,7 +474,7 @@ var info = {
             'startTime': dateFormat($('#test1').val()),
             'endTime': dateFormat($('#test2').val()),
             'userId': userId
-        }
+        };
 
         if (index != false) {
             $.ajax({
@@ -483,11 +483,17 @@ var info = {
                 dataType: 'json',
                 type: 'POST',
                 contentType: 'application/json;charset=utf-8',
+                beforeSend(){
+                    layer.load(2);
+                },
                 success(res) {
-                    console.log(res.msg);
-                    layer.msg(res.msg);
-                    layer.closeAll();
-                    info.TableDataRequest(PNum);
+                    if(res.code == 1){
+                        layer.msg(res.msg);
+                        setTimeout(function () {
+                            layer.closeAll();
+                        },3000);
+                        info.TableDataRequest(PNum);
+                    }
                 }
             })
         } else {
