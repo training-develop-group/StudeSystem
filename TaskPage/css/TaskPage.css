@@ -604,4 +604,7 @@ i {
 .layui-layer-loading{
     background-color: rgba(0,0,0,0.1) !important;
 }
+.resAdd{
+    cursor: default;
+}
 
