@@ -67,14 +67,13 @@ var info = {
                         listHtml.push('<li class="clearfix ToTask" data-id="' + item.taskId + '" data-type="' + item.taskType + '" data-paperId="' + item.paperId + '" data-resId="' + item.resId + '">');
                         listHtml.push('<div class="leftBox">');
                         if (item.taskType == 1) {
-                            listHtml.push('<div class="imgBox "  style="border: 1px solid #0aae47;">');
+                            listHtml.push('<div class="imgBox " title="综合任务" style="border: 1px solid #0aae47;">');
                             listHtml.push('<img src="../imgs/sp2.png" height="50px" alt="任务图片"/>');
-
                         } else if (item.taskType == 2) {
-                            listHtml.push('<div class="imgBox " style="border: 1px solid #42b0fe;">');
+                            listHtml.push('<div class="imgBox " title="学习任务" style="border: 1px solid #42b0fe;">');
                             listHtml.push('<img src="../imgs/sp1.png" height="50px" alt="任务图片"/>');
                         } else if (item.taskType == 3) {
-                            listHtml.push('<div class="imgBox "  style="border: 1px solid #fe9540;">');
+                            listHtml.push('<div class="imgBox " title="测试任务" style="border: 1px solid #fe9540;">');
                             listHtml.push('<img src="../imgs/sp3.png" height="50px" alt="任务图片"/>');
                         }
 
@@ -110,7 +109,7 @@ var info = {
     // 分页插件
     Page: function (total, curr, userType) {
         if (total > 5) {
-            $('#page').removeClass('hidden')
+            $('#page').removeClass('hidden');
             layui.use('laypage', function () {
                 var laypage = layui.laypage;
                 //执行一个laypage实例

@@ -97,8 +97,8 @@ $(function () {
                             $('.doc').addClass('hidden');
                             $('.active').removeClass('active');
                             $(this).addClass('active');
-
                             info.getPaperList(paperId);
+                            $('.goBack').addClass('hidden');
                         });
                         $('.study').off('click').on('click', function () {
                             $('.active').removeClass('active');
@@ -203,6 +203,8 @@ $(function () {
             $('.doc').addClass('hidden');
             $('.content').addClass('hidden');
             info.getPaperList(paperId);
+            $('.goBack').addClass('hidden')
+
         }
     } else {
         // 用户
@@ -228,6 +230,7 @@ $(function () {
                             myVideo.addEventListener('ended', function () {
                                 $('.measurement').addClass('test');
                                 $('.test').off('click').on('click', function () {
+                                    var $this = $(this);
                                     if($(this).hasClass('active')){
                                         return false;
                                     }
@@ -288,6 +291,9 @@ $(function () {
                             myAudio.addEventListener('ended', function () {
                                 $('.measurement').addClass('test');
                                 $('.test').off('click').on('click', function () {
+                                    $('.goBack').addClass('hidden')
+
+
                                     if($(this).hasClass('active')){
                                         return false;
                                     }
@@ -322,7 +328,7 @@ $(function () {
                                         })
                                     } else {
                                         $('.active').removeClass('active');
-                                        $this.addClass('active');
+                                        $('.test').addClass('active');
                                         $('.audio').addClass('hidden');
                                         info.getUserPaperList();
                                         $('.study').off('click').on('click', function () {
@@ -504,8 +510,6 @@ $(function () {
             }
         });
     }
-
-
     setTimeInterval = setInterval(info.currentTime, 30000);
     // 添加心得
     $('.add').off('click').on('click', function () {
@@ -943,13 +947,13 @@ var info = {
                     type: 'POST',
                     success(res) {
                         if (res || res.data !== null) {
-                            $('.TotalScoreBox .TotalScore').html('总得分：' + res.data.userScore);
+                            $('.TotalScoreBox .TotalScore').html('得分：<span style="color: #bf3f3d;">' + res.data.userScore + '</span>');
                             $('.TotalScoreBox .TaskScore').html('总分：' + res.data.score);
                             var Html = [];
                             Html.push('<div class="editorialContent">');
                             Html.push('<div id="title">');
                             Html.push('<div id="centered">');
-                            Html.push('<span>查看答案</span>');
+                            Html.push('<span>查看答卷</span>');
                             Html.push(
                                 '<a href="#" class="goBack" style="float: right; margin-right:20px"><i class="layui-icon">&#xe602;</i><span style="margin-left : 0px;">返回</span> </a>'
                             );
@@ -1072,7 +1076,7 @@ var info = {
             success(res) {
                 if (res || res.data !== null) {
                     var Html = [];
-                    $('.TotalScoreBox .TotalScore').html('总得分：' + res.data.userScore);
+                    $('.TotalScoreBox .TotalScore').html('得分：<span style="color: #bf3f3d;font-size: 18px">' + res.data.userScore + '</span>');
                     $('.TotalScoreBox .TaskScore').html('总分：' + res.data.score);
                     Html.push('<ul class="layui-tab tabHead layui-tab-brief clearfix">');
                     res.data.questionList.forEach(function (item, index) {

@@ -381,7 +381,7 @@ var info = {
                     Html.push('<tr style="margin-top: -10px;">');
                     Html.push('<td style="text-align: center;"><span>' + item.userName + '</span></td>');
                     var status = '';
-                    if (item.status === '0') {
+                    if (item.status ===  0) {
                         status = '未完成'
                     } else {
                         status = '已完成'
