@@ -70,7 +70,7 @@ $(function () {
             info.TableDataRequest(1, search)
         });
         $('#resName').keypress(function (e) {
-            if (e.which === 13) {
+            if (e.which == 13) {
                 var search = $('#resName').val();
                 var resType = $('.layui-nav .layui-this').val();
                 console.log(resType + '22222' + search);
@@ -235,6 +235,7 @@ var info = {
         $('#test1').val(firstToday);
         // 赋值明天时间(结束)
         $('#test2').val(lastToday);
+
         layer.open({
             type: 1,
             title: ['新建任务', 'color:#fff;background-color:#279EF0;text-align: center;font-size: 20px;'],
@@ -378,19 +379,19 @@ var info = {
                 var Html = [];
                 res.data.forEach(function (item, index) {
                     // console.log(res)
-                    Html.push('<tr style="margin-top: -10px;">');
-                    Html.push('<td style="text-align: center;"><span>' + item.userName + '</span></td>');
+                    Html.push('<tr');
+                    Html.push('<td><span>' + item.userName + '</span></td>');
                     var status = '';
                     if (item.status === '0') {
                         status = '未完成'
                     } else {
                         status = '已完成'
                     }
-                    Html.push('<td style="text-align: center;">' + status + '</td>');
+                    Html.push('<td>' + status + '</td>');
                     if (item.score == null) {
                         item.score = '-';
                     }
-                    Html.push('<td style="text-align: center;"> ' + item.score + ' </td></tr>')
+                    Html.push('<td>' + item.score + '</td></tr>')
                 });
                 $('#taskUserDegreeCompletion').html(Html.join(''));
             }
@@ -411,18 +412,22 @@ var info = {
                 if (res || res.data !== null) {
                     var Html = [];
                     res.data.list.forEach(function (item, index) {
-                        Html.push('<tr style="margin-top: -10px;">');
-                        if (item.paperName.length > 8) {
-                            Html.push('<td style="text-align: center;" class="paperName"><pre>' + item.paperName.substring(0, 8) + '...</pre></td>');
+                        Html.push('<tr>');
+                        if (item.paperName.length > 9) {
+                            // 转义(已防有标签的样式被html识别)
+                            item.paperName = $('<div>').text(item.paperName).html();
+                            Html.push('<td class="paperName" title="'+item.paperName+'" data-paperName="'+item.paperName+'"><pre>' + item.paperName.substring(0, 9) + '...</pre></td>');
                         } else {
-                            Html.push('<td style="text-align: center;" class="paperName"><pre>' + item.paperName + '</pre></td>');
+                            // 转义(已防有标签的样式被html识别)
+                            item.paperName = $('<div>').text(item.paperName).html();
+                            Html.push('<td class="paperName" data-paperName="'+item.paperName+'"><pre>' + item.paperName + '</pre></td>');
                         }
                         Html.push('<td style="text-align: center;">' + item.single + '</td>');
                         Html.push('<td style="text-align: center;">' + item.many + '</td>');
                         Html.push(
-                            '<td style="text-align: center; float: left; margin-left: 20px; "><div  class="site-demo-button"><button value="' +
+                            '<td><div  class="site-demo-button"><button value="' +
                             item.paperId +
-                            '" type="button" class="layui-btn layui-btn-primary layui-btn-sm layui-btn-normal selectPaper" style="width: 70px; background-color: white;margin-top: 7px;">选择</button></div></td>'
+                            '" type="button" class="layui-btn layui-btn-primary layui-btn-sm layui-btn-normal selectPaper">选择</button></div></td>'
                         );
                         Html.push('</tr>');
                     });
@@ -432,10 +437,16 @@ var info = {
                     $('.selectPaper').off('click').on('click', function () {
                         $('.selectPapers').val($(this).val());
                         var Html = [];
-                        Html.push('：' + $(this).parents('tr').children('.paperName').text());
+                        if($(this).parents('tr').children('.paperName').attr('title').length > 30){
+                            Html.push('：' + $(this).parents('tr').children('.paperName').attr('title').substring(0, 30) + '...');
+                        }else {
+                            Html.push('：' + $(this).parents('tr').children('.paperName').attr('title'));
+                        }
                         $('.paperAdd').html(Html.join(''));
                         $('.paperAdd').val($(this).val());
                         $('.paperAdd').attr('data-id', $(this).val());
+                        var paperName = $('.paperName').attr('data-paperName');
+                        $('.paperAdd').attr('title',paperName);
                         layer.close(layer.index);
                     })
                 }
@@ -550,7 +561,7 @@ var info = {
         };
         if (index != false) {
             $.ajax({
-                url: 'http://192.168.188.111:8888/manage_system/task/tasks',
+                url: LBUrl + 'manage_system/task/tasks',
                 data: JSON.stringify(data),
                 dataType: 'json',
                 shade: 0.1,
@@ -683,8 +694,8 @@ var info = {
                     // 转义(已防有标签的样式被html识别)
                     item.taskName = $('<div>').text(item.taskName).html();
                     Html.push('<tr>');
-                    if (item.taskName.length > 20) {
-                        Html.push('<td class="oneselfTaskName" title="' + item.taskName + '"><pre>' + item.taskName.substring(0, 20) + '...</pre></td>');
+                    if (item.taskName.length > 14) {
+                        Html.push('<td class="oneselfTaskName" title="' + item.taskName + '"><pre>' + item.taskName.substring(0, 14) + '...</pre></td>');
                     } else {
                         Html.push('<td class="oneselfTaskName" title="' + item.taskName + '"><pre>' + item.taskName + '</pre></td>');
                     }
@@ -759,7 +770,7 @@ var info = {
                             'color:#fff;background-color:#279EF0;text-align: center;font-size: 20px;cursor: default;'
                         ],
                         shadeClose: false,
-                        shade: 0.8,
+                        shade: 0.5,
                         skin: 'myskin',
                         area: ['600px', '500px'],
                         content: $('#examineTask'),

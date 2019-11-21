@@ -1,5 +1,4 @@
 $(function () {
-
     layui.use(['layer', 'form', 'laypage', 'laydate'], function () {
         var layer = layui.layer,
             form = layui.form;
@@ -112,6 +111,7 @@ var lastTime = 0;
 var info = {
     //获取资源列表
     selectResourceList: function (pageNum, resName, resType) {
+
         // console.log(resName);
         $.ajax({
             url: TDXUrl + 'manage_system/resource/resources',
@@ -131,7 +131,7 @@ var info = {
                         item.resName = $('<div>').text(item.resName).html();
                         html.push('<tr>');
                         if (item.resName.length > 20) {
-                            html.push('<td class="getResource" resId="' + item.resId + '"><pre title="' + item.resName + item.resExt + '">' + item.resName.substring(0, 20) + '...</pre>' + '</td>');
+                            html.push('<td class="getResource" resId="' + item.resId + '"><pre title="' + item.resName + item.resExt + '">' + item.resName.substring(0, 20) + '...</pre></td>');
                         } else {
                             html.push('<td class="getResource" resId="' + item.resId + '"><pre title="' + item.resName + item.resExt + '">' + item.resName + '<span>' + item.resExt + '</span></pre>' + '</td>');
                         }
@@ -211,8 +211,8 @@ var info = {
 
                         //发布弹出层中显示被选中的资源名
                         var resName = $(this).attr("resName");
-                        if(resName.length > 25){
-                            $('.resAdd').html('：'+ resName.substring(0, 25) + '...');
+                        if(resName.length > 30){
+                            $('.resAdd').html('：'+ resName.substring(0, 30) + '...');
                         } else {
                             $('.resAdd').html('：'+ resName);
                         }

@@ -698,8 +698,12 @@ var info = {
             type: 'GET',
             success(res) {
                 res.data.forEach(function (item, index) {
+                    if (OptionType == '未知') {
+                        OptionType = item.optionType;
+                    } else {
+                        OptionType = OptionType + ',' + item.optionType;
+                    };
                     Analysis = item.analysis;
-                    OptionType = item.optionType;
                 });
                 // 转义(已防有标签的样式被html识别)
                 Analysis = $('<div>').text(Analysis).html();

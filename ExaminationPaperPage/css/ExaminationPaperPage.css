@@ -1,132 +1,134 @@
 .content .resources {
-    margin-top: 25px;
-    margin-left: 223px;
-    width: 635px;
-    height: 357px;
+	margin-top: 25px;
+	margin-left: 223px;
+	width: 635px;
+	height: 357px;
 
 }
 
 .content .statistics {
-    margin-left: 223px;
-    width: 1476px;
-    height: 605px;
-    background-color: #FFFFFF;
+	margin-left: 223px;
+	width: 1476px;
+	height: 605px;
+	background-color: #FFFFFF;
 }
 
 .content .task {
-    margin-top: -372px;
-    margin-left: 878px;
-    width: 401px;
-    height: 357px;
+	margin-top: -372px;
+	margin-left: 878px;
+	width: 401px;
+	height: 357px;
 
 }
 
 .content .paper {
-    margin-top: -372px;
-    margin-left: 1300px;
-    width: 401px;
-    height: 357px;
+	margin-top: -372px;
+	margin-left: 1300px;
+	width: 401px;
+	height: 357px;
 
 }
 
 #title {
-    width: 100%;
-    height: 60px;
-    background-color: #279ef0;
-    border-radius: 7px 7px 0 0;
+	width: 100%;
+	height: 60px;
+	background-color: #279ef0;
+	border-radius: 7px 7px 0 0;
 }
 
 #centered {
-    line-height: 60px;
+	line-height: 60px;
 }
 
 #centered span {
-    font-size: 18px;
-    margin-left: 30px;
-    color: white;
-    cursor: default;
+	font-size: 18px;
+	margin-left: 30px;
+	color: white;
+	cursor: default;
 }
 
 #newTestPaper {
-    border: none;
-    font-size: 16px;
-    float: right;
-    margin-right: 20px;
-    margin-top: 10px;
-    border-radius: 5px;
-    color: #279ef2;
+	border: none;
+	font-size: 16px;
+	float: right;
+	margin-right: 20px;
+	margin-top: 10px;
+	border-radius: 5px;
+	color: #279ef2;
 }
 
 #newTestPaper:hover {
-    color: #1b1b1b;
+	color: #1b1b1b;
 }
 
 #examinationPaperList {
-    width: calc(100% - 50px);
-    padding:  0 25px;
-    min-height: 650px;
-    margin-top: 20px;
-    background-color: white;
+	width: calc(100% - 50px);
+	padding: 0 25px;
+	min-height: 650px;
+	margin-top: 20px;
+	background-color: white;
 }
 
 #examinationPaperList .layui-table {
-    border: 0;
+	border: 0;
 }
 
 th {
-    font-size: 16px !important;
+	font-size: 16px !important;
 }
 
 .layui-form-select dl dd.layui-this {
-    background-color: #279ef2;
+	background-color: #279ef2;
 }
 
-#examinationPaperList table thead th, #examinationPaperInformation td {
-    height: 46px;
-    text-indent: 25px;
+#examinationPaperList table thead th,
+#examinationPaperInformation td {
+	height: 46px;
+	text-indent: 25px;
 }
 
 .layui-table th {
-    font-weight: 600;
-    padding: 0;
-    background-color: white;
+	font-weight: 600;
+	padding: 0;
+	background-color: white;
 }
 
 .layui-table td {
-    padding: 0px;
+	padding: 0px;
 }
 
-.layui-table td, .layui-table th {
-    border-width: 0;
-    border-bottom: 1px solid #eeeeee;
+.layui-table td,
+.layui-table th {
+	border-width: 0;
+	border-bottom: 1px solid #eeeeee;
 }
 
 td {
-    font-size: 14px;
+	font-size: 14px;
 }
 
 /* 选择人员(小手) */
 .selectPersonnel span {
-    cursor: pointer;
+	cursor: pointer;
 }
 
 /* td样式 */
 #examinationPaperInformation td:hover {
-    cursor: default;
+	cursor: default;
 }
 
 #examinationPaperInformation tr td:nth-child(1) {
-    text-indent: 14px;
+	text-indent: 14px;
 }
 
 .middle {
-    text-indent: 0 !important;
-    text-align: center !important;
+	text-indent: 0 !important;
+	text-align: center !important;
 }
 
 a {
-    text-decoration: none;
-    out-line: none;
+	text-decoration: none;
+	out-line: none;
 }
 
 .edit,
@@ -134,362 +136,374 @@ a {
 .toView,
 .delete,
 .publish {
-    width: 50px;
-    padding: 5px;
-    height: 25px;
-    line-height: 15px;
-    border: 0;
+	width: 50px;
+	padding: 5px;
+	height: 25px;
+	line-height: 15px;
+	border: 0;
 }
 
 .toView:hover {
-    cursor: pointer !important;
+	cursor: pointer !important;
 }
 
 .edit {
-    width: 60px;
+	width: 60px;
 }
 
 #examinationPaperList table thead tr .operation {
-    text-indent: 30px;
+	text-indent: 30px;
 }
 
 .inputLocation {
-    width: 570px;
-    margin: 30px auto;
-    display: block;
+	width: 570px;
+	margin: 30px auto;
+	display: block;
 }
 
 .inputLocation span {
-    font-size: 15px;
+	font-size: 15px;
 }
 
 #nameOfExaminationPaper {
-    margin-left: 20px;
-    width: 480px;
-    border-radius: 4px;
+	margin-left: 20px;
+	width: 480px;
+	border-radius: 4px;
 }
 
 .layui-input {
-    height: 38px;
-    /* height: 30px; */
-    display: inline;
+	height: 38px;
+	/* height: 30px; */
+	display: inline;
 }
 
 .btn-box {
-    width: 360px;
-    position: absolute;
-    margin: 0 auto;
-    left: 0;
-    right: 0;
-    bottom: 25px;
+	width: 360px;
+	position: absolute;
+	margin: 0 auto;
+	left: 0;
+	right: 0;
+	bottom: 25px;
 }
 
 #confirm {
-    margin-left: 210px;
-    margin-top: 35px;
-    width: 160px;
-    height: 30px;
-    line-height: 30px;
-    border-radius: 5px;
-    background-color: #279ef0;
-    color: white;
+	margin-left: 210px;
+	margin-top: 35px;
+	width: 160px;
+	height: 30px;
+	line-height: 30px;
+	border-radius: 5px;
+	background-color: #279ef0;
+	color: white;
 }
 
 .layui-laypage a {
-    margin-left: 5px;
-    margin-right: 5px;
+	margin-left: 5px;
+	margin-right: 5px;
 }
 
 .acquiredValue {
-    width: 500px;
-    margin-left: 25px;
+	width: 500px;
+	margin-left: 25px;
 }
 
 .renameConfirm {
-    width: 140px;
-    height: 30px;
-    background-color: #279ef0;
-    border: 1px solid #279ef0;
-    margin: 0 70px 0 0;
-    line-height: 30px;
-    text-align: center;
-    color: white;
+	width: 140px;
+	height: 30px;
+	background-color: #279ef0;
+	border: 1px solid #279ef0;
+	margin: 0 70px 0 0;
+	line-height: 30px;
+	text-align: center;
+	color: white;
 }
 
 .renameCancel {
-    width: 140px;
-    height: 30px;
-    line-height: 30px;
-    text-align: center;
+	width: 140px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
 }
 
 .newTestPaperConfirm {
-    width: 140px;
-    height: 30px;
-    background-color: #279ef0;
-    border: 1px solid #279ef0;
-    line-height: 30px;
-    margin: 0 70px 0 0;
-    text-align: center;
-    color: white;
+	width: 140px;
+	height: 30px;
+	background-color: #279ef0;
+	border: 1px solid #279ef0;
+	line-height: 30px;
+	margin: 0 70px 0 0;
+	text-align: center;
+	color: white;
 }
 
 .newTestPaperConfirm:hover {
-    color: #fff;
+	color: #fff;
 }
 
 .newTestPaperCancel {
-    width: 140px;
-    height: 30px;
-    line-height: 30px;
-    text-align: center;
+	width: 140px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
 }
 
 .layui-btn-primary:hover {
-    border-color: #279ef0;
+	border-color: #279ef0;
 }
 
 .layui-layer-tips {
-    margin-top: -75px !important;
+	margin-top: -75px !important;
 }
 
 /* 发布弹窗 ------------------------------------------------------- */
 .Release_content {
-    margin: 25px 0 0 0;
+	margin: 25px 0 0 0;
 }
 
 #addTaskPage {
-    width: 600px;
-    margin: 15px 0 0 25px;
-    /* border: 1px solid black; */
+	width: 600px;
+	margin: 15px 0 0 25px;
+	/* border: 1px solid black; */
 }
 
 .taskLocation {
-    margin: -2px 0 0 0;
+	margin: -1px 0 0 0;
+	padding-right: 10px;
 }
 
 .layui-form-item {
-    margin: 23px auto;
-    width: 540px;
-    /* border: 1px solid black; */
-}
-
-#addTaskPage input {
-    width: 190px;
-    height: 35px;
+	margin: 23px auto;
+	margin-bottom: 0px;
+	width: 540px;
 }
 
 #addTaskPage .taskName {
-    width: 407px;
+	width: 420px;
+	margin-right: 5px;
 }
 
-#test1, #test2 {
-    border-radius: 5px;
+#test1,
+#test2 {
+	border-radius: 5px;
 }
 
 .taskRemark {
-    width: 300px;
-    height: 100px;
+	width: 300px;
+	height: 100px;
 }
 
-.selectResource, .selectPapers {
-    margin: 0 0 0 35px;
+.selectResource,
+.selectPapers {
+	margin: 0 0 0 35px;
 }
 
 .selectPersonnel {
-    margin: 0;
-    position: relative;
-    left: -6px;
+	margin: 0;
+	position: relative;
+	left: -10px;
 }
 
 .selectPersonnel i {
-    line-height: 38px;
+	line-height: 38px;
 }
 
 .taskUsers {
-    width: 241px;
-    height: 121px;
-    overflow-y: auto;
-    border: 1px solid #DADADA;
-    padding: 5px 10px;
-    margin: 0 0 0 37px;
+	margin-left: 35px;
+	width: 248px;
+	height: 150px;
+	border: 1px solid #E6E6E6;
+	overflow: auto;
+	padding: 5px;
+	margin-top: 18px;
 }
 
 .taskUsers p {
-    line-height: 20px;
-    margin-left: 20px;
-    /* margin-right: 40px; */
+	line-height: 20px;
+	margin-left: 20px;
+	/* margin-right: 40px; */
 }
 
 /* 选择人员hover */
 .taskUsers p:hover {
-    background-color: #f2f2f2;
+	background-color: #f2f2f2;
 }
 
 .taskUsers p i {
-    float: right;
-    margin-right: 20px;
+	float: right;
+	margin-right: 20px;
 }
 
 .selectTaskUsers .layui-form-label {
-    width: 100px;
-    padding: 9px 10px;
+	width: 100px;
+	padding: 9px 10px;
 }
 
 .taskRemark {
-    width: 447px;
-    height: 86px;
+	width: 420px;
+	height: 150px;
+	margin-left: -5px;
 }
 
 .resourceSelection {
-    border: 0;
+	border: 0;
 }
 
-.resourceSelection, .usersSelectOk {
-    width: 140px;
+.resourceSelection,
+.usersSelectOk {
+	width: 140px;
 }
 
 .resourceSelection:hover {
-    color: white;
-    border: 0;
+	color: white;
+	border: 0;
 }
 
 .usersSelectOk {
-    color: white;
-    position: absolute;
-    margin: 0 auto;
-    width: 140px;
-    left: 0;
-    right: 0;
-    bottom: 25px;
+	color: white;
+	position: absolute;
+	margin: 0 auto;
+	width: 140px;
+	left: 0;
+	right: 0;
+	bottom: 25px;
 }
 
 label {
-    font-size: 16px;
+	font-size: 16px;
 }
 
-.selectResource span, .selectPapers span, .selectPersonnel span {
-    font-size: 16px;
-    color: #5FB878;
+.selectResource span,
+.selectPapers span,
+.selectPersonnel span {
+	font-size: 16px;
+	color: #5FB878;
 }
 
 .selectPapers .paperAdd {
-    color: #606060;
+	color: #606060;
+	font-size: 14px;
 }
 
 .layui-form-item i {
-    color: #5FB878;
+	color: #5FB878;
 }
 
 /* ...搜索框 */
 .iconSearch {
-    width: 200px;
-    border: 1px solid #C9C9C9;
-    border-radius: 6px;
+	width: 200px;
+	border: 1px solid #C9C9C9;
+	border-radius: 6px;
 }
 
 /* ...复选框 */
 .checkAll {
-    width: 15px;
-    height: 15px;
+	width: 15px;
+	height: 15px;
 }
 
 .userNameRetrieval {
-    width: 150px;
-    height: 30px;
-    margin: 0 0 0 10px;
-    border: 0;
+	width: 150px;
+	height: 30px;
+	margin: 0 0 0 10px;
+	border: 0;
 }
 
 #selectTaskUsers {
-    border: 1px solid #C9C5C5;
-    width: 550px;
-    height: 275px;
-    margin-bottom: 20px;
-    overflow: auto;
-    background-color: rgb(248, 248, 248);
+	border: 1px solid #C9C5C5;
+	width: 550px;
+	height: 275px;
+	margin-bottom: 20px;
+	overflow: auto;
+	background-color: rgb(248, 248, 248);
 }
 
 #selectTaskUsers .layui-form-label {
-    width: 100px;
-    text-align: left;
+	width: 100px;
+	text-align: left;
 }
 
 .myskin {
-    border-radius: 7px !important;
+	border-radius: 7px !important;
 }
 
 i {
-    font-style: normal
+	font-style: normal
 }
 
 /* 时间插件的hover样式 */
 .layui-laydate-footer span:hover {
-    color: #279ef0 !important;
+	color: #279ef0 !important;
 }
 
 /* 提示发布弹窗------------------------------------------------- */
 .confirmRelease {
-    width: 235px;
-    margin: 30px auto 0;
-    font-size: 18px;
+	width: 235px;
+	margin: 30px auto 0;
+	font-size: 18px;
 }
 
 .CR-btn-box {
-    width: 230px;
-    margin: 34px auto 0;
+	width: 230px;
+	margin: 34px auto 0;
 }
 
 .CR-btnConfirm {
-    margin: 0 40px 0 0;
+	margin: 0 40px 0 0;
 }
 
-.CR-btnConfirm, .CR-btnCancel {
-    width: 90px;
+.CR-btnConfirm,
+.CR-btnCancel {
+	width: 90px;
 }
 
 /* 表格....样式 */
 .rename {
-    text-overflow: ellipsis;
-    overflow: hidden;
-    text-indent: 25px;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	text-indent: 25px;
 }
 
 .Release_btn {
-    position: absolute;
-    margin: 0 auto;
-    width: 140px;
-    left: 0;
-    right: 0;
-    bottom: 25px;
+	position: absolute;
+	margin: 0 auto;
+	width: 140px;
+	left: 0;
+	right: 0;
+	bottom: 25px;
 }
 
 .spacing {
-    margin: 34px auto;
+	margin: 20px auto;
+	margin-bottom: 0;
 }
 
 .timeBox {
-    margin: 37px auto 0;
+	margin: 34px auto 0;
 }
 
 .personls {
-    margin: -13px auto;
+	margin: -13px auto;
 }
 
 .taskUsers p i {
-    color: #000000;
+	color: #000000;
 }
 
-.know{
-    text-align: center;
+.know {
+	text-align: center;
 }
 
-.know .no{
-    background-color: #279ef0;
-    color: #fff;
+.know .no {
+	background-color: #279ef0;
+	color: #fff;
 }
-.know .no:hover{
-    background-color: #1e9fff;
-    color: #fff !important;
-    opacity: 0.8;
+
+.know .no:hover {
+	background-color: #1e9fff;
+	color: #fff !important;
+	opacity: 0.8;
+}
+
+.layui-form-mid{
+	margin: 0 7px;
 }

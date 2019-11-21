@@ -1,56 +1,57 @@
 body,
 html {
-    height: 100%;
-    width: 100%;
-    cursor: default;
+	height: 100%;
+	width: 100%;
+	cursor: default;
 }
 
 .title-header {
-    background-color: #289ef0;
-    width: 100%;
-    height: 60px;
-    border-radius: 7px 7px 0 0;
+	background-color: #289ef0;
+	width: 100%;
+	height: 60px;
+	border-radius: 7px 7px 0 0;
 }
 
 .title-header-text {
-    font-size: 18px;
-    color: white;
-    line-height: 60px;
-    margin-left: 32px;
+	font-size: 18px;
+	color: white;
+	line-height: 60px;
+	margin-left: 32px;
 }
 
 .title-header-btn {
-    border-radius: 5px;
-    background-color: white;
-    height: 38px;
-    font-size: 16px;
-    border: none;
-    float: right;
-    margin-right: 20px;
-    line-height: 38px;
-    margin-top: 11px;
-    color: #279ef2;
+	border-radius: 5px;
+	background-color: white;
+	height: 38px;
+	font-size: 16px;
+	border: none;
+	float: right;
+	margin-right: 20px;
+	line-height: 38px;
+	margin-top: 11px;
+	color: #279ef2;
 }
 
 .content {
-    background-color: #FFFFFF;
-    width: 100%;
-    /* margin-left: 10px; */
-    min-height: 650px;
-    margin-top: 20px;
+	background-color: #FFFFFF;
+	width: 100%;
+	/* margin-left: 10px; */
+	min-height: 650px;
+	margin-top: 20px;
 }
 
 table {
-    width: calc(100% - 50px);
-    margin-left: 25px;
-    table-layout: fixed;
+	width: calc(100% - 50px);
+	margin-left: 25px;
+	table-layout: fixed;
 }
 
 .hiddenTableList {
-    position: absolute;
+	position: absolute;
 }
 
- td, th {
+td,
+th {
 	border-style: none;
 	height: 46px;
 	padding: 0;
@@ -59,319 +60,312 @@ table {
 .content td,
 .layui-upload-list td,
 th {
-    font-size: 14px;
-    border-bottom: 1px solid #E2E2E2;
-    padding-left:25px;
+	font-size: 14px;
+	border-bottom: 1px solid #E2E2E2;
+	padding-left: 25px;
 }
 
 td:nth-child(1) {
-    cursor: pointer;
+	cursor: pointer;
 }
 
 
 .centerText {
-    text-align: center !important;
-    /* vertical-align:middle!important; */
+	text-align: center !important;
+	/* vertical-align:middle!important; */
 }
 
 /* 选择器选中列表中的第五个td */
-.mainTabel > td:nth-child(5) {
-    padding-left: 100px;
+.mainTabel>td:nth-child(5) {
+	padding-left: 100px;
 }
 
 /* 资源列表操作的按钮 */
 #contentList td button {
-    width: 55px;
-    height: 25px;
-    margin-right: 10px;
-    background-color: #FFFFFF;
-    border: none;
-    float: left;
-    cursor: pointer;
+	width: 55px;
+	height: 25px;
+	margin-right: 10px;
+	background-color: #FFFFFF;
+	border: none;
+	float: left;
+	cursor: pointer;
 }
 
 #contentList td button a {
-    padding-right: 0px;
-    color: #606060;
+	padding-right: 0px;
+	color: #606060;
 }
 
 #contentList td button:hover,
 #contentList td button a:hover {
-    color: #777;
+	color: #777;
 }
 
 #contentList td:nth-child(1) a {
-    width: 170px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+	width: 170px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
-thead > tr > td {
-    font-weight: 600;
-    font-size: 16px;
+thead>tr>td {
+	font-weight: 600;
+	font-size: 16px;
 }
 
 th {
-    text-align: left;
-    font-size: 16px;
+	text-align: left;
+	font-size: 16px;
 }
 
 .mainTabel tr th:nth-child(5) {
-    padding: 0 31px !important;
+	padding: 0 31px !important;
 }
 
 
 /* 点击上传课件弹出层按钮 */
 .changeFile {
-    background: #fff;
-    font-size: 14px;
-    padding: 5px 18px;
-    line-height: initial;
-    height: auto;
-    margin: 0 0 0 25px;
-    color: #9e9e9e;
-    float: left;
+	background: #fff;
+	font-size: 14px;
+	padding: 5px 18px;
+	line-height: initial;
+	height: auto;
+	margin: 0 0 0 25px;
+	color: #9e9e9e;
+	float: left;
 }
 
 .upMsg {
-    float: left;
-    position: relative;
-    color: #ffffff;
-    background: #5A5A5A;
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-    line-height: 25px;
-    text-align: center;
-    margin-left: 20px;
-    margin-top: 3px;
+	float: left;
+	position: relative;
+	color: #ffffff;
+	background: #5A5A5A;
+	width: 25px;
+	height: 25px;
+	border-radius: 50%;
+	line-height: 25px;
+	text-align: center;
+	margin-left: 20px;
+	margin-top: 3px;
 }
 
 .upMsgContent {
-    /* content: ""; */
-    background: #5A5A5A;
-    color: #ffffff;
-    width: 200px;
-    min-height: 30px;
-    padding: 10px;
-    border-radius: 5px;
-    font-size: 12px;
-    position: absolute;
-    left: 50px;
-    top: 50px;
-    animation: 2s;
-    -webkit-animation: 2s;
-    z-index: 9999;
+	/* content: ""; */
+	background: #5A5A5A;
+	color: #ffffff;
+	width: 200px;
+	min-height: 30px;
+	padding: 10px;
+	border-radius: 5px;
+	font-size: 12px;
+	position: absolute;
+	left: 50px;
+	top: 50px;
+	animation: 2s;
+	-webkit-animation: 2s;
+	z-index: 9999;
 }
 
 .upMsgContent:before {
-    content: " ";
-    width: 15px;
-    height: 15px;
-    background: #5A5A5A;
-    transform: rotate(45deg);
-    -webkit-transform: rotate(45deg);
-    position: absolute;
-    top: -8px;
-    left: 93px;
+	content: " ";
+	width: 15px;
+	height: 15px;
+	background: #5A5A5A;
+	transform: rotate(45deg);
+	-webkit-transform: rotate(45deg);
+	position: absolute;
+	top: -8px;
+	left: 93px;
 }
 
 /* 浮窗边框 */
 .layui-layer-iframe {
-    border-radius: 6px !important;
+	border-radius: 6px !important;
 }
 
 /* 浮窗标题 */
 .layui-layer-title {
-    border-radius: 6px 6px 0 0 !important;
-    padding: 0 !important;
+	border-radius: 6px 6px 0 0 !important;
+	padding: 0 !important;
 }
 
 .layui-layer {
-    border-radius: 6px !important;
+	border-radius: 6px !important;
 }
 
 .wrapperChangeFile {
-    padding: 50px;
+	padding: 50px;
 }
 
 .layui-layer-page .layui-layer-btn a {
-    height: 30px;
-    line-height: 30px;
-    width: 140px;
-    margin: 5px 35px 0;
+	height: 30px;
+	line-height: 30px;
+	width: 140px;
+	margin: 5px 35px 0;
 }
 
 #viewResourceBox {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 }
 
 .layui-laypage a {
-    margin-left: 5px;
-    margin-right: 5px;
+	margin-left: 5px;
+	margin-right: 5px;
 }
 
 /* 音频大小 */
 #myAudio {
-    width: 500px;
+	width: 500px;
 }
 
 
 /*编辑资源名弹出层样式*/
 #editResNameBox {
-    padding: 0 100px 0 180px;
+	padding: 0 100px 0 180px;
 }
 
 .rename {
-    width: 500px;
-    margin-top: 40px;
+	width: 500px;
+	margin-top: 40px;
 }
 
 .editText {
-    position: absolute;
-    top: 50px;
-    left: 100px;
+	position: absolute;
+	top: 50px;
+	left: 100px;
 }
 
 .layui-layer-btn a {
-    margin-right: 50px;
+	margin-right: 50px;
 }
 
 .changeFile:hover {
-    border-color: #289ef0;
-    color: #252525;
+	border-color: #289ef0;
+	color: #252525;
 }
 
 /* tr hover样式 */
 .mainTabel tbody tr:hover,
 .hiddenTableList tbody tr:hover {
-    background-color: #eeeeee;
+	background-color: #eeeeee;
 }
 
 #uploadBtn {
-    width: 160px;
-    text-align: center;
-    margin: auto;
-    position: fixed;
-    left: 0;
-    right: 0px;
-    top: 590px;
+	width: 160px;
+	text-align: center;
+	margin: auto;
+	position: fixed;
+	left: 0;
+	right: 0px;
+	top: 590px;
 }
 
 .Release_content .layui-form-item .layui-form-label,
 .taskObject,
 .selectResource span,
 .selectPersonnel span {
-    font-size: 16px;
+	font-size: 16px;
 }
 
 pre {
-    height: 20px;
+	height: 20px;
 }
 
 .selectPersonnel {
-    font-size: 16px;
-    color: #5FB878;
-    padding-left: 0 !important;
+	font-size: 16px;
+	color: #5FB878;
+	padding-left: 0 !important;
 }
 
 .timeBox {
-    margin-top: 30px !important;
+	margin-top: 30px !important;
 }
 
 .Release {
-    position: relative;
-    height: 100%;
+	position: relative;
+	height: 100%;
 }
 
 /* 发布弹出层内容-------------------------------------------------------------------------- */
 .Release_content {
-    padding: 15px 80px 25px 70px;
+	padding: 15px 80px 25px 70px;
 }
 
 .layui-form-item {
-    margin-bottom: 20px;
+	margin-bottom: 15px;
 }
-
-.layui-form-label {
-    text-align: left;
-    padding-right: 8px;
-}
-
 
 /* 发布任务名称 */
 .Release_content .Release_name {
-    width: calc(100% - 110px);
-    float: left;
+	width: 420px;
+	float: left;
 }
 
 .Release_content ._search {
-    float: left;
-    /* display: block; */
-    padding: 10px 15px;
-    /* width: 110px; */
-    font-weight: 400;
-    line-height: 20px;
+	float: left;
+	padding: 10px 15px;
+	font-weight: 400;
+	line-height: 20px;
 }
 
 .Release_content ._search span {
-    float: left;
-    color: rgb(82, 186, 140);
+	float: left;
+	color: rgb(82, 186, 140);
 }
 
 .resAdd {
-    color: #606060 !important;
+	color: #606060 !important;
 }
 
 
 .Release_content ._search i {
-    color: rgb(82, 186, 140);
-    float: left;
+	color: rgb(82, 186, 140);
+	float: left;
 }
 
 
 /* 任务对象选择人员---------------------------------------------------------------------- */
 /* 整体 */
 .taskUsers {
-    width: 240px;
-    height: 120px;
-    overflow-y: auto;
-    border: 1px solid #dadada;
-    margin-left: 30px;
-    padding: 5px 10px;
+	margin-left: 33px;
+	width: 248px;
+	height: 150px;
+	border: 1px solid #E6E6E6;
+	overflow: auto;
+	padding: 5px;
+	margin-top: 15px;
 }
 
 .personls {
-    margin: 0 !important;
+	margin: 0 !important;
 }
 
 .Release_content .layui-form-item {
-    margin-top: 10px;
+	margin-top: 10px;
 }
 
 /*每个人员上下间距 */
 .taskUsers p {
-    cursor: pointer;
-    line-height: 20px;
-    margin-bottom: 5px;
-    width: 230px;
-    overflow: auto;
+	cursor: pointer;
+	line-height: 20px;
+	margin-bottom: 5px;
+	width: 230px;
+	overflow: auto;
 }
 
 /* 名字左浮动 */
 .taskUsers p span {
-    font-size: 14px;
-    float: left;
+	font-size: 14px;
+	float: left;
 }
 
 /* icon右浮动 */
 .taskUsers p i {
-    font-size: 14px;
-    float: right;
+	font-size: 14px;
+	float: right;
 }
 
 /* 任务对象选择人员---------------------------------------------------------------------- */
@@ -379,22 +373,22 @@ pre {
 
 /* 任务描述 */
 .layui-input-block {
-    margin-left: 103px;
+	margin-left: 103px;
 }
 
 
 /* 发布任务按钮-------------------------------------------------------------------------- */
 .Release_btn {
-    position: absolute;
-    margin: 0 auto;
-    width: 140px;
-    left: 0;
-    right: 0;
-    bottom: 25px;
+	position: absolute;
+	margin: 0 auto;
+	width: 140px;
+	left: 0;
+	right: 0;
+	bottom: 25px;
 }
 
 .Release_btn button {
-    width: 140px;
+	width: 140px;
 }
 
 /* 发布任务按钮-------------------------------------------------------------------------- */
@@ -402,212 +396,238 @@ pre {
 
 /* 选择资源 */
 #selectResource {
-    display: none;
-    padding: 50px;
-    padding-top: 0;
-    padding-bottom: 0;
-    overflow: hidden;
+	display: none;
+	padding: 50px;
+	padding-top: 0;
+	padding-bottom: 0;
+	overflow: hidden;
 }
 
 #resource {
-    float: left;
-    width: 600px;
-    margin-left: 35px
+	float: left;
+	width: 600px;
+	margin-left: 35px
 }
 
 /* 选择资源确认按钮 */
 .resourceSelection {
-    width: 140px;
+	width: 140px;
 }
 
 /* 选中radio盒子 ----------------------------------------------*/
 .radio_box {
-    position: relative;
-    width: 30%;
+	position: relative;
+	width: 30%;
 }
 
 .radio_box .layui-form-radio {
-    position: absolute;
-    left: 5px;
-    top: 20px;
+	position: absolute;
+	left: 5px;
+	top: 20px;
 }
 
 .img-box {
-    margin-right: 20px;
-    height: 100px;
-    border: 1px solid #dadada;
-    margin-top: 20px;
+	margin-right: 20px;
+	height: 100px;
+	border: 1px solid #dadada;
+	margin-top: 20px;
 }
 
 .img-box img {
-    width: 100%;
-    height: 100%;
+	width: 100%;
+	height: 100%;
 }
 
 .radio_box .resName {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    width: 30%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	width: 30%;
 }
 
 /* 选中radio盒子 ----------------------------------------------*/
 
 
 /* 选择资源radio选中颜色 */
-.layui-form-radio > i:hover,
-.layui-form-radioed > i {
-    color: rgb(64, 175, 254);
-    margin-top: 20px;
+.layui-form-radio>i:hover,
+.layui-form-radioed>i {
+	color: rgb(64, 175, 254);
+	margin-top: 20px;
 }
 
 .layui-form-select dl dd.layui-this {
-    background-color: rgb(64, 175, 254)
+	background-color: rgb(64, 175, 254)
 }
 
 /* 资源类型文字------------------------------------------------------ */
 .layui-nav .layui-nav-item a {
-    color: #000000;
+	color: #000000;
 
 }
 
 .layui-nav .layui-this a {
-    color: #FFFFFF;
+	color: #FFFFFF;
 
 }
 
 .layui-nav .layui-nav-item {
-    color: #66AFE9;
-    line-height: 30px;
-    height: 30px;
+	color: #66AFE9;
+	line-height: 30px;
+	height: 30px;
 
 }
 
 .layui-nav .layui-this:after,
 .layui-nav-bar,
 .layui-nav-tree .layui-nav-itemed:after {
-    background-color: #1E9FFF;
+	background-color: #1E9FFF;
 }
 
 .layui-nav {
-    padding: 0;
+	padding: 0;
 }
 
 .selectResHeader {
-    padding: 20px 0 0;
+	padding: 20px 0 0;
 }
 
 .layui-this {
-    background-color: #1E9FFF;
-    border-bottom: 0px;
+	background-color: #1E9FFF;
+	border-bottom: 0px;
 
 }
 
 /* 选择人员弹出层样式---------------------------- */
 .selectPersonnel {
-    font-size: 16px;
-    color: #5FB878;
+	font-size: 16px;
+	color: #5FB878;
+    cursor: pointer;
 }
 
 /* ...搜索框 */
 #selectPersonnel .iconSearch {
-    width: 200px;
-    border: 1px solid #C9C9C9;
-    border-radius: 6px;
-    padding: 3px 10px;
-    margin: 0 10px 19px 0px;
-    float: right;
+	width: 200px;
+	border: 1px solid #C9C9C9;
+	border-radius: 6px;
+	padding: 3px 10px;
+	margin: 0 10px 19px 0px;
+	float: right;
 }
 
 /* ...复选框 */
 .checkAll {
-    width: 15px;
-    height: 15px;
+	width: 15px;
+	height: 15px;
 }
 
 .nameList {
-    margin-top: 10px;
-    background-color: #FFFFFF;
+	margin-top: 10px;
+	background-color: #FFFFFF;
 }
 
 #selectPersonnel {
-    padding: 15px;
+	padding: 15px;
 }
 
 .getResource {
-    cursor: pointer;
+	cursor: pointer;
 }
 
 #selectTaskUsers .layui-form-label {
-    width: 95px;
-    line-height: 15px;
+	width: 95px;
+	line-height: 15px;
+	text-align: left;
+	padding-right: 8px;
 }
 
 /* 选择人员搜索框 */
 .userNameRetrieval {
-    width: 150px;
-    height: 30px;
-    border: none;
+	width: 150px;
+	height: 30px;
+	border: none;
 }
 
 .selectTaskUsers {
-    border: 1px solid #C9C5C5;
-    height: 300px;
-    width: 550px;
-    margin: auto;
-    background-color: rgb(248, 248, 248);
-    overflow: auto;
+	border: 1px solid #C9C5C5;
+	height: 300px;
+	width: 550px;
+	margin: auto;
+	background-color: rgb(248, 248, 248);
+	overflow: auto;
 }
 
 .checkboxNameList {
-    margin: 15px 0 0 10px;
-    display: inline-block;
+	margin: 15px 0 0 10px;
+	display: inline-block;
 }
 
 i {
-    font-style: normal;
+	font-style: normal;
 }
 
 /* 日期按钮选中颜色 */
 .layui-laydate-footer span:hover {
-    color: #279ef0 !important;
+	color: #279ef0 !important;
 }
 
 .taskObject {
-    float: left;
-    display: block;
-    padding: 9px 15px;
-    font-weight: 400;
-    line-height: 20px;
+	float: left;
+	display: block;
+	padding: 9px 15px;
+	font-weight: 400;
+	line-height: 20px;
 }
 
 /* 选择人员hover */
 .taskUsers p:hover {
-    background-color: #f2f2f2;
+	background-color: #f2f2f2;
 }
 
 .chooseResource {
-    cursor: default;
+	cursor: default;
 }
 
 .selectPersonnel .chooseResource {
-    cursor: pointer;
+	cursor: pointer;
 }
 
 .layui-layer-border .layui-layer-content,
 .layui-layer-border .layui-layer-padding {
-    color: #000000;
+	color: #000000;
 }
 
 .layui-layer-hui {
-    color: #fff !important;
+	color: #fff !important;
 }
 
 
 /* 上传资源 */
 .layui-upload-list {
-    position: relative;
-    height: 400px;
-    overflow: auto;
-    margin: 0;
+	position: relative;
+	height: 400px;
+	overflow: auto;
+	margin: 0;
+}
+
+
+
+
+
+/* 发布样式[新] */
+
+.selectPapers,
+.selectResource {
+	font-size: 16px;
+	margin-left: 40px;
+	cursor: pointer;
+	color: #5FB878;
+}
+
+.selectResource {
+	cursor: default !important;
+}
+
+.selectPersonnel i,
+.selectResource i {
+    color: #5FB878;
 }
