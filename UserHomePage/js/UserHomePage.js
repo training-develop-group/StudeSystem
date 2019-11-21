@@ -17,8 +17,13 @@ $(function () {
 
         //卡片切换
         info.tabChange();
+
         // 模拟未完成被选中
-        $('.title li').eq(0).click();
+        if (localStorage.getItem('taskDegreeOfCompletionType') == 0 || localStorage.getItem('taskDegreeOfCompletionType') == null) {
+            $('.title li').eq(0).click();
+        } else {
+            $('.title li').eq(1).click()
+        }
 
         // 任务点击跳转任务详情
         info.ToTask();
@@ -28,11 +33,14 @@ var info = {
     //卡片切换
     tabChange: function () {
         $('.title li').off('click').on('click', function () {
-            $('.title li').removeClass('active');
-            $(this).addClass('active');
-            var dataType = $(this).attr('data-type');
-            info.taskList(1, dataType);
-            console.log(dataType);
+            if ($(this).hasClass('active')) {
+                return false;
+            } else {
+                $('.title li').removeClass('active');
+                $(this).addClass('active');
+                var dataType = $(this).attr('data-type');
+                info.taskList(1, dataType);
+            }
         });
     },
     // 页面列表
@@ -59,14 +67,13 @@ var info = {
                         listHtml.push('<li class="clearfix ToTask" data-id="' + item.taskId + '" data-type="' + item.taskType + '" data-paperId="' + item.paperId + '" data-resId="' + item.resId + '">');
                         listHtml.push('<div class="leftBox">');
                         if (item.taskType == 1) {
-                            listHtml.push('<div class="imgBox "  style="border: 1px solid #0aae47;">');
+                            listHtml.push('<div class="imgBox " title="综合任务" style="border: 1px solid #0aae47;">');
                             listHtml.push('<img src="../imgs/sp2.png" height="50px" alt="任务图片"/>');
-
                         } else if (item.taskType == 2) {
-                            listHtml.push('<div class="imgBox " style="border: 1px solid #42b0fe;">');
+                            listHtml.push('<div class="imgBox " title="学习任务" style="border: 1px solid #42b0fe;">');
                             listHtml.push('<img src="../imgs/sp1.png" height="50px" alt="任务图片"/>');
                         } else if (item.taskType == 3) {
-                            listHtml.push('<div class="imgBox "  style="border: 1px solid #fe9540;">');
+                            listHtml.push('<div class="imgBox " title="测试任务" style="border: 1px solid #fe9540;">');
                             listHtml.push('<img src="../imgs/sp3.png" height="50px" alt="任务图片"/>');
                         }
 
@@ -94,7 +101,7 @@ var info = {
                     $('#taskList').html(listHtml.join(''));
                 }
             },
-            error(){
+            error() {
 
             }
         });
@@ -102,7 +109,7 @@ var info = {
     // 分页插件
     Page: function (total, curr, userType) {
         if (total > 5) {
-            $('#page').removeClass('hidden')
+            $('#page').removeClass('hidden');
             layui.use('laypage', function () {
                 var laypage = layui.laypage;
                 //执行一个laypage实例
@@ -128,10 +135,11 @@ var info = {
     ToTask: function () {
         $('body').delegate('#taskList .ToTask', 'click', function () {
             var TaskId = $(this).attr('data-id');
-			var taskDegreeOfCompletion = $('.active').attr('data-type')
+            var taskDegreeOfCompletion = $('.active').attr('data-type');
+            localStorage.setItem('taskDegreeOfCompletionType', taskDegreeOfCompletion);
             // window.open("../TestPage/TestPage.html?value=" + TaskId, "_blank");
             // 本页打开
-            window.location.href = "../TestPage/TestPage.html?value=" + TaskId +','+taskDegreeOfCompletion;
+            window.location.href = "../TestPage/TestPage.html?value=" + TaskId + ',' + taskDegreeOfCompletion;
         });
     }
 };

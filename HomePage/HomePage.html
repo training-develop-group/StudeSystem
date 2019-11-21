@@ -156,9 +156,13 @@
 						if (res.code === 3){
 							noMsg = 1;
 						} else {
-							comprehensive = res.data.comprehensive;
-							test = res.data.test;
-							learning = res.data.learning ;
+							if (res.data == null){
+								noMsg = 1;
+							} else {
+								comprehensive = res.data.comprehensive;
+								test = res.data.test;
+								learning = res.data.learning ;
+							}
 						}
 						var myChart = echarts.init(document.getElementById('main'));
 						// 指定图表的配置项和数据
@@ -264,8 +268,12 @@
 						if (res.code === 3){
 							noMsg = 1;
 						} else {
-							completed = res.data.completed;
-							notCompleted = res.data.notCompleted;
+							if (res.data == null){
+								noMsg = 1;
+							} else {
+								completed = res.data.completed;
+								notCompleted = res.data.notCompleted;
+							}
 						}
 						var myChart = echarts.init(document.getElementById('mian'));
 						// 指定图表的配置项和数据
@@ -361,8 +369,12 @@
 						if (res.code === 3){
 							noMsg = 1;
 						} else {
-							singleElection = res.data.singleElection;
-							multipleSelection = res.data.multipleSelection;
+							if (res.data == null){
+								noMsg = 1;
+							} else {
+								singleElection = res.data.singleElection;
+								multipleSelection = res.data.multipleSelection;
+							}
 						}
 						var myChart = echarts.init(document.getElementById('mina'));
 						// 指定图表的配置项和数据
