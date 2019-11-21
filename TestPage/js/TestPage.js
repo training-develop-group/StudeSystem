@@ -55,7 +55,8 @@ $(function () {
             }
         },
     });
-    // 用户判断  1 是管理员
+    // 用户判断
+        // 管理员
     if (localStorage.getItem('userType') == 1) {
         if (taskType == 1) {
             $.ajax({
@@ -196,6 +197,7 @@ $(function () {
             })
         } else if (taskType == 3) {
             // 测试任务
+            $('.TotalScoreBox').addClass('hidden');
             $('.video').addClass('hidden');
             $('.audio').addClass('hidden');
             $('.doc').addClass('hidden');
@@ -203,6 +205,8 @@ $(function () {
             info.getPaperList(paperId);
         }
     } else {
+        // 用户
+            // 综合任务
         if (taskType == 1) {
             $.ajax({
                 url: TDXUrl + 'manage_system/resource/' + resId,
@@ -259,23 +263,15 @@ $(function () {
                                             }
                                         })
                                     } else {
-                                        info.getPaperList(paperId);
+                                        $('.active').removeClass('active');
+                                        $this.addClass('active');
+                                        $('.video').addClass('hidden');
+                                        info.getUserPaperList();
                                         $('.study').off('click').on('click', function () {
-                                            layer.open({
-                                                type: 1,
-                                                skin: 'comeback',
-                                                area: ['450px', '180px'],
-                                                move: false,
-                                                title: ['返回资源', 'background-color: #289ef0;text-align: center;font-size: 20px;color:white;'],
-                                                shade: 0.5,
-                                                closeBtn: 0,
-                                                content: "<p class=''>进入测试就不能回去啦！</p><div class='btn-box'><button class='layui-btn layui-btn-sm layui-btn-normal ok'>我知道了</button></div>",
-                                                success: function (res) {
-                                                    $('.comeback .ok').off('click').on('click', function () {
-                                                        layer.close(layer.index);
-                                                    });
-                                                }
-                                            });
+                                            $('.nav_list li').removeClass('active');
+                                            $(this).addClass('active');
+                                            $('.test_content').addClass('hidden');
+                                            $('.video').removeClass('hidden');
                                         });
                                     }
                                 })
@@ -325,23 +321,15 @@ $(function () {
                                             }
                                         })
                                     } else {
-                                        info.getPaperList(paperId);
+                                        $('.active').removeClass('active');
+                                        $this.addClass('active');
+                                        $('.audio').addClass('hidden');
+                                        info.getUserPaperList();
                                         $('.study').off('click').on('click', function () {
-                                            layer.open({
-                                                type: 1,
-                                                skin: 'comeback',
-                                                area: ['450px', '180px'],
-                                                move: false,
-                                                title: ['返回资源', 'background-color: #289ef0;text-align: center;font-size: 20px;color:white;'],
-                                                shade: 0.5,
-                                                closeBtn: 0,
-                                                content: "<p class=''>进入测试就不能回去啦！</p><div class='btn-box'><button class='layui-btn layui-btn-sm layui-btn-normal ok'>我知道了</button></div>",
-                                                success: function (res) {
-                                                    $('.comeback .ok').off('click').on('click', function () {
-                                                        layer.close(layer.index);
-                                                    });
-                                                }
-                                            });
+                                            $('.nav_list li').removeClass('active');
+                                            $(this).addClass('active');
+                                            $('.test_content').addClass('hidden');
+                                            $('.audio').removeClass('hidden');
                                         });
                                     }
                                 })
@@ -354,6 +342,7 @@ $(function () {
                                 $('.doc iframe').attr('src', 'http://192.168.188.109:8848/' + pdfPath + '.pdf');
                             }
                             $('.measurement').addClass('test');
+                            $('.test_content').addClass('hidden');
                             $('.test').off('click').on('click', function () {
                                 if($(this).hasClass('active')){
                                     return false;
@@ -393,23 +382,12 @@ $(function () {
                                     $('.active').removeClass('active');
                                     $this.addClass('active');
                                     $('.doc').addClass('hidden');
-                                    info.getPaperList(paperId)
+                                    info.getUserPaperList();
                                     $('.study').off('click').on('click', function () {
-                                        layer.open({
-                                            type: 1,
-                                            skin: 'comeback',
-                                            area: ['450px', '180px'],
-                                            move: false,
-                                            title: ['返回资源', 'background-color: #289ef0;text-align: center;font-size: 20px;color:white;'],
-                                            shade: 0.5,
-                                            closeBtn: 0,
-                                            content: "<p class=''>进入测试就不能回去啦！</p><div class='btn-box'><button class='layui-btn layui-btn-sm layui-btn-normal ok'>我知道了</button></div>",
-                                            success: function (res) {
-                                                $('.comeback .ok').off('click').on('click', function () {
-                                                    layer.close(layer.index);
-                                                });
-                                            }
-                                        });
+                                        $('.nav_list li').removeClass('active');
+                                        $(this).addClass('active');
+                                        $('.test_content').addClass('hidden');
+                                        $('.doc').removeClass('hidden');
                                     });
                                 }
                             })
@@ -419,7 +397,9 @@ $(function () {
                     }
                 }
             });
+
         } else if (taskType == 2) {
+            // 学习任务
             if (taskDegreeOfCompletion == 1) {
                 info.getExperienceList(1, taskId)
             }
@@ -462,6 +442,7 @@ $(function () {
                 }
             })
         } else if (taskType == 3) {
+            // 测试任务
             $('.measurement').removeClass('hidden');
             $('.active').removeClass('active');
             $('.measurement').addClass('active');
@@ -472,14 +453,39 @@ $(function () {
             $('.audio').addClass('hidden');
             $('.doc').addClass('hidden');
             if (taskDegreeOfCompletion == 0) {
-                info.getList(taskId, taskType, paperId, resId)
+                layer.open({
+                    type: 1,
+                    skin: 'testStart',
+                    area: ['450px', '180px'],
+                    move: false,
+                    title: ['开始测试', 'background-color: #289ef0;text-align: center;font-size: 20px;color:white;'],
+                    shade: 0.5,
+                    closeBtn: 0,
+                    content: "<p class=''>准备好了吗？考试期间无法退出</p><div class='btn-box'><button class='layui-btn layui-btn-sm layui-btn-normal ok'>准备好了</button><button class='layui-btn layui-btn-sm no'>还没有</button></div>",
+                    success: function (res) {
+                        $('.testStart .ok').off('click').on('click', function () {
+                            layer.close(layer.index);
+                            info.getList(taskId, taskType, paperId, resId);
+                        });
+                        $('.no').off('click').on('click', function () {
+                            layer.close(layer.index);
+                            if (localStorage.getItem('userType') == 1) {
+                                window.location.href = '../TaskPage/TaskPage.html'
+                            } else {
+                                window.location.href = '../UserHomePage/UserHomePage.html'
+                            }
+                        });
+                    }
+                });
             } else {
                 info.getUserPaperList();
                 $('.content').addClass('hidden');
+                $('.goBack').removeClass('hidden');
+                $('.goBack *').css('color','#2ba0e3');
             }
         }
         $('.study').off('click').on('click', function () {
-            if ($('.test').hasClass('active')) {
+            if ($('.test').hasClass('active') && taskDegreeOfCompletion == 0) {
                 layer.open({
                     type: 1,
                     skin: 'comeback',
@@ -600,7 +606,7 @@ var info = {
                     Html.push('<ul class="layui-tab tabHead layui-tab-brief clearfix">');
                     res.data.questionList.forEach(function (item, index) {
                         Html.push('<li class="sortableitem">');
-                        Html.push('<div class="topicFramework">');
+                        Html.push('<div class="topicFramework clearfix">');
                         Html.push('<input type="text" class="questionId" value="' + item.questionId + '" hidden="hidden"/>');
                         if (item.questionType == 1) {
                             item.questionType = "单选题";
@@ -709,6 +715,8 @@ var info = {
                         examContent.push(' <p class="questionCard_title"><span class="num">' + index +
                             '.</span><span class="questuon_title" data-id="' + item.questionId + '">' + item.questionType +
                             '</span>(<span class="fraction"> ' + item.score + '</span>分)</p>');
+                        // 转义(已防有标签的样式被html识别)
+                        item.content = $('<div>').text(item.content).html();
                         examContent.push('<p class="question_Dry">' + item.content + '</p>');
                         if (item.questionType == '单选题') {
                             examContent.push('<ul class="radio_box textBox">')
@@ -749,7 +757,13 @@ var info = {
                     info.setList(resb);
                 } else {
                     layer.msg('无效试卷');
-                    $('.goBack').removeClass('hidden');
+                    setTimeout(function () {
+                        if (localStorage.getItem('userType') == 1) {
+                            window.location.href = '../TaskPage/TaskPage.html'
+                        } else {
+                            window.location.href = '../UserHomePage/UserHomePage.html'
+                        }
+                    },2000);
                 }
             },
             error: function (e) {
@@ -929,6 +943,8 @@ var info = {
                     type: 'POST',
                     success(res) {
                         if (res || res.data !== null) {
+                            $('.TotalScoreBox .TotalScore').html('总得分：' + res.data.userScore);
+                            $('.TotalScoreBox .TaskScore').html('总分：' + res.data.score);
                             var Html = [];
                             Html.push('<div class="editorialContent">');
                             Html.push('<div id="title">');
@@ -1056,29 +1072,20 @@ var info = {
             success(res) {
                 if (res || res.data !== null) {
                     var Html = [];
-                    Html.push('<div class="editorialContent">');
-                    Html.push('<div id="title">');
-                    Html.push('<div id="centered">');
-                    Html.push('<span>查看答案</span>');
-                    Html.push(
-                        '<a href="#" class="goBack" style="float: right; margin-right:20px"><i class="layui-icon">&#xe602;</i><span style="margin-left : 0px;">返回</span> </a>'
-                    );
-                    Html.push('<span style="float: right; margin-right:20px">得分:' + res.data.userScore + '</span>');
-                    Html.push('</div>');
-                    Html.push('</div>');
+                    $('.TotalScoreBox .TotalScore').html('总得分：' + res.data.userScore);
+                    $('.TotalScoreBox .TaskScore').html('总分：' + res.data.score);
                     Html.push('<ul class="layui-tab tabHead layui-tab-brief clearfix">');
                     res.data.questionList.forEach(function (item, index) {
-                        Html.push('<li class="sortableitem" style = "background-color: #fff;">');
-                        Html.push('<div class="topicFramework" style="text-align: left;line-height: 1;">');
-                        Html.push('<input type="text" class="qusetionId" value="' + item.questionId +
-                            '" hidden="hidden"/>');
+                        Html.push('<li class="sortableitem">');
+                        Html.push('<div class="topicFramework">');
+                        Html.push('<input type="text" class="questionId" value="' + item.questionId + '" hidden="hidden"/>');
                         if (item.questionType == 1) {
-                            item.questionType = '单选题';
+                            item.questionType = "单选题";
                         } else {
-                            item.questionType = '多选题';
+                            item.questionType = "多选题";
                         }
-                        Html.push('<p class="num"><span data-id="' + item.questionId + '">' + (index + 1) + '</span>. ' +
-                            item.questionType + '</p>');
+                        // var newScore = res.data.questions[0].newScoreList[index].score;
+                        Html.push('<p class="num">' + (index + 1) + '. ' + item.questionType + '<span>  ' + item.score + '分</span></p>');
                         // 转义(已防有标签的样式被html识别)
                         item.content = $('<div>').text(item.content).html();
                         Html.push('<pre class="distance">' + item.content + '</pre>');
@@ -1104,17 +1111,20 @@ var info = {
                                     '</span><pre class="optionStyle">' + items.content + '</pre></div>');
                             }
                         });
+                        Html.push('</div>');
                         Html.push('<div class="functionBox">');
-                        Html.push('<button class="toView" value="' + item.questionId + '"><img src="../imgs/stf.png">查看解析</button>');
+                        Html.push('<button class="toView" value=' + item.questionId + '><img src="../imgs/stf.png">查看解析</button>');
                         Html.push('</div>');
-                        Html.push('</div>');
-                        Html.push('</li>')
+                        Html.push('</li>');
                     });
+                    Html.push('</ul>');
 
-                    Html.push('</ul></div>');
-                    $('.wrapper').html(Html.join(''));
-                    $('.goBack *').css('color', '#fff');
-                    $('.content').css('background-color', '#fff');
+                    $('.test_content').removeClass('hidden');
+
+
+                    $('.test_content').html(Html.join(''));
+                    // $('.goBack *').css('color', '#fff');
+                    // $('.content').css('background-color', '#fff');
                     // 返回事件调用
                     info.goBack();
                     // 解析
@@ -1243,7 +1253,6 @@ var info = {
             } else {
                 window.location.href = '../UserHomePage/UserHomePage.html'
             }
-
         });
     },
     // 获取心得字数

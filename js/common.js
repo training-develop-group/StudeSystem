@@ -179,6 +179,7 @@ var All = {
 						layer.close(layer.index);
 						window.location.href = "../index.html";
 						localStorage.removeItem('userType');
+						localStorage.removeItem('taskDegreeOfCompletionType');
 						$('.ok').remove('disabled');
 					});
 					$('.no').off('click').on('click', function() {
