@@ -418,6 +418,7 @@ var info = {
         $('.paperAdd').text('');
         // 试卷名赋值(赋当前试卷)
         if(newPaperName.length > 30){
+            $('.paperAdd').attr('title',newPaperName);
             $('.paperAdd').text(newPaperName.substring(0 , 30) + '...');
         } else {
             $('.paperAdd').text(newPaperName);

@@ -301,6 +301,10 @@
     background-color: #f5f5f5;
 }
 
+.experienceList pre{
+    padding: 0 10px;
+}
+
 .addExperience .add {
     padding: 0 35px;
     line-height: 26px;
