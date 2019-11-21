@@ -158,6 +158,7 @@ tr .oneselfTaskName {
     border: 1px solid #E6E6E6;
     overflow: auto;
     padding: 5px;
+    margin-top: 15px;
 }
 
 ol,
@@ -311,13 +312,6 @@ ul div input {
 #selectResource {
     display: none;
     overflow: hidden;
-}
-
-.selectResource {
-    font-size: 16px;
-    margin-left: 40px;
-
-    color: #5FB878;
 }
 
 .resourceNav {
@@ -601,7 +595,25 @@ i {
     margin: 0;
 }
 
+.layui-layer-loading{
+    background-color: rgba(0,0,0,0.1) !important;
+}
+
+.paperAdd,
 .resAdd{
     cursor: default;
 }
 
+.selectPaper{
+    width: 70px !important;
+    background-color: white !important;
+}
+
+.papgeContent tr td，
+.paperContent tr th{
+    text-align: center;
+}
+
+#selectPapers table thead tr th{
+    text-align: center;
+}

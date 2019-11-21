@@ -35,7 +35,6 @@ $(function () {
         async: false,
         contentType: 'application/json;charset=utf-8',
         success(res) {
-            console.log(res);
             if (res.data != null) {
                 //为任务描述赋值
                 $('.taskRemarkContent').text(res.data.taskRemark);
@@ -1036,6 +1035,7 @@ var info = {
                                                 OptionType = OptionType + ',' + item.optionType;
                                             }
                                             Analysis = item.analysis;
+                                            OptionType = item.optionType;
                                         });
                                         // 转义(已防有标签的样式被html识别)
                                         Analysis = $('<div>').text(Analysis).html();

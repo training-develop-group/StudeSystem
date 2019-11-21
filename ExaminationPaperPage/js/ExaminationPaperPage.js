@@ -194,11 +194,11 @@ var info = {
             Html.push('<td>');
             if (item.status == '已发布') {
                 Html.push('<button type="button" class="layui-btn layui-btn-primary edit" data-id="' + item.paperId + '" data-paperName="' + item.paperName + '">重命名</button>');
-                Html.push('<button type="button" class="layui-btn layui-btn-primary publish" data-id="' + item.paperId + '">发布</button>');
+                Html.push('<button type="button" class="layui-btn layui-btn-primary publish"  data-id="' + item.paperId + '">发布</button>');
             } else {
                 Html.push('<button type="button" class="layui-btn layui-btn-primary edit" data-id="' + item.paperId + '" data-paperName="' + item.paperName + '">重命名</button>');
                 Html.push('<button type="button" class="layui-btn layui-btn-primary selectedTopic" data-id="' + item.paperId + '">编辑</button>');
-                Html.push('<button type="button" class="layui-btn layui-btn-primary publish" data-id="' + item.paperId + '">发布</button>');
+                Html.push('<button type="button" class="layui-btn layui-btn-primary publish" data-paperName="'+item.paperName+'" data-id="' + item.paperId + '">发布</button>');
                 Html.push('<button type="button" class="layui-btn layui-btn-primary delete" data-id="' + item.paperId + '">删除</button>');
             }
             Html.push('</td>');
@@ -217,11 +217,13 @@ var info = {
         // 点击发布
         $('.publish').off('click').on('click', function () {
             newPaperId = $(this).attr('data-id');
-            newPaperName = $(this).parent().parent().find('.rename').text();
+            newPaperName = $(this).parent().parent().find('.rename').attr('title');
             // 单选题数
             var single = $(this).parent().parent().find("td:nth-child(3)").text();
             // 多选题数
             var many = $(this).parent().parent().find("td:nth-child(4)").text();
+
+            // var paperName = $(this).attr('data-paperName');
             if (single == 0 && many == 0) {
                 // (待改)
                 All.layuiOpen({
@@ -415,7 +417,13 @@ var info = {
         // 清空试卷名
         $('.paperAdd').text('');
         // 试卷名赋值(赋当前试卷)
-        $('.paperAdd').text(newPaperName);
+        if(newPaperName.length > 30){
+            $('.paperAdd').attr('title',newPaperName);
+            $('.paperAdd').text(newPaperName.substring(0 , 30) + '...');
+        } else {
+            $('.paperAdd').text(newPaperName);
+        }
+
         // 赋值今天时间(开始)
         $('#test1').val(firstToday);
         // 赋值明天时间(结束)
@@ -427,7 +435,7 @@ var info = {
             shade: 0.5,
             move: false,
             skin: 'myskin',
-            area: ['700px', '748px'],
+            area: ['700px', '800px'],
             content: $('#addTaskPage'),
             success: function () {
                 layui.use('form', function () {

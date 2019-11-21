@@ -22,7 +22,7 @@ $(function () {
         if (localStorage.getItem('taskDegreeOfCompletionType') == 0 || localStorage.getItem('taskDegreeOfCompletionType') == null) {
             $('.title li').eq(0).click();
         } else {
-            $('.title li').eq(1).click()
+            $('.title li').eq(1).click();
         }
 
         // 任务点击跳转任务详情
