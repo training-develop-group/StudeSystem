@@ -25,25 +25,22 @@
 						</div>
 						<div class="layui-card-body">
 							<div>
-
 								<table class="layui-table content" style="text-align: center;">
 									<colgroup>
 										<col width="40%">
-										<col width="30%">
+										<col width="20%">
 										<col width="30%">
 									</colgroup>
 									<thead>
 										<tr>
 											<th style="text-align: left ;">资源名称</th>
-											<th style="text-align: center;">类型</th>
-											<th style="text-align: center;">大小</th>
+											<th style="text-align: center;">资源类型</th>
+											<th style="text-align: center;">资源大小</th>
 										</tr>
 									</thead>
 									<tbody class="Resourcesreview">
 										<tr>
-											<td title="微课堂微课堂微课堂微课堂微课堂微课堂微课堂微课堂微课堂微课堂微课堂微课堂微课堂" style="text-align: left ">
-												微课堂微课堂微课堂微课堂微课堂微课堂微课堂微课堂微课堂微课堂微课堂微课堂微课堂
-											</td>
+											<td title="" style="text-align: left "></td>
 											<td title="微课堂">微课堂</td>
 											<td title="小明" style="text-align: center ">小明</td>
 										</tr>
@@ -63,7 +60,7 @@
 								</colgroup>
 								<thead>
 									<tr>
-										<th style="text-align: left ; ">任务名</th>
+										<th style="text-align: left ; ">任务名称</th>
 										<th style="text-align: center; ">任务类型</th>
 									</tr>
 								</thead>
@@ -80,10 +77,14 @@
 							<div>
 
 								<table class="layui-table" style="text-align: center;">
-
+									<colgroup>
+										<col width="60%">
+										<col width="20%">
+										<col width="20%">
+									</colgroup>
 									<thead>
 										<tr>
-											<th style="text-align: left ;width:80px;">名称</th>
+											<th style="text-align: left ;width:80px;">试卷名称</th>
 											<th style="text-align: center;width:80px ">单选</th>
 											<th style="text-align: center;width: 70px">多选</th>
 										</tr>
@@ -142,23 +143,111 @@
 				studentsAnswer();
 			});
 			var task = function() {
-				var comprehensive;
-				var test;
-				var learning;
+				var comprehensive = 0;
+				var test = 0;
+				var learning = 0;
+				var noMsg = 0;
 				$.ajax({
 					url: HWWUrl + 'manage_system/stat/task-type',
 					data: {},
 					dataType: 'json',
 					Type: 'GET',
 					success: function(res) {
-						if (res.data != null){
-							comprehensive = res.data.comprehensive;
-							test = res.data.test;
-							learning = res.data.learning;
-							newTask(comprehensive, test, learning);
+						if (res.code === 3){
+							noMsg = 1;
 						} else {
-							newTask(0, 0, 0);
+							if (res.data == null){
+								noMsg = 1;
+							} else {
+								comprehensive = res.data.comprehensive;
+								test = res.data.test;
+								learning = res.data.learning ;
+							}
 						}
+						var myChart = echarts.init(document.getElementById('main'));
+						// 指定图表的配置项和数据
+						var option = {
+							title: { //标题组件
+								text: '各类任务数分布',
+								// left:'center',//标题的位置 默认是left，其余还有center、right属性
+								x: 'center',
+								y: '20px',
+								textStyle: {
+									color: "rgb(121, 131, 142)",
+									fontSize: 18,
+
+								}
+							},
+
+							tooltip: { //提示框组件
+								trigger: 'item', //触发类型(饼状图片就是用这个)
+								formatter: "{a} <br/>{b} : {c} ({d}%)" //提示框浮层内容格式器
+							},
+
+							color: ['rgb(96, 132, 254)', 'rgb(234, 96, 1)', 'rgb(139, 190, 121)', '#dadada'], //手动设置每个图例的颜色
+							legend: { //图例组件
+								right: 0, //图例组件离右边的距离
+								orient: 'vertical', //布局  纵向布局 图例标记居文字的左边 vertical则反之
+								width: 40, //图行例组件的宽度,默认自适应
+								x: 'center', //图例显示在右边
+								y: '260px', //图例在垂直方向上面显示居中
+								itemWidth: 10, //图例标记的图形宽度
+								itemHeight: 10, //图例标记的图形高度
+								data: ['综合任务', '试卷任务', '学习任务'],
+								textStyle: { //图例文字的样式
+									color: '#333', //文字颜色
+									fontSize: 16 //文字大小
+								}
+							},
+							series: [ //系列列表
+								{
+									name: '数据统计', //系列名称
+									type: 'pie', //类型 pie表示饼图
+									center: ['50%', '50%'], //设置饼的原心坐标 不设置就会默认在中心的位置
+									radius: ['30%', '50%'], //饼图的半径,第一项是内半径,第二项是外半径,内半径为0就是真的饼,不是环形
+									itemStyle: { //图形样式
+										normal: { //normal 是图形在默认状态下的样式；emphasis 是图形在高亮状态下的样式，比如在鼠标悬浮或者图例联动高亮时。
+											label: { //饼图图形上的文本标签
+												show: false //平常不显示
+											},
+											labelLine: { //标签的视觉引导线样式
+												show: true //平常不显示
+											}
+										},
+										emphasis: { //normal 是图形在默认状态下的样式；emphasis 是图形在高亮状态下的样式，比如在鼠标悬浮或者图例联动高亮时。
+											label: { //饼图图形上的文本标签
+												show: true,
+												position: 'center',
+												textStyle: {
+													fontSize: '10',
+													fontWeight: 'bold'
+												}
+											}
+										}
+									},
+
+									data: [{
+											value: comprehensive,
+											name: '综合任务'
+										},
+										{
+											value: test,
+											name: '试卷任务'
+										},
+										{
+											value: learning,
+											name: '学习任务'
+										},
+										{
+											value: noMsg,
+											name: '没有任务'
+										},
+
+									]
+								}
+							]
+						};
+						myChart.setOption(option);
 					},
 					error: function(e) {
 			
@@ -167,279 +256,206 @@
 			}
 			
 			var studentTask = function() {
-				var completed;
-				var notCompleted;
+				var completed = 0;
+				var notCompleted = 0;
+				var noMsg = 0;
 				$.ajax({
 					url: HWWUrl + 'manage_system/stat/task',
 					data: {},
 					dataType: 'json',
 					Type: 'GET',
 					success: function(res) {
-						if (res.data != null){
-							completed = res.data.completed;
-							notCompleted = res.data.notCompleted;
-							newStudentTask(completed, notCompleted);
+						if (res.code === 3){
+							noMsg = 1;
 						} else {
-							newStudentTask(0, 0);
+							if (res.data == null){
+								noMsg = 1;
+							} else {
+								completed = res.data.completed;
+								notCompleted = res.data.notCompleted;
+							}
 						}
+						var myChart = echarts.init(document.getElementById('mian'));
+						// 指定图表的配置项和数据
+						var option = {
+							title: { //标题组件
+								text: '学生任务率分布',
+								x: 'center',
+								y: '20px',
+								textStyle: {
+									color: "rgb(121, 131, 142)",
+									fontSize: 17,
+
+								}
+							},
+							tooltip: { //提示框组件
+								trigger: 'item', //触发类型(饼状图片就是用这个)
+								formatter: "{a} <br/>{b} : {c} ({d}%)" //提示框浮层内容格式器
+							},
+							color: ['rgb(96, 132, 254)', 'rgb(234, 96, 1)','#dadada'], //手动设置每个图例的颜色
+							legend: { //图例组件
+								//right:100,  //图例组件离右边的距离
+								orient: 'horizontal	', //布局  纵向布局 图例标记居文字的左边 vertical则反之
+								width: 40, //图行例组件的宽度,默认自适应
+								x: 'center', //图例显示在右边
+								y: '260px', //图例在垂直方向上面显示居中
+								itemWidth: 10, //图例标记的图形宽度
+								itemHeight: 10, //图例标记的图形高度
+								data: ['已完成', '未完成'],
+								textStyle: { //图例文字的样式
+									color: '#333', //文字颜色
+									fontSize: 16 //文字大小
+								}
+							},
+							series: [ //系列列表
+								{
+									name: '数据统计', //系列名称
+									type: 'pie', //类型 pie表示饼图
+									center: ['50%', '50%'], //设置饼的原心坐标 不设置就会默认在中心的位置
+									radius: ['30%', '50%'], //饼图的半径,第一项是内半径,第二项是外半径,内半径为0就是真的饼,不是环形
+									itemStyle: { //图形样式
+										normal: { //normal 是图形在默认状态下的样式；emphasis 是图形在高亮状态下的样式，比如在鼠标悬浮或者图例联动高亮时。
+											label: { //饼图图形上的文本标签
+												show: false //平常不显示
+											},
+											labelLine: { //标签的视觉引导线样式
+												show: true //平常不显示
+											}
+										},
+										emphasis: { //normal 是图形在默认状态下的样式；emphasis 是图形在高亮状态下的样式，比如在鼠标悬浮或者图例联动高亮时。
+											label: { //饼图图形上的文本标签
+												show: true,
+												position: 'center',
+												textStyle: {
+													fontSize: '10',
+													fontWeight: 'bold'
+												}
+											}
+										}
+									},
+									data: [{
+											value: completed,
+											name: '已完成'
+										},
+										{
+											value: notCompleted,
+											name: '未完成'
+										},
+										{
+											value: noMsg,
+											name: '没有任务'
+										},
+									]
+								}
+							]
+						};
+						myChart.setOption(option);
 					},
 					error: function(e) {
 			
 					}
 				});
-			}
+			};
 			var studentsAnswer = function() {
-				var singleElection;
-				var multipleSelection;
+				var singleElection = 0;
+				var multipleSelection = 0;
+				var noMsg = 0;
 				$.ajax({
 					url: HWWUrl + 'manage_system/stat/answer',
 					data: {},
 					dataType: 'json',
 					Type: 'GET',
 					success: function(res) {
-						if (res.data != null){
-							singleElection = res.data.singleElection;
-							multipleSelection = res.data.multipleSelection;
-							newStudentsAnswer(singleElection, multipleSelection);
+						if (res.code === 3){
+							noMsg = 1;
 						} else {
-							newStudentsAnswer(0, 0);
+							if (res.data == null){
+								noMsg = 1;
+							} else {
+								singleElection = res.data.singleElection;
+								multipleSelection = res.data.multipleSelection;
+							}
 						}
-						
+						var myChart = echarts.init(document.getElementById('mina'));
+						// 指定图表的配置项和数据
+						var option = {
+							title: { //标题组件
+								text: '学生作答正确率分布',
+								x: 'center',
+								y: '20px',
+								textStyle: {
+									color: "rgb(121, 131, 142)",
+									fontSize: 18,
+
+								}
+							},
+							tooltip: { //提示框组件
+								trigger: 'item', //触发类型(饼状图片就是用这个)
+								formatter: "{a} <br/>{b} : {c} ({d}%)" //提示框浮层内容格式器
+							},
+							color: ['rgb(96, 132, 254)', 'rgb(234, 96, 1)', '#dadada'], //手动设置每个图例的颜色
+							legend: { //图例组件
+								//right:100,  //图例组件离右边的距离
+								orient: 'vertical', //布局  纵向布局 图例标记居文字的左边 vertical则反之
+								width: 40, //图行例组件的宽度,默认自适应
+								x: 'center', //图例显示在右边
+								y: '260px', //图例在垂直方向上面显示居中
+								itemWidth: 10, //图例标记的图形宽度
+								itemHeight: 10, //图例标记的图形高度
+								data: ['单选题', '多选题'],
+								textStyle: { //图例文字的样式
+									color: '#333', //文字颜色
+									fontSize: 16 //文字大小
+								}
+							},
+							series: [ //系列列表
+								{
+									name: '数据统计', //系列名称
+									type: 'pie', //类型 pie表示饼图
+									center: ['50%', '50%'], //设置饼的原心坐标 不设置就会默认在中心的位置
+									radius: ['30%', '50%'], //饼图的半径,第一项是内半径,第二项是外半径,内半径为0就是真的饼,不是环形
+									itemStyle: { //图形样式
+										normal: { //normal 是图形在默认状态下的样式；emphasis 是图形在高亮状态下的样式，比如在鼠标悬浮或者图例联动高亮时。
+											label: { //饼图图形上的文本标签
+												show: false //平常不显示
+											},
+											labelLine: { //标签的视觉引导线样式
+												show: true //平常不显示
+											}
+										},
+										emphasis: { //normal 是图形在默认状态下的样式；emphasis 是图形在高亮状态下的样式，比如在鼠标悬浮或者图例联动高亮时。
+											label: { //饼图图形上的文本标签
+												show: true,
+												position: 'center',
+												textStyle: {
+													fontSize: '10',
+													fontWeight: 'bold'
+												}
+											}
+										}
+									},
+									data: [{
+											value: singleElection,
+											name: '单选题'
+										},
+										{
+											value: multipleSelection,
+											name: '多选题'
+										},
+										{
+											value: noMsg,
+											name: '没有试题'
+										}
+									]
+								}
+							]
+						};
+						myChart.setOption(option);
 					},
 					error: function(e) {
-			
+
 					}
 				});
-			}
-			
-			var newTask = function(comprehensive, test, learning){
-				var myChart = echarts.init(document.getElementById('main'));
-				// 指定图表的配置项和数据
-				var option = {
-					title: { //标题组件
-						text: '各类任务数分布',
-						// left:'center',//标题的位置 默认是left，其余还有center、right属性
-						x: 'center',
-						y: '20px',
-						textStyle: {
-							color: "rgb(121, 131, 142)",
-							fontSize: 18,
-							
-						}
-					},
-							
-					tooltip: { //提示框组件
-						trigger: 'item', //触发类型(饼状图片就是用这个)
-						formatter: "{a} <br/>{b} : {c} ({d}%)" //提示框浮层内容格式器
-					},
-							
-					color: ['rgb(96, 132, 254)', 'rgb(234, 96, 1)', 'rgb(139, 190, 121)'], //手动设置每个图例的颜色
-					legend: { //图例组件
-						right: 0, //图例组件离右边的距离
-						orient: 'vertical', //布局  纵向布局 图例标记居文字的左边 vertical则反之
-						width: 40, //图行例组件的宽度,默认自适应
-						x: 'center', //图例显示在右边
-						y: '260px', //图例在垂直方向上面显示居中
-						itemWidth: 10, //图例标记的图形宽度
-						itemHeight: 10, //图例标记的图形高度
-						data: ['综合任务', '试卷任务', '学习任务'],
-						textStyle: { //图例文字的样式
-							color: '#333', //文字颜色
-							fontSize: 16 //文字大小
-						}
-					},
-					series: [ //系列列表
-						{
-							name: '数据统计', //系列名称
-							type: 'pie', //类型 pie表示饼图
-							center: ['50%', '50%'], //设置饼的原心坐标 不设置就会默认在中心的位置
-							radius: ['30%', '50%'], //饼图的半径,第一项是内半径,第二项是外半径,内半径为0就是真的饼,不是环形
-							itemStyle: { //图形样式
-								normal: { //normal 是图形在默认状态下的样式；emphasis 是图形在高亮状态下的样式，比如在鼠标悬浮或者图例联动高亮时。
-									label: { //饼图图形上的文本标签
-										show: false //平常不显示
-									},
-									labelLine: { //标签的视觉引导线样式
-										show: true //平常不显示
-									}
-								},
-								emphasis: { //normal 是图形在默认状态下的样式；emphasis 是图形在高亮状态下的样式，比如在鼠标悬浮或者图例联动高亮时。
-									label: { //饼图图形上的文本标签
-										show: true,
-										position: 'center',
-										textStyle: {
-											fontSize: '10',
-											fontWeight: 'bold'
-										}
-									}
-								}
-							},
-							
-							data: [{
-									value: comprehensive,
-									name: '综合任务'
-								},
-								{
-									value: test,
-									name: '试卷任务'
-								},
-								{
-									value: learning,
-									name: '学习任务'
-								},
-							
-							]
-						}
-					]
-				};
-				myChart.setOption(option);
-			}
-			var newStudentTask = function(completed, notCompleted){
-				var myChart = echarts.init(document.getElementById('mian'));
-				// 指定图表的配置项和数据
-				var option = {
-					title: { //标题组件
-						text: '学生任务率分布',
-						x: 'center',
-						y: '20px',
-						textStyle: {
-							color: "rgb(121, 131, 142)",
-							fontSize: 17,
-							
-						}
-					},
-					tooltip: { //提示框组件
-						trigger: 'item', //触发类型(饼状图片就是用这个)
-						formatter: "{a} <br/>{b} : {c} ({d}%)" //提示框浮层内容格式器
-					},
-					color: ['rgb(96, 132, 254)', 'rgb(234, 96, 1)'], //手动设置每个图例的颜色
-					legend: { //图例组件
-						//right:100,  //图例组件离右边的距离
-						orient: 'horizontal	', //布局  纵向布局 图例标记居文字的左边 vertical则反之
-						width: 40, //图行例组件的宽度,默认自适应
-						x: 'center', //图例显示在右边
-						y: '260px', //图例在垂直方向上面显示居中
-						itemWidth: 10, //图例标记的图形宽度
-						itemHeight: 10, //图例标记的图形高度
-						data: ['已完成', '未完成'],
-						textStyle: { //图例文字的样式
-							color: '#333', //文字颜色
-							fontSize: 16 //文字大小
-						}
-					},
-					series: [ //系列列表
-						{
-							name: '数据统计', //系列名称
-							type: 'pie', //类型 pie表示饼图
-							center: ['50%', '50%'], //设置饼的原心坐标 不设置就会默认在中心的位置
-							radius: ['30%', '50%'], //饼图的半径,第一项是内半径,第二项是外半径,内半径为0就是真的饼,不是环形
-							itemStyle: { //图形样式
-								normal: { //normal 是图形在默认状态下的样式；emphasis 是图形在高亮状态下的样式，比如在鼠标悬浮或者图例联动高亮时。
-									label: { //饼图图形上的文本标签
-										show: false //平常不显示
-									},
-									labelLine: { //标签的视觉引导线样式
-										show: true //平常不显示
-									}
-								},
-								emphasis: { //normal 是图形在默认状态下的样式；emphasis 是图形在高亮状态下的样式，比如在鼠标悬浮或者图例联动高亮时。
-									label: { //饼图图形上的文本标签
-										show: true,
-										position: 'center',
-										textStyle: {
-											fontSize: '10',
-											fontWeight: 'bold'
-										}
-									}
-								}
-							},
-							data: [{
-									value: completed,
-									name: '已完成'
-								},
-								{
-									value: notCompleted,
-									name: '未完成'
-								}
-							]
-						}
-					]
-				};
-				myChart.setOption(option);
-			}
-			var newStudentsAnswer = function(singleElection , multipleSelection){
-				var myChart = echarts.init(document.getElementById('mina'));
-				// 指定图表的配置项和数据
-				var option = {
-					title: { //标题组件
-						text: '学生作答正确率分布',
-						x: 'center',
-						y: '20px',
-						textStyle: {
-							color: "rgb(121, 131, 142)",
-							fontSize: 18,
-							
-						}
-					},
-					tooltip: { //提示框组件
-						trigger: 'item', //触发类型(饼状图片就是用这个)
-						formatter: "{a} <br/>{b} : {c} ({d}%)" //提示框浮层内容格式器
-					},
-					color: ['rgb(96, 132, 254)', 'rgb(234, 96, 1)'], //手动设置每个图例的颜色
-					legend: { //图例组件
-						//right:100,  //图例组件离右边的距离
-						orient: 'vertical', //布局  纵向布局 图例标记居文字的左边 vertical则反之
-						width: 40, //图行例组件的宽度,默认自适应
-						x: 'center', //图例显示在右边
-						y: '260px', //图例在垂直方向上面显示居中
-						itemWidth: 10, //图例标记的图形宽度
-						itemHeight: 10, //图例标记的图形高度
-						data: ['单选题', '多选题'],
-						textStyle: { //图例文字的样式
-							color: '#333', //文字颜色
-							fontSize: 16 //文字大小
-						}
-					},
-					series: [ //系列列表
-						{
-							name: '数据统计', //系列名称
-							type: 'pie', //类型 pie表示饼图
-							center: ['50%', '50%'], //设置饼的原心坐标 不设置就会默认在中心的位置
-							radius: ['30%', '50%'], //饼图的半径,第一项是内半径,第二项是外半径,内半径为0就是真的饼,不是环形
-							itemStyle: { //图形样式
-								normal: { //normal 是图形在默认状态下的样式；emphasis 是图形在高亮状态下的样式，比如在鼠标悬浮或者图例联动高亮时。
-									label: { //饼图图形上的文本标签
-										show: false //平常不显示
-									},
-									labelLine: { //标签的视觉引导线样式
-										show: true //平常不显示
-									}
-								},
-								emphasis: { //normal 是图形在默认状态下的样式；emphasis 是图形在高亮状态下的样式，比如在鼠标悬浮或者图例联动高亮时。
-									label: { //饼图图形上的文本标签
-										show: true,
-										position: 'center',
-										textStyle: {
-											fontSize: '10',
-											fontWeight: 'bold'
-										}
-									}
-								}
-							},
-							data: [{
-									value: singleElection,
-									name: '单选题'
-								},
-								{
-									value: multipleSelection,
-									name: '多选题'
-								}
-							
-							]
-						}
-					]
-				};
-				myChart.setOption(option);
 			}
 		</script>
 	</body>
