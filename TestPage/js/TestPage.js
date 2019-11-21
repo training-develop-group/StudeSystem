@@ -6,7 +6,7 @@ var urlinfo = window.location.href;
 var value = urlinfo.split("?")[1].split("value=")[1];
 var PaperId = decodeURI(value);
 var taskId = PaperId.split(',')[0];
-var taskDegreeOfCompletion = PaperId.split(',')[1]
+var taskDegreeOfCompletion = PaperId.split(',')[1];
 var taskType = '';
 var getExperience = '';
 var paperId = '';
@@ -35,6 +35,7 @@ $(function () {
         async: false,
         contentType: 'application/json;charset=utf-8',
         success(res) {
+            console.log(res);
             if (res.data != null) {
                 //为任务描述赋值
                 $('.taskRemarkContent').text(res.data.taskRemark);
@@ -646,9 +647,9 @@ var info = {
                     $('.toView').off('click').on('click', function () {
                         var QusetionId = $(this).val();
                         // 解析内容
-                        var Analysis = '未定义';
+                        var Analysis = '';
                         // 正确答案
-                        var OptionType = '未知';
+                        var OptionType = '';
                         $.ajax({
                             url: MCUrl + 'manage_system/question/answer',
                             data: {
@@ -658,8 +659,12 @@ var info = {
                             type: 'GET',
                             success(res) {
                                 res.data.forEach(function (item, index) {
+                                    if (OptionType == '') {
+                                        OptionType = item.optionType;
+                                    } else {
+                                        OptionType = OptionType + ',' + item.optionType;
+                                    }
                                     Analysis = item.analysis;
-                                    OptionType = item.optionType;
                                 });
 
                                 // 转义(已防有标签的样式被html识别)
@@ -1013,9 +1018,9 @@ var info = {
                             $('.toView').off('click').on('click', function () {
                                 var QusetionId = $(this).val();
                                 // 解析内容
-                                var Analysis = '未定义';
+                                var Analysis = '';
                                 // 正确答案
-                                var OptionType = '未知';
+                                var OptionType = '';
                                 $.ajax({
                                     url: MCUrl + 'manage_system/question/answer',
                                     data: {
@@ -1025,8 +1030,12 @@ var info = {
                                     type: 'GET',
                                     success(res) {
                                         res.data.forEach(function (item, index) {
+                                            if (OptionType == '') {
+                                                OptionType = item.optionType;
+                                            } else {
+                                                OptionType = OptionType + ',' + item.optionType;
+                                            }
                                             Analysis = item.analysis;
-                                            OptionType = item.optionType;
                                         });
                                         // 转义(已防有标签的样式被html识别)
                                         Analysis = $('<div>').text(Analysis).html();
@@ -1137,9 +1146,9 @@ var info = {
                     $('.toView').off('click').on('click', function () {
                         var QusetionId = $(this).val();
                         // 解析内容
-                        var Analysis = '未定义';
+                        var Analysis = '';
                         // 正确答案
-                        var OptionType = '未知';
+                        var OptionType = '';
                         $.ajax({
                             url: MCUrl + 'manage_system/question/answer',
                             data: {
@@ -1149,8 +1158,12 @@ var info = {
                             type: 'GET',
                             success(res) {
                                 res.data.forEach(function (item, index) {
+                                    if (OptionType == '') {
+                                        OptionType = item.optionType;
+                                    } else {
+                                        OptionType = OptionType + ',' + item.optionType;
+                                    }
                                     Analysis = item.analysis;
-                                    OptionType = item.optionType;
                                 });
                                 // 转义(已防有标签的样式被html识别)
                                 Analysis = $('<div>').text(Analysis).html();
