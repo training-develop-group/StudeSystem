@@ -588,7 +588,6 @@ var info = {
     },
     //查询资源
     selectResourceList: function (pageNum, resType, resName) {
-        console.log(resType + 'iiiii' + resName);
         if (resName === undefined) {
             resName = ''
         }

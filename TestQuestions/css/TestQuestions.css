@@ -158,7 +158,7 @@
     /* border: 1px solid black; */
 }
 
-.selectionType {''
+.selectionType {
     margin-top: 20px;
 }
 
@@ -167,6 +167,9 @@
 .analysis {
     margin-top: 20px;
     word-wrap: break-word;
+}
+
+.PopupAnalysis .analysis {
     text-indent: 35px;
 }
 
@@ -182,7 +185,6 @@
 .option {
     width: 400px;
     min-height: 20px;
-    /* margin-left: 30px; */
     margin-top: 20px;
     display: inline;
     vertical-align: top;
@@ -287,8 +289,8 @@
     font-size: 18px;
 }
 
-.QuestionContent{
-    padding: 10px 30px ;
+.QuestionContent {
+    padding: 10px 30px;
     font-size: 18px;
 }
 
