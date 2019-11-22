@@ -758,6 +758,7 @@ img {
 
 .taskRemarkBox .taskRemarkContent {
     word-wrap: break-word;
+    text-indent: 15px;
 }
 
 .List p:nth-child(2) {

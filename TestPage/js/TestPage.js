@@ -6,7 +6,7 @@ var urlinfo = window.location.href;
 var value = urlinfo.split("?")[1].split("value=")[1];
 var PaperId = decodeURI(value);
 var taskId = PaperId.split(',')[0];
-var taskDegreeOfCompletion = PaperId.split(',')[1]
+var taskDegreeOfCompletion = ''
 var taskType = '';
 var getExperience = '';
 var paperId = '';
@@ -48,6 +48,8 @@ $(function () {
                 resId = res.data.resId;
                 //任务名
                 taskName = res.data.taskName;
+                //用户完成情况
+                taskDegreeOfCompletion = res.data.status;
                 //为任务名赋值
                 $('.nav_title').text(res.data.taskName)
             } else {
@@ -1218,6 +1220,9 @@ var info = {
     },
     // 分页插件
     Page: function (total, curr, taskId) {
+        if(total < 10){
+            return false;
+        }
         layui.use('laypage', function () {
             var laypage = layui.laypage;
             //执行一个laypage实例
@@ -1283,5 +1288,5 @@ var dateFormata = function (time) {
     var minutes = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
     var seconds = date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds();
     // 拼接
-    return year + "-" + month + "-" + day + " " + (hours - 8) + ":" + minutes + ":" + seconds;
+    return year + "-" + month + "-" + day + " " + hours + ":" + minutes + ":" + seconds;
 };

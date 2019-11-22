@@ -609,11 +609,21 @@ i {
     background-color: white !important;
 }
 
-.papgeContent tr td，
+.papgeContent tr td,
 .paperContent tr th{
     text-align: center;
 }
 
 #selectPapers table thead tr th{
     text-align: center;
+}
+
+.wrapper .content table thead th{
+    text-align: center;
+    font-weight:bold;
+}
+
+.wrapper .content table thead th:nth-child(1),
+.wrapper .content table thead th:nth-child(4) {
+    text-align: left;
 }

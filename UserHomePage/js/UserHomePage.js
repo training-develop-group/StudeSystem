@@ -139,7 +139,7 @@ var info = {
             localStorage.setItem('taskDegreeOfCompletionType', taskDegreeOfCompletion);
             // window.open("../TestPage/TestPage.html?value=" + TaskId, "_blank");
             // 本页打开
-            window.location.href = "../TestPage/TestPage.html?value=" + TaskId + ',' + taskDegreeOfCompletion;
+            window.location.href = "../TestPage/TestPage.html?value=" + TaskId;
         });
     }
 };
