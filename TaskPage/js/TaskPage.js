@@ -379,7 +379,7 @@ var info = {
                 var Html = [];
                 res.data.forEach(function (item, index) {
                     // console.log(res)
-                    Html.push('<tr');
+                    Html.push('<tr>');
                     Html.push('<td><span>' + item.userName + '</span></td>');
                     var status = '';
                     if (item.status ===  0) {
