@@ -80,8 +80,8 @@ $(function () {
         $('.usersSelectOk').off('click').on('click', function () {
             var Html = [];
             $.each($("[name='Staff']:checked"), function (i, val) {
-                Html.push('<p>' + $(this).siblings('i').text() + '<input type="text"  hidden="" id="" value="' + $(this).val() +'" /> ' +
-                    '<i  data-id="' + $(this).val() +'" class="layui-icon layui-icon-close deleteUserName" style="font-size: 20px;"></i></p>')
+                Html.push('<p>' + $(this).siblings('i').text() + '<input type="text"  hidden="" id="" value="' + $(this).val() + '" /> ' +
+                    '<i  data-id="' + $(this).val() + '" class="layui-icon layui-icon-close deleteUserName" style="font-size: 20px;"></i></p>')
             });
             $('.taskUsers').html(Html.join(''));
             $('.deleteUserName').off('click').on('click', function () {
@@ -124,12 +124,12 @@ $(function () {
     });
     $('.resourceSelection').off('click').on('click', function () {
         var resName = $(this).attr('data-resname');
-        if(resName.length > 30){
-            $('.resAdd').html('：'+ resName.substring(0, 30) + '...');
+        if (resName.length > 30) {
+            $('.resAdd').html('：' + resName.substring(0, 30) + '...');
         } else {
-            $('.resAdd').html('：'+ resName);
+            $('.resAdd').html('：' + resName);
         }
-        $('.resAdd').attr('title',resName);
+        $('.resAdd').attr('title', resName);
         layer.close(layer.index);
     });
     //弹出选择人员
@@ -379,10 +379,10 @@ var info = {
                 var Html = [];
                 res.data.forEach(function (item, index) {
                     // console.log(res)
-                    Html.push('<tr');
+                    Html.push('<tr>');
                     Html.push('<td><span>' + item.userName + '</span></td>');
                     var status = '';
-                    if (item.status ===  0) {
+                    if (item.status === 0) {
                         status = '未完成'
                     } else {
                         status = '已完成'
@@ -416,11 +416,11 @@ var info = {
                         if (item.paperName.length > 9) {
                             // 转义(已防有标签的样式被html识别)
                             item.paperName = $('<div>').text(item.paperName).html();
-                            Html.push('<td class="paperName" title="'+item.paperName+'" data-paperName="'+item.paperName+'"><pre>' + item.paperName.substring(0, 9) + '...</pre></td>');
+                            Html.push('<td class="paperName" title="' + item.paperName + '" data-paperName="' + item.paperName + '"><pre>' + item.paperName.substring(0, 9) + '...</pre></td>');
                         } else {
                             // 转义(已防有标签的样式被html识别)
                             item.paperName = $('<div>').text(item.paperName).html();
-                            Html.push('<td class="paperName" data-paperName="'+item.paperName+'"><pre>' + item.paperName + '</pre></td>');
+                            Html.push('<td class="paperName" data-paperName="' + item.paperName + '"><pre>' + item.paperName + '</pre></td>');
                         }
                         Html.push('<td style="text-align: center;">' + item.single + '</td>');
                         Html.push('<td style="text-align: center;">' + item.many + '</td>');
@@ -437,16 +437,16 @@ var info = {
                     $('.selectPaper').off('click').on('click', function () {
                         $('.selectPapers').val($(this).val());
                         var Html = [];
-                        if($(this).parents('tr').children('.paperName').attr('title').length > 30){
+                        if ($(this).parents('tr').children('.paperName').attr('title').length > 30) {
                             Html.push('：' + $(this).parents('tr').children('.paperName').attr('title').substring(0, 30) + '...');
-                        }else {
+                        } else {
                             Html.push('：' + $(this).parents('tr').children('.paperName').attr('title'));
                         }
                         $('.paperAdd').html(Html.join(''));
                         $('.paperAdd').val($(this).val());
                         $('.paperAdd').attr('data-id', $(this).val());
                         var paperName = $('.paperName').attr('data-paperName');
-                        $('.paperAdd').attr('title',paperName);
+                        $('.paperAdd').attr('title', paperName);
                         layer.close(layer.index);
                     })
                 }
@@ -588,7 +588,6 @@ var info = {
     },
     //查询资源
     selectResourceList: function (pageNum, resType, resName) {
-        console.log(resType + 'iiiii' + resName);
         if (resName === undefined) {
             resName = ''
         }
@@ -607,7 +606,7 @@ var info = {
                 var Html = [];
                 res.data.list.forEach(function (item, index) {
                     Html.push('<div class="radio_box" >');
-                    Html.push('<div class="img-box" data-resid="' + item.resId + '" data-resName="'+ item.resName +'">');
+                    Html.push('<div class="img-box" data-resid="' + item.resId + '" data-resName="' + item.resName + '">');
                     if (item.resType === 1) {
                         Html.push('<img src="http://192.168.188.109:8848/' + item.imgPath +
                             '"  style="width:140px;height:140px;">')

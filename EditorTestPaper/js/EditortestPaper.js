@@ -686,9 +686,9 @@ var info = {
     // 查看解析(弹窗)
     toViewAnalysis: function (questionId) {
         // 解析内容
-        var Analysis = '未定义';
+        var Analysis = '';
         // 正确答案
-        var OptionType = '未知';
+        var OptionType = '';
         $.ajax({
             url: MCUrl + 'manage_system/question/answer',
             data: {
@@ -698,11 +698,11 @@ var info = {
             type: 'GET',
             success(res) {
                 res.data.forEach(function (item, index) {
-                    if (OptionType == '未知') {
+                    if (OptionType == '') {
                         OptionType = item.optionType;
                     } else {
                         OptionType = OptionType + ',' + item.optionType;
-                    };
+                    }
                     Analysis = item.analysis;
                 });
                 // 转义(已防有标签的样式被html识别)

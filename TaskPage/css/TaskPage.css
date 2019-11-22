@@ -336,6 +336,9 @@ ul div input {
     text-overflow: ellipsis;
     white-space: nowrap;
 }
+#taskUserDegreeCompletion td {
+    text-align: center;
+}
 
 .box {
     width: 100%;
