@@ -1,76 +1,50 @@
 $(function() {
-	$('.logIn').off('click').on('click', function() {
-		var data = {
-			userName: $('#user').val(),
-			password: $('#pwd').val()
-		};
-		if (data.userName == '' || data.password == '') {
-			layer.msg('用户名或者密码不能为空');
-			return false;
+	$('.inputBox').keypress(function(e) {
+		if (e.which == 13) {
+			logIn();
 		}
-		$.ajax({
-			url: LBUrl + 'manage_system/login',
-			data:data,
-			dataType:'json',
-			type: "GET",
-			success: function (res) {
-				console.log(res);
-				if(res.code == 1){
-					window.location.href = 'HomePage/HomePage.html'
-					console.log(res.msg);
-				}else {
-					layer.msg(res.msg);
+	});
+	$('.logIn').off('click').on('click', function() {
+		logIn();
+	});
+});
+var logIn = function() {
+	var data = {
+		userName: $('#user').val(),
+		password: $('#pwd').val()
+	};
+	if (data.userName == '' || data.password == '') {
+		$('.PasswordError').text('！用户名或密码不可为空');
+		$('.PasswordError').removeClass('hidden');
+		return false;
+	}
+	$.ajax({
+		url: MCUrl + 'manage_system/login',
+		data: data,
+		dataType: 'json',
+		type: "GET",
+		success: function(res) {
+			console.log(res);
+			if (res.code == 1) {
+			
+				if (res.data.stRoleId == 1) {
+						localStorage.setItem('userType',res.data.stRoleId);
+					$('.PasswordError').addClass('hidden');
+					window.location.href = './HomePage/HomePage.html'
+				} else if (res.data.stRoleId == 2) {
+					localStorage.setItem('userType',res.data.stRoleId);
+					$('.PasswordError').addClass('hidden');
+					window.location.href = './UserHomePage/UserHomePage.html?value=' + res.data.userId +","+ 2
 				}
-			},
-			error: function (e) {
-		
+			} else if (res.data == null) {
+				$('.PasswordError').text('！用户名或密码错误');
+				$('.PasswordError').removeClass('hidden');
+			}else {
+				layer.msg('网络未连接！');
 			}
-		})
-	// 	$.ajax({
-	// 		url: LBUrl + 'manage_system/login/user',
-	// 		data:{},
-	// 		dataType:'json',
-	// 		type: "GET",
-	// 		success: function (res) {
-	// 			console.log(res);
-	// 			if(res.code == 1){
-	// 				// window.location.href = 'HomePage/HomePage.html'
-	// 				console.log(res);
-	// 			}else {
-	// 				layer.msg(res.msg);
-	// 			}
-	// 		},
-	// 		error: function (e) {
-		
-	// 		}
-	// 	})
+		},
+		error: function(e) {
+
+		}
 	})
-});
-$(function() {
-    $('.logIn').off('click').on('click', function() {
-    	var data = {
-    		userName: $('#user').val(),
-    		password: $('#pwd').val()
-    	};
-    	if (data.userName == '' || data.password == '') {
-    		layer.msg('用户名或者密码不能为空');
-    		return false;
-    	}
-    	// $.ajax({
-    	//     url: loginUrl + 'manage_system/login',
-    	//     data:data,
-    	//     dataType:'json',
-    	//     type: "get",
-    	//     success: function (res) {
-    	// if(res.code == 1){
-    	window.location.href = 'HomePage/HomePage.html'
-    	// }else {
-    	//     layer.msg(res.msg);
-    	// }
-    	//     },
-    	//     error: function (e) {
-    	//
-    	//     }
-    	// })
-    })
-});
+}

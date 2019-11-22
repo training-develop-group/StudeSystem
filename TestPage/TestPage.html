@@ -16,96 +16,71 @@
 <div id="header"></div>
 <!--  内容区域  -->
 <div class="wrapper wrapper-content">
-<<<<<<< HEAD
-	
-    <div class="aaa">
-=======
-    <div>
->>>>>>> remotes/origin/dev-MX
-        <div class="con_nav_box">
-            <h1 class="nav_title">测试任务</h1>
-            <ul class="nav_list clearfix">
-                <li >视频学习</li>
-                <li class="active">测试</li>
-            </ul>
-        </div>
-        <div class="content">
-<<<<<<< HEAD
-			
-=======
->>>>>>> remotes/origin/dev-MX
-            <div class="answer_card clearfix">
-                <div class="card_left">
-                    <p>[答题卡]</p>
-                    <ul class="card">
-                        <li class="active" data-type="1">1</li>
-                        <li data-type="2">2</li>
-                        <li data-type="3">3</li>
-                    </ul>
+    <!-- 用户测试内容盒子 -->
+    <div class="taskBox">
+        <div class="aaa">
+            <div class="con_nav_box clearfix">
+                <div>
+                    <h1 class="nav_title"></h1>
+                    <a href="#" class="goBack">
+                        <i class="layui-icon">&#xe602;</i><span>返回</span> </a>
                 </div>
-                <div class="card_right">
-<<<<<<< HEAD
-                    <div class="submitTest">交卷</div>
-=======
-                    <div>交卷</div>
->>>>>>> remotes/origin/dev-MX
+                <ul class="nav_list clearfix">
+                    <li class="study active hidden">视频学习</li>
+                    <li class="measurement hidden">测试</li>
+                </ul>
+                <div class="TotalScoreBox">
+                    <span class="TaskScore"></span>
+                    <span class="TotalScore"></span>
                 </div>
             </div>
-
-            <ul class="questionCard_box">
-<<<<<<< HEAD
-             
-            </ul>
-			
-=======
-                <li class="questionCard" data-type="1" >
-                    <p class="questionCard_title"><span class="num">1.</span>
-                        <span class="questuon_title">单选题</span>(<span class="fraction">10</span>分)</p>
-                    <p class="question_Dry">单选题001</p>
-                    <ul class="radio_box">
-                        <li><span class="active" data-id="1">A</span><span>1</span></li>
-                        <li><span data-id="1">B</span><span>2</span></li>
-                        <li><span data-id="1">C</span><span>3</span></li>
-                        <li><span data-id="1">D</span><span>4</span></li>
-                    </ul>
-                    <div class="btn-box clearfix">
-                        <button class="layui-btn layui-btn-normal layui-btn-sm next">下一题</button>
-                        <button class="layui-btn layui-btn-normal layui-btn-sm previous">上一题</button>
+            <div>
+                <div id="LearnPage" class="LearnContent">
+                    <div class="doc hidden">
+                        <iframe src="" width="100%" height="710px"></iframe>
                     </div>
-                </li>
-                <li class="questionCard hidden" data-type="2">
-                    <p class="questionCard_title"><span class="num">1.</span><span
-                            class="questuon_title">多选题</span>(<span class="fraction">10</span>分)</p>
-                    <p class="question_Dry">多选题001</p>
-                    <ul class="checkbox_box">
-                        <li><span data-id="1">A</span><span>1</span></li>
-                        <li><span data-id="1">B</span><span>2</span></li>
-                        <li><span data-id="1">C</span><span>3</span></li>
-                        <li><span data-id="1">D</span><span>4</span></li>
-                    </ul>
-                    <div class="btn-box clearfix">
-                        <button class="layui-btn layui-btn-normal layui-btn-sm next">下一题</button>
-                        <button class="layui-btn layui-btn-normal layui-btn-sm previous">上一题</button>
+                    <div class="video hidden">
+                        <video src="" controls="controls" preload="auto" height="700px" width="100%"
+                               id="myVideo"></video>
                     </div>
-                </li>
-                <li class="questionCard hidden" data-type="3">
-                    <p class="questionCard_title"><span class="num">1.</span><span
-                            class="questuon_title">多选题</span>(<span class="fraction">10</span>分)</p>
-                    <p class="question_Dry">多选题002多选题002多选题002多选题002多选题002</p>
-                    <ul class="checkbox_box">
-                        <li><span data-id="1" class="active">A</span><span>1</span></li>
-                        <li><span data-id="1">B</span><span>2</span></li>
-                        <li><span data-id="1">C</span><span>3</span></li>
-                        <li><span data-id="1">D</span><span>4</span></li>
-                    </ul>
-                    <div class="btn-box clearfix">
-                        <button class="layui-btn layui-btn-normal layui-btn-sm next">下一题</button>
-                        <button class="layui-btn layui-btn-normal layui-btn-sm previous">上一题</button>
+                    <div class="audio hidden">
+                        <audio src="" controls="controls" id="myAudio"></audio>
                     </div>
-                </li>
-            </ul>
->>>>>>> remotes/origin/dev-MX
+                    <div class="test_content hidden"></div>
+                </div>
+                <div class="content hidden">
+                    <div class="answer_card clearfix">
+                        <div class="card_left">
+                            <p>[答题卡]</p>
+                            <ul class="card clearfix"></ul>
+                        </div>
+                        <div class="card_right">
+                            <div class="submitTest">交卷</div>
+                        </div>
+                    </div>
+                    <ul class="questionCard_box"></ul>
+                </div>
+            </div>
         </div>
+    </div>
+    <!-- 任务描述 -->
+    <div class="taskRemarkBox">
+        <p class="taskRemarktitle">任务描述</p>
+        <p class="taskRemarkContent"></p>
+    </div>
+
+    <!-- 心得列表盒子 -->
+    <div class="experienceListBox hidden">
+        <p class="experienceTitle">心得学习</p>
+        <div class="addExperience clearfix ">
+            <textarea class="textExperience" maxlength="2000"></textarea>
+
+            <button class="layui-btn layui-btn-normal layui-btn-sm add">提交</button>
+            <span class="textNumBox"><span class="textNum">0</span>/2000字</span>
+
+        </div>
+        <ul class="experienceList"></ul>
+        <div id="page" style="margin-top: 70px; margin-left: 35%;"></div>
     </div>
 </div>
 
