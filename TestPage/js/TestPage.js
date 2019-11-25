@@ -6,7 +6,7 @@ var urlinfo = window.location.href;
 var value = urlinfo.split("?")[1].split("value=")[1];
 var PaperId = decodeURI(value);
 var taskId = PaperId.split(',')[0];
-var taskDegreeOfCompletion = ''
+var taskDegreeOfCompletion = '';
 var taskType = '';
 var getExperience = '';
 var paperId = '';

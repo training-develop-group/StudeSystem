@@ -76,10 +76,9 @@ $(function () {
             var $eleForm = $("<form method='get'></form>");
             $eleForm.attr("action", "http://192.168.188.109:8848/0625ae7ec85c4b94bf1cde70d2692b67.mp4");
             $(document.body).append($eleForm);
-            //提交表单，实现下载
+            // 提交表单，实现下载
             $eleForm.submit();
         });
-
 
         /**
          * 检索关键词resName
@@ -87,14 +86,12 @@ $(function () {
          */
         $('.search').keypress(function (e) {
             if (e.which == 13) {
-                var searchKey = $('.search').val()
+                var searchKey = $('.search').val();
                 info.selectResourceList(1, searchKey)
             }
         });
-
     });
 });
-
 
 var total = ''; //分页总数量
 var JumpPageNum = 1; //全局变量分页页数初始值
@@ -103,7 +100,6 @@ var deleteResId = '';
 var a = 0;
 var b = 0;
 var lastTime = 0;
-
 
 /**
  * 主方法

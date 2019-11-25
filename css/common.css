@@ -157,10 +157,10 @@ body {
 .headerBox .right .userimg {
     width: 40px;
     height: 40px;
-    margin: 0 10px 10px 10px;
+    margin: 10px 10px 10px 10px;
     border: 2px solid #b5b5b5;
     border-radius: 50px;
-    cursor: default;
+    cursor: pointer;
 }
 
 .headerBox .right .username {
@@ -369,10 +369,37 @@ button {
     margin: 0 0 0 45px;
 }
 
+/*---------------------修改密码样式-------------------*/
 
-/* ----------------------(删除)弹窗的css↑---------------------------- */
+.changPassWord {
+    position: relative;
+    left: -20px;
+    text-align: center;
+    line-height: 50px;
+    width: 100px;
+    height: 50px;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.changPassWord .Triangle {
+    position: relative;
+    top: -30px;
+    left: 10px;
+    display: inline-block;
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-bottom: 15px solid rgba(0,0,0,0.5);
+}
+
+.changePasWod {
+    color: #fff;
+    margin-left: -35px;
+}
+
+/* ------------------------(删除)弹窗的css↑------------------------- */
 
 @media screen and (min-width: 1500px) and (max-width: 1660px) {
+
     .wrapper.wrapper-content {
         padding: 20px 120px 50px;
     }
@@ -380,9 +407,11 @@ button {
     .navbox ul li {
         padding: 0 15px;
     }
+
 }
 
 @media screen and (min-width: 1365px) and (max-width: 1499px) {
+
     .wrapper.wrapper-content {
         padding: 20px 80px 50px;
     }
@@ -390,6 +419,7 @@ button {
     .navbox ul li {
         padding: 0 15px;
     }
+
 }
 
 @media (max-width: 1366px) {
@@ -411,4 +441,5 @@ button {
     .navbox ul li {
         padding: 0 15px;
     }
+
 }
