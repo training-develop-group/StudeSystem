@@ -371,10 +371,9 @@ var info = {
         };
         $.ajax({
             url: MCUrl + 'manage_system/paper/paper-name',
-            data: JSON.stringify(data),
+            data: data,
             dataType: 'json',
             type: 'POST',
-            contentType: 'application/json;charset=utf-8',
             success(res) {
                 // parent.location.reload();	//刷新父级页面
                 layer.closeAll();

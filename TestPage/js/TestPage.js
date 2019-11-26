@@ -60,6 +60,7 @@ $(function () {
     // 用户判断
         // 管理员
     if (localStorage.getItem('userType') == 1) {
+		$('.goBack').addClass('hidden')
         if (taskType == 1) {
             $.ajax({
                 url: TDXUrl + 'manage_system/resource/' + resId,

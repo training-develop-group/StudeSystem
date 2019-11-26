@@ -27,6 +27,10 @@ $(function() {
 		// 结束后的通知与方法
 	　　}
 	});
+	// 返回试卷
+	$('#newTestPaper').off('click').on('click',function(){
+		window.location.href = "../ExaminationPaperPage/ExaminationPaperPage.html";
+	});
 });
 var PaperId;
 var info = {
