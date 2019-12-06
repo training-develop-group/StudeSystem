@@ -4,7 +4,7 @@
 
 #selectTaskUsers span {
     text-align: left;
-    padding-left: 20px;
+    padding: 1px 4px 0px 18px;
 
 }
 
@@ -122,10 +122,13 @@ tr .oneselfTaskName {
 
 #selectTaskUsers {
     border: 1px solid #C9C5C5;
-    width: 505px;
+    /* width: 505px; */
+	width: 515px;
     height: 300px;
-    margin-bottom: 20px;
+    margin: -4px 0 0 21px;
     overflow: auto;
+	background-color: rgb(248, 248, 248);
+	
 }
 
 .layui-form-label {
@@ -241,21 +244,16 @@ ul div input {
     background-color: #1E9FFF;
 }
 
-.usersSelectOk {
-    margin-left: 200px;
-    width: 130px;
-}
-
 .checkAll {
     width: 15px;
     height: 15px;
-
 }
 
 .iconSearch {
     width: 200px;
     border: 1px solid #C9C9C9;
     border-radius: 6px;
+	margin: 6px 22px 0 0;
 }
 
 .asd .taskUsers {
@@ -285,7 +283,7 @@ ul div input {
 
 .taskUsers > p {
     line-height: 20px;
-    padding: 0 10px;
+    padding: 0 20px;
 }
 
 .taskUsers p i {
@@ -301,7 +299,6 @@ ul div input {
 .selectPapers {
     font-size: 16px;
     margin-left: 40px;
-
     color: #5FB878;
 }
 
@@ -332,9 +329,7 @@ ul div input {
 #taskUserDegreeCompletion tr td:nth-child(1) span {
     display: inline-block;
     width: 120px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    text-align: center;
 }
 #taskUserDegreeCompletion td {
     text-align: center;
@@ -374,12 +369,18 @@ ul div input {
 
 #selectPapers .layui-table td,
 #selectPapers .layui-table th,
-.layui-table td,
-.layui-table th {
+.content .layui-table td,
+.content .layui-table th,
+#examineTask .layui-table td,
+#examineTask .layui-table th{
     border-style: none;
     height: 46px;
     padding: 0;
-    text-indent: 25px;
+}
+
+.content .layui-table td,
+.content .layui-table th{
+	 text-indent: 25px;
 }
 
 .layui-table th {
@@ -612,13 +613,17 @@ i {
     background-color: white !important;
 }
 
-.papgeContent tr td,
-.paperContent tr th{
+#selectPapers table thead tr th:nth-child(2),
+#selectPapers table thead tr th:nth-child(3),
+#selectPapers table thead tr th:nth-child(4),
+#selectPapers table tbody tr td:nth-child(2),
+#selectPapers table tbody tr td:nth-child(3),
+#selectPapers table tbody tr td:nth-child(4){
     text-align: center;
 }
-
-#selectPapers table thead tr th{
-    text-align: center;
+#selectPapers table thead tr th:nth-child(1),
+#selectPapers table tbody tr td:nth-child(1) {
+	padding-left: 26px;
 }
 
 .wrapper .content table thead th{
@@ -630,3 +635,19 @@ i {
 .wrapper .content table thead th:nth-child(4) {
     text-align: left;
 }
+
+/* 发布任务按钮-------------------------------------------------------------------------- */
+.Release_btn {
+	position: absolute;
+	margin: 0 auto;
+	width: 140px;
+	left: 0;
+	right: 0;
+	bottom: 25px;
+}
+
+.Release_btn button {
+	width: 140px;
+}
+
+/* 发布任务按钮-------------------------------------------------------------------------- */

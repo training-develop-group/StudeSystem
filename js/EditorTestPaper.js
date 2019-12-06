@@ -284,13 +284,7 @@ var info = {
 				,closeBtn: 0
 				,area: ['660px', '755px']
 				,title: ['新建试题', 'background-color: #279ef0;text-align: center;font-size: 16px;line-height: 50px;color:white;letter-spacing: 5px;padding: 0px;']
-				// ,shade: 0.6 //遮罩透明度
 				,content: $('#newlyBuild')
-				// ,btn: ['确认'] //可以无限个按钮
-				// ,btn1: function(index, layero){
-				// 	//按钮【确认】的回调
-				// 	layer.close(index);
-				// }
 			});
 		});
 	}

@@ -70,8 +70,7 @@
 				</div>
 				<div class="layui-form-item spacing">
 					<span class="_search selectPapers" style="cursor: default;">
-						<i class="layui-icon">&#xe602;</i>
-						<span class="chooseTestPaper">选择试卷 : </span>
+						<i class="layui-icon">&#xe602;</i><span class="chooseTestPaper">选择试卷 :</span>
 						<span class="paperAdd"></span>
 					</span>
 				</div>
@@ -93,11 +92,12 @@
 						</div>
 						<div class="layui-form-mid">-</div>
 						<div class="layui-input-inline">
-							<input type="text" name="date" id="test2" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+							<input type="text" name="date" id="test2" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input"
+							style="width: 200px;">
 						</div>
 					</div>
 				</div>
-				<div class="layui-form-item" style="margin-top: 8px;">
+				<div class="layui-form-item" style="margin-top: 12px;">
 					<label class="layui-form-label taskLocation">任务描述</label>
 					<div class="layui-input-block">
 						<textarea name="desc" placeholder="请输入描述" class="layui-textarea taskRemark" maxlength="500" style="resize: none;"></textarea>
@@ -108,10 +108,10 @@
 				<button class="layui-btn layui-btn-normal layui-btn-sm addOk button resourceSelection">确认</button>
 			</div>
 		</div>
-		<div id="selectPersonnel" style="padding: 20px;" hidden="">
-			<div class="iconSearch" style="padding: 3px 10px; float: right; margin: 0 8px 0px 0;"><img src="../imgs/search.jpg"><input
+		<div id="selectPersonnel" style="padding: 20px 24px 20px 18px;" hidden="">
+			<div class="iconSearch" style="padding: 3px 10px; float: right; margin: 0 18px 0px 0;"><img src="../imgs/search.jpg"><input
 				 type="text" class="userNameRetrieval"></div>
-			<div id="" class="layui-table layui-form" style="margin: 17px 0 20px 0; background-color: #FFFFFF; ">
+			<div id="" class="layui-table layui-form" style="margin: 17px 0 20px 24px; background-color: #FFFFFF; ">
 				人员名单 <input type="checkbox" class="" lay-skin="primary" lay-filter="Staff" id="checkAll">全选
 			</div>
 			<div id="selectTaskUsers" class="layui-table layui-form"></div>

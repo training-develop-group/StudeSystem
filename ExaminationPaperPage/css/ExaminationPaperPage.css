@@ -136,8 +136,8 @@ a {
 .toView,
 .delete,
 .publish {
-	width: 50px;
-	padding: 5px;
+	width: 55px;
+	padding: 0px;
 	height: 25px;
 	line-height: 15px;
 	border: 0;
@@ -147,12 +147,8 @@ a {
 	cursor: pointer !important;
 }
 
-.edit {
-	width: 60px;
-}
-
 #examinationPaperList table thead tr .operation {
-	text-indent: 30px;
+	text-indent: 33px;
 }
 
 .inputLocation {
@@ -272,7 +268,7 @@ a {
 }
 
 .layui-form-item {
-	margin: 23px auto;
+	margin: 16px auto;
 	margin-bottom: 0px;
 	width: 540px;
 }
@@ -409,9 +405,10 @@ label {
 }
 
 #selectTaskUsers {
+	margin: 0 0 0 23px;
 	border: 1px solid #C9C5C5;
-	width: 550px;
-	height: 275px;
+	width: 515px;
+	height: 300px;
 	margin-bottom: 20px;
 	overflow: auto;
 	background-color: rgb(248, 248, 248);
@@ -419,6 +416,8 @@ label {
 
 #selectTaskUsers .layui-form-label {
 	width: 100px;
+	line-height: 15px;
+	padding: 14px 0px 4px 22px;
 	text-align: left;
 }
 

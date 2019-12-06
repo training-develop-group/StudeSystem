@@ -107,8 +107,7 @@ body {
 }
 
 .headerBox .left {
-    float: right;
-    margin-right: 50px;
+	float: right;
 }
 
 .left .searchbox {
@@ -298,7 +297,7 @@ a:hover {
 .openText {
     text-align: center;
     margin-top: 36px;
-    font-size: 18px;
+    font-size: 16px;
 }
 
 button {
@@ -393,7 +392,8 @@ button {
 
 .changePasWod {
     color: #fff;
-    margin-left: -35px;
+    margin-left: -25px;
+	cursor: pointer;
 }
 
 /* ------------------------(删除)弹窗的css↑------------------------- */

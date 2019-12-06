@@ -265,15 +265,13 @@ $(function() {
 				layui.use("layer", function() {
 					var layer = layui.layer;
 					layer.open({
-						type: 1 //Page层类型
-							,
+						//Page层类型
+						type: 1,
 						closeBtn: 1,
 						area: ['790px', '300px'],
 						title: ['查看解析',
 								'background-color: #279ef0;text-align: center;font-size: 16px;line-height: 43px;color:white;letter-spacing: 5px;padding: 0px;'
-							]
-							// ,shade: 0.6 //遮罩透明度
-							,
+							],
 						content: '<div class="answerContent">' +
 							'<p>正确答案：<span class="answerOptions">' + OptionType + '</span></p>' +
 							'<p>答案解析：</p>' +

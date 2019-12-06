@@ -1,119 +1,101 @@
-$(function () {
+$(function() {
 
-    layui.use(['layer', 'form'], function () {
-        var layer = layui.layer,
-            form = layui.form;
-        All.getMenu({
-            search: 2,
-            type: 2
-        });
+	layui.use(['layer', 'form'], function() {
+		var layer = layui.layer,
+			form = layui.form;
+		All.getMenu({
+			search: 2,
+			type: 2
+		});
 
-        info.Back();
-        info.Verifiers();
-    });
+		info.Back();
+		info.Verifiers();
+	});
 });
 
 var info = {
 
-    // ·µ»ØÖ÷Ò³Ãæ
-    Back: function () {
-        $('#Back').off('click').on('click', function () {
-            layer.open({
-                type: 1,
-                title: ['', 'color:#fff;background-color:#279EF0;text-align: center; font-size: 20px;'],
-                shadeClose: false,
-                shade: 0.5,
-                move: false,
-                skin: 'myskin',
-                area: ['450px', '140px'],
-                content: $('.back'),
-                success: function () {
-                    $('.yes').off('click').on('click', function () {
-                        window.location.href = "../HomePage/HomePage.html";
-                    });
-                    $('.no').off('click').on('click', function () {
-                        layer.closeAll();
-                    });
-                },
-            });
-        });
-    },
-    // ÃÜÂëĞ£Ñé
-    Verifiers: function () {
-        // »ñÈ¡ÊäÈë¿òÄÚÈİ
-        var OriginalPassword = $('.OriginalPassword').val();
-        var NewPassWord = $('.NewPassWord').val();
-        var ConfirmPassWord = $('.ConfirmPassWord').val();
+	// è¿”å›ä¸»é¡µé¢
+	Back: function() {
+		$('#Back').off('click').on('click', function() {
+			layer.open({
+				type: 1,
+				title: ['', 'color:#fff;background-color:#279EF0;text-align: center; font-size: 20px;'],
+				move: false,
+				skin: 'myskin',
+				area: ['450px', '140px'],
+				content: $('.back'),
+				success: function() {
+					$('.yes').off('click').on('click', function() {
+						if (localStorage.getItem('userType') == 1) {
+						    window.location.href = '../HomePage/HomePage.html'
+						} else {
+						    window.location.href = '../UserHomePage/UserHomePage.html'
+						}
+					});
+					$('.no').off('click').on('click', function() {
+						layer.closeAll();
+					});
+				},
+			});
+		});
+	},
+	// å¯†ç æ ¡éªŒ
+	Verifiers: function() {
+		
+		// ä¿®æ”¹ç‚¹å‡»äº‹ä»¶
+		
+		$('.confirm').off('click').on('click', function() {
+			// è·å–è¾“å…¥æ¡†å†…å®¹
+			var OriginalPassword = $('.layui-input-block .OriginalPassword').val();
+			var NewPassWord = $('.NewPassWord').val();
+			var ConfirmPassWord = $('.ConfirmPassWord').val();
+			var reg = /[^\x00-\xff]/;
+			// éç©ºæ ¡éªŒ/å¯†ç é‡å¤æ ¡éªŒ
+			if (OriginalPassword == '' || OriginalPassword == null || OriginalPassword == undefined) {
+				layer.msg('è¯·è¾“å…¥åŸå¯†ç ');
+			} else if (NewPassWord == '' || NewPassWord == null || NewPassWord == undefined) {
+				layer.msg('è¯·è¾“å…¥æ–°å¯†ç ');
+			} else if (ConfirmPassWord == '' || ConfirmPassWord == null || ConfirmPassWord == undefined) {
+				layer.msg('è¯·å†æ¬¡è¾“å…¥æ–°å¯†ç è¿›è¡Œç¡®è®¤');
+			} else if (reg.test(OriginalPassword) || reg.test(NewPassWord) || reg.test(ConfirmPassWord)){
+				layer.msg('è¾“å…¥æ¡†ä¸­ä¸å…è®¸å‡ºç°æ±‰å­—ï¼Œæˆ–å…¨è§’ç¬¦å·');
+			} else if (OriginalPassword == NewPassWord) {
+				$('.NewWord').removeClass('hidden');
+			} else if (NewPassWord != ConfirmPassWord) {
+				$('.confirmWord').addClass('hidden');
+				$('.wrongPassWord').removeClass('hidden');
+			} else if (NewPassWord.length < 6) {
+				layer.msg('å¯†ç æœ€å°‘è®¾ç½®6ä½');
+			} else if (NewPassWord.length > 20) {
+				layer.msg('å¯†ç æœ€å¤šè®¾ç½®20ä½');
+			} else {
+				// è·å–ç°è´¦æˆ·ç”¨æˆ·åå’Œå¯†ç 
+				$.ajax({
+					url: LBUrl + 'manage_system/user/password',
+					data: {
+						'originalPassword': OriginalPassword,
+						'newPassWord': NewPassWord,
+						'passwordValidation': ConfirmPassWord
+					},
+					dataType: 'json',
+					type: 'POST',
+					success(res) {
+						if (res.data == 'ä¿®æ”¹æˆåŠŸ') {
+							layer.msg(res.data+'ï¼', function() {
+								window.location.href = "../index.html";
+							});
+						} else {
+							layer.msg(res.data+'ï¼', function() {
+							});
+						}
+					},
+					error(fil) {
+						console.log('è¯·æ±‚æ¥å£å¤±è´¥');
+					}
+				});
+			}
+		});
+	},
 
-
-        // ĞŞ¸Äµã»÷ÊÂ¼ş
-        $('body').on('click', '.confirm', function () {
-
-            // ·Ç¿ÕĞ£Ñé/ÃÜÂëÖØ¸´Ğ£Ñé
-            if (OriginalPassword == '' || OriginalPassword == null || OriginalPassword == undefined) {
-                layer.msg('ÇëÊäÈëÔ­ÃÜÂë')
-            } else if (NewPassWord == '' || NewPassWord == null || NewPassWord == undefined) {
-                layer.msg('ÇëÊäÈëĞÂÃÜÂë');
-            } else if (ConfirmPassWord == '' || ConfirmPassWord == null || ConfirmPassWord == undefined) {
-                layer.msg('ÇëÔÙ´ÎÊäÈëÃÜÂë');
-            } else if (OriginalPassword == NewPassWord) {
-                $('.NewWord').removeClass('hidden');
-            } else if (NewPassWord != ConfirmPassWord) {
-                $('.confirmWord').addClass('hidden');
-                $('.wrongPassWord').removeClass('hidden');
-            } else {
-                // »ñÈ¡ÏÖÕË»§ÓÃ»§ÃûºÍÃÜÂë
-                $.ajax({
-                    url: LBUrl + '' + '1',
-                    data: {
-                        originalPassword: '123456'
-                    },
-                    dataType: '',
-                    type: '',
-                    success(res) {
-                        if (res.code = 1) {
-                            if (originalPassword != OriginalPassword) {
-                                layer.msg('Ô­ÃÜÂëÊäÈë´íÎó');
-                            } else {
-                                // ĞŞ¸ÄÃÜÂëÇëÇó
-                                info.Change();
-                            }
-                        } else {
-                            console.log('ÇëÇó´íÎó');
-                        }
-                    },
-                    error(fil) {
-                        console.log('ÇëÇóÊ§°Ü');
-                    }
-                });
-            }
-        });
-    },
-    // ĞŞ¸ÄÃÜÂëÇëÇó
-    Change: function () {
-        // ĞÂÃÜÂëĞŞ¸ÄÇëÇó
-        $.ajax({
-            url: LBUrl + '',
-            data: {
-                originalPassword: '123456',
-                newPassWord: '456789',
-                passwordValidation: '456789'
-            },
-            dataType: '',
-            type: '',
-            success(res) {
-                if (res.code == 1) {
-                    console.log('ÇëÇó½Ó¿Ú³É¹¦');
-                    layer.msg('ĞŞ¸Ä³É¹¦£¡', function () {
-                        window.location.href = "../../index.html";
-                    });
-                } else {
-                    console.log('ÇëÇó½Ó¿Ú´íÎó');
-                }
-            },
-            error(fil) {
-                console.log('ÇëÇó½Ó¿ÚÊ§°Ü');
-            }
-        });
-    }
 };

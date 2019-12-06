@@ -95,7 +95,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="layui-form-item" style=" margin-top: 15px; ">
+				<div class="layui-form-item" style=" margin-top: 20px; ">
 					<div class="layui-form-item layui-form-text">
 						<label class="layui-form-label" style="font-size: 16px;">任务描述</label>
 						<div class="layui-input-block">
@@ -148,7 +148,7 @@
 					<img src="./../imgs/search.jpg" style="position: relative;top: 0px;">
 					<input type="" name="" id="paperName" value="" style="margin-top: 5px; margin-left: 5px;">
 				</div>
-				<table class="layui-table" style="text-align: center; ">
+				<table class="layui-table">
 					<colgroup>
 						<col width="30%">
 						<col width="25%">
@@ -172,16 +172,19 @@
 		<!-- 选择试卷结束----------------------------------------------------------------------- -->
 
 		<!-- 选择人员部分------------------------------------------------------------------------------- -->
-		<div id="selectPersonnel" style="padding: 20px;" hidden="">
+		<div id="selectPersonnel" style="padding: 14px 20px 20px 20px;" hidden="">
 			<div class="iconSearch" style="padding: 3px 10px;float: right; "><img src="./../imgs/search.jpg"><input type="text"
 				 class="userNameRetrieval" style="width: 150px; height: 30px; ">
 			</div>
-			<div id="" class="layui-table layui-form" style="margin: 10px 0 30px 0; background-color: #FFFFFF; ">
+			<div id="" class="layui-table layui-form" style="margin: 24px 0 22px 22px; background-color: #FFFFFF; ">
 				人员名单 <input type="checkbox" class="" lay-skin="primary" lay-filter="Staff" id="checkAll">全选
 			</div>
 			<div id="selectTaskUsers" class="layui-table layui-form"></div>
-			<button type="button" class="layui-btn layui-btn-normal layui-btn-sm layui-btn-normal okbtn usersSelectOk">确认
-			</button>
+			<div class="Release_btn">
+				<button type="button" class="layui-btn layui-btn-normal layui-btn-sm layui-btn-normal okbtn usersSelectOk">确认
+				</button>
+			</div>
+			
 		</div>
 		<!-- 选择人员结束----------------------------------------------------------------- -->
 
@@ -206,17 +209,13 @@
 			<div class="layui-form">
 				<table class="layui-table">
 					<colgroup>
-
+						<col width="30%">
 						<col width="33%">
 						<col width="33%">
-						<col width="33%">
-
 					</colgroup>
 					<thead>
 						<tr style="margin-top: -10px; cursor: default;">
-
 							<th style="text-align: center;">人员名单</th>
-
 							<th style="text-align: center;">类型</th>
 							<th style="text-align: center; ">任务得分</th>
 						</tr>

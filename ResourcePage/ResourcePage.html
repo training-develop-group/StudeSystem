@@ -11,7 +11,6 @@
 		<title>资源页</title>
 	</head>
 	<body>
-
 		<div id="header"></div>
 		<div class="wrapper wrapper-content clearfix">
 			<div class="title">
@@ -56,7 +55,7 @@
 				<button type="button" class="layui-btn layui-btn-primary changeFile" id="testList">选择文件</button>
 				<i class="layui-icon upMsg">&#xe607;</i>
 				<div class="upMsgContent hidden">
-					*可上传类型:MP4、MP3、AVI、MP4、MP3、AVI、MP4、MP3、AVI、MP4、MP3、AVI、MP4、MP3、AVI、MP4、MP3、AVI、MP4、MP3、AVI、MP4、MP3、AVI
+					*可上传类型:MP4、AVI、MOV、RMVB、RM、FLV、WMA、MP3、OGV、WAV、AIFF、AAC、MIDI、DOCX、DOC、XLS、XLSX、PDF、PPT、PPTX、TXT、
 				</div>
 			</div>
 			<div class="layui-upload-list">
@@ -114,8 +113,8 @@
 				<label href="" class="selectPersonnel">
 					<i class="layui-icon">&#xe602;</i>选择人员
 				</label>
-				<div class="taskUsers " lay-event="edit"></div>
-				<div class="layui-form-item" style=" margin-top: 20px;">
+				<div class="taskUsers" lay-event="edit"></div>
+				<div class="layui-form-item" style=" margin: 20px 0;">
 					<div>
 						<label class="layui-form-label" style="padding-left: 13px;font-size: 16px;">任务时间</label>
 						<div class="layui-input-block">
@@ -143,27 +142,6 @@
 				</div>
 			</div>
 		</div>
-
-		<!-- 选择资源部分------------------------------------- -->
-		<div id="selectResource">
-			<div>
-				<div class="selectResHeader">
-					<ul class="layui-nav" style="width: 400px; background-color: #FFFFFF; ">
-						<li class="layui-nav-item layui-this selectRes" value="1"><a href="javascript:void(0);">视频资源</a></li>
-						<li class="layui-nav-item selectRes" value="3"><a href="javascript:void(0);">文档资源</a></li>
-						<li class="layui-nav-item selectRes" value="2"><a href="javascript:void(0);">音频资源</a></li>
-					</ul>
-					<p style="border-bottom: 2px solid #1e9fff;"></p>
-				</div>
-				<div id="resource" class="layui-form">
-				</div>
-			</div>
-			<div class="Release_btn">
-				<button type="button" class="layui-btn layui-btn-normal layui-btn-sm okbtn resourceSelection">确认</button>
-			</div>
-		</div>
-		<!-- 选择资源结束----------------------------------------------------- -->
-
 
 		<!-- 选择人员部分------------------------------------------------------------------------------- -->
 		<div id="selectPersonnel" class="hidden">

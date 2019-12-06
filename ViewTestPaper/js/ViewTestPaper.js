@@ -87,7 +87,7 @@ var info = {
 			} else {
 				item.questionType = '多选题';
 			}
-			Html.push('<p class="distanceNum"><span class="num">' + (index + 1) + '</span>.' + item.questionType + '<span class="newScore">' + item.score + '</span>分</p>');
+			Html.push('<p class="distanceNum"><span class="num">' + (index + 1) + '</span>.' + item.questionType + '&nbsp;<span class="newScore">' + item.score + '</span>分</p>');
 			// 转义(已防有标签的样式被html识别)
 			item.content = $('<div>').text(item.content).html();
 			Html.push('<p class="distance">' + item.content + '</p>');
@@ -138,16 +138,13 @@ var info = {
 				layui.use("layer", function() {
 					var layer = layui.layer;
 					layer.open({
-						type: 1 //Page层类型
-							,
+						type: 1,
 						closeBtn: 1,
 						move: false,
 						area: ['700px', '260px'],
 						title: ['查看解析',
 								'background-color: #279ef0;text-align: center;font-size: 20px;line-height: 43px;color:white;letter-spacing: 2px;padding: 0px;'
-							]
-							// ,shade: 0.6 //遮罩透明度
-							,
+							],
 						content: '<div class="answerContent">' +
 							'<p>正确答案：<span class="answerOptions">' + OptionType + '</span></p>' +
 							'<p>答案解析：</p>' +

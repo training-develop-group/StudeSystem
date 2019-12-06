@@ -35,7 +35,6 @@ html {
 .content {
 	background-color: #FFFFFF;
 	width: 100%;
-	/* margin-left: 10px; */
 	min-height: 650px;
 	margin-top: 20px;
 }
@@ -219,7 +218,9 @@ th {
 #myAudio {
 	width: 500px;
 }
-
+.page{
+	margin: 10px 0 0 0;
+}
 
 /*编辑资源名弹出层样式*/
 #editResNameBox {
@@ -350,9 +351,7 @@ pre {
 .taskUsers p {
 	cursor: pointer;
 	line-height: 20px;
-	margin-bottom: 5px;
-	width: 230px;
-	overflow: auto;
+	margin: 0 20px 0;
 }
 
 /* 名字左浮动 */
@@ -509,7 +508,7 @@ pre {
 	border: 1px solid #C9C9C9;
 	border-radius: 6px;
 	padding: 3px 10px;
-	margin: 0 10px 19px 0px;
+	margin: 0 26px 19px 0px;
 	float: right;
 }
 
@@ -520,7 +519,7 @@ pre {
 }
 
 .nameList {
-	margin-top: 10px;
+	margin-top: 5px;
 	background-color: #FFFFFF;
 }
 
@@ -533,10 +532,10 @@ pre {
 }
 
 #selectTaskUsers .layui-form-label {
-	width: 95px;
+	width: 100px;
 	line-height: 15px;
 	text-align: left;
-	padding-right: 8px;
+	padding: 10px 0 8px 20px;
 }
 
 /* 选择人员搜索框 */
@@ -549,14 +548,14 @@ pre {
 .selectTaskUsers {
 	border: 1px solid #C9C5C5;
 	height: 300px;
-	width: 550px;
+	width: 515px;
 	margin: auto;
 	background-color: rgb(248, 248, 248);
 	overflow: auto;
 }
 
 .checkboxNameList {
-	margin: 15px 0 0 10px;
+	margin: 18px 0 0 28px;
 	display: inline-block;
 }
 
@@ -599,7 +598,6 @@ i {
 	color: #fff !important;
 }
 
-
 /* 上传资源 */
 .layui-upload-list {
 	position: relative;
@@ -607,10 +605,6 @@ i {
 	overflow: auto;
 	margin: 0;
 }
-
-
-
-
 
 /* 发布样式[新] */
 
