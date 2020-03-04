@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<!-- <link rel="stylesheet" href="../css/css/font-awesome.css"> -->
+		<link rel="stylesheet" href="../css/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../js/layui/css/layui.css">
+		<link rel="stylesheet" href="../css/common.css">
+		<link rel="stylesheet" href="css/ResourcePage.css">
+
+		<title>资源页</title>
+	</head>
+	<body>
+
+		<div id="header"></div>
+		<div class="wrapper wrapper-content clearfix">
+			<div class="title">
+				<div class="title-header">
+					<span class="title-header-text">资源列表</span>
+					<span><input type="button" class="title-header-btn layui-btn layui-btn-primary" id="uploadFile" value="上传课件"></span>
+				</div>
+			</div>
+			<div class="content">
+				<table border="0" class="mainTabel">
+					<colgroup>
+						<col width="2%">
+						<col width="2%">
+						<col width="2%">
+						<col width="2%">
+						<col width="2.5%">
+					</colgroup>
+
+					<thead>
+						<tr class="table-header">
+							<th>文件名称</th>
+							<th class="centerText">资源状态</th>
+							<th class="centerText">文件类型</th>
+							<th class="centerText">文件大小</th>
+							<th id="rightText">操作</th>
+
+						</tr>
+					</thead>
+
+					<tbody id="contentList"></tbody>
+				</table>
+			</div>
+			<div id="page" class="page" style="text-align: center"></div>
+		</div>
+
+		<div class="layui-upload" id="popup" style="display: none;">
+			<button type="button" class="layui-btn layui-btn-primary changeFile" id="testList">选择文件</button>
+			<div class="layui-upload-list">
+				<table class="hiddenTableList">
+					<colgroup>
+						<col width="2%">
+						<col width="2%">
+						<col width="2%">
+						<col width="2%">
+						<col width="2%">
+					</colgroup>
+					<thead>
+						<tr>
+							<th>文件名</th>
+							<th>类型</th>
+							<th>大小</th>
+							<th>状态</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+					<tbody id="demoList"></tbody>
+				</table>
+			</div>
+			<!-- <button type="button" class="layui-btn layui-btn-normal layui-btn-sm" id="uploadBtn">确定</button> -->
+		</div>
+		<!-- 视频调用隐藏绑定弹出层 -->
+		<div id="hiddenVideo" style="display: none;"></div>
+
+		<!-- 音频调用绑定弹出层 -->
+		<div id="hiddenAudio" style="display: none;">
+			<!-- <audio src="http://192.168.188.114:88/b9676e1768bd4219ae7504586ce6d307.ogv" controls="controls" id="myAudio"></audio> -->
+		</div>
+
+		<div id="Doc">
+			<!-- <iframe src="http://192.168.188.114:88/c70c26d9a61e4075995b1c1832a24a77.docx"></iframe> -->
+		</div>
+		<!-- <iframe src="text/world.docx" width="500" height="500"></iframe> -->
+		<!-- <iframe src="html:\\CLOUDEASY-PC\share\新建文件夹\world.docx"  width="500" height="500"></iframe> -->
+
+		<!-- 编辑资源名弹出层box -->
+		<div id="editResNameBox" style="display: none;">
+			<span class="editText">文件名称</span><input class="rename layui-input" />
+		</div>
+
+
+
+
+
+		<div class="Release hidden" id="addTaskPage">
+			<div class="Release_content layui-form">
+				<div class="layui-form-item">
+					<label class="layui-form-label">任务名称</label>
+					<div class="Release_name">
+						<input type="text" name="resName" required lay-verify="required" placeholder="请输入任务名" autocomplete="off" class="layui-input taskName">
+					</div>
+				</div>
+				<div class="layui-form-item">
+					<label class="layui-form-label">任务类型</label>
+					<div class="layui-input-inline">
+						<select name="city" lay-verify="required" id="taskType" lay-filter="fangxiang"></select>
+					</div>
+				</div>
+				<div class="layui-form-item">
+					<span class="_search selectResource">
+						<i class="layui-icon">&#xe602;</i>
+						<span>选择资源</span>
+						<span class="resAdd"></span>
+					</span>
+				</div>
+				<!-- <div class="layui-form-item">
+					<span class="_search selectPapers">
+						<i class="layui-icon">&#xe602;</i>
+						<span>选择试卷</span>
+						<span class="paperAdd"></span>
+					</span>
+				</div> -->
+				<div class="layui-form-item">
+					<label class="layui-form-label">任务对象</label>
+					<span class="_search selectPersonnel">
+						<i class="layui-icon">&#xe602;</i>
+						<span>选择人员</span>
+					</span>
+				</div>
+				<div class="layui-form-item personls">
+					<div class="personl taskUsers" lay-event="edit">
+						<p class="clearfix"><span>姓名</span><i class="layui-icon">&#x1006;</i></p>
+						<p class="clearfix"><span>姓名</span><i class="layui-icon">&#x1006;</i></p>
+						<p class="clearfix"><span>姓名</span><i class="layui-icon">&#x1006;</i></p>
+						<p class="clearfix"><span>姓名</span><i class="layui-icon">&#x1006;</i></p>
+						<p class="clearfix"><span>姓名</span><i class="layui-icon">&#x1006;</i></p>
+						<p class="clearfix"><span>姓名</span><i class="layui-icon">&#x1006;</i></p>
+						<p class="clearfix"><span>姓名</span><i class="layui-icon">&#x1006;</i></p>
+					</div>
+				</div>
+				<div class="layui-form-item timeBox">
+					<div class="layui-inline">
+						<label class="layui-form-label">任务时间</label>
+						<div class="layui-input-inline">
+							<input type="text" name="date" id="test1" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+						</div>
+						<div class="layui-form-mid">-</div>
+						<div class="layui-input-inline">
+							<input type="text" name="date" id="test2" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+						</div>
+					</div>
+				</div>
+				<div class="layui-form-item">
+					<label class="layui-form-label">任务描述</label>
+					<div class="layui-input-block">
+						<textarea name="desc" placeholder="请输入描述" class="layui-textarea taskRemark" style="resize: none;"></textarea>
+					</div>
+				</div>
+			</div>
+			<div class="Release_btn">
+				<button class="layui-btn layui-btn-normal layui-btn-sm addOk button">确认</button>
+			</div>
+		</div>
+
+
+		<!-- 选择资源部分------------------------------------- -->
+		<div id="selectResource">
+			<div>
+				<div class="selectResHeader">
+					<ul class="layui-nav" style="width: 400px; background-color: #FFFFFF; ">
+						<li class="layui-nav-item layui-this selectRes" value="1"><a href="javascript:void(0);">视频资源</a></li>
+						<li class="layui-nav-item selectRes" value="3"><a href="javascript:void(0);">文档资源</a></li>
+						<li class="layui-nav-item selectRes" value="2"><a href="javascript:void(0);">音频资源</a></li>
+					</ul>
+					<p style="border-bottom: 2px solid #1e9fff;"></p>
+				</div>
+				<div id="resource" class="layui-form">
+				</div>
+			</div>
+			<div class="Release_btn">
+				<button type="button" class="layui-btn layui-btn-normal layui-btn-sm okbtn resourceSelection">确认</button>
+			</div>
+		</div>
+		<!-- 选择资源结束----------------------------------------------------- -->
+
+
+		<!-- 选择人员部分------------------------------------------------------------------------------- -->
+		<div id="selectPersonnel" class="hidden">
+			<div class="iconSearch">
+				<img src="./../imgs/search.jpg">
+				<input type="text" class="userNameRetrieval"></div>
+			<div class="layui-form nameList">
+				<div class="checkboxNameList">
+					人员名单 <input type="checkbox" lay-skin="primary" lay-filter="Staff" id="checkAll">全选
+				</div>
+				<div id="selectTaskUsers" class="layui-table selectTaskUsers"></div>
+			</div>
+			<div class="Release_btn">
+				<button type="button" class="layui-btn layui-btn-sm layui-btn-normal okbtn usersSelectOk">确认</button>
+			</div>
+
+		</div>
+		<!-- 选择人员结束----------------------------------------------------------------- -->
+
+
+
+
+
+
+
+
+
+
+
+		<script src="../js/jQuery v3.4.1.min.js"></script>
+		<script src="../js/layui/layui.all.js"></script>
+		<script src="../js/layui/layui.js"></script>
+		<script src="../js/common.js"></script>
+		<script src="../js/address.js"></script>
+		<script src="js/ResourcePage.js"></script>
+	</body>
+</html>

@@ -1,0 +1,607 @@
+.layui-form-select dl dd.layui-this {
+    background-color: rgb(64, 175, 254)
+}
+
+#selectTaskUsers span {
+    text-align: left;
+    padding-left: 20px;
+
+}
+
+.selectResource {
+    cursor: pointer;
+}
+
+.selectPapers {
+    cursor: pointer;
+}
+
+.radio_box {
+    position: relative;
+    margin: 0 10px;
+    float: left;
+    width: 152px;
+    height: 190px;
+    overflow: hidden;
+}
+
+#resPage {
+    text-align: center;
+}
+
+
+.radio_box .layui-form-radio {
+    position: absolute;
+    left: 5px;
+    top: 5px;
+}
+
+.img-box {
+    height: 150px;
+    width: 150px;
+    border: 1px solid #dadada;
+    margin: 20px 0 0 0;
+    position: relative;
+    cursor: pointer;
+}
+
+.layui-form-radio > i {
+    margin-top: 12px;
+}
+
+.img-box img {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    width: 65%;
+    height: 65%;
+}
+
+.img-box.checked {
+    border: 3px solid rgb(64, 175, 254);
+    width: 146px;
+    height: 146px;
+}
+
+.img-box.checked img {
+    width: 69%;
+    height: 69%;
+}
+
+.radio_box .resName {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 50%;
+}
+
+.layui-form-radio > i:hover,
+.layui-form-radioed > i {
+    color: rgb(64, 175, 254);
+}
+
+
+.Release_btn {
+    position: absolute;
+    margin: 0 auto;
+    width: 140px;
+    left: 0;
+    right: 0;
+    bottom: 25px;
+}
+
+.selectPersonnel {
+    margin: 0 0 0 23px;
+}
+
+td button {
+    cursor: pointer;
+}
+
+td {
+    cursor: default;
+
+}
+
+tr .oneselfTaskName {
+    cursor: pointer;
+    text-align: left;
+    padding-right: 0;
+}
+
+.oneselfTaskName span {
+    display: inline-block;
+    width: 267px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+#selectTaskUsers {
+    border: 1px solid #C9C5C5;
+    width: 505px;
+    height: 300px;
+    margin-bottom: 20px;
+    overflow: auto;
+}
+
+.layui-form-label {
+    line-height: 35px;
+    padding: 0;
+    width: 100px;
+}
+
+.layui-nav .layui-nav-item a {
+    color: #000000;
+
+}
+
+.layui-nav .layui-this a {
+    color: #FFFFFF;
+
+}
+
+.layui-nav .layui-nav-item {
+    color: #66AFE9;
+    line-height: 40px;
+    height: 40px;
+
+}
+
+.taskUsers {
+    margin-left: 40px;
+    width: 248px;
+    height: 150px;
+    border: 1px solid #E6E6E6;
+    overflow: auto;
+    padding: 5px;
+}
+
+ol,
+ul {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+ul div img {
+    position: relative;
+    top: -1px;
+    left: 2px;
+}
+
+ul div input {
+    height: 25px;
+    margin-top: 4px !important;
+}
+
+.layui-this > a {
+    color: #FFFFFF;
+}
+
+.layui-this {
+    background-color: #1E9FFF;
+    border-bottom: 0px;
+
+}
+
+.taskNameupdate {
+    width: 420px;
+    border-radius: 7px;
+}
+
+.taskNameupdateBox label {
+    font-size: 16px;
+    padding-right: 15px;
+}
+
+.taskNameupdateBox input {
+    width: calc(100% - 180px);
+}
+
+#updateTaskName {
+    margin-top: 20px;
+    width: 150px;
+    display: none;
+}
+
+.taskNameupdateBox {
+    padding: 0 50px;
+}
+
+.resourceSelection {
+    width: 100px;
+    height: 30px;
+    margin-left: 250px;
+    margin-top: 0;
+    background-color: rgb(64, 175, 254);
+
+}
+
+#resource {
+    padding: 0 90px;
+}
+
+.confirmAdd {
+    width: 160px;
+    margin: 30px auto 0;
+}
+
+.confirmAdd button {
+    width: 160px;
+    text-align: center;
+}
+
+.layui-nav .layui-this:after,
+.layui-nav-bar,
+.layui-nav-tree .layui-nav-itemed:after {
+    background-color: #1E9FFF;
+}
+
+.usersSelectOk {
+    margin-left: 200px;
+    width: 130px;
+}
+
+.checkAll {
+    width: 15px;
+    height: 15px;
+
+}
+
+.iconSearch {
+    width: 200px;
+    border: 1px solid #C9C9C9;
+    border-radius: 6px;
+}
+
+.asd .taskUsers {
+    width: 300px;
+    height: 150px;
+    border: 1px solid #D3D4D3;
+    margin-left: 40px;
+    margin-top: 0;
+    overflow: auto;
+    padding: 10px 10px 10px 20px;
+}
+
+.layui-laydate-footer span:hover {
+    color: rgb(64, 175, 254) !important;
+}
+
+.selectPersonnel {
+    font-size: 16px;
+    color: #5FB878;
+    cursor: pointer;
+    margin-left: 0;
+}
+
+.selectPapers span {
+    cursor: pointer;
+}
+
+.taskUsers > p {
+    line-height: 20px;
+    padding: 0 10px;
+}
+
+.taskUsers p i {
+    float: right;
+    cursor: pointer;
+}
+
+.selectPapersa {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.selectPapers {
+    font-size: 16px;
+    margin-left: 40px;
+
+    color: #5FB878;
+}
+
+.selectResourcea {
+    margin-top: 20px;
+}
+
+#selectResource {
+    display: none;
+    overflow: hidden;
+}
+
+.selectResource {
+    font-size: 16px;
+    margin-left: 40px;
+
+    color: #5FB878;
+}
+
+.resourceNav {
+    background-color: #FFFFFF;
+    margin: 0 45px;
+    padding: 0;
+    border-bottom: 2px solid rgb(30, 159, 255);
+}
+
+#taskContent {
+    background-color: #FFFFFF;
+}
+
+#taskUserDegreeCompletion {
+    background-color: #FFFFFF;
+}
+
+#taskUserDegreeCompletion tr td:nth-child(1) span {
+    display: inline-block;
+    width: 120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.box {
+    width: 100%;
+    height: 90%;
+    margin-top: 0px;
+    /* padding: 10px 150px 10px 150px; */
+}
+
+.headline {
+    /* height: 60px; */
+    height: 50px;
+    width: 100%;
+    background-color: #289ef0;
+    padding-top: 10px;
+    border-radius: 7px 7px 0 0;
+
+    margin-bottom: 10px;
+}
+
+.content {
+    background-color: #FFFFFF;
+    width: 100%;
+    /* height: 85%; */
+    min-height: 650px;
+    margin-top: 20px;
+    border-radius: 2px;
+}
+
+#TaskList table thead th {
+    font-weight: 600;
+}
+
+
+#selectPapers .layui-table td,
+#selectPapers .layui-table th,
+.layui-table td,
+.layui-table th {
+    border-style: none;
+    height: 46px;
+    padding: 0;
+    text-indent: 25px;
+}
+
+.layui-table th {
+    font-size: 16px;
+}
+
+.layui-table thead tr {
+    background-color: #FFFFFF;
+}
+
+.TaskList {
+    width: 100%;
+}
+
+.layui-table {
+    width: calc(100% - 50px);
+    margin-left: 25px;
+    border: 0;
+}
+
+th {
+    border: none;
+    border-bottom: 0.5px solid #E9E7E7;
+}
+
+td {
+    border: none;
+    border-bottom: 0.5px solid #E9E7E7;
+}
+
+tr {
+    border: none;
+    border-bottom: 1px solid #E9E7E7;
+}
+
+i {
+    font-style: normal;
+}
+
+.layui-layer-btn {
+    padding: 0 293px 12px !important;
+}
+
+.releasTeask {
+    font-size: 16px;
+    float: right;
+    margin-right: 20px;
+    border-radius: 5px;
+    color: #279ef2;
+
+    border: none;
+}
+
+.headline > span {
+    font-size: 18px;
+    margin-left: 30px;
+    margin-top: 10px;
+    float: left;
+    line-height: 20px;
+    color: white;
+    cursor: default;
+}
+
+.layui-laypage a {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+#examineTask > .layui-form {
+    padding: 10px 20px 20px 20px;
+}
+
+.taskUsers p:hover {
+    background-color: #f2f2f2;
+}
+
+#examineTask > .layui-table {
+    text-align: center;
+    border: 1px solid rgb(221, 221, 221);
+}
+
+
+.myskin {
+    border-radius: 5px !important;
+}
+
+.radio_box .layui-form-radio {
+    position: absolute;
+    left: 5px;
+    top: 5px;
+}
+
+.layui-form-radio > i {
+    margin-top: 12px;
+}
+
+.img-box img {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    width: 65%;
+    height: 65%;
+}
+
+.radio_box .resName {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 150px;
+}
+
+.layui-form-radio > i:hover,
+.layui-form-radioed > i {
+    color: rgb(64, 175, 254);
+}
+
+
+.Release_btn {
+    position: absolute;
+    margin: 0 auto;
+    width: 140px;
+    left: 0;
+    right: 0;
+    bottom: 25px;
+}
+
+.selectResource i {
+    color: #5FB878;
+}
+
+.selectPapers i {
+    color: #5FB878;
+}
+
+.selectPersonnel i {
+    color: #5FB878;
+}
+
+.okbtn {
+    width: 140px;
+    border: 0;
+    color: white;
+}
+
+#taskContent tr:hover {
+    background-color: #eeeeee;
+}
+
+.selectPapers,
+.selectResource {
+    font-size: 16px;
+    margin-left: 40px;
+    cursor: pointer;
+    color: #5FB878;
+}
+
+.selectPapers img {
+    margin-top: 5px;
+}
+
+.layui-btn-primary:hover {
+    border-color: rgb(208, 208, 208);
+}
+
+.layui-layer-hui .layui-layer-content {
+    height: 25px;
+}
+
+.layui-layer-content .layui-laypage-skip {
+    background-color: #fff;
+}
+
+.layui-nav-item a:hover {
+    color: #000000 !important;
+}
+
+#layui-layer100027,
+.layui-layer-msg {
+    color: #000 !important;
+}
+
+.paperName span {
+    display: inline-block;
+    width: 150px;
+    word-wrap: break-word;
+    white-space: pre;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+#paperPage {
+    position: absolute;
+    bottom: 10px;
+    text-align: center;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+}
+
+/*更改项*/
+
+.paperName span {
+    display: inline-block;
+    width: 150px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.img-box .videoImg {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+
+.resAdd{
+    cursor: default;
+}
+

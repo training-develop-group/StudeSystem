@@ -1,0 +1,114 @@
+/* .content {
+	width: 98%;
+	margin: 0.81cm 20px 30px;
+	height: 750px;
+	background-color: white;
+} */
+#title{
+	width: 100%;
+	height: 60px;
+	background-color: #279ef0;
+	/* margin-left: 43px; */
+	margin-top: 25px;
+	border-radius: 5px 5px 0 0;
+}
+#centered{
+	line-height: 60px;
+}
+#centered span{
+	font-size: 16px;
+	margin-left: 30px;
+	color: white;
+}
+#newTestPaper{
+	font-size: 16px;
+	float: right;
+	margin-right: 20px;
+	margin-top: 10px;
+	border-radius: 3px;
+	color: #279ef2;
+}
+.editorialContent{
+	float: left;
+	width: 100%;
+	/* height: calc(100% - 43px); */
+	min-height: 650px;
+	background-color: white;
+	/* margin-left: 43px; */
+	margin-top: 25px;
+	margin-bottom: 20px;
+	padding: 0px 0px 30px;
+	border-radius: 3px;
+}
+.sortableitem{
+	width: calc(100% - 60px);
+	float: left;
+	margin-left: 28px;
+	margin-top: 25px;
+	border: 1px solid #dadada;
+}
+.functionBox{
+	width: 100%;
+	height: 50px;
+	/* border: 1px solid black; */
+	background-color: #f5f5f5;
+	margin-top: 20px;
+}
+.functionBox button{
+	font-size: 16px;
+	margin-left: 20px;
+	/* margin-top: 12px; */
+	line-height: 50px;
+	border: 0;
+	background-color: #f5f5f5;
+}
+.sortableitem .num{
+	margin-top: 15px;
+	margin-left: 20px;
+}
+.distance{
+	margin-top: 20px;
+	margin-left: 30px;
+}
+img{
+	width: 30px;
+}
+.layui-icon{
+	color: #2ba0e3;
+}
+.footer{
+	margin-left: 35%;
+	width:740px;
+	height:55px;
+}
+/* 弹窗位置 */
+.layui-layer{
+	top: 140px !important;
+}
+/* 按钮位置 */
+.layui-layer-btn{
+	padding: 0 293px 12px !important;
+}
+/* 按钮位置 */
+.layui-layer-btn a{
+	margin: -15px 5px 0 !important;
+}
+/* 按钮位置 */
+.layui-layer-btn0{
+	width: 160px !important;
+	/* height: 20px !important; */
+	line-height: 39px;
+	text-align: center;
+	margin-top: -10px;
+}
+.analysis{
+	width: 300px;
+	text-indent: 25px;
+}
+.answerContent{
+	margin-left: 250px;
+	margin-top: 40px;
+}
+.answerContent p{
+	margin-top: 10px;
+}
