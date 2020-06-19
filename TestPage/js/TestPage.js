@@ -39,7 +39,7 @@ $(function() {
 	setTimeInterval = setInterval(info.currentTime, 3000);
 	// 查看任务信息
 	$.ajax({
-		url: LBUrl + 'manage_system/task/' + taskId,
+		url: Url + 'manage_system/task/' + taskId,
 		data: {},
 		dataType: 'json',
 		type: 'GET',
@@ -205,7 +205,7 @@ var info = {
 				'content': Experience
 			};
 			$.ajax({
-				url: LBUrl + 'manage_system/task/comment',
+				url: Url + 'manage_system/task/comment',
 				data: JSON.stringify(data),
 				dataType: 'json',
 				type: 'POST',
@@ -229,7 +229,7 @@ var info = {
 	},
 	administratorResEntirety: function() {
 		$.ajax({
-			url: TDXUrl + 'manage_system/resource/' + resId,
+			url: Url + 'manage_system/resource/' + resId,
 			data: {},
 			dataType: 'json',
 			type: 'GET',
@@ -330,7 +330,7 @@ var info = {
 	userResEntirety: function() {
 		$.ajax({
 			//请求资源详情接口
-			url: TDXUrl + 'manage_system/resource/' + resId,
+			url: Url + 'manage_system/resource/' + resId,
 			data: {},
 			dataType: 'json',
 			type: 'GET',
@@ -414,7 +414,7 @@ var info = {
 	// 储存视频播放时长
 	recordVideoPlaybackTime: function(resId, seconds) {
 		$.ajax({
-			url: TDXUrl + 'manage_system/resource/view',
+			url: Url + 'manage_system/resource/view',
 			data: {
 				'resId': resId,
 				'seconds': Math.round(seconds)
@@ -430,7 +430,7 @@ var info = {
 	// 获取视频时长并赋值
 	getVideoPlaybackTime: function(resId, myVid) {
 		$.ajax({
-			url: TDXUrl + 'manage_system/resource/view',
+			url: Url + 'manage_system/resource/view',
 			data: {
 				'resId': resId
 			},
@@ -463,7 +463,7 @@ var info = {
 	// 管理员获取试卷列表
 	getPaperList: function(paperId) {
 		$.ajax({
-			url: MCUrl + 'manage_system/paper/' + paperId,
+			url: Url + 'manage_system/paper/' + paperId,
 			data: {},
 			Type: 'GET',
 			success(res) {
@@ -513,7 +513,7 @@ var info = {
 						// 正确答案
 						var OptionType = '未知';
 						$.ajax({
-							url: MCUrl + 'manage_system/question/answer',
+							url: Url + 'manage_system/question/answer',
 							data: {
 								'questionId': QusetionId
 							},
@@ -554,7 +554,7 @@ var info = {
 	//  接口 ,获取页面试题 ，做题页面
 	getList: function(taskId, taskType, paperId, resId) {
 		$.ajax({
-			url: MCUrl + 'manage_system/paper/' + paperId,
+			url: Url + 'manage_system/paper/' + paperId,
 			data: {},
 			Type: 'GET',
 			success: function(resb) {
@@ -803,7 +803,7 @@ var info = {
 			$('.CR-btnConfirm').click(function() {
 				layer.closeAll();
 				$.ajax({
-					url: MCUrl + 'manage_system/paper/answers',
+					url: Url + 'manage_system/paper/answers',
 					data: data,
 					dataType: 'json',
 					type: 'POST',
@@ -880,7 +880,7 @@ var info = {
 								// 正确答案
 								var OptionType = '';
 								$.ajax({
-									url: MCUrl + 'manage_system/question/answer',
+									url: Url + 'manage_system/question/answer',
 									data: {
 										'questionId': QusetionId
 									},
@@ -931,7 +931,7 @@ var info = {
 	// 用户获取试卷列表(已答完)
 	getUserPaperList: function() {
 		$.ajax({
-			url: LBUrl + 'manage_system/paper/question-answer',
+			url: Url + 'manage_system/paper/question-answer',
 			data: {
 				'taskId': taskId,
 				'paperId': paperId
@@ -1008,7 +1008,7 @@ var info = {
 						// 正确答案
 						var OptionType = '';
 						$.ajax({
-							url: MCUrl + 'manage_system/question/answer',
+							url: Url + 'manage_system/question/answer',
 							data: {
 								'questionId': QusetionId
 							},
@@ -1052,7 +1052,7 @@ var info = {
 	// 查询心得
 	getExperienceList: function(pageNum, taskId) {
 		$.ajax({
-			url: LBUrl + 'manage_system/task/comments',
+			url: Url + 'manage_system/task/comments',
 			data: {
 				'taskId': taskId,
 				'pageNum': pageNum,

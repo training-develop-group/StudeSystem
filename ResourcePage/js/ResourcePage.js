@@ -74,7 +74,7 @@ $(function() {
 
 		$('#hiddenAudio').click(function() {
 			var $eleForm = $("<form method='get'></form>");
-			$eleForm.attr("action", "http://192.168.188.109:8848/0625ae7ec85c4b94bf1cde70d2692b67.mp4");
+			$eleForm.attr("action",   FileUrl + "/0625ae7ec85c4b94bf1cde70d2692b67.mp4");
 			$(document.body).append($eleForm);
 			// 提交表单，实现下载
 			$eleForm.submit();
@@ -110,7 +110,7 @@ var info = {
 
 		// console.log(resName);
 		$.ajax({
-			url: TDXUrl + 'manage_system/resource/resources',
+			url: Url + 'manage_system/resource/resources',
 			data: {
 				'pageNum': pageNum,
 				'pageSize': 12,
@@ -345,7 +345,7 @@ var info = {
 	 */
 	getResource: function(resId) {
 		$.ajax({
-			url: TDXUrl + 'manage_system/resource/' + resId,
+			url: Url + 'manage_system/resource/' + resId,
 			data: {},
 			dataType: 'json',
 			type: 'GET',
@@ -396,7 +396,7 @@ var info = {
 				// setTimeInterval2 = setInterval(info.NoProgressBar, 1000);
 				console.log(a);
 				var html = [];
-				html.push('<video src="http://192.168.188.109:8848/' + path +
+				html.push('<video src="'+ FileUrl + path +
 					'" controls="controls" preload="auto" width="1280px" height="720px" id="myVideo"></video>');
 				$('#viewResourceBox').html(html.join(''));
 
@@ -434,7 +434,7 @@ var info = {
 			content: $('#viewResourceBox'),
 			success: function() {
 				var html = [];
-				html.push('<audio src="http://192.168.188.109:8848/' + path +
+				html.push('<audio src="' +FileUrl + path +
 					'" controls="controls" preload="auto" id="myAudio"></audio>');
 				$('#viewResourceBox').html(html.join(''));
 
@@ -463,13 +463,13 @@ var info = {
 				console.log(extPath);
 				if (extPath == '.txt' || extPath == '.pdf') {
 					var html = [];
-					html.push('<iframe src="http://192.168.188.109:8848/' + path + '" width="800px" height="800px"></iframe>');
+					html.push('<iframe src="' + FileUrl + path + '" width="800px" height="800px"></iframe>');
 					$('#viewResourceBox').html(html.join(''));
 				} else {
 					var pdfPath = path.substring(0, path.lastIndexOf('.'));
 					console.log(pdfPath);
 					var html = [];
-					html.push('<iframe src="http://192.168.188.109:8848/' + pdfPath +
+					html.push('<iframe src="' + FileUrl + pdfPath +
 						'.pdf" width="800px" height="800px"></iframe>');
 					$('#viewResourceBox').html(html.join(''));
 				}
@@ -494,7 +494,7 @@ var info = {
 	 */
 	recordVideoPlaybackTime: function(seconds) {
 		$.ajax({
-			url: TDXUrl + 'manage_system/resource/view',
+			url: Url + 'manage_system/resource/view',
 			data: {
 				'resId': 1,
 				'seconds': Math.round(seconds)
@@ -520,7 +520,7 @@ var info = {
 	//获取视频播放时长
 	getVideoPlaybackTime: function() {
 		$.ajax({
-			url: TDXUrl + 'manage_system/resource/view',
+			url: Url + 'manage_system/resource/view',
 			data: {
 				'resId': 1
 			},
@@ -563,7 +563,7 @@ var info = {
 		};
 
 		$.ajax({
-			url: TDXUrl + 'manage_system/resource/res-name',
+			url: Url + 'manage_system/resource/res-name',
 			data: data,
 			dataType: 'json',
 			type: 'POST',
@@ -586,7 +586,7 @@ var info = {
 	//根据Id删除资源
 	deleteResource: function(resId, index) {
 		$.ajax({
-			url: TDXUrl + 'manage_system/resource/' + resId,
+			url: Url + 'manage_system/resource/' + resId,
 			data: {},
 			dataType: 'json',
 			type: 'DELETE',
@@ -651,7 +651,7 @@ var info = {
 							var demoListView = $('#demoList'), //上传文件显示的数据表格
 								uploadListIns = upload.render({
 									elem: '#testList', //选择文件按钮
-									url: TDXUrl + 'manage_system/resource/resource',
+									url: Url + 'manage_system/resource/resource',
 									accept: 'file', //上传文件类型
 									multiple: true, //允许上传多个文件
 									exts: 'mp4|avi|mov|rmvb|rm|flv|wma|mp3|ogv|wav|aiff|aac|midi|docx|doc|xls|xlsx|pdf|txt|ppt|pptx',
@@ -815,7 +815,7 @@ var info = {
 	//查询所有用户
 	selectAllUser: function(userName) {
 		$.ajax({
-			url: LBUrl + 'manage_system/task/users',
+			url: Url + 'manage_system/task/users',
 			data: {
 				'userName': userName
 			},
@@ -905,7 +905,7 @@ var info = {
 		if (index != false) {
 			console.log(data);
 			$.ajax({
-				url: LBUrl + 'manage_system/task/tasks',
+				url: Url + 'manage_system/task/tasks',
 				data: JSON.stringify(data),
 				dataType: 'json',
 				type: 'POST',

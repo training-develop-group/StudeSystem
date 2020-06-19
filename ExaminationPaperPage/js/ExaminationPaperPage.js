@@ -152,7 +152,7 @@ var info = {
 			'paperName': paperName
 		};
 		$.ajax({
-			url: MCUrl + 'manage_system/paper/papers',
+			url: Url + 'manage_system/paper/papers',
 			data: data,
 			dataType: 'json',
 			Type: 'GET',
@@ -377,7 +377,7 @@ var info = {
 		}
 		$('.newTestPaperConfirm').attr('disabled', 'disabled');
 		$.ajax({
-			url: MCUrl + 'manage_system/paper/paper',
+			url: Url + 'manage_system/paper/paper',
 			data: {
 				'paperName': paperName
 			},
@@ -400,7 +400,7 @@ var info = {
 			'paperName': paperName,
 		};
 		$.ajax({
-			url: MCUrl + 'manage_system/paper/paper-name',
+			url: Url + 'manage_system/paper/paper-name',
 			data: data,
 			dataType: 'json',
 			type: 'POST',
@@ -422,7 +422,7 @@ var info = {
 			Snum = 0;
 		}
 		$.ajax({
-			url: MCUrl + 'manage_system/paper/' + paperId,
+			url: Url + 'manage_system/paper/' + paperId,
 			// dataType: 'json',
 			type: 'DELETE',
 			// contentType: 'application/json;charset=utf-8',
@@ -520,7 +520,7 @@ var info = {
 
 		if (index != false) {
 			$.ajax({
-				url: LBUrl + 'manage_system/task/tasks',
+				url: Url + 'manage_system/task/tasks',
 				data: JSON.stringify(data),
 				dataType: 'json',
 				type: 'POST',
@@ -545,7 +545,7 @@ var info = {
 	//查询所有用户
 	selectAllUser: function(userName) {
 		$.ajax({
-			url: LBUrl + 'manage_system/task/users',
+			url: Url + 'manage_system/task/users',
 			data: {
 				'userName': userName
 			},

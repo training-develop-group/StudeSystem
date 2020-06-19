@@ -355,7 +355,7 @@ var info = {
 	//点击查看查找所有关联的用户
 	selectTaskUsers: function(taskId) {
 		$.ajax({
-			url: LBUrl + 'manage_system/task/user-ok',
+			url: Url + 'manage_system/task/user-ok',
 			data: {
 				'taskId': taskId
 			},
@@ -386,7 +386,7 @@ var info = {
 	//查找选择试卷
 	TableDataRequest: function(pageNum, paperName) {
 		$.ajax({
-			url: MCUrl + 'manage_system/paper/papers',
+			url: Url + 'manage_system/paper/papers',
 			data: {
 				"pageNum": pageNum,
 				"pageSize": 10,
@@ -453,7 +453,7 @@ var info = {
 	//查询总条数(不显示)
 	selectTaskCount: function() {
 		$.ajax({
-			url: LBUrl + 'manage_system/task/count',
+			url: Url + 'manage_system/task/count',
 			data: {},
 			dataType: 'json',
 			type: 'GET',
@@ -465,7 +465,7 @@ var info = {
 	//查询所有用户
 	selectAllUser: function(userName) {
 		$.ajax({
-			url: LBUrl + 'manage_system/task/users',
+			url: Url + 'manage_system/task/users',
 			data: {
 				'userName': userName
 			},
@@ -557,7 +557,7 @@ var info = {
 		};
 		if (index != false) {
 			$.ajax({
-				url: LBUrl + 'manage_system/task/tasks',
+				url: Url + 'manage_system/task/tasks',
 				data: JSON.stringify(data),
 				dataType: 'json',
 				type: 'POST',
@@ -587,7 +587,7 @@ var info = {
 			resName = ''
 		}
 		$.ajax({
-			url: TDXUrl + 'manage_system/resource/resources',
+			url: Url + 'manage_system/resource/resources',
 			data: {
 				'pageNum': pageNum || 1,
 				'pageSize': 9,
@@ -639,7 +639,7 @@ var info = {
 	//查询任务类型
 	selectTaskType: function(pageNum, search, type) {
 		$.ajax({
-			url: LBUrl + 'manage_system/task/type',
+			url: Url + 'manage_system/task/type',
 			data: {},
 			dataType: 'json',
 			type: 'GET',
@@ -668,7 +668,7 @@ var info = {
 		}
 		// console.log(search)
 		$.ajax({
-			url: LBUrl + 'manage_system/task/tasks',
+			url: Url + 'manage_system/task/tasks',
 			data: {
 				'status': 1,
 				'userId': '',
@@ -783,7 +783,7 @@ var info = {
 		if (taskName != '') {
 
 			$.ajax({
-				url: LBUrl + 'manage_system/task/task/' + taskId,
+				url: Url + 'manage_system/task/task/' + taskId,
 				data: data,
 				dataType: 'json',
 				type: 'POST',
@@ -808,7 +808,7 @@ var info = {
 	//刪除任務 根据主键删除
 	delectTask: function(taskId) {
 		$.ajax({
-			url: LBUrl + 'manage_system/task/' + taskId,
+			url: Url + 'manage_system/task/' + taskId,
 			data: {},
 			dataType: 'json',
 			type: 'DELETE',

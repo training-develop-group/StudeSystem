@@ -31,7 +31,7 @@ var TableDataRequest = function(pageNum) {
 		'pageSize' : 12
 	};
 	$.ajax({
-		url: HWWUrl + 'manage_system/stat/list',
+		url: Url + 'manage_system/stat/list',
 		data: data,
 		dataType: 'json',
 		type: 'GET',

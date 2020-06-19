@@ -72,7 +72,7 @@ var info = {
 			} else {
 				// 获取现账户用户名和密码
 				$.ajax({
-					url: LBUrl + 'manage_system/user/password',
+					url: Url + 'manage_system/user/password',
 					data: {
 						'originalPassword': OriginalPassword,
 						'newPassWord': NewPassWord,

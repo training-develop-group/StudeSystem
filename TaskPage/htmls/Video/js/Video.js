@@ -9,7 +9,7 @@ $(function() {
 	// resContent(taskId);
 
 	$.ajax({
-		url: LBUrl + 'manage_system/task/' + taskId,
+		url: Url + 'manage_system/task/' + taskId,
 		data: {
 
 		},
@@ -35,7 +35,7 @@ $(function() {
 
 		// res.data.forEach(function(item,index){
 		$.ajax({
-			url: TDXUrl + 'manage_system/resource/' + res.data.resId,
+			url: Url + 'manage_system/resource/' + res.data.resId,
 			data: {},
 			dataType: 'json',
 			type: 'GET',
@@ -56,7 +56,7 @@ $(function() {
 						)
 
 						Html.push(
-							'<div class="colour"><div class="m"><video poster="vs.png" controls><source src="http://192.168.188.109:8848/' +
+							'<div class="colour"><div class="m"><video poster="vs.png" controls><source src="'+ Url +
 							resc.data.path +
 							'" type="video/' + resc.data.resExt +
 							'"></video><script>plyr.setup();</script></div><div style="text-align:center;margin:50px 0; font:normal 14px/24px ' +
@@ -70,8 +70,7 @@ $(function() {
 							res.data.paperId + '">测试内容</li>'
 						)
 						Html.push(
-							'<div class="colour" style="padding-top: 0;"><div class="File"><embed src="http://192.168.188.109:8848/' +
-							resc.data.path +
+							'<div class="colour" style="padding-top: 0;"><div class="File"><embed src="'+ Url + resc.data.path +
 							'" width="1200" height="470" ></embed></div></div></ul></div></div>')
 						$('.content').css('height', '780px')
 					} else if (resc.data.resType == 2) {
@@ -79,7 +78,7 @@ $(function() {
 						Html.push(
 							'<div class="layui-tab tabHead layui-tab-brief"><ul class="layui-tab-title"><li class="layui-this" style="display: hidden;">音频学习</li><li style="display: hidden;" class="testContent" value="' +
 							res.data.paperId +
-							'">测试内容</li><div class="colour" style="padding-top: 0;"><div class="File"><audio class="frequency" controls="controls" style="padding: 20px 500px;> <source src="http://192.168.188.109:8848/' +
+							'">测试内容</li><div class="colour" style="padding-top: 0;"><div class="File"><audio class="frequency" controls="controls" style="padding: 20px 500px;> <source src="'+ Url +
 							resc.data.path + '" type="audio/ogg" "></audio></div></div></ul></div></div>'
 						)
 						$('.experienceListBox').show()
@@ -103,7 +102,7 @@ $(function() {
 					} else if (res.data.taskType == 2) {
 						// console.log('asdasd')
 						$.ajax({
-							url: LBUrl + 'manage_system/task/comments',
+							url: Url + 'manage_system/task/comments',
 							data: {
 								'taskId': taskId,
 								'pageNum': 1,
@@ -164,7 +163,7 @@ $(function() {
 	//表格会绘制
 	var tableAjax = function(res, paperId) {
 		$.ajax({
-			url: MCUrl + 'manage_system/paper/' + paperId,
+			url: Url + 'manage_system/paper/' + paperId,
 			data: {
 
 			},
@@ -251,7 +250,7 @@ $(function() {
 		// 正确答案
 		var OptionType = '未知';
 		$.ajax({
-			url: MCUrl + 'manage_system/question/answer',
+			url: Url + 'manage_system/question/answer',
 			data: {
 				'questionId': questionId
 			},

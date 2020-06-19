@@ -20,7 +20,7 @@ var logIn = function() {
 		return false;
 	}
 	$.ajax({
-		url: MCUrl + 'manage_system/login',
+		url: Url + 'manage_system/login',
 		data: data,
 		dataType: 'json',
 		type: "GET",

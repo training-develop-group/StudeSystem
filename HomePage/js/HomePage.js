@@ -46,7 +46,7 @@ var info = {
             var form = layui.form;
             form.render('select');
             $.ajax({
-                url: TDXUrl + 'manage_system/resource/resources',
+                url: Url + 'manage_system/resource/resources',
                 data: {
                     'pageNum': 1,
                     'pageSize': 5
@@ -82,7 +82,7 @@ var info = {
                 }
             });
             $.ajax({
-                url: LBUrl + 'manage_system/task/tasks',
+                url: Url + 'manage_system/task/tasks',
                 data: {
                     'status': 1,
                     'userId': '',
@@ -116,7 +116,7 @@ var info = {
             });
 
             $.ajax({
-                url: MCUrl + 'manage_system/paper/papers',
+                url: Url + 'manage_system/paper/papers',
                 data: {
                     'pageNum': 1,
                     'pageSize': 5,

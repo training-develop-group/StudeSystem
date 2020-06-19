@@ -1,31 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/TestQuestions/css/TestQuestions.css" line="99" />
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="60f95631-7e6e-4dbe-9c67-125e4944f0a6" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/EditorTestPaper/js/EditortestPaper.js" afterPath="$PROJECT_DIR$/EditorTestPaper/js/EditortestPaper.js" />
-      <change beforePath="$PROJECT_DIR$/ExaminationPaperPage/js/ExaminationPaperPage.js" afterPath="$PROJECT_DIR$/ExaminationPaperPage/js/ExaminationPaperPage.js" />
-      <change beforePath="$PROJECT_DIR$/ResourcePage/js/ResourcePage.js" afterPath="$PROJECT_DIR$/ResourcePage/js/ResourcePage.js" />
-      <change beforePath="$PROJECT_DIR$/StatisticsPage/js/StatisticsPage.js" afterPath="$PROJECT_DIR$/StatisticsPage/js/StatisticsPage.js" />
-      <change beforePath="$PROJECT_DIR$/TaskPage/TaskPage.html" afterPath="$PROJECT_DIR$/TaskPage/TaskPage.html" />
-      <change beforePath="$PROJECT_DIR$/TaskPage/aaaaa.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/TaskPage/css/TaskPage.css" afterPath="$PROJECT_DIR$/TaskPage/css/TaskPage.css" />
-      <change beforePath="$PROJECT_DIR$/TaskPage/js/TaskPage.js" afterPath="$PROJECT_DIR$/TaskPage/js/TaskPage.js" />
-      <change beforePath="$PROJECT_DIR$/TestPage/css/TestPage.css" afterPath="$PROJECT_DIR$/TestPage/css/TestPage.css" />
-      <change beforePath="$PROJECT_DIR$/TestPage/js/TestPage.js" afterPath="$PROJECT_DIR$/TestPage/js/TestPage.js" />
-      <change beforePath="$PROJECT_DIR$/UserHomePage/js/UserHomePage.js" afterPath="$PROJECT_DIR$/UserHomePage/js/UserHomePage.js" />
-      <change beforePath="$PROJECT_DIR$/ViewTestPaper/ViewTestPaper.html" afterPath="$PROJECT_DIR$/ViewTestPaper/ViewTestPaper.html" />
-      <change beforePath="$PROJECT_DIR$/js/LogIn.js" afterPath="$PROJECT_DIR$/js/LogIn.js" />
-      <change beforePath="$PROJECT_DIR$/js/common.js" afterPath="$PROJECT_DIR$/js/common.js" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Audio/css/Audio.css" beforeDir="false" afterPath="$PROJECT_DIR$/Audio/css/Audio.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ChangePassword/js/ChangePassword.js" beforeDir="false" afterPath="$PROJECT_DIR$/ChangePassword/js/ChangePassword.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EditorTestPaper/js/EditortestPaper.js" beforeDir="false" afterPath="$PROJECT_DIR$/EditorTestPaper/js/EditortestPaper.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ExaminationPaperPage/js/ExaminationPaperPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/ExaminationPaperPage/js/ExaminationPaperPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HomePage/HomePage.html" beforeDir="false" afterPath="$PROJECT_DIR$/HomePage/HomePage.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HomePage/js/HomePage.js" beforeDir="false" afterPath="$PROJECT_DIR$/HomePage/js/HomePage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ResourcePage/js/ResourcePage.js" beforeDir="false" afterPath="$PROJECT_DIR$/ResourcePage/js/ResourcePage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/StatisticsPage/js/StatisticsPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/StatisticsPage/js/StatisticsPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TaskPage/htmls/Video/js/Video.js" beforeDir="false" afterPath="$PROJECT_DIR$/TaskPage/htmls/Video/js/Video.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TaskPage/js/TaskPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/TaskPage/js/TaskPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestPage/js/TestPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/TestPage/js/TestPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestQuestions/js/TestQuestions.js" beforeDir="false" afterPath="$PROJECT_DIR$/TestQuestions/js/TestQuestions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserHomePage/js/UserHomePage.js" beforeDir="false" afterPath="$PROJECT_DIR$/UserHomePage/js/UserHomePage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ViewTestPaper/js/ViewTestPaper.js" beforeDir="false" afterPath="$PROJECT_DIR$/ViewTestPaper/js/ViewTestPaper.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/LogIn.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/LogIn.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/address.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/address.js" afterDir="false" />
     </list>
-    <ignored path="$PROJECT_DIR$/.tmp/" />
-    <ignored path="$PROJECT_DIR$/temp/" />
-    <ignored path="$PROJECT_DIR$/tmp/" />
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
-    <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -34,20 +46,6 @@
   <component name="DefaultGradleProjectSettings">
     <option name="testRunner" value="GRADLE" />
     <option name="delegatedBuild" value="true" />
-  </component>
-  <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="17" column="6" lean-forward="true" selection-start-line="17" selection-start-column="6" selection-end-line="17" selection-end-column="6" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -58,34 +56,6 @@
       </list>
     </option>
   </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>FunctionMenu</find>
-      <find>'</find>
-      <find>\n +</find>
-      <find>header</find>
-      <find>userimg</find>
-      <find>EditorTestPaper</find>
-      <find>alert</find>
-      <find>analysis</find>
-      <find>local</find>
-      <find>#testQuestions</find>
-      <find>C-Top</find>
-      <find>testList</find>
-      <find>msg</find>
-      <find>layer.msg</find>
-      <find>user</find>
-      <find>inputBox</find>
-      <find>All</find>
-      <find>deleteTask</find>
-      <find>questions</find>
-      <find>view</find>
-      <find>toView</find>
-      <find>addOptions</find>
-      <find>contentList</find>
-      <find>getResource</find>
-    </findStrings>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -94,105 +64,11 @@
       </map>
     </option>
   </component>
-  <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/js/jQuery v3.4.1.min.js" />
-        <option value="$PROJECT_DIR$/css/index.css" />
-        <option value="$PROJECT_DIR$/js/addres.js" />
-        <option value="$PROJECT_DIR$/PurviewManagement/css/PurviewManagement.css" />
-        <option value="$PROJECT_DIR$/js/test.js" />
-        <option value="$PROJECT_DIR$/PurviewManagement/PurviewManagement.html" />
-        <option value="$PROJECT_DIR$/PurviewManagement/js/PurviewManagement.js" />
-        <option value="$PROJECT_DIR$/htmls/AddStaffContent.html" />
-        <option value="$PROJECT_DIR$/.project" />
-        <option value="$PROJECT_DIR$/HomePage/css/HomePage.css" />
-        <option value="$PROJECT_DIR$/TaskPage/js/TaskPage.css" />
-        <option value="$PROJECT_DIR$/TestTask/TestTask.html" />
-        <option value="$PROJECT_DIR$/js/address.js" />
-        <option value="$PROJECT_DIR$/StudeSystem/css/StudeSystemPage.css" />
-        <option value="$PROJECT_DIR$/HomePage/js/HomePage.js" />
-        <option value="$PROJECT_DIR$/ExaminationPaperPage/ExaminationPaperPage.html" />
-        <option value="$PROJECT_DIR$/StatisticsPage/js/StatisticsPage.js" />
-        <option value="$PROJECT_DIR$/HomePage/HomePage.html" />
-        <option value="$PROJECT_DIR$/ResourcePage/ResourcePage.html" />
-        <option value="$PROJECT_DIR$/index.html" />
-        <option value="$PROJECT_DIR$/TaskPage/TaskPage.html" />
-        <option value="$PROJECT_DIR$/TaskPage/js/TaskPage.js" />
-        <option value="$PROJECT_DIR$/js/common.js" />
-        <option value="$PROJECT_DIR$/StatisticsPage/StatisticsPage.html" />
-        <option value="$PROJECT_DIR$/EditorTestPaper/EditorTestPaper.html" />
-        <option value="$PROJECT_DIR$/ViewTestPaper/ViewTestPaper.html" />
-        <option value="$PROJECT_DIR$/ExaminationPaperPage/js/ExaminationPaperPage.js" />
-        <option value="$PROJECT_DIR$/css/common.css" />
-        <option value="$PROJECT_DIR$/TaskPage/css/TaskPage.css" />
-        <option value="$PROJECT_DIR$/css/All.css" />
-        <option value="$PROJECT_DIR$/StatisticsPage/css/StatisticsPage.css" />
-        <option value="$PROJECT_DIR$/ViewTestPaper/js/ViewTestPaper.js" />
-        <option value="$PROJECT_DIR$/ViewTestPaper/css/ViewTestPaper.css" />
-        <option value="$PROJECT_DIR$/ExaminationPaperPage/css/ExaminationPaperPage.css" />
-        <option value="$PROJECT_DIR$/EditorTestPaper/js/EditortestPaper.js" />
-        <option value="$PROJECT_DIR$/TestQuestions/TestQuestions.html" />
-        <option value="$PROJECT_DIR$/TestQuestions/js/TestQuestions.js" />
-        <option value="$PROJECT_DIR$/TestQuestions/css/TestQuestions.css" />
-        <option value="$PROJECT_DIR$/EditorTestPaper/css/EditorTestPaper.css" />
-        <option value="$PROJECT_DIR$/css/LogIn.css" />
-        <option value="$PROJECT_DIR$/ResourcePage/css/ResourcePage.css" />
-        <option value="$PROJECT_DIR$/ResourcePage/js/ResourcePage.js" />
-      </list>
-    </option>
-  </component>
-  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
-  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
   <component name="JsFlowSettings">
     <service-enabled>true</service-enabled>
     <exe-path />
     <other-services-enabled>true</other-services-enabled>
     <auto-save>true</auto-save>
-  </component>
-  <component name="JsGulpfileManager">
-    <detection-done>true</detection-done>
-    <sorting>DEFINITION_ORDER</sorting>
-  </component>
-  <component name="NodePackageJsonFileManager">
-    <packageJsonPaths />
-  </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="-86" />
-    <option name="y" value="198" />
-    <option name="width" value="1936" />
-    <option name="height" value="1066" />
-  </component>
-  <component name="ProjectView">
-    <navigator currentView="ProjectPane" proportions="" version="1">
-      <flattenPackages />
-      <showMembers />
-      <showModules />
-      <showLibraryContents />
-      <hideEmptyPackages />
-      <abbreviatePackageNames />
-      <autoscrollToSource />
-      <autoscrollFromSource />
-      <sortByType />
-      <manualOrder />
-      <foldersAlwaysOnTop value="true" />
-    </navigator>
-    <panes>
-      <pane id="Scratches" />
-      <pane id="Scope" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="StudeSystem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="StudeSystem" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="PackagesPane" />
-    </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
@@ -226,37 +102,26 @@
       <recent name="D:\ManagementSystem\PurviewManagement\imgs" />
     </key>
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
   <component name="RunManager" selected="JavaScript Debug.index.html">
-    <configuration name="ResourcePage.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/StudeSystem/ResourcePage/ResourcePage.html" />
-    <configuration name="index.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/StudeSystem/index.html" />
-    <list size="2">
-      <item index="0" class="java.lang.String" itemvalue="JavaScript Debug.index.html" />
-      <item index="1" class="java.lang.String" itemvalue="JavaScript Debug.ResourcePage.html" />
+    <configuration name="ResourcePage.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/StudeSystem/ResourcePage/ResourcePage.html">
+      <method v="2" />
+    </configuration>
+    <configuration name="index.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/StudeSystem/index.html">
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="JavaScript Debug.index.html" />
+      <item itemvalue="JavaScript Debug.ResourcePage.html" />
     </list>
     <recent_temporary>
-      <list size="2">
-        <item index="0" class="java.lang.String" itemvalue="JavaScript Debug.index.html" />
-        <item index="1" class="java.lang.String" itemvalue="JavaScript Debug.ResourcePage.html" />
+      <list>
+        <item itemvalue="JavaScript Debug.index.html" />
+        <item itemvalue="JavaScript Debug.ResourcePage.html" />
       </list>
     </recent_temporary>
   </component>
-  <component name="ShelveChangesManager" show_recycled="false">
-    <option name="remove_strategy" value="false" />
-  </component>
   <component name="SvnConfiguration">
-    <configuration />
+    <configuration>C:\Users\linda\AppData\Roaming\Subversion</configuration>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -412,37 +277,11 @@
     <option name="localTasksCounter" value="17" />
     <servers />
   </component>
-  <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="131780000" />
-  </component>
-  <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
-    <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.123958334" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32878152" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32983193" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-    </layout>
-  </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
-  <component name="VcsContentAnnotationSettings">
-    <option name="myLimit" value="2678400000" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="merga" />
@@ -453,9 +292,16 @@
     <MESSAGE value="最新前端合并后" />
     <option name="LAST_COMMIT_MESSAGE" value="最新前端合并后" />
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager />
-    <watches-manager />
+  <component name="WindowStateProjectService">
+    <state x="785" y="314" width="596" height="594" key="find.popup" timestamp="1592491311099">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="785" y="314" width="596" height="594" key="find.popup/0.0.1920.1040/1920.0.1280.680@0.0.1920.1040" timestamp="1592471370032" />
+    <state x="785" y="314" width="596" height="594" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1592491311099" />
+    <state x="721" y="232" key="git4idea.branch.GitSmartOperationDialog" timestamp="1592470948129">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="721" y="232" key="git4idea.branch.GitSmartOperationDialog/0.0.1920.1040/1920.0.1280.680@0.0.1920.1040" timestamp="1592470948129" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand>
@@ -465,322 +311,6 @@
       </path>
     </expand>
     <select />
-  </component>
-  <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/js/test.js" />
-    <entry file="file://$PROJECT_DIR$/PurviewManagement/js/new_file.html" />
-    <entry file="file://$PROJECT_DIR$/htmls/AddStaffContent.html" />
-    <entry file="file://$PROJECT_DIR$/PurviewManagement/PurviewManagement.html" />
-    <entry file="file://$PROJECT_DIR$/PurviewManagement/js/PurviewManagement.js" />
-    <entry file="file://$PROJECT_DIR$/PurviewManagement/imgs/titleBackground.jpg" />
-    <entry file="file://$PROJECT_DIR$/.idea/StudySystem.iml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="9" column="14" lean-forward="true" selection-start-line="9" selection-start-column="14" selection-end-line="9" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TaskPage/js/TaskPage.css" />
-    <entry file="file://$PROJECT_DIR$/.project">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="12" column="16" lean-forward="false" selection-start-line="12" selection-start-column="16" selection-end-line="12" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/StudeSystem/StudeSystemPage.html" />
-    <entry file="file://$PROJECT_DIR$/TestTask/TestTask.html" />
-    <entry file="file://$PROJECT_DIR$/TestTask/js/TestTask.js" />
-    <entry file="file://$PROJECT_DIR$/Login.html" />
-    <entry file="file://$PROJECT_DIR$/css/css/font-awesome.css" />
-    <entry file="file://$PROJECT_DIR$/css/css/font-awesome.min.css" />
-    <entry file="file://$PROJECT_DIR$/css/css/all.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="3" lean-forward="false" selection-start-line="0" selection-start-column="3" selection-end-line="0" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/css/index.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/address.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-8">
-          <caret line="5" column="40" lean-forward="false" selection-start-line="5" selection-start-column="40" selection-end-line="5" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/StudeSystem/css/StudeSystemPage.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="530">
-          <caret line="106" column="1" lean-forward="true" selection-start-line="106" selection-start-column="1" selection-end-line="106" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/HomePage/css/HomePage.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="9" column="23" lean-forward="false" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/StatisticsPage/js/StatisticsPage.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="9" column="3" lean-forward="true" selection-start-line="9" selection-start-column="3" selection-end-line="9" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ExaminationPaperPage/htmls/EditorTestPaper/js/EditorTestPaper.js" />
-    <entry file="file://$PROJECT_DIR$/HomePage/HomePage.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="10" column="51" lean-forward="false" selection-start-line="10" selection-start-column="51" selection-end-line="10" selection-end-column="51" />
-          <folding>
-            <element signature="n#script#7;n#body#0;n#html#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/HomePage/js/HomePage.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/LogIn.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="16" column="29" lean-forward="false" selection-start-line="16" selection-start-column="29" selection-end-line="16" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TaskPage/TaskPage.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-264">
-          <caret line="9" column="55" lean-forward="true" selection-start-line="9" selection-start-column="55" selection-end-line="9" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TaskPage/js/TaskPage.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="421" column="23" lean-forward="true" selection-start-line="421" selection-start-column="23" selection-end-line="421" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/common.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="216" column="33" lean-forward="true" selection-start-line="216" selection-start-column="33" selection-end-line="216" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/StatisticsPage/StatisticsPage.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="48" column="57" lean-forward="true" selection-start-line="48" selection-start-column="57" selection-end-line="48" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ExaminationPaperPage/ExaminationPaperPage.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2100">
-          <caret line="84" column="14" lean-forward="true" selection-start-line="84" selection-start-column="14" selection-end-line="84" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/EditorTestPaper/EditorTestPaper.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="7" column="77" lean-forward="true" selection-start-line="7" selection-start-column="77" selection-end-line="7" selection-end-column="77" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ExaminationPaperPage/js/ExaminationPaperPage.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="301" column="154" lean-forward="false" selection-start-line="301" selection-start-column="154" selection-end-line="301" selection-end-column="154" />
-          <folding>
-            <marker date="1573734000229" expanded="true" signature="8165:8181" ph="..." />
-            <marker date="1573734000229" expanded="true" signature="13177:13193" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/css/common.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="864">
-          <caret line="73" column="0" lean-forward="true" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/css/All.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="451">
-          <caret line="159" column="19" lean-forward="false" selection-start-line="159" selection-start-column="19" selection-end-line="159" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/StatisticsPage/css/StatisticsPage.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="14" column="19" lean-forward="false" selection-start-line="14" selection-start-column="19" selection-end-line="14" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ViewTestPaper/ViewTestPaper.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="9" column="56" lean-forward="true" selection-start-line="9" selection-start-column="56" selection-end-line="9" selection-end-column="56" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ViewTestPaper/css/ViewTestPaper.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="568">
-          <caret line="133" column="1" lean-forward="true" selection-start-line="133" selection-start-column="1" selection-end-line="133" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ViewTestPaper/js/ViewTestPaper.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2550">
-          <caret line="102" column="13" lean-forward="true" selection-start-line="102" selection-start-column="13" selection-end-line="102" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/lib/webstorm.jar!/resources/html5-schema/html5/web-forms.rnc">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="503" column="16" lean-forward="false" selection-start-line="503" selection-start-column="16" selection-end-line="503" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TestQuestions/TestQuestions.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="366">
-          <caret line="58" column="22" lean-forward="true" selection-start-line="58" selection-start-column="22" selection-end-line="58" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/EditorTestPaper/js/EditortestPaper.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="172" column="32" lean-forward="true" selection-start-line="172" selection-start-column="32" selection-end-line="172" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TestQuestions/js/TestQuestions.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="326">
-          <caret line="745" column="37" lean-forward="false" selection-start-line="745" selection-start-column="22" selection-end-line="745" selection-end-column="37" />
-          <folding>
-            <marker date="1573726885143" expanded="true" signature="2497:2510" ph="..." />
-            <marker date="1573726885143" expanded="true" signature="8895:8911" ph="..." />
-            <marker date="1573726885143" expanded="true" signature="9262:9278" ph="..." />
-            <marker date="1573726885143" expanded="true" signature="19376:19393" ph="..." />
-            <marker date="1573726885143" expanded="true" signature="19740:19757" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ExaminationPaperPage/css/ExaminationPaperPage.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="341">
-          <caret line="112" column="7" lean-forward="true" selection-start-line="112" selection-start-column="7" selection-end-line="112" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TaskPage/css/TaskPage.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="25">
-          <caret line="316" column="3" lean-forward="true" selection-start-line="316" selection-start-column="3" selection-end-line="316" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TestQuestions/css/TestQuestions.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="625">
-          <caret line="65" column="1" lean-forward="false" selection-start-line="65" selection-start-column="1" selection-end-line="65" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/EditorTestPaper/css/EditorTestPaper.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="58" column="30" lean-forward="true" selection-start-line="58" selection-start-column="30" selection-end-line="58" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/css/LogIn.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="283">
-          <caret line="104" column="23" lean-forward="true" selection-start-line="104" selection-start-column="23" selection-end-line="104" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ResourcePage/css/ResourcePage.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="69" column="19" lean-forward="false" selection-start-line="69" selection-start-column="19" selection-end-line="69" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ResourcePage/ResourcePage.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="539">
-          <caret line="59" column="40" lean-forward="true" selection-start-line="59" selection-start-column="40" selection-end-line="59" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ResourcePage/js/ResourcePage.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="506">
-          <caret line="151" column="47" lean-forward="true" selection-start-line="151" selection-start-column="47" selection-end-line="151" selection-end-column="47" />
-          <folding>
-            <marker date="1573733583397" expanded="true" signature="7210:7226" ph="..." />
-            <marker date="1573733583397" expanded="true" signature="18111:18122" ph="..." />
-            <marker date="1573733583397" expanded="true" signature="19383:19398" ph="..." />
-            <marker date="1573733583397" expanded="true" signature="20909:20924" ph="..." />
-            <marker date="1573733583397" expanded="true" signature="22569:22585" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="17" column="6" lean-forward="true" selection-start-line="17" selection-start-column="6" selection-end-line="17" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
   </component>
   <component name="masterDetails">
     <states>

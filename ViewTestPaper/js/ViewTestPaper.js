@@ -50,7 +50,7 @@ var info = {
 	//表格数据请求
 	TableDataRequest: function(PaperId) {
 		$.ajax({
-			url: MCUrl + 'manage_system/paper/' + PaperId,
+			url: Url + 'manage_system/paper/' + PaperId,
 			data: {
 				'content': $.trim($('.search').val())
 			},
@@ -116,7 +116,7 @@ var info = {
 		// 正确答案
 		var OptionType = '';
 		$.ajax({
-			url: MCUrl + 'manage_system/question/answer',
+			url: Url + 'manage_system/question/answer',
 			data: {
 				'questionId': questionId
 			},

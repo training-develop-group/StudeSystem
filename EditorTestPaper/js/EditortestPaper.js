@@ -139,7 +139,7 @@ var info = {
 	//表格数据请求
 	TableDataRequests: function() {
 		$.ajax({
-			url: MCUrl + 'manage_system/paper/' + PaperId,
+			url: Url + 'manage_system/paper/' + PaperId,
 			dataType: 'json',
 			Type: 'GET',
 			success: function(res) {
@@ -267,7 +267,7 @@ var info = {
 	//查询全部试题
 	TableDataRequest: function(curr) {
 		$.ajax({
-			url: MCUrl + 'manage_system/question/questions',
+			url: Url + 'manage_system/question/questions',
 			data: {
 				'pageNum': (curr || 1),
 				'pageSize': 10,
@@ -385,7 +385,7 @@ var info = {
 	// 查询部分试题的请求
 	viewQuestion: function() {
 		$.ajax({
-			url: MCUrl + 'manage_system/paper/questions',
+			url: Url + 'manage_system/paper/questions',
 			data: {
 				'questionIdList': JSON.stringify(storageQusetionId)
 			},
@@ -611,7 +611,7 @@ var info = {
 			'sorting': JSON.stringify(sorting)
 		};
 		$.ajax({
-			url: MCUrl + 'manage_system/paper/paper/paper',
+			url: Url + 'manage_system/paper/paper/paper',
 			data: data,
 			dataType: 'json',
 			type: 'POST',
@@ -639,7 +639,7 @@ var info = {
 		// 正确答案
 		var OptionType = '';
 		$.ajax({
-			url: MCUrl + 'manage_system/question/answer',
+			url: Url + 'manage_system/question/answer',
 			data: {
 				'questionId': questionId
 			},

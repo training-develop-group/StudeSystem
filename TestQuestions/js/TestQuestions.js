@@ -51,7 +51,7 @@ var info = {
 	// 查看试题
 	selectQuestion: function(curr) {
 		$.ajax({
-			url: WTQUrl + 'manage_system/question/questions',
+			url: Url + 'manage_system/question/questions',
 			data: {
 				'pageNum': (curr || 1),
 				'pageSize': 10,
@@ -158,7 +158,7 @@ var info = {
 				sNum = 0;
 			}
 			$.ajax({
-				url: WTQUrl + 'manage_system/question/' + questionId,
+				url: Url + 'manage_system/question/' + questionId,
 				data: '',
 				dataType: 'json',
 				type: 'DELETE',
@@ -179,7 +179,7 @@ var info = {
 	//查看解析
 	viewAnswer: function(questionId) {
 		$.ajax({
-			url: WTQUrl + 'manage_system/question/answer',
+			url: Url + 'manage_system/question/answer',
 			data: {
 				'questionId': questionId
 			},
@@ -419,7 +419,7 @@ var info = {
 				'questionOption': JSON.stringify(option)
 			};
 			$.ajax({
-				url: WTQUrl + 'manage_system/question/question',
+				url: Url + 'manage_system/question/question',
 				data: data,
 				dataType: 'json',
 				type: 'POST',
@@ -438,7 +438,7 @@ var info = {
 		var letter = '';
 		var questionRes = {};
 		$.ajax({
-			url: WTQUrl + 'manage_system/question/' + questionId,
+			url: Url + 'manage_system/question/' + questionId,
 			data: '',
 			dataType: 'json',
 			type: 'GET',
@@ -709,7 +709,7 @@ var info = {
 						'questionOption': JSON.stringify(option),
 					};
 					$.ajax({
-						url: WTQUrl + 'manage_system/question/' + questionId,
+						url: Url + 'manage_system/question/' + questionId,
 						data: data,
 						dataType: 'json',
 						type: 'POST',

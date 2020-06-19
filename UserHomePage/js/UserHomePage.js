@@ -47,7 +47,7 @@ var info = {
     taskList: function (curr, userType) {
         var status = $('.active').attr('data-type');
         $.ajax({
-            url: LBUrl + 'manage_system/task/tasks',
+            url: Url + 'manage_system/task/tasks',
             data: {
                 "pageNum": curr,
                 "pageSize": 5,
