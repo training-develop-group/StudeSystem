@@ -45,6 +45,9 @@ $(function() {
 		type: 'GET',
 		async: false,
 		contentType: 'application/json;charset=utf-8',
+		beforeSend: function(value){
+			All.setToken(value);
+		},
 		success(res) {
 			if (res.data != null) {
 				//为任务描述赋值
@@ -210,6 +213,9 @@ var info = {
 				dataType: 'json',
 				type: 'POST',
 				contentType: 'application/json;charset=utf-8',
+				beforeSend: function(value){
+					All.setToken(value);
+				},
 				success(res) {
 					layer.msg('添加成功');
 					getExperience++;
@@ -234,6 +240,9 @@ var info = {
 			dataType: 'json',
 			type: 'GET',
 			contentType: 'application/json;charset=utf-8',
+			beforeSend: function(value){
+				All.setToken(value);
+			},
 			success(resc) {
 				if (resc.data != null) {
 					var pdfPath = resc.data.path.substring(0, resc.data.path.lastIndexOf('.'));
@@ -335,6 +344,9 @@ var info = {
 			dataType: 'json',
 			type: 'GET',
 			contentType: 'application/json;charset=utf-8',
+			beforeSend: function(value){
+				All.setToken(value);
+			},
 			success(resc) {
 				if (resc.data != null) {
 					var pdfPath = resc.data.path.substring(0, resc.data.path.lastIndexOf('.'));
@@ -419,6 +431,9 @@ var info = {
 				'resId': resId,
 				'seconds': Math.round(seconds)
 			},
+			beforeSend: function(value){
+				All.setToken(value);
+			},
 			dataType: 'json',
 			type: 'POST',
 			success(res) {
@@ -438,6 +453,9 @@ var info = {
 			type: 'GET',
 			async: false,
 			// contentType: 'application/json;charset=utf-8',
+			beforeSend: function(value){
+				All.setToken(value);
+			},
 			success(res) {
 				if (res.code == 1) {
 					myVid.currentTime = res.data;
@@ -466,6 +484,9 @@ var info = {
 			url: Url + 'manage_system/paper/' + paperId,
 			data: {},
 			Type: 'GET',
+			beforeSend: function(value){
+				All.setToken(value);
+			},
 			success(res) {
 				if (res || res.data !== null) {
 					var Html = [];
@@ -514,6 +535,9 @@ var info = {
 						var OptionType = '未知';
 						$.ajax({
 							url: Url + 'manage_system/question/answer',
+							beforeSend: function(value){
+								All.setToken(value);
+							},
 							data: {
 								'questionId': QusetionId
 							},
@@ -557,6 +581,9 @@ var info = {
 			url: Url + 'manage_system/paper/' + paperId,
 			data: {},
 			Type: 'GET',
+			beforeSend: function(value){
+				All.setToken(value);
+			},
 			success: function(resb) {
 				if (resb.data != null) {
 					var answerSheet = [];
@@ -807,6 +834,9 @@ var info = {
 					data: data,
 					dataType: 'json',
 					type: 'POST',
+					beforeSend: function(value){
+						All.setToken(value);
+					},
 					success(res) {
 						if (res || res.data !== null) {
 							$('.TotalScoreBox .TotalScore').html('总得分：' + res.data.userScore);
@@ -886,6 +916,9 @@ var info = {
 									},
 									dataType: 'json',
 									type: 'GET',
+									beforeSend: function(value){
+										All.setToken(value);
+									},
 									success(res) {
 										res.data.forEach(function(item, index) {
 											if (OptionType == '') {
@@ -938,6 +971,9 @@ var info = {
 			},
 			dataType: 'json',
 			type: 'GET',
+			beforeSend: function(value){
+				All.setToken(value);
+			},
 			success(res) {
 				console.log(res)
 				if (res.data != null) {
@@ -1014,6 +1050,9 @@ var info = {
 							},
 							dataType: 'json',
 							type: 'GET',
+							beforeSend: function(value){
+								All.setToken(value);
+							},
 							success(res) {
 								res.data.forEach(function(item, index) {
 									if (OptionType == '') {
@@ -1061,6 +1100,9 @@ var info = {
 			dataType: 'json',
 			type: 'GET',
 			contentType: 'application/json;charset=utf-8',
+			beforeSend: function(value){
+				All.setToken(value);
+			},
 			success(resc) {
 				var html = [];
 				resc.data.list.forEach(function(item, index) {

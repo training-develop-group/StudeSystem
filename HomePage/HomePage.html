@@ -152,6 +152,9 @@
 					data: {},
 					dataType: 'json',
 					Type: 'GET',
+					beforeSend: function(value){
+						All.setToken(value);
+					},
 					success: function(res) {
 						if (res.code === 3){
 							noMsg = 1;
@@ -264,6 +267,9 @@
 					data: {},
 					dataType: 'json',
 					Type: 'GET',
+					beforeSend: function(value){
+						All.setToken(value);
+					},
 					success: function(res) {
 						if (res.code === 3){
 							noMsg = 1;
@@ -365,6 +371,9 @@
 					data: {},
 					dataType: 'json',
 					Type: 'GET',
+					beforeSend: function(value){
+						All.setToken(value);
+					},
 					success: function(res) {
 						if (res.code === 3){
 							noMsg = 1;

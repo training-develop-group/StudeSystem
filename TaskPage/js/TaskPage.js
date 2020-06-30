@@ -361,6 +361,9 @@ var info = {
 			},
 			dataType: 'json',
 			type: 'GET',
+			beforeSend: function(value){
+				All.setToken(value);
+			},
 			success(res) {
 				var Html = [];
 				res.data.forEach(function(item, index) {
@@ -394,6 +397,9 @@ var info = {
 			},
 			dataType: 'json',
 			Type: 'GET',
+			beforeSend: function(value){
+				All.setToken(value);
+			},
 			success: function(res) {
 				if (res || res.data !== null) {
 					var Html = [];
@@ -409,7 +415,7 @@ var info = {
 						} else {
 							// 转义(已防有标签的样式被html识别)
 							item.paperName = $('<div>').text(item.paperName).html();
-							Html.push('<td class="paperName" title="' + item.paperName + '" data-paperName="' + newPaperName +
+							Html.push('<td class="paperName" title="' + item.paperName + '" data-paperName="' + item.paperName +
 								'"><pre>' + item.paperName + '</pre></td>');
 						}
 						Html.push('<td style="text-align: center;">' + item.single + '</td>');
@@ -427,8 +433,9 @@ var info = {
 					$('.selectPaper').off('click').on('click', function() {
 						$('.selectPapers').val($(this).val());
 						var Html = [];
-						var paperName = $('.paperName').attr('data-paperName');
 						// 解码并转义 转码部分：unescape(paperName)(转成HTML可以识别的代码)
+						var paperName =$(this).parents().children(".paperName").text();
+
 						paperName = $('<div>').html(unescape(paperName)).text();
 						// 转义(特殊符号转成例：&lt; = (<))
 						paperName = $('<div>').text(paperName).html();
@@ -443,6 +450,7 @@ var info = {
 						// 转义(转成HTML可以识别的代码)
 						paperName = $('<div>').html(paperName).text();
 						$('.paperAdd').attr('title', paperName);
+
 						layer.close(layer.index);
 					})
 				}
@@ -457,6 +465,9 @@ var info = {
 			data: {},
 			dataType: 'json',
 			type: 'GET',
+			beforeSend: function(value){
+				All.setToken(value);
+			},
 			success(res) {
 
 			}
@@ -471,11 +482,14 @@ var info = {
 			},
 			dataType: 'json',
 			type: 'GET',
+			beforeSend: function(value){
+				All.setToken(value);
+			},
 			success(res) {
 				if (res.code === 1) {
 					var Html = [];
 					res.data.forEach(function(item, index) {
-						Html.push('<span class="layui-form-label" style="font-size: 16px;"><input type="checkbox" value="' + item.userId +
+						Html.push('<span class="layui-form-label" style="font-size: 16px;"><input type="checkbox" value="' + item.pkId +
 							'"class="checkAll " name="Staff" lay-skin="primary" lay-filter="c_one" ><i>' + item.userName +
 							'</i></span>');
 					});
@@ -565,6 +579,9 @@ var info = {
 				beforeSend() {
 					layer.load(2);
 				},
+				beforeSend: function(value){
+					All.setToken(value);
+				},
 				success(res) {
 					if (res.code == 1) {
 						layer.msg('发布成功');
@@ -597,6 +614,9 @@ var info = {
 			dataType: 'json',
 			type: 'GET',
 			contentType: 'application/json;charset=utf-8',
+			beforeSend: function(value){
+				All.setToken(value);
+			},
 			success(res) {
 				var Html = [];
 				res.data.list.forEach(function(item, index) {
@@ -643,6 +663,9 @@ var info = {
 			data: {},
 			dataType: 'json',
 			type: 'GET',
+			beforeSend: function(value){
+				All.setToken(value);
+			},
 			success(res) {
 				var Html = [];
 				res.data.forEach(function(item, index) {
@@ -679,8 +702,8 @@ var info = {
 			},
 			dataType: 'json',
 			type: 'GET',
-			beforeSend() {
-
+			beforeSend: function(value){
+				All.setToken(value);
 			},
 			success(res) {
 				var Html = [];
@@ -788,6 +811,9 @@ var info = {
 				dataType: 'json',
 				type: 'POST',
 				// contentType: 'application/json;charset=utf-8',
+				beforeSend: function(value){
+					All.setToken(value);
+				},
 				success(res) {
 					layer.close(layer.index);
 					if (res) {
@@ -812,6 +838,9 @@ var info = {
 			data: {},
 			dataType: 'json',
 			type: 'DELETE',
+			beforeSend: function(value){
+				All.setToken(value);
+			},
 			success(res) {
 				if (res) {
 					if (JumpTotal % 12 == 1 && JumpPageNum == Math.ceil(JumpTotal / 12)) {

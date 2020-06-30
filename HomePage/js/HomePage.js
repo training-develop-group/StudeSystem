@@ -54,6 +54,9 @@ var info = {
                 dataType: 'json',
                 type: 'GET',
                 contentType: 'application/json;charset=utf-8',
+                beforeSend: function(value){
+                         All.setToken(value);
+                },
                 success(res) {
                     var Html = [];
                     console.log(123456789);
@@ -93,6 +96,9 @@ var info = {
                 },
                 dataType: 'json',
                 type: 'GET',
+                beforeSend: function(value){
+                    All.setToken(value);
+                },
                 success(res) {
                     var Html = [];
                     res.data.list.forEach(function (item, index) {
@@ -124,6 +130,9 @@ var info = {
                 },
                 dataType: 'json',
                 Type: 'GET',
+                beforeSend: function(value){
+                    All.setToken(value);
+                },
                 success: function (res) {
                     var Html = [];
                     res.data.list.forEach(function (item, index) {

@@ -35,6 +35,9 @@ var TableDataRequest = function(pageNum) {
 		data: data,
 		dataType: 'json',
 		type: 'GET',
+		beforeSend: function(value){
+			All.setToken(value);
+		},
 		success(res) {
 			var Html = [];
 			res.data.list.forEach(function(item, index) {

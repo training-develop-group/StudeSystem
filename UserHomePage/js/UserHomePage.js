@@ -57,6 +57,9 @@ var info = {
             },
             dataType: 'json',
             type: 'GET',
+            beforeSend: function(value){
+                All.setToken(value);
+            },
             success(res) {
                 // console.log(res);
                 var time = new Date();

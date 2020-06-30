@@ -58,6 +58,9 @@ var info = {
 				'questionType': type,
 				'content': $.trim($('.search').val())
 			},
+			beforeSend: function(value){
+				All.setToken(value);
+			},
 			dataType: 'json',
 			type: 'GET',
 			success(res) {
@@ -162,6 +165,9 @@ var info = {
 				data: '',
 				dataType: 'json',
 				type: 'DELETE',
+				beforeSend: function(value){
+					All.setToken(value);
+				},
 				success(res) {
 					if (res.code === 1) {
 						layer.msg('删除成功');
@@ -182,6 +188,9 @@ var info = {
 			url: Url + 'manage_system/question/answer',
 			data: {
 				'questionId': questionId
+			},
+			beforeSend: function(value){
+				All.setToken(value);
 			},
 			dataType: 'json',
 			type: 'GET',
@@ -423,6 +432,9 @@ var info = {
 				data: data,
 				dataType: 'json',
 				type: 'POST',
+				beforeSend: function(value){
+					All.setToken(value);
+				},
 				success(res) {
 					location.reload(); // 刷新页面
 					layer.msg('添加成功');
@@ -442,6 +454,9 @@ var info = {
 			data: '',
 			dataType: 'json',
 			type: 'GET',
+			beforeSend: function(value){
+				All.setToken(value);
+			},
 			success(res) {
 				questionRes = res;
 				res.data.forEach(function(questionItem, questionIndex) {
@@ -713,6 +728,9 @@ var info = {
 						data: data,
 						dataType: 'json',
 						type: 'POST',
+						beforeSend: function(value){
+							All.setToken(value);
+						},
 						success(res) {
 							layer.msg('修改成功');
 							layer.closeAll();

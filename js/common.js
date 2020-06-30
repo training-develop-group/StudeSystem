@@ -322,4 +322,8 @@ var All = {
 			});
 		}
 	},
+ 	setToken :function(XMLHttpRequest) {
+		XMLHttpRequest.setRequestHeader("token",window.sessionStorage.getItem("_token"));
+	}
+
 };

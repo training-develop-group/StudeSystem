@@ -383,6 +383,9 @@ var info = {
 			},
 			dataType: 'json',
 			type: 'POST',
+			beforeSend: function(value){
+				All.setToken(value);
+			},
 			success(res) {
 				// parent.location.reload();	//刷新父级页面
 				layer.closeAll();
@@ -404,6 +407,9 @@ var info = {
 			data: data,
 			dataType: 'json',
 			type: 'POST',
+			beforeSend: function(value){
+				All.setToken(value);
+			},
 			success(res) {
 				// parent.location.reload();	//刷新父级页面
 				layer.closeAll();
@@ -426,6 +432,9 @@ var info = {
 			// dataType: 'json',
 			type: 'DELETE',
 			// contentType: 'application/json;charset=utf-8',
+			beforeSend: function(value){
+				All.setToken(value);
+			},
 			success(res) {
 				layer.closeAll();
 				layer.msg("操作成功");
@@ -525,7 +534,9 @@ var info = {
 				dataType: 'json',
 				type: 'POST',
 				contentType: 'application/json;charset=utf-8',
-				beforeSend() {
+
+				beforeSend: function(value){
+					All.setToken(value);
 					layer.load(2);
 				},
 				success(res) {
@@ -551,6 +562,9 @@ var info = {
 			},
 			dataType: 'json',
 			type: 'GET',
+			beforeSend: function(value){
+				All.setToken(value);
+			},
 			success(res) {
 				var Html = [];
 				res.data.forEach(function(item, index) {

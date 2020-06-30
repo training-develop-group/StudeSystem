@@ -142,6 +142,9 @@ var info = {
 			url: Url + 'manage_system/paper/' + PaperId,
 			dataType: 'json',
 			Type: 'GET',
+			beforeSend: function(value){
+				All.setToken(value);
+			},
 			success: function(res) {
 				if (res || res.data !== null) {
 					//表格会绘制
@@ -276,6 +279,9 @@ var info = {
 			},
 			dataType: 'json',
 			Type: 'GET',
+			beforeSend:function(value){
+				All.setToken(value);
+			},
 			success: function(res) {
 				if (res || res.data != null) {
 					// info.TableDrawing(res.data , curr);
@@ -388,6 +394,9 @@ var info = {
 			url: Url + 'manage_system/paper/questions',
 			data: {
 				'questionIdList': JSON.stringify(storageQusetionId)
+			},
+			beforeSend:function(value){
+				All.setToken(value);
 			},
 			Type: 'GET',
 			success: function(res) {
@@ -615,6 +624,9 @@ var info = {
 			data: data,
 			dataType: 'json',
 			type: 'POST',
+			beforeSend:function(value){
+				All.setToken(value);
+			},
 			success(res) {
 				// 隐藏保存更改按钮
 				$('#saveChanges').addClass('hidden');
@@ -645,6 +657,9 @@ var info = {
 			},
 			dataType: 'json',
 			type: 'GET',
+			beforeSend:function(value){
+				All.setToken(value);
+			},
 			success(res) {
 				res.data.forEach(function(item, index) {
 					if (OptionType == '') {

@@ -120,6 +120,9 @@ var info = {
 			dataType: 'json',
 			type: 'GET',
 			// contentType: 'application/json;charset=utf-8',
+			beforeSend: function(value){
+				All.setToken(value);
+			},
 			success(res) {
 				var html = [];
 				if (res.code == 1) {
@@ -350,6 +353,9 @@ var info = {
 			dataType: 'json',
 			type: 'GET',
 			contentType: 'application/json;charset=utf-8',
+			beforeSend: function(value){
+				All.setToken(value);
+			},
 			success(res) {
 				if (res.code == 1) {
 					console.log(res.data.path);
@@ -502,6 +508,9 @@ var info = {
 			dataType: 'json',
 			type: 'POST',
 			// contentType: 'application/json;charset=utf-8',
+			beforeSend: function(value){
+				All.setToken(value);
+			},
 			success(res) {
 				if (res.code == 1) {
 					console.log(res);
@@ -527,6 +536,9 @@ var info = {
 			dataType: 'json',
 			type: 'GET',
 			// contentType: 'application/json;charset=utf-8',
+			beforeSend: function(value){
+				All.setToken(value);
+			},
 			success(res) {
 				if (res.code == 1) {
 					console.log(res);
@@ -567,6 +579,9 @@ var info = {
 			data: data,
 			dataType: 'json',
 			type: 'POST',
+			beforeSend: function(value){
+				All.setToken(value);
+			},
 			success(res) {
 				if (res.code == 1) {
 					console.log(res);
@@ -591,6 +606,9 @@ var info = {
 			dataType: 'json',
 			type: 'DELETE',
 			contentType: 'application/json;charset=utf-8',
+			beforeSend: function(value){
+				All.setToken(value);
+			},
 			success(res) {
 				layer.msg('删除资源成功');
 				if (index != 1) {
@@ -655,6 +673,9 @@ var info = {
 									accept: 'file', //上传文件类型
 									multiple: true, //允许上传多个文件
 									exts: 'mp4|avi|mov|rmvb|rm|flv|wma|mp3|ogv|wav|aiff|aac|midi|docx|doc|xls|xlsx|pdf|txt|ppt|pptx',
+									beforeSend: function(value){
+										All.setToken(value);
+									},
 									choose: function(obj) {
 										console.log(obj);
 										var files = this.files = obj.pushFile(); //将每次选择的文件追加到文件队列
@@ -821,6 +842,9 @@ var info = {
 			},
 			dataType: 'json',
 			type: 'GET',
+			beforeSend: function(value){
+				All.setToken(value);
+			},
 			success(res) {
 				var Html = [];
 				res.data.forEach(function(item, index) {
@@ -912,6 +936,9 @@ var info = {
 				contentType: 'application/json;charset=utf-8',
 				beforeSend() {
 					layer.load(2);
+				},
+				beforeSend: function(value){
+					All.setToken(value);
 				},
 				success(res) {
 					if (res.code == 1) {

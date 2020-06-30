@@ -29,6 +29,15 @@
 								<i class="layui-icon">&#xe66f;</i>
 							</label>
 							<div class="layui-input-block inputBox">
+								<input type="text" id="companyId" name="companyId" lay-verify="title" autocomplete="off" placeholder="请输入公司Id" value=""
+									   class="layui-input">
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label class="layui-form-label">
+								<i class="layui-icon">&#xe66f;</i>
+							</label>
+							<div class="layui-input-block inputBox">
 								<input type="text" id="user" name="userName" lay-verify="title" autocomplete="off" placeholder="请输入用户名" value=""
 								 class="layui-input">
 							</div>
@@ -42,6 +51,7 @@
 								 class="layui-input">
 							</div>
 						</div>
+
 						<p><span class="PasswordError hidden">！用户名或密码错误</span></p>
 						<div class="layui-form-item">
 							<button class="layui-btn logIn" id="Login">登 录</button>

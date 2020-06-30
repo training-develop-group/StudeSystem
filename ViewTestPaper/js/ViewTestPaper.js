@@ -55,6 +55,9 @@ var info = {
 				'content': $.trim($('.search').val())
 			},
 			Type: 'GET',
+			beforeSend: function(value){
+				All.setToken(value);
+			},
 			success: function(res) {
 				if (res.code == 1){
 					if (res || res.data !== null) {
@@ -122,6 +125,9 @@ var info = {
 			},
 			dataType: 'json',
 			type: 'GET',
+			beforeSend: function(value){
+				All.setToken(value);
+			},
 			success(res) {
 				res.data.forEach(function(item, index) {
 					if (OptionType == '') {

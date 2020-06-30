@@ -11,35 +11,41 @@ $(function() {
 });
 var logIn = function() {
 	var data = {
-		userName: $('#user').val(),
-		password: $('#pwd').val()
+		 companyId:$('#companyId').val(),
+		 userName: $('#user').val(),
+		 password: $('#pwd').val(),
+
 	};
-	if (data.userName == '' || data.password == '') {
-		$('.PasswordError').text('！用户名或密码不可为空');
+	if (data.userName == '' || data.password == ''||data.companyId=='') {
+		$('.PasswordError').text('！用户名、密码、公司id不可为空');
 		$('.PasswordError').removeClass('hidden');
 		return false;
 	}
+
 	$.ajax({
-		url: Url + 'manage_system/login',
+		url: LoginUrl +'runtime/erp/emplogin',
 		data: data,
 		dataType: 'json',
-		type: "GET",
+		type: "POST",
 		success: function(res) {
-			console.log(res);
-			if (res.code == 1) {
 
-				if (res.data.stRoleId == 1) {
-					localStorage.setItem('userName', res.data.userName);
-					localStorage.setItem('userType', res.data.stRoleId);
+			if (res.code == 0) {
+				// 写入token
+				window.sessionStorage.setItem("_token", res.message.token);
+
+				if (res.message.userInfo.stRoleId == 1) {
+					localStorage.setItem('userName', res.message.userInfo.userName);
+					localStorage.setItem('userType', res.message.userInfo.stRoleId);
 					$('.PasswordError').addClass('hidden');
 					window.location.href = './HomePage/HomePage.html'
-				} else if (res.data.stRoleId == 2) {
-					localStorage.setItem('userName', res.data.userName);
-					localStorage.setItem('userType', res.data.stRoleId);
+				} else if (res.message.userInfo.stRoleId == 2) {
+					localStorage.setItem('userName', res.message.userInfo.userName);
+					localStorage.setItem('userType', res.message.userInfo.stRoleId);
 					$('.PasswordError').addClass('hidden');
-					window.location.href = './UserHomePage/UserHomePage.html?value=' + res.data.userId + "," + 2
+					window.location.href = './UserHomePage/UserHomePage.html?value=' + res.message.userInfo.userId + "," + 2
 				}
-			} else if (res.data == null) {
+
+			} else if (res.code == 902) {
 				$('.PasswordError').text('！用户名或密码错误');
 				$('.PasswordError').removeClass('hidden');
 			} else {
