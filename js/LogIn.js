@@ -14,6 +14,7 @@ var logIn = function() {
 		 companyId:$('#companyId').val(),
 		 userName: $('#user').val(),
 		 password: $('#pwd').val(),
+		 type:1
 
 	};
 	if (data.userName == '' || data.password == ''||data.companyId=='') {
@@ -23,7 +24,7 @@ var logIn = function() {
 	}
 
 	$.ajax({
-		url: LoginUrl +'runtime/erp/emplogin',
+		url: LoginUrl +'auth-service/emplogin',
 		data: data,
 		dataType: 'json',
 		type: "POST",
@@ -32,6 +33,8 @@ var logIn = function() {
 			if (res.code == 0) {
 				// 写入token
 				window.sessionStorage.setItem("_token", res.message.token);
+
+				window.sessionStorage.setItem("userInfo",JSON.parse(res.message.userInfo));
 
 				if (res.message.userInfo.stRoleId == 1) {
 					localStorage.setItem('userName', res.message.userInfo.userName);
@@ -42,7 +45,7 @@ var logIn = function() {
 					localStorage.setItem('userName', res.message.userInfo.userName);
 					localStorage.setItem('userType', res.message.userInfo.stRoleId);
 					$('.PasswordError').addClass('hidden');
-					window.location.href = './UserHomePage/UserHomePage.html?value=' + res.message.userInfo.userId + "," + 2
+					window.location.href = './UserHomePage/UserHomePage.html?value=' + res.message.userInfo.pkId + "," + 2
 				}
 
 			} else if (res.code == 902) {

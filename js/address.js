@@ -5,7 +5,7 @@
 
 // 本地
 Url = 'http://localhost:8888/';
-FileUrl = 'C:\\公司项目\\学习管理系统\\study\\files\\';
+FileUrl = 'http://localhost:8080/res-service/manage_system/file/';
 LoginUrl ='http://localhost:8080/'
 
 // 服务器

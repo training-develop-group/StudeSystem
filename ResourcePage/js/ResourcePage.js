@@ -823,7 +823,7 @@ var info = {
 				});
 
 				//发布任务
-				$('.addOk').click(function() {
+				$('.okbtn').click(function() {
 					$(this).attr('disabled', 'disabled');
 					info.addTask();
 				});
