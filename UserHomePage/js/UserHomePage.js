@@ -7,13 +7,11 @@ $(function () {
         var layer = layui.layer,
             form = layui.form;
 
-
         // 公共头调用渲染
         All.getMenu({
             search: 2,
             type: 2
         });
-
 
         //卡片切换
         info.tabChange();
@@ -39,12 +37,12 @@ var info = {
                 $('.title li').removeClass('active');
                 $(this).addClass('active');
                 var dataType = $(this).attr('data-type');
-                info.taskList(1, dataType);
+                info.taskList(1);
             }
         });
     },
     // 页面列表
-    taskList: function (curr, userType) {
+    taskList: function (curr) {
         var status = $('.active').attr('data-type');
         $.ajax({
             url: Url + 'manage_system/task/tasks',
@@ -53,7 +51,6 @@ var info = {
                 "pageSize": 5,
                 'status': status,
                 'taskName': null,
-                'userType': userType
             },
             dataType: 'json',
             type: 'GET',
@@ -63,9 +60,9 @@ var info = {
             success(res) {
                 // console.log(res);
                 var time = new Date();
-                if (res.data != null) {
+                if (res.code == 1) {
                     var listHtml = [];
-                    // console.log(res)
+
                     res.data.list.forEach(function (item, index) {
                         listHtml.push('<li class="clearfix ToTask" data-id="' + item.taskId + '" data-type="' + item.taskType + '" data-paperId="' + item.paperId + '" data-resId="' + item.resId + '">');
                         listHtml.push('<div class="leftBox">');
@@ -96,9 +93,10 @@ var info = {
                     });
                     $('#taskList').html(listHtml.join(''));
                     //分页方法
-                    info.Page(res.data.total, curr, userType);
+                    info.Page(res.data.total, curr);
 
                 } else {
+
                     var listHtml = [];
                     listHtml.push('<div class="endTask"> 没有任务 </div>');
                     $('#taskList').html(listHtml.join(''));
@@ -110,7 +108,7 @@ var info = {
         });
     },
     // 分页插件
-    Page: function (total, curr, userType) {
+    Page: function (total, curr) {
         if (total > 5) {
             $('#page').removeClass('hidden');
             layui.use('laypage', function () {
@@ -126,7 +124,7 @@ var info = {
                     layout: ['prev', 'page', 'next', 'limits', 'skip'],
                     jump: function (item, first) {
                         if (!first) {
-                            info.taskList(item.curr, userType);
+                            info.taskList(item.curr);
                         }
                     }
                 });
