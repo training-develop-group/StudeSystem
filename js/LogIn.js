@@ -24,7 +24,7 @@ var logIn = function() {
 	}
 
 	$.ajax({
-		url: LoginUrl +'auth-service/emplogin',
+		url: LoginUrl +'/emplogin',
 		data: data,
 		dataType: 'json',
 		type: "POST",
@@ -33,8 +33,6 @@ var logIn = function() {
 			if (res.code == 0) {
 				// 写入token
 				window.sessionStorage.setItem("_token", res.message.token);
-
-				window.sessionStorage.setItem("userInfo",JSON.parse(res.message.userInfo));
 
 				if (res.message.userInfo.stRoleId == 1) {
 					localStorage.setItem('userName', res.message.userInfo.userName);
@@ -52,7 +50,7 @@ var logIn = function() {
 				$('.PasswordError').text('！用户名或密码错误');
 				$('.PasswordError').removeClass('hidden');
 			} else {
-				layer.msg('网络未连接！');
+				layer.msg(res.message);
 			}
 		},
 		error: function(e) {
