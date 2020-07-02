@@ -702,10 +702,8 @@ var info = {
 									headers: {"token":window.sessionStorage.getItem("_token")},
 									accept: 'file', //上传文件类型
 									multiple: true, //允许上传多个文件
-									exts: 'mp4|avi|mov|rmvb|rm|flv|wma|mp3|ogv|wav|aiff|aac|midi|docx|doc|xls|xlsx|pdf|txt|ppt|pptx|jpg|jpeg|png|bmp',
-									beforeSend: function(value){
-										All.setToken(value);
-									},
+									exts: 'mp4|avi|mov|rmvb|rm|flv|wma|mp3|ogv|wav|aiff|aac|midi|docx|doc|xls|xlsx|pdf|txt|ppt|pptx',
+
 									choose: function(obj) {
 										console.log(obj);
 										var files = this.files = obj.pushFile(); //将每次选择的文件追加到文件队列
