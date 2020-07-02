@@ -698,7 +698,7 @@ var info = {
 							var demoListView = $('#demoList'), //上传文件显示的数据表格
 								uploadListIns = upload.render({
 									elem: '#testList', //选择文件按钮
-									url: Url + 'manage_system/resource/resource',
+									url:Upload + 'manage_system/resource/resource',
 									headers: {"token":window.sessionStorage.getItem("_token")},
 									accept: 'file', //上传文件类型
 									multiple: true, //允许上传多个文件
