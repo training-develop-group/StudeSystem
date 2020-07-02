@@ -663,6 +663,7 @@ var info = {
 			data: {},
 			dataType: 'json',
 			type: 'GET',
+			contentType: 'application/json;charset=utf-8',
 			beforeSend: function(value){
 				All.setToken(value);
 			},
