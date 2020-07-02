@@ -64,21 +64,9 @@ $(function() {
 			num: 2
 		});
 
-
-		// info.getVideoPlaybackTime();
-
 		info.selectResourceList(1); //获取资源列表
 
 		info.uploadPopup(); //上传文件
-
-
-		$('#hiddenAudio').click(function() {
-			var $eleForm = $("<form method='get'></form>");
-			$eleForm.attr("action",   FileUrl + "/0625ae7ec85c4b94bf1cde70d2692b67.mp4");
-			$(document.body).append($eleForm);
-			// 提交表单，实现下载
-			$eleForm.submit();
-		});
 
 		/**
 		 * 检索关键词resName
@@ -96,6 +84,7 @@ $(function() {
 var total = ''; //分页总数量
 var JumpPageNum = 1; //全局变量分页页数初始值
 var resId = ''; //发布任务所需resId
+var resName = ''; // 资源文件名
 var deleteResId = '';
 var a = 0;
 var b = 0;
@@ -159,16 +148,16 @@ var info = {
 						var newResName = escape(item.resName);
 						if (item.status == '已发布') {
 							html.push('<td><button class="editResName" resId="' + item.resId + '" resName="' + newResName +
-								'">重命名</button><button class="release" resName="' + newResName + '" resId="' + item.resId +
-								'">发布</button><a href="http://192.168.188.109:8888/manage_system/resource/download?resName=' + item.resName +
-								'&path=' + item.path + '"><button class="download">下载</button></a></td>');
+								'">重命名</button>' + '<button class="download" resId="' + item.resId + '" resName="' + item.resName + item.resExt + '">' +
+								'下载</button><a/></td>');
 							html.push('</tr>');
 						} else if (item.status == '未发布') {
 							html.push('<td><button class="editResName" resId="' + item.resId + '" resName="' + newResName +
 								'">重命名</button><button class="release" resName="' + newResName + '" resId="' + item.resId +
 								'">发布</button><button class="deleteList" resId="' + item.resId +
-								'">删除</button><a href="http://192.168.188.109:8888/manage_system/resource/download?resName=' + item.resName +
-								'&path=' + item.path + '"><button class="download">下载</button></a></td>');
+								'">删除</button>' +
+							'<button class="download" resId="' + item.resId + '" resName="' + item.resName + item.resExt + '">' +
+								'下载</button><a/></td>');
 							html.push('</tr>');
 						}
 					});
@@ -237,7 +226,6 @@ var info = {
 							move: false,
 							content: $('#selectPersonnel'),
 							success: function() {
-
 							}
 						});
 					});
@@ -299,6 +287,48 @@ var info = {
 						});
 					});
 
+					// 下载资源
+					$('.download').off('click').on('click', function() {
+						var resId = $(this).attr("resId");
+						if (!resId) {
+							layer.msg('下载资源失败');
+						}
+						var resName = $(this).attr("resName");
+						let xhr = new XMLHttpRequest();
+						var url = Url + 'manage_system/resource/download?resId=' + resId;
+						xhr.open('POST', url, true)
+						xhr.responseType = 'arraybuffer'
+						xhr.setRequestHeader('token', window.sessionStorage.getItem("_token")) // 请求头中的验证信息等（如果有）
+						xhr.onload = function() {
+							if (this.status === 200) {
+								let type = xhr.getResponseHeader('Content-Type')
+								let blob = new Blob([this.response], {type: type})
+								if (typeof window.navigator.msSaveBlob !== 'undefined') {
+									window.navigator.msSaveBlob(blob, resName)
+								} else {
+									let URL = window.URL || window.webkitURL
+									let objectUrl = URL.createObjectURL(blob)
+									if (resName) {
+										var a = document.createElement('a')
+										// safari doesn't support this yet
+										if (typeof a.download === 'undefined') {
+											window.location = objectUrl
+										} else {
+											a.href = objectUrl
+											a.download = resName
+											document.body.appendChild(a)
+											a.click()
+											a.remove()
+										}
+									} else {
+										window.location = objectUrl
+									}
+								}
+							}
+						}
+						xhr.send();
+					});
+
 				} else {
 					layer.msg('获取资源列表操作失败');
 				}
@@ -340,7 +370,6 @@ var info = {
 			});
 		})
 	},
-
 
 	/**
 	 * 根据resId获取资源详情
@@ -670,9 +699,10 @@ var info = {
 								uploadListIns = upload.render({
 									elem: '#testList', //选择文件按钮
 									url: Url + 'manage_system/resource/resource',
+									headers: {"token":window.sessionStorage.getItem("_token")},
 									accept: 'file', //上传文件类型
 									multiple: true, //允许上传多个文件
-									exts: 'mp4|avi|mov|rmvb|rm|flv|wma|mp3|ogv|wav|aiff|aac|midi|docx|doc|xls|xlsx|pdf|txt|ppt|pptx',
+									exts: 'mp4|avi|mov|rmvb|rm|flv|wma|mp3|ogv|wav|aiff|aac|midi|docx|doc|xls|xlsx|pdf|txt|ppt|pptx|jpg|jpeg|png|bmp',
 									beforeSend: function(value){
 										All.setToken(value);
 									},
