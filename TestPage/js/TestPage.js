@@ -105,6 +105,7 @@ $(function() {
 			info.administratorResEntirety();
 			$('.experienceListBox').removeClass('hidden');
 			info.getExperienceList(1, taskId);
+			$('.addExperience').addClass('hidden');
 			$('.measurement').addClass('test');
 			$('.add').off('click').on('click', function() {
 				info.addExperience();
@@ -127,6 +128,7 @@ $(function() {
 			info.userResEntirety();
 		} else if (taskType == 2) {
 			if (taskDegreeOfCompletion == 1) {
+				$('.addExperience').addClass('hidden');
 				info.getExperienceList(1, taskId)
 			}
 			info.userResEntirety();
@@ -228,6 +230,7 @@ var info = {
 					if (getExperience > 0) {
 						info.getExperienceList(1, taskId)
 					}
+					$('.addExperience').addClass('hidden');
 
 				}
 			})
@@ -251,19 +254,19 @@ var info = {
 					var myAudio = $("#myAudio").attr('id');
 					if (resc.data.resType == 1) {
 						$('.video').removeClass('hidden');
-						$('.video video').attr('src', 'http://192.168.188.109:8848/' + resc.data.path);
+						$('.video video').attr('src', FileUrl + resc.data.path);
 						$('.study').text('视频学习')
 					} else if (resc.data.resType == 2) {
 						$('.audio').removeClass('hidden');
 						//音频地址赋值
-						$('.audio audio').attr('src', 'http://192.168.188.109:8848/' + resc.data.path);
+						$('.audio audio').attr('src', FileUrl + resc.data.path);
 						$('.study').text('音频学习')
 					} else if (resc.data.resType == 3) {
 						$('.doc').removeClass('hidden');
 						if (extPath == '.txt' || extPath == '.pdf') {
-							$('.doc iframe').attr('src', 'http://192.168.188.109:8848/' + resc.data.path + '');
+							$('.doc iframe').attr('src', FileUrl + resc.data.path + '');
 						} else {
-							$('.doc iframe').attr('src', 'http://192.168.188.109:8848/' + pdfPath + '.pdf');
+							$('.doc iframe').attr('src', FileUrl + pdfPath + '.pdf');
 						}
 						$('.study').text('文档学习')
 					}
@@ -368,7 +371,7 @@ var info = {
 
 						$('.video').removeClass('hidden');
 						$('.study').text('视频学习');
-						$('.video video').attr('src', 'http://192.168.188.109:8848/' + resc.data.path);
+						$('.video video').attr('src', FileUrl + resc.data.path);
 						info.getVideoPlaybackTime(resId, myVideo);
 						myVideo.loop = false;
 						// 是否看完
@@ -385,7 +388,7 @@ var info = {
 						$('.audio').removeClass('hidden');
 						//音频地址赋值
 						$('.study').text('音频学习');
-						$('.audio audio').attr('src', 'http://192.168.188.109:8848/' + resc.data.path);
+						$('.audio audio').attr('src', FileUrl + resc.data.path);
 						info.getVideoPlaybackTime(resId, myAudio);
 						myAudio.loop = false;
 						myAudio.addEventListener('ended', function() {
@@ -402,9 +405,9 @@ var info = {
 						// txt和pdf可以直接显示所以加一层判断
 						$('.study').text('文档学习');
 						if (extPath == '.txt' || extPath == '.pdf') {
-							$('.doc iframe').attr('src', 'http://192.168.188.109:8848/' + resc.data.path + '');
+							$('.doc iframe').attr('src', FileUrl + resc.data.path + '');
 						} else {
-							$('.doc iframe').attr('src', 'http://192.168.188.109:8848/' + pdfPath + '.pdf');
+							$('.doc iframe').attr('src', FileUrl + pdfPath + '.pdf');
 						}
 						$('.measurement').addClass('test');
 						$('.test').off('click').on('click', function() {
@@ -1118,7 +1121,7 @@ var info = {
 					var textNum = $('.textExperience').val().length;
 					$('.textNum').text(textNum);
 				});
-				$('.addExperience').removeClass('hidden');
+
 				info.Page(resc.data.total, resc.data.pageNum, taskId);
 				info.textNum();
 			}
