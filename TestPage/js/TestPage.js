@@ -80,7 +80,7 @@ $(function() {
 		$('.goBack').addClass('hidden')
 		if (taskType == 1) {
 			// 综合任务
-			$('.study').removeClass('hidden');
+			$('.common').removeClass('hidden');
 			$('.measurement').removeClass('hidden');
 			info.administratorResEntirety();
 			$('.measurement').addClass('test');
@@ -289,6 +289,11 @@ var info = {
 							$('.doc iframe').attr('src', FileUrl + pdfPath + '.pdf');
 						}
 						$('.study').text('文档学习')
+					} else if (resc.data.resType == 4) {
+						//图片地址赋值
+						$('.imageStudy').removeClass('hidden');
+						$('.imageStudy img').attr('src', FileUrl + resc.data.path);
+						$('.study').text('图片学习')
 					}
 					if (resc.data.resType != 3) {
 						setTimeInterval = setInterval(info.currentTime, 30000);
@@ -355,6 +360,8 @@ var info = {
 					$('.audio').removeClass('hidden');
 				} else if (resType == 3) {
 					$('.doc').removeClass('hidden');
+				} else if (resType == 4) {
+					$('.imageStudy').removeClass('hidden');
 				}
 
 			});
@@ -433,6 +440,15 @@ var info = {
 						$('.measurement').addClass('test');
 						$('.test').off('click').on('click', function() {
 
+							info.beginTesting(resc.data.resType);
+							$('.test').addClass('active');
+						})
+					} else if (resc.data.resType == 4) {
+						// 图片
+						$('.imageStudy').removeClass('hidden');
+						$('.imageStudy img').attr('src', FileUrl + resc.data.path);
+						$('.study').text('图片学习');
+						$('.test').off('click').on('click', function() {
 							info.beginTesting(resc.data.resType);
 							$('.test').addClass('active');
 						})
@@ -540,7 +556,7 @@ var info = {
 						});
 						Html.push('</div>');
 						Html.push('<div class="functionBox">');
-						Html.push('<button class="toView" value=' + item.questionId + '><img src="../imgs/stf.png">查看解析</button>');
+						Html.push('<button class="toView" value=' + item.questionId + '><img src="../imgs/stf.png" style="width: 30px">查看解析</button>');
 						Html.push('</div>');
 						Html.push('</li>');
 					});
@@ -782,7 +798,6 @@ var info = {
 				// 获取id
 				var questionId = $(this).parent('li').find('.questionCard_title').find('.questuon_title').attr('data-id')
 				// var a = $(this).parent('li').attr('data-type')
-				// console.log(az)
 				var data = {
 					'questionId': questionId,
 					'answer': answer
@@ -914,7 +929,7 @@ var info = {
 								});
 								Html.push('<div class="functionBox">');
 								Html.push('<button class="toView" value="' + item.questionId +
-									'"><img src="../imgs/stf.png">查看解析</button>');
+									'"><img src="../imgs/stf.png" style="width: 30px">查看解析</button>');
 								Html.push('</div>');
 								Html.push('</div>');
 								Html.push('</li>')
@@ -999,7 +1014,6 @@ var info = {
 				All.setToken(value);
 			},
 			success(res) {
-				console.log(res)
 				if (res.data != null) {
 					var Html = [];
 					$('.TotalScoreBox .TotalScore').html('总得分：' + res.data.userScore);
@@ -1044,7 +1058,7 @@ var info = {
 						});
 						Html.push('</div>');
 						Html.push('<div class="functionBox">');
-						Html.push('<button class="toView" value=' + item.questionId + '><img src="../imgs/stf.png">查看解析</button>');
+						Html.push('<button class="toView" value=' + item.questionId + '><img src="../imgs/stf.png" style="width: 30px">查看解析</button>');
 						Html.push('</div>');
 						Html.push('</li>');
 					});

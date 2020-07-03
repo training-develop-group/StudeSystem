@@ -97,7 +97,6 @@ var info = {
 	//获取资源列表
 	selectResourceList: function(pageNum, resName, resType) {
 
-		// console.log(resName);
 		$.ajax({
 			url: Url + 'manage_system/resource/resources',
 			data: {
@@ -250,7 +249,6 @@ var info = {
 						$('.deleteUserName').click(function() {
 							$(this).parents('p').remove();
 							var userId = $(this).attr('data-id');
-							console.log(userId)
 							$.each($("[name='Staff']:checked"), function(i, val) {
 								if (val.value == userId) {
 									$("#checkAll").prop("checked", false);
@@ -389,7 +387,6 @@ var info = {
 			},
 			success(res) {
 				if (res.code == 1) {
-					console.log(res.data.path);
 					if (res.data.resType == 1) {
 						info.videoPopup(res.data.path, res.data.resType);
 
@@ -431,7 +428,6 @@ var info = {
 				//计时器每3秒经行一次方法
 				// setTimeInterval = setInterval(info.currentTime, 30000);
 				// setTimeInterval2 = setInterval(info.NoProgressBar, 1000);
-				console.log(a);
 				var html = [];
 				html.push('<video src="'+ FileUrl + path +
 					'" controls="controls" preload="auto" width="1280px" height="720px" id="myVideo"></video>');
@@ -495,16 +491,13 @@ var info = {
 			move: false,
 			content: $('#viewResourceBox'),
 			success: function() {
-				console.log(path);
 				var extPath = path.substring(path.lastIndexOf('.'));
-				console.log(extPath);
 				if (extPath == '.txt' || extPath == '.pdf') {
 					var html = [];
 					html.push('<iframe src="' + FileUrl + path + '" width="800px" height="800px"></iframe>');
 					$('#viewResourceBox').html(html.join(''));
 				} else {
 					var pdfPath = path.substring(0, path.lastIndexOf('.'));
-					console.log(pdfPath);
 					var html = [];
 					html.push('<iframe src="' + FileUrl + pdfPath +
 						'.pdf" width="800px" height="800px"></iframe>');
@@ -542,7 +535,6 @@ var info = {
 	currentTime: function() {
 		var myVideo = document.getElementById("myVideo"); //获取视频DOM元素
 		var currentTime = myVideo.currentTime; //获取视频播放到的时间
-		console.log(myVideo.currentTime);
 		info.recordVideoPlaybackTime(currentTime); //调用记录方法
 	},
 
@@ -566,7 +558,6 @@ var info = {
 			},
 			success(res) {
 				if (res.code == 1) {
-					console.log(res);
 					layer.msg('获取视频播放时长成功');
 				} else {
 					layer.msg('获取视频播放时长失败');
@@ -594,8 +585,6 @@ var info = {
 			},
 			success(res) {
 				if (res.code == 1) {
-					console.log(res);
-					console.log(res.data);
 					layer.msg('获取视频播放时长成功');
 				} else {
 					layer.msg('获取视频播放时长失败');
@@ -637,7 +626,6 @@ var info = {
 			},
 			success(res) {
 				if (res.code == 1) {
-					console.log(res);
 					layer.msg('编辑资源名成功');
 					info.selectResourceList(JumpPageNum);
 				} else {
@@ -729,7 +717,6 @@ var info = {
 									exts: 'mp4|avi|mov|rmvb|rm|flv|wma|mp3|ogv|wav|aiff|aac|midi|docx|doc|xls|xlsx|pdf|txt|ppt|pptx|bmp|jpg|wbmp|jpeg|png|gif',
 
 									choose: function(obj) {
-										console.log(obj);
 										var files = this.files = obj.pushFile(); //将每次选择的文件追加到文件队列
 										//读取本地文件
 										obj.preview(function(index, file, result) {
@@ -818,7 +805,6 @@ var info = {
 										}
 									},
 									error: function(index, upload) {
-										console.log('-----失败----');
 										var tr = demoListView.find('tr#upload-' + index),
 											tds = tr.children();
 										tds.eq(3).html('<span style="color: #FF5722;">上传失败</span>');
@@ -917,7 +903,6 @@ var info = {
 
 	//发布任务
 	addTask: function() {
-		console.log(resId);
 		var mistake = '';
 		var index = true;
 		var userId = '';
@@ -979,7 +964,6 @@ var info = {
 
 		};
 		if (index != false) {
-			console.log(data);
 			$.ajax({
 				url: Url + 'manage_system/task/tasks',
 				data: JSON.stringify(data),
