@@ -139,7 +139,9 @@ var info = {
 							item.resType = '音频'
 						} else if (item.resType == 3) {
 							item.resType = '文档'
-						} else {
+						} else if (item.resType == 4) {
+							item.resType = '图片'
+						}else {
 							item.resType = '未知'
 						}
 						html.push('<td class="centerText">' + item.resType + '</td>');
@@ -397,10 +399,10 @@ var info = {
 					} else if (res.data.resType == 3) {
 						info.documentPopup(res.data.path, res.data.resType);
 
+					} else if (res.data.resType == 4) {
+						info.imagePopup(res.data.path, res.data.resType);
+
 					}
-					console.log(res);
-					// console.log(res.data.path);
-					// layer.msg('获取资源详情成功');
 				} else {
 					layer.msg('获取资源详情失败');
 				}
@@ -513,6 +515,28 @@ var info = {
 		});
 	},
 
+	/**
+	 * 图片弹出层
+	 * @param {Object} path 资源路径
+	 * @param {Object} resType 资源类型
+	 */
+	imagePopup: function(path, resType) {
+		var setTimeInterval = '';
+		layer.open({
+			type: 1,
+			area: ['1296px', '774px'],
+			title: ['查看', 'background-color: #279EF0;text-align: center;font-size: 20px;color:white;'],
+			move: false,
+			content: $('#viewResourceBox'),
+			success: function() {
+				var html = [];
+				html.push('<image src="'+ FileUrl + path +
+					'" controls="controls" preload="auto" width="1280px" height="720px"/>');
+				$('#viewResourceBox').html(html.join(''));
+
+			}
+		})
+	},
 
 	//获取视频播放到的时间然后记录
 	currentTime: function() {
@@ -702,7 +726,7 @@ var info = {
 									headers: {"token":window.sessionStorage.getItem("_token")},
 									accept: 'file', //上传文件类型
 									multiple: true, //允许上传多个文件
-									exts: 'mp4|avi|mov|rmvb|rm|flv|wma|mp3|ogv|wav|aiff|aac|midi|docx|doc|xls|xlsx|pdf|txt|ppt|pptx',
+									exts: 'mp4|avi|mov|rmvb|rm|flv|wma|mp3|ogv|wav|aiff|aac|midi|docx|doc|xls|xlsx|pdf|txt|ppt|pptx|bmp|jpg|wbmp|jpeg|png|gif',
 
 									choose: function(obj) {
 										console.log(obj);
