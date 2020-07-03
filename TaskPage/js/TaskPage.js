@@ -312,7 +312,6 @@ var info = {
 					layout: ['prev', 'page', 'next', 'limits'],
 					jump: function(item, first) {
 						if (!first) {
-							// console.log()
 							var search = $('#resName').val();
 							info.selectResourceList(item.curr, resType, search);
 						}
@@ -340,7 +339,6 @@ var info = {
 					layout: ['prev', 'page', 'next', 'limits', 'skip'],
 					jump: function(item, first) {
 						if (!first) {
-							// console.log()
 							info.TableDataRequest(item.curr);
 						}
 					}
@@ -367,11 +365,9 @@ var info = {
 			success(res) {
 				var Html = [];
 				res.data.forEach(function(item, index) {
-					// console.log(res)
 					Html.push('<tr>');
 					Html.push('<td><span>' + item.userName + '</span></td>');
 					var status = '';
-					debugger;
 					if (item.status === 0) {
 						status = '未完成'
 					} else {
@@ -647,7 +643,6 @@ var info = {
 					$(this).find('.layui-unselect').addClass('layui-form-radioed');
 					$(this).find('.layui-unselect').find('i').addClass('layui-anim-scaleSpring')
 				});
-				console.log(res.data.total);
 				info.resPage(res.data.total, res.data.pageNum, resType);
 				/***********资源选择模拟********/
 				$('.img-box').off('click').on('click', function() {
@@ -694,7 +689,6 @@ var info = {
 		if (search === undefined) {
 			search = null
 		}
-		// console.log(search)
 		$.ajax({
 			url: Url + 'manage_system/task/tasks',
 			data: {
