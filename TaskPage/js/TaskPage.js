@@ -371,7 +371,6 @@ var info = {
 					Html.push('<tr>');
 					Html.push('<td><span>' + item.userName + '</span></td>');
 					var status = '';
-					debugger;
 					if (item.status === 0) {
 						status = '未完成'
 					} else {
