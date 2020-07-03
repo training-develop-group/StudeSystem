@@ -13,6 +13,7 @@ var paperId = '';
 var resId = '';
 var setTimeInterval = '';
 var taskName = '';
+var endTime = new Date();
 $(function() {
 	
 	//清空
@@ -36,7 +37,7 @@ $(function() {
 			num: 3
 		});
 	});
-	setTimeInterval = setInterval(info.currentTime, 3000);
+	// setTimeInterval = setInterval(info.currentTime, 3000);
 	// 查看任务信息
 	$.ajax({
 		url: Url + 'manage_system/task/' + taskId,
@@ -64,6 +65,8 @@ $(function() {
 				taskName = res.data.taskName;
 				//用户完成情况
 				taskDegreeOfCompletion = res.data.status;
+
+				endTime = res.data.endTime;
 				//为任务名赋值
 				$('.nav_title').text(res.data.taskName)
 			} else {
@@ -105,10 +108,25 @@ $(function() {
 			info.administratorResEntirety();
 			$('.experienceListBox').removeClass('hidden');
 			info.getExperienceList(1, taskId);
-			$('.addExperience').addClass('hidden');
+			$('.addExperience').removeClass('hidden');
 			$('.measurement').addClass('test');
 			$('.add').off('click').on('click', function() {
-				info.addExperience();
+				var thisTime = new Date();
+				endTime =  Date.parse(endTime.replace(/-/g,"/"));
+
+				if (thisTime > endTime) {
+
+					layer.msg('任务已超时', {
+						icon: 5,
+						time: 2000 //2秒关闭（如果不配置，默认是3秒）
+					}, function(){
+						location.reload();
+
+					});
+
+				}else {
+					info.addExperience();
+				}
 			})
 		} else if (taskType == 3) {
 			// 测试任务
@@ -230,7 +248,6 @@ var info = {
 					if (getExperience > 0) {
 						info.getExperienceList(1, taskId)
 					}
-					$('.addExperience').addClass('hidden');
 
 				}
 			})
