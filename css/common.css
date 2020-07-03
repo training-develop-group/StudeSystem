@@ -95,7 +95,7 @@ body {
 }
 
 .rightBox {
-    width: 505px;
+    /*width: 505px;*/
     height: 60px;
     float: right;
     margin-top: -60px;
