@@ -51,10 +51,8 @@ var info = {
 			var NewPassWord = $('.NewPassWord').val();
 			var ConfirmPassWord = $('.ConfirmPassWord').val();
 			var reg = /[^\x00-\xff]/;
-			// 非空校验/密码重复校验
-			if (OriginalPassword == '' || OriginalPassword == null || OriginalPassword == undefined) {
-				layer.msg('请输入原密码');
-			} else if (NewPassWord == '' || NewPassWord == null || NewPassWord == undefined) {
+
+			if (NewPassWord == '' || NewPassWord == null || NewPassWord == undefined) {
 				layer.msg('请输入新密码');
 			} else if (ConfirmPassWord == '' || ConfirmPassWord == null || ConfirmPassWord == undefined) {
 				layer.msg('请再次输入新密码进行确认');
@@ -72,21 +70,24 @@ var info = {
 			} else {
 				// 获取现账户用户名和密码
 				$.ajax({
-					url: Url + 'manage_system/user/password',
+					url: LoginUrl + 'user/password',
 					data: {
-						'originalPassword': OriginalPassword,
-						'newPassWord': NewPassWord,
-						'passwordValidation': ConfirmPassWord
+
+						'password': NewPassWord
+
 					},
 					dataType: 'json',
-					type: 'POST',
+					type: 'PUT',
+					beforeSend: function(value){
+						All.setToken(value);
+					},
 					success(res) {
-						if (res.data == '修改成功') {
-							layer.msg(res.data+'！', function() {
+						if (res.code == 0) {
+							layer.msg('修改成功即将跳转登录页', function() {
 								window.location.href = "../index.html";
 							});
 						} else {
-							layer.msg(res.data+'！', function() {
+							layer.msg('修改失败', function() {
 							});
 						}
 					},
