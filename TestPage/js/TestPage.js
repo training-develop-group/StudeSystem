@@ -13,6 +13,7 @@ var paperId = '';
 var resId = '';
 var setTimeInterval = '';
 var taskName = '';
+var endTime = new Date();
 $(function() {
 	
 	//清空
@@ -22,10 +23,10 @@ $(function() {
 	$('.textNum').text(textNum);
 	// 点击返回
 	info.goBack();
-	// 添加心得
 	$('.add').off('click').on('click', function() {
 		info.addExperience();
-	})
+	});
+
 	layui.use(['layer', 'form'], function() {
 		var layer = layui.layer,
 			form = layui.form;
@@ -36,7 +37,7 @@ $(function() {
 			num: 3
 		});
 	});
-	setTimeInterval = setInterval(info.currentTime, 3000);
+	// setTimeInterval = setInterval(info.currentTime, 3000);
 	// 查看任务信息
 	$.ajax({
 		url: Url + 'manage_system/task/' + taskId,
@@ -64,6 +65,8 @@ $(function() {
 				taskName = res.data.taskName;
 				//用户完成情况
 				taskDegreeOfCompletion = res.data.status;
+
+				endTime = res.data.endTime;
 				//为任务名赋值
 				$('.nav_title').text(res.data.taskName)
 			} else {
@@ -105,10 +108,22 @@ $(function() {
 			info.administratorResEntirety();
 			$('.experienceListBox').removeClass('hidden');
 			info.getExperienceList(1, taskId);
-			$('.addExperience').addClass('hidden');
+			$('.addExperience').removeClass('hidden');
 			$('.measurement').addClass('test');
 			$('.add').off('click').on('click', function() {
-				info.addExperience();
+				var thisTime = new Date();
+				endTime =  Date.parse(endTime.replace(/-/g,"/"));
+
+				if (thisTime > endTime) {
+					layer.msg('任务已超时', {
+						icon: 5,
+						time: 2000 //2秒关闭（如果不配置，默认是3秒）
+					}, function(){
+						location.reload();
+					});
+				}else {
+					info.addExperience();
+				}
 			})
 		} else if (taskType == 3) {
 			// 测试任务
@@ -127,9 +142,14 @@ $(function() {
 		if (taskType == 1) {
 			info.userResEntirety();
 		} else if (taskType == 2) {
+
 			if (taskDegreeOfCompletion == 1) {
 				$('.addExperience').addClass('hidden');
+				$('.experienceListBox').removeClass('hidden');
 				info.getExperienceList(1, taskId)
+			} else {
+				// 添加心得
+				$('.addExperience').removeClass('hidden');
 			}
 			info.userResEntirety();
 		} else if (taskType == 3) {
@@ -273,6 +293,7 @@ var info = {
 					if (resc.data.resType != 3) {
 						setTimeInterval = setInterval(info.currentTime, 30000);
 					}
+
 					info.getVideoPlaybackTime(resId, myVideo);
 
 				}
