@@ -634,6 +634,9 @@ var info = {
 						} else {
 							Html.push('<img src="../imgs/w2.jpg" >')
 						}
+					} else if (item.resType === 4) {
+					Html.push('<img src="' + FileUrl + item.path +
+						'"  style="width:140px;height:140px;"/>')
 					}
 					Html.push('</div>');
 					Html.push('<p class="resName">' + item.resName + '</p>');
