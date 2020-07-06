@@ -113,7 +113,6 @@ $(function() {
 			$('.add').off('click').on('click', function() {
 				var thisTime = new Date();
 				endTime =  Date.parse(endTime.replace(/-/g,"/"));
-				debugger;
 				if (thisTime > endTime) {
 					layer.msg('任务已超时', {
 						icon: 5,
@@ -150,7 +149,20 @@ $(function() {
 				info.getExperienceList(1, taskId)
 			} else {
 				// 添加心得
-				$('.addExperience').removeClass('hidden');
+				var thisTime = new Date();
+				endTime =  Date.parse(endTime.replace(/-/g,"/"));
+				if (thisTime > endTime) {
+					layer.msg('任务已超时', {
+						icon: 5,
+						time: 1000 //1秒关闭（如果不配置，默认是3秒）
+					});
+
+					$('.addExperience').addClass('hidden');
+					info.getExperienceList(1, taskId);
+				} else {
+					$('.addExperience').removeClass('hidden');
+				}
+
 			}
 			info.userResEntirety();
 		} else if (taskType == 3) {
