@@ -156,7 +156,9 @@ var info = {
 			data: data,
 			dataType: 'json',
 			Type: 'GET',
-			beforeSend() {},
+			beforeSend: function(value){
+				All.setToken(value);
+			},
 			success: function(res) {
 				if (res || res.data != null) {
 					info.TableDrawing(res.data);
