@@ -82,8 +82,9 @@ $(function() {
 			// 综合任务
 			$('.common').removeClass('hidden');
 			$('.measurement').removeClass('hidden');
-			info.administratorResEntirety();
 			$('.measurement').addClass('test');
+			info.administratorResEntirety();
+
 			$('.test').off('click').on('click', function() {
 				$('.content').addClass('hidden');
 				//隐藏掉所有
@@ -133,7 +134,7 @@ $(function() {
 			$('.doc').addClass('hidden');
 			$('.content').addClass('hidden');
 			info.getPaperList(paperId);
-			$('.goBack').addClass('hidden')
+			$('.goBack').addClass('hidden');
 
 		}
 	} else {
@@ -141,6 +142,18 @@ $(function() {
 		// 综合任务
 		if (taskType == 1) {
 			info.userResEntirety();
+			$('.measurement').addClass('test');
+			$('.test').off('click').on('click', function() {
+				$('.content').addClass('hidden');
+				//隐藏掉所有
+				$('.video').addClass('hidden');
+				$('.audio').addClass('hidden');
+				$('.doc').addClass('hidden');
+				$('.active').removeClass('active');
+				$(this).addClass('active');
+				info.getPaperList(paperId);
+			});
+
 		} else if (taskType == 2) {
 
 			if (taskDegreeOfCompletion == 1) {
