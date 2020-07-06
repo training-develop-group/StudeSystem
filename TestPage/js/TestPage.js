@@ -113,7 +113,7 @@ $(function() {
 			$('.add').off('click').on('click', function() {
 				var thisTime = new Date();
 				endTime =  Date.parse(endTime.replace(/-/g,"/"));
-
+				debugger;
 				if (thisTime > endTime) {
 					layer.msg('任务已超时', {
 						icon: 5,
@@ -123,6 +123,7 @@ $(function() {
 					});
 				}else {
 					info.addExperience();
+					location.reload();
 				}
 			})
 		} else if (taskType == 3) {
