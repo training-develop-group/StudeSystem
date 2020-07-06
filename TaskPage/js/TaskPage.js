@@ -351,7 +351,7 @@ var info = {
 	},
 	//查询from
 	//点击查看查找所有关联的用户
-	selectTaskUsers: function(taskId) {
+	selectTaskUsers: function(taskId,taskType) {
 		$.ajax({
 			url: Url + 'manage_system/task/user-ok',
 			data: {
@@ -377,6 +377,11 @@ var info = {
 					if (item.score == null) {
 						item.score = '-';
 					}
+
+					if (taskType === '2') {
+						item.score = '-';
+					}
+
 					Html.push('<td>' + item.score + '</td></tr>')
 				});
 				$('#taskUserDegreeCompletion').html(Html.join(''));
@@ -717,11 +722,11 @@ var info = {
 						Html.push('<td class="oneselfTaskName" title="' + item.taskName + '"><pre>' + item.taskName + '</pre></td>');
 					}
 					if (item.taskType == 1) {
-						Html.push('<td >综合任务</td>');
+						Html.push('<td class="taskType"  type ="1">综合任务</td>');
 					} else if (item.taskType == 2) {
-						Html.push('<td >学习任务</td>');
+						Html.push('<td  class="taskType" type ="2">学习任务</td>');
 					} else if (item.taskType == 3) {
-						Html.push('<td >测试任务</td>');
+						Html.push('<td  class="taskType" type ="3">测试任务</td>');
 					}
 					Html.push('<td>' + dateFormata(item.startTime) + ' - ' + dateFormata(item.endTime) + '</td>');
 					// 转码
@@ -776,7 +781,8 @@ var info = {
 					window.open("../TestPage/TestPage.html?value=" + taskId + "," + 1, "_blank");
 				});
 				$('.lookOver').off().on('click', function() {
-					info.selectTaskUsers($(this).val());
+					var taskType = $(this).parents().children('.taskType').attr('type');
+					info.selectTaskUsers($(this).val(),taskType);
 					layer.open({
 						type: 1,
 						move: false,
