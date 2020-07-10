@@ -144,15 +144,55 @@ $(function() {
 			info.userResEntirety();
 			$('.measurement').addClass('test');
 			$('.test').off('click').on('click', function() {
-				$('.content').addClass('hidden');
-				//隐藏掉所有
+				$('.TotalScoreBox').addClass('hidden');
 				$('.video').addClass('hidden');
 				$('.audio').addClass('hidden');
 				$('.doc').addClass('hidden');
-				$('.active').removeClass('active');
-				$(this).addClass('active');
+				$('.content').addClass('hidden');
 				info.getPaperList(paperId);
+				$('.goBack').addClass('hidden');
+
 			});
+			// 测试任务
+			$('.measurement').removeClass('hidden');
+			$('.active').removeClass('active');
+			$('.measurement').addClass('active');
+			$('.content').removeClass('hidden');
+			//隐藏掉所有
+			$('.goBack').addClass('hidden');
+			$('.video').addClass('hidden');
+			$('.audio').addClass('hidden');
+			$('.doc').addClass('hidden');
+			if (taskDegreeOfCompletion == 0) {
+				layer.open({
+					type: 1,
+					skin: 'testStart',
+					area: ['450px', '180px'],
+					move: false,
+					title: ['开始测试', 'background-color: #289ef0;text-align: center;font-size: 20px;color:white;'],
+					closeBtn: 0,
+					content: "<p class=''>准备好了吗？考试期间无法退出</p><div class='btn-box'><button class='layui-btn layui-btn-sm layui-btn-normal ok'>准备好了</button><button class='layui-btn layui-btn-sm no'>还没有</button></div>",
+					success: function(res) {
+						$('.testStart .ok').off('click').on('click', function() {
+							layer.close(layer.index);
+							info.getList(taskId, taskType, paperId, resId);
+						});
+						$('.no').off('click').on('click', function() {
+							layer.close(layer.index);
+							if (localStorage.getItem('userType') == 1) {
+								window.location.href = '../TaskPage/TaskPage.html'
+							} else {
+								window.location.href = '../UserHomePage/UserHomePage.html'
+							}
+						});
+					}
+				});81
+			} else {
+				info.getUserPaperList();
+				$('.content').addClass('hidden');
+				$('.goBack').removeClass('hidden');
+				$('.goBack *').css('color', '#2ba0e3');
+			}
 
 		} else if (taskType == 2) {
 

@@ -494,6 +494,7 @@ var info = {
 		var resId = $("input[name=res]:checked").val();
 		var index = true;
 		var userId = '';
+		debugger;
 		$.each($("[name='Staff']:checked"), function(i, val) {
 			userId += ',' + val.value
 		});
@@ -570,7 +571,7 @@ var info = {
 			success(res) {
 				var Html = [];
 				res.data.forEach(function(item, index) {
-					Html.push('<span class="layui-form-label" style="font-size: 16px;"><input type="checkbox" value="' + item.userId +
+					Html.push('<span class="layui-form-label" style="font-size: 16px;"><input type="checkbox" value="' + item.pkId +
 						'"class="checkAll " name="Staff" lay-skin="primary" lay-filter="c_one" ><i>' + item.userName +
 						'</i></span>');
 				});
